@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,7 @@
     "@babel/core": "^7.4.4",
     "@dword-design/babel-config": "^0.1.1",
     "@dword-design/editorconfig-config": "^0.1.1",
-    "@dword-design/eslint-config": "^0.1.7",
+    "@dword-design/eslint-config": "^0.1.10",
     "@dword-design/husky-config": "^0.1.2",
     "@dword-design/lint-staged-config": "^0.1.1"
   }
