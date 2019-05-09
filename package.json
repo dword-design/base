@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "prepare": "babel src --ignore src/babel.config.js --config-file ./src/babel.config.js --out-dir dist",
-    "postinstall": "copy-files-local-postinstall",
+    "postinstall": "./src/build-gitignore && copy-files-local-postinstall",
     "postuninstall": "copy-files-local-postuninstall",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,12 +22,12 @@
       "to": ".eslintrc.js"
     },
     {
-      "from": "src/gitignore",
+      "from": "dist/gitignore",
       "to": ".gitignore",
       "keepOnUninstall": true
     },
     {
-      "from": "src/gitignore",
+      "from": "dist/gitignore",
       "to": ".eslintignore"
     },
     {
@@ -64,6 +64,7 @@
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-vue": "^5.2.2",
     "husky": "^2.2.0",
-    "lint-staged": "^8.1.6"
+    "lint-staged": "^8.1.6",
+    "read-pkg-up": "^5.0.0"
   }
 }
