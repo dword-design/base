@@ -1,20 +1,70 @@
 {
   "name": "@dword-design/base",
-  "version": "0.1.2",
+  "version": "0.2.1",
   "description": "",
   "scripts": {
+    "prepare": "babel src --ignore src/babel.config.js --config-file ./src/babel.config.js --out-dir dist",
+    "postinstall": "copy-files-local-postinstall",
+    "postuninstall": "copy-files-local-postuninstall",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "copyFilesLocal": [
+    {
+      "from": "src/babel.config.js",
+      "to": "babel.config.js"
+    },
+    {
+      "from": "src/editorconfig",
+      "to": ".editorconfig"
+    },
+    {
+      "from": "dist/eslintrc.js",
+      "to": ".eslintrc.js"
+    },
+    {
+      "from": "src/gitignore",
+      "to": ".gitignore"
+    },
+    {
+      "from": "src/gitignore",
+      "to": ".eslintignore"
+    },
+    {
+      "from": "dist/huskyrc.js",
+      "to": ".huskyrc.js"
+    },
+    {
+      "from": "dist/lint-staged.config.js",
+      "to": "lint-staged.config.js"
+    }
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
-    "@dword-design/babel-config": "^0.1.1",
-    "@dword-design/editorconfig-config": "^0.1.1",
-    "@dword-design/eslint-config": "^0.1.10",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.3.2",
+    "@babel/preset-env": "^7.4.4",
+    "@dword-design/copy-files-local": "file:../copy-files-local",
     "@dword-design/husky-config": "^0.1.2",
-    "@dword-design/lint-staged-config": "^0.1.1"
+    "@dword-design/lint-staged-config": "^0.1.1",
+    "@vue/babel-preset-jsx": "^1.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "babel-plugin-lodash": "^3.3.4",
+    "eslint": "^5.16.0",
+    "eslint-import-resolver-webpack": "^0.11.1",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-lodash-fp": "^2.2.0-a1",
+    "eslint-plugin-prefer-arrow": "^1.1.5",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-vue": "^5.2.2",
+    "husky": "^2.2.0",
+    "lint-staged": "^8.1.6"
   }
 }

@@ -1,7 +1,2 @@
 node_modules
-.editorconfig
-.eslintignore
-.eslintrc.js
-.huskyrc.js
-babel.config.js
-lint-staged.config.js
+dist
