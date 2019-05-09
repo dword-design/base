@@ -23,7 +23,8 @@
     },
     {
       "from": "src/gitignore",
-      "to": ".gitignore"
+      "to": ".gitignore",
+      "keepOnUninstall": true
     },
     {
       "from": "src/gitignore",
@@ -49,7 +50,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-proposal-pipeline-operator": "^7.3.2",
     "@babel/preset-env": "^7.4.4",
-    "@dword-design/copy-files-local": "^0.1.0",
+    "@dword-design/copy-files-local": "^0.1.1",
     "@dword-design/husky-config": "^0.1.2",
     "@dword-design/lint-staged-config": "^0.1.1",
     "@vue/babel-preset-jsx": "^1.0.0",
