@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "",
   "scripts": {
     "prepare": "babel src --ignore src/babel.config.js --config-file ./src/babel.config.js --out-dir dist",
