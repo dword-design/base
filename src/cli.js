@@ -26,12 +26,22 @@ Promise.all([readPkgUp({ cwd: __dirname }), readPkgUp()])
         ['.', '--config', path.resolve(packagePath, 'src/lint-staged.config.js')],
         { stdio: 'inherit' },
       ),
-      build: () => lint()
-        .then(() => spawn(
-          'babel',
-          ['src', '--out-dir', 'dist', '--config-file', path.resolve(packagePath, 'src/babel.config.js')],
-          { stdio: 'inherit' },
-        )),
+      // build: () => lint()
+      //   .then(() => spawn(
+      //     'babel',
+      //     ['src', '--out-dir', 'dist', '--config-file', path.resolve(packagePath, 'src/babel.config.js')],
+      //     { stdio: 'inherit' },
+      //   )),
+      build: () => spawn(
+        'webpack',
+        ['--config', path.resolve(packagePath, 'src/webpack.config.js')],
+        { stdio: 'inherit' },
+      ),
+      start: () => spawn(
+        'webpack',
+        ['--watch', '--config', path.resolve(packagePath, 'src/webpack.start.config.js')],
+        { stdio: 'inherit' },
+      ),
     }
 
     return reduce(
