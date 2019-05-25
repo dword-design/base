@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
-  "*.{js,vue}": "eslint",
+  "*.{js,vue}": `eslint --config ${path.resolve(__dirname, 'eslintrc.js')}`,
 }
