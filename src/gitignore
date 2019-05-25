@@ -1,8 +1,6 @@
 .DS_Store
 node_modules
 dist
-/.vscode
-/.editorconfig
-/.eslintignore
-/.huskyrc.js
-/lint-staged.config.js
+.vscode
+.editorconfig
+.huskyrc.js

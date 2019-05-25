@@ -10,13 +10,13 @@ readPkgUp()
   .then(packagePath => Promise.all([
     fs.readFile(path.resolve(packagePath, 'src/gitignore'), 'utf8'),
     findUp('.base.gitignore')
-      .then(filePath => fs.readFile(filePath, 'utf8')),
+      .then(filePath => filePath !== undefined ? fs.readFile(filePath, 'utf8') : ''),
   ])
     .then(([
       gitignore,
       additions,
     ]) => fs.writeFile(
-      path.resolve(packagePath, 'dist/gitignore'),
+      `${packagePath}/gitignore-merged`,
       `${gitignore}\r\n${additions}`,
     ))
 )

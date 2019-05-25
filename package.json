@@ -16,7 +16,7 @@
       "to": ".editorconfig"
     },
     {
-      "from": "dist/gitignore",
+      "from": "gitignore-merged",
       "to": ".gitignore"
     },
     {
