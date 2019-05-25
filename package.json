@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "",
   "scripts": {
     "postinstall": "./src/build-gitignore.js && copy-files-local-postinstall",
@@ -57,6 +57,7 @@
     "husky": "^2.2.0",
     "lint-staged": "^8.1.6",
     "lodash": "^4.17.11",
+    "module-exists": "^0.2.1",
     "nodemon": "^1.19.1",
     "read-pkg-up": "^6.0.0",
     "webpack": "^4.32.2",

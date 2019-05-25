@@ -8,40 +8,40 @@ const { reduce } = require('lodash')
 const { paramCase } = require('change-case')
 
 Promise.all([readPkgUp({ cwd: __dirname }), readPkgUp()])
-  .then(([{ path: packageFilePath }, { package: { type = 'node' } }]) =>
+  .then(([{ path: packageFilePath }, { package: { type = 'lib' } }]) =>
     ({ packagePath: path.dirname(packageFilePath), type })
   )
-  .then(({ packagePath }) => {
-
-    const lint = () => spawn(
-      'eslint',
-      ['.', '--config', path.resolve(packagePath, 'src/eslintrc.js'), '--ignore-path', path.resolve(packagePath, 'src/gitignore')],
-      { stdio: 'inherit' },
-    )
+  .then(({ packagePath, type }) => {
 
     const commands = {
-      lint,
+      lint: () => spawn(
+        'eslint',
+        ['.', '--config', path.resolve(packagePath, 'src/eslintrc.js'), '--ignore-path', path.resolve(packagePath, 'src/gitignore')],
+        { stdio: 'inherit' },
+      ),
       lintStaged: () => spawn(
         'lint-staged',
         ['.', '--config', path.resolve(packagePath, 'src/lint-staged.config.js')],
         { stdio: 'inherit' },
       ),
-      // build: () => lint()
-      //   .then(() => spawn(
-      //     'babel',
-      //     ['src', '--out-dir', 'dist', '--config-file', path.resolve(packagePath, 'src/babel.config.js')],
-      //     { stdio: 'inherit' },
-      //   )),
       build: () => spawn(
         'webpack',
-        ['--config', path.resolve(packagePath, 'src/webpack.config.js')],
+        ['--config', path.resolve(packagePath, `src/webpack.${type}.config.js`)],
         { stdio: 'inherit' },
       ),
-      start: () => spawn(
-        'webpack',
-        ['--watch', '--config', path.resolve(packagePath, 'src/webpack.start.config.js')],
-        { stdio: 'inherit' },
-      ),
+      start: () => {
+        const { cmd, params } = {
+          lib: {
+            cmd: 'webpack',
+            params: ['--watch', '--config', path.resolve(packagePath, 'src/webpack.lib.start.config.js')],
+          },
+          web: {
+            cmd: 'webpack-dev-server',
+            params: ['--config', path.resolve(packagePath, 'src/webpack.web.config.js')],
+          }
+        }[type]
+        return spawn(cmd, params, { stdio: 'inherit' })
+      },
     }
 
     return reduce(
