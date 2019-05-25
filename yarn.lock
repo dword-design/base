@@ -694,10 +694,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@dword-design/copy-files-local@^0.2.3":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@dword-design/copy-files-local/-/copy-files-local-0.2.4.tgz#26e51d04f6b12146d76966125aefea125d2f2278"
-  integrity sha512-VEPXYvXJcg26tpLSXtFTHAwTIr3LDaq2P21si/1ip9yvEAt3+XCtTMcbodcD+O/Jw3W6DEAdO/MWHftTt0zvBA==
+"@dword-design/copy-files-local@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@dword-design/copy-files-local/-/copy-files-local-0.2.5.tgz#05713b939df3c31ba667599265a7392ceccaf716"
+  integrity sha512-wC8RMsPFletgGO4/yA5Q7OJUa3QIckgq7uzUcIYkF/5mJGSSvMyprRGZ0DJXYlMXwMu0n0rUxbaTZcg88n4Lug==
   dependencies:
     fs-extra "^7.0.1"
     read-pkg-up "^5.0.0"

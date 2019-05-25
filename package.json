@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "",
   "scripts": {
     "prepare": "babel src --ignore src/babel.config.js --config-file ./src/babel.config.js --out-dir dist",
@@ -50,7 +50,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-proposal-pipeline-operator": "^7.3.2",
     "@babel/preset-env": "^7.4.4",
-    "@dword-design/copy-files-local": "^0.2.3",
+    "@dword-design/copy-files-local": "^0.2.5",
     "@vue/babel-preset-jsx": "^1.0.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-add-module-exports": "^1.0.2",
