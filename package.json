@@ -3,13 +3,12 @@
   "version": "0.3.6",
   "description": "",
   "scripts": {
-    "prepare": "babel src --ignore src/babel.config.js --config-file ./src/babel.config.js --out-dir dist",
     "postinstall": "./src/build-gitignore && copy-files-local-postinstall",
     "postuninstall": "copy-files-local-postuninstall",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "base": "./dist/cli.js"
+    "base": "./src/cli.js"
   },
   "copyFilesLocal": [
     {
@@ -21,15 +20,11 @@
       "to": ".gitignore"
     },
     {
-      "from": "dist/gitignore",
-      "to": ".eslintignore"
-    },
-    {
-      "from": "dist/huskyrc.js",
+      "from": "src/huskyrc.js",
       "to": ".huskyrc.js"
     },
     {
-      "from": "dist/lint-staged.config.js",
+      "from": "src/lint-staged.config.js",
       "to": "lint-staged.config.js"
     }
   ],

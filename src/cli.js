@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { spawn } from 'child-process-promise'
-import path from 'path'
-import readPkgUp from 'read-pkg-up'
-import yargs from 'yargs'
+const { spawn } = require('child-process-promise')
+const path = require('path')
+const readPkgUp = require('read-pkg-up')
+const yargs = require('yargs')
 
 Promise.all([readPkgUp({ cwd: __dirname }), readPkgUp()])
   .then(([{ path: packageFilePath }, { package: { type = 'node' } }]) =>
@@ -15,7 +15,7 @@ Promise.all([readPkgUp({ cwd: __dirname }), readPkgUp()])
       handler: () => Promise.resolve()
         .then(() => spawn(
           'eslint',
-          ['.', '--config', path.resolve(packagePath, 'dist/eslintrc.js')],
+          ['.', '--config', path.resolve(packagePath, 'src/eslintrc.js'), '--ignore-path', path.resolve(packagePath, 'src/gitignore')],
           { stdio: 'inherit' }
         ))
         .then(() => spawn(
