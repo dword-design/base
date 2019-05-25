@@ -2,6 +2,7 @@ const webpackMerge = require('webpack-merge')
 const moduleExists = require('module-exists')
 const baseConfig = require('./webpack.lib.config')
 const WebpackShellPlugin = require('webpack-shell-plugin')
+const path = require('path')
 
 module.exports = webpackMerge(
   baseConfig,
@@ -11,7 +12,10 @@ module.exports = webpackMerge(
     },
     plugins: [
       new WebpackShellPlugin({
-        onBuildEnd: ['nodemon dist/index.js --watch dist'],
+        onBuildEnd: [{
+          command: path.resolve(__dirname, '../node_modules/.bin/nodemon'),
+          args: ['dist/index.js', '--watch', 'dist'],
+        }],
       })
     ],
   }

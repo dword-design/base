@@ -15,28 +15,28 @@ Promise.all([readPkgUp({ cwd: __dirname }), readPkgUp()])
 
     const commands = {
       lint: () => spawn(
-        'eslint',
+        path.resolve(__dirname, '../node_modules/.bin/eslint'),
         ['.', '--config', path.resolve(packagePath, 'src/eslintrc.js'), '--ignore-path', path.resolve(packagePath, 'src/gitignore')],
         { stdio: 'inherit' },
       ),
       lintStaged: () => spawn(
-        'lint-staged',
+        path.resolve(__dirname, '../node_modules/.bin/lint-staged'),
         ['.', '--config', path.resolve(packagePath, 'src/lint-staged.config.js')],
         { stdio: 'inherit' },
       ),
       build: () => spawn(
-        'webpack',
+        path.resolve(__dirname, '../node_modules/.bin/webpack'),
         ['--config', path.resolve(packagePath, `src/webpack.${type}.config.js`)],
         { stdio: 'inherit' },
       ),
       start: () => {
         const { cmd, params } = {
           lib: {
-            cmd: 'webpack',
+            cmd: path.resolve(__dirname, '../node_modules/.bin/webpack'),
             params: ['--watch', '--config', path.resolve(packagePath, 'src/webpack.lib.start.config.js')],
           },
           web: {
-            cmd: 'webpack-dev-server',
+            cmd: path.resolve(__dirname, '../node_modules/.bin/webpack-dev-server'),
             params: ['--config', path.resolve(packagePath, 'src/webpack.web.config.js')],
           }
         }[type]
