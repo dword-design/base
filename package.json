@@ -3,7 +3,7 @@
   "version": "0.3.6",
   "description": "",
   "scripts": {
-    "postinstall": "./src/build-gitignore && copy-files-local-postinstall",
+    "postinstall": "./src/build-gitignore.js && copy-files-local-postinstall",
     "postuninstall": "copy-files-local-postuninstall",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,10 +22,6 @@
     {
       "from": "src/huskyrc.js",
       "to": ".huskyrc.js"
-    },
-    {
-      "from": "src/lint-staged.config.js",
-      "to": "lint-staged.config.js"
     }
   ],
   "keywords": [],
