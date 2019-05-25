@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "",
   "scripts": {
     "prepare": "babel src --ignore src/babel.config.js --config-file ./src/babel.config.js --out-dir dist",
@@ -13,16 +13,8 @@
   },
   "copyFilesLocal": [
     {
-      "from": "src/babel.config.js",
-      "to": "babel.config.js"
-    },
-    {
       "from": "src/editorconfig",
       "to": ".editorconfig"
-    },
-    {
-      "from": "dist/eslintrc.js",
-      "to": ".eslintrc.js"
     },
     {
       "from": "dist/gitignore",
@@ -57,6 +49,7 @@
     "babel-eslint": "^10.0.1",
     "babel-plugin-add-module-exports": "^1.0.2",
     "babel-plugin-lodash": "^3.3.4",
+    "child-process-promise": "^2.2.1",
     "eslint": "^5.16.0",
     "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-loader": "^2.1.2",
