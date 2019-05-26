@@ -19,7 +19,7 @@ module.exports = webpackMerge(
       libraryExport: 'default',
       globalObject: 'this',
     },
-    externals: [nodeExternals()],
+    externals: [nodeExternals({ modulesFromFile: true })],
     plugins: [
       new CleanWebpackPlugin(),
     ],
