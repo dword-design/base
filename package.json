@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "description": "",
   "scripts": {
     "postinstall": "./src/build-gitignore.js && copy-files-local-postinstall",
