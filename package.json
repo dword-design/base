@@ -1,29 +1,13 @@
 {
   "name": "@dword-design/base",
-  "version": "0.3.11",
+  "version": "0.4.0",
   "description": "",
   "scripts": {
-    "postinstall": "./src/build-gitignore.js && copy-files-local-postinstall",
-    "postuninstall": "copy-files-local-postuninstall",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
     "base": "./src/cli.js"
   },
-  "copyFilesLocal": [
-    {
-      "from": "src/editorconfig",
-      "to": ".editorconfig"
-    },
-    {
-      "from": "gitignore-merged",
-      "to": ".gitignore"
-    },
-    {
-      "from": "src/huskyrc.js",
-      "to": ".huskyrc.js"
-    }
-  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -34,17 +18,22 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-proposal-pipeline-operator": "^7.3.2",
-    "@babel/preset-env": "^7.4.4",
-    "@dword-design/copy-files-local": "^0.2.5",
+    "@babel/preset-env": "^7.4.5",
+    "@dword-design/linaria": "^0.1.0",
+    "@epegzz/sass-vars-loader": "dword-design/sass-vars-loader#fork",
     "@vue/babel-preset-jsx": "^1.0.0",
+    "autoprefixer": "^9.5.1",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
-    "babel-plugin-add-module-exports": "^1.0.2",
     "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-module-resolver": "^3.2.0",
     "change-case": "^3.1.0",
     "child-process-promise": "^2.2.1",
     "clean-webpack-plugin": "^2.0.2",
+    "core-js": "^2.6.5",
+    "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
+    "eslint-import-resolver-babel-module": "^5.1.0",
     "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-loader": "^2.1.2",
     "eslint-plugin-import": "^2.17.2",
@@ -53,13 +42,25 @@
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-vue": "^5.2.2",
     "find-up": "^4.0.0",
+    "findup-sync": "^3.0.0",
     "fs-extra": "^8.0.1",
-    "husky": "^2.2.0",
+    "html-webpack-plugin": "^3.2.0",
     "lint-staged": "^8.1.6",
     "lodash": "^4.17.11",
     "module-exists": "^0.2.1",
+    "mustache": "^3.0.1",
+    "node-sass": "^4.12.0",
     "nodemon": "^1.19.1",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-url": "^8.0.0",
     "read-pkg-up": "^6.0.0",
+    "sass-loader": "^7.1.0",
+    "url-loader": "^1.1.2",
+    "vue-loader": "^15.7.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-svg-loader": "^0.12.0",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1",

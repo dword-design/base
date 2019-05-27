@@ -1,3 +1,7 @@
+const findUpSync = require('findup-sync')
+
+const variablesPath = findUpSync('variables.base.js')
+
 module.exports = {
   env: {
     browser: true,
@@ -19,6 +23,15 @@ module.exports = {
     'react',
     'prefer-arrow',
   ],
+  settings: {
+    'import/resolver': {
+      'babel-module': {
+        alias: {
+          '@variables': variablesPath,
+        },
+      },
+    },
+  },
   rules: {
     'no-console': 0,
     indent: [
