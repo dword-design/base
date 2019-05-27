@@ -138,7 +138,7 @@ module.exports = findUp('variables.base.js')
                 },
               },
               {
-                loader: require.resolve('@dword-design/linaria/loader'),
+                loader: '@dword-design/linaria/loader',
                 options: {
                   sourceMap,
                   babelOptions: {
