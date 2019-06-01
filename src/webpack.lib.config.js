@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpackMerge = require('webpack-merge')
 const moduleExists = require('module-exists')
 const fs = require('fs-extra')
+const nodeEnv = require('@dword-design/node-env')
 
 const additionalConfig = moduleExists(path.resolve(process.cwd(), 'webpack.config.js'))
   ? require(path.resolve(process.cwd(), 'webpack.config.js'))
@@ -16,7 +17,7 @@ module.exports = webpackMerge(
   {
     target: 'node',
     context: process.cwd(),
-    mode: process.env.NODE_ENV || 'development',
+    mode: nodeEnv,
     output: {
       path: path.resolve(process.cwd(), 'dist'),
       filename: 'index.js',

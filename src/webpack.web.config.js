@@ -8,24 +8,25 @@ const { paramCase } = require('change-case')
 const { mapKeys } = require('lodash')
 const moduleExists = require('module-exists')
 const findUp = require('find-up')
+const nodeEnv = require('@dword-design/node-env')
 const additionalConfig = moduleExists(path.resolve(process.cwd(), 'webpack.config.js'))
   ? require(path.resolve(process.cwd(), 'webpack.config.js'))
   : {}
 
 const host = '0.0.0.0'
 const port = '8080'
-const sourceMap = (process.env.NODE_ENV || 'development') == 'development'
-const devtool = (process.env.NODE_ENV || 'development') == 'development'
+const sourceMap = nodeEnv == 'development'
+const devtool = nodeEnv == 'development'
   ? 'cheap-module-eval-source-map' // cheap-module-eval-source-map is faster for development
   : false
 const doChunk = true
-const doMinify = process.env.NODE_ENV == 'production'
+const doMinify = nodeEnv == 'production'
 const bundleAnalyzerReport = false
 
 module.exports = findUp('variables.base.js')
   .then(variablesPath => webpackMerge(
     {
-      mode: process.env.NODE_ENV || 'development',
+      mode: nodeEnv,
       context: process.cwd(),
       resolve: {
         alias: {
@@ -44,7 +45,7 @@ module.exports = findUp('variables.base.js')
       },
       output: {
         path: path.resolve(process.cwd(), 'dist'),
-        filename: process.env.NODE_ENV == 'production' ? '[name].[contenthash].js' : '[name].js',
+        filename: nodeEnv == 'production' ? '[name].[contenthash].js' : '[name].js',
       },
       devtool,
       ...doChunk

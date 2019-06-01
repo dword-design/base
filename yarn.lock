@@ -756,6 +756,11 @@
     stylis "^3.5.4"
     yargs "^13.2.1"
 
+"@dword-design/node-env@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/node-env/-/node-env-0.1.0.tgz#ee8a9766fcda0d8af3124c0595977fcbd26140e6"
+  integrity sha512-BzgtihW5X1WLzvMsb7j3sEcDo2vceFhea0MRe4BjQNXQlC3zi8WwnbVDf3L+NlZteMWacR6QQ7+EAkr48HBlfA==
+
 "@emotion/is-prop-valid@^0.7.3":
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.7.3.tgz#a6bf4fa5387cbba59d44e698a4680f481a8da6cc"
