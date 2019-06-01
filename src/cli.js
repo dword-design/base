@@ -36,7 +36,7 @@ findRootPath()
       .then(({ package: { type = 'lib' } }) => spawn(
         path.resolve(__dirname, '../node_modules/.bin/webpack'),
         ['--config', path.resolve(__dirname, `webpack.${type}.config.js`)],
-        { stdio: 'inherit', workspacePath },
+        { stdio: 'inherit', cwd: workspacePath },
       ))
 
     const startWorkspace = workspacePath => readPkgUp({ cwd: workspacePath })
