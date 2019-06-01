@@ -99,7 +99,7 @@ Promise.all([readPkgUp(), findRootPath()])
 
       .command({
         command: 'outdated',
-        handler: () => spawn('yarn', ['outdated'], { stdio: 'inherit'})
+        handler: () => spawn('yarn', ['outdated'], { stdio: 'inherit'}).catch(() => {})
         ,
       })
 
