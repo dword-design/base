@@ -64,29 +64,28 @@ findRootPath()
 
       .command({
         command: 'init',
-        handler: ({ y }) => spawn('yarn', ['init', ...y ? ['-y'] : []], { stdio: 'inherit'}).catch(() => {}),
+        handler: ({ y }) => spawn('yarn', ['init', ...y ? ['-y'] : []], { stdio: 'inherit'}),
       })
 
       .command({
         command: 'add [args..]',
-        handler: ({ args, W }) => {
-          spawn('yarn', ['add', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'})
-          .catch(() => {}) },
+        handler: ({ args, W }) => spawn('yarn', ['add', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
       })
 
       .command({
         command: 'upgrade [args..]',
-        handler: ({ args, W }) => spawn('yarn', ['upgrade', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}).catch(() => {}),
+        handler: ({ args, W }) => spawn('yarn', ['upgrade', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
       })
 
       .command({
         command: 'remove [args..]',
-        handler: ({ args, W }) => spawn('yarn', ['remove', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}).catch(() => {}),
+        handler: ({ args, W }) => spawn('yarn', ['remove', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
       })
 
       .command({
         command: 'outdated',
-        handler: () => spawn('yarn', ['outdated'], { stdio: 'inherit'}).catch(() => {}),
+        handler: () => spawn('yarn', ['outdated'], { stdio: 'inherit'})
+        ,
       })
 
       .command({
@@ -96,7 +95,6 @@ findRootPath()
           ['.', '--config', path.resolve(_dirname, 'eslintrc.js'), '--ignore-path', path.resolve(__dirname, 'gitignore')],
           { stdio: 'inherit' },
         )
-          .catch(() => {}),
       })
 
       .command({
@@ -106,7 +104,6 @@ findRootPath()
           ['.', '--config', path.resolve(__dirname, 'lint-staged.config.js')],
           { stdio: 'inherit' },
         )
-          .catch(() => {}),
       })
 
       .command({
@@ -115,7 +112,6 @@ findRootPath()
           .then(activeWorkspacePaths => Promise.all(
             activeWorkspacePaths.map(buildWorkspace)
           ))
-          .catch(() => {}),
       })
 
       .command({
@@ -124,7 +120,6 @@ findRootPath()
           .then(activeWorkspacePaths => Promise.all(
             activeWorkspacePaths.map(startWorkspace)
           )),
-          //.catch(() => {}),
       })
 
     if (type == 'lib') {
@@ -133,7 +128,6 @@ findRootPath()
           command: 'publish',
           handler: () => build()
             .then(() => spawn('yarn', ['publish', '--access', 'public'], { stdio: 'inherit'}))
-            .catch(() => {}),
         })
     }
 
