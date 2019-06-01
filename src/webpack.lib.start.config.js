@@ -1,5 +1,4 @@
 const webpackMerge = require('webpack-merge')
-const moduleExists = require('module-exists')
 const baseConfig = require('./webpack.lib.config')
 const WebpackShellPlugin = require('webpack-shell-plugin')
 const path = require('path')
