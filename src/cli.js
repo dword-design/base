@@ -12,7 +12,7 @@ const readPkgUp = require('read-pkg-up')
 
 mustache.escape = identity
 
-findRootPath()
+Promise.all([readPkgUp(), findRootPath()])
   .then(([{ package: { type = 'lib' } = {} } = {}, rootPath]) => {
 
     const postinstall = () => Promise.all([
@@ -53,6 +53,16 @@ findRootPath()
         }[type]
         return spawn(cmd, params, { stdio: 'inherit', cwd: workspacePath })
       })
+
+      const analyzeWorkspace = workspacePath => readPkgUp({ cwd: workspacePath })
+        .then(({ package: { type = 'lib' } }) => type == 'web'
+          ? spawn(
+            path.resolve(__dirname, '../node_modules/.bin/webpack'),
+            ['--config', path.resolve(__dirname, `webpack.web.analyze.config.js`)],
+            { stdio: 'inherit', cwd: workspacePath },
+          )
+          : Promise.resolve()
+        )
 
     yargs
       .command({
@@ -122,13 +132,23 @@ findRootPath()
           )),
       })
 
-    if (type == 'lib') {
-      yargs
-        .command({
-          command: 'publish',
-          handler: () => build()
-            .then(() => spawn('yarn', ['publish', '--access', 'public'], { stdio: 'inherit'}))
-        })
+      .command({
+        command: 'analyze',
+        handler: () => findActiveWorkspacePaths()
+          .then(activeWorkspacePaths => Promise.all(
+            activeWorkspacePaths.map(analyzeWorkspace)
+          )),
+      })
+
+    switch (type) {
+      case 'lib':
+        yargs
+          .command({
+            command: 'publish',
+            handler: () => build()
+              .then(() => spawn('yarn', ['publish', '--access', 'public'], { stdio: 'inherit'}))
+          })
+        break;
     }
 
     return yargs
