@@ -7,19 +7,13 @@ const fs = require('fs-extra')
 const mustache = require('mustache')
 const { identity } = require('lodash')
 const findRootPath = require('./find-root-path')
+const findActiveWorkspacePaths = require('./find-active-workspace-paths')
 const readPkgUp = require('read-pkg-up')
 
 mustache.escape = identity
 
-Promise.all([
-  readPkgUp({ cwd: __dirname }),
-  readPkgUp(),
-  findRootPath(),
-])
-  .then(([{ path: packageFilePath }, { package: { type = 'lib' } = {} } = {}, rootPath]) =>
-    ({ packagePath: path.dirname(packageFilePath), type, rootPath })
-  )
-  .then(({ packagePath, type, rootPath }) => {
+findRootPath()
+  .then(([{ package: { type = 'lib' } = {} } = {}, rootPath]) => {
 
     const postinstall = () => Promise.all([
       fs.copyFile(path.resolve(__dirname, 'editorconfig'), path.resolve(rootPath, '.editorconfig')),
@@ -38,11 +32,27 @@ Promise.all([
         ))
     ])
 
-    const build = () => spawn(
-      path.resolve(__dirname, '../node_modules/.bin/webpack'),
-      ['--config', path.resolve(packagePath, `src/webpack.${type}.config.js`)],
-      { stdio: 'inherit' },
-    )
+    const buildWorkspace = workspacePath => readPkgUp({ cwd: workspacePath })
+      .then(({ package: { type } }) => spawn(
+        path.resolve(__dirname, '../node_modules/.bin/webpack'),
+        ['--config', path.resolve(__dirname, `webpack.${type}.config.js`)],
+        { stdio: 'inherit', workspacePath },
+      ))
+
+    const startWorkspace = workspacePath => readPkgUp({ cwd: workspacePath })
+      .then(({ package: { type } }) => {
+        const { cmd, params } = {
+          lib: {
+            cmd: path.resolve(__dirname, '../node_modules/.bin/webpack'),
+            params: ['--watch', '--config', path.resolve(__dirname, 'webpack.lib.start.config.js')],
+          },
+          web: {
+            cmd: path.resolve(__dirname, '../node_modules/.bin/webpack-dev-server'),
+            params: ['--config', path.resolve(__dirname, 'webpack.web.config.js')],
+          }
+        }[type]
+        return spawn(cmd, params, { stdio: 'inherit', cwd: workspacePath })
+      })
 
     yargs
       .command({
@@ -83,7 +93,7 @@ Promise.all([
         command: 'lint',
         handler: () => spawn(
           path.resolve(__dirname, '../node_modules/.bin/eslint'),
-          ['.', '--config', path.resolve(packagePath, 'src/eslintrc.js'), '--ignore-path', path.resolve(packagePath, 'src/gitignore')],
+          ['.', '--config', path.resolve(_dirname, 'eslintrc.js'), '--ignore-path', path.resolve(__dirname, 'gitignore')],
           { stdio: 'inherit' },
         )
           .catch(() => {}),
@@ -93,7 +103,7 @@ Promise.all([
         command: 'lint-staged',
         handler: () => spawn(
           path.resolve(__dirname, '../node_modules/.bin/lint-staged'),
-          ['.', '--config', path.resolve(packagePath, 'src/lint-staged.config.js')],
+          ['.', '--config', path.resolve(__dirname, 'lint-staged.config.js')],
           { stdio: 'inherit' },
         )
           .catch(() => {}),
@@ -101,25 +111,20 @@ Promise.all([
 
       .command({
         command: 'build',
-        handler: () => build().catch(() => {}),
+        handler: () => findActiveWorkspacePaths()
+          .then(activeWorkspacePaths => Promise.all(
+            activeWorkspacePaths.map(buildWorkspace)
+          ))
+          .catch(() => {}),
       })
 
       .command({
         command: 'start',
-        handler: () => {
-          const { cmd, params } = {
-            lib: {
-              cmd: path.resolve(__dirname, '../node_modules/.bin/webpack'),
-              params: ['--watch', '--config', path.resolve(packagePath, 'src/webpack.lib.start.config.js')],
-            },
-            web: {
-              cmd: path.resolve(__dirname, '../node_modules/.bin/webpack-dev-server'),
-              params: ['--config', path.resolve(packagePath, 'src/webpack.web.config.js')],
-            }
-          }[type]
-          return spawn(cmd, params, { stdio: 'inherit' })
-            .catch(() => {})
-        },
+        handler: () => findActiveWorkspacePaths()
+          .then(activeWorkspacePaths => Promise.all(
+            activeWorkspacePaths.map(startWorkspace)
+          )),
+          //.catch(() => {}),
       })
 
     if (type == 'lib') {
