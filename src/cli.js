@@ -39,6 +39,11 @@ Promise.all([readPkgUp(), findRootPath()])
         { stdio: 'inherit', cwd: workspacePath },
       ))
 
+    const build = () => findActiveWorkspacePaths()
+      .then(activeWorkspacePaths => Promise.all(
+        activeWorkspacePaths.map(buildWorkspace)
+      ))
+
     const startWorkspace = workspacePath => readPkgUp({ cwd: workspacePath })
       .then(({ package: { type = 'lib' } }) => {
         const { cmd, params } = {
@@ -118,10 +123,7 @@ Promise.all([readPkgUp(), findRootPath()])
 
       .command({
         command: 'build',
-        handler: () => findActiveWorkspacePaths()
-          .then(activeWorkspacePaths => Promise.all(
-            activeWorkspacePaths.map(buildWorkspace)
-          ))
+        handler: build,
       })
 
       .command({
