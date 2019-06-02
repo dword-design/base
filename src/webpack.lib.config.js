@@ -6,6 +6,7 @@ const webpackMerge = require('webpack-merge')
 const moduleExists = require('module-exists')
 const fs = require('fs-extra')
 const nodeEnv = require('@dword-design/node-env')
+const { identity } = require('lodash')
 
 const additionalConfig = moduleExists(path.resolve(process.cwd(), 'webpack.config.js'))
   ? require(path.resolve(process.cwd(), 'webpack.config.js'))
@@ -15,17 +16,16 @@ const indexHtmlExists = fs.existsSync(path.resolve(process.cwd(), 'index.html'))
 
 module.exports = webpackMerge(
   {
-    target: 'node',
     context: process.cwd(),
     mode: nodeEnv,
     output: {
       path: path.resolve(process.cwd(), 'dist'),
       filename: 'index.js',
       libraryTarget: 'umd',
-      libraryExport: 'default',
+      // libraryExport: 'default',
       globalObject: 'this',
     },
-    externals: [nodeExternals({ modulesFromFile: true })],
+    externals: [nodeExternals({ modulesFromFile: true, importType: identity })],
     plugins: [
       new CleanWebpackPlugin(),
       ...indexHtmlExists

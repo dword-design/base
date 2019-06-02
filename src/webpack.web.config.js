@@ -22,7 +22,7 @@ const devtool = nodeEnv == 'development'
 const doChunk = true
 const doMinify = nodeEnv == 'production'
 
-const variablesPath = findUpSync('variables.base.js')
+const variablesPath = findUpSync('variables.base.js') || undefined
 
 module.exports = webpackMerge(
   {
