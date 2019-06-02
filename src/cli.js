@@ -89,7 +89,7 @@ Promise.all([readPkgUp(), findRootPath()])
 
       .command({
         command: 'upgrade [args..]',
-        handler: ({ args, W }) => spawn('yarn', ['upgrade', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
+        handler: ({ args, W }) => spawn('yarn', ['upgrade', ...args || [], ...W ? ['-W'] : []], { stdio: 'inherit'}),
       })
 
       .command({
@@ -99,7 +99,7 @@ Promise.all([readPkgUp(), findRootPath()])
 
       .command({
         command: 'outdated',
-        handler: () => spawn('yarn', ['outdated'], { stdio: 'inherit'}).catch(() => {})
+        handler: () => spawn('yarn', ['outdated'], { stdio: 'inherit' }).catch(() => {})
         ,
       })
 
