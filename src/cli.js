@@ -167,6 +167,16 @@ Promise.all([readPkgUp(), findRootPath()])
           )
       })
 
+      .command({
+        command: 'depcheck',
+        handler: () => spawn(
+          path.resolve(__dirname, '../node_modules/.bin/depcheck'),
+          ['--specials', 'webpack,babel,eslint,bin', '--detectors', 'importDeclaration,requireCallExpression', '--parsers', '*.vue:vue,*.js:es7,*.scss:sass'],
+          { stdio: 'inherit' },
+        )
+          .catch(() => {})
+      })
+
     switch (type) {
       case 'lib':
         yargs
