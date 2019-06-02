@@ -9,6 +9,7 @@ const { identity } = require('lodash')
 const findRootPath = require('./find-root-path')
 const findActiveWorkspacePaths = require('./find-active-workspace-paths')
 const readPkgUp = require('read-pkg-up')
+const open =  require('open')
 
 mustache.escape = identity
 
@@ -142,6 +143,30 @@ Promise.all([readPkgUp(), findRootPath()])
           )),
       })
 
+      .command({
+        command: 'depgraph',
+        handler: () => spawn(
+          path.resolve(__dirname, '../node_modules/.bin/depcruise'),
+          ['-x', '(node_modules|^lib)', '-T', 'dot', '.'],
+          { capture: ['stdout'] },
+        )
+          .then(({ stdout: dotStructure }) => spawn('dot', ['-T', 'svg'], { capture: ['stdout'] })
+            .progress(({ stdin }) => {
+              stdin.write(dotStructure)
+              stdin.end()
+            })
+          )
+          .then(({ stdout: svgCode }) => spawn(
+            path.resolve(__dirname, '../node_modules/.bin/open-cli'),
+            ['--extension', 'html'],
+          )
+            .progress(({ stdin }) => {
+              stdin.write(svgCode)
+              stdin.end()
+            })
+          )
+      })
+
     switch (type) {
       case 'lib':
         yargs
@@ -156,3 +181,5 @@ Promise.all([readPkgUp(), findRootPath()])
     return yargs
       .argv
   })
+
+  //node_modules/.bin/depcruise -x \"(node_modules|^lib)\"  -T dot packages/client/src |dot -T svg > depgraph-client.svg
