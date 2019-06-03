@@ -8,6 +8,8 @@ const findRootPath = require('./find-root-path')
 const findActiveWorkspacePaths = require('./find-active-workspace-paths')
 const readPkgUp = require('read-pkg-up')
 const depcheck = require('depcheck')
+const _ = require('lodash')
+const prettyjson = require('prettyjson')
 
 Promise.all([readPkgUp(), findRootPath()])
   .then(([{ package: { type = 'lib' } = {} } = {}, rootPath]) => {
@@ -165,12 +167,24 @@ Promise.all([readPkgUp(), findRootPath()])
 
       .command({
         command: 'depcheck',
-        handler: () => spawn(
-          path.resolve(__dirname, '../node_modules/.bin/depcheck'),
-          ['--detectors', 'importDeclaration,requireCallExpression', '--parsers', '*.vue:vue,*.js:es7,*.scss:sass'],
-          { stdio: 'inherit' },
-        )
-          .catch(() => {})
+        handler: () => depcheck(process.cwd(), {
+            detectors: [
+              depcheck.detector.importDeclaration,
+              depcheck.detector.requireCallExpression,
+            ],
+            parsers: {
+              '*.vue': depcheck.parser.vue,
+              '*.js': depcheck.parser.es7,
+              '*.scss': depcheck.parser.sass,
+            }
+          }, x => x)
+            .then(foo => console.log(
+              prettyjson.render(_(foo)
+                .omit('using')
+                .omitBy(_.isEmpty)
+                .value()
+              )
+            )),
       })
 
     switch (type) {
