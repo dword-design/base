@@ -177,9 +177,9 @@ Promise.all([readPkgUp(), findRootPath()])
               '*.js': depcheck.parser.es7,
               '*.scss': depcheck.parser.sass,
             }
-          }, x => x)
-            .then(foo => console.log(
-              prettyjson.render(_(foo)
+          })
+            .then(json => console.log(
+              prettyjson.render(_(json)
                 .omit('using')
                 .omitBy(_.isEmpty)
                 .value()
