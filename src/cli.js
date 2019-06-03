@@ -9,7 +9,6 @@ const { identity } = require('lodash')
 const findRootPath = require('./find-root-path')
 const findActiveWorkspacePaths = require('./find-active-workspace-paths')
 const readPkgUp = require('read-pkg-up')
-const open =  require('open')
 
 mustache.escape = identity
 
@@ -171,7 +170,7 @@ Promise.all([readPkgUp(), findRootPath()])
         command: 'depcheck',
         handler: () => spawn(
           path.resolve(__dirname, '../node_modules/.bin/depcheck'),
-          ['--specials', 'webpack,babel,eslint,bin', '--detectors', 'importDeclaration,requireCallExpression', '--parsers', '*.vue:vue,*.js:es7,*.scss:sass'],
+          ['--detectors', 'importDeclaration,requireCallExpression', '--parsers', '*.vue:vue,*.js:es7,*.scss:sass'],
           { stdio: 'inherit' },
         )
           .catch(() => {})
