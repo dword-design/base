@@ -22,7 +22,7 @@ const devtool = nodeEnv == 'development'
 const doChunk = true
 const doMinify = nodeEnv == 'production'
 
-const variablesPath = findUpSync('variables.base.js') || undefined
+const { variables } = require('./variables')
 
 module.exports = webpackMerge(
   {
@@ -163,14 +163,12 @@ module.exports = webpackMerge(
                 require.resolve('css-loader'),
                 postCssLoader,
                 { loader: require.resolve('sass-loader'), options: { sourceMap } },
-                ...variablesPath !== undefined
-                  ? [{
-                    loader: require.resolve('@epegzz/sass-vars-loader'),
-                    options: {
-                      vars: mapKeys(require(variablesPath), (_, name) => paramCase(name)),
-                    },
-                  }]
-                  : [],
+                {
+                  loader: require.resolve('@epegzz/sass-vars-loader'),
+                  options: {
+                    vars: mapKeys(variables, (_, name) => paramCase(name)),
+                  },
+                },
               ],
             },
           ]

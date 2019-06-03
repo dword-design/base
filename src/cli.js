@@ -10,6 +10,7 @@ const readPkgUp = require('read-pkg-up')
 const depcheck = require('depcheck')
 const _ = require('lodash')
 const prettyjson = require('prettyjson')
+const depcheckSassParser = require('./depcheck-sass-parser')
 
 Promise.all([readPkgUp(), findRootPath()])
   .then(([{ package: { type = 'lib' } = {} } = {}, rootPath]) => {
@@ -106,7 +107,7 @@ Promise.all([readPkgUp(), findRootPath()])
         command: 'lint',
         handler: () => spawn(
           path.resolve(__dirname, '../node_modules/.bin/eslint'),
-          ['.', '--config', path.resolve(_dirname, 'eslintrc.js'), '--ignore-path', path.resolve(__dirname, 'gitignore')],
+          ['.', '--config', path.resolve(__dirname, 'eslintrc.js'), '--ignore-path', path.resolve(__dirname, 'gitignore')],
           { stdio: 'inherit' },
         )
       })
@@ -175,7 +176,7 @@ Promise.all([readPkgUp(), findRootPath()])
             parsers: {
               '*.vue': depcheck.parser.vue,
               '*.js': depcheck.parser.es7,
-              '*.scss': depcheck.parser.sass,
+              '*.scss': depcheckSassParser,
             }
           })
             .then(json => console.log(
