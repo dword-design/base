@@ -69,6 +69,27 @@ Promise.all([readPkgUp(), findRootPath()])
           : Promise.resolve()
         )
 
+      const depcheckWorkspace = workspacePath => Promise.all([
+        readPkgUp({ cwd: workspacePath })
+          .then(({ package: { name } }) => name),
+        depcheck(workspacePath, {
+          detectors: [
+            depcheck.detector.importDeclaration,
+            depcheck.detector.requireCallExpression,
+          ],
+          parsers: {
+            '*.vue': depcheck.parser.vue,
+            '*.js': depcheck.parser.es7,
+            '*.scss': depcheckSassParser,
+          }
+        })
+          .then(json => _(json).omit('using').omitBy(_.isEmpty).value()),
+      ])
+        .then(([packageName, stats]) => !_.isEmpty(stats)
+          ? `${packageName}\r\n${prettyjson.render(stats)}`
+          : undefined
+        )
+
     yargs
       .command({
         command: '$0',
@@ -168,24 +189,13 @@ Promise.all([readPkgUp(), findRootPath()])
 
       .command({
         command: 'depcheck',
-        handler: () => depcheck(process.cwd(), {
-            detectors: [
-              depcheck.detector.importDeclaration,
-              depcheck.detector.requireCallExpression,
-            ],
-            parsers: {
-              '*.vue': depcheck.parser.vue,
-              '*.js': depcheck.parser.es7,
-              '*.scss': depcheckSassParser,
-            }
-          })
-            .then(json => console.log(
-              prettyjson.render(_(json)
-                .omit('using')
-                .omitBy(_.isEmpty)
-                .value()
-              )
-            )),
+        handler: () => findActiveWorkspacePaths()
+          .then(activeWorkspacePaths => Promise.all(
+            activeWorkspacePaths.map(depcheckWorkspace)
+          ))
+          .then(statStrings => _.without(statStrings, undefined))
+          .then(statStrings => statStrings.join('\r\n\r\n'))
+          .then(statString => console.log(`\r\n${statString}\r\n`))
       })
 
     switch (type) {

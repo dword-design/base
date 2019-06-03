@@ -16,12 +16,9 @@ module.exports = (content, filePath, _, rootDir) => {
     importer: (url, prev, done) => ({ ...tildeImporter(url, prev, done), contents: '' }),
   })
 
-  const result = lodash(stats.includedFiles)
-    .map(file => path.relative(rootDir, file))
+  return lodash(stats.includedFiles)
     .filter(file => file.includes('node_modules'))
-    .map(file => readPkgUp.sync({ cwd: file }))
-    .map('package.name')
+    .map(file => readPkgUp.sync({ cwd: file }).package.name)
     .uniq()
     .value()
-  return result
 }
