@@ -4,13 +4,10 @@ const { spawn } = require('child-process-promise')
 const path = require('path')
 const yargs = require('yargs')
 const fs = require('fs-extra')
-const mustache = require('mustache')
-const { identity } = require('lodash')
 const findRootPath = require('./find-root-path')
 const findActiveWorkspacePaths = require('./find-active-workspace-paths')
 const readPkgUp = require('read-pkg-up')
-
-mustache.escape = identity
+const depcheck = require('depcheck')
 
 Promise.all([readPkgUp(), findRootPath()])
   .then(([{ package: { type = 'lib' } = {} } = {}, rootPath]) => {
