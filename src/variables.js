@@ -1,6 +1,6 @@
-const findUpSync = require('findup-sync')
+const findUp = require('find-up')
 
-const variablesPath = findUpSync('variables.base.js') || undefined
+const variablesPath = findUp.sync('variables.base.js')
 
 module.exports = {
   variables: variablesPath !== undefined ? require(variablesPath) : {},

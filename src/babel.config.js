@@ -1,6 +1,4 @@
-const findUpSync = require('findup-sync')
-
-const variablesPath = findUpSync('variables.base.js')
+const { path: variablesPath } = require('./variables')
 
 module.exports = {
   presets: [
