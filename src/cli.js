@@ -8,7 +8,7 @@ const findRootPath = require('./find-root-path')
 const findActiveWorkspacePaths = require('./find-active-workspace-paths')
 const readPkgUp = require('read-pkg-up')
 const depcheck = require('depcheck')
-const _ = require('lodash')
+const { isEmpty, without, chain } = require('lodash')
 const prettyjson = require('prettyjson')
 const depcheckSassParser = require('./depcheck-sass-parser')
 
@@ -81,11 +81,11 @@ Promise.all([readPkgUp(), findRootPath()])
             '*.vue': depcheck.parser.vue,
             '*.js': depcheck.parser.es7,
             '*.scss': depcheckSassParser,
-          }
+          },
         })
-          .then(json => _(json).omit('using').omitBy(_.isEmpty).value()),
+          .then(json => chain(json).omit('using').omitBy(isEmpty).value()),
       ])
-        .then(([packageName, stats]) => !_.isEmpty(stats)
+        .then(([packageName, stats]) => !isEmpty(stats)
           ? `${packageName}\r\n${prettyjson.render(stats)}`
           : undefined
         )
@@ -189,11 +189,11 @@ Promise.all([readPkgUp(), findRootPath()])
 
       .command({
         command: 'depcheck',
-        handler: () => findActiveWorkspacePaths()
+        handler: () => findActiveWorkspacePaths({ includeRoot: true })
           .then(activeWorkspacePaths => Promise.all(
             activeWorkspacePaths.map(depcheckWorkspace)
           ))
-          .then(statStrings => _.without(statStrings, undefined))
+          .then(statStrings => without(statStrings, undefined))
           .then(statStrings => statStrings.join('\r\n\r\n'))
           .then(statString => console.log(`\r\n${statString}\r\n`))
       })
@@ -212,5 +212,3 @@ Promise.all([readPkgUp(), findRootPath()])
     return yargs
       .argv
   })
-
-  //node_modules/.bin/depcruise -x \"(node_modules|^lib)\"  -T dot packages/client/src |dot -T svg > depgraph-client.svg
