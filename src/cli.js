@@ -11,51 +11,17 @@ const depcheck = require('depcheck')
 const { isEmpty, without, chain, forIn } = require('lodash')
 const prettyjson = require('prettyjson')
 const depcheckSassParser = require('./depcheck-sass-parser')
+const findBasePath = require('./find-base-path')
+const { variables } = require('./variables')
+const importFrom = require('import-from')
 
-const buildLib = (workspacePath, { basePath }) => spawn(
-  path.resolve(basePath, 'node_modules/.bin/webpack'),
-  ['--config', path.resolve(basePath, `src/webpack.lib.config.js`)],
-  { stdio: 'inherit', cwd: workspacePath },
-)
-
-const types = {
-  lib: {
-    build: buildLib,
-    start: (workspacePath, { basePath }) => spawn(
-      path.resolve(basePath, 'node_modules/.bin/webpack'),
-      ['--watch', '--config', path.resolve(basePath, 'src/webpack.lib.start.config.js')],
-      { stdio: 'inherit', cwd: workspacePath },
-    ),
-    commands: (workspacePath, { basePath }) => [
-      {
-        command: 'publish',
-        handler: () => buildLib(workspacePath, { basePath })
-          .then(() => spawn('yarn', ['publish', '--access', 'public'], { stdio: 'inherit', cwd: workspacePath })),
-      }
-    ],
-  },
-  web: {
-    build: (workspacePath, { basePath }) => spawn(
-      path.resolve(basePath, 'node_modules/.bin/webpack'),
-      ['--config', path.resolve(basePath, `src/webpack.web.config.js`)],
-      { stdio: 'inherit', cwd: workspacePath },
-    ),
-    start: (workspacePath, { basePath }) => spawn(
-      path.resolve(basePath, 'node_modules/.bin/webpack-dev-server'),
-      ['--config', path.resolve(basePath, 'src/webpack.web.config.js')],
-      { stdio: 'inherit', cwd: workspacePath },
-    ),
-    commands: (workspacePath, { basePath }) => [
-      {
-        command: 'analyze',
-        handler: () => spawn(
-          path.resolve(basePath, 'node_modules/.bin/webpack'),
-          ['--config', path.resolve(basePath, `src/webpack.web.analyze.config.js`)],
-          { stdio: 'inherit', cwd: workspacePath },
-        ),
-      },
-    ],
+const getType = typeName => {
+  const packageName = `@dword-design/base-type-${typeName}`
+  const type = importFrom(process.cwd(), packageName)
+  if (type === undefined) {
+    type = require(packageName)
   }
+  return type
 }
 
 Promise.all([readPkgUp(), findRootPath(), findBasePath()])
@@ -140,6 +106,11 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
           ['.', '--config', path.resolve(basePath, 'src/eslintrc.js'), '--ignore-path', path.resolve(basePath, 'src/gitignore')],
           { stdio: 'inherit' },
         )
+          .catch(error => {
+            if (error.name !== 'ChildProcessError') {
+              throw(error)
+            }
+          })
       })
 
       .command({
@@ -157,9 +128,14 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
           .then(activeWorkspacePaths => Promise.all(
             activeWorkspacePaths
               .map(workspacePath => readPkgUp({ cwd: workspacePath })
-                .then(({ package: { typeName = 'lib' } = {} }) => types[typeName].build(workspacePath, { basePath })
+                .then(({ package: { typeName = 'lib' } = {} }) => getType(typeName).build(workspacePath, { basePath, variables })
               ))
-          )),
+          ))
+            .catch(error => {
+              if (error.name !== 'ChildProcessError') {
+                throw(error)
+              }
+            }),
       })
 
       .command({
@@ -168,7 +144,7 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
           .then(activeWorkspacePaths => Promise.all(
             activeWorkspacePaths
               .map(workspacePath => readPkgUp({ cwd: workspacePath })
-                .then(({ package: { typeName = 'lib' } = {} }) => types[typeName].start(workspacePath, { basePath })
+                .then(({ package: { typeName = 'lib' } = {} }) => getType(typeName).start(workspacePath, { basePath, variables })
               ))
           )),
       })
@@ -208,7 +184,7 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
           .then(statString => console.log(`\r\n${statString}\r\n`))
       })
 
-    forIn(types[typeName].commands(workspacePath, { basePath }), command => yargs.command(command))
+    forIn(getType(typeName).commands(workspacePath, { basePath, variables }), command => yargs.command(command))
 
     return yargs
       .argv

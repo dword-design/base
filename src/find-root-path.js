@@ -4,8 +4,8 @@ const path = require('path')
 module.exports = () => readPkgUp()
   .then(({ path: packagePath } = {}) => packagePath !== undefined
     ? readPkgUp({ cwd: path.resolve(packagePath, '..') })
-      .then(({ path: parentPath, package: { workspaces, private } = {} } = {}) =>
-        path.dirname(workspaces !== undefined && private ? parentPath : packagePath)
+      .then(({ path: parentPath, package: { workspaces, private: isPrivate } = {} } = {}) =>
+        path.dirname(workspaces !== undefined && isPrivate ? parentPath : packagePath)
       )
     : Promise.resolve()
   )
