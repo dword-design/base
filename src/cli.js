@@ -8,12 +8,58 @@ const findRootPath = require('./find-root-path')
 const findActiveWorkspacePaths = require('./find-active-workspace-paths')
 const readPkgUp = require('read-pkg-up')
 const depcheck = require('depcheck')
-const { isEmpty, without, chain } = require('lodash')
+const { isEmpty, without, chain, forIn } = require('lodash')
 const prettyjson = require('prettyjson')
 const depcheckSassParser = require('./depcheck-sass-parser')
 
+const buildLib = workspacePath => spawn(
+  path.resolve(__dirname, '../node_modules/.bin/webpack'),
+  ['--config', path.resolve(__dirname, `webpack.lib.config.js`)],
+  { stdio: 'inherit', cwd: workspacePath },
+)
+
+const types = {
+  lib: {
+    build: buildLib,
+    start: workspacePath => spawn(
+      path.resolve(__dirname, '../node_modules/.bin/webpack'),
+      ['--watch', '--config', path.resolve(__dirname, 'webpack.lib.start.config.js')],
+      { stdio: 'inherit', cwd: workspacePath },
+    ),
+    commands: [
+      {
+        command: 'publish',
+        handler: workspacePath => buildLib(workspacePath)
+          .then(() => spawn('yarn', ['publish', '--access', 'public'], { stdio: 'inherit', cwd: workspacePath })),
+      }
+    ],
+  },
+  web: {
+    build: workspacePath => spawn(
+      path.resolve(__dirname, '../node_modules/.bin/webpack'),
+      ['--config', path.resolve(__dirname, `webpack.web.config.js`)],
+      { stdio: 'inherit', cwd: workspacePath },
+    ),
+    start: workspacePath => spawn(
+      path.resolve(__dirname, '../node_modules/.bin/webpack-dev-server'),
+      ['--config', path.resolve(__dirname, 'webpack.web.config.js')],
+      { stdio: 'inherit', cwd: workspacePath },
+    ),
+    commands: [
+      {
+        command: 'analyze',
+        handler: workspacePath => spawn(
+          path.resolve(__dirname, '../node_modules/.bin/webpack'),
+          ['--config', path.resolve(__dirname, `webpack.web.analyze.config.js`)],
+          { stdio: 'inherit', cwd: workspacePath },
+        ),
+      },
+    ],
+  }
+}
+
 Promise.all([readPkgUp(), findRootPath()])
-  .then(([{ package: { type = 'lib' } = {} } = {}, rootPath]) => {
+  .then(([{ package: { typeName = 'lib' } = {} } = {}, rootPath]) => {
 
     const postinstall = () => Promise.all([
       fs.copyFile(path.resolve(__dirname, 'editorconfig'), path.resolve(rootPath, '.editorconfig')),
@@ -32,63 +78,26 @@ Promise.all([readPkgUp(), findRootPath()])
         ))
     ])
 
-    const buildWorkspace = workspacePath => readPkgUp({ cwd: workspacePath })
-      .then(({ package: { type = 'lib' } }) => spawn(
-        path.resolve(__dirname, '../node_modules/.bin/webpack'),
-        ['--config', path.resolve(__dirname, `webpack.${type}.config.js`)],
-        { stdio: 'inherit', cwd: workspacePath },
-      ))
-
-    const build = () => findActiveWorkspacePaths()
-      .then(activeWorkspacePaths => Promise.all(
-        activeWorkspacePaths.map(buildWorkspace)
-      ))
-
-    const startWorkspace = workspacePath => readPkgUp({ cwd: workspacePath })
-      .then(({ package: { type = 'lib' } }) => {
-        const { cmd, params } = {
-          lib: {
-            cmd: path.resolve(__dirname, '../node_modules/.bin/webpack'),
-            params: ['--watch', '--config', path.resolve(__dirname, 'webpack.lib.start.config.js')],
-          },
-          web: {
-            cmd: path.resolve(__dirname, '../node_modules/.bin/webpack-dev-server'),
-            params: ['--config', path.resolve(__dirname, 'webpack.web.config.js')],
-          }
-        }[type]
-        return spawn(cmd, params, { stdio: 'inherit', cwd: workspacePath })
+    const depcheckWorkspace = workspacePath => Promise.all([
+      readPkgUp({ cwd: workspacePath })
+        .then(({ package: { name } }) => name),
+      depcheck(workspacePath, {
+        detectors: [
+          depcheck.detector.importDeclaration,
+          depcheck.detector.requireCallExpression,
+        ],
+        parsers: {
+          '*.vue': depcheck.parser.vue,
+          '*.js': depcheck.parser.es7,
+          '*.scss': depcheckSassParser,
+        },
       })
-
-      const analyzeWorkspace = workspacePath => readPkgUp({ cwd: workspacePath })
-        .then(({ package: { type = 'lib' } }) => type == 'web'
-          ? spawn(
-            path.resolve(__dirname, '../node_modules/.bin/webpack'),
-            ['--config', path.resolve(__dirname, `webpack.web.analyze.config.js`)],
-            { stdio: 'inherit', cwd: workspacePath },
-          )
-          : Promise.resolve()
-        )
-
-      const depcheckWorkspace = workspacePath => Promise.all([
-        readPkgUp({ cwd: workspacePath })
-          .then(({ package: { name } }) => name),
-        depcheck(workspacePath, {
-          detectors: [
-            depcheck.detector.importDeclaration,
-            depcheck.detector.requireCallExpression,
-          ],
-          parsers: {
-            '*.vue': depcheck.parser.vue,
-            '*.js': depcheck.parser.es7,
-            '*.scss': depcheckSassParser,
-          },
-        })
-          .then(json => chain(json).omit('using').omitBy(isEmpty).value()),
-      ])
-        .then(([packageName, stats]) => !isEmpty(stats)
-          ? `${packageName}\r\n${prettyjson.render(stats)}`
-          : undefined
-        )
+        .then(json => chain(json).omit('using').omitBy(isEmpty).value()),
+    ])
+      .then(([packageName, stats]) => !isEmpty(stats)
+        ? `${packageName}\r\n${prettyjson.render(stats)}`
+        : undefined
+      )
 
     yargs
       .command({
@@ -144,22 +153,23 @@ Promise.all([readPkgUp(), findRootPath()])
 
       .command({
         command: 'build',
-        handler: build,
+        handler: () => findActiveWorkspacePaths()
+          .then(activeWorkspacePaths => Promise.all(
+            activeWorkspacePaths
+              .map(workspacePath => readPkgUp({ cwd: workspacePath })
+                .then(({ package: { typeName = 'lib' } = {} }) => types[typeName].build(workspacePath)
+              ))
+          )),
       })
 
       .command({
         command: 'start',
         handler: () => findActiveWorkspacePaths()
           .then(activeWorkspacePaths => Promise.all(
-            activeWorkspacePaths.map(startWorkspace)
-          )),
-      })
-
-      .command({
-        command: 'analyze',
-        handler: () => findActiveWorkspacePaths()
-          .then(activeWorkspacePaths => Promise.all(
-            activeWorkspacePaths.map(analyzeWorkspace)
+            activeWorkspacePaths
+              .map(workspacePath => readPkgUp({ cwd: workspacePath })
+                .then(({ package: { typeName = 'lib' } = {} }) => types[typeName].start(workspacePath)
+              ))
           )),
       })
 
@@ -198,16 +208,8 @@ Promise.all([readPkgUp(), findRootPath()])
           .then(statString => console.log(`\r\n${statString}\r\n`))
       })
 
-    switch (type) {
-      case 'lib':
-        yargs
-          .command({
-            command: 'publish',
-            handler: () => build()
-              .then(() => spawn('yarn', ['publish', '--access', 'public'], { stdio: 'inherit'}))
-          })
-        break;
-    }
+    const type = types[typeName]
+    forIn(type.commands, command => yargs.command(command))
 
     return yargs
       .argv
