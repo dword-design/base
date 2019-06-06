@@ -1,28 +1,16 @@
 #!/usr/bin/env node
 
-const { spawn } = require('child-process-promise')
+const { spawn, fork } = require('child-process-promise')
 const path = require('path')
 const yargs = require('yargs')
 const fs = require('fs-extra')
 const findRootPath = require('./find-root-path')
 const findActiveWorkspacePaths = require('./find-active-workspace-paths')
 const readPkgUp = require('read-pkg-up')
-const depcheck = require('depcheck')
-const { isEmpty, without, chain, forIn } = require('lodash')
-const prettyjson = require('prettyjson')
-const depcheckSassParser = require('./depcheck-sass-parser')
+const { without, forIn } = require('lodash')
 const findBasePath = require('./find-base-path')
 const { variables } = require('./variables')
-const importFrom = require('import-from')
-
-const getType = typeName => {
-  const packageName = `@dword-design/base-type-${typeName}`
-  const type = importFrom(process.cwd(), packageName)
-  if (type === undefined) {
-    type = require(packageName)
-  }
-  return type
-}
+const getType = require('./get-type')
 
 Promise.all([readPkgUp(), findRootPath(), findBasePath()])
   .then(([{ package: { typeName = 'lib' } = {}, path: workspacePath } = {}, rootPath, basePath]) => {
@@ -43,27 +31,6 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
           { encoding: 'utf8', mode: '755' },
         ))
     ])
-
-    const depcheckWorkspace = workspacePath => Promise.all([
-      readPkgUp({ cwd: workspacePath })
-        .then(({ package: { name } }) => name),
-      depcheck(workspacePath, {
-        detectors: [
-          depcheck.detector.importDeclaration,
-          depcheck.detector.requireCallExpression,
-        ],
-        parsers: {
-          '*.vue': depcheck.parser.vue,
-          '*.js': depcheck.parser.es7,
-          '*.scss': depcheckSassParser,
-        },
-      })
-        .then(json => chain(json).omit('using').omitBy(isEmpty).value()),
-    ])
-      .then(([packageName, stats]) => !isEmpty(stats)
-        ? `${packageName}\r\n${prettyjson.render(stats)}`
-        : undefined
-      )
 
     yargs
       .command({
@@ -177,11 +144,11 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
         command: 'depcheck',
         handler: () => findActiveWorkspacePaths({ includeRoot: true })
           .then(activeWorkspacePaths => Promise.all(
-            activeWorkspacePaths.map(depcheckWorkspace)
+            activeWorkspacePaths.map(workspacePath =>
+              fork(path.resolve(__dirname, 'depcheck.js'), { cwd: workspacePath })
+                .then(() => console.log())
+            )
           ))
-          .then(statStrings => without(statStrings, undefined))
-          .then(statStrings => statStrings.join('\r\n\r\n'))
-          .then(statString => console.log(`\r\n${statString}\r\n`))
       })
 
     forIn(getType(typeName).commands(workspacePath, { basePath, variables }), command => yargs.command(command))
