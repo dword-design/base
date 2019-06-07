@@ -15,48 +15,31 @@ const getType = require('./get-type')
 Promise.all([readPkgUp(), findBasePath()])
   .then(([{ package: { typeName = 'lib' } = {}, path: workspacePath } = {}, basePath]) => {
 
-    const postinstall = () => Promise.resolve()
-      .then(() => findRootPath())
-      .then(rootPath => Promise.all([
-        fs.copyFile(path.resolve(basePath, 'src/editorconfig'), path.resolve(rootPath, '.editorconfig')),
-        fs.exists(path.resolve(rootPath, '.base.gitignore'))
-          .then(baseGitignoreExists => [
-            path.resolve(basePath, 'src/gitignore'),
-            ...baseGitignoreExists ? [path.resolve(rootPath, '.base.gitignore')] : [],
-          ])
-          .then(filePaths => Promise.all(filePaths.map(filePath => fs.readFile(filePath))))
-          .then(parts => fs.outputFile(path.resolve(rootPath, '.gitignore'), parts.join('\r\n'), 'utf8')),
-        fs.exists(path.join(rootPath, '.git'))
-          .then(gitExists => gitExists && fs.outputFile(
-            path.resolve(rootPath, '.git/hooks/pre-commit'), `exec "${__filename}" pre-commit`, { encoding: 'utf8', mode: '755' })
-          )
-      ]))
-
-    const lintStaged = () => spawn(
-      path.resolve(basePath, 'node_modules/.bin/lint-staged'),
-      ['.', '--config', path.resolve(basePath, 'src/lint-staged.config.js')],
-      { stdio: 'inherit' },
-    )
-
-    const depcheck = () => findActiveWorkspacePaths({ includeRoot: true })
-      .then(activeWorkspacePaths => Promise.all(
-        activeWorkspacePaths.map(workspacePath =>
-          fork(path.resolve(__dirname, 'depcheck.js'), { cwd: workspacePath })
-            .then(() => console.log())
-        )
-      ))
-
     const commands = [
       {
         command: '$0',
-        handler: ({ _ }) => _.length == 0
-          && spawn('yarn', { stdio: 'inherit'})
-            .then(postinstall),
+        handler: ({ _ }) => _.length == 0 && Promise.resolve()
+          .then(() => spawn('yarn', { stdio: 'inherit'}))
+          .then(() => findRootPath())
+          .then(rootPath => Promise.all([
+            fs.copyFile(path.resolve(basePath, 'src/editorconfig'), path.resolve(rootPath, '.editorconfig')),
+            fs.exists(path.resolve(rootPath, '.base.gitignore'))
+              .then(baseGitignoreExists => [
+                path.resolve(basePath, 'src/gitignore'),
+                ...baseGitignoreExists ? [path.resolve(rootPath, '.base.gitignore')] : [],
+              ])
+              .then(filePaths => Promise.all(filePaths.map(filePath => fs.readFile(filePath))))
+              .then(parts => fs.outputFile(path.resolve(rootPath, '.gitignore'), parts.join('\r\n'), 'utf8')),
+            fs.exists(path.join(rootPath, '.git'))
+              .then(gitExists => gitExists && fs.outputFile(
+                path.resolve(rootPath, '.git/hooks/pre-commit'), `exec "${__filename}" pre-commit`, { encoding: 'utf8', mode: '755' })
+              )
+          ])),
       },
       {
         command: 'init',
-        handler: ({ y }) => spawn('yarn', ['init', ...y ? ['-y'] : []], { stdio: 'inherit'})
-          .then(postinstall),
+        handler: yargs => spawn('yarn', ['init', ...yargs.y ? ['-y'] : []], { stdio: 'inherit'})
+          .then(() => find(commands, { command: '$0' }).handler(yargs)),
       },
       {
         command: 'add [args..]',
@@ -89,7 +72,11 @@ Promise.all([readPkgUp(), findBasePath()])
       },
       {
         command: 'lint-staged',
-        handler: lintStaged,
+        handler: () => spawn(
+          path.resolve(basePath, 'node_modules/.bin/lint-staged'),
+          ['.', '--config', path.resolve(basePath, 'src/lint-staged.config.js')],
+          { stdio: 'inherit' },
+        ),
       },
       {
         command: 'build',
@@ -136,13 +123,19 @@ Promise.all([readPkgUp(), findBasePath()])
       },
       {
         command: 'depcheck',
-        handler: depcheck,
+        handler: () => findActiveWorkspacePaths({ includeRoot: true })
+          .then(activeWorkspacePaths => Promise.all(
+            activeWorkspacePaths.map(workspacePath =>
+              fork(path.resolve(__dirname, 'depcheck.js'), { cwd: workspacePath })
+                .then(() => console.log())
+            )
+          )),
       },
       {
         command: 'pre-commit',
-        handler: () => Promise.resolve()
-          .then(lintStaged)
-          .then(depcheck)
+        handler: yargs => Promise.resolve()
+          .then(() => find(commands, { command: 'lint-staged' }).handler(yargs))
+          .then(() => find(commands, { command: 'depcheck' }).handler(yargs))
       },
       ...getType(typeName).commands(workspacePath, { basePath, variables }),
     ]
