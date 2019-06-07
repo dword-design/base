@@ -12,10 +12,10 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:vue/essential',
     'plugin:lodash-fp/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
+    'plugin:vue/essential',
   ],
   plugins: [
     'react',
@@ -65,5 +65,5 @@ module.exports = {
     "react/jsx-uses-vars": 1,
     'lodash-fp/no-extraneous-iteratee-args': 'off',
     'import/no-extraneous-dependencies': 'error',
-  }
+  },
 }

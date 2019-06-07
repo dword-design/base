@@ -27,7 +27,7 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
       fs.exists(path.join(rootPath, '.git'))
         .then(gitExists => gitExists && fs.outputFile(
           path.resolve(rootPath, '.git/hooks/pre-commit'),
-          `exec "${require.resolve('lint-staged')}" --config "${path.resolve(basePath, 'src/lint-staged.config.js')}"`,
+          `exec "${path.resolve(__dirname, 'pre-commit.js')}"`,
           { encoding: 'utf8', mode: '755' },
         ))
     ])
@@ -68,11 +68,20 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
 
       .command({
         command: 'lint',
-        handler: () => spawn(
-          path.resolve(basePath, 'node_modules/.bin/eslint'),
-          ['.', '--config', path.resolve(basePath, 'src/eslintrc.js'), '--ignore-path', path.resolve(basePath, 'src/gitignore')],
-          { stdio: 'inherit' },
-        )
+        handler: () => findActiveWorkspacePaths()
+          .then(activeWorkspacePaths => Promise.all(
+            activeWorkspacePaths.map(workspacePath => readPkgUp({ cwd: workspacePath })
+              .then(({ package: { typeName = 'lib' } }) => spawn(
+                path.resolve(basePath, 'node_modules/.bin/eslint'),
+                [
+                  '.',
+                  '--config', path.resolve(basePath, 'src/eslintrc.js'),
+                  '--ignore-path', path.resolve(basePath, 'src/gitignore'),
+                  '--ext', '.js,.vue',
+                ],
+                { stdio: 'inherit', cwd: workspacePath },
+              ))
+          )))
           .catch(error => {
             if (error.name !== 'ChildProcessError') {
               throw(error)
@@ -84,9 +93,14 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
         command: 'lint-staged',
         handler: () => spawn(
           path.resolve(basePath, 'node_modules/.bin/lint-staged'),
-          ['.', '--config', path.resolve(basepath, 'src/lint-staged.config.js')],
+          ['.', '--config', path.resolve(basePath, 'src/lint-staged.config.js')],
           { stdio: 'inherit' },
         )
+          .catch(error => {
+            if (error.name !== 'ChildProcessError') {
+              throw(error)
+            }
+          })
       })
 
       .command({
@@ -95,7 +109,7 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
           .then(activeWorkspacePaths => Promise.all(
             activeWorkspacePaths
               .map(workspacePath => readPkgUp({ cwd: workspacePath })
-                .then(({ package: { typeName = 'lib' } = {} }) => getType(typeName).build(workspacePath, { basePath, variables })
+                .then(({ package: { typeName = 'lib' } }) => getType(typeName).build(workspacePath, { basePath, variables })
               ))
           ))
             .catch(error => {
@@ -111,7 +125,7 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
           .then(activeWorkspacePaths => Promise.all(
             activeWorkspacePaths
               .map(workspacePath => readPkgUp({ cwd: workspacePath })
-                .then(({ package: { typeName = 'lib' } = {} }) => getType(typeName).start(workspacePath, { basePath, variables })
+                .then(({ package: { typeName = 'lib' } }) => getType(typeName).start(workspacePath, { basePath, variables })
               ))
           )),
       })

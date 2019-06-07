@@ -1,6 +1,20 @@
-const importFrom = require('import-from')
+const resolveFrom = require('resolve-from')
+const { merge } = require('lodash')
 
 module.exports = typeName => {
   const packageName = `@dword-design/base-type-${typeName}`
-  return importFrom.silent(process.cwd(), packageName) || require(packageName)
+  const modulePath = resolveFrom(process.cwd(), packageName)
+  const result = require(modulePath !== undefined ? modulePath : packageName)
+  if (result !== undefined) {
+    return merge(
+      {},
+      {
+        eslint: {
+          config: {},
+          extensions: [],
+        }
+      },
+      result,
+    )
+  }
 }
