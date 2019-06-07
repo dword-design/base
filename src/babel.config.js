@@ -1,13 +1,10 @@
 const { path: variablesPath } = require('./variables')
 const readPkgUp = require('read-pkg-up')
-const getTypePath = require('./get-type-path')
+const getType = require('./get-type')
 const babelMerge = require('babel-merge')
-const path = require('path')
-const safeRequire = require('safe-require')
 
 const { package: { typeName = 'lib' } } = readPkgUp.sync()
-const typePath = getTypePath(typeName)
-const typeBabelConfig = safeRequire(path.join(typePath, 'src/babel.config.js'))
+const type = getType(typeName)
 
 module.exports = babelMerge(...[
   {
@@ -26,5 +23,5 @@ module.exports = babelMerge(...[
       }]
     ],
   },
-  ...typeBabelConfig !== undefined ? [typeBabelConfig] : [],
+  ...type.babelConfig !== undefined ? [type.babelConfig] : [],
 ])

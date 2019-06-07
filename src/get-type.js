@@ -5,7 +5,5 @@ const path = require('path')
 module.exports = typeName => {
   const packageName = `@dword-design/base-type-${typeName}`
   const packagePath = resolveFrom.silent(process.cwd(), packageName)
-  return path.dirname(
-    readPkgUp.sync({ cwd: require.resolve(packagePath !== undefined ? packagePath : packageName) }).path
-  )
+  return require(packagePath !== undefined ? packagePath : packageName)
 }

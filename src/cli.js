@@ -7,17 +7,15 @@ const fs = require('fs-extra')
 const findRootPath = require('./find-root-path')
 const findActiveWorkspacePaths = require('./find-active-workspace-paths')
 const readPkgUp = require('read-pkg-up')
-const { forIn, map, chain } = require('lodash')
+const { forIn, chain, some } = require('lodash')
 const findBasePath = require('./find-base-path')
-const getTypePath = require('./get-type-path')
-const glob = require('glob')
+const getType = require('./get-type')
 
 Promise.all([readPkgUp(), findBasePath()])
-  .then(([{ package: { typeName = 'lib' } = {} } = {}, basePath]) => {
-
+  .then(([{ package: packageConfig = {} }, basePath]) => {
     const globalCommands = [
       {
-        command: '$0',
+        name: '$0',
         desc: 'Installs dependencies, copies config files and registers git hooks',
         handler: ({ _ }) => _.length == 0
           ? Promise.resolve()
@@ -45,33 +43,33 @@ Promise.all([readPkgUp(), findBasePath()])
           : undefined,
       },
       {
-        command: 'init',
+        name: 'init',
         desc: 'Init a directory to be based',
         handler: yargs => spawn('yarn', ['init', ...yargs.y ? ['-y'] : []], { stdio: 'inherit'})
-          .then(() => find(globalCommands, { command: '$0' }).handler(yargs)),
+          .then(() => find(globalCommands, { name: '$0' }).handler(yargs)),
       },
       {
-        command: 'add [args..]',
+        name: 'add [args..]',
         desc: 'Add dependencies',
         handler: ({ args, W }) => spawn('yarn', ['add', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
       },
       {
-        command: 'upgrade [args..]',
+        name: 'upgrade [args..]',
         desc: 'Upgrade dependencies',
         handler: ({ args, W }) => spawn('yarn', ['upgrade', ...args || [], ...W ? ['-W'] : []], { stdio: 'inherit'}),
       },
       {
-        command: 'remove [args..]',
+        name: 'remove [args..]',
         desc: 'Remove dependencies',
         handler: ({ args, W }) => spawn('yarn', ['remove', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
       },
       {
-        command: 'outdated',
+        name: 'outdated',
         desc: 'Lists outdated dependencies',
         handler: () => spawn('yarn', ['outdated'], { stdio: 'inherit' }),
       },
       {
-        command: 'lint',
+        name: 'lint',
         desc: 'Outputs linting errors',
         handler: () => spawn(
           path.resolve(basePath, 'node_modules/.bin/eslint'),
@@ -85,7 +83,7 @@ Promise.all([readPkgUp(), findBasePath()])
         ),
       },
       {
-        command: 'lint-staged',
+        name: 'lint-staged',
         desc: 'Outputs linting errors for staged files',
         handler: () => spawn(
           path.resolve(basePath, 'node_modules/.bin/lint-staged'),
@@ -94,35 +92,33 @@ Promise.all([readPkgUp(), findBasePath()])
         ),
       },
       {
-        command: 'build',
+        name: 'build',
         desc: 'Builds the current workspace',
         handler: () => findActiveWorkspacePaths()
           .then(activeWorkspacePaths => Promise.all(
             activeWorkspacePaths
-              .map(workspacePath => readPkgUp({ cwd: workspacePath })
-                .then(({ package: { typeName = 'lib' } }) => {
-                  const typePath = getTypePath(typeName)
-                  return fork(path.resolve(typePath, 'src/commands/build.js'), ['--base-path', basePath ], { stdio: 'inherit' })
-                })
-              )
+              .map(workspacePath => fork(
+                path.resolve(basePath, 'src/run-workspace-command.js'),
+                ['build'],
+                { stdio: 'inherit', cwd: workspacePath, env: { ...process.env, BASE_PATH: basePath } },
+              ))
           )),
       },
       {
-        command: 'start',
+        name: 'start',
         desc: 'Starts the current workspace',
         handler: () => findActiveWorkspacePaths()
           .then(activeWorkspacePaths => Promise.all(
             activeWorkspacePaths
-              .map(workspacePath => readPkgUp({ cwd: workspacePath })
-                .then(({ package: { typeName = 'lib' } }) => {
-                  const typePath = getTypePath(typeName)
-                  return fork(path.resolve(typePath, 'src/commands/start.js'), ['--base-path', basePath, { stdio: 'inherit' } ])
-                })
-              )
+              .map(workspacePath => fork(
+                path.resolve(basePath, 'src/run-workspace-command.js'),
+                ['start'],
+                { stdio: 'inherit', cwd: workspacePath, env: { ...process.env, BASE_PATH: basePath } },
+              ))
           )),
       },
       {
-        command: 'depgraph',
+        name: 'depgraph',
         desc: 'Outputs a dependency graph for the current workspace',
         handler: () => spawn(
           path.resolve(basePath, 'node_modules/.bin/depcruise'),
@@ -146,42 +142,49 @@ Promise.all([readPkgUp(), findBasePath()])
           )
       },
       {
-        command: 'depcheck',
+        name: 'depcheck',
         desc: 'Outputs unused dependencies',
         handler: () => findActiveWorkspacePaths({ includeRoot: true })
           .then(activeWorkspacePaths => Promise.all(
             activeWorkspacePaths.map(workspacePath =>
-              fork(path.resolve(__dirname, 'depcheck.js'), { cwd: workspacePath })
+              fork(path.resolve(basePath, 'src/depcheck.js'), { cwd: workspacePath })
                 .then(() => console.log())
             )
           )),
       },
       {
-        command: 'pre-commit',
+        name: 'pre-commit',
         desc: 'Runs commands before committing',
         handler: yargs => Promise.resolve()
-          .then(() => find(globalCommands, { command: 'lint-staged' }).handler(yargs))
-          .then(() => find(globalCommands, { command: 'depcheck' }).handler(yargs))
+          .then(() => find(globalCommands, { name: 'lint-staged' }).handler(yargs))
+          .then(() => find(globalCommands, { name: 'depcheck' }).handler(yargs))
       },
     ]
-
-    const typePath = getTypePath(typeName)
 
     forIn(
       [
         ...globalCommands,
-        ...chain(glob.sync(path.join(typePath, 'src/commands/*.js')))
-          .map(filePath => path.parse(filePath).name)
-          .without(...map(globalCommands, 'command'))
-          .map(name => ({
-            command: name,
-            handler: () => fork(path.resolve(typePath, `src/commands/${name}.js`), ['--base-path', basePath, { stdio: 'inherit' } ]),
-          }))
-          .value(),
+        ...packageConfig !== undefined
+          ? (() => {
+            const type = getType(packageConfig.typeName || 'lib')
+            return chain(type.commands)
+              .filter(({ name }) => !some(globalCommands, { name }))
+              .map(command => ({
+                ...command,
+                handler: () => fork(
+                  path.resolve(basePath, 'src/run-workspace-command.js'),
+                  [command.name],
+                  { stdio: 'inherit', env: { ...process.env, BASE_PATH: basePath } }
+                ),
+              }))
+              .value()
+          })()
+          : [],
       ],
       command => yargs.command(
         {
           ...command,
+          command: command.name,
           handler: (...args) => command.handler(...args)
             .catch(error => {
               if (error.name === 'ChildProcessError') {
