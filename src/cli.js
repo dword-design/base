@@ -12,23 +12,25 @@ const findBasePath = require('./find-base-path')
 const { variables } = require('./variables')
 const getType = require('./get-type')
 
-Promise.all([readPkgUp(), findRootPath(), findBasePath()])
-  .then(([{ package: { typeName = 'lib' } = {}, path: workspacePath } = {}, rootPath, basePath]) => {
+Promise.all([readPkgUp(), findBasePath()])
+  .then(([{ package: { typeName = 'lib' } = {}, path: workspacePath } = {}, basePath]) => {
 
-    const postinstall = () => Promise.all([
-      fs.copyFile(path.resolve(basePath, 'src/editorconfig'), path.resolve(rootPath, '.editorconfig')),
-      fs.exists(path.resolve(rootPath, '.base.gitignore'))
-        .then(baseGitignoreExists => [
-          path.resolve(basePath, 'src/gitignore'),
-          ...baseGitignoreExists ? [path.resolve(rootPath, '.base.gitignore')] : [],
-        ])
-        .then(filePaths => Promise.all(filePaths.map(filePath => fs.readFile(filePath))))
-        .then(parts => fs.outputFile(path.resolve(rootPath, '.gitignore'), parts.join('\r\n'), 'utf8')),
-      fs.exists(path.join(rootPath, '.git'))
-        .then(gitExists => gitExists && fs.outputFile(
-          path.resolve(rootPath, '.git/hooks/pre-commit'), `exec "${__filename}" pre-commit`, { encoding: 'utf8', mode: '755' })
-        )
-    ])
+    const postinstall = () => Promise.resolve()
+      .then(() => findRootPath())
+      .then(rootPath => Promise.all([
+        fs.copyFile(path.resolve(basePath, 'src/editorconfig'), path.resolve(rootPath, '.editorconfig')),
+        fs.exists(path.resolve(rootPath, '.base.gitignore'))
+          .then(baseGitignoreExists => [
+            path.resolve(basePath, 'src/gitignore'),
+            ...baseGitignoreExists ? [path.resolve(rootPath, '.base.gitignore')] : [],
+          ])
+          .then(filePaths => Promise.all(filePaths.map(filePath => fs.readFile(filePath))))
+          .then(parts => fs.outputFile(path.resolve(rootPath, '.gitignore'), parts.join('\r\n'), 'utf8')),
+        fs.exists(path.join(rootPath, '.git'))
+          .then(gitExists => gitExists && fs.outputFile(
+            path.resolve(rootPath, '.git/hooks/pre-commit'), `exec "${__filename}" pre-commit`, { encoding: 'utf8', mode: '755' })
+          )
+      ]))
 
     const lintStaged = () => spawn(
       path.resolve(basePath, 'node_modules/.bin/lint-staged'),
