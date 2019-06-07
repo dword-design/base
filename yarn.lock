@@ -687,10 +687,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@dword-design/base-type-lib@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-type-lib/-/base-type-lib-0.1.0.tgz#8a0d605b8e0eacc3825dfc21223f72257446557b"
-  integrity sha512-N5s2hTQQHIZfh26m8sGE4AaPHFImn4vQWdpzrDSk4u1IjnBOe/44k4x16NK55NpUUVVn1NzRR43MVn2wpD1XqA==
+"@dword-design/base-type-lib@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-type-lib/-/base-type-lib-0.1.2.tgz#f2a0938d91463c947aa744c7589884cb443347ed"
+  integrity sha512-/Wgf7fCPE/KCL6Cc3dMrp6VVS3Pw8wuHdeDCTktUvrImdaxmakOg6C9c8ErbA62J2AHHkN3o4HrXalZtE2pvTw==
   dependencies:
     "@dword-design/node-env" "^0.1.0"
     child-process-promise "^2.2.1"
