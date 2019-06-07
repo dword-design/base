@@ -7,7 +7,7 @@ const fs = require('fs-extra')
 const findRootPath = require('./find-root-path')
 const findActiveWorkspacePaths = require('./find-active-workspace-paths')
 const readPkgUp = require('read-pkg-up')
-const { without, forIn } = require('lodash')
+const { forIn } = require('lodash')
 const findBasePath = require('./find-base-path')
 const { variables } = require('./variables')
 const getType = require('./get-type')
@@ -46,42 +46,35 @@ Promise.all([readPkgUp(), findBasePath()])
         )
       ))
 
-    yargs
-      .command({
+    const commands = [
+      {
         command: '$0',
         handler: ({ _ }) => _.length == 0
           && spawn('yarn', { stdio: 'inherit'})
             .then(postinstall),
-      })
-
-      .command({
+      },
+      {
         command: 'init',
         handler: ({ y }) => spawn('yarn', ['init', ...y ? ['-y'] : []], { stdio: 'inherit'})
           .then(postinstall),
-      })
-
-      .command({
+      },
+      {
         command: 'add [args..]',
         handler: ({ args, W }) => spawn('yarn', ['add', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
-      })
-
-      .command({
+      },
+      {
         command: 'upgrade [args..]',
         handler: ({ args, W }) => spawn('yarn', ['upgrade', ...args || [], ...W ? ['-W'] : []], { stdio: 'inherit'}),
-      })
-
-      .command({
+      },
+      {
         command: 'remove [args..]',
         handler: ({ args, W }) => spawn('yarn', ['remove', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
-      })
-
-      .command({
+      },
+      {
         command: 'outdated',
-        handler: () => spawn('yarn', ['outdated'], { stdio: 'inherit' }).catch(() => {})
-        ,
-      })
-
-      .command({
+        handler: () => spawn('yarn', ['outdated'], { stdio: 'inherit' }),
+      },
+      {
         command: 'lint',
         handler: () => spawn(
           path.resolve(basePath, 'node_modules/.bin/eslint'),
@@ -92,29 +85,13 @@ Promise.all([readPkgUp(), findBasePath()])
             '--ext', '.js,.vue',
           ],
           { stdio: 'inherit' },
-        )
-          .catch(error => {
-            if (error.name === 'ChildProcessError') {
-              process.exit(1)
-            } else {
-              throw(error)
-            }
-          }),
-      })
-
-      .command({
+        ),
+      },
+      {
         command: 'lint-staged',
-        handler: () => lintStaged()
-          .catch(error => {
-            if (error.name === 'ChildProcessError') {
-              process.exit(1)
-            } else {
-              throw(error)
-            }
-          })
-      })
-
-      .command({
+        handler: lintStaged,
+      },
+      {
         command: 'build',
         handler: () => findActiveWorkspacePaths()
           .then(activeWorkspacePaths => Promise.all(
@@ -122,17 +99,9 @@ Promise.all([readPkgUp(), findBasePath()])
               .map(workspacePath => readPkgUp({ cwd: workspacePath })
                 .then(({ package: { typeName = 'lib' } }) => getType(typeName).build(workspacePath, { basePath, variables })
               ))
-          ))
-            .catch(error => {
-              if (error.name === 'ChildProcessError') {
-                process.exit(1)
-              } else {
-                throw(error)
-              }
-            }),
-      })
-
-      .command({
+          )),
+      },
+      {
         command: 'start',
         handler: () => findActiveWorkspacePaths()
           .then(activeWorkspacePaths => Promise.all(
@@ -141,9 +110,8 @@ Promise.all([readPkgUp(), findBasePath()])
                 .then(({ package: { typeName = 'lib' } }) => getType(typeName).start(workspacePath, { basePath, variables })
               ))
           )),
-      })
-
-      .command({
+      },
+      {
         command: 'depgraph',
         handler: () => spawn(
           path.resolve(basePath, 'node_modules/.bin/depcruise'),
@@ -165,35 +133,36 @@ Promise.all([readPkgUp(), findBasePath()])
               stdin.end()
             })
           )
-      })
-
-      .command({
+      },
+      {
         command: 'depcheck',
-        handler: () => depcheck()
-          .catch(error => {
-            if (error.name === 'ChildProcessError') {
-              process.exit(1)
-            } else {
-              throw(error)
-            }
-          }),
-      })
-
-      .command({
+        handler: depcheck,
+      },
+      {
         command: 'pre-commit',
         handler: () => Promise.resolve()
           .then(lintStaged)
           .then(depcheck)
-          .catch(error => {
-            if (error.name === 'ChildProcessError') {
-              process.exit(1)
-            } else {
-              throw(error)
-            }
-          }),
-      })
+      },
+      ...getType(typeName).commands(workspacePath, { basePath, variables }),
+    ]
 
-    forIn(getType(typeName).commands(workspacePath, { basePath, variables }), command => yargs.command(command))
+    forIn(
+      commands,
+      command => yargs.command(
+        {
+          ...command,
+          handler: (...args) => command.handler(...args)
+            .catch(error => {
+              if (error.name === 'ChildProcessError') {
+                process.exit(1)
+              } else {
+                throw(error)
+              }
+            }),
+        },
+      ),
+    )
 
     return yargs
       .argv
