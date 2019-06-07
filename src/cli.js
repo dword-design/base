@@ -10,6 +10,10 @@ const readPkgUp = require('read-pkg-up')
 const { forIn, chain, some } = require('lodash')
 const findBasePath = require('./find-base-path')
 const getType = require('./get-type')
+const { variables } = require('./variables')
+const nodeEnv = require('@dword-design/node-env')
+
+const variablesJson = JSON.stringify(variables)
 
 Promise.all([readPkgUp(), findBasePath()])
   .then(([{ package: packageConfig = {} }, basePath]) => {
@@ -30,66 +34,21 @@ Promise.all([readPkgUp(), findBasePath()])
                 ])
                 .then(filePaths => Promise.all(filePaths.map(filePath => fs.readFile(filePath))))
                 .then(parts => fs.outputFile(path.resolve(rootPath, '.gitignore'), parts.join('\r\n'), 'utf8')),
-              fs.exists(path.join(rootPath, '.git'))
-                .then(gitExists => gitExists
-                  ?  fs.outputFile(
-                    path.resolve(rootPath, '.git/hooks/pre-commit'),
-                    `exec "${__filename}" pre-commit`,
-                    { encoding: 'utf8', mode: '755' },
-                  )
-                  : undefined
-                )
+              ...nodeEnv === 'development'
+                ? [
+                  fs.exists(path.join(rootPath, '.git'))
+                    .then(gitExists => gitExists
+                      ?  fs.outputFile(
+                        path.resolve(rootPath, '.git/hooks/pre-commit'),
+                        `exec "${__filename}" pre-commit`,
+                        { encoding: 'utf8', mode: '755' },
+                      )
+                      : undefined
+                    )
+                ]
+                : []
             ]))
           : undefined,
-      },
-      {
-        name: 'init',
-        desc: 'Init a directory to be based',
-        handler: yargs => spawn('yarn', ['init', ...yargs.y ? ['-y'] : []], { stdio: 'inherit'})
-          .then(() => find(globalCommands, { name: '$0' }).handler(yargs)),
-      },
-      {
-        name: 'add [args..]',
-        desc: 'Add dependencies',
-        handler: ({ args, W }) => spawn('yarn', ['add', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
-      },
-      {
-        name: 'upgrade [args..]',
-        desc: 'Upgrade dependencies',
-        handler: ({ args, W }) => spawn('yarn', ['upgrade', ...args || [], ...W ? ['-W'] : []], { stdio: 'inherit'}),
-      },
-      {
-        name: 'remove [args..]',
-        desc: 'Remove dependencies',
-        handler: ({ args, W }) => spawn('yarn', ['remove', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
-      },
-      {
-        name: 'outdated',
-        desc: 'Lists outdated dependencies',
-        handler: () => spawn('yarn', ['outdated'], { stdio: 'inherit' }),
-      },
-      {
-        name: 'lint',
-        desc: 'Outputs linting errors',
-        handler: () => spawn(
-          path.resolve(basePath, 'node_modules/.bin/eslint'),
-          [
-            '.',
-            '--config', path.resolve(basePath, 'src/eslintrc.js'),
-            '--ignore-path', path.resolve(basePath, 'src/gitignore'),
-            '--ext', '.js,.vue',
-          ],
-          { stdio: 'inherit' },
-        ),
-      },
-      {
-        name: 'lint-staged',
-        desc: 'Outputs linting errors for staged files',
-        handler: () => spawn(
-          path.resolve(basePath, 'node_modules/.bin/lint-staged'),
-          ['.', '--config', path.resolve(basePath, 'src/lint-staged.config.js')],
-          { stdio: 'inherit' },
-        ),
       },
       {
         name: 'build',
@@ -100,7 +59,7 @@ Promise.all([readPkgUp(), findBasePath()])
               .map(workspacePath => fork(
                 path.resolve(basePath, 'src/run-workspace-command.js'),
                 ['build'],
-                { stdio: 'inherit', cwd: workspacePath, env: { ...process.env, BASE_PATH: basePath } },
+                { stdio: 'inherit', cwd: workspacePath, env: { ...process.env, BASE_PATH: basePath, BASE_VARIABLES: variablesJson } },
               ))
           )),
       },
@@ -113,52 +72,105 @@ Promise.all([readPkgUp(), findBasePath()])
               .map(workspacePath => fork(
                 path.resolve(basePath, 'src/run-workspace-command.js'),
                 ['start'],
-                { stdio: 'inherit', cwd: workspacePath, env: { ...process.env, BASE_PATH: basePath } },
+                { stdio: 'inherit', cwd: workspacePath, env: { ...process.env, BASE_PATH: basePath, BASE_VARIABLES: variablesJson } },
               ))
           )),
       },
-      {
-        name: 'depgraph',
-        desc: 'Outputs a dependency graph for the current workspace',
-        handler: () => spawn(
-          path.resolve(basePath, 'node_modules/.bin/depcruise'),
-          ['-x', '(node_modules|^lib)', '-T', 'dot', '.'],
-          { capture: ['stdout'] },
-        )
-          .then(({ stdout: dotStructure }) => spawn('dot', ['-T', 'svg'], { capture: ['stdout'] })
-            .progress(({ stdin }) => {
-              stdin.write(dotStructure)
-              stdin.end()
-            })
-          )
-          .then(({ stdout: svgCode }) => spawn(
-            path.resolve(basePath, 'node_modules/.bin/open-cli'),
-            ['--extension', 'html'],
-          )
-            .progress(({ stdin }) => {
-              stdin.write(svgCode)
-              stdin.end()
-            })
-          )
-      },
-      {
-        name: 'depcheck',
-        desc: 'Outputs unused dependencies',
-        handler: () => findActiveWorkspacePaths({ includeRoot: true })
-          .then(activeWorkspacePaths => Promise.all(
-            activeWorkspacePaths.map(workspacePath =>
-              fork(path.resolve(basePath, 'src/depcheck.js'), { cwd: workspacePath })
-                .then(() => console.log())
+      ...nodeEnv === 'development'
+        ? [
+          {
+            name: 'init',
+            desc: 'Init a directory to be based',
+            handler: yargs => spawn('yarn', ['init', ...yargs.y ? ['-y'] : []], { stdio: 'inherit'})
+              .then(() => find(globalCommands, { name: '$0' }).handler(yargs)),
+          },
+          {
+            name: 'add [args..]',
+            desc: 'Add dependencies',
+            handler: ({ args, W }) => spawn('yarn', ['add', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
+          },
+          {
+            name: 'upgrade [args..]',
+            desc: 'Upgrade dependencies',
+            handler: ({ args, W }) => spawn('yarn', ['upgrade', ...args || [], ...W ? ['-W'] : []], { stdio: 'inherit'}),
+          },
+          {
+            name: 'remove [args..]',
+            desc: 'Remove dependencies',
+            handler: ({ args, W }) => spawn('yarn', ['remove', ...args, ...W ? ['-W'] : []], { stdio: 'inherit'}),
+          },
+          {
+            name: 'outdated',
+            desc: 'Lists outdated dependencies',
+            handler: () => spawn('yarn', ['outdated'], { stdio: 'inherit' }),
+          },
+          {
+            name: 'lint',
+            desc: 'Outputs linting errors',
+            handler: () => spawn(
+              path.resolve(basePath, 'node_modules/.bin/eslint'),
+              [
+                '.',
+                '--config', path.resolve(basePath, 'src/eslintrc.js'),
+                '--ignore-path', path.resolve(basePath, 'src/gitignore'),
+                '--ext', '.js,.vue',
+              ],
+              { stdio: 'inherit' },
+            ),
+          },
+          {
+            name: 'lint-staged',
+            desc: 'Outputs linting errors for staged files',
+            handler: () => spawn(
+              path.resolve(basePath, 'node_modules/.bin/lint-staged'),
+              ['.', '--config', path.resolve(basePath, 'src/lint-staged.config.js')],
+              { stdio: 'inherit' },
+            ),
+          },
+          {
+            name: 'depgraph',
+            desc: 'Outputs a dependency graph for the current workspace',
+            handler: () => spawn(
+              path.resolve(basePath, 'node_modules/.bin/depcruise'),
+              ['-x', '(node_modules|^lib)', '-T', 'dot', '.'],
+              { capture: ['stdout'] },
             )
-          )),
-      },
-      {
-        name: 'pre-commit',
-        desc: 'Runs commands before committing',
-        handler: yargs => Promise.resolve()
-          .then(() => find(globalCommands, { name: 'lint-staged' }).handler(yargs))
-          .then(() => find(globalCommands, { name: 'depcheck' }).handler(yargs))
-      },
+              .then(({ stdout: dotStructure }) => spawn('dot', ['-T', 'svg'], { capture: ['stdout'] })
+                .progress(({ stdin }) => {
+                  stdin.write(dotStructure)
+                  stdin.end()
+                })
+              )
+              .then(({ stdout: svgCode }) => spawn(
+                path.resolve(basePath, 'node_modules/.bin/open-cli'),
+                ['--extension', 'html'],
+              )
+                .progress(({ stdin }) => {
+                  stdin.write(svgCode)
+                  stdin.end()
+                })
+              )
+          },
+          {
+            name: 'depcheck',
+            desc: 'Outputs unused dependencies',
+            handler: () => findActiveWorkspacePaths({ includeRoot: true })
+              .then(activeWorkspacePaths => Promise.all(
+                activeWorkspacePaths.map(workspacePath =>
+                  fork(path.resolve(basePath, 'src/depcheck.js'), { cwd: workspacePath })
+                    .then(() => console.log())
+                )
+              )),
+          },
+          {
+            name: 'pre-commit',
+            desc: 'Runs commands before committing',
+            handler: yargs => Promise.resolve()
+              .then(() => find(globalCommands, { name: 'lint-staged' }).handler(yargs))
+              .then(() => find(globalCommands, { name: 'depcheck' }).handler(yargs))
+          },
+        ]
+        : [],
     ]
 
     forIn(
@@ -174,7 +186,7 @@ Promise.all([readPkgUp(), findBasePath()])
                 handler: () => fork(
                   path.resolve(basePath, 'src/run-workspace-command.js'),
                   [command.name],
-                  { stdio: 'inherit', env: { ...process.env, BASE_PATH: basePath } }
+                  { stdio: 'inherit', env: { ...process.env, BASE_PATH: basePath, BASE_VARIABLES: variablesJson } }
                 ),
               }))
               .value()
