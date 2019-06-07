@@ -1,12 +1,15 @@
 const { path: variablesPath } = require('./variables')
 const readPkgUp = require('read-pkg-up')
-const getType = require('./get-type')
+const getTypePath = require('./get-type-path')
 const babelMerge = require('babel-merge')
+const path = require('path')
+const safeRequire = require('safe-require')
 
 const { package: { typeName = 'lib' } } = readPkgUp.sync()
-const type = getType(typeName)
+const typePath = getTypePath(typeName)
+const typeBabelConfig = safeRequire(path.join(typePath, 'src/babel.config.js'))
 
-module.exports = babelMerge(
+module.exports = babelMerge(...[
   {
     presets: [
       require.resolve('@babel/preset-env'),
@@ -23,5 +26,5 @@ module.exports = babelMerge(
       }]
     ],
   },
-  type.babelConfig,
-)
+  ...typeBabelConfig !== undefined ? [typeBabelConfig] : [],
+])
