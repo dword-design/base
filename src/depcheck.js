@@ -35,5 +35,6 @@ Promise.all([
   .then(([packageName, stats]) => {
     if (!isEmpty(stats)) {
       console.log(`${packageName}\r\n${prettyjson.render(stats)}`)
+      process.exit(1)
     }
   })

@@ -26,11 +26,23 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
         .then(parts => fs.outputFile(path.resolve(rootPath, '.gitignore'), parts.join('\r\n'), 'utf8')),
       fs.exists(path.join(rootPath, '.git'))
         .then(gitExists => gitExists && fs.outputFile(
-          path.resolve(rootPath, '.git/hooks/pre-commit'),
-          `exec "${path.resolve(__dirname, 'pre-commit.js')}"`,
-          { encoding: 'utf8', mode: '755' },
-        ))
+          path.resolve(rootPath, '.git/hooks/pre-commit'), `exec "${__filename}" pre-commit`, { encoding: 'utf8', mode: '755' })
+        )
     ])
+
+    const lintStaged = () => spawn(
+      path.resolve(basePath, 'node_modules/.bin/lint-staged'),
+      ['.', '--config', path.resolve(basePath, 'src/lint-staged.config.js')],
+      { stdio: 'inherit' },
+    )
+
+    const depcheck = () => findActiveWorkspacePaths({ includeRoot: true })
+      .then(activeWorkspacePaths => Promise.all(
+        activeWorkspacePaths.map(workspacePath =>
+          fork(path.resolve(__dirname, 'depcheck.js'), { cwd: workspacePath })
+            .then(() => console.log())
+        )
+      ))
 
     yargs
       .command({
@@ -42,7 +54,8 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
 
       .command({
         command: 'init',
-        handler: ({ y }) => spawn('yarn', ['init', ...y ? ['-y'] : []], { stdio: 'inherit'}),
+        handler: ({ y }) => spawn('yarn', ['init', ...y ? ['-y'] : []], { stdio: 'inherit'})
+          .then(postinstall),
       })
 
       .command({
@@ -68,36 +81,32 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
 
       .command({
         command: 'lint',
-        handler: () => findActiveWorkspacePaths()
-          .then(activeWorkspacePaths => Promise.all(
-            activeWorkspacePaths.map(workspacePath => readPkgUp({ cwd: workspacePath })
-              .then(({ package: { typeName = 'lib' } }) => spawn(
-                path.resolve(basePath, 'node_modules/.bin/eslint'),
-                [
-                  '.',
-                  '--config', path.resolve(basePath, 'src/eslintrc.js'),
-                  '--ignore-path', path.resolve(basePath, 'src/gitignore'),
-                  '--ext', '.js,.vue',
-                ],
-                { stdio: 'inherit', cwd: workspacePath },
-              ))
-          )))
+        handler: () => spawn(
+          path.resolve(basePath, 'node_modules/.bin/eslint'),
+          [
+            '.',
+            '--config', path.resolve(basePath, 'src/eslintrc.js'),
+            '--ignore-path', path.resolve(basePath, 'src/gitignore'),
+            '--ext', '.js,.vue',
+          ],
+          { stdio: 'inherit' },
+        )
           .catch(error => {
-            if (error.name !== 'ChildProcessError') {
+            if (error.name === 'ChildProcessError') {
+              process.exit(1)
+            } else {
               throw(error)
             }
-          })
+          }),
       })
 
       .command({
         command: 'lint-staged',
-        handler: () => spawn(
-          path.resolve(basePath, 'node_modules/.bin/lint-staged'),
-          ['.', '--config', path.resolve(basePath, 'src/lint-staged.config.js')],
-          { stdio: 'inherit' },
-        )
+        handler: () => lintStaged()
           .catch(error => {
-            if (error.name !== 'ChildProcessError') {
+            if (error.name === 'ChildProcessError') {
+              process.exit(1)
+            } else {
               throw(error)
             }
           })
@@ -113,7 +122,9 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
               ))
           ))
             .catch(error => {
-              if (error.name !== 'ChildProcessError') {
+              if (error.name === 'ChildProcessError') {
+                process.exit(1)
+              } else {
                 throw(error)
               }
             }),
@@ -156,13 +167,28 @@ Promise.all([readPkgUp(), findRootPath(), findBasePath()])
 
       .command({
         command: 'depcheck',
-        handler: () => findActiveWorkspacePaths({ includeRoot: true })
-          .then(activeWorkspacePaths => Promise.all(
-            activeWorkspacePaths.map(workspacePath =>
-              fork(path.resolve(__dirname, 'depcheck.js'), { cwd: workspacePath })
-                .then(() => console.log())
-            )
-          ))
+        handler: () => depcheck()
+          .catch(error => {
+            if (error.name === 'ChildProcessError') {
+              process.exit(1)
+            } else {
+              throw(error)
+            }
+          }),
+      })
+
+      .command({
+        command: 'pre-commit',
+        handler: () => Promise.resolve()
+          .then(lintStaged)
+          .then(depcheck)
+          .catch(error => {
+            if (error.name === 'ChildProcessError') {
+              process.exit(1)
+            } else {
+              throw(error)
+            }
+          }),
       })
 
     forIn(getType(typeName).commands(workspacePath, { basePath, variables }), command => yargs.command(command))
