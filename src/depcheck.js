@@ -2,21 +2,30 @@ const readPkgUp = require('read-pkg-up')
 const depcheck = require('depcheck')
 const prettyjson = require('prettyjson')
 const depcheckSassParser = require('./depcheck-sass-parser')
-const { chain, isEmpty } = require('lodash')
+const { chain, isEmpty, merge } = require('lodash')
+const getType = require('./get-type')
+
+const { package: { typeName = 'lib' } = {} } = readPkgUp.sync()
+const type = getType(typeName)
 
 Promise.all([
   readPkgUp().then(({ package: { name } }) => name),
-  depcheck(process.cwd(), {
-    detectors: [
-      depcheck.detector.importDeclaration,
-      depcheck.detector.requireCallExpression,
-    ],
-    parsers: {
-      '*.vue': depcheck.parser.vue,
-      '*.js': depcheck.parser.es7,
-      '*.scss': depcheckSassParser,
-    },
-  })
+  depcheck(
+    process.cwd(),
+    merge(
+      {
+        detectors: [
+          depcheck.detector.importDeclaration,
+          depcheck.detector.requireCallExpression,
+        ],
+        parsers: {
+          '*.js': depcheck.parser.es7,
+          '*.scss': depcheckSassParser,
+        },
+      },
+      type.depcheckConfig,
+    )
+  )
     .then(json => chain(json).omit('using').omitBy(isEmpty).value()),
 ])
   .then(([packageName, stats]) => {
