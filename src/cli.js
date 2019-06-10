@@ -157,7 +157,7 @@ Promise.all([readPkgUp(), findBasePath()])
             handler: () => findActiveWorkspacePaths({ includeRoot: true })
               .then(activeWorkspacePaths => Promise.all(
                 activeWorkspacePaths.map(workspacePath =>
-                  fork(path.resolve(basePath, 'src/depcheck.js'), { cwd: workspacePath })
+                  fork(path.resolve(basePath, 'src/depcheck.js'), { cwd: workspacePath, env: { ...process.env, BASE_PATH: basePath, BASE_VARIABLES: variablesJson } })
                     .then(() => console.log())
                 )
               )),

@@ -18,6 +18,7 @@ Promise.all([
         detectors: [
           depcheck.detector.importDeclaration,
           depcheck.detector.requireCallExpression,
+          depcheck.detector.requireResolveCallExpression,
         ],
         parsers: {
           '*.js': depcheck.parser.es7,
@@ -26,6 +27,7 @@ Promise.all([
         specials: [
           depcheckTypeSpecial,
         ],
+        ignoreDirs: ['dist'],
       },
       type.depcheckConfig,
     )
