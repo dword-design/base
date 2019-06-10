@@ -687,19 +687,20 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@dword-design/base-type-lib@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-type-lib/-/base-type-lib-0.1.4.tgz#2ccde97f9a7385a8270d0c6011e62587389dd4b4"
-  integrity sha512-Uj69USxIc/2TEpWJ/oxjqhBxajaCfoIpoEyJeShf5GGFdkD3eQNEFVV+EgV4mIJ7jKbrMkyd52SauA62/9s8ag==
+"@dword-design/base-type-lib@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-type-lib/-/base-type-lib-0.1.6.tgz#3bf8adb25b1651bef4404938e130d04f41368a7a"
+  integrity sha512-f8Mg5bsH58mQ+yohyvWdGbmHgt18aUiIHlSZ37VO6a0nROMg4KfXP8YPWVakLZwPofCR1sHYpylDNtDB6QChlg==
   dependencies:
     "@dword-design/node-env" "^0.1.0"
     child-process-promise "^2.2.1"
     clean-webpack-plugin "^2.0.2"
     fs-extra "^8.0.1"
+    glob "^7.1.4"
     html-webpack-plugin "^3.2.0"
     lodash "^4.17.11"
-    module-exists "^0.2.1"
     nodemon "^1.19.1"
+    safe-require "^1.0.3"
     webpack "^4.33.0"
     webpack-cli "^3.3.2"
     webpack-merge "^4.2.1"
@@ -2172,8 +2173,8 @@ depcheck@dword-design/depcheck#fork:
     require-from-string "^2.0.2"
     require-package-name "^2.0.1"
     resolve "^1.10.0"
-    walkdir "^0.3.2"
-    yargs "^13.2.2"
+    walkdir "0.0.12"
+    yargs "^12.0.1"
 
 dependency-cruiser@^4.19.1:
   version "4.19.1"
@@ -3145,7 +3146,7 @@ glob-parent@^3.1.0:
     is-glob "^3.1.0"
     path-dirname "^1.0.0"
 
-glob@7.1.4, glob@^7.0.0, glob@^7.0.3, glob@^7.1.2, glob@^7.1.3, glob@~7.1.1:
+glob@7.1.4, glob@^7.0.0, glob@^7.0.3, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4, glob@~7.1.1:
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.4.tgz#aa608a2f6c577ad357e1ae5a5c26d9a8d1969255"
   integrity sha512-hkLPepehmnKk41pUGm3sYxoFs/umurYfYJCerbXEyFIWcAzvpipAgVkBqqT9RBKMGjnq6kMuyYwha6csxbiM1A==
@@ -4558,11 +4559,6 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
-module-exists@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/module-exists/-/module-exists-0.2.1.tgz#1b93531e1bd31c7c0fbb92e859c2a6f0870a0ba8"
-  integrity sha512-Qrb/jPRB9LLdtK/37Gmr5ijTCg2q8SmbFDIYhjiS/SiL67ussbKPMbFVdErOBG1TZWZCjSusIfBHaY1iY0YznA==
-
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -5940,6 +5936,11 @@ safe-regex@^1.1.0:
   integrity sha1-QKNmnzsHfR6UPURinhV91IAjvy4=
   dependencies:
     ret "~0.1.10"
+
+safe-require@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/safe-require/-/safe-require-1.0.3.tgz#6ec319ed10209b1d12c7a1449b79d46d7f4f914b"
+  integrity sha1-bsMZ7RAgmx0Sx6FEm3nUbX9PkUs=
 
 "safer-buffer@>= 2.1.2 < 3", safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
   version "2.1.2"
