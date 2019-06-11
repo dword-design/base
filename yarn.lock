@@ -687,10 +687,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@dword-design/base-type-lib@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-type-lib/-/base-type-lib-0.1.7.tgz#941ed7af77a521a9cd37e0598bbddc8a27cac05c"
-  integrity sha512-PVFjkSK4T80wTdPBoiAXvvBlC18/fOaYPXj9ebyF8XtI6jelZVI6ZiyKr82LPhqwNImZ7A9KXKQmTlqklirAVQ==
+"@dword-design/base-type-lib@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-type-lib/-/base-type-lib-0.1.8.tgz#878443278c1e2e10e41193739c284a47c49ae2ed"
+  integrity sha512-wEj1s7E83hRjmvWUIEfKvKWtnBPPBClpkroE4yaRiibqjfiOra4ureph2Q2geSQnBsCywTmg7snsioxJ4uEZjw==
   dependencies:
     "@dword-design/node-env" "^0.1.0"
     child-process-promise "^2.2.1"
@@ -699,6 +699,7 @@
     html-webpack-plugin "^3.2.0"
     lodash "^4.17.11"
     nodemon "^1.19.1"
+    resolve-from "^5.0.0"
     safe-require "^1.0.3"
     webpack "^4.33.0"
     webpack-cli "^3.3.2"
@@ -2172,8 +2173,8 @@ depcheck@dword-design/depcheck#fork:
     require-from-string "^2.0.2"
     require-package-name "^2.0.1"
     resolve "^1.10.0"
-    walkdir "^0.3.2"
-    yargs "^13.2.2"
+    walkdir "0.0.12"
+    yargs "^12.0.1"
 
 dependency-cruiser@^4.19.1:
   version "4.19.1"
