@@ -16,7 +16,7 @@ const nodeEnv = require('@dword-design/node-env')
 const variablesJson = JSON.stringify(variables)
 
 Promise.all([readPkgUp(), findBasePath()])
-  .then(([{ package: packageConfig = {} }, basePath]) => {
+  .then(([{ package: packageConfig = {} } = {}, basePath]) => {
     const globalCommands = [
       {
         name: '$0',

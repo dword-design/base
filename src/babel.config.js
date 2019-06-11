@@ -1,7 +1,7 @@
-const { path: variablesPath } = require('./variables')
 const readPkgUp = require('read-pkg-up')
 const getType = require('./get-type')
 const babelMerge = require('babel-merge')
+const aliases = require('./aliases.config')
 
 const { package: { typeName = 'lib' } } = readPkgUp.sync()
 const type = getType(typeName)
@@ -17,9 +17,7 @@ module.exports = babelMerge(...[
       [require.resolve('@babel/plugin-proposal-pipeline-operator'), { proposal: 'minimal' }],
       require.resolve('@babel/plugin-proposal-object-rest-spread'),
       [require.resolve('babel-plugin-module-resolver'), {
-        alias: {
-          '@variables': variablesPath,
-        },
+        alias: aliases,
       }]
     ],
   },

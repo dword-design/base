@@ -707,6 +707,13 @@
     webpack-node-externals "^1.7.2"
     webpack-shell-plugin "^0.5.0"
 
+"@dword-design/functions@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-0.2.4.tgz#02061b7f1e8d95fb1e7c16765beb4269f6358342"
+  integrity sha512-/T6h1VY6dZSLFF/fnk2O7mVA6ugQnoKxra4ABnRikmNm2sxbRCj/RiWFQiDZh1WWAlQrLftnH/TkGugQjT7aEQ==
+  dependencies:
+    lodash "^4.17.11"
+
 "@dword-design/node-env@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@dword-design/node-env/-/node-env-0.1.0.tgz#ee8a9766fcda0d8af3124c0595977fcbd26140e6"

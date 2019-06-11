@@ -1,4 +1,4 @@
-const { path: variablesPath } = require('./variables')
+const aliases = require('./aliases.config')
 
 module.exports = {
   env: {
@@ -24,9 +24,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       'babel-module': {
-        alias: {
-          '@variables': variablesPath,
-        },
+        alias: aliases,
       },
     },
   },
