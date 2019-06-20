@@ -1,4 +1,4 @@
 module.exports = {
-  '@variables': require('./variables').path,
+  '@variables': require('./variables-path'),
   '@functions': require.resolve('@dword-design/functions'),
 }

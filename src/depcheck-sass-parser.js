@@ -2,12 +2,12 @@ const path = require('path')
 const lodash = require('lodash')
 const tildeImporter = require('node-sass-tilde-importer')
 const sass = require('node-sass')
-const { variables } = require('./variables')
+const variables = require('./variables')
 const convertJsToSass = require('@epegzz/sass-vars-loader/src/utils/convertJsToSass')
 const { paramCase } = require('change-case')
 const readPkgUp = require('read-pkg-up')
 
-module.exports = (content, filePath, _, rootDir) => {
+module.exports = (content, filePath) => {
   const sassVariablesString = convertJsToSass(lodash.mapKeys(variables, (_, name) => paramCase(name)))
   const { stats } = sass.renderSync({
     file: filePath,

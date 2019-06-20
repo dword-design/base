@@ -10,7 +10,7 @@ const readPkgUp = require('read-pkg-up')
 const { forIn, chain, some, find } = require('lodash')
 const findBasePath = require('./find-base-path')
 const getType = require('./get-type')
-const { variables } = require('./variables')
+const variables = require('./variables')
 const nodeEnv = require('@dword-design/node-env')
 
 const variablesJson = JSON.stringify(variables)

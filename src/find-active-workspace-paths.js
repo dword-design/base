@@ -1,6 +1,5 @@
 const { exec } = require('child-process-promise')
 const _ = require('lodash')
-const findUp = require('find-up')
 const path = require('path')
 const readPkgUp = require('read-pkg-up')
 const fs = require('fs-extra')

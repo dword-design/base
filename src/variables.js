@@ -1,8 +1,11 @@
-const findUp = require('find-up')
+const path = require('path')
+const variablesPath = require('./variables-path')
+const babelRegister = require('@babel/register')
+const safeRequire = require('safe-require')
 
-const variablesPath = findUp.sync('variables.base.js')
+babelRegister({
+  configFile: path.resolve(__dirname, 'babel.config.js'),
+  ignore: [/node_modules/],
+})
 
-module.exports = {
-  variables: variablesPath !== undefined ? require(variablesPath) : {},
-  ...variablesPath !== undefined ? { path: variablesPath } : {},
-}
+module.exports = safeRequire(variablesPath)
