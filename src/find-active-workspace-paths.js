@@ -3,6 +3,12 @@ const _ = require('lodash')
 const path = require('path')
 const readPkgUp = require('read-pkg-up')
 const fs = require('fs-extra')
+const babelRegister = require('@babel/register')
+
+babelRegister({
+  configFile: path.resolve(__dirname, 'babel.config.js'),
+  ignore: [/node_modules/],
+})
 
 module.exports = ({ includeRoot } = {}) => readPkgUp()
   .then(({ package: { workspaces }, path: packageJsonPath }) => workspaces !== undefined
@@ -20,7 +26,7 @@ module.exports = ({ includeRoot } = {}) => readPkgUp()
           ..._(workspaces)
             .mapValues('location')
             .pickBy((_, workspaceName) => activeWorkspacesExists
-              ? require(activeWorkspacesPath).includes(workspaceName)
+              ? require(activeWorkspacesPath).default.includes(workspaceName)
               : true
             )
             .mapValues(workspacePath => path.resolve(packagePath, workspacePath))

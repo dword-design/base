@@ -63,5 +63,6 @@ module.exports = {
     "react/jsx-uses-vars": 1,
     'lodash-fp/no-extraneous-iteratee-args': 'off',
     'import/no-extraneous-dependencies': 'error',
+    'import/no-commonjs': 'error',
   },
 }
