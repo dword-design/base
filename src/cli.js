@@ -7,7 +7,7 @@ const fs = require('fs-extra')
 const findRootPath = require('./find-root-path')
 const findActiveWorkspacePaths = require('./find-active-workspace-paths')
 const readPkgUp = require('read-pkg-up')
-const { forIn, chain, some, find } = require('lodash')
+const { forIn, chain, some, find, keys } = require('lodash')
 const findBasePath = require('./find-base-path')
 const getType = require('./get-type')
 const variables = require('./variables')
@@ -29,10 +29,9 @@ Promise.all([readPkgUp(), findBasePath()])
               fs.copyFile(path.resolve(basePath, 'src/editorconfig'), path.resolve(rootPath, '.editorconfig')),
               fs.exists(path.resolve(rootPath, '.base.gitignore'))
                 .then(baseGitignoreExists => [
-                  path.resolve(basePath, 'src/gitignore'),
-                  ...baseGitignoreExists ? [path.resolve(rootPath, '.base.gitignore')] : [],
+                  ...require('./gitignore'),
+                  ...baseGitignoreExists ? [fs.readFileSync(path.resolve(rootPath, '.base.gitignore'))] : [],
                 ])
-                .then(filePaths => Promise.all(filePaths.map(filePath => fs.readFile(filePath))))
                 .then(parts => fs.outputFile(path.resolve(rootPath, '.gitignore'), parts.join('\r\n'), 'utf8')),
               ...nodeEnv === 'development'
                 ? [
@@ -107,16 +106,18 @@ Promise.all([readPkgUp(), findBasePath()])
           {
             name: 'lint',
             desc: 'Outputs linting errors',
-            handler: () => spawn(
-              path.resolve(basePath, 'node_modules/.bin/eslint'),
-              [
-                '.',
-                '--config', path.resolve(basePath, 'src/eslintrc.js'),
-                '--ignore-path', path.resolve(basePath, 'src/gitignore'),
-                '--ext', '.js,.vue',
-              ],
-              { stdio: 'inherit' },
-            ),
+            handler: () => Promise.resolve()
+              .then(findRootPath)
+              .then(rootPath => spawn(
+                path.resolve(basePath, 'node_modules/.bin/eslint'),
+                [
+                  '.',
+                  '--config', path.resolve(basePath, 'src/eslintrc.js'),
+                  '--ignore-path', path.resolve(rootPath, '.gitignore'),
+                  '--ext', '.js,.vue',
+                ],
+                { stdio: 'inherit' },
+              )),
           },
           {
             name: 'lint-staged',
@@ -130,26 +131,33 @@ Promise.all([readPkgUp(), findBasePath()])
           {
             name: 'depgraph',
             desc: 'Outputs a dependency graph for the current workspace',
-            handler: () => spawn(
-              path.resolve(basePath, 'node_modules/.bin/depcruise'),
-              ['-x', '(node_modules|^lib)', '-T', 'dot', '.'],
-              { capture: ['stdout'] },
-            )
-              .then(({ stdout: dotStructure }) => spawn('dot', ['-T', 'svg'], { capture: ['stdout'] })
-                .progress(({ stdin }) => {
-                  stdin.write(dotStructure)
-                  stdin.end()
-                })
+            handler: () => {
+              const ignores = [
+                ...require('./gitignore'),
+                ...keys(require('./aliases.config'))
+              ]
+
+              return spawn(
+                path.resolve(basePath, 'node_modules/.bin/depcruise'),
+                ['-x', `(${ignores.join('|')})`, '-T', 'dot', '.'],
+                { capture: ['stdout'] },
               )
-              .then(({ stdout: svgCode }) => spawn(
-                path.resolve(basePath, 'node_modules/.bin/open-cli'),
-                ['--extension', 'html'],
-              )
-                .progress(({ stdin }) => {
-                  stdin.write(svgCode)
-                  stdin.end()
-                })
-              )
+                .then(({ stdout: dotStructure }) => spawn('dot', ['-T', 'svg'], { capture: ['stdout'] })
+                  .progress(({ stdin }) => {
+                    stdin.write(dotStructure)
+                    stdin.end()
+                  })
+                )
+                .then(({ stdout: svgCode }) => spawn(
+                  path.resolve(basePath, 'node_modules/.bin/open-cli'),
+                  ['--extension', 'html'],
+                )
+                  .progress(({ stdin }) => {
+                    stdin.write(svgCode)
+                    stdin.end()
+                  })
+                )
+            },
           },
           {
             name: 'depcheck',
