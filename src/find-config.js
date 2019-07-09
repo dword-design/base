@@ -1,9 +1,9 @@
-const readPkgUp = require('read-pkg-up')
+const findUp = require('find-up')
 const safeRequire = require('safe-require')
-const path = require('path')
 
-module.exports = () => readPkgUp()
-  .then(({ path: packageJsonPath }) => ({
-      activeWorkspaces: [],
-      ...safeRequire(path.join(path.dirname(packageJsonPath), 'base.config.js')),
+module.exports = () => findUp('base.config.js')
+  .then(configPath => ({
+    activeWorkspaces: [],
+    depgraphIgnores: [],
+    ...safeRequire(configPath),
   }))

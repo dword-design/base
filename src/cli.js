@@ -12,11 +12,12 @@ const findBasePath = require('./find-base-path')
 const getType = require('./get-type')
 const variables = require('./variables')
 const nodeEnv = require('@dword-design/node-env')
+const findConfig = require('./find-config')
 
 const variablesJson = JSON.stringify(variables)
 
-Promise.all([readPkgUp(), findBasePath()])
-  .then(([{ package: packageConfig = {} } = {}, basePath]) => {
+Promise.all([readPkgUp(), findBasePath(), findConfig()])
+  .then(([{ package: packageConfig = {} } = {}, basePath, { depgraphIgnores }]) => {
     const globalCommands = [
       {
         name: '$0',
@@ -134,7 +135,8 @@ Promise.all([readPkgUp(), findBasePath()])
             handler: () => {
               const ignores = [
                 ...require('./gitignore'),
-                ...keys(require('./aliases.config'))
+                ...keys(require('./aliases.config')),
+                ...depgraphIgnores,
               ]
 
               return spawn(
