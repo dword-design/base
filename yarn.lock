@@ -2201,10 +2201,10 @@ depcheck@dword-design/depcheck#fork:
     walkdir "0.0.12"
     yargs "^12.0.1"
 
-dependency-cruiser@^4.19.1:
-  version "4.19.1"
-  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-4.19.1.tgz#ea16aaadba0ab15a6aca603b9eb0eb217b631710"
-  integrity sha512-bEcdVXSXoZGtVv8YDn++XBl0qFre9Rq7Il+tHgh/QPEXidViMObKrESmQaJ4hPPaDK7vpLNp4nysPfsM16tPaw==
+dependency-cruiser@^4.24.0:
+  version "4.24.0"
+  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-4.24.0.tgz#1fc378ef13ffa49ec646c4471e7ecc545cd7361c"
+  integrity sha512-x1vlyFTsubVk5Hi0uBt5Avu87XOmrxbf+6rAGkz+9CEVK3Qql0J2kQzXoXov1q4SvE75AM7Llx/M7e6OHzM2KQ==
   dependencies:
     acorn "6.1.1"
     acorn-dynamic-import "4.0.0"
@@ -2217,14 +2217,15 @@ dependency-cruiser@^4.19.1:
     figures "3.0.0"
     glob "7.1.4"
     handlebars "4.1.2"
-    inquirer "6.3.1"
+    inquirer "6.4.1"
     lodash "4.17.11"
-    pnp-webpack-plugin "1.4.3"
+    pnp-webpack-plugin "1.5.0"
     regexp-tree "0.1.10"
-    resolve "1.11.0"
-    semver "6.1.0"
-    semver-try-require "2.0.5"
+    resolve "1.11.1"
+    semver "6.1.1"
+    semver-try-require "2.0.6"
     strip-json-comments "3.0.1"
+    teamcity-service-messages "0.1.10"
     tsconfig-paths-webpack-plugin "3.2.0"
 
 deprecate@^1.0.0:
@@ -3556,7 +3557,26 @@ ini@^1.3.4, ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
 
-inquirer@6.3.1, inquirer@^6.2.2:
+inquirer@6.4.1:
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-6.4.1.tgz#7bd9e5ab0567cd23b41b0180b68e0cfa82fc3c0b"
+  integrity sha512-/Jw+qPZx4EDYsaT6uz7F4GJRNFMRdKNeUZw3ZnKV8lyuUgz/YWRCSUAJMZSVhSq4Ec0R2oYnyi6b3d4JXcL5Nw==
+  dependencies:
+    ansi-escapes "^3.2.0"
+    chalk "^2.4.2"
+    cli-cursor "^2.1.0"
+    cli-width "^2.0.0"
+    external-editor "^3.0.3"
+    figures "^2.0.0"
+    lodash "^4.17.11"
+    mute-stream "0.0.7"
+    run-async "^2.2.0"
+    rxjs "^6.4.0"
+    string-width "^2.1.0"
+    strip-ansi "^5.1.0"
+    through "^2.3.6"
+
+inquirer@^6.2.2:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-6.3.1.tgz#7a413b5e7950811013a3db491c61d1f3b776e8e7"
   integrity sha512-MmL624rfkFt4TG9y/Jvmt8vdmOo836U7Y0Hxr2aFk3RelZEGX4Igk0KabWrcaaZaTv9uzglOqWh1Vly+FAWAXA==
@@ -5370,10 +5390,10 @@ please-upgrade-node@^3.0.2, please-upgrade-node@^3.1.1:
   dependencies:
     semver-compare "^1.0.0"
 
-pnp-webpack-plugin@1.4.3:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/pnp-webpack-plugin/-/pnp-webpack-plugin-1.4.3.tgz#0a100b63f4a1d09cee6ee55a87393b69f03ab5c7"
-  integrity sha512-ExrNwuFH3DudHwWY2uRMqyiCOBEDdhQYHIAsqW/CM6hIZlSgXC/ma/p08FoNOUhVyh9hl1NGnMpR94T5i3SHaQ==
+pnp-webpack-plugin@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/pnp-webpack-plugin/-/pnp-webpack-plugin-1.5.0.tgz#62a1cd3068f46d564bb33c56eb250e4d586676eb"
+  integrity sha512-jd9olUr9D7do+RN8Wspzhpxhgp1n6Vd0NtQ4SFkmIACZoEL1nkyAdW9Ygrinjec0vgDcWjscFQQ1gDW8rsfKTg==
   dependencies:
     ts-pnp "^1.1.2"
 
@@ -5906,7 +5926,14 @@ resolve-url@^0.2.1:
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
-resolve@1.11.0, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.0, resolve@^1.3.2, resolve@^1.4.0, resolve@^1.5.0:
+resolve@1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.11.1.tgz#ea10d8110376982fef578df8fc30b9ac30a07a3e"
+  integrity sha512-vIpgF6wfuJOZI7KKKSP+HmiKggadPQAdsp5HiC1mvqnfp0gF1vdwgBWZIdrVft9pgqoMFQN+R7BSWZiBxx+BBw==
+  dependencies:
+    path-parse "^1.0.6"
+
+resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.0, resolve@^1.3.2, resolve@^1.4.0, resolve@^1.5.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.11.0.tgz#4014870ba296176b86343d50b60f3b50609ce232"
   integrity sha512-WL2pBDjqT6pGUNSUzMw00o4T7If+z4H2x3Gz893WoUQ5KW8Vr9txp00ykiP16VBaZF5+j/OcXJHZ9+PCvdiDKw==
@@ -6028,19 +6055,24 @@ semver-diff@^2.0.0:
   dependencies:
     semver "^5.0.3"
 
-semver-try-require@2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/semver-try-require/-/semver-try-require-2.0.5.tgz#5cd2a00988b84e1017a2dedf97a1251b5e745c78"
-  integrity sha512-gDVoumGwoK3uZQA14e8wBun/8lgN3KDeh8z8keuwK3DzVo5uxY7EAj2fNt0TNW55cMp8DkyDbs101Zsexu93Qg==
+semver-try-require@2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/semver-try-require/-/semver-try-require-2.0.6.tgz#d025755e98c5657c97f170e2c3b47f9fada615e7"
+  integrity sha512-/RB2z+jPWsOa/Sv5f5nbJrQDbI91zW1JyMCBwMsDGV+9SM28ERwteDo3V+Asld+p9PWIUhPoKj/D6H4V6yHBzg==
   dependencies:
-    semver "6.1.0"
+    semver "6.1.1"
 
 "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.0.tgz#790a7cf6fea5459bac96110b29b60412dc8ff96b"
   integrity sha512-Ya52jSX2u7QKghxeoFGpLwCtGlt7j0oY9DYb5apt9nPlJ42ID+ulTXESnt/qAQcoSERyZ5sl3LDIOw0nAn/5DA==
 
-semver@6.1.0, semver@^6.0.0:
+semver@6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.1.tgz#53f53da9b30b2103cd4f15eab3a18ecbcb210c9b"
+  integrity sha512-rWYq2e5iYW+fFe/oPPtYJxYgjBm8sC4rmoGdUOgBB7VnwKt6HrL793l2voH1UlsyYZpJ4g0wfjnTEO1s1NP2eQ==
+
+semver@^6.0.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.0.tgz#e95dc415d45ecf03f2f9f83b264a6b11f49c0cca"
   integrity sha512-kCqEOOHoBcFs/2Ccuk4Xarm/KiWRSLEX9CAZF8xkJ6ZPlIoTZ8V5f7J16vYLJqDbR7KrxTJpR2lqjIEm2Qx9cQ==
@@ -6524,6 +6556,11 @@ tar@^4:
     mkdirp "^0.5.0"
     safe-buffer "^5.1.2"
     yallist "^3.0.2"
+
+teamcity-service-messages@0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/teamcity-service-messages/-/teamcity-service-messages-0.1.10.tgz#30efd4057fc4943b045e5d1eee8c09449ec76164"
+  integrity sha512-CdpMw9RPc8v/Vv3tzx8Bo1EQxNWs4toE/KtYRE8uDxr67vh9asTd3WRHI/y0VB7fZho2NGSuvecVjzl2BULFEQ==
 
 temp-dir@^1.0.0:
   version "1.0.0"

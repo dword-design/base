@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,7 +30,7 @@
     "change-case": "^3.1.0",
     "child-process-promise": "^2.2.1",
     "depcheck": "dword-design/depcheck#fork",
-    "dependency-cruiser": "^4.19.1",
+    "dependency-cruiser": "^4.24.0",
     "eslint": "^5.16.0",
     "eslint-import-resolver-babel-module": "^5.1.0",
     "eslint-import-resolver-webpack": "^0.11.1",
