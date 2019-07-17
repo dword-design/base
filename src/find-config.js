@@ -1,9 +1,18 @@
 const findUp = require('find-up')
-const safeRequire = require('safe-require')
+const babelRegister = require('@babel/register')
+const path = require('path')
 
 module.exports = () => findUp('base.config.js')
-  .then(configPath => ({
-    activeWorkspaces: [],
-    depgraphIgnores: [],
-    ...safeRequire(configPath),
-  }))
+  .then(configPath => {
+
+    babelRegister({
+      configFile: path.resolve(__dirname, 'babel.config.js'),
+      ignore: [/node_modules/],
+    })
+
+    return {
+      activeWorkspaces: [],
+      depgraphIgnores: [],
+      ...configPath !== undefined ? require(configPath) : {},
+    }
+  })

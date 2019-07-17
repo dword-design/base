@@ -1,10 +1,8 @@
-const readPkgUp = require('read-pkg-up')
-const getType = require('./get-type')
+const findWorkspaceConfig = require('./find-workspace-config')
 const babelMerge = require('babel-merge')
 const aliases = require('./aliases.config')
 
-const { package: { typeName = 'lib' } } = readPkgUp.sync()
-const type = getType(typeName)
+const { type } = findWorkspaceConfig()
 
 module.exports = babelMerge(...[
   {

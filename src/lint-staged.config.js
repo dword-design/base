@@ -1,9 +1,7 @@
 const path = require('path')
-const readPkgUp = require('read-pkg-up')
-const getType = require('./get-type')
+const findWorkspaceConfig = require('./find-workspace-config')
 
-const { package: { typeName = 'lib' } } = readPkgUp.sync()
-const type = getType(typeName)
+const { type } = findWorkspaceConfig()
 
 module.exports = {
   [`*.{js,vue}`]: `"${require.resolve('eslint/bin/eslint.js')}" --config "${path.resolve(__dirname, 'eslintrc.js')}"`,

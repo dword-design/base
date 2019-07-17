@@ -1,13 +1,11 @@
-const readPkgUp = require('read-pkg-up')
 const depcheck = require('depcheck')
 const prettyjson = require('prettyjson')
 const depcheckSassParser = require('./depcheck-sass-parser')
 const depcheckTypeSpecial = require('./depcheck-type-special')
+const findWorkspaceConfig = require('./find-workspace-config')
 const { chain, isEmpty, merge } = require('lodash')
-const getType = require('./get-type')
 
-const { package: { typeName = 'lib' } = {} } = readPkgUp.sync()
-const type = getType(typeName)
+const { type } = findWorkspaceConfig()
 
 Promise.all([
   readPkgUp().then(({ package: { name } }) => name),
