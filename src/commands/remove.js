@@ -5,8 +5,8 @@ module.exports = {
   name: 'remove [packages...]',
   desc: 'Remove dependencies',
   options: [
-    { short: '-W', long: '--ignore-workspace-root-check', desc: 'Ignore workspace root check' },
+    { name: '-W, --ignore-workspace-root-check', desc: 'Ignore workspace root check' },
   ],
-  handler: (packages, { W }) => spawn('yarn', ['remove', ...packages, ...W ? ['-W'] : []], { stdio: 'inherit'}),
+  handler: (packages, { ignoreWorkspaceRootCheck }) => spawn('yarn', ['remove', ...packages, ...ignoreWorkspaceRootCheck ? ['-W'] : []], { stdio: 'inherit'}),
   isEnabled: nodeEnv === 'development',
 }

@@ -32,7 +32,7 @@ Promise.all([findWorkspaceConfig(), findBasePath(), findVariables()])
       ],
       ({ name, desc, options, handler }) => reduce(
         options,
-        (command, { short, long, desc }) => command.option(short, long, desc),
+        (command, { name, desc, defaultValue }) => command.option(name, desc, defaultValue),
         program
           .command(name)
           .description(desc)
@@ -41,7 +41,7 @@ Promise.all([findWorkspaceConfig(), findBasePath(), findVariables()])
               if (error.name === 'ChildProcessError') {
                 process.exit(error.code)
               } else {
-                throw(error)
+                console.error(error.message)
               }
             })
           ),

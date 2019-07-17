@@ -6,9 +6,9 @@ module.exports = {
   name: 'init',
   desc: 'Init a directory to be based',
   options: [
-    { short: '-y', long: '--yes', desc: 'Execute the command without asking' },
+    { name: '-y, --yes', desc: 'Execute the command without asking' },
   ],
-  handler: ({ Y }) => spawn('yarn', ['init', ...Y ? ['-y'] : []], { stdio: 'inherit'})
+  handler: ({ yes }) => spawn('yarn', ['init', ...yes ? ['-y'] : []], { stdio: 'inherit'})
     .then(() => install.handler()),
   isEnabled: nodeEnv === 'development',
 }
