@@ -8,5 +8,5 @@ module.exports = () => {
     configFile: path.resolve(__dirname, 'babel.config.js'),
     ignore: [/node_modules/],
   })
-  return variablesPath !== undefined ? safeRequire(variablesPath) : undefined
+  return variablesPath !== undefined ? safeRequire(variablesPath) : {}
 }
