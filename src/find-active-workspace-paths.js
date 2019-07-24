@@ -23,7 +23,7 @@ module.exports = ({ includeRoot } = {}) => {
             ...includeRoot ? [packagePath] : [],
             ...chain(workspaces)
               .mapValues('location')
-              .pickBy((_, workspaceName) => activeWorkspaces.includes(workspaceName))
+              .pickBy((_, workspaceName) => activeWorkspaces.length == 0 || activeWorkspaces.includes(workspaceName))
               .mapValues(workspacePath => path.resolve(packagePath, workspacePath))
               .values()
               .value()
