@@ -11,7 +11,7 @@ const formatters = {
     depcruiseOptions: {
       outputType: 'dot',
     },
-    handler: (dotStructure, basePath) => Promise.resolve()
+    handler: (dotStructure, basePath) => console.log(dotStructure)/*Promise.resolve()
       .then(() => spawn('dot', ['-T', 'svg'], { capture: ['stdout'] })
         .progress(({ stdin }) => {
           stdin.write(dotStructure)
@@ -27,7 +27,7 @@ const formatters = {
             stdin.write(svgCode)
             stdin.end()
           })
-      )
+      )*/
   },
   json: {
     handler: modules => console.log(JSON.stringify(modules)),
