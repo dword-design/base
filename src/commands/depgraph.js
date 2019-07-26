@@ -7,11 +7,11 @@ const { keys, chain } = require('lodash')
 const depcruise = require('dependency-cruiser').cruise
 
 const formatters = {
-  dot: {
+  graphviz: {
     depcruiseOptions: {
       outputType: 'dot',
     },
-    handler: (dotStructure, basePath) => console.log(dotStructure)/*Promise.resolve()
+    handler: (dotStructure, basePath) => Promise.resolve()
       .then(() => spawn('dot', ['-T', 'svg'], { capture: ['stdout'] })
         .progress(({ stdin }) => {
           stdin.write(dotStructure)
@@ -27,7 +27,13 @@ const formatters = {
             stdin.write(svgCode)
             stdin.end()
           })
-      )*/
+      ),
+  },
+  dot: {
+    depcruiseOptions: {
+      outputType: 'dot',
+    },
+    handler: dotStructure => console.log(dotStructure),
   },
   json: {
     handler: modules => console.log(JSON.stringify(modules)),
@@ -59,7 +65,7 @@ module.exports = {
   name: 'depgraph',
   desc: 'Outputs a dependency graph for the current workspace',
   options: [
-    { name: '-t, --format <formatterName>', desc: 'The output format', defaultValue: 'dot' },
+    { name: '-t, --format <formatterName>', desc: 'The output format', defaultValue: 'graphviz' },
   ],
   handler: ({ format: formatterName }) => Promise.all([findBasePath(), findConfig()])
     .then(([basePath, { depgraphIgnores }]) => {
