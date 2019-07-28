@@ -2,8 +2,15 @@
 
 const findWorkspaceConfig = require('./find-workspace-config')
 const { last, find } = require('lodash')
+const path = require('path')
+const babelRegister = require('@babel/register')
 
 const commandName = last(process.argv)
+
+babelRegister({
+  configFile: path.resolve(__dirname, 'babel.config.js'),
+  ignore: [/node_modules/],
+})
 
 Promise.resolve()
   .then(() => findWorkspaceConfig())
