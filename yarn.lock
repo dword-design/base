@@ -699,10 +699,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@dword-design/base-type-lib@^0.1.10":
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-type-lib/-/base-type-lib-0.1.10.tgz#9d3306dddb2065872e1e0708db187dfba2bcefce"
-  integrity sha512-dw0oHpu5jpnnLcach8VDHafWxq8hyzSCaUqJytuQcNhS0/ULZFQxQ/9D5NgFWu5wCaHvPdX4orwXHyEBsn6nTQ==
+"@dword-design/base-type-lib@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-type-lib/-/base-type-lib-0.1.11.tgz#a0bd11c1cfc78cf66e3a2727529a9e035493848d"
+  integrity sha512-HetpVPC9FREKs+vaaMFrZKchD7nkgdm+/uPS2KX78Ae95JiDuYVE+3rk6KkVg8SvtBUjbiBpkFqpRZBb73MLRg==
   dependencies:
     "@dword-design/node-env" "^0.1.0"
     child-process-promise "^2.2.1"
@@ -719,10 +719,10 @@
     webpack-node-externals "^1.7.2"
     webpack-shell-plugin "^0.5.0"
 
-"@dword-design/functions@^0.3.6":
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-0.3.6.tgz#69861891a4c3be4aa1e47cd4ad87e00db6fd71c1"
-  integrity sha512-QIqBrv2QLkiTMNv23S457sTa46pRTZubvMgGmHj2LhLGRz1XFYys/vILeQyWn9fznYk3Q9p1v+3YMjaqDj1ORQ==
+"@dword-design/functions@^0.3.10":
+  version "0.3.10"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-0.3.10.tgz#0178a871edeca8b15ba1a78bb3ba708aa2948d72"
+  integrity sha512-aAJpLpSkMkXMfu3u9hES+3tPDIDfR0aOpAEvKU3Iau9ZjQ66B5YaSCurz2v87HARjb7iOriFHgr7QNnBZJNMeQ==
   dependencies:
     lodash "^4.17.11"
     tinycolor2 "^1.4.1"

@@ -12,4 +12,5 @@ module.exports = [
   require('./depcheck'),
   require('./depgraph'),
   require('./pre-commit'),
+  require('./publish'),
 ]
