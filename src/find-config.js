@@ -12,7 +12,6 @@ module.exports = () => findUp('base.config.js')
 
     return {
       activeWorkspaces: [],
-      depgraphIgnores: [],
       ...configPath !== undefined ? require(configPath) : {},
     }
   })

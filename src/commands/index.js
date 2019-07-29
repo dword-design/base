@@ -10,7 +10,6 @@ module.exports = [
   require('./lint'),
   require('./lint-staged'),
   require('./depcheck'),
-  require('./depgraph'),
   require('./pre-commit'),
   require('./publish'),
 ]
