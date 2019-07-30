@@ -4,7 +4,7 @@ const depcheck = require('./depcheck')
 
 module.exports = {
   name: 'pre-commit',
-  desc: 'Runs commands before committing',
+  description: 'Runs commands before committing',
   handler: () => Promise.resolve()
     .then(lintStaged.handler)
     .then(depcheck.handler),

@@ -4,7 +4,7 @@ const { handler: buildHandler } = require('./build')
 
 module.exports = {
   name: 'publish',
-  desc: 'Publish the workspace to NPM',
+  description: 'Publish the workspace to NPM',
   handler: () => buildHandler()
     .then(() => spawn('yarn', ['publish', '--access', 'public'], { stdio: 'inherit' })),
   isEnabled: nodeEnv === 'development',

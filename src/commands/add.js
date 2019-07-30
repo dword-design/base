@@ -3,9 +3,9 @@ const nodeEnv = require('@dword-design/node-env')
 
 module.exports = {
   name: 'add [packages...]',
-  desc: 'Add dependencies',
+  description: 'Add dependencies',
   options: [
-    { name: '-W, --ignore-workspace-root-check', desc: 'Ignore workspace root check' },
+    { name: '-W, --ignore-workspace-root-check', description: 'Ignore workspace root check' },
   ],
   handler: (packages, { ignoreWorkspaceRootCheck }) => spawn('yarn', ['add', ...packages, ...ignoreWorkspaceRootCheck ? ['-W'] : []], { stdio: 'inherit'}),
   isEnabled: nodeEnv === 'development',

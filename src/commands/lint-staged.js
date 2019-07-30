@@ -5,7 +5,7 @@ const findBasePath = require('../find-base-path')
 
 module.exports = {
   name: 'lint-staged',
-  desc: 'Outputs linting errors for staged files',
+  description: 'Outputs linting errors for staged files',
   handler: () => findBasePath()
     .then(basePath => spawn(
       path.resolve(basePath, 'node_modules/.bin/lint-staged'),

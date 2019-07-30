@@ -30,12 +30,12 @@ Promise.all([findWorkspaceConfig(), findBasePath(), findVariables()])
           }))
           .value(),
       ],
-      ({ name, desc, options, handler }) => reduce(
+      ({ name, description, options, handler }) => reduce(
         options,
-        (command, { name, desc, defaultValue }) => command.option(name, desc, defaultValue),
+        (command, { name, description, defaultValue }) => command.option(name, description, defaultValue),
         program
           .command(name)
-          .description(desc)
+          .description(description)
           .action((...args) => handler(...args)
             .catch(error => {
               if (error.name === 'ChildProcessError') {

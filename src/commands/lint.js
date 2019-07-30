@@ -6,7 +6,7 @@ const findBasePath = require('../find-base-path')
 
 module.exports = {
   name: 'lint',
-  desc: 'Outputs linting errors',
+  description: 'Outputs linting errors',
   handler: () => Promise.all([findRootPath(), findBasePath()])
     .then(([rootPath, basePath]) => spawn(
       path.resolve(basePath, 'node_modules/.bin/eslint'),

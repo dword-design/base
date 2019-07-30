@@ -7,7 +7,7 @@ const findVariables = require('../find-variables')
 
 module.exports = {
   name: 'depcheck',
-  desc: 'Outputs unused dependencies',
+  description: 'Outputs unused dependencies',
   handler: () => Promise.all([findBasePath(), findActiveWorkspacePaths({ includeRoot: true }), findVariables()])
     .then(([basePath, activeWorkspacePaths, variables]) => Promise.all(
       activeWorkspacePaths.map(workspacePath =>

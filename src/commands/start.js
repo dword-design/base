@@ -6,7 +6,7 @@ const findBasePath = require('../find-base-path')
 
 module.exports = {
   name: 'start',
-  desc: 'Starts the current workspace',
+  description: 'Starts the current workspace',
   handler: () => Promise.all([findVariables(), findBasePath(), findActiveWorkspacePaths()])
     .then(([variables, basePath, activeWorkspacePaths]) => Promise.all(
       activeWorkspacePaths

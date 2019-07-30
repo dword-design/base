@@ -6,7 +6,7 @@ const findVariables = require('../find-variables')
 
 module.exports = {
   name: 'build',
-  desc: 'Builds the current workspace',
+  description: 'Builds the current workspace',
   handler: () => Promise.all([findVariables(), findBasePath(), findActiveWorkspacePaths()])
     .then(([variables, basePath, activeWorkspacePaths]) => Promise.all(
       activeWorkspacePaths
