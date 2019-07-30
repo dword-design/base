@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.8.22",
+  "version": "0.8.23",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -33,7 +33,7 @@
     "child-process-promise": "^2.2.1",
     "depcheck": "dword-design/depcheck#fork",
     "dependency-cruiser": "^4.24.0",
-    "eslint": "^6.1.0",
+    "eslint": "^5.16.0",
     "eslint-import-resolver-babel-module": "^5.1.0",
     "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-loader": "^2.2.1",
