@@ -2,54 +2,38 @@
 
 const { fork } = require('child-process-promise')
 const path = require('path')
-const program = require('commander')
-const { forIn, chain, some, find, reduce } = require('lodash')
+const { chain, some } = require('lodash')
 const findBasePath = require('./find-base-path')
 const findVariables = require('./find-config')
 const findWorkspaceConfig = require('./find-workspace-config')
+const yesSir = require('@dword-design/yes-sir')
 
 const commands = require('./commands')
 
 Promise.all([findWorkspaceConfig(), findBasePath(), findVariables()])
-  .then(([{ type }, basePath, variables]) => {
-
-    forIn(
-      [
-        ...chain(commands)
-          .map(command => ({ isEnabled: true, ...command }))
-          .filter({ isEnabled: true }),
-        ...chain(type.commands)
-          .filter(({ name }) => !some(commands, { name }))
-          .map(command => ({
-            ...command,
-            handler: () => fork(
-              path.resolve(__dirname, 'run-workspace-command.js'),
-              [command.name],
-              { stdio: 'inherit', env: { ...process.env, BASE_PATH: basePath, BASE_VARIABLES: JSON.stringify(variables) } }
-            ),
-          }))
-          .value(),
-      ],
-      ({ name, description, options, handler }) => reduce(
-        options,
-        (command, { name, description, defaultValue }) => command.option(name, description, defaultValue),
-        program
-          .command(name)
-          .description(description)
-          .action((...args) => handler(...args)
-            .catch(error => {
-              if (error.name === 'ChildProcessError') {
-                process.exit(error.code)
-              } else {
-                console.error(error.message)
-              }
-            })
+  .then(([{ type }, basePath, variables]) => yesSir({
+    commands: [
+      ...chain(commands)
+        .map(command => ({ isEnabled: true, ...command }))
+        .filter({ isEnabled: true }),
+      ...chain(type.commands)
+        .filter(({ name }) => !some(commands, { name }))
+        .map(command => ({
+          ...command,
+          handler: () => fork(
+            path.resolve(__dirname, 'run-workspace-command.js'),
+            [command.name],
+            { stdio: 'inherit', env: { ...process.env, BASE_PATH: basePath, BASE_VARIABLES: JSON.stringify(variables) } }
           ),
-      )
-    )
-
-    return Promise.resolve()
-      .then(() => process.argv.length <= 2 && find(commands, { name: 'install' }).handler())
-      .then(() => program.on('command:*', () => program.help()))
-      .then(() => program.parse(process.argv))
+        }))
+        .value(),
+    ],
+    defaultCommandName: 'install',
+  }))
+  .catch(error => {
+    if (error.name === 'ChildProcessError') {
+      process.exit(error.code)
+    } else {
+      console.error(error.message)
+    }
   })
