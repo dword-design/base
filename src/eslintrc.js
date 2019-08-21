@@ -8,7 +8,7 @@ module.exports = {
     node: true,
   },
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: require.resolve('babel-eslint'),
     sourceType: 'module',
     babelOptions: {
       configFile: resolve(__dirname, 'babel.config.js'),

@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.8.32",
+  "version": "0.8.33",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
