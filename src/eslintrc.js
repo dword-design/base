@@ -1,14 +1,18 @@
 const aliases = require('./aliases.config')
+const { resolve } = require('path')
 
 module.exports = {
   env: {
     browser: true,
     es6: true,
-    node: true
+    node: true,
   },
   parserOptions: {
     parser: 'babel-eslint',
     sourceType: 'module',
+    babelOptions: {
+      configFile: resolve(__dirname, 'babel.config.js'),
+    },
   },
   extends: [
     'eslint:recommended',
