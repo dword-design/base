@@ -799,10 +799,10 @@
     webpack-merge "^4.2.1"
     webpack-node-externals "^1.7.2"
 
-"@dword-design/functions@^0.3.13":
-  version "0.3.13"
-  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-0.3.13.tgz#3c0acb6512085db2b09b10beb4a7dba365934b9a"
-  integrity sha512-i4ImnuuyLLF8RBUWBtLoa77cVs5IYljlBjyrz0x3QpbL5uGUzEB6ZrgcLimxRUNogzrYZNBpcZlR+CMjaQx+Qw==
+"@dword-design/functions@^0.3.14":
+  version "0.3.14"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-0.3.14.tgz#a2e169823aef38711496743ed4ba9d5c5001b2d5"
+  integrity sha512-8OLe7+NMnrESJxfZW5HkKdTHAMCRdeJSv2yheO2cW/XBuu5kVUEITPs3/GH1iwJg6KF9PFZl3vOqsyLJxZnXRg==
   dependencies:
     lodash "^4.17.11"
     tinycolor2 "^1.4.1"
