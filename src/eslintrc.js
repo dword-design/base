@@ -27,7 +27,7 @@ module.exports = {
   ],
   settings: {
     'import/resolver': {
-      'babel-module': {
+      [require.resolve('eslint-import-resolver-babel-module')]: {
         alias: aliases,
       },
     },
