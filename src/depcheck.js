@@ -1,5 +1,6 @@
 const depcheck = require('depcheck')
 const prettyjson = require('prettyjson')
+const depcheckBabelParser = require('./depcheck-babel-parser')
 const depcheckSassParser = require('./depcheck-sass-parser')
 const depcheckTypeSpecial = require('./depcheck-type-special')
 const findWorkspaceConfig = require('./find-workspace-config')
@@ -17,7 +18,7 @@ depcheck(
         depcheck.detector.requireResolveCallExpression,
       ],
       parsers: {
-        '*.js': depcheck.parser.es7,
+        '*.js': depcheckBabelParser,
         '*.scss': depcheckSassParser,
       },
       specials: [
