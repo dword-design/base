@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.8.35",
+  "version": "0.8.36",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,7 +22,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
     "@dword-design/base-type-lib": "^0.2.4",
-    "@dword-design/functions": "^0.4.2",
+    "@dword-design/functions": "^0.4.3",
     "@dword-design/yes-sir": "^0.1.0",
     "@epegzz/sass-vars-loader": "dword-design/sass-vars-loader#fork",
     "babel-eslint": "^11.0.0-beta.0",
