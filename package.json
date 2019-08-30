@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,7 +21,7 @@
     "@babel/plugin-proposal-pipeline-operator": "^7.5.0",
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
-    "@dword-design/base-type-lib": "^0.3.0",
+    "@dword-design/base-type-lib": "^0.3.1",
     "@dword-design/functions": "^0.4.3",
     "@dword-design/yes-sir": "^0.1.0",
     "@epegzz/sass-vars-loader": "dword-design/sass-vars-loader#fork",
