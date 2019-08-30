@@ -7,7 +7,7 @@ module.exports = () => Promise.resolve()
   .then(() => console.log('Copying files ...'))
   .then(() => getRootPath())
   .then(rootPath => Promise.all([
-    fs.copyFile(resolve(__dirname, '../editorconfig'), resolve(rootPath, '.editorconfig')),
+    fs.copyFile(resolve(__dirname, 'editorconfig'), resolve(rootPath, '.editorconfig')),
     findUp('.base.gitignore')
       .then(baseGitignorePath => [
         ...require('./gitignore'),
