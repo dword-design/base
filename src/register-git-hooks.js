@@ -1,12 +1,12 @@
 const nodeEnv = require('@dword-design/node-env')
 const fs = require('fs-extra')
 const path = require('path')
-const findRootPath = require('./find-root-path')
+const getRootPath = require('./get-root-path')
 
 module.exports = () => Promise.resolve()
   .then(() => console.log('Registering git hooks ...'))
   .then(() => nodeEnv === 'development'
-    ? findRootPath()
+    ? getRootPath()
       .then(rootPath => fs.exists(path.join(rootPath, '.git'))
         .then(gitExists => gitExists
           ? fs.outputFile(

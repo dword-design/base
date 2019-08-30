@@ -1,5 +1,5 @@
-const aliases = require('./aliases.config')
 const { resolve } = require('path')
+const getAliases = require('./get-aliases')
 
 module.exports = {
   env: {
@@ -7,6 +7,7 @@ module.exports = {
     es6: true,
     node: true,
   },
+  parser: require.resolve('vue-eslint-parser'),
   parserOptions: {
     parser: require.resolve('babel-eslint'),
     sourceType: 'module',
@@ -23,12 +24,14 @@ module.exports = {
   ],
   plugins: [
     'react',
+    'lodash-fp',
     'prefer-arrow',
+    'import',
   ],
   settings: {
     'import/resolver': {
       [require.resolve('eslint-import-resolver-babel-module')]: {
-        alias: aliases,
+        alias: getAliases(),
       },
     },
   },
@@ -64,7 +67,7 @@ module.exports = {
     'no-var': 'error',
     'prefer-const': 'error',
     'react/jsx-no-undef': 'error',
-    "react/jsx-uses-vars": 1,
+    'react/jsx-uses-vars': 1,
     'lodash-fp/no-extraneous-iteratee-args': 'off',
     'import/no-extraneous-dependencies': 'error',
     'import/no-commonjs': 'error',

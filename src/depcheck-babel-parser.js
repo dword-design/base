@@ -1,4 +1,6 @@
 const { parseSync } = require('@babel/core')
-const { resolve } = require('path')
+const babelConfig = require('./babel.config')
 
-module.exports = content => parseSync(content, { configFile: resolve(__dirname, 'babel.config.js') })
+module.exports = content => {
+  return parseSync(content, babelConfig)
+}

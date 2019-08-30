@@ -1,7 +1,8 @@
-const resolveFrom = require('resolve-from')
+const readPkgUp = require('read-pkg-up')
+const importFrom = require('import-from')
 
-module.exports = typeName => {
-  const packageName = `@dword-design/base-type-${typeName}`
-  const packagePath = resolveFrom.silent(process.cwd(), packageName)
-  return require(packagePath !== undefined ? packagePath : packageName)
+module.exports = () => {
+  const config = { typeName: 'lib', ...(readPkgUp.sync() || {}).package || {} }
+  const packageName = `@dword-design/base-type-${config.typeName}`
+  return importFrom.silent(process.cwd(), packageName) || require(packageName)
 }

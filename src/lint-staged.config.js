@@ -1,8 +1,6 @@
-const path = require('path')
-const findWorkspaceConfig = require('./find-workspace-config')
-
-const { type } = findWorkspaceConfig()
+const { resolve } = require('path')
+const resolveBin = require('resolve-bin')
 
 module.exports = {
-  [`*.{js,vue}`]: `"${require.resolve('eslint/bin/eslint.js')}" --config "${path.resolve(__dirname, 'eslintrc.js')}"`,
+  [`*.{js,vue}`]: `"${resolveBin.sync('eslint')}" --config "${resolve(__dirname, 'eslintrc.js')}" --resolve-plugins-relative-to ${__dirname}`,
 }

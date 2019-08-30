@@ -1,23 +1,17 @@
 const { fork } = require('child-process-promise')
-const findActiveWorkspacePaths = require('../find-active-workspace-paths')
+const getActiveWorkspacePaths = require('../get-active-workspace-paths')
 const path = require('path')
-const findBasePath = require('../find-base-path')
-const findVariables = require('../find-variables')
 
 module.exports = {
   name: 'build',
   description: 'Builds the current workspace',
-  handler: () => Promise.all([findVariables(), findBasePath(), findActiveWorkspacePaths()])
-    .then(([variables, basePath, activeWorkspacePaths]) => Promise.all(
+  handler: () => getActiveWorkspacePaths()
+    .then(activeWorkspacePaths => Promise.all(
       activeWorkspacePaths
         .map(workspacePath => fork(
-          path.resolve(basePath, 'src/run-workspace-command.js'),
+          path.resolve(__dirname, '../run-workspace-command.js'),
           ['build'],
-          {
-            stdio: 'inherit',
-            cwd: workspacePath,
-            env: { ...process.env, BASE_PATH: basePath, BASE_VARIABLES: JSON.stringify(variables) },
-          },
+          { stdio: 'inherit', cwd: workspacePath },
         ))
     )),
 }

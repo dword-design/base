@@ -2,18 +2,16 @@ const { exec } = require('child-process-promise')
 const { chain } = require('lodash')
 const path = require('path')
 const readPkgUp = require('read-pkg-up')
-const findConfig = require('./find-config')
 const babelRegister = require('@babel/register')
+const getBaseConfig = require('./get-base-config')
+const babelConfig = require('./babel.config')
 
 module.exports = ({ includeRoot } = {}) => {
+  const { activeWorkspaces } = getBaseConfig()
+  babelRegister({ ...babelConfig, ignore: [/node_modules/] })
 
-  babelRegister({
-    configFile: path.resolve(__dirname, 'babel.config.js'),
-    ignore: [/node_modules/],
-  })
-
-  return Promise.all([readPkgUp(), findConfig()])
-    .then(([{ package: { workspaces }, path: packageJsonPath }, { activeWorkspaces }]) => {
+  return readPkgUp()
+    .then(({ package: { workspaces }, path: packageJsonPath }) => {
       const packagePath = path.dirname(packageJsonPath)
       return workspaces !== undefined
         ? exec('yarn workspaces info --json')

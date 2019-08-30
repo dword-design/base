@@ -1,24 +1,22 @@
 #!/usr/bin/env node
 
-const findWorkspaceConfig = require('./find-workspace-config')
 const { last, find } = require('lodash')
-const path = require('path')
 const babelRegister = require('@babel/register')
+const babelConfig = require('./babel.config')
+const eslintConfig = require('./eslintrc')
+const getVariables = require('./get-variables')
+const getType = require('./get-type')
+const { resolve } = require('path')
 
 const commandName = last(process.argv)
+const type = getType()
+const variables = getVariables()
 
-babelRegister({
-  configFile: path.resolve(__dirname, 'babel.config.js'),
-  ignore: [/node_modules/],
+babelRegister({ ...babelConfig, ignore: [/node_modules/] })
+
+find(type.commands, { name: commandName }).handler({
+  babelConfig,
+  eslintConfig: eslintConfig,
+  variables,
+  basePath: resolve(__dirname, '..'),
 })
-
-Promise.resolve()
-  .then(() => findWorkspaceConfig())
-  .then(({ type }) => find(type.commands, { name: commandName }).handler())
-  .catch(error => {
-    if (error.name === 'ChildProcessError') {
-      process.exit(error.code)
-    } else {
-      throw(error)
-    }
-  })

@@ -1,19 +1,20 @@
 const nodeEnv = require('@dword-design/node-env')
-const path = require('path')
+const { resolve } = require('path')
 const { spawn } = require('child-process-promise')
-const findRootPath = require('../find-root-path')
-const findBasePath = require('../find-base-path')
+const findUp = require('find-up')
+const resolveBin = require('resolve-bin')
 
 module.exports = {
   name: 'lint',
   description: 'Outputs linting errors',
-  handler: () => Promise.all([findRootPath(), findBasePath()])
-    .then(([rootPath, basePath]) => spawn(
-      path.resolve(basePath, 'node_modules/.bin/eslint'),
+  handler: () => findUp('.gitignore')
+    .then(gitignorePath => spawn(
+      resolveBin.sync('eslint'),
       [
         '.',
-        '--config', path.resolve(basePath, 'src/eslintrc.js'),
-        '--ignore-path', path.resolve(rootPath, '.gitignore'),
+        '--config', resolve(__dirname, '../eslintrc.js'),
+        ...gitignorePath !== undefined ? ['--ignore-path', gitignorePath] : [],
+        '--resolve-plugins-relative-to', __dirname,
         '--ext', '.js,.vue',
       ],
       { stdio: 'inherit' },
