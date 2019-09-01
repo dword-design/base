@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const depcheck = require('depcheck')
 const prettyjson = require('prettyjson')
 const depcheckBabelParser = require('./depcheck-babel-parser')
@@ -14,8 +16,8 @@ const packageName = readPkgUp.sync().package.name
 
 depcheck(
   process.cwd(),
-  mapValues(
-    merge(
+  (() => {
+    const config = merge(
       {
         detectors: [
           depcheck.detector.importDeclaration,
@@ -33,9 +35,19 @@ depcheck(
         ignoreDirs: ['dist'],
       },
       depcheckConfig,
-    ),
-    (value, key) => key == 'parser' && typeof value === 'string' ? depcheck.parser[value] : value,
-  )
+    )
+    return {
+      ...config,
+      ...config.parsers !== undefined
+        ? {
+          parsers: mapValues(
+            config.parsers,
+            parser => typeof parser === 'string' ? depcheck.parser[parser] : parser,
+          )
+        }
+        : {},
+    }
+  })()
 )
   .then(json => chain(json).omit('using').omitBy(isEmpty).value())
   .then(stats => {

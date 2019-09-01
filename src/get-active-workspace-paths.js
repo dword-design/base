@@ -1,4 +1,4 @@
-const { exec } = require('child-process-promise')
+const { spawnSync } = require('child_process')
 const { chain } = require('lodash')
 const path = require('path')
 const readPkgUp = require('read-pkg-up')
@@ -10,22 +10,23 @@ module.exports = ({ includeRoot } = {}) => {
   const { activeWorkspaces } = getBaseConfig()
   babelRegister({ ...babelConfig, ignore: [/node_modules/] })
 
-  return readPkgUp()
-    .then(({ package: { workspaces }, path: packageJsonPath }) => {
-      const packagePath = path.dirname(packageJsonPath)
-      return workspaces !== undefined
-        ? exec('yarn workspaces info --json')
-          .then(({ stdout }) => JSON.parse(stdout))
-          .then(({ data }) => JSON.parse(data))
-          .then(workspaces => [
-            ...includeRoot ? [packagePath] : [],
-            ...chain(workspaces)
-              .mapValues('location')
-              .pickBy((_, workspaceName) => activeWorkspaces.length == 0 || activeWorkspaces.includes(workspaceName))
-              .mapValues(workspacePath => path.resolve(packagePath, workspacePath))
-              .values()
-              .value()
-          ])
-        : [process.cwd()]
-    })
-  }
+  const { package: { workspaces: workspaceNames }, path: packageJsonPath } = readPkgUp.sync()
+  const packagePath = path.dirname(packageJsonPath)
+  return [
+    ...includeRoot || workspaceNames === undefined ? [packagePath] : [],
+    ...workspaceNames !== undefined
+      ? chain(
+        JSON.parse(
+          JSON.parse(
+            spawnSync('yarn', ['workspaces', 'info', '--json']).stdout.toString()
+          ).data
+        )
+      )
+        .mapValues('location')
+        .pickBy((_, workspaceName) => activeWorkspaces.length == 0 || activeWorkspaces.includes(workspaceName))
+        .mapValues(workspacePath => path.resolve(packagePath, workspacePath))
+        .values()
+        .value()
+      : [],
+  ]
+}

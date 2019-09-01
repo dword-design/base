@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,7 +23,7 @@
     "@babel/register": "^7.5.5",
     "@dword-design/base-type-lib": "^0.3.1",
     "@dword-design/functions": "^0.4.3",
-    "@dword-design/yes-sir": "^0.1.0",
+    "@dword-design/yes-sir": "^0.1.1",
     "@epegzz/sass-vars-loader": "dword-design/sass-vars-loader#fork",
     "babel-eslint": "^11.0.0-beta.0",
     "babel-merge": "^3.0.0",
@@ -43,11 +43,12 @@
     "find-up": "^4.1.0",
     "fs-extra": "^8.1.0",
     "import-from": "^3.0.0",
-    "lint-staged": "^8.1.6",
+    "lint-staged": "^9.2.5",
     "lodash": "^4.17.15",
     "node-sass": "^4.12.0",
     "node-sass-tilde-importer": "^1.0.2",
     "prettyjson": "^1.2.1",
+    "promise.allsettled": "^1.0.1",
     "read-pkg-up": "^6.0.0",
     "resolve-bin": "^0.4.0",
     "resolve-from": "^5.0.0"

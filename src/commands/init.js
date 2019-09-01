@@ -8,7 +8,7 @@ module.exports = {
   options: [
     { name: '-y, --yes', description: 'Execute the command without asking' },
   ],
-  handler: ({ yes }) => spawn('yarn', ['init', ...yes ? ['-y'] : []], { stdio: 'inherit'})
+  handler: ({ yes }) => spawn('yarn', ['init', ...yes ? ['-y'] : []], { stdio: 'inherit' })
     .then(() => install.handler()),
   isEnabled: nodeEnv === 'development',
 }

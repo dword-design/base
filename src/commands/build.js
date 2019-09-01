@@ -5,13 +5,15 @@ const path = require('path')
 module.exports = {
   name: 'build',
   description: 'Builds the current workspace',
-  handler: () => getActiveWorkspacePaths()
-    .then(activeWorkspacePaths => Promise.all(
+  handler: () => {
+    const activeWorkspacePaths = getActiveWorkspacePaths()
+    return Promise.all(
       activeWorkspacePaths
         .map(workspacePath => fork(
           path.resolve(__dirname, '../run-workspace-command.js'),
           ['build'],
-          { stdio: 'inherit', cwd: workspacePath },
+          { cwd: workspacePath },
         ))
-    )),
+    )
+  },
 }

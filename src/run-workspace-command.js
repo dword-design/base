@@ -16,7 +16,7 @@ babelRegister({ ...babelConfig, ignore: [/node_modules/] })
 
 find(type.commands, { name: commandName }).handler({
   babelConfig,
-  eslintConfig: eslintConfig,
+  eslintConfig,
   variables,
   basePath: resolve(__dirname, '..'),
 })

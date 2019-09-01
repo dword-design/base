@@ -7,6 +7,6 @@ module.exports = {
   options: [
     { name: '-W, --ignore-workspace-root-check', description: 'Ignore workspace root check' },
   ],
-  handler: (packages, { ignoreWorkspaceRootCheck }) => spawn('yarn', ['add', ...packages, ...ignoreWorkspaceRootCheck ? ['-W'] : []], { stdio: 'inherit'}),
+  handler: (packages, { ignoreWorkspaceRootCheck }) => spawn('yarn', ['add', ...packages, ...ignoreWorkspaceRootCheck ? ['-W'] : []], { stdio: 'inherit' }),
   isEnabled: nodeEnv === 'development',
 }
