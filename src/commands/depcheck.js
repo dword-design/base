@@ -10,9 +10,9 @@ module.exports = {
   handler: () => {
     const activeWorkspacePaths = getActiveWorkspacePaths({ includeRoot: true })
     return allSettled(
-      activeWorkspacePaths.map(workspacePath =>
+      activeWorkspacePaths.map((workspacePath, index) =>
         fork(path.resolve(__dirname, '../depcheck.js'), { cwd: workspacePath })
-          .catch(arg => { console.log(); return arg })
+          .catch(err => { if (index < activeWorkspacePaths - 1) console.log(); throw err })
       )
     )
   },
