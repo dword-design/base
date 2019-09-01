@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "",
   "scripts": {
     "postinstall": "src/cli.js register",
