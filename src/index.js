@@ -1,5 +1,5 @@
 module.exports = {
   getAliases: require('./get-aliases'),
-  findConfig: require('./find-config'),
+  getBaseConfig: require('./get-base-config'),
   gitignore: require('./gitignore'),
 }

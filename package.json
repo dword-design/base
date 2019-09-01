@@ -1,10 +1,10 @@
 {
   "name": "@dword-design/base",
-  "version": "0.10.0",
+  "version": "0.10.2",
   "description": "",
   "scripts": {
-    "postinstall": "src/postinstall-cli.js",
-    "postuninstall": "src/postuninstall-cli.js",
+    "postinstall": "src/cli.js register",
+    "postuninstall": "src/cli.js unregister",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "main": "src/index.js",
