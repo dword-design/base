@@ -29,6 +29,7 @@ depcheck(
           '*.scss': depcheckSassParser,
         },
         specials: [
+          depcheck.special.bin,
           depcheckTypeSpecial,
         ],
         ignoreMatches: depcheckIgnores,
