@@ -13,5 +13,6 @@ module.exports = [
   require('./upgrade'),
   require('./remove'),
   require('./outdated'),
+  require('./test'),
   require('./publish'),
 ]

@@ -3,13 +3,13 @@ const { fork } = require('child-process-promise')
 const getActiveWorkspacePaths = require('../get-active-workspace-paths')
 
 module.exports = {
-  name: 'start',
-  description: 'Starts workspaces',
+  name: 'test',
+  description: 'Tests workspaces',
   handler: () => {
     const activeWorkspacePaths = getActiveWorkspacePaths()
     return Promise.all(
       activeWorkspacePaths
-        .map(workspacePath => fork(path.resolve(__dirname, '../run-workspace-command.js'), ['start'], { cwd: workspacePath }))
+        .map(workspacePath => fork(path.resolve(__dirname, '../test.js'), { cwd: workspacePath }))
     )
   },
 }
