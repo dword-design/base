@@ -72,4 +72,14 @@ module.exports = {
     'import/no-extraneous-dependencies': 'error',
     'import/no-commonjs': 'error',
   },
+  overrides: [
+    {
+      files: [
+        '**.test.js',
+      ],
+      extends: [
+        'plugin:jest/recommended',
+      ],
+    },
+  ],
 }

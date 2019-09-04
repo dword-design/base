@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "",
   "scripts": {
     "postinstall": "src/cli.js register",
@@ -24,7 +24,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
     "@dword-design/base-type-lib": "^0.3.1",
-    "@dword-design/functions": "^0.4.3",
+    "@dword-design/functions": "^0.4.4",
     "@dword-design/yes-sir": "^0.1.1",
     "@epegzz/sass-vars-loader": "dword-design/sass-vars-loader#fork",
     "babel-eslint": "^11.0.0-beta.0",
@@ -39,6 +39,7 @@
     "eslint-import-resolver-babel-module": "^5.1.0",
     "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.16.0",
     "eslint-plugin-lodash-fp": "^2.2.0-a1",
     "eslint-plugin-prefer-arrow": "^1.1.5",
     "eslint-plugin-react": "^7.14.3",
