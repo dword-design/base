@@ -31,6 +31,7 @@ Promise.resolve()
             '-u', 'node',
             '-v', `${process.cwd()}:/var/www`,
             '-w', '/var/www',
+            '--rm',
             'node:alpine',
             relative(process.cwd(), resolveBin.sync('jest')),
             '\.docker\.test\.js$',
