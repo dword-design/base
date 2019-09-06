@@ -797,6 +797,11 @@
     lodash "^4.17.11"
     tinycolor2 "^1.4.1"
 
+"@dword-design/jest-expect-fp@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/jest-expect-fp/-/jest-expect-fp-0.1.0.tgz#68567260a502b5cf4de30d3f44925c15b0d790af"
+  integrity sha512-xeTGnONKjMa/b5zZxnv7Ep0jeodZb3lC3f4AR2EQUjOsjkkUMjTZYoN1lHfGMobRKQMbOhmBKACjhW3am4wFpw==
+
 "@dword-design/node-env@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@dword-design/node-env/-/node-env-0.1.0.tgz#ee8a9766fcda0d8af3124c0595977fcbd26140e6"
