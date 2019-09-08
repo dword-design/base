@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const { fork } = require('child-process-promise')
-const path = require('path')
 const { chain, some, map } = require('lodash')
 const getType = require('./get-type')
 const yesSir = require('@dword-design/yes-sir')
@@ -19,14 +18,20 @@ yesSir({
         .filter(({ name }) => !some(commands, { name }))
         .map(command => ({
           ...command,
-          handler: () => fork(path.resolve(__dirname, 'run-workspace-command.js'), [command.name]),
+          handler: () => fork(require.resolve('./run-workspace-command'), [command.name]),
         }))
         .value(),
     ],
     command => ({
       ...command,
       handler: (...args) => command.handler(...args)
-        .catch(({ name, code }) => name === 'ChildProcessError' && process.exit(code)),
+        .catch(error => {
+          if (error.name === 'ChildProcessError') {
+            process.exit(error.code)
+          } else {
+            throw error
+          }
+        }),
     })
   ),
   defaultCommandName: 'install',

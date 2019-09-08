@@ -16,5 +16,11 @@ yesSir({
       .values()
       .value(),
   )
-    .catch(({ name, code }) => name === 'ChildProcessError' && process.exit(code)),
+    .catch(error => {
+      if (error.name === 'ChildProcessError') {
+        process.exit(error.code)
+      } else {
+        throw error
+      }
+    }),
 })

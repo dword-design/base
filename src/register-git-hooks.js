@@ -19,7 +19,7 @@ module.exports = () => nodeEnv === 'development'
                 path.resolve(rootPath, '.git/hooks/pre-commit'),
                 endent`
                   ${gitHookIdentifier}
-                  exec "${path.resolve(__dirname, 'cli.js')}" pre-commit\n
+                  exec "${require.resolve('./cli')}" pre-commit\n
                 `,
                 { encoding: 'utf8', mode: '755' },
               )

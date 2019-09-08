@@ -4,7 +4,7 @@ const { resolve } = require('path')
 
 module.exports = () => ({
   '@variables': getVariablesPath(),
-  '@functions': require.resolve('@dword-design/functions'),
-  '@test': require.resolve('@dword-design/jest-expect-fp'),
+  '@functions': '@dword-design/functions',
+  '@test': '@dword-design/jest-expect-fp',
   ...getType().aliases,
 })

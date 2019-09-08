@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "0.11.5",
+  "version": "0.11.6",
   "description": "",
   "scripts": {
     "postinstall": "src/cli.js register",
@@ -23,7 +23,7 @@
     "@babel/plugin-proposal-pipeline-operator": "^7.5.0",
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
-    "@dword-design/base-type-lib": "^0.3.2",
+    "@dword-design/base-type-lib": "^0.3.8",
     "@dword-design/functions": "^0.4.4",
     "@dword-design/jest-expect-fp": "^0.1.0",
     "@dword-design/yes-sir": "^0.1.1",
@@ -50,7 +50,7 @@
     "find-yarn-workspace-root": "^1.2.1",
     "fs-extra": "^8.1.0",
     "glob-promise": "^3.4.0",
-    "import-from": "^3.0.0",
+    "jasmine": "^3.4.0",
     "jest": "^24.9.0",
     "lint-staged": "^9.2.5",
     "lodash": "^4.17.15",
