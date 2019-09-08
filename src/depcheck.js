@@ -33,7 +33,7 @@ depcheck(
           depcheckTypeSpecial,
         ],
         ignoreMatches: depcheckIgnores,
-        ignoreDirs: ['dist'],
+        ignoreDirs: ['dist', 'dist-test'],
       },
       depcheckConfig,
     )
