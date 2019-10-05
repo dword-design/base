@@ -1,6 +1,6 @@
 {
-  "name": "@dword-design/base-target-node",
-  "version": "0.1.0",
+  "name": "@dword-design/base",
+  "version": "0.11.7",
   "description": "",
   "scripts": {
     "postinstall": "src/cli.js register",
