@@ -20,6 +20,9 @@ module.exports = {
     if (log) {
       console.log(formatter(report.results))
     }
+    if (report.errorCount > 0) {
+      throw new LintError()
+    }
   },
   isEnabled: nodeEnv === 'development',
 }

@@ -16,8 +16,7 @@ module.exports = async params => {
       mockStdio.start()
       await callback(log)
       const { stdout, stderr } = mockStdio.end()
-      expect(JSON.stringify(stdout)).toEqual(JSON.stringify(log ? logOutput() : ''))
-      //expect(stdout).toEqual(log ? logOutput() : '')
+      expect(stdout).toEqual(log ? logOutput() : '')
       expect(stderr).toEqual(log ? errOutput() : '')
     })
   }
