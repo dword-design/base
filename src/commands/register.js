@@ -3,8 +3,9 @@ const registerGitHooks = require('../register-git-hooks')
 
 module.exports = {
   name: 'register',
-  description: 'Registers git hooks and generates gitignore and editorconfig files',
-  handler: () => Promise.resolve()
-    .then(copyFiles)
-    .then(registerGitHooks),
+  description: 'Registers git hooks and generates various config files',
+  handler: async ({ log } = {}) => {
+    await registerGitHooks({ log })
+    await copyFiles({ log })
+  }
 }

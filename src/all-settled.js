@@ -1,5 +1,5 @@
 const allSettled = require('promise.allsettled')
-const { find } = require('lodash')
+const find = require('@dword-design/functions/find')
 
 module.exports = promises => allSettled(promises)
   .then(results => {

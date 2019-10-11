@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
-const api = require('.')
+const makeCli = require('make-cli')
 
-api[process.argv[2]]()
+const commands = require('./commands')
+
+makeCli({ commands })

@@ -1,20 +1,13 @@
 const { resolve } = require('path')
-const fs = require('fs-extra')
-const getRootPath = require('./get-root-path')
-const findUp = require('find-up')
+const { copyFile, exists, readFile, outputFile } = require('fs-extra')
+const getGitignore = require('./get-gitignore')
 
-module.exports = () => getRootPath()
-  .then(rootPath => rootPath !== undefined
-    ? Promise.resolve()
-      .then(() => console.log('Copying files ...'))
-      .then(() => Promise.all([
-        fs.copyFile(resolve(__dirname, 'editorconfig'), resolve(rootPath, '.editorconfig')),
-        findUp('.base.gitignore')
-          .then(baseGitignorePath => [
-            ...require('./gitignore'),
-            ...baseGitignorePath !== undefined ? [fs.readFileSync(baseGitignorePath)] : [],
-          ])
-          .then(parts => fs.outputFile(resolve(rootPath, '.gitignore'), parts.join('\r\n'), 'utf8')),
-      ]))
-    : undefined
-  )
+module.exports = async ({ log } = {}) => {
+  if (log) {
+    console.log('Copying files …')
+  }
+  await Promise.all([
+    copyFile(resolve(__dirname, 'editorconfig'), '.editorconfig'),
+    outputFile('.gitignore', getGitignore().join('\n')),
+  ])
+}

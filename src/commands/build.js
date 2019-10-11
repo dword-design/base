@@ -1,18 +1,16 @@
-const { fork } = require('child-process-promise')
-const getActiveWorkspacePaths = require('../get-active-workspace-paths')
+const getTarget = require('../get-target')
 
 module.exports = {
   name: 'build',
-  description: 'Builds the current workspace',
-  handler: () => {
-    const activeWorkspacePaths = getActiveWorkspacePaths()
-    return Promise.all(
-      activeWorkspacePaths
-        .map(workspacePath => fork(
-          require.resolve('../run-workspace-command'),
-          ['build'],
-          { cwd: workspacePath },
-        ))
-    )
+  description: 'Builds the package',
+  handler: async ({ log } = {}) => {
+    const { build } = getTarget()
+    if (log) {
+      console.log('Building …')
+    }
+    await build()
+    if (log) {
+      console.log('Build successful!')
+    }
   },
 }

@@ -1,5 +1,4 @@
 const { fork } = require('child-process-promise')
-const getActiveWorkspacePaths = require('../get-active-workspace-paths')
 
 module.exports = {
   name: 'test',

@@ -1,32 +1,27 @@
 const nodeEnv = require('@dword-design/node-env')
-const fs = require('fs-extra')
 const path = require('path')
 const endent = require('endent')
-const getRootPath = require('./get-root-path')
-const { exists } = require('fs-extra')
+const { exists, outputFile, readFile } = require('fs-extra')
 const { gitHookIdentifier } = require('./variables')
 
-module.exports = () => nodeEnv === 'development'
-  ? getRootPath()
-    .then(rootPath => rootPath !== undefined
-      ? Promise.resolve()
-        .then(() => console.log('Registering git hooks ...'))
-        .then(() => exists(path.join(rootPath, '.git')))
-        .then(isGitRepository => isGitRepository
-          ? exists(path.join(rootPath, '.git/hooks/pre-commit'))
-            .then(gitHookExists => !gitHookExists
-              ? fs.outputFile(
-                path.resolve(rootPath, '.git/hooks/pre-commit'),
-                endent`
-                  ${gitHookIdentifier}
-                  exec "${require.resolve('./cli')}" pre-commit\n
-                `,
-                { encoding: 'utf8', mode: '755' },
-              )
-              : undefined
-            )
-          : undefined
-        )
-      : undefined
+module.exports = async ({ log } = {}) => {
+  if (nodeEnv === 'development'
+    && await exists('.git')
+    && (
+      !await exists('.git/hooks/pre-commit')
+      || (await readFile('.git/hooks/pre-commit', 'utf8')).includes(gitHookIdentifier)
     )
-  : undefined
+  ) {
+    if (log) {
+      console.log('Registering git hooks …')
+    }
+    await outputFile(
+      '.git/hooks/pre-commit',
+      endent`
+        ${gitHookIdentifier}
+        exec npx base pre-commit
+      `,
+      { encoding: 'utf8', mode: '755' },
+    )
+  }
+}

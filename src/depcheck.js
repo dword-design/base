@@ -14,7 +14,7 @@ const { depcheckIgnores } = getBaseConfig()
 const { depcheckConfig } = getType()
 const packageName = readPkgUp.sync().package.name
 
-depcheck(
+module.exports = () => depcheck(
   process.cwd(),
   (() => {
     const config = merge(
