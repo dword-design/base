@@ -10,14 +10,15 @@
     "postinstall": "src/cli.js register",
     "postuninstall": "src/cli.js unregister",
     "pretest": "install-self",
-    "test": "nyc mocha"
+    "test": "nyc --reporter lcov mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.6.4",
     "@babel/register": "^7.5.5",
-    "@dword-design/functions": "^0.5.2",
+    "@dword-design/functions": "^0.6.0",
     "@dword-design/node-env": "^0.1.0",
     "babel-merge": "^3.0.0",
     "change-case": "^3.1.0",
@@ -49,7 +50,7 @@
     "mocha": "^6.2.1",
     "mock-stdio": "^1.0.3",
     "nyc": "^14.1.1",
-    "output-files": "^1.0.1",
+    "output-files": "^1.1.0",
     "this": "^1.1.0",
     "with-local-tmp-dir": "^2.0.0"
   }

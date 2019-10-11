@@ -4,7 +4,7 @@ module.exports = [
   require('./unregister'),
   require('./start'),
   require('./lint'),
-  // require('./depcheck'),
+  require('./depcheck'),
   require('./pre-commit'),
   // require('./test'),
 ]

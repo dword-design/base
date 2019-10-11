@@ -1,11 +1,12 @@
 const { register } = require('this')
 const expect = require('expect')
-const { readFile, mkdir, exists, outputFile } = require('fs-extra')
+const { readFile, mkdir, exists } = require('fs-extra')
 const outputFiles = require('output-files')
 const { spawn } = require('child-process-promise')
 const endent = require('endent')
 const testWithLogging = require('./test-with-logging')
 const { join } = require('path')
+const emptyDir = require('empty-dir')
 
 describe('register', () => {
 
@@ -13,6 +14,11 @@ describe('register', () => {
 
     it('no git does nothing', () => testWithLogging({
       callback: async log => {
+        await outputFiles('.', {
+          'package.json': JSON.stringify({
+            name: 'test',
+          }),
+        })
         await register({ log })
         expect(await exists('.git')).toBeFalsy()
       },
@@ -22,6 +28,11 @@ describe('register', () => {
     it('adds git hook', async () => testWithLogging({
       callback: async log => {
         await spawn('git', ['init'])
+        await outputFiles('.', {
+          'package.json': JSON.stringify({
+            name: 'test',
+          }),
+        })
         await register({ log })
         expect(await readFile('.git/hooks/pre-commit', 'utf8')).toEqual(endent`
           # base
@@ -34,10 +45,15 @@ describe('register', () => {
     it('replace existing base git hook', () => testWithLogging({
       callback: async log => {
         await spawn('git', ['init'])
-        await outputFile('.git/hooks/pre-commit', endent`
-          # base
-          foo bar
-        `)
+        await outputFiles('.', {
+          'package.json': JSON.stringify({
+            name: 'test',
+          }),
+          '.git/hooks/pre-commit': endent`
+            # base
+            foo bar
+          `
+        })
         await register({ log })
         expect(await readFile('.git/hooks/pre-commit', 'utf8')).toEqual(endent`
           # base
@@ -50,7 +66,12 @@ describe('register', () => {
     it('do not add git hook if another already exists', () => testWithLogging({
       callback: async log => {
         await spawn('git', ['init'])
-        await outputFile('.git/hooks/pre-commit', 'echo "foo bar"')
+        await outputFiles('.', {
+          'package.json': JSON.stringify({
+            name: 'test',
+          }),
+          '.git/hooks/pre-commit': 'echo "foo bar"',
+        })
         await register({ log })
         expect(await readFile('.git/hooks/pre-commit', 'utf8')).toEqual('echo "foo bar"')
       },
@@ -60,9 +81,9 @@ describe('register', () => {
     it('git hook run fails', () => testWithLogging({
       callback: async log => {
         await spawn('git', ['init'])
-        await register({ log })
         await outputFiles('.', {
           'package.json': JSON.stringify({
+            name: 'test',
             dependencies: {
               'base-lang-standard': '0.1.0',
             },
@@ -84,6 +105,7 @@ describe('register', () => {
             }
           }
         })
+        await register({ log })
         await spawn('git', ['add', join('src', 'index.js')])
         let hasThrown = false
         try {
@@ -97,14 +119,14 @@ describe('register', () => {
         expect(hasThrown).toBeTruthy()
       },
       logOutput: /^Registering git hooks …\nCopying files …\n\n.*\n  1:19  error  Extra semicolon  semi/,
-    })).timeout(3000)
+    })).timeout(4000)
 
     it('git hook run passes', () => testWithLogging({
       callback: async log => {
         await spawn('git', ['init'])
-        await register({ log })
         await outputFiles('.', {
           'package.json': JSON.stringify({
+            name: 'test',
             dependencies: {
               'base-lang-standard': '0.1.0',
             },
@@ -126,6 +148,7 @@ describe('register', () => {
             }
           }
         })
+        await register({ log })
         await spawn('git', ['add', join('src', 'index.js')])
         const { stdout } = await spawn('git', ['commit', '-m', 'test'], { capture: log ? ['stdout'] : undefined })
         if (log) {
@@ -142,6 +165,11 @@ describe('register', () => {
 
       it('copies gitignore', () => testWithLogging({
         callback: async log => {
+          await outputFiles('.', {
+            'package.json': JSON.stringify({
+              name: 'test',
+            }),
+          })
           await register({ log })
           expect(await readFile('.gitignore', 'utf8')).toEqual(
             endent`
@@ -158,7 +186,12 @@ describe('register', () => {
 
       it('adds .base.gitignore', () => testWithLogging({
         callback: async log => {
-          await outputFile('.base.gitignore', 'foo\nbar')
+          await outputFiles('.', {
+            'package.json': JSON.stringify({
+              name: 'test',
+            }),
+            '.base.gitignore': 'foo\nbar',
+          })
           await register({ log })
           expect(await readFile('.gitignore', 'utf8')).toEqual(
             endent`
@@ -178,6 +211,11 @@ describe('register', () => {
 
     it('copies editorconfig', () => testWithLogging({
       callback: async log => {
+        await outputFiles('.', {
+          'package.json': JSON.stringify({
+            name: 'test',
+          }),
+        })
         await register({ log })
         expect(await readFile('.editorconfig', 'utf8')).toEqual(
           endent`
@@ -200,5 +238,15 @@ describe('register', () => {
       logOutput: 'Copying files …\n',
     }))
   })
+
+  it('do not run in self', () => testWithLogging(async log => {
+    await outputFiles('.', {
+      'package.json': JSON.stringify({
+        name: '@dword-design/base',
+      }),
+    }),
+    await register({ log })
+    await expect(emptyDir(process.cwd())).toBeTruthy()
+  }))
 })
 
