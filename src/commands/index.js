@@ -5,7 +5,7 @@ module.exports = [
   require('./start'),
   require('./lint'),
   // require('./depcheck'),
-  // require('./pre-commit'),
+  require('./pre-commit'),
   // require('./test'),
 ]
 

@@ -1,9 +1,11 @@
 const { register } = require('this')
 const expect = require('expect')
 const { readFile, mkdir, exists, outputFile } = require('fs-extra')
+const outputFiles = require('output-files')
 const { spawn } = require('child-process-promise')
 const endent = require('endent')
 const testWithLogging = require('./test-with-logging')
+const { join } = require('path')
 
 describe('register', () => {
 
@@ -54,6 +56,84 @@ describe('register', () => {
       },
       logOutput: 'Copying files …\n',
     }))
+
+    it('git hook run fails', () => testWithLogging({
+      callback: async log => {
+        await spawn('git', ['init'])
+        await register({ log })
+        await outputFiles('.', {
+          'package.json': JSON.stringify({
+            dependencies: {
+              'base-lang-standard': '0.1.0',
+            },
+          }),
+          src: {
+            'index.js': "console.log('foo');",
+          },
+          node_modules: {
+            'base-lang-standard': {
+              'index.js': endent`
+                module.exports = {
+                  eslintConfig: {
+                    "rules": {
+                      "semi": ["error", "never"],
+                    },
+                  },
+                }
+              `,
+            }
+          }
+        })
+        await spawn('git', ['add', join('src', 'index.js')])
+        let hasThrown = false
+        try {
+          await spawn('git', ['commit', '-m', 'test'], { capture: log ? ['stderr'] : undefined })
+        } catch ({ stderr }) {
+          if (log) {
+            console.log(stderr)
+          }
+          hasThrown = true
+        }
+        expect(hasThrown).toBeTruthy()
+      },
+      logOutput: /^Registering git hooks …\nCopying files …\n\n.*\n  1:19  error  Extra semicolon  semi/,
+    })).timeout(3000)
+
+    it('git hook run passes', () => testWithLogging({
+      callback: async log => {
+        await spawn('git', ['init'])
+        await register({ log })
+        await outputFiles('.', {
+          'package.json': JSON.stringify({
+            dependencies: {
+              'base-lang-standard': '0.1.0',
+            },
+          }),
+          src: {
+            'index.js': "console.log('foo')",
+          },
+          node_modules: {
+            'base-lang-standard': {
+              'index.js': endent`
+                module.exports = {
+                  eslintConfig: {
+                    "rules": {
+                      "semi": ["error", "never"],
+                    },
+                  },
+                }
+              `,
+            }
+          }
+        })
+        await spawn('git', ['add', join('src', 'index.js')])
+        const { stdout } = await spawn('git', ['commit', '-m', 'test'], { capture: log ? ['stdout'] : undefined })
+        if (log) {
+          console.log(stdout)
+        }
+      },
+      logOutput: /^Registering git hooks …\nCopying files …\n\[master \(root-commit\) .*?\] test/,
+    })).timeout(4000)
   })
 
   describe('copy files', () => {

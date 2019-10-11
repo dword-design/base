@@ -9,6 +9,7 @@
   "scripts": {
     "postinstall": "src/cli.js register",
     "postuninstall": "src/cli.js unregister",
+    "pretest": "install-self",
     "test": "nyc mocha"
   },
   "keywords": [],
@@ -44,6 +45,7 @@
     "chalk": "^2.4.2",
     "empty-dir": "^2.0.0",
     "expect": "^24.9.0",
+    "install-self": "dword-design/install-self#fork",
     "mocha": "^6.2.1",
     "mock-stdio": "^1.0.3",
     "nyc": "^14.1.1",
