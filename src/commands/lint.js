@@ -7,13 +7,12 @@ const LintError = require('../lint-error')
 module.exports = {
   name: 'lint',
   description: 'Outputs linting errors',
-  handler: async ({ log }) => {
+  handler: async ({ log } = {}) => {
     const { eslintConfig } = getLang()
     const gitignoreExists = await exists('.gitignore')
     const eslint = new CLIEngine({
       baseConfig: eslintConfig,
       ...gitignoreExists ? { ignorePath: '.gitignore' } : {},
-      extensions: ['.js', '.vue'],
     })
     const report = eslint.executeOnFiles(['src'])
     const formatter = eslint.getFormatter()

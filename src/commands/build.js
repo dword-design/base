@@ -1,4 +1,5 @@
 const getTarget = require('../get-target')
+const { handler: lint } = require('./lint')
 
 module.exports = {
   name: 'build',
@@ -8,7 +9,7 @@ module.exports = {
     if (log) {
       console.log('Building …')
     }
-    await build()
+    await build({ lint })
     if (log) {
       console.log('Build successful!')
     }
