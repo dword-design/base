@@ -5,6 +5,6 @@ module.exports = {
   description: 'Starts the package',
   handler: async ({ log } = {}) => {
     const { start } = getTarget()
-    await start({ log })
+    return start({ log })
   },
 }
