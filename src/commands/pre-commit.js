@@ -6,7 +6,7 @@ const { handler: test } = require('./test')
 module.exports = {
   name: 'pre-commit',
   description: 'Runs commands before committing',
-  handler: async ({ log }) => {
+  handler: async ({ log } = {}) => {
     await lint({ log })
     // await depcheck()
     // await test()

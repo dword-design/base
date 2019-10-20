@@ -12,11 +12,10 @@ makeCli({
         try {
           return await command.handler({ log: true })
         } catch (error) {
-          if (error.name === 'ChildProcessError') {
-            process.exit(1)
-          } else {
-            throw error
+          if (error.name !== 'ChildProcessError') {
+            console.error(error)
           }
+          process.exit(1)
         }
       },
     })
