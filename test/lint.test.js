@@ -8,19 +8,16 @@ const { resolve } = require('path')
 
 describe('lint', () => {
 
-  it('no lang', () => testWithLogging({
-    callback: async log => {
-      await outputFiles('.', {
-        'package.json': JSON.stringify({
-          dependencies: {
-            'change-case': '0.1.0',
-          },
-        }),
-        'src/index.js': "module.exports = 'hi'",
-      })
-      await lint({ log })
-    },
-    logOutput: '\n',
+  it('no lang', () => testWithLogging(async log => {
+    await outputFiles('.', {
+      'package.json': JSON.stringify({
+        dependencies: {
+          'change-case': '0.1.0',
+        },
+      }),
+      'src/index.js': "module.exports = 'hi'",
+    })
+    await lint({ log })
   }))
 
   it('linting fails', () => testWithLogging({
