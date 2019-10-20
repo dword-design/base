@@ -10,7 +10,7 @@ module.exports = {
   description: 'Starts the package',
   handler: ({ log } = {}) => pipe(
     getPlugins(),
-    map(({ start }) => (start || noop)({ lint })),
+    map(({ start }) => (start || noop)({ log, lint })),
     promiseAll,
   ),
 }

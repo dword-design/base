@@ -15,7 +15,7 @@ module.exports = {
     const lang = getLang()
     await pipe(
       getPlugins(),
-      map(({ build }) => build({ lang, lint })),
+      map(({ build }) => build({ log, lang, lint })),
       promiseAll,
     )
     if (log) {
