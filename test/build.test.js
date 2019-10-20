@@ -8,27 +8,16 @@ const testWithLogging = require('./test-with-logging')
 
 describe('build', () => {
 
-  it('no target', () => testWithLogging(async log => {
-    await outputFiles('.', {
-      'package.json': JSON.stringify({
-        dependencies: {
-          'change-case': '0.1.0',
-        },
-      }),
-    })
-    await expect(build({ log })).rejects.toThrow()
-  }))
-
-  it('simple target', () => testWithLogging({
+  it('plugin', () => testWithLogging({
     callback: async log => {
       await outputFiles('.', {
         'package.json': JSON.stringify({
           dependencies: {
-            'base-target-node': '0.1.0',
+            'base-plugin-node': '0.1.0',
           },
         }),
         'src/index.js': "console.log('foo')",
-        'node_modules/base-target-node': {
+        'node_modules/base-plugin-node': {
           'index.js': endent`
             const { copyFile } = require('fs-extra')
             module.exports = {
@@ -45,18 +34,18 @@ describe('build', () => {
     logOutput: 'Building …\nBuild successful!\n',
   }))
 
-  it('target using lint', () => testWithLogging({
+  it('plugin using lint', () => testWithLogging({
     callback: async log => {
       await outputFiles('.', {
         'package.json': JSON.stringify({
           dependencies: {
-            'base-target-node': '0.1.0',
+            'base-plugin-node': '0.1.0',
             'base-lang-standard': '0.1.0',
           },
         }),
         'src/index.js': "console.log('foo');",
         node_modules: {
-          'base-target-node': {
+          'base-plugin-node': {
             'index.js': endent`
               const { copyFile } = require('fs-extra')
               module.exports = {

@@ -1,15 +1,21 @@
-const getTarget = require('../get-target')
+const getPlugins = require('../get-plugins')
 const { handler: lint } = require('./lint')
+const map = require('@dword-design/functions/map')
+const promiseAll = require('@dword-design/functions/promiseAll')
+const pipe = require('pipe-fns')
 
 module.exports = {
   name: 'build',
   description: 'Builds the package',
   handler: async ({ log } = {}) => {
-    const { build } = getTarget()
     if (log) {
       console.log('Building …')
     }
-    await build({ lint })
+    await pipe(
+      getPlugins(),
+      map(({ build }) => build({ lint })),
+      promiseAll,
+    )
     if (log) {
       console.log('Build successful!')
     }
