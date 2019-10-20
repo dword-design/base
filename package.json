@@ -10,7 +10,7 @@
     "postinstall": "src/cli.js register",
     "postuninstall": "src/cli.js unregister",
     "pretest": "install-self",
-    "test": "nyc --reporter lcov mocha"
+    "test": "nyc --reporter lcov --reporter text mocha"
   },
   "keywords": [],
   "author": "",
