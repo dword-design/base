@@ -1,5 +1,5 @@
 const outputFiles = require('output-files')
-const { depcheck } = require('this')
+const { depcheck } = require('@dword-design/base')
 const expect = require('expect')
 const testWithLogging = require('./test-with-logging')
 const chalk = require('chalk')

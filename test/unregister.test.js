@@ -1,4 +1,4 @@
-const { unregister } = require('this')
+const { unregister } = require('@dword-design/base')
 const { spawn } = require('child-process-promise')
 const expect = require('expect')
 const { readFile, exists } = require('fs-extra')

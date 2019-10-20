@@ -1,4 +1,4 @@
-const { register } = require('this')
+const { register } = require('@dword-design/base')
 const expect = require('expect')
 const { readFile, mkdir, exists } = require('fs-extra')
 const outputFiles = require('output-files')

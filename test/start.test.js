@@ -2,7 +2,7 @@ const outputFiles = require('output-files')
 const endent = require('endent')
 const { fork } = require('child-process-promise')
 const { exists } = require('fs-extra')
-const { start } = require('this')
+const { start } = require('@dword-design/base')
 const expect = require('expect')
 const testWithLogging = require('./test-with-logging')
 
