@@ -41,11 +41,11 @@ describe('build', () => {
           },
         }),
         node_modules: {
-          'base-lang-standard/index.js': "module.exports = 'standard'",
+          'base-lang-standard/index.js': "module.exports = { foo: 'standard' }",
           'base-plugin-node/index.js': endent`
             const { outputFile } = require('fs-extra')
             module.exports = {
-              build: ({ lang }) => outputFile('dist/test.txt', lang),
+              build: ({ lang }) => outputFile('dist/test.txt', lang.foo),
             }
           `,
         },
