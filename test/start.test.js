@@ -28,6 +28,22 @@ describe('start', () => {
     expect(await exists('dist/index.js'))
   }))
 
+  it('plugin without hook', () => testWithLogging(async log => {
+    await outputFiles('.', {
+      'package.json': JSON.stringify({
+        dependencies: {
+          'base-plugin-node': '0.1.0',
+        },
+      }),
+      node_modules: {
+        'base-plugin-node': {
+          'index.js': 'module.exports = {}',
+        }
+      }
+    })
+    await start({ log })
+  }))
+
   it('plugin using lint', () => testWithLogging({
     callback: async log => {
       await outputFiles('.', {
@@ -65,5 +81,30 @@ describe('start', () => {
       })
       await expect(start({ log })).rejects.toThrow()
     },
+  }))
+
+  it('returns results from plugins', () => testWithLogging(async log => {
+    await outputFiles('.', {
+      'package.json': JSON.stringify({
+        dependencies: {
+          'base-plugin-a': '0.1.0',
+          'base-plugin-b': '0.1.0',
+          'base-plugin-c': '0.1.0',
+        },
+      }),
+      node_modules: {
+        'base-plugin-a': {
+          'index.js': 'module.exports = { start: () => 1 }',
+        },
+        'base-plugin-b': {
+          'index.js': 'module.exports = {}',
+        },
+        'base-plugin-c': {
+          'index.js': 'module.exports = { start: () => 2 }',
+        },
+      }
+    })
+
+    expect(await start({ log })).toEqual([1, undefined, 2])
   }))
 })
