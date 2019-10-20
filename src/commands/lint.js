@@ -3,6 +3,10 @@ const getLang = require('../get-lang')
 const { CLIEngine } = require('eslint')
 const { exists } = require('fs-extra')
 const LintError = require('../lint-error')
+const reduce = require('@dword-design/functions/reduce')
+const identity = require('@dword-design/functions/identity')
+const getPlugins = require('../get-plugins')
+const pipe = require('pipe-fns')
 
 module.exports = {
   name: 'lint',
@@ -10,9 +14,16 @@ module.exports = {
   handler: async ({ log } = {}) => {
     const { eslintConfig } = getLang() || {}
     if (eslintConfig !== undefined) {
+      const mappedEslintConfig = pipe(
+        getPlugins(),
+        reduce(
+          (eslintConfig, { mapEslintConfig = identity }) => mapEslintConfig(eslintConfig),
+          eslintConfig
+        ),
+      )
       const gitignoreExists = await exists('.gitignore')
       const eslint = new CLIEngine({
-        baseConfig: eslintConfig,
+        baseConfig: mappedEslintConfig,
         ...gitignoreExists ? { ignorePath: '.gitignore' } : {},
       })
       const report = eslint.executeOnFiles(['.'])
