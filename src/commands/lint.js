@@ -8,11 +8,11 @@ module.exports = {
   name: 'lint',
   description: 'Outputs linting errors',
   handler: async ({ log } = {}) => {
-    const lang = getLang()
-    if (lang !== undefined) {
+    const { eslintConfig } = getLang() || {}
+    if (eslintConfig !== undefined) {
       const gitignoreExists = await exists('.gitignore')
       const eslint = new CLIEngine({
-        baseConfig: lang.eslintConfig,
+        baseConfig: eslintConfig,
         ...gitignoreExists ? { ignorePath: '.gitignore' } : {},
       })
       const report = eslint.executeOnFiles(['.'])
