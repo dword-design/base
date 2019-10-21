@@ -1481,7 +1481,7 @@ inquirer@^6.4.1:
 
 install-self@dword-design/install-self#fork:
   version "1.0.0-beta.7"
-  resolved "https://codeload.github.com/dword-design/install-self/tar.gz/22b904d603f7e2f2ed420b6b6f68ec76933176a7"
+  resolved "https://codeload.github.com/dword-design/install-self/tar.gz/36616b93446a4606414fbab35adbd8989106d52b"
   dependencies:
     fs-extra "^8.1.0"
     npm-packlist "^1.4.6"
