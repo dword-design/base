@@ -4,6 +4,7 @@
   const depcheck = require('depcheck')
   const depcheckBabelParser = require('./depcheck-babel-parser')
   const P = require('path')
+  const aliases = require('../aliases.config')
 
   const noIssue = result => {
     return result.dependencies.length === 0
@@ -31,7 +32,10 @@
       specials: [
         depcheck.special.bin,
       ],
-      ignoreMatches: [require(P.resolve('package.json')).name],
+      ignoreMatches: [
+        require(P.resolve('package.json')).name,
+        ...Object.keys(aliases),
+      ],
       ignoreDirs: ['dist'],
     }
   )

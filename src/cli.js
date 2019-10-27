@@ -11,11 +11,6 @@
 
   const build = async () => {
     await remove('dist')
-
-    if (nodeEnv === 'development') {
-      await spawn('install-self', [])
-    }
-
     await spawn('eslint', ['--config', require.resolve('../eslintrc'), '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
     await spawn('babel', ['--out-dir', 'dist', '--config-file', require.resolve('../babel.config'), 'src'], { stdio: 'inherit' })
   }
@@ -32,7 +27,11 @@
         await build()
         break
       case 'pre-commit':
+        await build()
         await fork(require.resolve('./depcheck.cli'), [])
+        if (nodeEnv === 'development') {
+          await spawn('install-self', [])
+        }
         await spawn('nyc', ['--reporter', 'lcov', '--reporter', 'text', 'mocha', '--require', require.resolve('./pretest')], { stdio: 'inherit' })
         break
       case 'register':
@@ -64,7 +63,7 @@
         }
         break
       default:
-        throw new Error(`Unknown command '${commandName}`)
+        throw new Error(`Unknown command '${commandName}'.`)
     }
   } catch (error) {
     if (error.name !== 'ChildProcessError') {
