@@ -780,10 +780,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@dword-design/config-files@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@dword-design/config-files/-/config-files-1.0.4.tgz#fa1878bcf63fe98d14a82ac1f86de7c5b9ec7a68"
-  integrity sha512-znybaBM6MRQ7skcMrNpNSkRupda5T6JufcO0c8CtWf1mIAVlFrOj/u0sBFIpmN21fk+4rFN6RG0tdnyb41BJRw==
+"@dword-design/config-files@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@dword-design/config-files/-/config-files-1.0.5.tgz#7a9637333475267f6c14b4036e1263baa133f7f2"
+  integrity sha512-sKYoAq7+xqsQqQWQMbzWVRYK6T4JOPDbILf2vjB5rDDfRFanwSVYl/xgPpOIwmgSZENFGPrMTsEklXeJrn0v6w==
   dependencies:
     fs-extra "^8.1.0"
 

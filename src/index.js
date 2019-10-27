@@ -21,7 +21,7 @@
     const commandName = process.argv[2]
 
     try {
-      await spawn('dw-config-files', [])
+      await spawn('dw-config-files', [], { stdio: 'inherit' })
       await copyFile(P.resolve(__dirname, '..', 'travis.config.yml'), '.travis.yml')
 
       switch (commandName) {
