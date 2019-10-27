@@ -17,7 +17,7 @@ exports.register = async () => {
       P.join(initCwd(), '.git/hooks/pre-commit'),
       endent`
         ${identifier}
-        exec npx base pre-commit
+        exec npm test
       `,
       { encoding: 'utf8', mode: '755' },
     )

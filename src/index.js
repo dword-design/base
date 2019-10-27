@@ -30,7 +30,7 @@
         case 'build':
           await build()
           break
-        case 'pre-commit':
+        case 'test':
           await build()
           await fork(require.resolve('./depcheck.cli'), [])
           if (nodeEnv === 'development') {
