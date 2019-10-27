@@ -11,19 +11,36 @@
     "postuninstall": "src/cli.js unregister"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Sebastian Landwehr <info@dword-design.de>",
+  "license": "MIT",
   "dependencies": {
-    "@dword-design/babel-preset-fp": "^1.0.2",
-    "@dword-design/eslint-config-fp": "^1.0.3",
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.5.0",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/register": "^7.6.2",
+    "@dword-design/config-files": "^1.0.4",
+    "@dword-design/functions": "^0.7.8",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "better-node-env": "^1.0.3",
     "child-process-promise": "^2.2.1",
+    "chokidar": "^3.2.2",
+    "debounce": "^1.2.0",
     "depcheck": "dword-design/depcheck#fork",
     "eslint": "^6.5.1",
+    "eslint-import-resolver-babel-module": "^5.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-mocha": "^6.2.0",
+    "eslint-plugin-prefer-arrow": "^1.1.6",
+    "expect": "^24.9.0",
     "fs-extra": "^8.1.0",
-    "prettyjson": "^1.2.1"
+    "install-self": "dword-design/install-self#fork",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1"
   },
-  "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4"
-  }
+  "devDependencies": {}
 }
