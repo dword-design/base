@@ -11,7 +11,7 @@ module.exports = {
     'babel-plugin-add-module-exports',
     ['babel-plugin-module-resolver', { alias: aliases }],
     ['babel-plugin-transform-imports', {
-      '@dword-design/functions': { transform: "@dword-design/functions/${member}" },
+      '@dword-design/functions': { transform: "@dword-design/functions/dist/${member}" },
     }],
   ],
 }

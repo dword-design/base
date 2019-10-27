@@ -787,10 +787,10 @@
   dependencies:
     fs-extra "^8.1.0"
 
-"@dword-design/functions@^0.7.8":
-  version "0.7.8"
-  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-0.7.8.tgz#32e077a2af3c6b90c11285baec0af4f22fb260c4"
-  integrity sha512-nYgrNhOa6q6DHqtxS0l2Rpj/zAjJkQ5zTIF5gvMTpruzwAOgWeRHGdbVmXok2ou3nbM2E0mcR2hy9Xr7s07PLg==
+"@dword-design/functions@^0.7.10":
+  version "0.7.10"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-0.7.10.tgz#6fb36634c14861d2a6c44ba0a5ec70bcf2b0b195"
+  integrity sha512-JGae9qaZfsMzPUbYg1cMBGFZMWy7OTxh3u61na/6zRNNJpBNXkLZUnoHA86K2DGX8Br1WkCy1PkcUqoaWr6lRg==
   dependencies:
     endent "^1.3.0"
     lodash "^4.17.15"

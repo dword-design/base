@@ -2,13 +2,10 @@ const endent = require('endent')
 const { exists, outputFile, readFile, remove } = require('fs-extra')
 const P = require('path')
 
-const isSelf = () => require(P.resolve(process.env.INIT_CWD, 'package.json')).name === require('../package.json').name
-
 const identifier = '# base'
 
 exports.register = async () => {
-  if (!isSelf()
-    && await exists(P.join(process.env.INIT_CWD, '.git'))
+  if (await exists(P.join(process.env.INIT_CWD, '.git'))
     && (
       !await exists(P.join(process.env.INIT_CWD, '.git/hooks/pre-commit'))
       || (await readFile(P.resolve(process.env.INIT_CWD, '.git/hooks/pre-commit'), 'utf8')).includes(identifier)
@@ -27,8 +24,7 @@ exports.register = async () => {
 }
 
 exports.unregister = async () => {
-  if (!isSelf()
-    && await exists(P.join(process.env.INIT_CWD, '.git/hooks/pre-commit'))
+  if (await exists(P.join(process.env.INIT_CWD, '.git/hooks/pre-commit'))
     && (await readFile(P.resolve(process.env.INIT_CWD, '.git/hooks/pre-commit'), 'utf8')).includes(identifier)
   ) {
     console.log('Unregistering git hooks …')

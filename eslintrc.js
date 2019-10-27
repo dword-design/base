@@ -41,7 +41,6 @@ module.exports = {
     'prefer-const': 'error',
     'import/no-extraneous-dependencies': 'error',
     'import/no-commonjs': 'error',
-    'import/no-unresolved': ['error', { ignore: Object.keys(aliases) }]
   },
   overrides: [
     {
