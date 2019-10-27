@@ -27,7 +27,6 @@
       ],
       parsers: {
         '*.js': depcheckBabelParser,
-      //   '*.scss': depcheckSassParser,
       },
       specials: [
         depcheck.special.bin,
