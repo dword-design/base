@@ -1,6 +1,6 @@
 {
-  "name": "@dword-design/base",
-  "version": "0.14.1",
+  "name": "@dword-design/base-node",
+  "version": "0.1.0",
   "description": "",
   "main": "src/cli.js",
   "bin": {
