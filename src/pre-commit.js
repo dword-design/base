@@ -1,24 +1,24 @@
 const endent = require('endent')
-const { exists, outputFile, readFile } = require('fs-extra')
+const { exists, outputFile, readFile, remove } = require('fs-extra')
 const P = require('path')
 
-const isSelf = require(P.resolve('package.json')).name === require('../package.json').name
+const isSelf = () => require(P.resolve(process.env.INIT_CWD, 'package.json')).name === require('../package.json').name
 
-const gitHookIdentifier = '# base'
+const identifier = '# base'
 
 exports.register = async () => {
-  if (!isSelf
-    && await exists('.git')
+  if (!isSelf()
+    && await exists(P.join(process.env.INIT_CWD, '.git'))
     && (
-      !await exists('.git/hooks/pre-commit')
-      || (await readFile('.git/hooks/pre-commit', 'utf8')).includes(gitHookIdentifier)
+      !await exists(P.join(process.env.INIT_CWD, '.git/hooks/pre-commit'))
+      || (await readFile(P.resolve(process.env.INIT_CWD, '.git/hooks/pre-commit'), 'utf8')).includes(identifier)
     )
   ) {
     console.log('Registering git hooks …')
     await outputFile(
-      '.git/hooks/pre-commit',
+      P.join(process.env.INIT_CWD, '.git/hooks/pre-commit'),
       endent`
-        ${gitHookIdentifier}
+        ${identifier}
         exec npx base pre-commit
       `,
       { encoding: 'utf8', mode: '755' },
@@ -27,8 +27,11 @@ exports.register = async () => {
 }
 
 exports.unregister = async () => {
-  if (!isSelf && await exists('.git/hooks/pre-commit') && (await readFile('.git/hooks/pre-commit', 'utf8')).includes(gitHookIdentifier)) {
+  if (!isSelf()
+    && await exists(P.join(process.env.INIT_CWD, '.git/hooks/pre-commit'))
+    && (await readFile(P.resolve(process.env.INIT_CWD, '.git/hooks/pre-commit'), 'utf8')).includes(identifier)
+  ) {
     console.log('Unregistering git hooks …')
-    await remove('.git/hooks/pre-commit')
+    await remove(P.resolve(process.env.INIT_CWD, '.git/hooks/pre-commit'))
   }
 }
