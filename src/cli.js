@@ -1,23 +1,23 @@
 #!/usr/bin/env node
 
-const makeCli = require('make-cli')
-const mapValues = require('@dword-design/functions/mapValues')
-const commands = require('./commands')
+(async () => {
+  const { spawn } = require('child-process-promise')
+  const commandName = process.argv.slice(2)
 
-makeCli({
-  commands: commands.map(
-    command => ({
-      ...command,
-      handler: async () => {
-        try {
-          return await command.handler({ log: true })
-        } catch (error) {
-          if (error.name !== 'ChildProcessError') {
-            console.error(error)
-          }
-          process.exit(1)
-        }
-      },
-    })
-  ),
-})
+  try {
+    switch (commandName) {
+      case 'build': {
+        await spawn('eslint', ['--config', require.resolve('./eslintrc')])
+        await spawn('babel', ['--out-dir', 'dist', '--config-file', require.resolve('./babel.config'), 'src'], { stdio: 'inherit' })
+        break
+      }
+      case 'start': spawn('babel', ['src', 'watch', '--out-dir', 'dist'], { stdio: 'inherit' }); break
+    }
+  } catch (error) {
+    if (error.name === 'ChildProcessError') {
+      process.exit()
+    } else {
+      throw error
+    }
+  }
+})()
