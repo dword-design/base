@@ -1,14 +1,14 @@
 {
   "name": "@dword-design/base-node",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "src/cli.js",
   "bin": {
     "base": "./src/cli.js"
   },
   "scripts": {
-    "postinstall": "src/cli.js register",
-    "postuninstall": "src/cli.js unregister"
+    "postinstall": "node src/cli.js register",
+    "postuninstall": "node src/cli.js unregister"
   },
   "keywords": [],
   "author": "Sebastian Landwehr <info@dword-design.de>",
