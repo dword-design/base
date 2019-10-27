@@ -1,12 +1,16 @@
 {
   "name": "@dword-design/base-node",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "",
   "main": "src/index.js",
   "bin": {
     "base": "./src/index.js"
   },
   "files": [
+    "aliases.config.js",
+    "babel.config.js",
+    "eslintrc.js",
+    "travis.config.yml",
     "src"
   ],
   "scripts": {
