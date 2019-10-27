@@ -9,8 +9,9 @@
   const chokidar = require('chokidar')
   const debounce = require('debounce')
   const { register, unregister } = require('./pre-commit')
+  const initCwd = require('./init-cwd')
 
-  if (require(P.resolve(process.env.INIT_CWD, 'package.json')).name !== require('../package.json').name) {
+  if (require(P.resolve(initCwd(), 'package.json')).name !== require('../package.json').name) {
 
     const build = async () => {
       await remove('dist')
