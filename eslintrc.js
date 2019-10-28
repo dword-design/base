@@ -1,6 +1,5 @@
 const P = require('path')
 const aliases = require('./aliases.config')
-const babelConfig = require('./babel.config')
 
 module.exports = {
   env: {
@@ -11,7 +10,9 @@ module.exports = {
   parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module',
-    babelOptions: babelConfig,
+    babelOptions: {
+      configFile: require.resolve('./babel.config'),
+    },
   },
   extends: [
     'eslint:recommended',
