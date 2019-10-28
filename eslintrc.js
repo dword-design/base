@@ -46,10 +46,13 @@ module.exports = {
   overrides: [
     {
       files: ['**.test.js'],
-      env: {
-        mocha: true,
-      },
       globals: {
+        after: 'readonly',
+        afterEach: 'readonly',
+        before: 'readonly',
+        beforeEach: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
         expect: 'readonly',
       },
       extends: ['plugin:mocha/recommended'],
