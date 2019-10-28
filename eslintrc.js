@@ -59,7 +59,7 @@ module.exports = {
       plugins: ['mocha'],
       rules: {
         'mocha/no-mocha-arrows': 'off',
-        'mocha/no-global-tests': 'off',
+        'mocha/no-setup-in-describe': 'off',
       },
     },
   ],
