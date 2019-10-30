@@ -1,6 +1,9 @@
-#!/usr/bin/env node
+const configParameters = {
+  eslintConfigFilename: require.resolve('../eslintrc'),
+  babelConfigFilename: require.resolve('../babel.config'),
+}
 
-(async () => {
+module.exports = async ({ prepare: configPrepare, start: configStart }) => {
 
   const { spawn, fork } = require('child-process-promise')
   const { remove, copyFile } = require('fs-extra')
@@ -13,10 +16,8 @@
 
   if (require(P.resolve(initCwd(), 'package.json')).name !== require('../package.json').name) {
 
-    const build = async () => {
-      await remove('dist')
-      await spawn('eslint', ['--config', require.resolve('../eslintrc'), '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
-      await spawn('babel', ['--out-dir', 'dist', '--config-file', require.resolve('../babel.config'), 'src'], { stdio: 'inherit' })
+    const prepare = async () => {
+      await configPrepare(configParameters)
       await spawn('mos', [], { stdio: 'inherit' })
     }
 
@@ -28,11 +29,11 @@
 
       switch (commandName) {
         case undefined:
-        case 'build':
-          await build()
+        case 'prepare':
+          await prepare()
           break
         case 'test':
-          await build()
+          await prepare()
           await fork(require.resolve('./depcheck.cli'), [])
           if (nodeEnv === 'development') {
             await spawn('install-self', [])
@@ -45,22 +46,7 @@
           }
           break
         case 'start':
-          const watcher = chokidar.watch('src')
-          watcher.on(
-            'all',
-            debounce(
-              async () => {
-                try {
-                  await build()
-                } catch (error) {
-                  if (error.name !== 'ChildProcessError') {
-                    console.log(error)
-                  }
-                }
-              },
-              200
-            )
-          )
+          await configStart(configParameters)
           break
         case 'unregister':
           if (nodeEnv === 'development') {
@@ -77,4 +63,4 @@
       process.exit(1)
     }
   }
-})()
+}
