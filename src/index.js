@@ -17,6 +17,7 @@
       await remove('dist')
       await spawn('eslint', ['--config', require.resolve('../eslintrc'), '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
       await spawn('babel', ['--out-dir', 'dist', '--config-file', require.resolve('../babel.config'), 'src'], { stdio: 'inherit' })
+      await spawn('mos', [], { stdio: 'inherit' })
     }
 
     const commandName = process.argv[2]

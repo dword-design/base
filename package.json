@@ -49,6 +49,7 @@
     "fs-extra": "^8.1.0",
     "install-self": "dword-design/install-self#fork",
     "mocha": "^6.2.2",
+    "mos": "dword-design/mos#fork/mos",
     "nyc": "^14.1.1"
   },
   "devDependencies": {}
