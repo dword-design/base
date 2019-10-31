@@ -8,7 +8,7 @@ exports.eslintConfigFilename = require.resolve('../eslintrc')
 exports.base = async ({ prepare: configPrepare, start: configStart } = {}) => {
 
   const { spawn, fork } = require('child-process-promise')
-  const { remove, copyFile } = require('fs-extra')
+  const { remove } = require('fs-extra')
   const P = require('path')
   const nodeEnv = require('better-node-env')
   const { register, unregister } = require('./pre-commit')
@@ -51,7 +51,6 @@ exports.base = async ({ prepare: configPrepare, start: configStart } = {}) => {
 
     try {
       await spawn('dw-config-files', [], { stdio: 'inherit' })
-      await copyFile(P.resolve(__dirname, '..', 'travis.config.yml'), '.travis.yml')
 
       switch (commandName) {
         case 'prepare':
