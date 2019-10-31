@@ -3,7 +3,7 @@ const configParameters = {
   babelConfigFilename: require.resolve('../babel.config'),
 }
 
-module.exports = async ({ prepare: configPrepare, start: configStart }) => {
+module.exports = async ({ prepare: configPrepare, start: configStart } = {}) => {
 
   const { spawn, fork } = require('child-process-promise')
   const { remove, copyFile } = require('fs-extra')

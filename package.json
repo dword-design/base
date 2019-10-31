@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base-core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "main": "src/index.js",
   "files": [
@@ -12,8 +12,8 @@
   ],
   "scripts": {
     "prepare": "dw-config-files",
-    "postinstall": "node src/index.js register",
-    "postuninstall": "node src/index.js unregister"
+    "postinstall": "node src/cli.js register",
+    "postuninstall": "node src/cli.js unregister"
   },
   "keywords": [],
   "author": "Sebastian Landwehr <info@dword-design.de>",
