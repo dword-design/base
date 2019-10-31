@@ -1,23 +1,19 @@
-const configParameters = {
-  eslintConfigFilename: require.resolve('../eslintrc'),
-  babelConfigFilename: require.resolve('../babel.config'),
-}
+exports.eslintConfigFilename = require.resolve('../eslintrc')
+exports.babelConfigFilename = require.resolve('../babel.config')
 
-module.exports = async ({ prepare: configPrepare, start: configStart } = {}) => {
+exports.base = async ({ prepare: configPrepare, start: configStart } = {}) => {
 
   const { spawn, fork } = require('child-process-promise')
   const { remove, copyFile } = require('fs-extra')
   const P = require('path')
   const nodeEnv = require('better-node-env')
-  const chokidar = require('chokidar')
-  const debounce = require('debounce')
   const { register, unregister } = require('./pre-commit')
   const initCwd = require('./init-cwd')
 
   if (require(P.resolve(initCwd(), 'package.json')).name !== require('../package.json').name) {
 
     const prepare = async () => {
-      await configPrepare(configParameters)
+      await configPrepare()
       await spawn('mos', [], { stdio: 'inherit' })
     }
 
@@ -46,7 +42,7 @@ module.exports = async ({ prepare: configPrepare, start: configStart } = {}) => 
           }
           break
         case 'start':
-          await configStart(configParameters)
+          await configStart()
           break
         case 'unregister':
           if (nodeEnv === 'development') {

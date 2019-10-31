@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-const api = require('.')
+const { base } = require('.')
 
-api()
+base()
