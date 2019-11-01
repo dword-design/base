@@ -2,8 +2,8 @@ const noop = require('@dword-design/functions/dist/noop')
 const chokidar = require('chokidar')
 const debounce = require('debounce')
 
-exports.babelConfigFilename = require.resolve('../babel.config')
-exports.eslintConfigFilename = require.resolve('../eslintrc')
+exports.babelConfigFilename = require.resolve('@dword-design/babel-config')
+exports.eslintConfigFilename = require.resolve('@dword-design/eslint-config')
 
 exports.base = async ({ prepare: configPrepare, start: configStart } = {}) => {
 
@@ -16,8 +16,8 @@ exports.base = async ({ prepare: configPrepare, start: configStart } = {}) => {
 
   configPrepare = configPrepare || (async () => {
     await remove('dist')
-    await spawn('eslint', ['--config', require.resolve('../eslintrc'), '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
-    await spawn('babel', ['--out-dir', 'dist', '--config-file', require.resolve('../babel.config'), 'src'], { stdio: 'inherit' })
+    await spawn('eslint', ['--config', exports.babelConfigFilename, '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
+    await spawn('babel', ['--out-dir', 'dist', '--config-file', exports.babelConfigFilename, 'src'], { stdio: 'inherit' })
   })
 
   configStart = configStart || (() => {

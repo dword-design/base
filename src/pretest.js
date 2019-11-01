@@ -1,6 +1,6 @@
 const babelRegister = require('@babel/register')
 const expect = require('expect')
-const config = require('../babel.config')
+const config = require('@dword-design/babel-config')
 
 babelRegister(config)
 

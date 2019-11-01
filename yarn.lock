@@ -247,15 +247,15 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@babel/parser@^7.0.0", "@babel/parser@^7.4.3", "@babel/parser@^7.6.0", "@babel/parser@^7.6.3", "@babel/parser@^7.6.4":
+  version "7.6.4"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.6.4.tgz#cb9b36a7482110282d5cb6dd424ec9262b473d81"
+  integrity sha512-D8RHPW5qd0Vbyo3qb+YjO5nvUVRTXFLQ/FsDxJU2Nqz4uB5EnUN0ZQSEYpvTIbRuttig1XbHWU5oMeQwQSAA+A==
+
 "@babel/parser@^7.3.1", "@babel/parser@^7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.5.5.tgz#02f077ac8817d3df4a832ef59de67565e71cca4b"
   integrity sha512-E5BN68cqR7dhKan1SfqgPGhQ178bkVKpXTPEXnFJBrEt8/DKRZlybmy+IgYLTeN7tp1R5Ccmbm2rBk17sHYU3g==
-
-"@babel/parser@^7.4.3", "@babel/parser@^7.6.0", "@babel/parser@^7.6.3", "@babel/parser@^7.6.4":
-  version "7.6.4"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.6.4.tgz#cb9b36a7482110282d5cb6dd424ec9262b473d81"
-  integrity sha512-D8RHPW5qd0Vbyo3qb+YjO5nvUVRTXFLQ/FsDxJU2Nqz4uB5EnUN0ZQSEYpvTIbRuttig1XbHWU5oMeQwQSAA+A==
 
 "@babel/parser@^7.4.4":
   version "7.4.5"
@@ -723,7 +723,7 @@
     "@babel/parser" "^7.6.0"
     "@babel/types" "^7.6.0"
 
-"@babel/traverse@^7.1.0", "@babel/traverse@^7.4.3", "@babel/traverse@^7.4.4", "@babel/traverse@^7.5.5", "@babel/traverse@^7.6.2", "@babel/traverse@^7.6.3":
+"@babel/traverse@^7.0.0", "@babel/traverse@^7.1.0", "@babel/traverse@^7.4.3", "@babel/traverse@^7.4.4", "@babel/traverse@^7.5.5", "@babel/traverse@^7.6.2", "@babel/traverse@^7.6.3":
   version "7.6.3"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.6.3.tgz#66d7dba146b086703c0fb10dd588b7364cec47f9"
   integrity sha512-unn7P4LGsijIxaAJo/wpoU11zN+2IaClkQAxcJWBNCMS6cmVh802IyLHNkAjQ0iYnRS3nnxk5O3fuXW28IMxTw==
@@ -780,12 +780,49 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@dword-design/aliases@^0.1.1", "@dword-design/aliases@^0.1.2":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@dword-design/aliases/-/aliases-0.1.3.tgz#4fe3d017717989c36450936059065dc47d5a6caf"
+  integrity sha512-T7Oy4K2bC8rJjEusfdyorS93sAeIMMhkbF3cW64j8LMx0zVkK1BrPFEHD56hzlIo0T46Gggd0TqEaVkJ+MFAqg==
+  dependencies:
+    "@dword-design/functions" "^0.7.13"
+    better-node-env "^1.0.3"
+    child-process-promise "^2.2.1"
+    eslint "^6.6.0"
+    fs-extra "^8.1.0"
+
+"@dword-design/babel-config@^0.2.0", "@dword-design/babel-config@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-0.2.1.tgz#41588a754a7b60e497d2606dcd940c8caf16c3a2"
+  integrity sha512-soubs3UDL875yL174QhkUWBM35pMycBjKQM1SuMlI9tRvTyH258xmlCj2t+ExmANOzKT0UKDjtPdNuWcgodsmg==
+  dependencies:
+    "@babel/plugin-proposal-nullish-coalescing-operator" "^7.4.4"
+    "@babel/plugin-proposal-optional-chaining" "^7.6.0"
+    "@babel/plugin-proposal-pipeline-operator" "^7.5.0"
+    "@babel/preset-env" "^7.6.3"
+    "@dword-design/aliases" "^0.1.1"
+    babel-plugin-add-module-exports "^1.0.2"
+    babel-plugin-module-resolver "^3.2.0"
+    babel-plugin-transform-imports "^2.0.0"
+
 "@dword-design/config-files@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@dword-design/config-files/-/config-files-1.1.0.tgz#83f0e7354e27cc0b17a2fb93404e2e59fca15a1b"
   integrity sha512-ARFjfvuNInvow+s6czfcjyh5nnLZ+rGtcagWN8lGJ2ktz5BWGQEeG7ytapNCfn35DgZnOiKEGtol8QgA2A5N2g==
   dependencies:
     fs-extra "^8.1.0"
+
+"@dword-design/eslint-config@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-0.2.0.tgz#6737062bd9627cfe56c257e2c28842d7a6c973d7"
+  integrity sha512-0GBCTXv8lFqWbJeInLba3gE2+bKLp91kkaRiE3zk1epxRuqP5ODsChdxWKX6qh9NW0NYc/Em7AZMYSmrwHd49g==
+  dependencies:
+    "@dword-design/aliases" "^0.1.2"
+    "@dword-design/babel-config" "^0.2.0"
+    babel-eslint "^10.0.3"
+    eslint-import-resolver-babel-module "^5.1.0"
+    eslint-plugin-import "^2.18.2"
+    eslint-plugin-prefer-arrow "^1.1.6"
 
 "@dword-design/functions@^0.7.13":
   version "0.7.13"
@@ -1108,14 +1145,17 @@ babel-core@6, babel-core@^6.26.0:
     slash "^1.0.0"
     source-map "^0.5.7"
 
-babel-eslint@^11.0.0-beta.0:
-  version "11.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-11.0.0-beta.0.tgz#3645b9b84d848e070e0afadc95d0c8ff96f4c63a"
-  integrity sha512-GJTX0XL22be/A5sFp1/4qQIOnZJ/KJ8YrA0aW07SZoDXTMLB1KQT0rYl4a9Y5DfJGPuVDVf0bMYyvLLXmXPpHw==
+babel-eslint@^10.0.3:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.0.3.tgz#81a2c669be0f205e19462fed2482d33e4687a88a"
+  integrity sha512-z3U7eMY6r/3f3/JB9mTsLjyxrv0Yb1zb8PCWCLpguxfCzBIZUwy23R1t/XKewP+8mEN2Ck8Dtr4q20z6ce6SoA==
   dependencies:
-    eslint-scope "3.7.1"
+    "@babel/code-frame" "^7.0.0"
+    "@babel/parser" "^7.0.0"
+    "@babel/traverse" "^7.0.0"
+    "@babel/types" "^7.0.0"
     eslint-visitor-keys "^1.0.0"
-    semver "^5.6.0"
+    resolve "^1.12.0"
 
 babel-generator@^6.26.0:
   version "6.26.1"
@@ -2137,14 +2177,6 @@ eslint-plugin-prefer-arrow@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/eslint-plugin-prefer-arrow/-/eslint-plugin-prefer-arrow-1.1.6.tgz#1fbf92b441ece684da9a849f980c67125d886c43"
   integrity sha512-CT7a5pT6SG9hvhCjyHKFA1+lClB4WA+gvBt04E7/buUTELgatneCrublqTzi++tZuCefUhJXrTm3W1wpK14sqg==
-
-eslint-scope@3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
-  integrity sha1-PWPD7f2gLgbgGkUq2IyqzHzctug=
-  dependencies:
-    esrecurse "^4.1.0"
-    estraverse "^4.1.1"
 
 eslint-scope@^5.0.0:
   version "5.0.0"
@@ -4926,7 +4958,7 @@ resolve@^1.10.0:
   dependencies:
     path-parse "^1.0.6"
 
-resolve@^1.11.0, resolve@^1.3.2, resolve@^1.4.0, resolve@^1.5.0:
+resolve@^1.11.0, resolve@^1.12.0, resolve@^1.3.2, resolve@^1.4.0, resolve@^1.5.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.12.0.tgz#3fc644a35c84a48554609ff26ec52b66fa577df6"
   integrity sha512-B/dOmuoAik5bKcD6s6nXDCjzUKnaDvdkRyAk6rsmsKLipWj4797iothd7jmmUhWTfinVMU+wc56rYKsit2Qy4w==
