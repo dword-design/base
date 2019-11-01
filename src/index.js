@@ -62,7 +62,7 @@ exports.base = async ({ prepare: configPrepare, start: configStart } = {}) => {
           if (nodeEnv === 'development') {
             await spawn('install-self', [])
           }
-          await spawn('nyc', ['--reporter', 'lcov', '--reporter', 'text', 'mocha', '--require', require.resolve('./pretest')], { stdio: 'inherit' })
+          await spawn('nyc', ['--reporter', 'lcov', '--reporter', 'text', 'mocha-per-file', '--chdir', '--require', require.resolve('./pretest')], { stdio: 'inherit' })
           break
         case 'register':
           if (nodeEnv === 'development') {

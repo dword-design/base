@@ -43,24 +43,4 @@ module.exports = {
     'import/no-extraneous-dependencies': 'error',
     'import/no-commonjs': 'error',
   },
-  overrides: [
-    {
-      files: ['**.test.js'],
-      globals: {
-        after: 'readonly',
-        afterEach: 'readonly',
-        before: 'readonly',
-        beforeEach: 'readonly',
-        describe: 'readonly',
-        it: 'readonly',
-        expect: 'readonly',
-      },
-      extends: ['plugin:mocha/recommended'],
-      plugins: ['mocha'],
-      rules: {
-        'mocha/no-mocha-arrows': 'off',
-        'mocha/no-setup-in-describe': 'off',
-      },
-    },
-  ],
 }
