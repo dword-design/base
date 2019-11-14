@@ -10,10 +10,10 @@
     "src"
   ],
   "scripts": {
-    "precompile": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config src",
+    "precompile": "babel-node --config-file @dword-design/babel-config ./build/pre-compile.cli.js",
     "prepare": "npm run precompile && node dist/cli.js prepare",
-    "postinstall": "node dist/cli.js register",
-    "postuninstall": "node dist/cli.js unregister",
+    "postinstall": "npm run precompile && node dist/cli.js register",
+    "postuninstall": "npm run precompile && node dist/cli.js unregister",
     "test": "npm run precompile && node dist/cli.js test"
   },
   "keywords": [],
@@ -31,7 +31,6 @@
     "depcheck": "dword-design/depcheck#fork",
     "eslint": "^6.6.0",
     "expect": "^24.9.0",
-    "get-package-name": "^1.0.0",
     "glob-promise": "^3.4.0",
     "install-self": "dword-design/install-self#fork",
     "make-cli": "^1.0.9",
@@ -41,6 +40,6 @@
     "resolve-bin": "^0.4.0"
   },
   "devDependencies": {
-    "rimraf": "^3.0.0"
+    "@babel/node": "^7.7.0"
   }
 }
