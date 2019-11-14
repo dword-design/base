@@ -7,7 +7,7 @@
     "base": "./dist/cli.js"
   },
   "files": [
-    "src"
+    "dist"
   ],
   "scripts": {
     "precompile": "babel-node --config-file @dword-design/babel-config ./build/pre-compile.cli.js",
@@ -34,12 +34,13 @@
     "glob-promise": "^3.4.0",
     "install-self": "dword-design/install-self#fork",
     "make-cli": "^1.0.9",
-    "mocha-per-file": "^1.1.2",
+    "mocha-per-file": "^1.1.4",
     "mos": "dword-design/mos#fork/mos",
     "nyc": "^14.1.1",
     "resolve-bin": "^0.4.0"
   },
   "devDependencies": {
-    "@babel/node": "^7.7.0"
+    "@babel/node": "^7.7.0",
+    "with-local-tmp-dir": "^2.1.2"
   }
 }
