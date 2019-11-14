@@ -2,17 +2,19 @@
   "name": "@dword-design/base",
   "version": "1.1.2",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "bin": {
-    "base": "./src/cli.js"
+    "base": "./dist/cli.js"
   },
   "files": [
     "src"
   ],
   "scripts": {
-    "prepare": "dw-config-files",
-    "postinstall": "node src/cli.js register",
-    "postuninstall": "node src/cli.js unregister"
+    "precompile": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config src",
+    "prepare": "npm run precompile && node dist/cli.js prepare",
+    "postinstall": "node dist/cli.js register",
+    "postuninstall": "node dist/cli.js unregister",
+    "test": "npm run precompile && node dist/cli.js test"
   },
   "keywords": [],
   "author": "Sebastian Landwehr <info@dword-design.de>",
@@ -21,21 +23,24 @@
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/register": "^7.6.2",
+    "@dword-design/aliases": "^0.1.3",
     "@dword-design/babel-config": "^0.2.1",
-    "@dword-design/config-files": "^1.1.0",
     "@dword-design/eslint-config": "^0.2.0",
-    "better-node-env": "^1.0.3",
-    "child-process-promise": "^2.2.1",
     "chokidar": "^3.2.3",
     "debounce": "^1.2.0",
     "depcheck": "dword-design/depcheck#fork",
     "eslint": "^6.6.0",
     "expect": "^24.9.0",
-    "fs-extra": "^8.1.0",
+    "get-package-name": "^1.0.0",
+    "glob-promise": "^3.4.0",
     "install-self": "dword-design/install-self#fork",
+    "make-cli": "^1.0.9",
     "mocha-per-file": "^1.1.2",
     "mos": "dword-design/mos#fork/mos",
-    "nyc": "^14.1.1"
+    "nyc": "^14.1.1",
+    "resolve-bin": "^0.4.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "rimraf": "^3.0.0"
+  }
 }

@@ -1,1 +1,1 @@
-module.exports = () => process.env.INIT_CWD || process.cwd()
+export default () => process.env.INIT_CWD || process.cwd()

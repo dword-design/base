@@ -1,15 +1,18 @@
 #!/usr/bin/env node
 
+import depcheck from 'depcheck'
+import depcheckBabelParser from './depcheck-babel-parser'
+import depcheckResolveBinDetector from './depcheck-resolve-bin-detector'
+import { resolve } from 'path'
+import aliases from '@dword-design/aliases'
+import { keys } from '@functions'
+
 (async () => {
-  const depcheck = require('depcheck')
-  const depcheckBabelParser = require('./depcheck-babel-parser')
-  const P = require('path')
-  const aliases = require('../aliases.config')
 
   const noIssue = result => {
     return result.dependencies.length === 0
       && result.devDependencies.length === 0
-      && Object.keys(result.missing).length === 0
+      && keys(result.missing).length === 0
   }
 
   const prettify = (caption, deps) => {
@@ -24,6 +27,7 @@
         depcheck.detector.importDeclaration,
         depcheck.detector.requireCallExpression,
         depcheck.detector.requireResolveCallExpression,
+        depcheckResolveBinDetector,
       ],
       parsers: {
         '*.js': depcheckBabelParser,
@@ -32,7 +36,7 @@
         depcheck.special.bin,
       ],
       ignoreMatches: [
-        require(P.resolve('package.json')).name,
+        require(resolve('package.json')).name,
         ...Object.keys(aliases),
       ],
       ignoreDirs: ['dist'],

@@ -1,4 +1,4 @@
-const { parseSync } = require('@babel/core')
-const babelConfig = require('@dword-design/babel-config')
+import { parseSync } from '@babel/core'
+import babelConfig from '@dword-design/babel-config'
 
-module.exports = content => parseSync(content, babelConfig)
+export default content => parseSync(content, babelConfig)

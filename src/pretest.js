@@ -1,6 +1,6 @@
-const babelRegister = require('@babel/register')
-const expect = require('expect')
-const config = require('@dword-design/babel-config')
+import babelRegister from '@babel/register'
+import expect from 'expect'
+import config from '@dword-design/babel-config'
 
 babelRegister(config)
 
