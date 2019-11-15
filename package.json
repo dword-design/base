@@ -40,7 +40,7 @@
     "resolve-bin": "^0.4.0"
   },
   "devDependencies": {
-    "@babel/node": "^7.7.0",
+    "@babel/node": "dword-design/babel#fork/babel-node",
     "with-local-tmp-dir": "^2.1.2"
   }
 }
