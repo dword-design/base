@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@babel/node": "dword-design/babel#fork/babel-node",
+    "output-files": "^1.1.7",
     "with-local-tmp-dir": "^2.1.2"
   }
 }
