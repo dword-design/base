@@ -4,7 +4,7 @@ import outputFiles from 'output-files'
 import resolveBin from 'resolve-bin'
 import expect from 'expect'
 
-export const it = () => withLocalTmpDir(async () => {
+export const it = () => withLocalTmpDir(__dirname, async () => {
   await spawn('git', ['init'])
   await outputFiles({
     'package.json': JSON.stringify({

@@ -1,31 +1,31 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { spawn } from 'child_process'
-import { exists } from 'fs'
+import outputFiles from 'output-files'
 import resolveBin from 'resolve-bin'
 import expect from 'expect'
-import outputFiles from 'output-files'
+import { endent } from '@functions'
+import { readFile } from 'fs'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await spawn('git', ['init'])
+  const hook = endent`
+    # base
+    foo
+  `
   await outputFiles({
+    '.git/hooks/pre-commit': hook,
     'package.json': JSON.stringify({
       scripts: {
         test: 'base test',
       },
-      devDependencies: {
-        '@dword-design/base': '^0.1.0',
-      },
     }),
-    'src/index.js': 'export default 1',
+    'src/index.js': 'export default 1;',
   })
-  const { stdout } = await spawn(
+  await spawn(
     resolveBin.sync('@dword-design/base', { executable: 'base' }),
     ['register'],
     { capture: ['stdout'] }
   )
-  expect(stdout).toEqual('Registering git hooks …\n')
-  expect(await exists('.git/hooks/pre-commit')).toBeTruthy()
-  await spawn('git', ['add', '.'])
-  await spawn('git', ['commit', '-m', 'foo'])
+  expect(await readFile('.git/hooks/pre-commit')).not.toEqual(hook)
 })
-export const timeout = 40000
+export const timeout = 20000

@@ -31,7 +31,6 @@
     "depcheck": "dword-design/depcheck#fork",
     "eslint": "^6.6.0",
     "expect": "^24.9.0",
-    "find-up": "^4.1.0",
     "glob-promise": "^3.4.0",
     "install-self": "dword-design/install-self#fork",
     "make-cli": "^1.0.9",
