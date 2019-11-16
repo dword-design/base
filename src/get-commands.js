@@ -56,7 +56,17 @@ export default ({ prepare: configPrepare, start: configStart } = {}) => {
         if (nodeEnv === 'development') {
           await spawn(resolveBin.sync('install-self'), [])
         }
-        await spawn(resolveBin.sync('nyc'), ['--reporter', 'lcov', '--reporter', 'text', resolveBin.sync('mocha-per-file'), '--require', require.resolve('./pretest')], { stdio: 'inherit' })
+        await spawn(
+          resolveBin.sync('nyc'),
+          [
+            '--reporter', 'lcov',
+            '--reporter', 'text',
+            '--cwd', process.cwd(),
+            resolveBin.sync('mocha-per-file'),
+            '--require', require.resolve('./pretest'),
+          ],
+          { stdio: 'inherit' }
+        )
       },
     },
     register: {
