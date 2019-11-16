@@ -70,21 +70,13 @@ export default ({ prepare: configPrepare, start: configStart } = {}) => {
       },
     },
     register: {
-      handler: async () => {
-        if (nodeEnv === 'development') {
-          await register()
-        }
-      },
+      handler: () => register(),
     },
     start: {
       handler: () => configStart(),
     },
     unregister: {
-      handler: async () => {
-        if (nodeEnv === 'development') {
-          await unregister()
-        }
-      },
+      handler: () => unregister(),
     },
   }
 }

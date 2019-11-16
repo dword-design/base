@@ -3,11 +3,14 @@
 import depcheck from 'depcheck'
 import depcheckBabelParser from './depcheck-babel-parser'
 import depcheckResolveBinDetector from './depcheck-resolve-bin-detector'
-import { resolve } from 'path'
+import { join } from 'path'
 import aliases from '@dword-design/aliases'
 import { keys } from '@functions'
+import safeRequire from 'safe-require'
 
 (async () => {
+
+  const packageName = safeRequire(join(process.cwd(), 'package.json'))?.name
 
   const noIssue = result => {
     return result.dependencies.length === 0
@@ -36,8 +39,8 @@ import { keys } from '@functions'
         depcheck.special.bin,
       ],
       ignoreMatches: [
-        require(resolve('package.json')).name,
-        ...Object.keys(aliases),
+        ...packageName !== undefined ? [packageName] : [],
+        ...aliases |> keys,
       ],
       ignoreDirs: ['dist'],
     }

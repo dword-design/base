@@ -31,16 +31,19 @@
     "depcheck": "dword-design/depcheck#fork",
     "eslint": "^6.6.0",
     "expect": "^24.9.0",
+    "find-up": "^4.1.0",
     "glob-promise": "^3.4.0",
     "install-self": "dword-design/install-self#fork",
     "make-cli": "^1.0.9",
     "mocha-per-file": "^1.1.4",
     "mos": "dword-design/mos#fork/mos",
     "nyc": "^14.1.1",
-    "resolve-bin": "^0.4.0"
+    "resolve-bin": "^0.4.0",
+    "safe-require": "^1.0.3"
   },
   "devDependencies": {
     "@babel/node": "dword-design/babel#fork/babel-node",
+    "@dword-design/base": "file:./.",
     "output-files": "^1.1.7",
     "with-local-tmp-dir": "^2.1.2"
   }

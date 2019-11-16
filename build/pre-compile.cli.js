@@ -6,10 +6,7 @@ import { resolve } from 'path'
 import resolveBin from 'resolve-bin'
 
 (async () => {
-
-  const initCwd = process.env.INIT_CWD || process.cwd()
-
-  if (require(resolve(initCwd, 'package.json')).name === require('../package.json').name) {
+  if (require(resolve(process.env.INIT_CWD || process.cwd(), 'package.json')).name === require('../package.json').name) {
     await remove('dist')
     await spawn(
       resolveBin.sync('@babel/cli', { executable: 'babel' }),
