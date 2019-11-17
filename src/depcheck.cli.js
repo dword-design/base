@@ -39,6 +39,7 @@ import safeRequire from 'safe-require'
         depcheck.special.bin,
       ],
       ignoreMatches: [
+        'pre-commit',
         ...packageName !== undefined ? [packageName] : [],
         ...aliases |> keys,
       ],

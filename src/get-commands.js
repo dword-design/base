@@ -1,4 +1,3 @@
-import { register, unregister } from './pre-commit'
 import { resolve } from 'path'
 import { copyFile, remove } from 'fs'
 import { spawn, fork } from 'child_process'
@@ -72,17 +71,11 @@ export default ({ prepare: configPrepare, start: configStart }) => {
         )
       },
     },
-    register: {
-      handler: () => register(),
-    },
     start: {
       handler: async () => {
         await prepareFiles()
         return configStart()
       },
-    },
-    unregister: {
-      handler: () => unregister(),
     },
   }
 }
