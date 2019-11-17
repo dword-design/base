@@ -748,9 +748,9 @@
     babel-plugin-transform-imports "^2.0.0"
 
 "@dword-design/eslint-config@^0.3.0":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-0.3.1.tgz#768e9564af42e4c236c6a556e6aa4807ec624fd5"
-  integrity sha512-NfP3vkfRySmxl8hkcWtlZADxQ9QweYoyPmqANVI2kFdAU11mfEY4lnbmKcAqO6HB8jD4xoP2C/w2a1adzQjRWA==
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-0.3.2.tgz#45a9a912b8d4411aa3f3e594c851496ec8c51f11"
+  integrity sha512-9k1FW+nMNe8t1DbtkaxRU/5fSxd3cm+AE93efm2XUeYfp7QPS79VTESIFS5mbjz9PnuU4iM2d6ZUmcBqdD6vnA==
   dependencies:
     "@dword-design/aliases" "^0.1.2"
     "@dword-design/babel-config" "^0.2.0"
@@ -758,6 +758,7 @@
     eslint-import-resolver-babel-module "^5.1.0"
     eslint-plugin-import "^2.18.2"
     eslint-plugin-prefer-arrow "^1.1.6"
+    get-package-name "^1.0.0"
     safe-require "^1.0.3"
 
 "@dword-design/functions@^0.7.13":
@@ -2585,6 +2586,11 @@ get-caller-file@^2.0.1:
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"
   integrity sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==
 
+get-package-name@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/get-package-name/-/get-package-name-1.0.0.tgz#ff28a115978bc072decf74346e672a6d76fc2889"
+  integrity sha512-s3FZaOiab+vUi9OZGjnCREYUJIsRh4UXqTZZAegXrG8k4oHq5B8NYhwE67+jxw1IbbsUiNUZI/2mEHxDaXTW+A==
+
 get-stdin@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-4.0.1.tgz#b968c6b0a04384324902e8bf1a5df32579a450fe"
@@ -2643,7 +2649,7 @@ glob@7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.0.0, glob@^7.1.2, glob@^7.1.3, glob@^7.1.5, glob@~7.1.4:
+glob@^7.0.0, glob@^7.1.2, glob@^7.1.3, glob@^7.1.6, glob@~7.1.4:
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
   integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
@@ -3684,14 +3690,13 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mocha-per-file@^1.1.4:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/mocha-per-file/-/mocha-per-file-1.2.0.tgz#d5f4f1ed61ca86a6e4e4842f180b56edbc8f112a"
-  integrity sha512-uEiH3q8TZTyqifY1mS1YkN9ONLoODGeHK4hdlYgrszSELV23dGRR9bwAxoiQVNeEaW+8WSVJiEVMh54JXD7+ig==
+mocha-per-file@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/mocha-per-file/-/mocha-per-file-1.2.2.tgz#0d4dd08187d6a8fe78efe5532e877c6b75f44c6e"
+  integrity sha512-RFdvnRntVI4T98Q09I09kg8U1kWN4uy9LM6MZguBzC8s8y7qESluP4npJYPfbm1D9Cn7pJf4fGL4N/0M8MEhnA==
   dependencies:
     chdir dword-design/node-chdir#fork
-    child-process-promise "^2.2.1"
-    glob "^7.1.5"
+    glob "^7.1.6"
     mocha "^6.2.2"
 
 mocha@^6.2.2:
