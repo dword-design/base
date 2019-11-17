@@ -9,7 +9,7 @@ import { map } from '@functions'
 import nodeEnv from 'node-env'
 import resolveBin from 'resolve-bin'
 
-export default ({ prepare: configPrepare, start: configStart } = {}) => {
+export default ({ prepare: configPrepare, start: configStart }) => {
 
   configPrepare = configPrepare || (async () => {
     await remove('dist')
