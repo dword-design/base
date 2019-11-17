@@ -7,6 +7,7 @@
     "base": "./dist/cli.js"
   },
   "files": [
+    "config-files",
     "dist"
   ],
   "scripts": {
