@@ -17,9 +17,9 @@ export default ({ prepare: configPrepare, start: configStart }) => {
     await spawn(resolveBin.sync('@babel/cli', { executable: 'babel' }), ['--out-dir', 'dist', '--config-file', require.resolve('@dword-design/babel-config'), 'src'], { stdio: 'inherit' })
   })
 
-  configStart = configStart || (() => {
-    const watcher = chokidar.watch('src')
-    watcher.on(
+  configStart = configStart || (() => chokidar
+    .watch('src')
+    .on(
       'all',
       debounce(
         async () => {
@@ -34,8 +34,7 @@ export default ({ prepare: configPrepare, start: configStart }) => {
         200
       )
     )
-    return watcher
-  })
+  )
 
   const prepareFiles = async () => {
     console.log('Copying config files …')
