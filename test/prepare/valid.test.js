@@ -23,8 +23,8 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   const { stdout } = await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'], { capture: ['stdout'] })
   expect(stdout).toEqual(endent`
     Copying config files …
-    Successfully compiled 1 file with Babel.
     updated README.md
+    Successfully compiled 1 file with Babel.
   ` + '\n')
   expect(await glob('*', { dot: true })).toEqual(['.editorconfig', '.gitignore', '.gitpod.yml', '.travis.yml', 'dist', 'package.json', 'README.md', 'src'])
   expect(require(resolve('dist'))).toEqual('hi')

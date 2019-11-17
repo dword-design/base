@@ -37,12 +37,16 @@ export default ({ prepare: configPrepare, start: configStart } = {}) => {
     return watcher
   })
 
-  const prepare = async () => {
+  const prepareFiles = async () => {
     console.log('Copying config files …')
     const configFiles = await glob('*', { cwd: resolve(__dirname, '..', 'config-files') })
     await Promise.all(configFiles |> map(filename => copyFile(resolve(__dirname, '..', 'config-files', filename), `.${filename}`)))
-    await configPrepare()
     await spawn(resolveBin.sync('mos'), [], { stdio: 'inherit' })
+  }
+
+  const prepare = async () => {
+    await prepareFiles()
+    return configPrepare()
   }
 
   return {
@@ -73,7 +77,10 @@ export default ({ prepare: configPrepare, start: configStart } = {}) => {
       handler: () => register(),
     },
     start: {
-      handler: () => configStart(),
+      handler: async () => {
+        await prepareFiles()
+        return configStart()
+      },
     },
     unregister: {
       handler: () => unregister(),

@@ -12,9 +12,6 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       scripts: {
         test: 'base test',
       },
-      devDependencies: {
-        '@dword-design/base': '^0.1.0',
-      },
     }),
     'src/index.js': 'export default 1',
   })
