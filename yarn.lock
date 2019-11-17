@@ -747,7 +747,7 @@
     babel-plugin-module-resolver "^3.2.0"
     babel-plugin-transform-imports "^2.0.0"
 
-"@dword-design/eslint-config@^0.3.0":
+"@dword-design/eslint-config@0.3.2":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-0.3.2.tgz#45a9a912b8d4411aa3f3e594c851496ec8c51f11"
   integrity sha512-9k1FW+nMNe8t1DbtkaxRU/5fSxd3cm+AE93efm2XUeYfp7QPS79VTESIFS5mbjz9PnuU4iM2d6ZUmcBqdD6vnA==
@@ -5945,9 +5945,9 @@ widest-line@^1.0.0:
     string-width "^1.0.1"
 
 with-local-tmp-dir@^2.1.2:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/with-local-tmp-dir/-/with-local-tmp-dir-2.2.0.tgz#5a9f76a45d4fca3d24fd84496738ae7d09759c51"
-  integrity sha512-Tlthym0miaxTXld4GQZ6XglZZATZ/xO5+lFR16iEMEs7GjLyK2ktzBp8R8zO4lWbeUsszHxDn0xxV37UD+DOMg==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/with-local-tmp-dir/-/with-local-tmp-dir-2.2.1.tgz#22a8982779db0db29d1ae3f1fe423df1d2874392"
+  integrity sha512-FU2FGFfXo8Ju9OAt0FisXOtk0Bwp+mXqV5cKekzqLefzKG9L4w2PDMzrAFkyw4YqC+7eVNEa7rXtvA4EXLAMCA==
   dependencies:
     chdir dword-design/node-chdir#fork
     tmp-promise "^2.0.2"
