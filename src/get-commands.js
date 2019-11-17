@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import { copyFile, remove } from 'fs'
+import { copyFile, remove, rename } from 'fs'
 import { spawn, fork } from 'child_process'
 import chokidar from 'chokidar'
 import debounce from 'debounce'
@@ -11,9 +11,15 @@ import resolveBin from 'resolve-bin'
 export default ({ prepare: configPrepare, start: configStart }) => {
 
   configPrepare = configPrepare || (async () => {
-    await remove('dist')
-    await spawn(resolveBin.sync('eslint'), ['--config', require.resolve('@dword-design/eslint-config'), '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
-    await spawn(resolveBin.sync('@babel/cli', { executable: 'babel' }), ['--out-dir', 'dist', '--config-file', require.resolve('@dword-design/babel-config'), 'src'], { stdio: 'inherit' })
+    try {
+      await spawn(resolveBin.sync('eslint'), ['--config', require.resolve('@dword-design/eslint-config'), '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
+      await spawn(resolveBin.sync('@babel/cli', { executable: 'babel' }), ['--out-dir', 'dist-new', '--config-file', require.resolve('@dword-design/babel-config'), 'src'], { stdio: 'inherit' })
+      await remove('dist')
+      await rename('dist-new', 'dist')
+    } catch (error) {
+      await remove('dist')
+      throw error
+    }
   })
 
   configStart = configStart || (() => chokidar
