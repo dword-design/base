@@ -21,7 +21,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     { capture: ['stdout'] }
   )
     .catch(error => {
-      expect(error.stdout).toMatch('Parsing error: Unexpected token')
+      expect(error.stdout).toMatch('Unexpected token, expected ";"')
       if (error.code !== null) {
         throw error
       }

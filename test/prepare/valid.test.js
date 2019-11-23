@@ -26,7 +26,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     updated README.md
     Successfully compiled 1 file with Babel.
   ` + '\n')
-  expect(await glob('*', { dot: true })).toEqual(['.editorconfig', '.gitignore', '.gitpod.yml', '.travis.yml', 'dist', 'package.json', 'README.md', 'src'])
+  expect(await glob('*', { dot: true })).toEqual(['.editorconfig', '.gitignore', '.gitpod.yml', '.renovaterc.json', '.travis.yml', 'dist', 'package.json', 'README.md', 'src'])
   expect(require(resolve('dist'))).toEqual('hi')
   expect(await readFile('README.md', 'utf8')).toEqual(endent`
     <!--@h1([pkg.name])-->
