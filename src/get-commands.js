@@ -1,12 +1,13 @@
 import { resolve } from 'path'
-import { copyFile, remove, rename } from 'fs'
+import { copyFile, remove, rename, outputFile } from 'fs'
 import { spawn, fork } from 'child_process'
 import chokidar from 'chokidar'
 import debounce from 'debounce'
-import { mapValues, values } from '@functions'
+import { map } from '@functions'
 import nodeEnv from 'node-env'
 import resolveBin from 'resolve-bin'
-import configFileMapping from './config-file-mapping'
+import projectzConfig from './projectz.config'
+import glob from 'glob-promise'
 
 export default ({ prepare: configPrepare, start: configStart }) => {
 
@@ -43,13 +44,20 @@ export default ({ prepare: configPrepare, start: configStart }) => {
 
   const prepareFiles = async () => {
     console.log('Copying config files …')
-    await Promise.all(configFileMapping |> mapValues((dest, src) => copyFile(resolve(__dirname, '..', 'config-files', src), dest)) |> values)
+    await glob('*', { cwd: resolve(__dirname, '..', 'config-files') })
+      .then(filenames => Promise.all(
+        filenames |> map(filename => copyFile(resolve(__dirname, '..', 'config-files', filename), `.${filename}`))
+      ))
+
     console.log('Updating README.md …')
     try {
+      await outputFile('projectz.json', JSON.stringify(projectzConfig, undefined, 2))
       await spawn(resolveBin.sync('projectz'), ['compile'], { capture: ['stdout'] })
     } catch (error) {
       console.log(error.stdout)
       throw error
+    } finally {
+      await remove('projectz.json')
     }
   }
 

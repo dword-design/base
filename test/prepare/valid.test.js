@@ -14,12 +14,15 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     'src/index.js': 'export default \'hi\'',
     'package.json': JSON.stringify({
       name: 'foo',
+      description: 'This is a test package.',
       repository: 'bar/foo',
     }),
     'README.md': endent`
       <!-- TITLE -->
 
       <!-- BADGES -->
+
+      <!-- DESCRIPTION -->
     ` + '\n',
   })
   const { stdout } = await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'], { capture: ['stdout'] })
@@ -28,7 +31,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     Updating README.md …
     Successfully compiled 1 file with Babel.
   ` + '\n')
-  expect(await glob('*', { dot: true })).toEqual(['.editorconfig', '.gitignore', '.gitpod.yml', '.renovaterc.json', '.travis.yml', 'dist', 'package.json', 'projectz.json', 'README.md', 'src'])
+  expect(await glob('*', { dot: true })).toEqual(['.editorconfig', '.gitignore', '.gitpod.yml', '.renovaterc.json', '.travis.yml', 'dist', 'package.json', 'README.md', 'src'])
   expect(require(resolve('dist'))).toEqual('hi')
   expect(await readFile('README.md', 'utf8')).toEqual(endent`
     <!-- TITLE/ -->
@@ -46,6 +49,13 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     <span class="badge-daviddm"><a href="https://david-dm.org/bar/foo" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/bar/foo.svg" alt="Dependency Status" /></a></span>
 
     <!-- /BADGES -->
+
+
+    <!-- DESCRIPTION/ -->
+
+    This is a test package.
+
+    <!-- /DESCRIPTION -->
   ` + '\n')
   expect(await exists('dist/foo.js')).toBeFalsy()
 })
