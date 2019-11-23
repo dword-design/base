@@ -3,10 +3,10 @@ import { copyFile, remove, rename } from 'fs'
 import { spawn, fork } from 'child_process'
 import chokidar from 'chokidar'
 import debounce from 'debounce'
-import glob from 'glob-promise'
-import { map } from '@functions'
+import { mapValues, values } from '@functions'
 import nodeEnv from 'node-env'
 import resolveBin from 'resolve-bin'
+import configFileMapping from './config-file-mapping'
 
 export default ({ prepare: configPrepare, start: configStart }) => {
 
@@ -43,9 +43,14 @@ export default ({ prepare: configPrepare, start: configStart }) => {
 
   const prepareFiles = async () => {
     console.log('Copying config files …')
-    const configFiles = await glob('*', { cwd: resolve(__dirname, '..', 'config-files') })
-    await Promise.all(configFiles |> map(filename => copyFile(resolve(__dirname, '..', 'config-files', filename), `.${filename}`)))
-    await spawn(resolveBin.sync('mos'), [], { stdio: 'inherit' })
+    await Promise.all(configFileMapping |> mapValues((dest, src) => copyFile(resolve(__dirname, '..', 'config-files', src), dest)) |> values)
+    console.log('Updating README.md …')
+    try {
+      await spawn(resolveBin.sync('projectz'), ['compile'], { capture: ['stdout'] })
+    } catch (error) {
+      console.log(error.stdout)
+      throw error
+    }
   }
 
   const prepare = async () => {

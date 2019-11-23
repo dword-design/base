@@ -17,6 +17,7 @@
   },
   "keywords": [],
   "author": "Sebastian Landwehr <info@dword-design.de>",
+  "repository": "dword-design/base",
   "license": "MIT",
   "dependencies": {
     "@babel/cli": "^7.6.4",
@@ -34,9 +35,9 @@
     "install-self": "dword-design/install-self#fork",
     "make-cli": "^1.0.9",
     "mocha-per-file": "^1.2.2",
-    "mos": "dword-design/mos#fork/mos",
     "nyc": "^14.1.1",
     "pre-commit": "^1.2.2",
+    "projectz": "^1.12.0",
     "resolve-bin": "^0.4.0",
     "safe-require": "^1.0.3"
   },
@@ -47,5 +48,13 @@
     "rimraf": "^3.0.0",
     "wait-for-change": "^1.1.1",
     "with-local-tmp-dir": "^2.1.2"
+  },
+  "maintainers": [],
+  "contributors": [
+    "dword-design (http://www.dword-design.de)",
+    "Renovate Bot (http://renovatebot.com)"
+  ],
+  "bugs": {
+    "url": "https://github.com/dword-design/base/issues"
   }
 }
