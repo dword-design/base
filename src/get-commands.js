@@ -1,13 +1,14 @@
-import { resolve } from 'path'
+import { resolve, join } from 'path'
 import { copyFile, remove, rename, outputFile } from 'fs'
 import { spawn, fork } from 'child_process'
 import chokidar from 'chokidar'
 import debounce from 'debounce'
-import { map } from '@functions'
+import { mapValues, values } from '@functions'
 import nodeEnv from 'node-env'
 import resolveBin from 'resolve-bin'
 import projectzConfig from './projectz.config'
-import glob from 'glob-promise'
+import configFileMapping from './config-file-mapping.config'
+import safeRequire from 'safe-require'
 
 export default ({ prepare: configPrepare, start: configStart }) => {
 
@@ -44,11 +45,10 @@ export default ({ prepare: configPrepare, start: configStart }) => {
 
   const prepareFiles = async () => {
     console.log('Copying config files …')
-    await glob('*', { cwd: resolve(__dirname, '..', 'config-files') })
-      .then(filenames => Promise.all(
-        filenames |> map(filename => copyFile(resolve(__dirname, '..', 'config-files', filename), `.${filename}`))
-      ))
-
+    await Promise.all(configFileMapping |> mapValues((dest, src) => copyFile(resolve(__dirname, '..', 'config-files', src), dest)) |> values)
+    if ((safeRequire(join(process.cwd(), 'package.json'))?.license ?? '') !== '') {
+      await outputFile('LICENSE.md', '<!-- LICENSEFILE -->\n')
+    }
     console.log('Updating README.md …')
     try {
       await outputFile('projectz.json', JSON.stringify(projectzConfig, undefined, 2))

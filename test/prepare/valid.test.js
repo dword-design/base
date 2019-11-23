@@ -16,6 +16,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       name: 'foo',
       description: 'This is a test package.',
       repository: 'bar/foo',
+      license: 'MIT',
     }),
     'README.md': endent`
       <!-- TITLE -->
@@ -23,6 +24,10 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       <!-- BADGES -->
 
       <!-- DESCRIPTION -->
+
+      <!-- INSTALL -->
+
+      <!-- LICENSE -->
     ` + '\n',
   })
   const { stdout } = await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'], { capture: ['stdout'] })
@@ -31,7 +36,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     Updating README.md …
     Successfully compiled 1 file with Babel.
   ` + '\n')
-  expect(await glob('*', { dot: true })).toEqual(['.editorconfig', '.gitignore', '.gitpod.yml', '.renovaterc.json', '.travis.yml', 'dist', 'package.json', 'README.md', 'src'])
+  expect(await glob('*', { dot: true })).toEqual(['.editorconfig', '.gitignore', '.gitpod.yml', '.renovaterc.json', '.travis.yml', 'dist', 'LICENSE.md', 'package.json', 'README.md', 'src'])
   expect(require(resolve('dist'))).toEqual('hi')
   expect(await readFile('README.md', 'utf8')).toEqual(endent`
     <!-- TITLE/ -->
@@ -56,8 +61,36 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     This is a test package.
 
     <!-- /DESCRIPTION -->
+
+
+    <!-- INSTALL/ -->
+
+    <h2>Install</h2>
+
+    <a href="https://npmjs.com" title="npm is a package manager for javascript"><h3>npm</h3></a>
+    <ul>
+    <li>Install: <code>npm install --save foo</code></li>
+    </ul>
+
+    <!-- /INSTALL -->
+
+
+    <!-- LICENSE/ -->
+
+    <h2>License</h2>
+
+    Unless stated otherwise all works are:
+
+
+
+    and licensed under:
+
+    <ul><li><a href="http://spdx.org/licenses/MIT.html">MIT License</a></li></ul>
+
+    <!-- /LICENSE -->
   ` + '\n')
+  expect(await readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
   expect(await exists('dist/foo.js')).toBeFalsy()
 })
 
-export const timeout = 8000
+export const timeout = 12000
