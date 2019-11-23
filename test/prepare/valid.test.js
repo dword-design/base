@@ -50,5 +50,4 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   expect(await exists('dist/foo.js')).toBeFalsy()
 })
 
-export const only = true
 export const timeout = 8000
