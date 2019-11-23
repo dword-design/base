@@ -41,11 +41,11 @@
     "safe-require": "^1.0.3"
   },
   "devDependencies": {
-    "delay": "^4.3.0",
-    "import-fresh": "^3.2.1",
-    "output-files": "^1.1.7",
-    "rimraf": "^3.0.0",
-    "wait-for-change": "^1.1.1",
-    "with-local-tmp-dir": "^2.1.2"
+    "delay": "4.3.0",
+    "import-fresh": "3.2.1",
+    "output-files": "1.1.7",
+    "rimraf": "3.0.0",
+    "wait-for-change": "1.1.1",
+    "with-local-tmp-dir": "2.2.1"
   }
 }
