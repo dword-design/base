@@ -6,12 +6,11 @@ import expect from 'expect'
 import glob from 'glob-promise'
 import { resolve } from 'path'
 import { endent } from '@functions'
-import { readFile, exists } from 'fs'
+import { readFile } from 'fs'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     'dist/foo.js': '',
-    'src/index.js': 'export default \'hi\'',
     'package.json': JSON.stringify({
       name: 'foo',
       description: 'This is a test package.',
@@ -29,6 +28,10 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
 
       <!-- LICENSE -->
     ` + '\n',
+    src: {
+      'index.js': 'export default \'hi\'',
+      'test.txt': 'foo',
+    },
   })
   const { stdout } = await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'], { capture: ['stdout'] })
   expect(stdout).toEqual(endent`
@@ -37,6 +40,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     Successfully compiled 1 file with Babel.
   ` + '\n')
   expect(await glob('*', { dot: true })).toEqual(['.editorconfig', '.gitignore', '.gitpod.yml', '.renovaterc.json', '.travis.yml', 'dist', 'LICENSE.md', 'package.json', 'README.md', 'src'])
+  expect(await glob('*', { cwd: 'dist' })).toEqual(['index.js', 'test.txt'])
   expect(require(resolve('dist'))).toEqual('hi')
   expect(await readFile('README.md', 'utf8')).toEqual(endent`
     <!-- TITLE/ -->
@@ -91,7 +95,6 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     <!-- /LICENSE -->
   ` + '\n')
   expect(await readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
-  expect(await exists('dist/foo.js')).toBeFalsy()
 })
 
 export const timeout = 12000
