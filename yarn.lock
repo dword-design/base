@@ -1052,13 +1052,13 @@ atob@^2.1.1:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 babel-eslint@^11.0.0-beta.0:
-  version "11.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-11.0.0-beta.0.tgz#3645b9b84d848e070e0afadc95d0c8ff96f4c63a"
-  integrity sha512-GJTX0XL22be/A5sFp1/4qQIOnZJ/KJ8YrA0aW07SZoDXTMLB1KQT0rYl4a9Y5DfJGPuVDVf0bMYyvLLXmXPpHw==
+  version "11.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-11.0.0-beta.1.tgz#1762faffeaee26877761b9a19af43cef679999a4"
+  integrity sha512-4xDIJZUn6RDNfSfKmrywNT+e37srxxPP+GdciWakL5U36fde3/K7Y/X8XyEquXGQz02tPvzRuF6SNrR61uZ+fA==
   dependencies:
     eslint-scope "3.7.1"
     eslint-visitor-keys "^1.0.0"
-    semver "^5.6.0"
+    semver "^6.3.0"
 
 babel-plugin-add-module-exports@^1.0.2:
   version "1.0.2"
@@ -1714,9 +1714,9 @@ editions@^2.1.0, editions@^2.2.0:
     semver "^6.3.0"
 
 electron-to-chromium@^1.3.306:
-  version "1.3.311"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.311.tgz#73baa361e2b1f44b7b4f1a443aaa1372f8074ebb"
-  integrity sha512-7GH6RKCzziLzJ9ejmbiBEdzHZsc6C3eRpav14dmRfTWMpNgMqpP1ukw/FU/Le2fR+ep642naq7a23xNdmh2s+A==
+  version "1.3.312"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.312.tgz#6ef8700096e4a726b9cd7285523561629fa70e12"
+  integrity sha512-/Nk6Hvwt+RfS9X3oA4IXpWqpcnS7cdWsTMP4AmrP8hPpxtZbHemvTEYzjAKghk28aS9zIV8NwGHNt8H+6OmJug==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -3001,9 +3001,9 @@ lru-cache@^4.0.1:
     yallist "^2.1.2"
 
 make-cli@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-1.0.9.tgz#2889c6a444ffd31d25355f299198b43c9e862a92"
-  integrity sha512-mjkMAIJLojCCaRun1PTGkZfNLovWq1OF0daF707fsypryN4hwSmdTQbHViXOL6UjRD+qA9Z1hEN712kWcwffOg==
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-1.0.10.tgz#5710ac883964527b614177deac5f6f5b982b58be"
+  integrity sha512-BLHz6vMiXx/eQIZKC+2QbwmEkb2KWoq5rcy0t0ZgjAaafyiK651Qa7P24y7EBoh55kFSXBSZAiNEl/qrtfhgug==
   dependencies:
     commander "^3.0.2"
 
