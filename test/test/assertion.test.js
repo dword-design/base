@@ -4,12 +4,16 @@ import resolveBin from 'resolve-bin'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { endent } from '@functions'
 import expect from 'expect'
+import projectConfig from '../project-config'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
+    ...projectConfig,
     'src/index.js': 'export default 1',
     'package.json': JSON.stringify({
       name: 'foo',
+      repository: 'bar/foo',
+      license: 'MIT',
       devDependencies: {
         expect: '^0.1.0',
       },
@@ -32,4 +36,5 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   }
   expect(stdout).toMatch('Error: expect(received).toEqual(expected)')
 })
+
 export const timeout = 20000

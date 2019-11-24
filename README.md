@@ -14,3 +14,45 @@
 <span class="badge-shields"><a href="https://img.shields.io/badge/renovate-enabled-brightgreen.svg"><img src="https://img.shields.io/badge/renovate-enabled-brightgreen.svg" /></a></span>
 
 <!-- /BADGES -->
+
+
+<!-- DESCRIPTION/ -->
+
+
+
+<!-- /DESCRIPTION -->
+
+
+<!-- INSTALL/ -->
+
+<h2>Install</h2>
+
+<a href="https://npmjs.com" title="npm is a package manager for javascript"><h3>npm</h3></a>
+<h4>Install Globally</h4>
+<ul>
+<li>Install: <code>npm install --global @dword-design/base</code></li>
+<li>Executable: <code>base</code></li>
+</ul>
+<h4>Install Locally</h4>
+<ul>
+<li>Install: <code>npm install --save @dword-design/base</code></li>
+<li>Executable: <code>npx base</code></li>
+<li>Require: <code>require('@dword-design/base')</code></li>
+</ul>
+
+<!-- /INSTALL -->
+
+
+<!-- LICENSE/ -->
+
+<h2>License</h2>
+
+Unless stated otherwise all works are:
+
+<ul><li>Copyright &copy; Sebastian Landwehr</li></ul>
+
+and licensed under:
+
+<ul><li><a href="http://spdx.org/licenses/MIT.html">MIT License</a></li></ul>
+
+<!-- /LICENSE -->

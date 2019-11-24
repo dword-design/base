@@ -7,9 +7,11 @@ import glob from 'glob-promise'
 import { resolve } from 'path'
 import { endent } from '@functions'
 import { readFile } from 'fs'
+import projectConfig from '../project-config'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
+    ...projectConfig,
     'dist/foo.js': '',
     'package.json': JSON.stringify({
       name: 'foo',
@@ -28,10 +30,8 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
 
       <!-- LICENSE -->
     ` + '\n',
-    src: {
-      'index.js': 'export default \'hi\'',
-      'test.txt': 'foo',
-    },
+    'src/index.js': 'export default \'hi\'',
+    'src/test.txt': 'foo',
   })
   const { stdout } = await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'], { capture: ['stdout'] })
   expect(stdout).toEqual(endent`

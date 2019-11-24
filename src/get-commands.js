@@ -1,4 +1,4 @@
-import { resolve, join } from 'path'
+import P from 'path'
 import { copyFile, remove, rename, outputFile } from 'fs'
 import { spawn, fork } from 'child_process'
 import chokidar from 'chokidar'
@@ -7,6 +7,9 @@ import nodeEnv from 'node-env'
 import resolveBin from 'resolve-bin'
 import projectzConfig from './projectz.config'
 import safeRequire from 'safe-require'
+import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
+import { readFileSync as safeReadFileSync } from 'safe-readfile'
+import { filter, join } from '@functions'
 
 export default ({ prepare: configPrepare, start: configStart }) => {
 
@@ -43,15 +46,21 @@ export default ({ prepare: configPrepare, start: configStart }) => {
 
   const prepareFiles = async () => {
     console.log('Copying config files …')
-    await copyFile(resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
-    await copyFile(resolve(__dirname, 'config-files', 'gitignore'), '.gitignore')
-    await copyFile(resolve(__dirname, 'config-files', 'gitpod.yml'), '.gitpod.yml')
-    if ((safeRequire(join(process.cwd(), 'package.json'))?.license ?? '') !== '') {
-      await copyFile(resolve(__dirname, 'config-files', 'LICENSE.md'), 'LICENSE.md')
+    await copyFile(P.resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
+    await copyFile(P.resolve(__dirname, 'config-files', 'gitignore'), '.gitignore')
+    await copyFile(P.resolve(__dirname, 'config-files', 'gitpod.yml'), '.gitpod.yml')
+    if ((safeRequire(P.join(process.cwd(), 'package.json'))?.license ?? '') !== '') {
+      await copyFile(P.resolve(__dirname, 'config-files', 'LICENSE.md'), 'LICENSE.md')
     }
-    await copyFile(resolve(__dirname, 'config-files', 'renovaterc.json'), '.renovaterc.json')
-    await copyFile(resolve(__dirname, 'config-files', 'travis.yml'), '.travis.yml')
+    await copyFile(P.resolve(__dirname, 'config-files', 'renovaterc.json'), '.renovaterc.json')
+    await copyFile(P.resolve(__dirname, 'config-files', 'travis.yml'), '.travis.yml')
     console.log('Updating README.md …')
+    const readmeContent = safeReadFileSync('README.md') ?? ''
+    const missingReadmeSections = ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
+      |> filter(sectionName => !getProjectzReadmeSectionRegex(sectionName).test(readmeContent))
+    if (missingReadmeSections.length > 0) {
+      throw new Error(`The README.md file is missing or misses the following sections: ${missingReadmeSections |> join(', ')}`)
+    }
     try {
       await outputFile('projectz.json', JSON.stringify(projectzConfig, undefined, 2))
       await spawn(resolveBin.sync('projectz'), ['compile'], { capture: ['stdout'] })

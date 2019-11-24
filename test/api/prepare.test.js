@@ -4,9 +4,11 @@ import { endent } from '@functions'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
 import { resolve } from 'path'
+import projectConfig from '../project-config'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
+    ...projectConfig,
     'cli.js': endent`
       #!/usr/bin/env node
 
@@ -20,4 +22,5 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   await spawn('node', ['cli.js', 'prepare'])
   expect(require(resolve('dist'))).toEqual('foo')
 })
+
 export const timeout = 20000

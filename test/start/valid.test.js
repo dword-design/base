@@ -7,13 +7,12 @@ import { resolve } from 'path'
 import { writeFile } from 'fs'
 import importFresh from 'import-fresh'
 import waitForChange from 'wait-for-change'
+import projectConfig from '../project-config'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
+    ...projectConfig,
     'src/index.js': 'export default 1',
-    'package.json': JSON.stringify({
-      name: 'foo',
-    }),
   })
   const childProcess = spawn(
     resolveBin.sync('@dword-design/base', { executable: 'base' }),
@@ -35,4 +34,5 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     childProcess.kill()
   }
 })
+
 export const timeout = 20000

@@ -13,9 +13,7 @@ export const base = (options = {}) => makeCli({
       handler: async (...args) => Promise.resolve()
         .then(() => command.handler(...args))
         .catch(error => {
-          if (error.name !== 'ChildProcessError') {
-            throw error
-          }
+          console.error(error.message)
           process.exit(1)
         }),
     }))

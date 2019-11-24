@@ -7,9 +7,11 @@ import waitForChange from 'wait-for-change'
 import importFresh from 'import-fresh'
 import { resolve, join } from 'path'
 import { writeFile } from 'fs'
+import projectConfig from '../project-config'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
+    ...projectConfig,
     'src/index.js': 'export default 1',
     'cli.js': endent`
       #!/usr/bin/env node
@@ -45,4 +47,5 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     childProcess.kill()
   }
 })
+
 export const timeout = 20000
