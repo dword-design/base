@@ -3,11 +3,9 @@ import { copyFile, remove, rename, outputFile } from 'fs'
 import { spawn, fork } from 'child_process'
 import chokidar from 'chokidar'
 import debounce from 'debounce'
-import { mapValues, values } from '@functions'
 import nodeEnv from 'node-env'
 import resolveBin from 'resolve-bin'
 import projectzConfig from './projectz.config'
-import configFileMapping from './config-file-mapping.config'
 import safeRequire from 'safe-require'
 
 export default ({ prepare: configPrepare, start: configStart }) => {
@@ -45,10 +43,14 @@ export default ({ prepare: configPrepare, start: configStart }) => {
 
   const prepareFiles = async () => {
     console.log('Copying config files …')
-    await Promise.all(configFileMapping |> mapValues((dest, src) => copyFile(resolve(__dirname, '..', 'config-files', src), dest)) |> values)
+    await copyFile(resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
+    await copyFile(resolve(__dirname, 'config-files', 'gitignore'), '.gitignore')
+    await copyFile(resolve(__dirname, 'config-files', 'gitpod.yml'), '.gitpod.yml')
     if ((safeRequire(join(process.cwd(), 'package.json'))?.license ?? '') !== '') {
-      await outputFile('LICENSE.md', '<!-- LICENSEFILE -->\n')
+      await copyFile(resolve(__dirname, 'config-files', 'LICENSE.md'), 'LICENSE.md')
     }
+    await copyFile(resolve(__dirname, 'config-files', 'renovaterc.json'), '.renovaterc.json')
+    await copyFile(resolve(__dirname, 'config-files', 'travis.yml'), '.travis.yml')
     console.log('Updating README.md …')
     try {
       await outputFile('projectz.json', JSON.stringify(projectzConfig, undefined, 2))

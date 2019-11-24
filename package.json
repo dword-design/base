@@ -7,11 +7,10 @@
     "base": "./dist/cli.js"
   },
   "files": [
-    "config-files",
     "dist"
   ],
   "scripts": {
-    "precompile": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config src",
+    "precompile": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src",
     "prepare": "npm run precompile && node dist/cli.js prepare",
     "test": "npm run precompile && node dist/cli.js test"
   },
