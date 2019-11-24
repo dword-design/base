@@ -29,6 +29,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       export default () => expect(foo).toEqual(1)
     `,
   })
+  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'])
   const { stdout } = await spawn(
     resolveBin.sync('@dword-design/base', { executable: 'base' }),
     ['test'],
@@ -37,4 +38,4 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   expect(stdout).toMatch(/^Copying config files …\nSuccessfully compiled 1 file with Babel.\nNo depcheck issue\n\n\n  ✓ foo\n\n  1 passing.*?\n\n----------|----------|----------|----------|----------|-------------------|\nFile      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |\n----------|----------|----------|----------|----------|-------------------|\nAll files |        0 |        0 |        0 |        0 |                   |\n----------|----------|----------|----------|----------|-------------------|\n$/)
 })
 
-export const timeout = 20000
+export const timeout = 25000

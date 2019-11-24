@@ -2,9 +2,9 @@ import outputFiles from 'output-files'
 import { spawn } from 'child_process'
 import resolveBin from 'resolve-bin'
 import withLocalTmpDir from 'with-local-tmp-dir'
-import { endent } from '@functions'
 import expect from 'expect'
 import projectConfig from '../project-config'
+import { outputFile } from 'fs'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
@@ -14,29 +14,21 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       name: 'foo',
       repository: 'bar/foo',
       license: 'MIT',
-      author: 'foo',
-      devDependencies: {
-        expect: '^0.1.0',
-      },
     }),
-    'test/foo.test.js': endent`
-      import expect from 'expect'
-
-      export default () => expect(1).toEqual(2)
-    `,
   })
   await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'])
-  let stdout
+  await outputFile('LICENSE.md', 'foo')
+  let stderr
   try {
     await spawn(
       resolveBin.sync('@dword-design/base', { executable: 'base' }),
       ['test'],
-      { capture: ['stdout'] }
+      { capture: ['stderr'] }
     )
   } catch (error) {
-    stdout = error.stdout
+    stderr = error.stderr
   }
-  expect(stdout).toMatch('Error: expect(received).toEqual(expected)')
+  expect(stderr).toEqual('LICENSE.md file must be generated. Maybe it has been accidentally modified.\n')
 })
 
 export const timeout = 20000

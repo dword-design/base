@@ -1,5 +1,5 @@
 import P from 'path'
-import { copyFile, remove, rename, outputFile } from 'fs'
+import { copyFile, remove, rename, outputFile, readFile, exists } from 'fs'
 import { spawn, fork } from 'child_process'
 import chokidar from 'chokidar'
 import debounce from 'debounce'
@@ -55,7 +55,7 @@ export default ({ prepare: configPrepare, start: configStart }) => {
     await copyFile(P.resolve(__dirname, 'config-files', 'renovaterc.json'), '.renovaterc.json')
     await copyFile(P.resolve(__dirname, 'config-files', 'travis.yml'), '.travis.yml')
     console.log('Updating README.md …')
-    const readmeContent = safeReadFileSync('README.md') ?? ''
+    const readmeContent = safeReadFileSync('README.md', 'utf8') ?? ''
     const missingReadmeSections = ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
       |> filter(sectionName => !getProjectzReadmeSectionRegex(sectionName).test(readmeContent))
     if (missingReadmeSections.length > 0) {
@@ -83,7 +83,24 @@ export default ({ prepare: configPrepare, start: configStart }) => {
     },
     test: {
       handler: async () => {
-        await prepare()
+        if (safeReadFileSync('.gitignore', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'gitignore'), 'utf8')) {
+          throw new Error('.gitignore file must be generated. Maybe it has been accidentally modified.')
+        }
+        if (safeReadFileSync('.gitpod.yml', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'gitpod.yml'), 'utf8')) {
+          throw new Error('.gitpod.yml file must be generated. Maybe it has been accidentally modified.')
+        }
+        if (safeReadFileSync('.renovaterc.json', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'renovaterc.json'), 'utf8')) {
+          throw new Error('.renovaterc.json file must be generated. Maybe it has been accidentally modified.')
+        }
+        if (safeReadFileSync('.travis.yml', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'travis.yml'), 'utf8')) {
+          throw new Error('.travis.yml file must be generated. Maybe it has been accidentally modified.')
+        }
+        if (!await exists('LICENSE.md')
+          || !getProjectzReadmeSectionRegex('LICENSEFILE').test(await readFile('LICENSE.md', 'utf8'))
+        ) {
+          throw new Error('LICENSE.md file must be generated. Maybe it has been accidentally modified.')
+        }
+        await configPrepare()
         await fork(require.resolve('./depcheck.cli'), [])
         if (nodeEnv === 'development') {
           await spawn(resolveBin.sync('install-self'), [])

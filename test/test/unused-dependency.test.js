@@ -13,6 +13,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     'package.json': JSON.stringify({
       name: 'foo',
       repository: 'bar/foo',
+      author: 'foo',
       license: 'MIT',
       main: 'dist/index.js',
       files: [
@@ -23,6 +24,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       },
     }),
   })
+  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'])
   let stderr
   try {
     await spawn(
@@ -39,4 +41,4 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   ` + '\n')
 })
 
-export const timeout = 20000
+export const timeout = 25000
