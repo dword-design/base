@@ -1,5 +1,5 @@
 language: node_js
 node_js:
-  - node
+  - 11
 
 after_script: "yarn add coveralls && cat ./coverage/lcov.info | coveralls"
