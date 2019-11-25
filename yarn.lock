@@ -2255,9 +2255,9 @@ get-package-name@^1.0.0:
   integrity sha512-s3FZaOiab+vUi9OZGjnCREYUJIsRh4UXqTZZAegXrG8k4oHq5B8NYhwE67+jxw1IbbsUiNUZI/2mEHxDaXTW+A==
 
 get-projectz-readme-section-regex@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/get-projectz-readme-section-regex/-/get-projectz-readme-section-regex-1.0.0.tgz#095038ee23bf936ab03df273cdb5cb88f0a1e365"
-  integrity sha512-cveAbD0S1oF02ke2B4Vm46f9uI0Z0ijpeHbMXx0Xc/jl6fMqZ52J3lcPLzoAy2bxWiRInLeXPKAoBRkbHiabTA==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/get-projectz-readme-section-regex/-/get-projectz-readme-section-regex-1.0.1.tgz#4cd987bdd9fc9c82e5d61af16ef6b9c4e2c0e930"
+  integrity sha512-hn4wYSk+5HcIVhNXN3wlrikmPq0TijhrYy0EZ7ESU9+KQJSe+iN2utPlGKprCWOBJjxOaFWxpj/COtNgplCpvw==
 
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
