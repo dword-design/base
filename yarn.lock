@@ -749,9 +749,9 @@
     babel-plugin-transform-imports "^2.0.0"
 
 "@dword-design/eslint-config@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-1.0.0.tgz#2d79d94c6d0e644a44c8126c7ee1a8c43a21bc06"
-  integrity sha512-Z+dm5R44U/k9ueh/HNcQK17uYaynZJClBSyPJDvFChGoCSMEUl1BsdPjy00pDcMaF92+G2KaiS2C/C04o4YQrg==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-1.0.1.tgz#1e489843ccfca8dfaa266323dd3a1aba4bb7c59e"
+  integrity sha512-D6P5a1vTmv8QR9sJrRaf/sqQuhB3k/bYgXMdcZ0svGXyQ3ZKbUVGarptizg7cBs1X0xCDWdn+g8dpspt0NIchQ==
   dependencies:
     "@dword-design/aliases" "^1.0.0"
     "@dword-design/babel-config" "^1.0.0"
