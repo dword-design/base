@@ -7,11 +7,11 @@ import { resolve } from 'path'
 import { writeFile } from 'fs'
 import waitForChange from 'wait-for-change'
 import delay from 'delay'
-import projectConfig from '../project-config'
+import { minimalProjectConfig } from '@dword-design/base'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...projectConfig,
+    ...minimalProjectConfig,
     'src/index.js': 'export default 1',
   })
   const childProcess = spawn(

@@ -7,11 +7,11 @@ import glob from 'glob-promise'
 import { resolve } from 'path'
 import { endent } from '@functions'
 import { readFile } from 'fs'
-import projectConfig from '../project-config'
+import { minimalProjectConfig } from '@dword-design/base'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...projectConfig,
+    ...minimalProjectConfig,
     'dist/foo.js': '',
     'package.json': JSON.stringify({
       name: 'foo',

@@ -4,11 +4,11 @@ import resolveBin from 'resolve-bin'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
 import { endent } from '@functions'
-import projectConfig from '../project-config'
+import { minimalProjectConfig } from '@dword-design/base'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...projectConfig,
+    ...minimalProjectConfig,
     'src/index.js': 'export default 1',
     'package.json': JSON.stringify({
       name: 'foo',

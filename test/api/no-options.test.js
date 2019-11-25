@@ -7,16 +7,16 @@ import waitForChange from 'wait-for-change'
 import importFresh from 'import-fresh'
 import { resolve, join } from 'path'
 import { writeFile } from 'fs'
-import projectConfig from '../project-config'
+import { minimalProjectConfig } from '@dword-design/base'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     'project-prepare': {
-      ...projectConfig,
+      ...minimalProjectConfig,
       'src/index.js': 'export default 1',
     },
     'project-start': {
-      ...projectConfig,
+      ...minimalProjectConfig,
       'src/index.js': 'export default 1',
     },
     'cli.js': endent`
