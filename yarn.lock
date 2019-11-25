@@ -1269,6 +1269,7 @@ chardet@^0.7.0:
 
 chdir@dword-design/node-chdir#fork:
   version "0.0.0"
+  uid "55004473579e2b8d293ced5410af5948793971b6"
   resolved "https://codeload.github.com/dword-design/node-chdir/tar.gz/55004473579e2b8d293ced5410af5948793971b6"
 
 child-process-promise@^2.2.1:
@@ -3111,9 +3112,9 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1:
     minimist "0.0.8"
 
 mocha-per-file@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/mocha-per-file/-/mocha-per-file-1.2.2.tgz#0d4dd08187d6a8fe78efe5532e877c6b75f44c6e"
-  integrity sha512-RFdvnRntVI4T98Q09I09kg8U1kWN4uy9LM6MZguBzC8s8y7qESluP4npJYPfbm1D9Cn7pJf4fGL4N/0M8MEhnA==
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/mocha-per-file/-/mocha-per-file-1.2.4.tgz#d39012e8d3e66bdf382a5223fa50fd6f4ce9c893"
+  integrity sha512-j4qK/Ls4smrQIBHKMNnAlemvYwyTvxXy3XIpt18Bhj1gFnblkZAt4KReHLzvOYfDiboOni3joiizCz79tuSyyQ==
   dependencies:
     chdir dword-design/node-chdir#fork
     glob "^7.1.6"
