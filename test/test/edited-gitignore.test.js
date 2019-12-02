@@ -10,11 +10,6 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     ...minimalProjectConfig,
     'src/index.js': 'export default 1',
-    'package.json': JSON.stringify({
-      name: 'foo',
-      repository: 'bar/foo',
-      license: 'MIT',
-    }),
   })
   await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'])
   await outputFile('.gitignore', 'foo')

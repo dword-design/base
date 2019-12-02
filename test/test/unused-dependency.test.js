@@ -3,26 +3,20 @@ import { spawn } from 'child_process'
 import resolveBin from 'resolve-bin'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
-import { endent } from '@functions'
-import { minimalProjectConfig } from '@dword-design/base'
+import { endent, omit } from '@functions'
+import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     ...minimalProjectConfig,
     'src/index.js': 'export default 1',
     'package.json': JSON.stringify({
-      name: 'foo',
-      repository: 'bar/foo',
-      author: 'foo',
-      license: 'MIT',
-      main: 'dist/index.js',
-      files: [
-        'dist',
-      ],
+      ...minimalPackageConfig |> omit('maintainers'),
       dependencies: {
         'change-case': '^0.1.0',
       },
-    }),
+      maintainers: minimalPackageConfig.maintainers,
+    }, undefined, 2) + '\n',
   })
   await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'])
   let stderr

@@ -13,12 +13,6 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     ...minimalProjectConfig,
     'dist/foo.js': '',
-    'package.json': JSON.stringify({
-      name: 'foo',
-      description: 'This is a test package.',
-      repository: 'bar/foo',
-      license: 'MIT',
-    }),
     'README.md': endent`
       <!-- TITLE -->
 
@@ -75,6 +69,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     <a href="https://npmjs.com" title="npm is a package manager for javascript"><h3>npm</h3></a>
     <ul>
     <li>Install: <code>npm install --save foo</code></li>
+    <li>Require: <code>require('foo')</code></li>
     </ul>
 
     <!-- /INSTALL -->
@@ -86,7 +81,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
 
     Unless stated otherwise all works are:
 
-
+    <ul><li>Copyright &copy; bar</li></ul>
 
     and licensed under:
 

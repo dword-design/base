@@ -1,13 +1,9 @@
 import { endent } from '@functions'
+import minimalPackageConfig from './minimal-package.config'
 
 export default {
-  'LICENSE.md': '<!-- LICENSEFILE/ -->\n',
-  'package.json': JSON.stringify({
-    version: '1.0.0',
-    license: 'MIT',
-    name: 'foo',
-    repository: 'bar/foo',
-  }),
+  'LICENSE.md': '<!-- LICENSEFILE -->\n',
+  'package.json': JSON.stringify(minimalPackageConfig, undefined, 2) + '\n',
   'README.md': endent`
     <!-- TITLE -->
 

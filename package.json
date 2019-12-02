@@ -2,22 +2,29 @@
   "name": "@dword-design/base",
   "version": "1.5.7",
   "description": "",
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/dword-design/base/issues"
+  },
+  "repository": "dword-design/base",
+  "license": "MIT",
+  "author": "Sebastian Landwehr <info@dword-design.de>",
+  "contributors": [
+    "dword-design (http://www.dword-design.de)",
+    "Renovate Bot (http://renovatebot.com)"
+  ],
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "bin": {
     "base": "./dist/cli.js"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "precompile": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src",
     "prepare": "npm run precompile && node dist/cli.js prepare",
     "test": "npm run precompile && node dist/cli.js test"
   },
-  "keywords": [],
-  "author": "Sebastian Landwehr <info@dword-design.de>",
-  "repository": "dword-design/base",
-  "license": "MIT",
   "dependencies": {
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
@@ -50,12 +57,5 @@
     "wait-for-change": "^1.1.1",
     "with-local-tmp-dir": "^2.1.2"
   },
-  "maintainers": [],
-  "contributors": [
-    "dword-design (http://www.dword-design.de)",
-    "Renovate Bot (http://renovatebot.com)"
-  ],
-  "bugs": {
-    "url": "https://github.com/dword-design/base/issues"
-  }
+  "maintainers": []
 }
