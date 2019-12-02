@@ -3,6 +3,7 @@ import { endent } from '@functions'
 export default {
   'LICENSE.md': '<!-- LICENSEFILE/ -->\n',
   'package.json': JSON.stringify({
+    version: '1.0.0',
     license: 'MIT',
     name: 'foo',
     repository: 'bar/foo',

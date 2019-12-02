@@ -1,6 +1,6 @@
 import makeCli from 'make-cli'
 import getCommands from './get-commands'
-import minimalProjectConfig from './minimal-project-config'
+import minimalProjectConfig from './minimal-project.config'
 import { mapValues, values } from '@functions'
 
 export const babelConfigFilename = '@dword-design/babel-config'
