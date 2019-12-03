@@ -5,13 +5,24 @@ import { exists } from 'fs'
 import expect from 'expect'
 import { minimalProjectConfig } from '@dword-design/base'
 import outputFiles from 'output-files'
+import { endent } from '@functions'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     ...minimalProjectConfig,
-    'src/index.js': 'console.log(\'hi\');',
+    'src/test.json': endent`
+      {
+      "foo": "bar"
+      }
+    `,
   })
-  await expect(spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'])).rejects.toThrow()
+  let stdout
+  try {
+    await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'], { capture: ['stdout'] })
+  } catch (error) {
+    stdout = error.stdout
+  }
+  expect(stdout).toMatch('Format Error: expected "  "')
   expect(await exists('dist')).toBeFalsy()
 })
 

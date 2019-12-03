@@ -8,7 +8,7 @@ import { outputFile } from 'fs'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles(minimalProjectConfig)
-  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'])
+  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'])
   await outputFile('.travis.yml', 'foo')
   let stderr
   try {

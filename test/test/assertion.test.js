@@ -23,7 +23,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       export default () => expect(1).toEqual(2)
     `,
   })
-  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'])
+  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'])
   let stdout
   try {
     await spawn(

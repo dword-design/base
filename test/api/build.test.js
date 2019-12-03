@@ -16,10 +16,10 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       const { outputFile } = require('fs-extra')
       const { join } = require('path')
 
-      base({ prepare: () => outputFile(join('dist', 'index.js'), 'module.exports = \'foo\'') })
+      base({ build: () => outputFile(join('dist', 'index.js'), 'module.exports = \'foo\'') })
     `,
   })
-  await spawn('node', ['cli.js', 'prepare'])
+  await spawn('node', ['cli.js', 'build'])
   expect(require(resolve('dist'))).toEqual('foo')
 })
 

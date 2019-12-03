@@ -27,10 +27,11 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     'src/index.js': 'export default \'hi\'',
     'src/test.txt': 'foo',
   })
-  const { stdout } = await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'], { capture: ['stdout'] })
+  const { stdout } = await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'], { capture: ['stdout'] })
   expect(stdout).toEqual(endent`
     Copying config files …
     Updating README.md …
+    package.json valid
     Successfully compiled 1 file with Babel.
   ` + '\n')
   expect(await glob('*', { dot: true })).toEqual(['.editorconfig', '.gitignore', '.gitpod.yml', '.renovaterc.json', '.travis.yml', 'dist', 'LICENSE.md', 'package.json', 'README.md', 'src'])

@@ -16,5 +16,10 @@ export default {
     'dist',
   ],
   main: 'dist/index.js',
+  scripts: {
+    prepublishOnly: 'base build',
+    start: 'base start',
+    test: 'base test',
+  },
   maintainers: [],
 }

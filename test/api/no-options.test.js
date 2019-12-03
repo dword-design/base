@@ -11,7 +11,7 @@ import { minimalProjectConfig } from '@dword-design/base'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    'project-prepare': {
+    'project-build': {
       ...minimalProjectConfig,
       'src/index.js': 'export default 1',
     },
@@ -27,8 +27,8 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       base()
     `,
   })
-  await spawn('node', ['../cli.js', 'prepare'], { cwd: 'project-prepare' })
-  expect(require(resolve('project-prepare', 'dist'))).toEqual(1)
+  await spawn('node', ['../cli.js', 'build'], { cwd: 'project-build' })
+  expect(require(resolve('project-build', 'dist'))).toEqual(1)
 
   const childProcess = spawn('node', ['../cli.js', 'start'], { cwd: 'project-start' })
     .catch(error => {

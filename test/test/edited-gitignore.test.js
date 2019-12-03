@@ -11,7 +11,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     ...minimalProjectConfig,
     'src/index.js': 'export default 1',
   })
-  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'])
+  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'])
   await outputFile('.gitignore', 'foo')
   let stderr
   try {

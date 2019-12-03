@@ -11,11 +11,12 @@ import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import { filter, join } from '@functions'
 
-export default ({ prepare: configPrepare, start: configStart }) => {
+export default ({ build: configBuild, start: configStart }) => {
 
-  configPrepare = configPrepare || (async () => {
+  configBuild = configBuild || (async () => {
     try {
       await spawn(resolveBin.sync('eslint'), ['--config', require.resolve('@dword-design/eslint-config'), '--ext', '.js,.json', '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
+      await spawn(resolveBin.sync('ajv-cli', { executable: 'ajv' }), ['-s', require.resolve('@dword-design/json-schema-package'), '-d', 'package.json', '--errors', 'text'], { stdio: 'inherit' })
       await spawn(resolveBin.sync('@babel/cli', { executable: 'babel' }), ['--out-dir', 'dist-new', '--config-file', require.resolve('@dword-design/babel-config'), '--copy-files', 'src'], { stdio: 'inherit' })
       await remove('dist')
       await rename('dist-new', 'dist')
@@ -32,7 +33,7 @@ export default ({ prepare: configPrepare, start: configStart }) => {
       debounce(
         async () => {
           try {
-            await configPrepare()
+            await configBuild()
           } catch (error) {
             if (error.name !== 'ChildProcessError') {
               console.log(error)
@@ -44,7 +45,7 @@ export default ({ prepare: configPrepare, start: configStart }) => {
     )
   )
 
-  const prepareFiles = async () => {
+  const buildFiles = async () => {
     console.log('Copying config files …')
     await copyFile(P.resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
     await copyFile(P.resolve(__dirname, 'config-files', 'gitignore'), '.gitignore')
@@ -72,14 +73,14 @@ export default ({ prepare: configPrepare, start: configStart }) => {
     }
   }
 
-  const prepare = async () => {
-    await prepareFiles()
-    return configPrepare()
+  const build = async () => {
+    await buildFiles()
+    return configBuild()
   }
 
   return {
-    prepare: {
-      handler: () => prepare(),
+    build: {
+      handler: () => build(),
     },
     test: {
       handler: async () => {
@@ -100,7 +101,7 @@ export default ({ prepare: configPrepare, start: configStart }) => {
         ) {
           throw new Error('LICENSE.md file must be generated. Maybe it has been accidentally modified.')
         }
-        await configPrepare()
+        await configBuild()
         await fork(require.resolve('./depcheck.cli'), [])
         if (nodeEnv === 'development') {
           await spawn(resolveBin.sync('install-self'), [])
@@ -120,7 +121,7 @@ export default ({ prepare: configPrepare, start: configStart }) => {
     },
     start: {
       handler: async () => {
-        await prepareFiles()
+        await buildFiles()
         return configStart()
       },
     },

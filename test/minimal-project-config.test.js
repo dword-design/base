@@ -6,7 +6,7 @@ import { minimalProjectConfig } from '@dword-design/base'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles(minimalProjectConfig)
-  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'])
+  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'])
   await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['test'])
 })
 

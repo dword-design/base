@@ -18,7 +18,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       maintainers: minimalPackageConfig.maintainers,
     }, undefined, 2) + '\n',
   })
-  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['prepare'])
+  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'])
   let stderr
   try {
     await spawn(

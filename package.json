@@ -21,9 +21,9 @@
     "base": "./dist/cli.js"
   },
   "scripts": {
-    "precompile": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src",
-    "prepare": "npm run precompile && node dist/cli.js prepare",
-    "test": "npm run precompile && node dist/cli.js test"
+    "prepublishOnly": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src && node dist/cli.js build",
+    "start": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src && node dist/cli.js start",
+    "test": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src && node dist/cli.js test"
   },
   "dependencies": {
     "@babel/cli": "^7.6.4",
@@ -32,6 +32,8 @@
     "@dword-design/aliases": "^1.0.0",
     "@dword-design/babel-config": "^1.0.0",
     "@dword-design/eslint-config": "^1.0.0",
+    "@dword-design/json-schema-package": "^1.0.0",
+    "ajv-cli": "^3.0.0",
     "chokidar": "^3.2.3",
     "debounce": "^1.2.0",
     "depcheck": "dword-design/depcheck#fork",
