@@ -16,7 +16,6 @@ export default ({ build: configBuild, start: configStart }) => {
   configBuild = configBuild || (async () => {
     try {
       await spawn(resolveBin.sync('eslint'), ['--config', require.resolve('@dword-design/eslint-config'), '--ext', '.js,.json', '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
-      await spawn(resolveBin.sync('ajv-cli', { executable: 'ajv' }), ['-s', require.resolve('@dword-design/json-schema-package'), '-d', 'package.json', '--errors', 'text'], { stdio: 'inherit' })
       await spawn(resolveBin.sync('@babel/cli', { executable: 'babel' }), ['--out-dir', 'dist-new', '--config-file', require.resolve('@dword-design/babel-config'), '--copy-files', 'src'], { stdio: 'inherit' })
       await remove('dist')
       await rename('dist-new', 'dist')
@@ -55,6 +54,7 @@ export default ({ build: configBuild, start: configStart }) => {
     }
     await copyFile(P.resolve(__dirname, 'config-files', 'renovaterc.json'), '.renovaterc.json')
     await copyFile(P.resolve(__dirname, 'config-files', 'travis.yml'), '.travis.yml')
+    await spawn(resolveBin.sync('ajv-cli', { executable: 'ajv' }), ['-s', require.resolve('@dword-design/json-schema-package'), '-d', 'package.json', '--errors', 'text'], { stdio: 'inherit' })
     console.log('Updating README.md …')
     const readmeContent = safeReadFileSync('README.md', 'utf8') ?? ''
     const missingReadmeSections = ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
