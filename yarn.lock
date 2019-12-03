@@ -780,11 +780,12 @@
     tinycolor2 "^1.4.1"
 
 "@dword-design/json-schema-package@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@dword-design/json-schema-package/-/json-schema-package-1.0.1.tgz#59d9a5ef2f5b73cc0411abc1e7ca55dccbc0ae92"
-  integrity sha512-miHQODDvai1gXM7HDIHRyf7KKTbuGmWssq/Mku5sOJJiH82nOdsCxDD+RsFexylGTU9Str4VELqV/T9OjnDCNA==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@dword-design/json-schema-package/-/json-schema-package-1.0.2.tgz#e0c337ebe5c77b51714a87a17428a191cad19844"
+  integrity sha512-AnaMQ1CkdXOkkNg20Ywf4bKaYWnG4ymt9yAVB94IJ1tdE2zQuBHE7VMggQckTxiFG3rvlZ+KC52ekLs+FrQKCw==
   dependencies:
     package-name-regex "^1.0.1"
+    stable-version-regex "^1.0.1"
 
 "@jest/console@^24.9.0":
   version "24.9.0"
@@ -4433,6 +4434,11 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
+
+stable-version-regex@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/stable-version-regex/-/stable-version-regex-1.0.1.tgz#bb7e66ca2030df82e0293d950f6b26571ddaafad"
+  integrity sha512-bqwGqMaDQlkT6c350qYCWGErNmCZpcJcgIwoxq/iQSdpjKk3r1JeCDsH7NsD2zOUWSkXFDJHhEZpO6cFUkomMQ==
 
 stack-utils@^1.0.1:
   version "1.0.2"
