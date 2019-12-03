@@ -1,5 +1,4 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
-import resolveBin from 'resolve-bin'
 import { spawn } from 'child_process'
 import outputFiles from 'output-files'
 import expect from 'expect'
@@ -27,7 +26,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     'src/index.js': 'export default \'hi\'',
     'src/test.txt': 'foo',
   })
-  const { stdout } = await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'], { capture: ['stdout'] })
+  const { stdout } = await spawn('base', ['build'], { capture: ['stdout'] })
   expect(stdout).toEqual(endent`
     Copying config files …
     package.json valid

@@ -4,7 +4,6 @@ import { spawn, fork } from 'child_process'
 import chokidar from 'chokidar'
 import debounce from 'debounce'
 import nodeEnv from 'node-env'
-import resolveBin from 'resolve-bin'
 import projectzConfig from './projectz.config'
 import safeRequire from 'safe-require'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
@@ -15,8 +14,8 @@ export default ({ build: configBuild, start: configStart }) => {
 
   configBuild = configBuild || (async () => {
     try {
-      await spawn(resolveBin.sync('eslint'), ['--config', require.resolve('@dword-design/eslint-config'), '--ext', '.js,.json', '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
-      await spawn(resolveBin.sync('@babel/cli', { executable: 'babel' }), ['--out-dir', 'dist-new', '--config-file', require.resolve('@dword-design/babel-config'), '--copy-files', 'src'], { stdio: 'inherit' })
+      await spawn('eslint', ['--config', require.resolve('@dword-design/eslint-config'), '--ext', '.js,.json', '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
+      await spawn('babel', ['--out-dir', 'dist-new', '--config-file', require.resolve('@dword-design/babel-config'), '--copy-files', 'src'], { stdio: 'inherit' })
       await remove('dist')
       await rename('dist-new', 'dist')
     } catch (error) {
@@ -54,7 +53,7 @@ export default ({ build: configBuild, start: configStart }) => {
     }
     await copyFile(P.resolve(__dirname, 'config-files', 'renovaterc.json'), '.renovaterc.json')
     await copyFile(P.resolve(__dirname, 'config-files', 'travis.yml'), '.travis.yml')
-    await spawn(resolveBin.sync('ajv-cli', { executable: 'ajv' }), ['-s', require.resolve('@dword-design/json-schema-package'), '-d', 'package.json', '--errors', 'text'], { stdio: 'inherit' })
+    await spawn('ajv', ['-s', require.resolve('@dword-design/json-schema-package'), '-d', 'package.json', '--errors', 'text'], { stdio: 'inherit' })
     console.log('Updating README.md …')
     const readmeContent = safeReadFileSync('README.md', 'utf8') ?? ''
     const missingReadmeSections = ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
@@ -64,7 +63,7 @@ export default ({ build: configBuild, start: configStart }) => {
     }
     try {
       await outputFile('projectz.json', JSON.stringify(projectzConfig, undefined, 2))
-      await spawn(resolveBin.sync('projectz'), ['compile'], { capture: ['stdout'] })
+      await spawn('projectz', ['compile'], { capture: ['stdout'] })
     } catch (error) {
       console.log(error.stdout)
       throw error
@@ -104,19 +103,9 @@ export default ({ build: configBuild, start: configStart }) => {
         await configBuild()
         await fork(require.resolve('./depcheck.cli'), [])
         if (nodeEnv === 'development') {
-          await spawn(resolveBin.sync('install-self'), [])
+          await spawn('install-self', [])
         }
-        await spawn(
-          resolveBin.sync('nyc'),
-          [
-            '--reporter', 'lcov',
-            '--reporter', 'text',
-            '--cwd', process.cwd(),
-            resolveBin.sync('mocha-per-file'),
-            '--require', require.resolve('./pretest'),
-          ],
-          { stdio: 'inherit' }
-        )
+        await spawn('nyc', ['--reporter', 'lcov', '--reporter', 'text', '--cwd', process.cwd(), 'mocha-per-file', '--require', require.resolve('./pretest')], { stdio: 'inherit' })
       },
     },
     start: {

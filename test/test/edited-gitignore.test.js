@@ -1,6 +1,5 @@
 import outputFiles from 'output-files'
 import { spawn } from 'child_process'
-import resolveBin from 'resolve-bin'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
 import { minimalProjectConfig } from '@dword-design/base'
@@ -11,15 +10,11 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     ...minimalProjectConfig,
     'src/index.js': 'export default 1',
   })
-  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'])
+  await spawn('base', ['build'])
   await outputFile('.gitignore', 'foo')
   let stderr
   try {
-    await spawn(
-      resolveBin.sync('@dword-design/base', { executable: 'base' }),
-      ['test'],
-      { capture: ['stderr'] }
-    )
+    await spawn('base', ['test'], { capture: ['stderr'] })
   } catch (error) {
     stderr = error.stderr
   }

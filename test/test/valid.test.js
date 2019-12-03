@@ -1,6 +1,5 @@
 import outputFiles from 'output-files'
 import { spawn } from 'child_process'
-import resolveBin from 'resolve-bin'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { endent, omit } from '@functions'
 import expect from 'expect'
@@ -24,12 +23,8 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       export default () => expect(foo).toEqual(1)
     `,
   })
-  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'])
-  const { stdout } = await spawn(
-    resolveBin.sync('@dword-design/base', { executable: 'base' }),
-    ['test'],
-    { capture: ['stdout'] }
-  )
+  await spawn('base', ['build'])
+  const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
   expect(stdout).toMatch(/^Copying config files …\nSuccessfully compiled 1 file with Babel.\nNo depcheck issue\n\n\n  ✓ foo\n\n  1 passing.*?\n\n----------|----------|----------|----------|----------|-------------------|\nFile      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |\n----------|----------|----------|----------|----------|-------------------|\nAll files |        0 |        0 |        0 |        0 |                   |\n----------|----------|----------|----------|----------|-------------------|\n$/)
 })
 

@@ -2,7 +2,7 @@
 
 import depcheck from 'depcheck'
 import depcheckBabelParser from './depcheck-babel-parser'
-import depcheckResolveBinDetector from './depcheck-resolve-bin-detector'
+import depcheckSpawnDetector from './depcheck-spawn-detector'
 import { join } from 'path'
 import aliases from '@dword-design/aliases'
 import { keys } from '@functions'
@@ -30,7 +30,7 @@ import safeRequire from 'safe-require'
         depcheck.detector.importDeclaration,
         depcheck.detector.requireCallExpression,
         depcheck.detector.requireResolveCallExpression,
-        depcheckResolveBinDetector,
+        depcheckSpawnDetector,
       ],
       parsers: {
         '*.js': depcheckBabelParser,

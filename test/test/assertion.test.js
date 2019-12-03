@@ -1,6 +1,5 @@
 import outputFiles from 'output-files'
 import { spawn } from 'child_process'
-import resolveBin from 'resolve-bin'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { endent, omit } from '@functions'
 import expect from 'expect'
@@ -23,14 +22,10 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       export default () => expect(1).toEqual(2)
     `,
   })
-  await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'])
+  await spawn('base', ['build'])
   let stdout
   try {
-    await spawn(
-      resolveBin.sync('@dword-design/base', { executable: 'base' }),
-      ['test'],
-      { capture: ['stdout'] }
-    )
+    await spawn('base', ['test'], { capture: ['stdout'] })
   } catch (error) {
     stdout = error.stdout
   }

@@ -1,5 +1,4 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
-import resolveBin from 'resolve-bin'
 import { spawn } from 'child_process'
 import { exists } from 'fs'
 import expect from 'expect'
@@ -14,7 +13,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   })
   let stdout
   try {
-    await spawn(resolveBin.sync('@dword-design/base', { executable: 'base' }), ['build'], { capture: ['stderr'] })
+    await spawn('base', ['build'], { capture: ['stderr'] })
   } catch (error) {
     stdout = error.stderr
   }

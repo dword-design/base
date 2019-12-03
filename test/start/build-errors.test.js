@@ -1,6 +1,5 @@
 import outputFiles from 'output-files'
 import { spawn } from 'child_process'
-import resolveBin from 'resolve-bin'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
 import { resolve } from 'path'
@@ -14,11 +13,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     ...minimalProjectConfig,
     'src/index.js': 'export default 1',
   })
-  const childProcess = spawn(
-    resolveBin.sync('@dword-design/base', { executable: 'base' }),
-    ['start'],
-    { capture: ['stdout'] }
-  )
+  const childProcess = spawn('base', ['start'], { capture: ['stdout'] })
     .catch(error => {
       expect(error.stdout).toMatch('Unexpected token, expected ";"')
       if (error.code !== null) {
