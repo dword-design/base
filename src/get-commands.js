@@ -43,11 +43,14 @@ export default ({ build: configBuild, start: configStart }) => {
     )
   )
 
+  const buildBabelAndEslintFiles = async () => {
+    await copyFile(P.resolve(__dirname, 'config-files', 'babelrc'), '.babelrc')
+    await copyFile(P.resolve(__dirname, 'config-files', 'eslintrc.json'), '.eslintrc.json')
+  }
+
   const buildFiles = async () => {
     console.log('Copying config files …')
-    await copyFile(P.resolve(__dirname, 'config-files', 'babelrc'), '.babelrc')
     await copyFile(P.resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
-    await copyFile(P.resolve(__dirname, 'config-files', 'eslintrc.json'), '.eslintrc.json')
     await copyFile(P.resolve(__dirname, 'config-files', 'gitignore'), '.gitignore')
     await copyFile(P.resolve(__dirname, 'config-files', 'gitpod.yml'), '.gitpod.yml')
     if ((safeRequire(P.join(process.cwd(), 'package.json'))?.license ?? '') !== '') {
@@ -75,6 +78,7 @@ export default ({ build: configBuild, start: configStart }) => {
   }
 
   const build = async () => {
+    await buildBabelAndEslintFiles()
     await buildFiles()
     return configBuild()
   }
@@ -85,6 +89,7 @@ export default ({ build: configBuild, start: configStart }) => {
     },
     test: {
       handler: async () => {
+        await buildBabelAndEslintFiles()
         if (safeReadFileSync('.gitignore', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'gitignore'), 'utf8')) {
           throw new Error('.gitignore file must be generated. Maybe it has been accidentally modified.')
         }

@@ -10,7 +10,6 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     ...minimalProjectConfig,
     'src/index.js': 'export default 1',
   })
-  await spawn('base', ['build'])
   await outputFile('.gitignore', 'foo')
   let stderr
   try {

@@ -7,7 +7,6 @@ import { outputFile } from 'fs'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles(minimalProjectConfig)
-  await spawn('base', ['build'])
   await outputFile('LICENSE.md', 'foo')
   let stderr
   try {
