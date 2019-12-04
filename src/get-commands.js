@@ -117,6 +117,7 @@ export default ({ build: configBuild, start: configStart }) => {
     },
     start: {
       handler: async () => {
+        await buildBabelAndEslintFiles()
         await buildFiles()
         return configStart()
       },
