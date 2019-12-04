@@ -756,9 +756,9 @@
     babel-plugin-transform-imports "^2.0.0"
 
 "@dword-design/eslint-config@^1.0.0":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-1.1.1.tgz#7fc08acb162e7d6c91195183947f29b7e4f76b3e"
-  integrity sha512-yt3NliZ030jUp8ydjRHtW6cMLdqFGof2lKNnTOlGwPH3/uzgafbyzfrdOCUT6FnZ3+IYlic+dHyTnO8WinWhRA==
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-1.1.2.tgz#0c3f7178c3f105d0959a3b31b8ce03fb9a53d5c2"
+  integrity sha512-Ze7fdqyU2eDL6MZwsKMtdZNzMEOXjUIyqoGoZ/j79vSU4hS34Qtjvewey2PXQN3OdCG9zzJG05o3WtRMcgrrgg==
   dependencies:
     "@dword-design/aliases" "^1.0.0"
     "@dword-design/babel-config" "^1.0.0"
@@ -1314,7 +1314,6 @@ chardet@^0.7.0:
 
 chdir@dword-design/node-chdir#fork:
   version "0.0.0"
-  uid "55004473579e2b8d293ced5410af5948793971b6"
   resolved "https://codeload.github.com/dword-design/node-chdir/tar.gz/55004473579e2b8d293ced5410af5948793971b6"
 
 child-process-promise@^2.2.1:
@@ -1683,7 +1682,6 @@ delegates@^1.0.0:
 
 depcheck@dword-design/depcheck#fork:
   version "0.0.1"
-  uid "9947160b51e73cadbd92716544f758ab07f215cd"
   resolved "https://codeload.github.com/dword-design/depcheck/tar.gz/9947160b51e73cadbd92716544f758ab07f215cd"
   dependencies:
     "@babel/parser" "^7.6.4"
@@ -2560,7 +2558,6 @@ inquirer@^7.0.0:
 
 install-self@dword-design/install-self#fork:
   version "1.0.0-beta.7"
-  uid "36616b93446a4606414fbab35adbd8989106d52b"
   resolved "https://codeload.github.com/dword-design/install-self/tar.gz/36616b93446a4606414fbab35adbd8989106d52b"
   dependencies:
     fs-extra "^8.1.0"

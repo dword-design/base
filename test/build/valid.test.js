@@ -33,7 +33,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     Updating README.md …
     Successfully compiled 1 file with Babel.
   ` + '\n')
-  expect(await glob('*', { dot: true })).toEqual(['.editorconfig', '.gitignore', '.gitpod.yml', '.renovaterc.json', '.travis.yml', 'dist', 'LICENSE.md', 'package.json', 'README.md', 'src'])
+  expect(await glob('*', { dot: true })).toEqual(['.babelrc', '.editorconfig', '.eslintrc.json', '.gitignore', '.gitpod.yml', '.renovaterc.json', '.travis.yml', 'dist', 'LICENSE.md', 'package.json', 'README.md', 'src'])
   expect(await glob('*', { cwd: 'dist' })).toEqual(['index.js', 'test.txt'])
   expect(require(resolve('dist'))).toEqual('hi')
   expect(await readFile('README.md', 'utf8')).toEqual(endent`

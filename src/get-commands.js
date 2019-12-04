@@ -14,8 +14,8 @@ export default ({ build: configBuild, start: configStart }) => {
 
   configBuild = configBuild || (async () => {
     try {
-      await spawn('eslint', ['--config', require.resolve('@dword-design/eslint-config'), '--ext', '.js,.json', '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
-      await spawn('babel', ['--out-dir', 'dist-new', '--config-file', require.resolve('@dword-design/babel-config'), '--copy-files', 'src'], { stdio: 'inherit' })
+      await spawn('eslint', ['--ext', '.js,.json', '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
+      await spawn('babel', ['--out-dir', 'dist-new', '--copy-files', 'src'], { stdio: 'inherit' })
       await remove('dist')
       await rename('dist-new', 'dist')
     } catch (error) {
@@ -45,7 +45,9 @@ export default ({ build: configBuild, start: configStart }) => {
 
   const buildFiles = async () => {
     console.log('Copying config files …')
+    await copyFile(P.resolve(__dirname, 'config-files', 'babelrc'), '.babelrc')
     await copyFile(P.resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
+    await copyFile(P.resolve(__dirname, 'config-files', 'eslintrc.json'), '.eslintrc.json')
     await copyFile(P.resolve(__dirname, 'config-files', 'gitignore'), '.gitignore')
     await copyFile(P.resolve(__dirname, 'config-files', 'gitpod.yml'), '.gitpod.yml')
     if ((safeRequire(P.join(process.cwd(), 'package.json'))?.license ?? '') !== '') {
