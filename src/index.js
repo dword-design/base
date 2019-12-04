@@ -4,9 +4,6 @@ import minimalPackageConfig from './minimal-package.config'
 import minimalProjectConfig from './minimal-project.config'
 import { mapValues, values } from '@functions'
 
-export const babelConfigFilename = '@dword-design/babel-config'
-export const eslintConfigFilename = '@dword-design/eslint-config'
-
 export const base = (options = {}) => makeCli({
   commands: getCommands(options)
     |> mapValues((command, commandName) => ({

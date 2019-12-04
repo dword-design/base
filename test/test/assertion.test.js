@@ -22,7 +22,6 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       export default () => expect(1).toEqual(2)
     `,
   })
-  await spawn('base', ['build'])
   let stdout
   try {
     await spawn('base', ['test'], { capture: ['stdout'] })

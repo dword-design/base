@@ -40,6 +40,8 @@ import safeRequire from 'safe-require'
       ],
       ignoreMatches: [
         'pre-commit',
+        '@dword-design/babel-config',
+        '@dword-design/eslint-config',
         ...packageName !== undefined ? [packageName] : [],
         ...aliases |> keys,
       ],

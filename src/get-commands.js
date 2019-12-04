@@ -14,8 +14,8 @@ export default ({ build: configBuild, start: configStart }) => {
 
   configBuild = configBuild || (async () => {
     try {
-      await spawn('eslint', ['--config', require.resolve('@dword-design/eslint-config'), '--ext', '.js,.json', '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
-      await spawn('babel', ['--out-dir', 'dist-new', '--config-file', require.resolve('@dword-design/babel-config'), '--copy-files', 'src'], { stdio: 'inherit' })
+      await spawn('eslint', ['--ext', '.js,.json', '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
+      await spawn('babel', ['--out-dir', 'dist-new', '--copy-files', 'src'], { stdio: 'inherit' })
       await remove('dist')
       await rename('dist-new', 'dist')
     } catch (error) {
@@ -42,6 +42,11 @@ export default ({ build: configBuild, start: configStart }) => {
       )
     )
   )
+
+  const buildBabelAndEslintFiles = async () => {
+    await copyFile(P.resolve(__dirname, 'config-files', 'babelrc'), '.babelrc')
+    await copyFile(P.resolve(__dirname, 'config-files', 'eslintrc.json'), '.eslintrc.json')
+  }
 
   const buildFiles = async () => {
     console.log('Copying config files …')
@@ -73,6 +78,7 @@ export default ({ build: configBuild, start: configStart }) => {
   }
 
   const build = async () => {
+    await buildBabelAndEslintFiles()
     await buildFiles()
     return configBuild()
   }
@@ -83,6 +89,7 @@ export default ({ build: configBuild, start: configStart }) => {
     },
     test: {
       handler: async () => {
+        await buildBabelAndEslintFiles()
         if (safeReadFileSync('.gitignore', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'gitignore'), 'utf8')) {
           throw new Error('.gitignore file must be generated. Maybe it has been accidentally modified.')
         }

@@ -17,7 +17,6 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       maintainers: minimalPackageConfig.maintainers,
     }, undefined, 2) + '\n',
   })
-  await spawn('base', ['build'])
   let stderr
   try {
     await spawn('base', ['test'], { capture: ['stderr'] })
