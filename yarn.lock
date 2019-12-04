@@ -3113,9 +3113,9 @@ lru-cache@^4.0.1, lru-cache@^4.1.5:
     yallist "^2.1.2"
 
 make-cli@^1.0.9:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-1.0.11.tgz#69f92e1c290f993e5900284ce7dd0b58a8cd2329"
-  integrity sha512-EHw00Z+008XxaHbHs7wLEQz+SqccyKSj4sstWoCuq5uMAJa/j5LI34dRipFkZu8eGleKevoGo0P2AdkKdYsiGg==
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-1.0.12.tgz#61feea4bc55ab4c106d4092935b83debad2938f7"
+  integrity sha512-5z2zQ3iT7elwP5zBXEGXArPNo/AFbsvSqJZztHFNzy0wI4tKjUCK8gfGsKW4lxCrc4tWeHxeoKLyvJ7bJMN1qw==
   dependencies:
     commander "^4.0.0"
 
