@@ -38,7 +38,6 @@
     "debounce": "^1.2.0",
     "depcheck": "dword-design/depcheck#fork",
     "eslint": "^6.6.0",
-    "expect": "^24.9.0",
     "get-projectz-readme-section-regex": "^1.0.0",
     "glob-promise": "^3.4.0",
     "install-self": "dword-design/install-self#fork",
@@ -52,6 +51,7 @@
   },
   "devDependencies": {
     "delay": "^4.3.0",
+    "expect": "^24.9.0",
     "import-fresh": "^3.2.1",
     "output-files": "^1.1.7",
     "rimraf": "^3.0.0",
