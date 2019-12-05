@@ -2175,7 +2175,7 @@ find-cache-dir@^2.0.0, find-cache-dir@^2.1.0:
     make-dir "^2.0.0"
     pkg-dir "^3.0.0"
 
-find-parent-dir@^0.3.0, find-parent-dir@~0.3.0:
+find-parent-dir@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/find-parent-dir/-/find-parent-dir-0.3.0.tgz#33c44b429ab2b2f0646299c5f9f718f376ff8d54"
   integrity sha1-M8RLQpqysvBkYpnF+fcY83b/jVQ=
@@ -3112,7 +3112,7 @@ lru-cache@^4.0.1, lru-cache@^4.1.5:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-make-cli@^1.0.9:
+make-cli@^1.0.12, make-cli@^1.0.9:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-1.0.12.tgz#61feea4bc55ab4c106d4092935b83debad2938f7"
   integrity sha512-5z2zQ3iT7elwP5zBXEGXArPNo/AFbsvSqJZztHFNzy0wI4tKjUCK8gfGsKW4lxCrc4tWeHxeoKLyvJ7bJMN1qw==
@@ -3222,15 +3222,16 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mocha-per-file@^1.2.2:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/mocha-per-file/-/mocha-per-file-1.2.5.tgz#5d3e89981055f7e72afa9b409a999b307776f4c8"
-  integrity sha512-P9TiQfy580SvWuq6tB8utspASl7AJesAD82nFlGmoon3GcHUsqx/t8pQkk8Xn0tgWMNCAhkc6DLNu76/QRr53Q==
+mocha-per-file@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/mocha-per-file/-/mocha-per-file-2.0.0.tgz#26fd045ba2e2434ad27b3dbfe6ed40e247ea3905"
+  integrity sha512-sskDj6bxWY2+X53ZXhoqqOE2v+K78qrTs45yney5WdZDE8q44IunVKwjTLVJmsP/JbGXvFUNRBw+GV6fxvovhg==
   dependencies:
     chdir dword-design/node-chdir#fork
     glob "^7.1.6"
+    make-cli "^1.0.12"
+    minimatch "^3.0.4"
     mocha "^6.2.2"
-    resolve-bin "^0.4.0"
 
 mocha@^6.2.2:
   version "6.2.2"
@@ -4076,13 +4077,6 @@ reselect@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/reselect/-/reselect-3.0.1.tgz#efdaa98ea7451324d092b2b2163a6a1d7a9a2147"
   integrity sha1-79qpjqdFEyTQkrKyFjpqHXqaIUc=
-
-resolve-bin@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/resolve-bin/-/resolve-bin-0.4.0.tgz#47132249891101afb19991fe937cb0a5f072e5d9"
-  integrity sha1-RxMiSYkRAa+xmZH+k3ywpfBy5dk=
-  dependencies:
-    find-parent-dir "~0.3.0"
 
 resolve-from@^4.0.0:
   version "4.0.0"
