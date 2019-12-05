@@ -88,7 +88,8 @@ export default ({ build: configBuild, start: configStart }) => {
       handler: () => build(),
     },
     test: {
-      handler: async () => {
+      arguments: '[pattern]',
+      handler: async pattern => {
         await buildBabelAndEslintFiles()
         if (safeReadFileSync('.gitignore', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'gitignore'), 'utf8')) {
           throw new Error('.gitignore file must be generated. Maybe it has been accidentally modified.')
@@ -112,7 +113,18 @@ export default ({ build: configBuild, start: configStart }) => {
         if (nodeEnv === 'development') {
           await spawn('install-self', [])
         }
-        await spawn('nyc', ['--reporter', 'lcov', '--reporter', 'text', '--cwd', process.cwd(), 'mocha-per-file', '--require', require.resolve('./pretest')], { stdio: 'inherit' })
+        await spawn(
+          'nyc',
+          [
+            '--reporter', 'lcov',
+            '--reporter', 'text',
+            '--cwd', process.cwd(),
+            'mocha-per-file',
+            '--require', require.resolve('./pretest'),
+            ...pattern !== undefined ? [pattern] : [],
+          ],
+          { stdio: 'inherit' }
+        )
       },
     },
     start: {
