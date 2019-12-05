@@ -12,18 +12,6 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     ...minimalProjectConfig,
     'dist/foo.js': '',
-    'README.md': endent`
-      <!-- TITLE -->
-
-      <!-- BADGES -->
-
-      <!-- DESCRIPTION -->
-
-      <!-- INSTALL -->
-
-      <!-- LICENSE -->
-    ` + '\n',
-    'src/index.js': 'export default \'hi\'',
     'src/test.txt': 'foo',
   })
   const { stdout } = await spawn('base', ['build'], { capture: ['stdout'] })
@@ -35,7 +23,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   ` + '\n')
   expect(await glob('*', { dot: true })).toEqual(['.babelrc', '.editorconfig', '.eslintrc.json', '.gitignore', '.gitpod.yml', '.renovaterc.json', '.travis.yml', 'dist', 'LICENSE.md', 'package.json', 'README.md', 'src'])
   expect(await glob('*', { cwd: 'dist' })).toEqual(['index.js', 'test.txt'])
-  expect(require(resolve('dist'))).toEqual('hi')
+  expect(require(resolve('dist'))).toEqual(1)
   expect(await readFile('README.md', 'utf8')).toEqual(endent`
     <!-- TITLE/ -->
 
