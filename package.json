@@ -42,7 +42,7 @@
     "glob-promise": "^3.4.0",
     "install-self": "dword-design/install-self#fork",
     "make-cli": "^1.0.9",
-    "mocha-per-file": "^1.2.2",
+    "mocha-per-file": "^2.0.0",
     "nyc": "^14.1.1",
     "pre-commit": "^1.2.2",
     "projectz": "^1.12.0",
