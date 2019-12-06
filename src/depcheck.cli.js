@@ -3,14 +3,10 @@
 import depcheck from 'depcheck'
 import depcheckBabelParser from './depcheck-babel-parser'
 import depcheckSpawnDetector from './depcheck-spawn-detector'
-import { join } from 'path'
 import { getStandard as getStandardAliases, getForTests as getAliasesForTests } from '@dword-design/aliases'
 import { keys } from '@functions'
-import safeRequire from 'safe-require'
 
 (async () => {
-
-  const packageName = safeRequire(join(process.cwd(), 'package.json'))?.name
 
   const noIssue = result => {
     return result.dependencies.length === 0

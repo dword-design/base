@@ -9,11 +9,13 @@ import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import { filter, join, values, promiseAll, mapValues, replace } from '@functions'
 
-export default ({ build: configBuild, start: configStart }) => {
+export default ({ build, start, lint }) => {
 
-  configBuild = configBuild || (async () => {
+  lint = lint ?? (() => spawn('eslint', ['--ext', '.js,.json', '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' }))
+
+  build = build ?? (async () => {
     try {
-      await spawn('eslint', ['--ext', '.js,.json', '--ignore-path', '.gitignore', '.'], { stdio: 'inherit' })
+      await lint()
       await spawn('babel', ['--out-dir', 'dist-new', '--copy-files', 'src'], { stdio: 'inherit' })
       await remove('dist')
       await rename('dist-new', 'dist')
@@ -23,14 +25,14 @@ export default ({ build: configBuild, start: configStart }) => {
     }
   })
 
-  configStart = configStart || (() => chokidar
+  start = start ?? (() => chokidar
     .watch('src')
     .on(
       'all',
       debounce(
         async () => {
           try {
-            await configBuild()
+            await build()
           } catch (error) {
             if (error.name !== 'ChildProcessError') {
               console.log(error)
@@ -47,7 +49,7 @@ export default ({ build: configBuild, start: configStart }) => {
     await copyFile(P.resolve(__dirname, 'config-files', 'eslintrc.json'), '.eslintrc.json')
   }
 
-  const buildFiles = async () => {
+  const buildConfigFiles = async () => {
     console.log('Copying config files …')
     await copyFile(P.resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
     await copyFile(P.resolve(__dirname, 'config-files', 'gitignore'), '.gitignore')
@@ -76,20 +78,19 @@ export default ({ build: configBuild, start: configStart }) => {
     }
   }
 
-  const build = async () => {
-    await buildBabelAndEslintFiles()
-    await buildFiles()
-    return configBuild()
-  }
-
   return {
     build: {
-      handler: () => build(),
+      handler: async () => {
+        await buildBabelAndEslintFiles()
+        await buildConfigFiles()
+        return build()
+      },
     },
     test: {
       arguments: '[pattern]',
       handler: async pattern => {
         await buildBabelAndEslintFiles()
+        await lint()
         if (safeReadFileSync('.gitignore', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'gitignore'), 'utf8')) {
           throw new Error('.gitignore file must be generated. Maybe it has been accidentally modified.')
         }
@@ -143,8 +144,8 @@ export default ({ build: configBuild, start: configStart }) => {
     start: {
       handler: async () => {
         await buildBabelAndEslintFiles()
-        await buildFiles()
-        return configStart()
+        await buildConfigFiles()
+        return start()
       },
     },
   }
