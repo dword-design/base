@@ -1,14 +1,13 @@
 import P from 'path'
-import { copyFile, remove, rename, outputFile, readFile, exists } from 'fs'
+import { copyFile, remove, rename, outputFile, readFile, exists, symlink } from 'fs'
 import { spawn, fork } from 'child_process'
 import chokidar from 'chokidar'
 import debounce from 'debounce'
-import nodeEnv from 'node-env'
 import projectzConfig from './projectz.config'
 import safeRequire from 'safe-require'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
-import { filter, join } from '@functions'
+import { filter, join, values, promiseAll, mapValues, replace } from '@functions'
 
 export default ({ build: configBuild, start: configStart }) => {
 
@@ -108,22 +107,36 @@ export default ({ build: configBuild, start: configStart }) => {
         ) {
           throw new Error('LICENSE.md file must be generated. Maybe it has been accidentally modified.')
         }
-        await configBuild()
         await fork(require.resolve('./depcheck.cli'), [])
-        if (nodeEnv === 'development') {
-          await spawn('install-self', [])
-        }
+
+        const binEntries = require(P.resolve('package.json')).bin ?? {}
+        await binEntries
+          |> mapValues((filename, binName) => remove(P.join('node_modules', '.bin', binName))
+            .then(() => symlink(
+              P.relative(P.join('node_modules', '.bin'), filename |> replace('dist', 'src')),
+              P.join('node_modules', '.bin', binName)
+            ))
+          )
+          |> values
+          |> promiseAll
+
         await spawn(
           'nyc',
           [
             '--reporter', 'lcov',
             '--reporter', 'text',
             '--cwd', process.cwd(),
-            'mocha-per-file',
             '--require', require.resolve('./pretest'),
+            'mocha-per-file',
             ...pattern !== undefined ? [pattern] : [],
           ],
-          { stdio: 'inherit' }
+          {
+            stdio: 'inherit',
+            env: {
+              ...process.env,
+              BABEL_CACHE_PATH: P.join(process.cwd(), 'node_modules', '.cache', '@babel', 'register', '.babel.json'),
+            },
+          }
         )
       },
     },

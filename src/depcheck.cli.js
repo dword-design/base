@@ -4,7 +4,7 @@ import depcheck from 'depcheck'
 import depcheckBabelParser from './depcheck-babel-parser'
 import depcheckSpawnDetector from './depcheck-spawn-detector'
 import { join } from 'path'
-import aliases from '@dword-design/aliases'
+import { getStandard as getStandardAliases, getForTests as getAliasesForTests } from '@dword-design/aliases'
 import { keys } from '@functions'
 import safeRequire from 'safe-require'
 
@@ -42,8 +42,8 @@ import safeRequire from 'safe-require'
         'pre-commit',
         '@dword-design/babel-config',
         '@dword-design/eslint-config',
-        ...packageName !== undefined ? [packageName] : [],
-        ...aliases |> keys,
+        ...getStandardAliases() |> keys,
+        ...getAliasesForTests() |> keys,
       ],
       ignoreDirs: ['dist'],
     }

@@ -4,4 +4,4 @@ import spawnWrap from 'spawn-wrap'
 
 babelRegister(babelTestConfig)
 
-spawnWrap([require.resolve('./spawn-wrap.js')])
+spawnWrap.runMain()
