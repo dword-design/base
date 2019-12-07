@@ -23,4 +23,4 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   expect(require(resolve('dist'))).toEqual('foo')
 })
 
-export const timeout = 20000
+export const timeout = 30000
