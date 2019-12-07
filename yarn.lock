@@ -1321,7 +1321,6 @@ chardet@^0.7.0:
 
 chdir@dword-design/node-chdir#fork:
   version "0.0.0"
-  uid "55004473579e2b8d293ced5410af5948793971b6"
   resolved "https://codeload.github.com/dword-design/node-chdir/tar.gz/55004473579e2b8d293ced5410af5948793971b6"
 
 child-process-promise@^2.2.1:
@@ -1695,7 +1694,6 @@ delegates@^1.0.0:
 
 depcheck@dword-design/depcheck#fork:
   version "0.0.1"
-  uid "9947160b51e73cadbd92716544f758ab07f215cd"
   resolved "https://codeload.github.com/dword-design/depcheck/tar.gz/9947160b51e73cadbd92716544f758ab07f215cd"
   dependencies:
     "@babel/parser" "^7.6.4"
@@ -4207,11 +4205,6 @@ safe-regex@^1.1.0:
   integrity sha1-QKNmnzsHfR6UPURinhV91IAjvy4=
   dependencies:
     ret "~0.1.10"
-
-safe-require@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/safe-require/-/safe-require-1.0.3.tgz#6ec319ed10209b1d12c7a1449b79d46d7f4f914b"
-  integrity sha1-bsMZ7RAgmx0Sx6FEm3nUbX9PkUs=
 
 safefs@^5.3.0, safefs@^5.4.0:
   version "5.4.0"

@@ -1,10 +1,9 @@
 import P from 'path'
-import { copyFile, remove, rename, outputFile, readFile, exists, symlink } from 'fs'
+import { copyFile, remove, rename, outputFile, readFile, symlink } from 'fs'
 import { spawn, fork } from 'child_process'
 import chokidar from 'chokidar'
 import debounce from 'debounce'
 import projectzConfig from './projectz.config'
-import safeRequire from 'safe-require'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import { filter, join, values, promiseAll, mapValues, replace } from '@functions'
@@ -54,21 +53,12 @@ export default ({ build, start, lint }) => {
     await copyFile(P.resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
     await copyFile(P.resolve(__dirname, 'config-files', 'gitignore'), '.gitignore')
     await copyFile(P.resolve(__dirname, 'config-files', 'gitpod.yml'), '.gitpod.yml')
-    if ((safeRequire(P.join(process.cwd(), 'package.json'))?.license ?? '') !== '') {
-      await copyFile(P.resolve(__dirname, 'config-files', 'LICENSE.md'), 'LICENSE.md')
-    }
+    await copyFile(P.resolve(__dirname, 'config-files', 'LICENSE.md'), 'LICENSE.md')
     await copyFile(P.resolve(__dirname, 'config-files', 'renovaterc.json'), '.renovaterc.json')
     await copyFile(P.resolve(__dirname, 'config-files', 'travis.yml'), '.travis.yml')
-    await spawn('ajv', ['-s', require.resolve('@dword-design/json-schema-package'), '-d', 'package.json', '--errors', 'text'], { stdio: 'inherit' })
     console.log('Updating README.md …')
-    const readmeContent = safeReadFileSync('README.md', 'utf8') ?? ''
-    const missingReadmeSections = ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
-      |> filter(sectionName => !getProjectzReadmeSectionRegex(sectionName).test(readmeContent))
-    if (missingReadmeSections.length > 0) {
-      throw new Error(`The README.md file is missing or misses the following sections: ${missingReadmeSections |> join(', ')}`)
-    }
+    await outputFile('projectz.json', JSON.stringify(projectzConfig, undefined, 2))
     try {
-      await outputFile('projectz.json', JSON.stringify(projectzConfig, undefined, 2))
       await spawn('projectz', ['compile'], { capture: ['stdout'] })
     } catch (error) {
       console.log(error.stdout)
@@ -91,6 +81,7 @@ export default ({ build, start, lint }) => {
       handler: async pattern => {
         await buildBabelAndEslintFiles()
         await lint()
+        await spawn('ajv', ['-s', require.resolve('@dword-design/json-schema-package'), '-d', 'package.json', '--errors', 'text'], { stdio: 'inherit' })
         if (safeReadFileSync('.gitignore', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'gitignore'), 'utf8')) {
           throw new Error('.gitignore file must be generated. Maybe it has been accidentally modified.')
         }
@@ -103,9 +94,15 @@ export default ({ build, start, lint }) => {
         if (safeReadFileSync('.travis.yml', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'travis.yml'), 'utf8')) {
           throw new Error('.travis.yml file must be generated. Maybe it has been accidentally modified.')
         }
-        if (!await exists('LICENSE.md')
-          || !getProjectzReadmeSectionRegex('LICENSEFILE').test(await readFile('LICENSE.md', 'utf8'))
-        ) {
+
+        const readmeContent = safeReadFileSync('README.md', 'utf8') ?? ''
+        const missingReadmeSections = ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
+          |> filter(sectionName => !getProjectzReadmeSectionRegex(sectionName).test(readmeContent))
+        if (missingReadmeSections.length > 0) {
+          throw new Error(`The README.md file is missing or misses the following sections: ${missingReadmeSections |> join(', ')}`)
+        }
+
+        if (!getProjectzReadmeSectionRegex('LICENSEFILE').test(await readFile('LICENSE.md', 'utf8'))) {
           throw new Error('LICENSE.md file must be generated. Maybe it has been accidentally modified.')
         }
         await fork(require.resolve('./depcheck.cli'), [])

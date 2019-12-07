@@ -17,7 +17,6 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   const { stdout } = await spawn('base', ['build'], { capture: ['stdout'] })
   expect(stdout).toEqual(endent`
     Copying config files …
-    package.json valid
     Updating README.md …
     Successfully compiled 1 file with Babel.
   ` + '\n')
