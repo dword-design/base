@@ -17,7 +17,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   })
   let stdout
   try {
-    await spawn('base', ['build'], { capture: ['stdout'] })
+    await spawn('base', ['test'], { capture: ['stdout'] })
   } catch (error) {
     stdout = error.stdout
   }

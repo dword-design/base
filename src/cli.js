@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { base } from '.'
+import { execute } from '.'
 
-base()
+execute()

@@ -2,20 +2,20 @@ import outputFiles from 'output-files'
 import { spawn } from 'child_process'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
-import { endent, omit } from '@functions'
+import { endent } from '@functions'
 import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
+import sortPackageJson from 'sort-package-json'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     ...minimalProjectConfig,
     'src/index.js': 'export default 1',
-    'package.json': JSON.stringify({
-      ...minimalPackageConfig |> omit('maintainers'),
+    'package.json': JSON.stringify(sortPackageJson({
+      ...minimalPackageConfig,
       dependencies: {
         'change-case': '^0.1.0',
       },
-      maintainers: minimalPackageConfig.maintainers,
-    }, undefined, 2) + '\n',
+    }), undefined, 2) + '\n',
   })
   let stderr
   try {

@@ -1,11 +1,11 @@
 import makeCli from 'make-cli'
-import getCommands from './get-commands'
+import commands from './commands.config'
 import minimalPackageConfig from './minimal-package.config'
 import minimalProjectConfig from './minimal-project.config'
 import { mapValues, values } from '@functions'
 
-export const base = (options = {}) => makeCli({
-  commands: getCommands(options)
+export const execute = () => makeCli({
+  commands: commands
     |> mapValues((command, commandName) => ({
       ...command,
       name: commandName,

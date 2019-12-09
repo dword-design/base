@@ -5,6 +5,7 @@ import depcheckBabelParser from './depcheck-babel-parser'
 import depcheckSpawnDetector from './depcheck-spawn-detector'
 import { getStandard as getStandardAliases, getForTests as getAliasesForTests } from '@dword-design/aliases'
 import { keys } from '@functions'
+import configPackageName from './config-package-name'
 
 (async () => {
 
@@ -38,10 +39,11 @@ import { keys } from '@functions'
         'pre-commit',
         '@dword-design/babel-config',
         '@dword-design/eslint-config',
+        configPackageName,
         ...getStandardAliases() |> keys,
         ...getAliasesForTests() |> keys,
       ],
-      ignoreDirs: ['dist'],
+      ignoreDirs: ['.nyc_output', '.vscode', 'coverage', 'dist'],
     }
   )
 
