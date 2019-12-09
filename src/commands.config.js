@@ -10,10 +10,7 @@ import importFrom from 'import-from'
 
 const config = importFrom(process.cwd(), configPackageName)
 
-const buildBabelAndEslintFiles = async () => {
-  await copyFile(P.resolve(__dirname, 'config-files', 'babelrc'), '.babelrc')
-  await copyFile(P.resolve(__dirname, 'config-files', 'eslintrc.json'), '.eslintrc.json')
-}
+const copyBabelConfig = async () => copyFile(P.resolve(__dirname, 'config-files', 'babelrc'), '.babelrc')
 
 const buildConfigFiles = async () => {
   console.log('Copying config files …')
@@ -39,14 +36,14 @@ export default {
 
   build: {
     handler: async () => {
-      await buildBabelAndEslintFiles()
+      await copyBabelConfig()
       await buildConfigFiles()
       return config.build()
     },
   },
   start: {
     handler: async () => {
-      await buildBabelAndEslintFiles()
+      await copyBabelConfig()
       await buildConfigFiles()
       return config.start()
     },
@@ -54,7 +51,7 @@ export default {
   test: {
     arguments: '[pattern]',
     handler: async pattern => {
-      await buildBabelAndEslintFiles()
+      await copyBabelConfig()
       await config.lint()
       await spawn('ajv', ['-s', require.resolve('@dword-design/json-schema-package'), '-d', 'package.json', '--errors', 'text'], { stdio: 'inherit' })
       if (safeReadFileSync('.gitignore', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'gitignore'), 'utf8')) {

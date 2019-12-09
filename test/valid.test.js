@@ -128,7 +128,6 @@ export const it = async () => {
     ` + '\n$'))
     expect(await glob('*', { dot: true })).toEqual([
       '.babelrc',
-      '.eslintrc.json',
       '.gitignore',
       '.gitpod.yml',
       '.nyc_output',

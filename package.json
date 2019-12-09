@@ -32,7 +32,6 @@
     "@dword-design/aliases": "^2.0.0",
     "@dword-design/babel-config": "^1.0.0",
     "@dword-design/base-config-node": "^1.0.0",
-    "@dword-design/eslint-config": "^1.0.0",
     "@dword-design/json-schema-package": "^1.0.0",
     "ajv-cli": "^3.0.0",
     "babel-merge": "^3.0.0",

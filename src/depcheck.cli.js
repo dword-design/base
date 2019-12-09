@@ -38,7 +38,6 @@ import configPackageName from './config-package-name'
       ignoreMatches: [
         'pre-commit',
         '@dword-design/babel-config',
-        '@dword-design/eslint-config',
         configPackageName,
         ...getStandardAliases() |> keys,
         ...getAliasesForTests() |> keys,
