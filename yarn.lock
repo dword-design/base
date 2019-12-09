@@ -741,7 +741,7 @@
     get-package-name "^1.0.0"
     read-all-up "^1.0.1"
 
-"@dword-design/babel-config@^1.0.0":
+"@dword-design/babel-config@^1.0.0", "@dword-design/babel-config@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-1.0.4.tgz#ed1e452f58d9b48db3f1f9e7a2288f5f87f3eb1c"
   integrity sha512-soo9OrAPxrxfjiuO3LlZWBs/ThsamHnjGW/c4ETjJdTia4+yydw9wzQAIELrwRDM6mCI6/Dpr+gq0vTyvgo1WA==
@@ -756,12 +756,13 @@
     babel-plugin-transform-imports "^2.0.0"
 
 "@dword-design/base-config-node@^1.0.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.1.0.tgz#4e80c953af95f7b5365e031e7806c57d83ac984a"
-  integrity sha512-an0cfVXGnBCT3wt9WwLMJ0IT/rZeWtI8MjCL5NnwOnCpGwrkxzdJCBsLu+8VfeeIj5mwElydOaNSX6tGofoTOw==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.1.1.tgz#8aac38ad154ee6b78550f8a976d0191e9a2e4bfe"
+  integrity sha512-tW8NXgp0JRQIbKn+xmR4NV/4Kr+1Hukl3b/nX+K4yb4HvlsmkmvR1AciqQT0CVNwQ18z8oZ36N2ktMTEkXoGbg==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
+    "@dword-design/babel-config" "^1.0.4"
     "@dword-design/eslint-config" "^1.2.0"
     chokidar "^3.3.0"
     debounce "^1.2.0"
@@ -874,9 +875,9 @@
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
 "@types/node@*":
-  version "12.12.15"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.15.tgz#8dfb6ce22fedd469128137640a3aa8f17415422f"
-  integrity sha512-Pv+vWicyFd07Hw/SmNnTUguqrHgDfMtjabvD9sQyxeqbpCEg8CmViLBaVPHtNsoBgZECrRf5/pgV6FJIBrGSjw==
+  version "12.12.16"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.16.tgz#3ebcbd7bf978fa4c5120fee8be57083271a8b3ac"
+  integrity sha512-vRuMyoOr5yfNf8QWxXegOjeyjpWJxFePzHzmBOIzDIzo+rSqF94RW0PkS6y4T2+VjAWLXHWrfbIJY3E3aS7lUw==
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
@@ -4883,9 +4884,9 @@ uglify-js@^3.1.4:
     source-map "~0.6.1"
 
 unbounded@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/unbounded/-/unbounded-2.2.0.tgz#2fbcfa1bc4134f159e5b6eb376cacf7760c0372e"
-  integrity sha512-rb+ILMrQ5Y4Z+oUrddBLnn3FnVzKpkazb865hiRjUas7wKmyQADpvZ/eE1mTy5skKrU2/rLL+ly8LHN6k+NZGQ==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/unbounded/-/unbounded-2.3.0.tgz#80bfdbb2f448b61b4992b4fef8f4f6d35c50c459"
+  integrity sha512-gjT7NZ8g29UDlB1nrFVLWs1A2tRP3rSyCdvX2Vu185SI1PGmhjcxaCfVh64Oaz6rKBCrXwhTQD56/m+ox4FPKA==
 
 underscore-plus@1.x:
   version "1.7.0"

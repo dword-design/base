@@ -36,7 +36,6 @@ export const it = async () => {
       Successfully compiled 1 file with Babel.
     ` + '\n')
     expect(await glob('*', { dot: true })).toEqual([
-      '.babelrc',
       '.editorconfig',
       '.eslintrc.json',
       '.gitignore',
@@ -127,7 +126,6 @@ export const it = async () => {
       ----------|----------|----------|----------|----------|-------------------|
     ` + '\n$'))
     expect(await glob('*', { dot: true })).toEqual([
-      '.babelrc',
       '.gitignore',
       '.gitpod.yml',
       '.nyc_output',

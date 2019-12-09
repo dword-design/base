@@ -37,7 +37,6 @@ import configPackageName from './config-package-name'
       ],
       ignoreMatches: [
         'pre-commit',
-        '@dword-design/babel-config',
         configPackageName,
         ...getStandardAliases() |> keys,
         ...getAliasesForTests() |> keys,

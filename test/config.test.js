@@ -5,14 +5,18 @@ import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
 import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
 import sortPackageJson from 'sort-package-json'
+import { readFile } from 'fs'
 
-export const it = () => withLocalTmpDir(__dirname, async () => {
-  await outputFiles({
+export const it = async () => {
+
+  const files = {
     ...minimalProjectConfig,
     'node_modules/base-config-foo/index.js': endent`
+
       exports.build = () => console.log('foo')
       exports.start = () => console.log('bar')
       exports.lint = () => console.log('baz')
+      exports.gitignore = ['foo.txt']
     `,
     'package.json': JSON.stringify(sortPackageJson({
       ...minimalPackageConfig,
@@ -20,37 +24,55 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
         'base-config-foo': '^1.0.0',
       },
     }), undefined, 2),
+  }
+
+  await withLocalTmpDir(__dirname, async () => {
+    await outputFiles(files)
+    const { stdout } = await spawn('base', ['build'], { capture: ['stdout'] })
+    expect(stdout).toEqual(endent`
+      Copying config files …
+      Updating README.md …
+      foo
+    ` + '\n')
+    expect(await readFile('.gitignore', 'utf8')).toEqual(endent`
+      .DS_Store
+      /.editorconfig
+      /.nyc_output
+      /.vscode
+      /coverage
+      /dist
+      /node_modules
+      foo.txt
+    ` + '\n')
   })
 
-  let { stdout } = await spawn('base', ['build'], { capture: ['stdout'] })
-  expect(stdout).toEqual(endent`
-    Copying config files …
-    Updating README.md …
-    foo
-  ` + '\n')
+  await withLocalTmpDir(__dirname, async () => {
+    await outputFiles(files)
+    const { stdout } = await spawn('base', ['start'], { capture: ['stdout'] })
+    expect(stdout).toEqual('bar\n')
+  })
 
-  stdout = (await spawn('base', ['start'], { capture: ['stdout'] })).stdout
-  expect(stdout).toEqual(endent`
-    Copying config files …
-    Updating README.md …
-    bar
-  ` + '\n')
-
-  stdout = (await spawn('base', ['test'], { capture: ['stdout'] })).stdout
-  expect(stdout).toMatch(new RegExp(endent`
-    ^baz
-    package.json valid
-    No depcheck issue
+  await withLocalTmpDir(__dirname, async () => {
+    await outputFiles({
+      ...files,
+      '.gitignore': `${files['.gitignore']}foo.txt\n`,
+    })
+    const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
+    expect(stdout).toMatch(new RegExp(endent`
+      ^baz
+      package.json valid
+      No depcheck issue
 
 
-      0 passing (1ms)
+        0 passing (1ms)
 
-    ----------|----------|----------|----------|----------|-------------------|
-    File      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
-    ----------|----------|----------|----------|----------|-------------------|
-    All files |        0 |        0 |        0 |        0 |                   |
-    ----------|----------|----------|----------|----------|-------------------|
-  ` + '\n$'))
-})
+      ----------|----------|----------|----------|----------|-------------------|
+      File      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
+      ----------|----------|----------|----------|----------|-------------------|
+      All files |        0 |        0 |        0 |        0 |                   |
+      ----------|----------|----------|----------|----------|-------------------|
+    ` + '\n$'))
+  })
+}
 
 export const timeout = 20000
