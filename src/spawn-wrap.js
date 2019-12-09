@@ -1,7 +1,7 @@
 import babelRegister from '@babel/register'
-import babelTestConfig from './babel-test.config'
+import babelConfig from '@dword-design/babel-config'
 import spawnWrap from 'spawn-wrap'
 
-babelRegister(babelTestConfig)
+babelRegister({ ...babelConfig, ignore: [/node_modules/] })
 
 spawnWrap.runMain()
