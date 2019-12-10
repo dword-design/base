@@ -4,13 +4,13 @@ import { spawn, fork } from 'child_process'
 import projectzConfig from './projectz.config'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
-import { filter, join, values, promiseAll, mapValues, replace } from '@functions'
+import { filter, join, values, promiseAll, mapValues, replace, map, sortBy, identity } from '@functions'
 import config from './config'
-import gitignore from './gitignore.config'
+import gitignoreConfig from './gitignore.config'
 
 const buildConfigFiles = async () => {
   console.log('Copying config files …')
-  await outputFile('.gitignore', gitignore)
+  await outputFile('.gitignore', gitignoreConfig |> sortBy(identity) |> map(entry => `${entry}\n`) |> join(''))
   await copyFile(P.resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
   await copyFile(P.resolve(__dirname, 'config-files', 'gitpod.yml'), '.gitpod.yml')
   await copyFile(P.resolve(__dirname, 'config-files', 'LICENSE.md'), 'LICENSE.md')
@@ -44,7 +44,7 @@ export default {
     handler: async pattern => {
       await config.lint()
       await spawn('ajv', ['-s', require.resolve('@dword-design/json-schema-package'), '-d', 'package.json', '--errors', 'text'], { stdio: 'inherit' })
-      if (safeReadFileSync('.gitignore', 'utf8') !== gitignore) {
+      if (safeReadFileSync('.gitignore', 'utf8') !== (gitignoreConfig |> sortBy(identity) |> map(entry => `${entry}\n`) |> join(''))) {
         throw new Error('.gitignore file must be generated. Maybe it has been accidentally modified.')
       }
       if (safeReadFileSync('.gitpod.yml', 'utf8') !== await readFile(P.resolve(__dirname, 'config-files', 'gitpod.yml'), 'utf8')) {

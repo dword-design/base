@@ -3,11 +3,12 @@ import { spawn } from 'child_process'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
 import { minimalProjectConfig } from '@dword-design/base'
-import { outputFile } from 'fs'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
-  await outputFiles(minimalProjectConfig)
-  await outputFile('.travis.yml', 'foo')
+  await outputFiles({
+    ...minimalProjectConfig,
+    '.travis.yml': 'foo',
+  })
   let stderr
   try {
     await spawn('base', ['test'], { capture: ['stderr'] })

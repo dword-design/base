@@ -1,5 +1,4 @@
 import config from './config'
-import { map, join } from '@functions'
 
 export default [
   '.DS_Store',
@@ -11,5 +10,3 @@ export default [
   '/node_modules',
   ...config.gitignore ?? [],
 ]
-  |> map(entry => `${entry}\n`)
-  |> join('')

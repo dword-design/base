@@ -16,7 +16,7 @@ export const it = async () => {
       exports.build = () => console.log('foo')
       exports.start = () => console.log('bar')
       exports.lint = () => console.log('baz')
-      exports.gitignore = ['foo.txt']
+      exports.gitignore = ['/foo.txt']
     `,
     'package.json': JSON.stringify(sortPackageJson({
       ...minimalPackageConfig,
@@ -41,8 +41,8 @@ export const it = async () => {
       /.vscode
       /coverage
       /dist
+      /foo.txt
       /node_modules
-      foo.txt
     ` + '\n')
   })
 
@@ -55,7 +55,16 @@ export const it = async () => {
   await withLocalTmpDir(__dirname, async () => {
     await outputFiles({
       ...files,
-      '.gitignore': `${files['.gitignore']}foo.txt\n`,
+      '.gitignore': endent`
+        .DS_Store
+        /.editorconfig
+        /.nyc_output
+        /.vscode
+        /coverage
+        /dist
+        /foo.txt
+        /node_modules
+      ` + '\n',
     })
     const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
     expect(stdout).toMatch(new RegExp(endent`

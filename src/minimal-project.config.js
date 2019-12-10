@@ -1,11 +1,11 @@
-import { endent } from '@functions'
+import { endent, map, join, sortBy, identity } from '@functions'
 import minimalPackageConfig from './minimal-package.config'
 import { readFileSync } from 'fs'
 import P from 'path'
-import gitignore from './gitignore.config'
+import gitignoreConfig from './gitignore.config'
 
 export default {
-  '.gitignore': gitignore,
+  '.gitignore': gitignoreConfig |> sortBy(identity) |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.yml': readFileSync(P.resolve(__dirname, 'config-files', 'gitpod.yml'), 'utf8'),
   '.renovaterc.json': readFileSync(P.resolve(__dirname, 'config-files', 'renovaterc.json'), 'utf8'),
   '.travis.yml': readFileSync(P.resolve(__dirname, 'config-files', 'travis.yml'), 'utf8'),
