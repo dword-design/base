@@ -126,6 +126,7 @@ export const it = async () => {
       ----------|----------|----------|----------|----------|-------------------|
     ` + '\n$'))
     expect(await glob('*', { dot: true })).toEqual([
+      '.eslintrc.json',
       '.gitignore',
       '.gitpod.yml',
       '.nyc_output',
