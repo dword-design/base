@@ -17,13 +17,13 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       },
     }), undefined, 2) + '\n',
   })
-  let stderr
+  let stdout
   try {
-    await spawn('base', ['test'], { capture: ['stderr'] })
+    await spawn('base', ['test'], { capture: ['stdout'] })
   } catch (error) {
-    stderr = error.stderr
+    stdout = error.stdout
   }
-  expect(stderr).toMatch(endent`
+  expect(stdout).toMatch(endent`
     Unused dependencies
     * change-case
   ` + '\n')

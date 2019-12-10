@@ -1,6 +1,6 @@
 import P from 'path'
 import { copyFile, remove, outputFile, readFile, symlink } from 'fs'
-import { spawn, fork } from 'child_process'
+import { spawn } from 'child_process'
 import projectzConfig from './projectz.config'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
@@ -67,7 +67,7 @@ export default {
       if (!getProjectzReadmeSectionRegex('LICENSEFILE').test(await readFile('LICENSE.md', 'utf8'))) {
         throw new Error('LICENSE.md file must be generated. Maybe it has been accidentally modified.')
       }
-      await fork(require.resolve('./depcheck.cli'), [])
+      await spawn('depcheck', ['--config', require.resolve('./depcheck.config'), '.'], { stdio: 'inherit' })
 
       const binEntries = require(P.resolve('package.json')).bin ?? {}
       await binEntries
