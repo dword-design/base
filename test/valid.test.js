@@ -143,4 +143,4 @@ export const it = async () => {
   })
 }
 
-export const timeout = 20000
+export const timeout = 25000

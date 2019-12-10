@@ -6,6 +6,7 @@ import expect from 'expect'
 import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
 import sortPackageJson from 'sort-package-json'
 import { readFile } from 'fs'
+import getPackageName from 'get-package-name'
 
 export const it = async () => {
 
@@ -13,10 +14,13 @@ export const it = async () => {
     ...minimalProjectConfig,
     'node_modules/base-config-foo/index.js': endent`
 
-      exports.build = () => console.log('foo')
-      exports.start = () => console.log('bar')
-      exports.lint = () => console.log('baz')
-      exports.gitignore = ['/foo.txt']
+      module.exports = {
+        build: () => console.log('foo'),
+        start: () => console.log('bar'),
+        lint: () => console.log('baz'),
+        gitignore: ['/foo.txt'],
+        babelConfig: require('${getPackageName(require.resolve('@dword-design/babel-config'))}'),
+      }
     `,
     'package.json': JSON.stringify(sortPackageJson({
       ...minimalPackageConfig,

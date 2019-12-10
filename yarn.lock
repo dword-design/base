@@ -729,7 +729,7 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@dword-design/aliases@^2.0.0":
+"@dword-design/aliases@^2.0.0", "@dword-design/aliases@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@dword-design/aliases/-/aliases-2.0.1.tgz#a8621c70c435959bb92d32a9fd351e5215637b3f"
   integrity sha512-LdQhQ7cWzpsuaWA0w3jz97okqQ1+cSyhHkaeP0fbsxTuTK+PdWHRTs4Qk7kP+zeMddhKOgT0nNNaxk/wG8kkcg==
@@ -756,16 +756,18 @@
     babel-plugin-transform-imports "^2.0.0"
 
 "@dword-design/base-config-node@^1.0.0":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.2.1.tgz#126c0f89b1afde3ace2b9fea7bcac9599a04ae5f"
-  integrity sha512-/sBHa74qIkH2HX7gX1TseVLthtvX687dWZbqXtZ+zbSt75c/VH+qOogajfjQAUp8j7mk6Lm+GvkpZIF0dU0RlA==
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.3.0.tgz#75d8ec185dc7e85c392f8d593c98c5d14d1e91c1"
+  integrity sha512-pyXb9cFfSSvqPZDYVmgeLzS1s8Oyl62BudltUMIfunDRubRYRPEoge0xpZMdzmBN0IrwAD3jUKoW7TzhJEUYNQ==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
+    "@dword-design/aliases" "^2.0.1"
     "@dword-design/babel-config" "^1.0.4"
     "@dword-design/eslint-config" "^1.2.0"
     chokidar "^3.3.0"
     debounce "^1.2.0"
+    depcheck dword-design/depcheck#fork
     eslint "^6.7.2"
     get-package-name "^1.0.0"
 
@@ -1120,12 +1122,12 @@ atob@^2.1.1:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 babel-eslint@^11.0.0-beta.0:
-  version "11.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-11.0.0-beta.1.tgz#1762faffeaee26877761b9a19af43cef679999a4"
-  integrity sha512-4xDIJZUn6RDNfSfKmrywNT+e37srxxPP+GdciWakL5U36fde3/K7Y/X8XyEquXGQz02tPvzRuF6SNrR61uZ+fA==
+  version "11.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-11.0.0-beta.2.tgz#de1f06795aa0d8cedcf6ac943e63056f5b4a7048"
+  integrity sha512-D2tunrOu04XloEdU2XVUminUu25FILlGruZmffqH5OSnLDhCheKNvUoM1ihrexdUvhizlix8bjqRnsss4V/UIQ==
   dependencies:
-    eslint-scope "3.7.1"
-    eslint-visitor-keys "^1.0.0"
+    eslint-scope "5.0.0"
+    eslint-visitor-keys "^1.1.0"
     semver "^6.3.0"
 
 babel-plugin-add-module-exports@^1.0.2:
@@ -1336,7 +1338,6 @@ chardet@^0.7.0:
 
 chdir@dword-design/node-chdir#fork:
   version "0.0.0"
-  uid "55004473579e2b8d293ced5410af5948793971b6"
   resolved "https://codeload.github.com/dword-design/node-chdir/tar.gz/55004473579e2b8d293ced5410af5948793971b6"
 
 child-process-promise@^2.2.1:
@@ -1700,7 +1701,6 @@ delegates@^1.0.0:
 
 depcheck@dword-design/depcheck#fork:
   version "0.0.1"
-  uid b581cc5d85247e7fa5fbf8a682b00aa738eae3cf
   resolved "https://codeload.github.com/dword-design/depcheck/tar.gz/b581cc5d85247e7fa5fbf8a682b00aa738eae3cf"
   dependencies:
     "@babel/parser" "^7.6.4"
@@ -1928,15 +1928,7 @@ eslint-plugin-prefer-arrow@^1.1.6:
   resolved "https://registry.yarnpkg.com/eslint-plugin-prefer-arrow/-/eslint-plugin-prefer-arrow-1.1.7.tgz#4534dd8d2e519cd579a951f95802137365d524a2"
   integrity sha512-epsA4g804mRovlOHSbeO1xxW7REGeUjULRME9MJTJDOVscNIA01AkR66TP4cmHDfD+w72EQ9cPhf37MbZiFI2w==
 
-eslint-scope@3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
-  integrity sha1-PWPD7f2gLgbgGkUq2IyqzHzctug=
-  dependencies:
-    esrecurse "^4.1.0"
-    estraverse "^4.1.1"
-
-eslint-scope@^5.0.0:
+eslint-scope@5.0.0, eslint-scope@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-5.0.0.tgz#e87c8887c73e8d1ec84f1ca591645c358bfc8fb9"
   integrity sha512-oYrhJW7S0bxAFDvWqzvMPRm6pcgcnWc4QnofCAqRTRfQC0JcwenzGglTtsLyIuuWFfkqDG9vz67cnttSd53djw==
@@ -1951,7 +1943,7 @@ eslint-utils@^1.4.3:
   dependencies:
     eslint-visitor-keys "^1.1.0"
 
-eslint-visitor-keys@^1.0.0, eslint-visitor-keys@^1.1.0:
+eslint-visitor-keys@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.1.0.tgz#e2a82cea84ff246ad6fb57f9bde5b46621459ec2"
   integrity sha512-8y9YjtM1JBJU/A9Kc+SbaOV4y29sSWckBwMHa+FGtVj5gN/sbnKDf6xJUl+8g7FAij9LVaP8C24DUiH/f/2Z9A==
