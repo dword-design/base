@@ -67,7 +67,7 @@ export default {
       if (!getProjectzReadmeSectionRegex('LICENSEFILE').test(await readFile('LICENSE.md', 'utf8'))) {
         throw new Error('LICENSE.md file must be generated. Maybe it has been accidentally modified.')
       }
-      await spawn('depcheck', ['--config', require.resolve('./depcheck.config'), '.'], { stdio: 'inherit' })
+      await spawn('depcheck', ['--skip-missing', true, '--config', require.resolve('./depcheck.config'), '.'], { stdio: 'inherit' })
 
       const binEntries = require(P.resolve('package.json')).bin ?? {}
       await binEntries
