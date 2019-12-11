@@ -9,10 +9,6 @@
   "repository": "dword-design/base",
   "license": "MIT",
   "author": "Sebastian Landwehr <info@dword-design.de>",
-  "contributors": [
-    "dword-design (http://www.dword-design.de)",
-    "Renovate Bot (http://renovatebot.com)"
-  ],
   "files": [
     "dist"
   ],
@@ -55,5 +51,9 @@
     "sort-package-json": "^1.30.0",
     "with-local-tmp-dir": "^2.1.2"
   },
+  "contributors": [
+    "dword-design (http://www.dword-design.de)",
+    "Renovate Bot (http://renovatebot.com)"
+  ],
   "maintainers": []
 }

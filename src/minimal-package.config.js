@@ -8,10 +8,6 @@ export default {
   repository: 'bar/foo',
   license: 'MIT',
   author: 'bar',
-  contributors: [
-    'dword-design (http://www.dword-design.de)',
-    'Renovate Bot (http://renovatebot.com)',
-  ],
   files: [
     'dist',
   ],
@@ -21,5 +17,9 @@ export default {
     start: 'base start',
     test: 'base test',
   },
+  contributors: [
+    'dword-design (http://www.dword-design.de)',
+    'Renovate Bot (http://renovatebot.com)',
+  ],
   maintainers: [],
 }
