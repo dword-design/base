@@ -55,5 +55,10 @@
     "dword-design (http://www.dword-design.de)",
     "Renovate Bot (http://renovatebot.com)"
   ],
+  "depcheck": {
+    "ignoreMatches": [
+      "pre-commit"
+    ]
+  },
   "maintainers": []
 }
