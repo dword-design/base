@@ -794,9 +794,9 @@
     tinycolor2 "^1.4.1"
 
 "@dword-design/json-schema-package@^1.0.0":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@dword-design/json-schema-package/-/json-schema-package-1.0.4.tgz#dcd5b5be260d778f3215cf9e41d41819cf0b176b"
-  integrity sha512-PvdI1hEtOdiPDOvjHhrvdHufyp77tLDaP1Vp3fXuBGsOGTnQUY/Q0kruXgQYhiJTlaQHybnXaCFtsqwB5JWo4Q==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/json-schema-package/-/json-schema-package-1.1.0.tgz#e15370ac6bc9b940823a081cb8857fbbbfed5972"
+  integrity sha512-7U1PlrrGXO9QScuhOvLKMvvrPAIrWzCPwMIjsNghL/uZKElvwwNDTdDYWGNnz47NWmbexGLYiIQRBO1TqvpcBA==
   dependencies:
     package-name-regex "^1.0.1"
     stable-version-regex "^1.0.1"
