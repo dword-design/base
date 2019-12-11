@@ -729,7 +729,7 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@dword-design/aliases@^2.0.0", "@dword-design/aliases@^2.0.1":
+"@dword-design/aliases@^2.0.0":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@dword-design/aliases/-/aliases-2.0.1.tgz#a8621c70c435959bb92d32a9fd351e5215637b3f"
   integrity sha512-LdQhQ7cWzpsuaWA0w3jz97okqQ1+cSyhHkaeP0fbsxTuTK+PdWHRTs4Qk7kP+zeMddhKOgT0nNNaxk/wG8kkcg==
@@ -756,13 +756,12 @@
     babel-plugin-transform-imports "^2.0.0"
 
 "@dword-design/base-config-node@^1.0.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.3.0.tgz#75d8ec185dc7e85c392f8d593c98c5d14d1e91c1"
-  integrity sha512-pyXb9cFfSSvqPZDYVmgeLzS1s8Oyl62BudltUMIfunDRubRYRPEoge0xpZMdzmBN0IrwAD3jUKoW7TzhJEUYNQ==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.3.1.tgz#88388b9e4371d92673cfd1eca7cd300348614cb9"
+  integrity sha512-teh3wsInPQKLYcCn/gpJ+S0QFxkeR+D5p6CScIoY/XNFcvRVOw5q1UlyrhS4+dHbzI/r1eENbH7UifgiMDuW7w==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
-    "@dword-design/aliases" "^2.0.1"
     "@dword-design/babel-config" "^1.0.4"
     "@dword-design/eslint-config" "^1.2.0"
     chokidar "^3.3.0"
@@ -1338,7 +1337,6 @@ chardet@^0.7.0:
 
 chdir@dword-design/node-chdir#fork:
   version "0.0.0"
-  uid "55004473579e2b8d293ced5410af5948793971b6"
   resolved "https://codeload.github.com/dword-design/node-chdir/tar.gz/55004473579e2b8d293ced5410af5948793971b6"
 
 child-process-promise@^2.2.1:
@@ -1702,7 +1700,6 @@ delegates@^1.0.0:
 
 depcheck@dword-design/depcheck#fork:
   version "0.0.1"
-  uid b581cc5d85247e7fa5fbf8a682b00aa738eae3cf
   resolved "https://codeload.github.com/dword-design/depcheck/tar.gz/b581cc5d85247e7fa5fbf8a682b00aa738eae3cf"
   dependencies:
     "@babel/parser" "^7.6.4"
