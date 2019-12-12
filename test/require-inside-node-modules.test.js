@@ -9,7 +9,10 @@ import { endent } from '@functions'
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     ...minimalProjectConfig,
-    'node_modules/bar/index.js': 'module.exports = require(\'foo\')',
+    node_modules: {
+      'foo/index.js': 'module.exports = 2',
+      'bar/index.js': 'module.exports = require(\'foo\')',
+    },
     'package.json': JSON.stringify(sortPackageJson({
       ...minimalPackageConfig,
       dependencies: {
