@@ -1328,6 +1328,7 @@ chardet@^0.7.0:
 
 chdir@dword-design/node-chdir#fork:
   version "0.0.0"
+  uid "55004473579e2b8d293ced5410af5948793971b6"
   resolved "https://codeload.github.com/dword-design/node-chdir/tar.gz/55004473579e2b8d293ced5410af5948793971b6"
 
 child-process-promise@^2.2.1:
@@ -1691,6 +1692,7 @@ delegates@^1.0.0:
 
 depcheck@dword-design/depcheck#fork:
   version "0.0.1"
+  uid c26892d97de67e476566ece801a046dbd718f21b
   resolved "https://codeload.github.com/dword-design/depcheck/tar.gz/c26892d97de67e476566ece801a046dbd718f21b"
   dependencies:
     "@babel/parser" "^7.6.4"
@@ -1702,7 +1704,6 @@ depcheck@dword-design/depcheck#fork:
     minimatch "^3.0.2"
     node-sass-tilde-importer "^1.0.2"
     please-upgrade-node "^3.2.0"
-    require-from-string "^2.0.2"
     require-package-name "^2.0.1"
     resolve "^1.12.0"
     vue-template-compiler "^2.6.10"
@@ -4172,11 +4173,6 @@ require-from-string@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-1.2.1.tgz#529c9ccef27380adfec9a2f965b649bbee636418"
   integrity sha1-UpyczvJzgK3+yaL5ZbZJu+5jZBg=
-
-require-from-string@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-2.0.2.tgz#89a7fdd938261267318eafe14f9c32e598c36909"
-  integrity sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==
 
 require-main-filename@^2.0.0:
   version "2.0.0"
