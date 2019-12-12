@@ -1,8 +1,8 @@
 import outputFiles from 'output-files'
-import { spawn } from 'child_process'
+import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
-import { endent } from '@functions'
+import { endent } from '@dword-design/functions'
 import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
 import sortPackageJson from 'sort-package-json'
 

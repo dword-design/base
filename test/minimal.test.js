@@ -1,5 +1,5 @@
 import outputFiles from 'output-files'
-import { spawn } from 'child_process'
+import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { minimalProjectConfig } from '@dword-design/base'
 

@@ -1,6 +1,6 @@
 import configPackageName from './config-package-name'
 import config from './config'
-import { merge } from '@functions'
+import { merge } from '@dword-design/functions'
 import P from 'path'
 
 export default {

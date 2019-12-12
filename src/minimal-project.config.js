@@ -1,6 +1,6 @@
-import { endent, map, join, sortBy, identity } from '@functions'
+import { endent, map, join, sortBy, identity } from '@dword-design/functions'
 import minimalPackageConfig from './minimal-package.config'
-import { readFileSync } from 'fs'
+import { readFileSync } from 'fs-extra'
 import P from 'path'
 import gitignoreConfig from './gitignore.config'
 

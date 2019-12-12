@@ -1,10 +1,10 @@
 import P from 'path'
-import { copyFile, remove, outputFile, readFile, symlink } from 'fs'
-import { spawn } from 'child_process'
+import { copyFile, remove, outputFile, readFile, symlink } from 'fs-extra'
+import { spawn } from 'child-process-promise'
 import projectzConfig from './projectz.config'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
-import { filter, join, values, promiseAll, mapValues, replace, map, sortBy, identity } from '@functions'
+import { filter, join, values, promiseAll, mapValues, replace, map, sortBy, identity } from '@dword-design/functions'
 import config from './config'
 import gitignoreConfig from './gitignore.config'
 

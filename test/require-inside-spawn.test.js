@@ -1,15 +1,22 @@
 import outputFiles from 'output-files'
-import { spawn } from 'child_process'
+import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
-import { minimalProjectConfig } from '@dword-design/base'
-import { endent } from '@functions'
-import { chmod } from 'fs'
+import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
+import { endent } from '@dword-design/functions'
+import { chmod } from 'fs-extra'
 import P from 'path'
+import sortPackageJson from 'sort-package-json'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     ...minimalProjectConfig,
+    'package.json': JSON.stringify(sortPackageJson({
+      ...minimalPackageConfig,
+      dependencies: {
+        'child-process-promise': '^1.0.0',
+      },
+    }), undefined, 2),
     test: {
       'cli.js': endent`
         #!/usr/bin/env node
@@ -17,7 +24,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
         console.log('foo')
       `,
       'works.test.js': endent`
-        import { spawn } from 'child_process'
+        import { spawn } from 'child-process-promise'
 
         export default () => spawn(require.resolve('./cli'), [], { stdio: 'inherit' })
       `,

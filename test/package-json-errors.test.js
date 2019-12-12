@@ -1,9 +1,9 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
-import { spawn } from 'child_process'
+import { spawn } from 'child-process-promise'
 import expect from 'expect'
 import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
 import outputFiles from 'output-files'
-import { omit } from '@functions'
+import { omit } from '@dword-design/functions'
 
 export const it = () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({

@@ -2,9 +2,9 @@ import outputFiles from 'output-files'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { minimalProjectConfig, minimalPackageConfig } from '@dword-design/base'
 import sortPackageJson from 'sort-package-json'
-import { endent } from '@functions'
-import { chmod } from 'fs'
-import { spawn } from 'child_process'
+import { endent } from '@dword-design/functions'
+import { chmod } from 'fs-extra'
+import { spawn } from 'child-process-promise'
 
 export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
