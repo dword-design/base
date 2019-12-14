@@ -94,6 +94,7 @@ export default {
           stdio: 'inherit',
           env: {
             ...process.env,
+            NODE_ENV: 'test',
             BABEL_CACHE_PATH: P.join(process.cwd(), 'node_modules', '.cache', '@babel', 'register', '.babel.json'),
           },
         }

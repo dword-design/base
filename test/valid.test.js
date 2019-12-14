@@ -23,13 +23,16 @@ export const it = async () => {
       import foo from 'foo'
       import expect from 'expect'
 
-      export default () => expect(foo).toEqual(1)
+      export default () => {
+        expect(process.env.NODE_ENV).toEqual('test')
+        expect(foo).toEqual(1)
+      }
     `,
   }
 
   await withLocalTmpDir(__dirname, async () => {
     await outputFiles(files)
-    const { stdout } = (await spawn('base', ['build'], { capture: ['stdout'] }))
+    const { stdout } = await spawn('base', ['build'], { capture: ['stdout'] })
     expect(stdout).toEqual(endent`
       Copying config files …
       Updating README.md …
