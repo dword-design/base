@@ -54,6 +54,7 @@
     "rimraf": "^3.0.0",
     "sort-package-json": "^1.30.0",
     "stealthy-require": "^1.1.1",
+    "wait-for-change": "^1.1.1",
     "with-local-tmp-dir": "^2.1.2"
   },
   "contributors": [
