@@ -40,17 +40,21 @@ export default {
   build: {
     handler: async () => {
       await buildConfigFiles()
-      if (workspaceGlob !== undefined) {
-        await glob(workspaceGlob |> first, { dot: true })
+      return workspaceGlob !== undefined
+        ? glob(workspaceGlob |> first, { dot: true })
+          |> await
           |> map(path => spawn('npm', ['run', 'prepublishOnly'], { cwd: path, stdio: 'inherit' }))
           |> promiseAll
-      } else {
-        return config.build()
-      }
+        : config.build()
     },
   },
   start: {
-    handler: () => config.start(),
+    handler: async () => workspaceGlob !== undefined
+      ? glob(workspaceGlob |> first, { dot: true })
+        |> await
+        |> map(path => spawn('npm', ['start'], { cwd: path, stdio: 'inherit' }))
+        |> promiseAll
+      : config.start(),
   },
   test: {
     arguments: '[pattern]',
