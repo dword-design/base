@@ -4,18 +4,25 @@ import { spawn } from 'child-process-promise'
 import projectzConfig from './projectz.config'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
-import { filter, join, values, promiseAll, mapValues, replace, map, sortBy, identity } from '@dword-design/functions'
+import { filter, join, values, promiseAll, mapValues, replace, map, sortBy, identity, first } from '@dword-design/functions'
 import config from './config'
 import gitignoreConfig from './gitignore.config'
+import glob from 'glob-promise'
+import findYarnWorkspaceRoot from 'find-yarn-workspace-root'
+
+const workspaceGlob = require(P.resolve('package.json')).workspaces
+const isWorkspaceRoot = [process.cwd(), null].includes(findYarnWorkspaceRoot())
 
 const buildConfigFiles = async () => {
   console.log('Copying config files …')
+  if (isWorkspaceRoot) {
+    await copyFile(P.resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
+    await copyFile(P.resolve(__dirname, 'config-files', 'gitpod.yml'), '.gitpod.yml')
+    await copyFile(P.resolve(__dirname, 'config-files', 'renovaterc.json'), '.renovaterc.json')
+    await copyFile(P.resolve(__dirname, 'config-files', 'travis.yml'), '.travis.yml')
+  }
   await outputFile('.gitignore', gitignoreConfig |> sortBy(identity) |> map(entry => `${entry}\n`) |> join(''))
-  await copyFile(P.resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
-  await copyFile(P.resolve(__dirname, 'config-files', 'gitpod.yml'), '.gitpod.yml')
   await copyFile(P.resolve(__dirname, 'config-files', 'LICENSE.md'), 'LICENSE.md')
-  await copyFile(P.resolve(__dirname, 'config-files', 'renovaterc.json'), '.renovaterc.json')
-  await copyFile(P.resolve(__dirname, 'config-files', 'travis.yml'), '.travis.yml')
   console.log('Updating README.md …')
   await outputFile('projectz.json', JSON.stringify(projectzConfig, undefined, 2))
   try {
@@ -33,7 +40,13 @@ export default {
   build: {
     handler: async () => {
       await buildConfigFiles()
-      return config.build()
+      if (workspaceGlob !== undefined) {
+        await glob(workspaceGlob |> first, { dot: true })
+          |> map(path => spawn('npm', ['run', 'prepublishOnly'], { cwd: path, stdio: 'inherit' }))
+          |> promiseAll
+      } else {
+        return config.build()
+      }
     },
   },
   start: {
