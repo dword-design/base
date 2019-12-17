@@ -77,7 +77,7 @@ export const it = async () => {
       No depcheck issue
 
 
-        0 passing (1ms)
+        0 passing \(.*?\)
 
       ----------|----------|----------|----------|----------|-------------------|
       File      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
