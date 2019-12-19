@@ -2,14 +2,14 @@ import outputFiles from 'output-files'
 import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
-import { minimalProjectConfig } from '@dword-design/base'
+import filesConfig from '../files.config'
+import { outputFile } from 'fs-extra'
 
-export const it = () => withLocalTmpDir(__dirname, async () => {
-  await outputFiles({
-    ...minimalProjectConfig,
-    'src/index.js': 'export default 1;',
-  })
-
+export default () => withLocalTmpDir(__dirname, async () => {
+  await outputFiles(filesConfig)
+  await spawn('base', ['build'])
+  await outputFile('src/index.js', 'export default 1;')
+  
   let stdout
   try {
     await spawn('base', ['test'], { capture: ['stdout'] })
@@ -18,5 +18,3 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   }
   expect(stdout).toMatch('error  Extra semicolon  semi')
 })
-
-export const timeout = 10000

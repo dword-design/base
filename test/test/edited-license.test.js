@@ -2,13 +2,13 @@ import outputFiles from 'output-files'
 import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
-import { minimalProjectConfig } from '@dword-design/base'
+import filesConfig from '../files.config'
+import { outputFile } from 'fs-extra'
 
-export const it = () => withLocalTmpDir(__dirname, async () => {
-  await outputFiles({
-    ...minimalProjectConfig,
-    'LICENSE.md': 'foo',
-  })
+export default () => withLocalTmpDir(__dirname, async () => {
+  await outputFiles(filesConfig)
+  await spawn('base', ['build'])
+  await outputFile('LICENSE.md', 'foo')
   let stderr
   try {
     await spawn('base', ['test'], { capture: ['stderr'] })
@@ -17,5 +17,3 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   }
   expect(stderr).toEqual('LICENSE.md file must be generated. Maybe it has been accidentally modified.\n')
 })
-
-export const timeout = 20000

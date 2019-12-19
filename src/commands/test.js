@@ -73,6 +73,7 @@ export default {
             '--cwd', process.cwd(),
             '--require', require.resolve('../pretest'),
             'mocha-per-file',
+            '--timeout', 30000,
             ...pattern !== undefined ? [pattern] : [],
           ],
           {

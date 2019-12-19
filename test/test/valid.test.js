@@ -4,14 +4,15 @@ import outputFiles from 'output-files'
 import expect from 'expect'
 import glob from 'glob-promise'
 import { endent } from '@dword-design/functions'
-import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
+import packageConfig from '../package.config'
+import filesConfig from '../files.config'
 import sortPackageJson from 'sort-package-json'
 
-export const it = () => withLocalTmpDir(__dirname, async () => {
+export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...minimalProjectConfig,
+    ...filesConfig,
     'package.json': JSON.stringify(sortPackageJson({
-      ...minimalPackageConfig,
+      ...packageConfig,
       devDependencies: {
         expect: '^0.1.0',
       },
@@ -26,6 +27,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       }
     `,
   })
+  await spawn('base', ['build'])
   const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
   expect(stdout).toMatch(new RegExp(endent`
     ^Copying config files …
@@ -44,6 +46,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     ----------|----------|----------|----------|----------|-------------------|
   ` + '\n$'))
   expect(await glob('*', { dot: true })).toEqual([
+    '.editorconfig',
     '.eslintrc.json',
     '.gitignore',
     '.gitpod.yml',
@@ -51,6 +54,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     '.renovaterc.json',
     '.travis.yml',
     'coverage',
+    'dist',
     'LICENSE.md',
     'node_modules',
     'package.json',
@@ -59,5 +63,3 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     'test',
   ])
 })
-
-export const timeout = 20000

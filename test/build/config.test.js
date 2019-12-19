@@ -3,14 +3,15 @@ import outputFiles from 'output-files'
 import { endent } from '@dword-design/functions'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
-import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
+import packageConfig from '../package.config'
+import filesConfig from '../files.config'
 import sortPackageJson from 'sort-package-json'
 import { readFile } from 'fs-extra'
 import getPackageName from 'get-package-name'
 
-export const it = () => withLocalTmpDir(__dirname, async () => {
+export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...minimalProjectConfig,
+    ...filesConfig,
     'node_modules/base-config-foo/index.js': endent`
 
       module.exports = {
@@ -22,7 +23,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       }
     `,
     'package.json': JSON.stringify(sortPackageJson({
-      ...minimalPackageConfig,
+      ...packageConfig,
       devDependencies: {
         'base-config-foo': '^1.0.0',
       },
@@ -45,5 +46,3 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     /node_modules
   ` + '\n')
 })
-
-export const timeout = 20000

@@ -1,11 +1,8 @@
 import makeCli from 'make-cli'
 import commands from './commands'
-import minimalPackageConfig from './minimal-package.config'
-import minimalProjectConfig from './minimal-project.config'
-import minimalWorkspaceConfig from './minimal-workspace.config'
 import { mapValues, values } from '@dword-design/functions'
 
-export const execute = () => makeCli({
+export default () => makeCli({
   commands: commands
     |> mapValues((command, commandName) => ({
       ...command,
@@ -19,5 +16,3 @@ export const execute = () => makeCli({
     }))
     |> values,
 })
-
-export { minimalPackageConfig, minimalProjectConfig, minimalWorkspaceConfig }

@@ -3,20 +3,22 @@ import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
 import { endent } from '@dword-design/functions'
-import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
+import packageConfig from '../package.config'
+import filesConfig from '../files.config'
 import sortPackageJson from 'sort-package-json'
 
-export const it = () => withLocalTmpDir(__dirname, async () => {
+export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...minimalProjectConfig,
+    ...filesConfig,
     'src/index.js': 'export default 1',
     'package.json': JSON.stringify(sortPackageJson({
-      ...minimalPackageConfig,
+      ...packageConfig,
       dependencies: {
         'change-case': '^0.1.0',
       },
     }), undefined, 2) + '\n',
   })
+  await spawn('base', ['build'])
   let stdout
   try {
     await spawn('base', ['test'], { capture: ['stdout'] })
@@ -28,5 +30,3 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     * change-case
   ` + '\n')
 })
-
-export const timeout = 25000

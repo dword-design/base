@@ -6,14 +6,15 @@ import glob from 'glob-promise'
 import P from 'path'
 import { endent } from '@dword-design/functions'
 import { readFile } from 'fs-extra'
-import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
+import packageConfig from '../package.config'
+import filesConfig from '../files.config'
 import sortPackageJson from 'sort-package-json'
 
-export const it = () => withLocalTmpDir(__dirname, async () => {
+export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...minimalProjectConfig,
+    ...filesConfig,
     'package.json': JSON.stringify(sortPackageJson({
-      ...minimalPackageConfig,
+      ...packageConfig,
       devDependencies: {
         expect: '^0.1.0',
       },
@@ -82,7 +83,8 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     <a href="https://npmjs.com" title="npm is a package manager for javascript"><h3>npm</h3></a>
     <ul>
     <li>Install: <code>npm install --save foo</code></li>
-    <li>Require: <code>require('foo')</code></li>
+    <li>Import: <code>import * as pkg from ('foo')</code></li>
+    <li>Require: <code>const pkg = require('foo')</code></li>
     </ul>
 
     <!-- /INSTALL -->
@@ -104,5 +106,3 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   ` + '\n')
   expect(await readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
 })
-
-export const timeout = 20000

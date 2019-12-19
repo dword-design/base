@@ -1,20 +1,19 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { spawn } from 'child-process-promise'
-import { exists } from 'fs-extra'
+import { outputFile } from 'fs-extra'
 import expect from 'expect'
-import { minimalProjectConfig } from '@dword-design/base'
+import filesConfig from '../files.config'
 import outputFiles from 'output-files'
 import { endent } from '@dword-design/functions'
 
-export const it = () => withLocalTmpDir(__dirname, async () => {
-  await outputFiles({
-    ...minimalProjectConfig,
-    'src/test.json': endent`
-      {
-      "foo": "bar"
-      }
-    `,
-  })
+export default () => withLocalTmpDir(__dirname, async () => {
+  await outputFiles(filesConfig)
+  await spawn('base', ['build'])
+  await outputFile('src/test.json', endent`
+    {
+    "foo": "bar"
+    }
+  `)
   let stdout
   try {
     await spawn('base', ['test'], { capture: ['stdout'] })
@@ -22,7 +21,4 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     stdout = error.stdout
   }
   expect(stdout).toMatch('Format Error: expected "  "')
-  expect(await exists('dist')).toBeFalsy()
 })
-
-export const timeout = 8000

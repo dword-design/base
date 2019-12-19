@@ -2,31 +2,33 @@ import withLocalTmpDir from 'with-local-tmp-dir'
 import { spawn } from 'child-process-promise'
 import outputFiles from 'output-files'
 import { endent } from '@dword-design/functions'
-import { minimalPackageConfig, minimalProjectConfig, minimalWorkspaceConfig } from '@dword-design/base'
+import packageConfig from '../package.config'
+import filesConfig from '../files.config'
 import sortPackageJson from 'sort-package-json'
 import expect from 'expect'
 
-export const it = () => withLocalTmpDir(__dirname, async () => {
+export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...minimalProjectConfig,
+    ...filesConfig,
     'package.json': JSON.stringify(sortPackageJson({
-      ...minimalPackageConfig,
+      ...packageConfig,
       private: true,
       workspaces: ['packages/*'],
     }), undefined, 2),
     'packages/a': {
-      ...minimalWorkspaceConfig,
+      ...filesConfig,
       'test/foo.test.js': endent`
         export default () => {}
       `,
     },
     'packages/b': {
-      ...minimalWorkspaceConfig,
+      ...filesConfig,
       'test/bar.test.js': endent`
         export default () => {}
       `,
     },
   })
+  await spawn('base', ['build'])
   const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
   expect(stdout).toMatch(new RegExp(endent`
     package\\.json valid
@@ -67,5 +69,3 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     ----------|----------|----------|----------|----------|-------------------|
   ` + '\n'))
 })
-
-export const timeout = 30000

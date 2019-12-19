@@ -2,19 +2,20 @@ import outputFiles from 'output-files'
 import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
-import { minimalPackageConfig, minimalProjectConfig } from '@dword-design/base'
+import packageConfig from '../package.config'
+import filesConfig from '../files.config'
 import sortPackageJson from 'sort-package-json'
 import { endent } from '@dword-design/functions'
 
-export const it = () => withLocalTmpDir(__dirname, async () => {
+export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...minimalProjectConfig,
+    ...filesConfig,
     node_modules: {
       'foo/index.js': 'module.exports = 2',
       'bar/index.js': 'module.exports = require(\'foo\')',
     },
     'package.json': JSON.stringify(sortPackageJson({
-      ...minimalPackageConfig,
+      ...packageConfig,
       dependencies: {
         bar: '^1.0.0',
         expect: '^1.0.0',
@@ -27,6 +28,7 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
       export default () => expect(bar).toEqual(1)
     `,
   })
+  await spawn('base', ['build'])
   const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
   expect(stdout).toMatch(new RegExp(endent`
     ^package.json valid
@@ -43,5 +45,3 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
     ----------|----------|----------|----------|----------|-------------------|
   ` + '\n$'))
 })
-
-export const timeout = 20000

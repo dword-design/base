@@ -1,7 +1,8 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { spawn } from 'child-process-promise'
 import outputFiles from 'output-files'
-import { minimalPackageConfig, minimalProjectConfig, minimalWorkspaceConfig } from '@dword-design/base'
+import packageConfig from '../package.config'
+import filesConfig from '../files.config'
 import sortPackageJson from 'sort-package-json'
 import stealthyRequire from 'stealthy-require'
 import P from 'path'
@@ -9,16 +10,16 @@ import expect from 'expect'
 import { outputFile } from 'fs-extra'
 import waitForChange from 'wait-for-change'
 
-export const it = () => withLocalTmpDir(__dirname, async () => {
+export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...minimalProjectConfig,
+    ...filesConfig,
     'package.json': JSON.stringify(sortPackageJson({
-      ...minimalPackageConfig,
+      ...packageConfig,
       private: true,
       workspaces: ['packages/*'],
     }), undefined, 2),
-    'packages/a': minimalWorkspaceConfig,
-    'packages/b': minimalWorkspaceConfig,
+    'packages/a': filesConfig,
+    'packages/b': filesConfig,
   })
   const childProcess = spawn('base', ['start'], { stdio: 'ignore' })
     .catch(error => {
@@ -45,5 +46,3 @@ export const it = () => withLocalTmpDir(__dirname, async () => {
   expect(stealthyRequire(require.cache, () => require(P.resolve('packages', 'b', 'dist')))).toEqual(2)
   childProcess.kill()
 })
-
-export const timeout = 20000
