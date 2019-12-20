@@ -37,7 +37,8 @@
 <ul>
 <li>Install: <code>npm install --save @dword-design/base</code></li>
 <li>Executable: <code>npx base</code></li>
-<li>Require: <code>require('@dword-design/base')</code></li>
+<li>Import: <code>import * as pkg from ('@dword-design/base')</code></li>
+<li>Require: <code>const pkg = require('@dword-design/base')</code></li>
 </ul>
 
 <!-- /INSTALL -->
