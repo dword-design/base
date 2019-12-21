@@ -41,6 +41,7 @@ export default {
       throw new Error('LICENSE.md file must be generated. Maybe it has been accidentally modified.')
     }
 
+    await config.lint()
     await spawn('depcheck', ['--skip-missing', true, '--config', require.resolve('../depcheck.config'), '.'], { stdio: 'inherit' })
 
     const binEntries = require(P.resolve('package.json')).bin ?? {}
@@ -63,28 +64,25 @@ export default {
           ),
           Promise.resolve()
         )
-      : (async () => {
-        await config.lint()
-        await spawn(
-          'nyc',
-          [
-            '--reporter', 'lcov',
-            '--reporter', 'text',
-            '--cwd', process.cwd(),
-            '--require', require.resolve('../pretest'),
-            'mocha-per-file',
-            '--timeout', 50000,
-            ...pattern !== undefined ? [pattern] : [],
-          ],
-          {
-            stdio: 'inherit',
-            env: {
-              ...process.env,
-              NODE_ENV: 'test',
-              BABEL_CACHE_PATH: P.join(process.cwd(), 'node_modules', '.cache', '@babel', 'register', '.babel.json'),
-            },
-          }
-        )
-      })()
+      : spawn(
+        'nyc',
+        [
+          '--reporter', 'lcov',
+          '--reporter', 'text',
+          '--cwd', process.cwd(),
+          '--require', require.resolve('../pretest'),
+          'mocha-per-file',
+          '--timeout', 50000,
+          ...pattern !== undefined ? [pattern] : [],
+        ],
+        {
+          stdio: 'inherit',
+          env: {
+            ...process.env,
+            NODE_ENV: 'test',
+            BABEL_CACHE_PATH: P.join(process.cwd(), 'node_modules', '.cache', '@babel', 'register', '.babel.json'),
+          },
+        }
+      )
   },
 }
