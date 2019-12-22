@@ -25,7 +25,7 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/core@^7.6.4", "@babel/core@^7.7.5":
+"@babel/core@^7.6.4", "@babel/core@^7.7.5", "@babel/core@^7.7.7":
   version "7.7.7"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.7.7.tgz#ee155d2e12300bcc0cff6a8ad46f2af5063803e9"
   integrity sha512-jlSjuj/7z138NLZALxVgrx13AOtqip42ATZP7+kYl53GvDV6+4dCek1mVUo8z8c8Xnw/mx2q3d9HWh3griuesQ==
@@ -745,15 +745,17 @@
     safe-require "^1.0.3"
 
 "@dword-design/base-config-node@^1.0.0":
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.3.4.tgz#43535d4c32d569709ea0f33e5e331a15a9dbceb9"
-  integrity sha512-cuixApimZw9x9jy6dL+a4wRNgTVSmVBDrmj8GtLndqdZdwYdb9QsyVbVVbzB/96xZRlJv94OFvGle6VS8Ycg0g==
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.3.6.tgz#456a7ec439bc187e8bfc242d893d44e725d7d0c5"
+  integrity sha512-2TkhYZGrw1hzlK2Rp2RtLTZC6qShCvqmXTZL9HjNg42dL+UP1NMj8akVHg4Bc/vOnX2TgVv+3jetdqm3vNI+AQ==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
     "@dword-design/babel-config" "^1.0.4"
+    "@dword-design/depcheck-spawn-detector" "^1.0.0"
     "@dword-design/eslint-config" "^1.2.0"
     "@dword-design/functions" "^2.2.2"
+    "@dword-design/get-depcheck-babel-parser" "^1.0.0"
     child-process-promise "^2.2.1"
     chokidar "^3.3.0"
     debounce "^1.2.0"
@@ -761,6 +763,14 @@
     eslint "^6.7.2"
     fs-extra "^8.1.0"
     get-package-name "^1.0.0"
+
+"@dword-design/depcheck-spawn-detector@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/depcheck-spawn-detector/-/depcheck-spawn-detector-1.0.0.tgz#667f8e1bfe8002beae262c2e163e80c17884b2ad"
+  integrity sha512-6ubR6Lya/fYQ9eE4ad0p2ua6e+HCedis+Wb5DjLnALFgJCd+tnJWFIIVe8j2yFVEanRn2wJs+MKTQzEiHB+gJQ==
+  dependencies:
+    "@dword-design/functions" "^2.2.4"
+    resolve-from "^5.0.0"
 
 "@dword-design/eslint-config@^1.2.0":
   version "1.2.3"
@@ -784,6 +794,13 @@
     endent "^1.3.0"
     lodash "^4.17.15"
     tinycolor2 "^1.4.1"
+
+"@dword-design/get-depcheck-babel-parser@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/get-depcheck-babel-parser/-/get-depcheck-babel-parser-1.0.0.tgz#4d2499ae218c864e3bb059e29eabe969ad9c1330"
+  integrity sha512-j7sMlHbepPg6vcGEcHxKBYu/obhhcrvHbHWeImKJWpBO+FonALPhxf4CVKYH50rjRgzTEL2bUHmSwZRYe2KRDg==
+  dependencies:
+    "@babel/core" "^7.7.7"
 
 "@dword-design/json-schema-package@^1.0.0":
   version "1.3.0"

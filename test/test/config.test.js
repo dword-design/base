@@ -12,22 +12,34 @@ import { outputFile } from 'fs-extra'
 export default async () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     ...filesConfig,
-    'node_modules/base-config-foo/index.js': endent`
+    node_modules: {
+      'bar/package.json': JSON.stringify({ bin: { bar: './dist/cli.js' } }),
+      'base-config-foo/index.js': endent`
 
-      module.exports = {
-        build: () => console.log('foo'),
-        start: () => console.log('bar'),
-        lint: () => console.log('baz'),
-        gitignore: ['/foo.txt'],
-        babelConfig: require('${getPackageName(require.resolve('@dword-design/babel-config'))}'),
-      }
-    `,
+        module.exports = {
+          build: () => console.log('foo'),
+          start: () => console.log('bar'),
+          lint: () => console.log('baz'),
+          gitignore: ['/foo.txt'],
+          babelConfig: require('${getPackageName(require.resolve('@dword-design/babel-config'))}'),
+        }
+      `,
+    },
     'package.json': JSON.stringify(sortPackageJson({
       ...packageConfig,
+      dependencies: {
+        bar: '^1.0.0',
+        'child-process-promise': '^1.0.0',
+      },
       devDependencies: {
         'base-config-foo': '^1.0.0',
       },
     }), undefined, 2),
+    'src/index.js': endent`
+      import { spawn } from 'child-process-promise'
+
+      spawn('bar')
+    `,
   })
   await spawn('base', ['build'])
   await outputFile('.gitignore', endent`
