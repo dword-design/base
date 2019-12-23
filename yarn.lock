@@ -1354,7 +1354,6 @@ chardet@^0.7.0:
 
 chdir@dword-design/node-chdir#fork:
   version "0.0.0"
-  uid "55004473579e2b8d293ced5410af5948793971b6"
   resolved "https://codeload.github.com/dword-design/node-chdir/tar.gz/55004473579e2b8d293ced5410af5948793971b6"
 
 child-process-promise@^2.2.1:
@@ -1725,8 +1724,7 @@ delegates@^1.0.0:
 
 depcheck@dword-design/depcheck#fork:
   version "0.0.1"
-  uid "90b969810163e9b293fe3ee26b415ee25f2c0697"
-  resolved "https://codeload.github.com/dword-design/depcheck/tar.gz/90b969810163e9b293fe3ee26b415ee25f2c0697"
+  resolved "https://codeload.github.com/dword-design/depcheck/tar.gz/87232a84c57281468fce38ac37d2977629dba336"
   dependencies:
     "@babel/parser" "^7.6.4"
     "@babel/traverse" "^7.6.3"
@@ -2351,7 +2349,6 @@ fsevents@^1.2.7:
   dependencies:
     bindings "^1.5.0"
     nan "^2.12.1"
-    node-pre-gyp "*"
 
 fsevents@~2.1.2:
   version "2.1.2"

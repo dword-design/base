@@ -43,12 +43,6 @@ export default {
 
     await config.lint()
     await spawn('depcheck', ['--skip-missing', true, '--config', require.resolve('../depcheck.config'), '.'], { stdio: 'inherit' })
-    try {
-      await spawn('depcheck', ['--skip-missing', true, '--config', require.resolve('../depcheck.prod.config'), '.'], { capture: ['stdout'] })
-    } catch (error) {
-      console.log(error.stdout)
-      throw error
-    }
 
     const binEntries = require(P.resolve('package.json')).bin ?? {}
     await binEntries
@@ -74,7 +68,7 @@ export default {
           '--cwd', process.cwd(),
           '--require', require.resolve('../pretest'),
           'mocha-per-file',
-          '--timeout', 70000,
+          '--timeout', 50000,
           ...pattern !== undefined ? [pattern] : [],
         ],
         {

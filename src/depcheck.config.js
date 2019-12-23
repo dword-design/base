@@ -9,5 +9,6 @@ export default {
     ...require(P.resolve('package.json')).depcheck?.ignoreMatches ?? [],
   ],
   ignoreDirs: ['.nyc_output', '.vscode', 'coverage', 'dist'],
+  prodDependencyMatches: ['**/package.json', 'src/**'],
 }
   |> merge(config.depcheckConfig)
