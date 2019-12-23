@@ -16,7 +16,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     },
     'package.json': JSON.stringify(sortPackageJson({
       ...packageConfig,
-      dependencies: {
+      devDependencies: {
         bar: '^1.0.0',
         expect: '^1.0.0',
       },

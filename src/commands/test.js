@@ -3,7 +3,7 @@ import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import { readFile, remove, symlink } from 'fs-extra'
 import P from 'path'
 import gitignoreConfig from '../gitignore.config'
-import { sortBy, identity, map, join, filter, mapValues, values, reduce, promiseAll, replace, first } from '@dword-design/functions'
+import { sortBy, identity, map, join, filter, mapValues, values, promiseAll, replace, first } from '@dword-design/functions'
 import isWorkspaceRoot from '../is-workspace-root'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import workspaceGlob from '../workspace-glob'
@@ -43,6 +43,12 @@ export default {
 
     await config.lint()
     await spawn('depcheck', ['--skip-missing', true, '--config', require.resolve('../depcheck.config'), '.'], { stdio: 'inherit' })
+    try {
+      await spawn('depcheck', ['--skip-missing', true, '--config', require.resolve('../depcheck.prod.config'), '.'], { capture: ['stdout'] })
+    } catch (error) {
+      console.log(error.stdout)
+      throw error
+    }
 
     const binEntries = require(P.resolve('package.json')).bin ?? {}
     await binEntries
@@ -58,12 +64,8 @@ export default {
     return workspaceGlob !== undefined
       ? glob(workspaceGlob |> first, { dot: true })
         |> await
-        |> reduce(
-          (promise, path) => promise.then(
-            () => spawn('npm', ['test'], { cwd: path, stdio: 'inherit' })
-          ),
-          Promise.resolve()
-        )
+        |> map(path => spawn('npm', ['test'], { cwd: path, stdio: 'inherit' }))
+        |> promiseAll
       : spawn(
         'nyc',
         [
@@ -72,7 +74,7 @@ export default {
           '--cwd', process.cwd(),
           '--require', require.resolve('../pretest'),
           'mocha-per-file',
-          '--timeout', 50000,
+          '--timeout', 70000,
           ...pattern !== undefined ? [pattern] : [],
         ],
         {

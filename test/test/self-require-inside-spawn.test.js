@@ -14,7 +14,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     ...filesConfig,
     'package.json': JSON.stringify(sortPackageJson({
       ...packageConfig,
-      dependencies: {
+      devDependencies: {
         'child-process-promise': '^1.0.0',
       },
     }), undefined, 2),
