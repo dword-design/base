@@ -25,7 +25,6 @@
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/register": "^7.6.2",
-    "@dword-design/babel-config": "^1.0.4",
     "@dword-design/base-config-node": "^1.0.0",
     "@dword-design/functions": "^2.2.2",
     "@dword-design/json-schema-package": "^1.0.0",

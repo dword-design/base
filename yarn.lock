@@ -729,7 +729,7 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@dword-design/babel-config@^1.0.0", "@dword-design/babel-config@^1.0.4":
+"@dword-design/babel-config@^1.0.0", "@dword-design/babel-config@^1.0.10", "@dword-design/babel-config@^1.0.4":
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-1.0.10.tgz#f0319be8cc13af9f6e0ba27d3b4cea96d4f01381"
   integrity sha512-oahFk8y3hcFHcFFiuOEyqckGBFfpuYPS97rJPgQZ6VbmSD14kpGsQptLknJx/XjL4D3bKlcmVZaIs+TFY65mVA==
@@ -745,24 +745,32 @@
     safe-require "^1.0.3"
 
 "@dword-design/base-config-node@^1.0.0":
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.3.6.tgz#456a7ec439bc187e8bfc242d893d44e725d7d0c5"
-  integrity sha512-2TkhYZGrw1hzlK2Rp2RtLTZC6qShCvqmXTZL9HjNg42dL+UP1NMj8akVHg4Bc/vOnX2TgVv+3jetdqm3vNI+AQ==
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.3.7.tgz#69cd3cc6c959ee8d8e7223923dcdd3c7b261c1ff"
+  integrity sha512-AJfUepGh9+1F4faCyGBEK+y7zjllq6Ja3fmiCWTI67gZAIhjaFFSGK6j59oqhnyBi1iSmSd4zLs0IgOlGxYcRw==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
     "@dword-design/babel-config" "^1.0.4"
-    "@dword-design/depcheck-spawn-detector" "^1.0.0"
+    "@dword-design/depcheck-config" "^1.0.0"
     "@dword-design/eslint-config" "^1.2.0"
     "@dword-design/functions" "^2.2.2"
-    "@dword-design/get-depcheck-babel-parser" "^1.0.0"
     child-process-promise "^2.2.1"
     chokidar "^3.3.0"
     debounce "^1.2.0"
-    depcheck dword-design/depcheck#fork
     eslint "^6.7.2"
     fs-extra "^8.1.0"
     get-package-name "^1.0.0"
+
+"@dword-design/depcheck-config@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/depcheck-config/-/depcheck-config-1.0.0.tgz#189f245eae48281ac41e5eebc08ab795b74bee78"
+  integrity sha512-0pIEeQFwF6OXnQhq3DqaGWySH7YysLoSLsPeBikP5oZAI/UkT59DPqYqht0uq2h0mv6Eco8JiyOtnEh3uJgAiA==
+  dependencies:
+    "@dword-design/babel-config" "^1.0.10"
+    "@dword-design/depcheck-spawn-detector" "^1.0.0"
+    "@dword-design/get-depcheck-babel-parser" "^1.0.0"
+    depcheck dword-design/depcheck#fork
 
 "@dword-design/depcheck-spawn-detector@^1.0.0":
   version "1.0.0"
@@ -903,9 +911,9 @@
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
 "@types/node@*":
-  version "12.12.21"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.21.tgz#aa44a6363291c7037111c47e4661ad210aded23f"
-  integrity sha512-8sRGhbpU+ck1n0PGAUgVrWrWdjSW2aqNeyC15W88GRsMpSwzv6RJGlLhE7s2RhVSOdyDmxbqlWSeThq4/7xqlA==
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.1.0.tgz#225cbaac5fdb2b9ac651b02c070d8aa3c37cc812"
+  integrity sha512-zwrxviZS08kRX40nqBrmERElF2vpw4IUTd5khkhBTfFH8AOaeoLVx48EC4+ZzS2/Iga7NevncqnsUSYjM4OWYA==
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
@@ -918,9 +926,9 @@
   integrity sha512-gCubfBUZ6KxzoibJ+SCUc/57Ms1jz5NjHe4+dI2krNmU5zCPAphyLJYyTOg06ueIyfj+SaCUqmzun7ImlxDcKg==
 
 "@types/yargs@^13.0.0":
-  version "13.0.3"
-  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-13.0.3.tgz#76482af3981d4412d65371a318f992d33464a380"
-  integrity sha512-K8/LfZq2duW33XW/tFwEAfnZlqIfVsoyRB3kfXdPXYhl0nfM8mmh7GS0jg7WrX2Dgq/0Ha/pR1PaR+BvmWwjiQ==
+  version "13.0.4"
+  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-13.0.4.tgz#53d231cebe1a540e7e13727fc1f0d13ad4a9ba3b"
+  integrity sha512-Ke1WmBbIkVM8bpvsNEcGgQM70XcEh/nbpxQhW7FhrsbCsXSY9BmLB1+LHtD7r9zrsOcFlLiF+a/UeJsdfw3C5A==
   dependencies:
     "@types/yargs-parser" "*"
 
