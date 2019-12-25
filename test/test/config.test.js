@@ -7,59 +7,51 @@ import packageConfig from '../package.config'
 import filesConfig from '../files.config'
 import sortPackageJson from 'sort-package-json'
 import getPackageName from 'get-package-name'
-import { outputFile } from 'fs-extra'
 
 export default async () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     ...filesConfig,
-    node_modules: {
-      'bar/package.json': JSON.stringify({ bin: { bar: './dist/cli.js' } }),
-      'base-config-foo/index.js': endent`
-
-        module.exports = {
-          build: () => console.log('foo'),
-          start: () => console.log('bar'),
-          lint: () => console.log('baz'),
-          gitignore: ['/foo.txt'],
-          babelConfig: require('${getPackageName(require.resolve('@dword-design/babel-config'))}'),
-        }
-      `,
-    },
+    'node_modules/base-config-foo/index.js': endent`
+      module.exports = {
+        babelConfig: {
+          extends: '${getPackageName(require.resolve('@dword-design/babel-config'))}',
+          plugins: [
+            ({ types: t }) => ({
+              visitor: {
+                NumericLiteral: path => {
+                  if (path.node.value === 1337) {
+                    path.replaceWith(t.numericLiteral(path.node.value + 1))
+                  }
+                },
+              },
+            }),
+          ],
+        },
+      }
+    `,
     'package.json': JSON.stringify(sortPackageJson({
       ...packageConfig,
-      dependencies: {
-        bar: '^1.0.0',
-        'child-process-promise': '^1.0.0',
-      },
       devDependencies: {
         'base-config-foo': '^1.0.0',
+        expect: '^1.0.0',
       },
     }), undefined, 2),
-    'src/index.js': endent`
-      import { spawn } from 'child-process-promise'
+    'src/index.js': 'export default 1337',
+    'test/valid.test.js': endent`
+      import foo from 'foo'
+      import expect from 'expect'
 
-      spawn('bar')
+      export default () => expect(foo).toEqual(1338)
     `,
   })
   await spawn('base', ['build'])
-  await outputFile('.gitignore', endent`
-    .DS_Store
-    /.editorconfig
-    /.nyc_output
-    /.vscode
-    /coverage
-    /dist
-    /foo.txt
-    /node_modules
-  ` + '\n')
   const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
   expect(stdout).toMatch(new RegExp(endent`
-    ^baz
-    package.json valid
+    ^package.json valid
     No depcheck issue
 
 
-      0 passing \(.*?\)
+      1 passing \(.*?\)
 
     ----------|----------|----------|----------|----------|-------------------|
     File      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |

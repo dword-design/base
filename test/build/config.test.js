@@ -13,7 +13,6 @@ export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     ...filesConfig,
     'node_modules/base-config-foo/index.js': endent`
-
       module.exports = {
         build: () => console.log('foo'),
         start: () => console.log('bar'),
