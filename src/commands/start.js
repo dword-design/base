@@ -9,7 +9,7 @@ export default {
   handler: async () => {
     await buildConfigFiles()
     return workspaceGlob !== undefined
-      ? glob(workspaceGlob |> first, { dot: true })
+      ? glob(workspaceGlob |> first)
         |> await
         |> map(path => spawn('npm', ['start'], { cwd: path, stdio: 'inherit' }))
         |> promiseAll

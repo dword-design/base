@@ -56,7 +56,7 @@ export default {
       |> promiseAll
 
     return workspaceGlob !== undefined
-      ? glob(workspaceGlob |> first, { dot: true })
+      ? glob(workspaceGlob |> first)
         |> await
         |> map(path => spawn('npm', ['test'], { cwd: path, stdio: 'inherit' }))
         |> promiseAll
