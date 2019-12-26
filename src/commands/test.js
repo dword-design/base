@@ -58,7 +58,7 @@ export default {
     return workspaceGlob !== undefined
       ? glob(workspaceGlob |> first)
         |> await
-        |> map(path => spawn('npm', ['test'], { cwd: path, stdio: 'inherit' }))
+        |> map(path => spawn('base', ['test'], { cwd: path, stdio: 'inherit' }))
         |> promiseAll
       : spawn(
         'nyc',

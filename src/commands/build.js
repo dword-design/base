@@ -11,7 +11,7 @@ export default {
     return workspaceGlob !== undefined
       ? glob(workspaceGlob |> first)
         |> await
-        |> map(path => spawn('npm', ['run', 'prepublishOnly'], { cwd: path, stdio: 'inherit' }))
+        |> map(path => spawn('base', ['build'], { cwd: path, stdio: 'inherit' }))
         |> promiseAll
       : config.build()
   },
