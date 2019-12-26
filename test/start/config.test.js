@@ -28,9 +28,5 @@ export default () => withLocalTmpDir(__dirname, async () => {
     }), undefined, 2),
   })
   const { stdout } = await spawn('base', ['start'], { capture: ['stdout'] })
-  expect(stdout).toEqual(endent`
-    Copying config files …
-    Updating README.md …
-    bar
-  ` + '\n')
+  expect(stdout).toEqual('bar\n')
 })

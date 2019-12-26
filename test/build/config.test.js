@@ -29,11 +29,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     }), undefined, 2),
   })
   const { stdout } = await spawn('base', ['build'], { capture: ['stdout'] })
-  expect(stdout).toEqual(endent`
-    Copying config files …
-    Updating README.md …
-    foo
-  ` + '\n')
+  expect(stdout).toEqual('foo\n')
   expect(await readFile('.gitignore', 'utf8')).toEqual(endent`
     .DS_Store
     /.editorconfig

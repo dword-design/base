@@ -30,8 +30,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
   await spawn('base', ['build'])
   const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
   expect(stdout).toMatch(new RegExp(endent`
-    ^Copying config files …
-    Successfully compiled 1 file with Babel.
+    ^Successfully compiled 1 file with Babel.
     No depcheck issue
 
 

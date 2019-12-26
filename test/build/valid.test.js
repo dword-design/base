@@ -30,11 +30,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     `,
   })
   const { stdout } = await spawn('base', ['build'], { capture: ['stdout'] })
-  expect(stdout).toEqual(endent`
-    Copying config files …
-    Updating README.md …
-    Successfully compiled 1 file with Babel.
-  ` + '\n')
+  expect(stdout).toEqual('Successfully compiled 1 file with Babel.\n')
   expect(await glob('*', { dot: true })).toEqual([
     '.editorconfig',
     '.eslintrc.json',

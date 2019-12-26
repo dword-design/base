@@ -7,7 +7,6 @@ import { join, map, sortBy, identity } from '@dword-design/functions'
 import projectzConfig from './projectz.config'
 
 export default async () => {
-  console.log('Copying config files …')
   if (isWorkspaceRoot) {
     await copyFile(P.resolve(__dirname, 'config-files', 'editorconfig'), '.editorconfig')
     await copyFile(P.resolve(__dirname, 'config-files', 'gitpod.yml'), '.gitpod.yml')
@@ -16,7 +15,6 @@ export default async () => {
   }
   await outputFile('.gitignore', gitignoreConfig |> sortBy(identity) |> map(entry => `${entry}\n`) |> join(''))
   await copyFile(P.resolve(__dirname, 'config-files', 'LICENSE.md'), 'LICENSE.md')
-  console.log('Updating README.md …')
   if (!(await exists('README.md'))) {
     await copyFile(P.resolve(__dirname, 'config-files', 'README.md'), 'README.md')
   }
