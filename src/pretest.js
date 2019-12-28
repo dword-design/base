@@ -7,7 +7,7 @@ requireHookTest()
 
 babelRegister({ ...nodeConfig.babelConfig, ignore: [/node_modules/] })
 
-const config = stealthyRequire(require.cache, () => require('./config'))
+const config = stealthyRequire(require.cache, () => require('@dword-design/base-config'))
 
 babelRegister({ ...config.babelConfig, ignore: [/node_modules/] })
 

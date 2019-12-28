@@ -1,7 +1,7 @@
 import { spawn } from 'child-process-promise'
 import workspaceGlob from '../workspace-glob'
 import { map, promiseAll, first } from '@dword-design/functions'
-import config from '../config'
+import config from '@dword-design/base-config'
 import glob from 'glob-promise'
 import buildConfigFiles from '../build-config-files'
 

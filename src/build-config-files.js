@@ -1,6 +1,6 @@
 import { spawn } from 'child-process-promise'
 import gitignoreConfig from './gitignore.config'
-import isWorkspaceRoot from './is-workspace-root'
+import isWorkspaceRoot from '@dword-design/is-workspace-root'
 import { copyFile, outputFile, remove, exists } from 'fs-extra'
 import P from 'path'
 import { join, map, sortBy, identity } from '@dword-design/functions'

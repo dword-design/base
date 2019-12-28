@@ -4,10 +4,10 @@ import { readFile, remove, symlink } from 'fs-extra'
 import P from 'path'
 import gitignoreConfig from '../gitignore.config'
 import { sortBy, identity, map, join, filter, mapValues, values, promiseAll, replace, first } from '@dword-design/functions'
-import isWorkspaceRoot from '../is-workspace-root'
+import isWorkspaceRoot from '@dword-design/is-workspace-root'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import workspaceGlob from '../workspace-glob'
-import config from '../config'
+import config from '@dword-design/base-config'
 import glob from 'glob-promise'
 
 export default {

@@ -1,4 +1,4 @@
-import config from './config'
+import config from '@dword-design/base-config'
 
 export default [
   '.DS_Store',
