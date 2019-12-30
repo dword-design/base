@@ -3,23 +3,20 @@ import { spawn } from 'child-process-promise'
 import outputFiles from 'output-files'
 import expect from 'expect'
 import glob from 'glob-promise'
-import packageConfig from '../package.config'
-import filesConfig from '../files.config'
-import sortPackageJson from 'sort-package-json'
 import P from 'path'
+import { endent } from '@dword-design/functions'
 
 export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...filesConfig,
-    'package.json': JSON.stringify(sortPackageJson({
-      ...packageConfig,
-      private: true,
-      workspaces: ['packages/*'],
-    }), undefined, 2),
-    'packages/a': filesConfig,
-    'packages/b': {
-      ...filesConfig,
-      'src/index.js': 'export default 2',
+    'package.json': endent`
+      {
+        "workspaces": ["packages/*"]
+      }
+
+    `,
+    packages: {
+      'a/src/index.js': 'export default 1',
+      'b/src/index.js': 'export default 2',
     },
   })
   await spawn('base', ['build'])
@@ -33,7 +30,6 @@ export default () => withLocalTmpDir(__dirname, async () => {
     'package.json',
     'packages',
     'README.md',
-    'src',
   ])
   expect(await glob('*', { cwd: P.resolve('packages', 'a'), dot: true })).toEqual([
     '.eslintrc.json',

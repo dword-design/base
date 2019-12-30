@@ -1,32 +1,34 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { spawn } from 'child-process-promise'
 import outputFiles from 'output-files'
-import packageConfig from '../package.config'
-import filesConfig from '../files.config'
-import sortPackageJson from 'sort-package-json'
-import P from 'path'
-import waitForChange from 'wait-for-change'
+import { endent } from '@dword-design/functions'
 
 export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...filesConfig,
-    'package.json': JSON.stringify(sortPackageJson({
-      ...packageConfig,
-      private: true,
-      workspaces: ['packages/*'],
-    }), undefined, 2),
+    'package.json': endent`
+      {
+        "workspaces": ["packages/*"]
+      }
+
+    `,
     packages: {
       '.DS_Store': '',
-      a: filesConfig,
+      'a/src/index.js': 'export default 1;',
     },
   })
-  const childProcess = spawn('base', ['start'], { stdio: 'ignore' })
+  const childProcess = spawn('base', ['start'], { stdio: ['ignore', 'pipe', 'ignore'] })
     .catch(error => {
       if (error.code !== null) {
         throw error
       }
     })
     .childProcess
-  await waitForChange(P.join('packages', 'a', 'dist', 'index.js'))
+  await new Promise(resolve => childProcess.stdout.on('data', data => {
+    if (data.toString().includes('error  Extra semicolon  semi')) {
+      resolve()
+    }
+  }))
+  childProcess.stdout.removeAllListeners('data')
+  childProcess.stdout.destroy()
   childProcess.kill()
 })

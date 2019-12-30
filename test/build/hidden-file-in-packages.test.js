@@ -1,21 +1,19 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { spawn } from 'child-process-promise'
 import outputFiles from 'output-files'
-import packageConfig from '../package.config'
-import filesConfig from '../files.config'
-import sortPackageJson from 'sort-package-json'
+import { endent } from '@dword-design/functions'
 
 export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...filesConfig,
-    'package.json': JSON.stringify(sortPackageJson({
-      ...packageConfig,
-      private: true,
-      workspaces: ['packages/*'],
-    }), undefined, 2),
+    'package.json': endent`
+      {
+        "workspaces": ["packages/*"]
+      }
+
+    `,
     packages: {
       '.DS_Store': '',
-      a: filesConfig,
+      'a/src/index.js': 'export default 1',
     },
   })
   await spawn('base', ['build'])

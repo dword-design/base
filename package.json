@@ -3,16 +3,9 @@
   "version": "3.10.2",
   "description": "",
   "keywords": [],
-  "bugs": {
-    "url": "https://github.com/dword-design/base/issues"
-  },
   "repository": "dword-design/base",
   "license": "MIT",
   "author": "Sebastian Landwehr <info@dword-design.de>",
-  "contributors": [
-    "dword-design (http://www.dword-design.de)",
-    "Renovate Bot (http://renovatebot.com)"
-  ],
   "files": [
     "dist"
   ],
@@ -31,24 +24,19 @@
     "@babel/register": "^7.6.2",
     "@dword-design/base-config": "^1.0.1",
     "@dword-design/base-config-node": "^1.0.0",
+    "@dword-design/config-files": "^2.0.0",
     "@dword-design/depgraph": "^1.0.0",
     "@dword-design/functions": "^2.2.2",
-    "@dword-design/is-workspace-root": "^1.0.0",
-    "@dword-design/json-schema-package": "^1.0.0",
     "@dword-design/require-hook-test": "^1.0.0",
-    "ajv-cli": "^3.0.0",
     "child-process-promise": "^2.2.1",
     "depcheck": "dword-design/depcheck#fork",
     "fs-extra": "^8.1.0",
-    "get-projectz-readme-section-regex": "^1.0.0",
     "glob-promise": "^3.4.0",
     "make-cli": "^1.0.9",
     "mocha-per-file": "^2.0.0",
     "nyc": "^14.1.1",
     "pre-commit": "^1.2.2",
-    "projectz": "^1.12.0",
-    "safe-readfile": "^1.0.2",
-    "stealthy-require": "^1.1.1"
+    "safe-require": "^1.0.3"
   },
   "devDependencies": {
     "@dword-design/babel-config": "^1.0.10",
@@ -56,14 +44,13 @@
     "get-package-name": "^1.0.0",
     "output-files": "^1.1.7",
     "rimraf": "^3.0.0",
-    "sort-package-json": "^1.30.0",
-    "wait-for-change": "^1.1.1",
     "with-local-tmp-dir": "^2.1.2"
   },
-  "depcheck": {
-    "ignoreMatches": [
-      "pre-commit"
-    ]
-  },
-  "maintainers": []
+  "baseConfig": {
+    "depcheckConfig": {
+      "ignoreMatches": [
+        "pre-commit"
+      ]
+    }
+  }
 }

@@ -1,11 +1,8 @@
 import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
-import outputFiles from 'output-files'
-import filesConfig from './files.config'
 
 export default () => withLocalTmpDir(__dirname, async () => {
-  await outputFiles(filesConfig)
-  const childProcess = spawn('base', ['depgraph'], { stdio: ['ignore', 'pipe', 'pipe'] })
+  const childProcess = spawn('base', ['depgraph'], { stdio: ['ignore', 'pipe', 'ignore'] })
     .catch(error => {
       if (error.code !== null) {
         throw error
@@ -17,5 +14,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
       resolve()
     }
   }))
+  childProcess.stdout.removeAllListeners('data')
+  childProcess.stdout.destroy()
   childProcess.kill()
 })

@@ -3,11 +3,10 @@ import glob from 'glob-promise'
 import workspaceGlob from '../workspace-glob'
 import { first, map, promiseAll } from '@dword-design/functions'
 import config from '@dword-design/base-config'
-import buildConfigFiles from '../build-config-files'
 
 export default {
   handler: async () => {
-    await buildConfigFiles()
+    await spawn('config-files', [], { stdio: 'inherit' })
     return workspaceGlob !== undefined
       ? glob(workspaceGlob |> first)
         |> await

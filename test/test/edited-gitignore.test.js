@@ -1,19 +1,38 @@
-import outputFiles from 'output-files'
 import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
-import filesConfig from '../files.config'
 import { outputFile } from 'fs-extra'
+import { endent } from '@dword-design/functions'
 
 export default () => withLocalTmpDir(__dirname, async () => {
-  await outputFiles(filesConfig)
+  await outputFile('src/index.js', 'export default 1')
   await spawn('base', ['build'])
-  await outputFile('.gitignore', 'foo')
-  let stderr
+  await outputFile('.gitignore', endent`
+    .DS_Store
+    /.nyc_output
+    /.vscode
+    /coverage
+    /dist
+    /node_modules
+
+  `)
+  let stdout
   try {
-    await spawn('base', ['test'], { capture: ['stderr'] })
+    await spawn('base', ['test'], { capture: ['stdout'] })
   } catch (error) {
-    stderr = error.stderr
+    stdout = error.stdout
   }
-  expect(stderr).toEqual('.gitignore file must be generated. Maybe it has been accidentally modified.\n')
+  expect(stdout).toEqual(endent`
+    \u001b[33m--- .gitignore\tremoved\u001b[39m
+    \u001b[33m+++ .gitignore\tadded\u001b[39m
+    \u001b[35m@@ -1,5 +1,7 @@\u001b[39m
+     .DS_Store
+    \u001b[32m+/.editorconfig\u001b[39m
+    \u001b[32m+/.eslintrc.json\u001b[39m
+     /.nyc_output
+     /.vscode
+     /coverage
+     /dist
+
+  `)
 })

@@ -6,19 +6,19 @@ import glob from 'glob-promise'
 import P from 'path'
 import { endent } from '@dword-design/functions'
 import { readFile } from 'fs-extra'
-import packageConfig from '../package.config'
-import filesConfig from '../files.config'
-import sortPackageJson from 'sort-package-json'
 
 export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...filesConfig,
-    'package.json': JSON.stringify(sortPackageJson({
-      ...packageConfig,
-      devDependencies: {
-        expect: '^0.1.0',
-      },
-    }), undefined, 2),
+    'package.json': endent`
+      {
+        "name": "foo",
+        "devDependencies": {
+          "expect": "^0.1.0"
+        }
+      }
+
+    `,
+    'src/index.js': 'export default 1',
     'test/foo.test.js': endent`
       import foo from 'foo'
       import expect from 'expect'
@@ -57,9 +57,9 @@ export default () => withLocalTmpDir(__dirname, async () => {
     <!-- BADGES/ -->
 
     <span class="badge-npmversion"><a href="https://npmjs.org/package/foo" title="View this project on NPM"><img src="https://img.shields.io/npm/v/foo.svg" alt="NPM version" /></a></span>
-    <span class="badge-travisci"><a href="http://travis-ci.org/bar/foo" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/bar/foo/master.svg" alt="Travis CI Build Status" /></a></span>
-    <span class="badge-coveralls"><a href="https://coveralls.io/r/bar/foo" title="View this project's coverage on Coveralls"><img src="https://img.shields.io/coveralls/bar/foo.svg" alt="Coveralls Coverage Status" /></a></span>
-    <span class="badge-daviddm"><a href="https://david-dm.org/bar/foo" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/bar/foo.svg" alt="Dependency Status" /></a></span>
+    <span class="badge-travisci"><a href="http://travis-ci.org/base/project" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/base/project/master.svg" alt="Travis CI Build Status" /></a></span>
+    <span class="badge-coveralls"><a href="https://coveralls.io/r/base/project" title="View this project's coverage on Coveralls"><img src="https://img.shields.io/coveralls/base/project.svg" alt="Coveralls Coverage Status" /></a></span>
+    <span class="badge-daviddm"><a href="https://david-dm.org/base/project" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/base/project.svg" alt="Dependency Status" /></a></span>
     <span class="badge-shields"><a href="https://img.shields.io/badge/renovate-enabled-brightgreen.svg"><img src="https://img.shields.io/badge/renovate-enabled-brightgreen.svg" /></a></span>
 
     <!-- /BADGES -->
@@ -67,7 +67,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
 
     <!-- DESCRIPTION/ -->
 
-    This is a test package.
+
 
     <!-- /DESCRIPTION -->
 
@@ -92,7 +92,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
 
     Unless stated otherwise all works are:
 
-    <ul><li>Copyright &copy; bar</li></ul>
+    <ul><li>Copyright &copy; Sebastian Landwehr</li></ul>
 
     and licensed under:
 

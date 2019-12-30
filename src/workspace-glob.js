@@ -1,3 +1,4 @@
 import P from 'path'
+import safeRequire from 'safe-require'
 
-export default require(P.resolve('package.json')).workspaces
+export default safeRequire(P.join(process.cwd(), 'package.json'))?.workspaces

@@ -2,11 +2,11 @@ import outputFiles from 'output-files'
 import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
-import filesConfig from '../files.config'
+import { endent } from '@dword-design/functions'
 
 export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
-    ...filesConfig,
+    'src/index.js': 'export default 1',
     test: {
       'foo.test.js': 'export default () => {}',
       'bar.test.js': 'export default () => {}',
@@ -14,5 +14,18 @@ export default () => withLocalTmpDir(__dirname, async () => {
   })
   await spawn('base', ['build'])
   const { stdout } = await spawn('base', ['test', 'foo.test.js'], { capture: ['stdout'] })
-  expect(stdout).toMatch(/^Successfully compiled 1 file with Babel.\nNo depcheck issue\n\n\n  ✓ foo\n\n  1 passing.*?\n\n----------|----------|----------|----------|----------|-------------------|\nFile      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |\n----------|----------|----------|----------|----------|-------------------|\nAll files |        0 |        0 |        0 |        0 |                   |\n----------|----------|----------|----------|----------|-------------------|\n$/)
+  expect(stdout).toMatch(new RegExp(endent`
+    ^
+
+      ✓ foo
+
+      1 passing \\(.*?\\)
+
+    ----------\\|----------\\|----------\\|----------\\|----------\\|-------------------\\|
+    File      \\|  % Stmts \\| % Branch \\|  % Funcs \\|  % Lines \\| Uncovered Line #s \\|
+    ----------\\|----------\\|----------\\|----------\\|----------\\|-------------------\\|
+    All files \\|        0 \\|        0 \\|        0 \\|        0 \\|                   \\|
+    ----------\\|----------\\|----------\\|----------\\|----------\\|-------------------\\|
+    $
+  `))
 })
