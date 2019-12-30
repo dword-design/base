@@ -1,12 +1,16 @@
 import { spawn } from 'child-process-promise'
 import workspaceGlob from '../workspace-glob'
-import { map, promiseAll, first } from '@dword-design/functions'
+import { map, promiseAll, first, trim } from '@dword-design/functions'
 import config from '@dword-design/base-config'
 import glob from 'glob-promise'
 
 export default {
   handler: async () => {
-    await spawn('config-files', [], { stdio: 'inherit' })
+    try {
+      await spawn('config-files', [], { capture: ['stdout'] })
+    } catch (error) {
+      throw new Error(error.stdout |> trim)
+    }
     return workspaceGlob !== undefined
       ? glob(workspaceGlob |> first)
         |> await
