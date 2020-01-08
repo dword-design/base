@@ -36,7 +36,8 @@
     "mocha-per-file": "^2.0.0",
     "nyc": "^14.1.1",
     "pre-commit": "^1.2.2",
-    "safe-require": "^1.0.3"
+    "safe-require": "^1.0.3",
+    "wsrun": "^5.2.0"
   },
   "devDependencies": {
     "@dword-design/babel-config": "^1.0.10",

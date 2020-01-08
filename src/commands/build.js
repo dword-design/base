@@ -1,7 +1,6 @@
 import { spawn } from 'child-process-promise'
-import glob from 'glob-promise'
 import workspaceGlob from '../workspace-glob'
-import { first, map, promiseAll, trim } from '@dword-design/functions'
+import { trim } from '@dword-design/functions'
 import config from '@dword-design/base-config'
 
 export default {
@@ -12,10 +11,12 @@ export default {
       throw new Error(error.stdout |> trim)
     }
     return workspaceGlob !== undefined
-      ? glob(workspaceGlob |> first)
-        |> await
-        |> map(path => spawn('base', ['build'], { cwd: path, stdio: 'inherit' }))
-        |> promiseAll
+      //spawn('yarn', ['workspaces', 'run', 'prepublishOnly'], { stdio: 'inherit' })
+      ? spawn('wsrun', ['--stages', '--bin', 'npx', '-c', 'base', 'build'], { stdio: 'inherit' })
+      //glob(workspaceGlob |> first)
+      //|> await
+      //|> map(path => spawn('base', ['build'], { cwd: path, stdio: 'inherit' }))
+      //|> promiseAll
       : config.build()
   },
 }
