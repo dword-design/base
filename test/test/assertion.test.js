@@ -10,7 +10,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     'package.json': endent`
       {
         "devDependencies": {
-          "expect": "^0.1.0"
+          "expect": "^1.0.0"
         }
       }
 

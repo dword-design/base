@@ -31,7 +31,6 @@
     "child-process-promise": "^2.2.1",
     "depcheck": "dword-design/depcheck#fork",
     "fs-extra": "^8.1.0",
-    "glob-promise": "^3.4.0",
     "make-cli": "^1.0.9",
     "mocha-per-file": "^2.0.0",
     "nyc": "^14.1.1",
@@ -43,6 +42,7 @@
     "@dword-design/babel-config": "^1.0.10",
     "expect": "^24.9.0",
     "get-package-name": "^1.0.0",
+    "glob-promise": "^3.4.0",
     "output-files": "^1.1.7",
     "rimraf": "^3.0.0",
     "with-local-tmp-dir": "^2.1.2"

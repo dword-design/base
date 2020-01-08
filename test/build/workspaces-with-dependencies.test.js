@@ -54,6 +54,6 @@ export default () => withLocalTmpDir(__dirname, async () => {
   })
   await ensureDir('node_modules')
   await symlink(P.resolve('packages/b'), P.join('node_modules', 'b'))
-  await spawn('base', ['build'], { stdio: 'inherit' })
+  await spawn('base', ['build'])
   expect(require(P.resolve('packages', 'a', 'dist'))).toEqual(1)
 })

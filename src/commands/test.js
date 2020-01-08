@@ -1,10 +1,9 @@
 import { spawn } from 'child-process-promise'
 import { remove, symlink } from 'fs-extra'
 import P from 'path'
-import { map, mapValues, values, promiseAll, replace, first, trim } from '@dword-design/functions'
+import { mapValues, values, promiseAll, replace, trim } from '@dword-design/functions'
 import workspaceGlob from '../workspace-glob'
 import config from '@dword-design/base-config'
-import glob from 'glob-promise'
 
 export default {
   arguments: '[pattern]',
@@ -33,10 +32,7 @@ export default {
       |> promiseAll
 
     return workspaceGlob !== undefined
-      ? glob(workspaceGlob |> first)
-        |> await
-        |> map(path => spawn('base', ['test'], { cwd: path, stdio: 'inherit' }))
-        |> promiseAll
+      ? spawn('wsrun', ['--bin', 'npx', '-c', 'base', 'test'], { stdio: 'inherit' })
       : spawn(
         'nyc',
         [

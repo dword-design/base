@@ -12,8 +12,24 @@ export default () => withLocalTmpDir(__dirname, async () => {
 
     `,
     packages: {
-      'a/src/index.js': 'export default 1;',
-      'b/src/index.js': 'export default "1"',
+      a: {
+        'package.json': endent`
+          {
+            "name": "a"
+          }
+
+        `,
+        'src/index.js': 'export default 1;',
+      },
+      b: {
+        'package.json': endent`
+          {
+            "name": "b"
+          }
+
+        `,
+        'src/index.js': 'export default "1"',
+      },
     },
   })
   const childProcess = spawn('base', ['start'], { stdio: ['ignore', 'pipe', 'ignore'] })

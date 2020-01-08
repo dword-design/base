@@ -11,12 +11,7 @@ export default {
       throw new Error(error.stdout |> trim)
     }
     return workspaceGlob !== undefined
-      //spawn('yarn', ['workspaces', 'run', 'prepublishOnly'], { stdio: 'inherit' })
       ? spawn('wsrun', ['--stages', '--bin', 'npx', '-c', 'base', 'build'], { stdio: 'inherit' })
-      //glob(workspaceGlob |> first)
-      //|> await
-      //|> map(path => spawn('base', ['build'], { cwd: path, stdio: 'inherit' }))
-      //|> promiseAll
       : config.build()
   },
 }

@@ -13,10 +13,22 @@ export default () => withLocalTmpDir(__dirname, async () => {
     `,
     packages: {
       a: {
+        'package.json': endent`
+          {
+            "name": "a"
+          }
+
+        `,
         'src/index.js': 'export default 1',
         'test/foo.test.js': 'export default () => console.log(\'run foo\')',
       },
       b: {
+        'package.json': endent`
+          {
+            "name": "b"
+          }
+
+        `,
         'src/index.js': 'export default 1',
         'test/bar.test.js': 'export default () => console.log(\'run bar\')',
       },
