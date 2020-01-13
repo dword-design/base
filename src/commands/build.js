@@ -11,7 +11,7 @@ export default {
       throw new Error(error.stdout |> trim)
     }
     return workspaceGlob !== undefined
-      ? spawn('wsrun', ['--stages', '--bin', 'npx', '-c', 'base', 'build'], { stdio: 'inherit' })
+      ? spawn('wsrun', ['--stages', '--fast-exit', '--bin', 'npx', '-c', 'base', 'build'], { stdio: 'inherit' })
       : config.build()
   },
 }

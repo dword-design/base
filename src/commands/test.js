@@ -20,7 +20,7 @@ export default {
       throw new Error(error.stdout)
     }
 
-    const binEntries = require(P.resolve('package.json')).bin ?? {}
+    const { bin: binEntries = {} } = require(P.resolve('package.json'))
     await binEntries
       |> mapValues((filename, binName) => remove(P.join('node_modules', '.bin', binName))
         .then(() => symlink(
