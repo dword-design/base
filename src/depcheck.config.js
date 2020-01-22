@@ -6,7 +6,7 @@ const baseConfig = require(P.resolve('package.json')).baseConfig
 const ignoreMatches = (typeof baseConfig === 'string' ? undefined : baseConfig?.depcheckConfig?.ignoreMatches) ?? []
 
 export default {
-  ignoreMatches: [
+  ignores: [
     config.name,
     ...ignoreMatches,
   ],
