@@ -9,6 +9,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
   await spawn('base', ['build'])
   await outputFile('.gitignore', endent`
     .DS_Store
+    /.eslintrc.json
     /.nyc_output
     /.vscode
     /coverage
@@ -28,11 +29,11 @@ export default () => withLocalTmpDir(__dirname, async () => {
     \u001b[35m@@ -1,5 +1,7 @@\u001b[39m
      .DS_Store
     \u001b[32m+/.editorconfig\u001b[39m
-    \u001b[32m+/.eslintrc.json\u001b[39m
+    \u001b[32m+/.env\u001b[39m
+     /.eslintrc.json
      /.nyc_output
      /.vscode
      /coverage
-     /dist
 
   `)
 })

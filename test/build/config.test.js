@@ -33,6 +33,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
   expect(await readFile('.gitignore', 'utf8')).toEqual(endent`
     .DS_Store
     /.editorconfig
+    /.env
     /.nyc_output
     /.vscode
     /coverage

@@ -25,8 +25,8 @@ export default {
       |> mapValues((filename, binName) => remove(P.join('node_modules', '.bin', binName))
         .then(() => symlink(
           P.relative(P.join('node_modules', '.bin'), filename |> replace('dist', 'src')),
-          P.join('node_modules', '.bin', binName)
-        ))
+          P.join('node_modules', '.bin', binName),
+        )),
       )
       |> values
       |> promiseAll
@@ -51,7 +51,7 @@ export default {
             NODE_ENV: 'test',
             BABEL_CACHE_PATH: P.join(process.cwd(), 'node_modules', '.cache', '@babel', 'register', '.babel.json'),
           },
-        }
+        },
       )
   },
 }

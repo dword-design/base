@@ -19,7 +19,6 @@
     "test": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src && node dist/cli.js test"
   },
   "dependencies": {
-    "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/register": "^7.6.2",
     "@dword-design/base-config": "^1.0.1",
@@ -39,6 +38,7 @@
     "wsrun": "^5.2.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.4",
     "@dword-design/babel-config": "^1.0.10",
     "expect": "^24.9.0",
     "get-package-name": "^1.0.0",
