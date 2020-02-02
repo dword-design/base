@@ -35,7 +35,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
       },
     },
   })
-  await spawn('base', ['build'])
+  await spawn('base', ['prepare'])
   const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
   expect(stdout).toMatch('run foo\n')
   expect(stdout).toMatch('run bar\n')

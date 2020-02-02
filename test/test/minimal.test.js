@@ -4,6 +4,6 @@ import { outputFile } from 'fs-extra'
 
 export default () => withLocalTmpDir(__dirname, async () => {
   await outputFile('src/index.js', 'export default 1')
-  await spawn('base', ['build'])
+  await spawn('base', ['prepare'])
   await spawn('base', ['test'])
 })

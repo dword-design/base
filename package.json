@@ -6,46 +6,61 @@
   "repository": "dword-design/base",
   "license": "MIT",
   "author": "Sebastian Landwehr <info@dword-design.de>",
-  "files": [
-    "dist"
-  ],
   "main": "dist/index.js",
   "bin": {
     "base": "./dist/cli.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "prepublishOnly": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src && node dist/cli.js build",
-    "start": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src && node dist/cli.js start",
+    "depgraph": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src && node dist/cli.js depgraph",
+    "prepare": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src && node dist/cli.js prepare",
+    "prepublishOnly": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src && node dist/cli.js prepublishOnly",
     "test": "rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src && node dist/cli.js test"
   },
   "dependencies": {
     "@babel/core": "^7.6.4",
     "@babel/register": "^7.6.2",
-    "@dword-design/base-config": "^1.0.1",
+    "@dword-design/babel-config": "^1.0.10",
     "@dword-design/base-config-node": "^1.0.0",
-    "@dword-design/config-files": "^2.0.0",
+    "@dword-design/depcheck-config": "^1.1.0",
     "@dword-design/depgraph": "^1.0.0",
     "@dword-design/functions": "^2.2.2",
+    "@dword-design/is-workspace-root": "^1.0.1",
     "@dword-design/require-hook-test": "^1.0.0",
+    "ajv-cli": "^3.0.0",
     "child-process-promise": "^2.2.1",
     "depcheck": "dword-design/depcheck#fork",
+    "disparity": "^3.0.0",
+    "find-yarn-workspace-root": "^1.2.1",
     "fs-extra": "^8.1.0",
+    "get-package-name": "^1.0.0",
+    "get-projectz-readme-section-regex": "^1.0.5",
+    "hosted-git-info": "^3.0.2",
     "make-cli": "^1.0.9",
+    "matchdep": "^2.0.0",
     "mocha-per-file": "^2.0.0",
     "nyc": "^14.1.1",
+    "output-files": "^1.1.7",
+    "package-name-regex": "^1.0.5",
+    "parse-git-config": "^3.0.0",
     "pre-commit": "^1.2.2",
+    "projectz": "^1.19.0",
+    "resolve-from": "^5.0.0",
+    "safe-readfile": "^1.0.2",
     "safe-require": "^1.0.3",
+    "sort-package-json": "^1.39.1",
+    "stable-version-regex": "^1.0.4",
+    "with-local-tmp-dir": "^2.1.2",
     "wsrun": "^5.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
-    "@dword-design/babel-config": "^1.0.10",
     "expect": "^24.9.0",
-    "get-package-name": "^1.0.0",
     "glob-promise": "^3.4.0",
-    "output-files": "^1.1.7",
     "rimraf": "^3.0.0",
-    "with-local-tmp-dir": "^2.1.2"
+    "stealthy-require": "^1.1.1"
   },
   "baseConfig": {
     "depcheckConfig": {

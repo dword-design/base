@@ -22,7 +22,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
       export default bar
     `,
   })
-  await spawn('base', ['build'])
+  await spawn('base', ['prepare'])
   let stdout
   try {
     await spawn('base', ['test'], { capture: ['stdout'] })

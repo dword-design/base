@@ -27,7 +27,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
       }
     `,
   })
-  await spawn('base', ['build'])
+  await spawn('base', ['prepare'])
   const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
   expect(stdout).toMatch(new RegExp(endent`
     ^
@@ -52,7 +52,6 @@ export default () => withLocalTmpDir(__dirname, async () => {
     '.renovaterc.json',
     '.travis.yml',
     'coverage',
-    'dist',
     'LICENSE.md',
     'node_modules',
     'package.json',

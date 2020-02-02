@@ -1,8 +1,8 @@
-import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
+import depgraph from '../../src/depgraph'
 
 export default () => withLocalTmpDir(__dirname, async () => {
-  const childProcess = spawn('base', ['depgraph'], { stdio: ['ignore', 'pipe', 'ignore'] })
+  const childProcess = depgraph({ stdio: ['ignore', 'pipe', 'ignore'] })
     .catch(error => {
       if (error.code !== null) {
         throw error

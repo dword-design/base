@@ -9,14 +9,14 @@ export default () => withLocalTmpDir(__dirname, async () => {
     'package.json': endent`
       {
         "dependencies": {
-          "change-case": "^0.1.0"
+          "change-case": "^1.0.0"
         }
       }
 
     `,
     'src/index.js': 'export default 1',
   })
-  await spawn('base', ['build'])
+  await spawn('base', ['prepare'])
   let stdout
   try {
     await spawn('base', ['test'], { capture: ['stdout'] })

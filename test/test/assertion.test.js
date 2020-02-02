@@ -1,8 +1,8 @@
 import outputFiles from 'output-files'
-import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { endent } from '@dword-design/functions'
 import expect from 'expect'
+import { spawn } from 'child-process-promise'
 
 export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
@@ -21,9 +21,9 @@ export default () => withLocalTmpDir(__dirname, async () => {
       export default () => expect(1).toEqual(2)
     `,
   })
+  await spawn('base', ['prepare'])
   let stdout
   try {
-    await spawn('base', ['build'])
     await spawn('base', ['test'], { capture: ['stdout'] })
   } catch (error) {
     stdout = error.stdout

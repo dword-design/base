@@ -27,7 +27,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
       export default () => expect(bar).toEqual(1)
     `,
   })
-  await spawn('base', ['build'])
+  await spawn('base', ['prepare'])
   const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
   expect(stdout).toMatch(new RegExp(endent`
     ^

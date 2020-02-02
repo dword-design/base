@@ -1,5 +1,5 @@
 import babelRegister from '@babel/register'
 import './register-require-hook'
-import config from '@dword-design/base-config'
+import babelConfig from '@dword-design/babel-config'
 
-babelRegister({ ...config.babelConfig, ignore: [/node_modules/] })
+babelRegister({ ...babelConfig, ignore: [/node_modules/] })

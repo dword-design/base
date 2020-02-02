@@ -21,7 +21,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
         import foo from 'base-config-foo'
         import expect from 'expect'
 
-        export default () => expect(foo.build()).toEqual(1)
+        export default () => expect(foo.prepublishOnly()).toEqual(1)
       `,
     },
     'package.json': endent`
@@ -33,11 +33,11 @@ export default () => withLocalTmpDir(__dirname, async () => {
     `,
     'src/index.js': endent`
       export default {
-        build: () => 1,
+        prepublishOnly: () => 1,
       }
     `,
   })
   process.chdir('inner')
-  await spawn('base', ['build'])
+  await spawn('base', ['prepare'])
   await spawn('base', ['test'])
 })

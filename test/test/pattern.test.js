@@ -12,7 +12,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
       'bar.test.js': 'export default () => {}',
     },
   })
-  await spawn('base', ['build'])
+  await spawn('base', ['prepare'])
   const { stdout } = await spawn('base', ['test', 'foo.test.js'], { capture: ['stdout'] })
   expect(stdout).toMatch(new RegExp(endent`
     ^

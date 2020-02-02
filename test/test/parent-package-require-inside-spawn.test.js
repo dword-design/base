@@ -34,7 +34,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     },
   })
   await chmod(P.join('test', 'cli.js'), '755')
-  await spawn('base', ['build'])
+  await spawn('base', ['prepare'])
   const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
   expect(stdout).toMatch(new RegExp(endent`
     ^
