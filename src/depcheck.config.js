@@ -1,8 +1,9 @@
 import config from './config'
 import P from 'path'
 import baseConfigSpecial from './depcheck-base-config-special'
+import safeRequire from 'safe-require'
 
-const { baseConfig } = require(P.resolve('package.json'))
+const baseConfig = safeRequire(P.join(process.cwd(), 'package.json'))?.baseConfig
 
 export default {
   ignores: (typeof baseConfig === 'string'
