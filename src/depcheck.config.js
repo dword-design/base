@@ -11,9 +11,9 @@ export default {
   ) ?? [],
   ignoreDirs: ['.nyc_output', '.vscode', 'coverage', 'dist'],
   prodDependencyMatches: ['src/**'],
+  ...config.depcheckConfig,
   specials: [
     baseConfigSpecial,
     ...config.depcheckConfig.specials ?? [],
   ],
-  ...config.depcheckConfig,
 }
