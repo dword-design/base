@@ -2,21 +2,22 @@ import withLocalTmpDir from 'with-local-tmp-dir'
 import { endent } from '@dword-design/functions'
 import { outputFile } from 'fs-extra'
 import expect from 'expect'
-import prepare from '../../src/prepare'
-import testConfigFiles from '../../src/test-config-files'
+import { spawn } from 'child-process-promise'
 
 export default () => withLocalTmpDir(__dirname, async () => {
   await outputFile('package.json', endent`
     {
-      "description": 1
+      "bin": {
+        "foo": "./src/cli.js"
+      }
     }
   `)
-  await prepare()
-  let message
+  await spawn('base', ['prepare'])
+  let stdout
   try {
-    await testConfigFiles()
+    await spawn('base', ['test'], { capture: ['stdout'] })
   } catch (error) {
-    message = error.message
+    stdout = error.stdout
   }
-  expect(message).toMatch('data.description should be string')
+  expect(stdout).toMatch('data.bin[\'foo\'] should match pattern')
 })

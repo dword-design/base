@@ -41,10 +41,10 @@ export default () => withLocalTmpDir(__dirname, async () => {
 
   expect(await glob('*', { dot: true })).toEqual([
     '.editorconfig',
+    '.github',
     '.gitignore',
     '.gitpod.yml',
     '.renovaterc.json',
-    '.travis.yml',
     'LICENSE.md',
     'package.json',
     'packages',

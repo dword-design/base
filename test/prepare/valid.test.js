@@ -10,31 +10,20 @@ export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     'package.json': endent`
       {
-        "name": "foo",
-        "devDependencies": {
-          "expect": "^0.1.0"
-        }
+        "name": "foo"
       }
 
     `,
     'src/index.js': 'export default 1',
-    'test/foo.test.js': endent`
-      import foo from 'foo'
-      import expect from 'expect'
-
-      export default () => {
-        expect(process.env.NODE_ENV).toEqual('test')
-        expect(foo).toEqual(1)
-      }
-    `,
+    'test/foo.test.js': '',
   })
   await spawn('base', ['prepare'])
   expect(await glob('*', { dot: true })).toEqual([
     '.editorconfig',
+    '.github',
     '.gitignore',
     '.gitpod.yml',
     '.renovaterc.json',
-    '.travis.yml',
     'LICENSE.md',
     'package.json',
     'README.md',
