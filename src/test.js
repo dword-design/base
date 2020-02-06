@@ -6,7 +6,7 @@ import workspaceGlob from './workspace-glob'
 import config from './config'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
-import isCI from 'is-ci'
+import { isCI } from '@qawolf/ci-info'
 import isDocker from 'is-docker'
 import isGitpod from 'is-gitpod'
 
