@@ -1,6 +1,5 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import outputFiles from 'output-files'
-import expect from 'expect'
 import glob from 'glob-promise'
 import { spawn } from 'child-process-promise'
 

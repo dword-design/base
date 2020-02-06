@@ -1,6 +1,5 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import outputFiles from 'output-files'
-import expect from 'expect'
 import { endent } from '@dword-design/functions'
 import { spawn } from 'child-process-promise'
 

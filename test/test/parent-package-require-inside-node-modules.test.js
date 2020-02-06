@@ -1,7 +1,6 @@
 import outputFiles from 'output-files'
 import { spawn } from 'child-process-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
-import expect from 'expect'
 import { endent } from '@dword-design/functions'
 
 export default () => withLocalTmpDir(__dirname, async () => {
@@ -13,8 +12,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
       {
         "name": "foo",
         "devDependencies": {
-          "bar": "^1.0.0",
-          "expect": "^1.0.0"
+          "bar": "^1.0.0"
         }
       }
 
@@ -22,7 +20,6 @@ export default () => withLocalTmpDir(__dirname, async () => {
     'src/index.js': 'export default 1',
     'test/works.test.js': endent`
       import bar from 'bar'
-      import expect from 'expect'
 
       export default () => expect(bar).toEqual(1)
     `,

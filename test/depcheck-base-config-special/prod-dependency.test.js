@@ -2,7 +2,6 @@ import { spawn } from 'child-process-promise'
 import outputFiles from 'output-files'
 import { endent } from '@dword-design/functions'
 import withLocalTmpDir from 'with-local-tmp-dir'
-import expect from 'expect'
 
 export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({

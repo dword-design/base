@@ -11,15 +11,13 @@ export default () => withLocalTmpDir(__dirname, async () => {
         {
           "baseConfig": "foo",
           "devDependencies": {
-            "base-config-foo": "^1.0.0",
-            "expect": "^1.0.0"
+            "base-config-foo": "^1.0.0"
           }
         }
 
       `,
       'test/valid.test.js': endent`
         import foo from 'base-config-foo'
-        import expect from 'expect'
 
         export default () => expect(foo.prepublishOnly()).toEqual(1)
       `,

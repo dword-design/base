@@ -32,6 +32,7 @@
     "ajv-cli": "^3.0.0",
     "child-process-promise": "^2.2.1",
     "depcheck": "dword-design/depcheck#fork",
+    "expect": "^25.1.0",
     "find-yarn-workspace-root": "^1.2.1",
     "fs-extra": "^8.1.0",
     "get-package-name": "^1.0.0",
@@ -58,7 +59,6 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
-    "expect": "^24.9.0",
     "rimraf": "^3.0.0",
     "stealthy-require": "^1.1.1"
   },

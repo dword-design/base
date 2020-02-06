@@ -1,7 +1,6 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { spawn } from 'child-process-promise'
 import outputFiles from 'output-files'
-import expect from 'expect'
 import glob from 'glob-promise'
 import { endent } from '@dword-design/functions'
 
@@ -9,17 +8,13 @@ export default () => withLocalTmpDir(__dirname, async () => {
   await outputFiles({
     'package.json': endent`
       {
-        "name": "foo",
-        "devDependencies": {
-          "expect": "^0.1.0"
-        }
+        "name": "foo"
       }
 
     `,
     'src/index.js': 'export default 1',
     'test/foo.test.js': endent`
       import foo from 'foo'
-      import expect from 'expect'
 
       export default () => {
         expect(process.env.NODE_ENV).toEqual('test')

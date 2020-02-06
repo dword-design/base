@@ -1,5 +1,4 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
-import expect from 'expect'
 import { endent, keys, sortBy, identity, omit } from '@dword-design/functions'
 import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'

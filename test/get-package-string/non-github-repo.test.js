@@ -1,5 +1,4 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
-import expect from 'expect'
 import stealthyRequire from 'stealthy-require'
 import { spawn } from 'child-process-promise'
 
