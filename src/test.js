@@ -74,7 +74,7 @@ export default async pattern => {
         },
       )
     } else {
-      throw new Error('This project cannot be tested outside of a container. Please consider to test it in a docker container or GitPod.')
+      throw new Error('This project can only be tested inside of a container. Please consider to test it in a docker container or in GitPod.')
     }
   }
 }
