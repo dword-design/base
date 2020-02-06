@@ -1195,7 +1195,6 @@
 
 "@vue/babel-preset-jsx@dword-design/jsx#fork/babel-preset-jsx":
   version "1.1.2"
-  uid "2d986d9fe3881743b3efe9755f48bb3eade788b4"
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/2d986d9fe3881743b3efe9755f48bb3eade788b4"
   dependencies:
     "@vue/babel-helper-vue-jsx-merge-props" "^1.0.0"
@@ -1214,7 +1213,6 @@
 
 "@vue/babel-sugar-inject-h@dword-design/jsx#fork/babel-sugar-inject-h":
   version "1.1.2"
-  uid b98aba393b6502f1d98c3757a68124e7ea1faa49
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/b98aba393b6502f1d98c3757a68124e7ea1faa49"
   dependencies:
     "@babel/plugin-syntax-jsx" "^7.2.0"
@@ -1855,7 +1853,6 @@ chardet@^0.7.0:
 
 chdir@dword-design/node-chdir#fork:
   version "0.0.0"
-  uid "7eaa8592e576b0f9d6d3ce699b02b04dcd8a2c16"
   resolved "https://codeload.github.com/dword-design/node-chdir/tar.gz/7eaa8592e576b0f9d6d3ce699b02b04dcd8a2c16"
 
 child-process-promise@^2.2.1:
@@ -2747,7 +2744,6 @@ decode-uri-component@^0.2.0:
 
 dedent@^0.7.0, dedent@dword-design/dedent#fork:
   version "0.7.0"
-  uid c8d46e5017d60504657c2d01b59082c0329a12a7
   resolved "https://codeload.github.com/dword-design/dedent/tar.gz/c8d46e5017d60504657c2d01b59082c0329a12a7"
   dependencies:
     babel-plugin-add-module-exports "^1.0.2"
@@ -2822,7 +2818,6 @@ delegates@^1.0.0:
 
 depcheck@dword-design/depcheck#fork:
   version "0.0.1"
-  uid "8a9eb41006c2c6f9cbd79e4e68bf265e1c1df1dc"
   resolved "https://codeload.github.com/dword-design/depcheck/tar.gz/8a9eb41006c2c6f9cbd79e4e68bf265e1c1df1dc"
   dependencies:
     "@babel/parser" "^7.8.4"
@@ -3030,7 +3025,6 @@ end-of-stream@^1.1.0:
 
 endent@dword-design/endent#fork:
   version "1.4.0"
-  uid be5433db67eaec07c6c9d00ba3bed2ed946dc664
   resolved "https://codeload.github.com/dword-design/endent/tar.gz/be5433db67eaec07c6c9d00ba3bed2ed946dc664"
   dependencies:
     dedent dword-design/dedent#fork
@@ -3739,7 +3733,6 @@ fsevents@^1.2.7:
   dependencies:
     bindings "^1.5.0"
     nan "^2.12.1"
-    node-pre-gyp "*"
 
 fsevents@^2.1.2:
   version "2.1.2"
@@ -4333,6 +4326,11 @@ is-directory@^0.3.1:
   resolved "https://registry.yarnpkg.com/is-directory/-/is-directory-0.3.1.tgz#61339b6f2475fc772fd9c9d83f5c8575dc154ae1"
   integrity sha1-YTObbyR1/Hcv2cnYP1yFddwVSuE=
 
+is-docker@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/is-docker/-/is-docker-2.0.0.tgz#2cb0df0e75e2d064fe1864c37cdeacb7b2dcf25b"
+  integrity sha512-pJEdRugimx4fBMra5z2/5iRdZ63OhYV0vr0Dwm5+xtW4D1FvRkB8hamMIhnWfyJeDdyr/aa7BDyNbtG38VxgoQ==
+
 is-extendable@^0.1.0, is-extendable@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/is-extendable/-/is-extendable-0.1.1.tgz#62b110e289a471418e3ec36a617d472e301dfc89"
@@ -4371,6 +4369,13 @@ is-fullwidth-code-point@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz#f116f8064fe90b3f7844a38997c0b75051269f1d"
   integrity sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==
+
+is-gitpod@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/is-gitpod/-/is-gitpod-1.0.7.tgz#a5ecf409f23410abea3d61cb240d6e34f4df9bee"
+  integrity sha512-28u2OA6k2/R+KIwdf+fOaF+VkA1AA/Jlynq3A0e4sDZQX6bFnAY+Fb1rdtEzN6928OOwlWm2jfwijXowJSPYeA==
+  dependencies:
+    child-process-promise "^2.2.1"
 
 is-glob@^2.0.0:
   version "2.0.1"
@@ -4802,7 +4807,6 @@ levn@^0.3.0, levn@~0.3.0:
 
 linaria@dword-design/linaria#fork:
   version "1.3.1"
-  uid "6228e0443ae47b33da6135abf22ccbfc2895606c"
   resolved "https://codeload.github.com/dword-design/linaria/tar.gz/6228e0443ae47b33da6135abf22ccbfc2895606c"
   dependencies:
     "@babel/core" "^7.3.3"

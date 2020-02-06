@@ -6,6 +6,9 @@ import workspaceGlob from './workspace-glob'
 import config from './config'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
+import isCI from 'is-ci'
+import isDocker from 'is-docker'
+import isGitpod from 'is-gitpod'
 
 export default async pattern => {
   try {
@@ -46,26 +49,32 @@ export default async pattern => {
     |> values
     |> promiseAll
 
-  return workspaceGlob !== undefined
-    ? spawn('wsrun', ['--bin', require.resolve('./run-command.cli'), '-c', 'test'], { stdio: 'inherit' })
-    : spawn(
-      'nyc',
-      [
-        '--reporter', 'lcov',
-        '--reporter', 'text',
-        '--cwd', process.cwd(),
-        '--require', require.resolve('./pretest'),
-        'mocha-per-file',
-        '--timeout', 80000,
-        ...pattern !== undefined ? [pattern] : [],
-      ],
-      {
-        stdio: 'inherit',
-        env: {
-          ...process.env,
-          NODE_ENV: 'test',
-          BABEL_CACHE_PATH: P.join(process.cwd(), 'node_modules', '.cache', '@babel', 'register', '.babel.json'),
+  if (workspaceGlob !== undefined) {
+    return spawn('wsrun', ['--bin', require.resolve('./run-command.cli'), '-c', 'test'], { stdio: 'inherit' })
+  } else {
+    if (!config.testInContainer || isCI || isDocker() || await isGitpod()) {
+      return spawn(
+        'nyc',
+        [
+          '--reporter', 'lcov',
+          '--reporter', 'text',
+          '--cwd', process.cwd(),
+          '--require', require.resolve('./pretest'),
+          'mocha-per-file',
+          '--timeout', 80000,
+          ...pattern !== undefined ? [pattern] : [],
+        ],
+        {
+          stdio: 'inherit',
+          env: {
+            ...process.env,
+            NODE_ENV: 'test',
+            BABEL_CACHE_PATH: P.join(process.cwd(), 'node_modules', '.cache', '@babel', 'register', '.babel.json'),
+          },
         },
-      },
-    )
+      )
+    } else {
+      throw new Error('This project cannot be tested outside of a container. Please consider to test it in a docker container or GitPod.')
+    }
+  }
 }
