@@ -15,12 +15,14 @@ export default () => withLocalTmpDir(__dirname, async () => {
     `,
     'src/index.js': 'export default 1',
     'test/foo.test.js': '',
+    '.env': '',
     '.env.defaults': '',
     '.env.schema': '',
   })
   await spawn('base', ['prepare'])
   expect(await glob('*', { dot: true })).toEqual([
     '.editorconfig',
+    '.env',
     '.env.defaults',
     '.env.schema',
     '.github',
