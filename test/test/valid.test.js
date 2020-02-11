@@ -43,6 +43,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     '.eslintrc.json',
     '.github',
     '.gitignore',
+    '.gitpod.Dockerfile',
     '.gitpod.yml',
     '.nyc_output',
     '.renovaterc.json',

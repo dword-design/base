@@ -21,6 +21,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     '.editorconfig',
     '.github',
     '.gitignore',
+    '.gitpod.Dockerfile',
     '.gitpod.yml',
     '.renovaterc.json',
     'LICENSE.md',
