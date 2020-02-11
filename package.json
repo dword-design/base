@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "5.2.2",
+  "version": "5.2.3",
   "description": "",
   "keywords": [],
   "repository": "dword-design/base",
@@ -46,7 +46,7 @@
     "make-cli": "^1.0.9",
     "matchdep": "^2.0.0",
     "mocha-per-file": "^2.0.0",
-    "nyc": "^14.1.1",
+    "nyc": "^15.0.0",
     "output-files": "^1.1.7",
     "package-name-regex": "^1.0.5",
     "parse-git-config": "^3.0.0",
