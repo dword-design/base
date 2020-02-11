@@ -12,6 +12,7 @@ import badges from './badges.config'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import ignore from 'ignore'
+import allowedFilenames from './allowed-filenames.config'
 
 export default async () => {
 
@@ -65,11 +66,7 @@ export default async () => {
     dot: true,
     ignore: [
       ...{ ...copiedFiles, ...generatedFiles } |> keys,
-      '.git',
-      'packages',
-      'src',
-      'test',
-      'yarn.lock',
+      ...allowedFilenames,
     ],
   })
     |> await
