@@ -27,6 +27,7 @@ export default async () => {
     ...packageConfig
       |> pick([
         'name',
+        'private',
         'baseConfig',
         'bin',
         'keywords',
