@@ -41,6 +41,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
   expect(await glob('*', { dot: true })).toEqual([
     '.cz.json',
     '.editorconfig',
+    '.gitattributes',
     '.github',
     '.gitignore',
     '.gitpod.Dockerfile',

@@ -11,6 +11,7 @@ import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import ignore from 'ignore'
 import allowedFilenames from './allowed-filenames.config'
 import editorconfigConfig from './config-files/editorconfig.config'
+import gitattributesConfig from './config-files/gitattributes.config'
 import gitignoreConfig from './config-files/gitignore.config'
 import githubWorkflowConfig from './config-files/github-workflow.config'
 import gitpodConfig from './config-files/gitpod.config'
@@ -61,6 +62,7 @@ export default async () => {
       ? {
         '.cz.json': commitizenConfig,
         '.editorconfig': editorconfigConfig,
+        '.gitattributes': gitattributesConfig,
         '.github/workflows/node.yml': githubWorkflowConfig,
         '.gitpod.Dockerfile': gitpodDockerfile,
         '.gitpod.yml': gitpodConfig,

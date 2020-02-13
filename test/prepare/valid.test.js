@@ -26,6 +26,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     '.env',
     '.env.defaults',
     '.env.schema',
+    '.gitattributes',
     '.github',
     '.gitignore',
     '.gitpod.Dockerfile',

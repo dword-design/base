@@ -35,6 +35,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     '.cz.json',
     '.editorconfig',
     '.eslintrc.json',
+    '.gitattributes',
     '.github',
     '.gitignore',
     '.gitpod.Dockerfile',
