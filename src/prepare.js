@@ -2,17 +2,26 @@ import outputFiles from 'output-files'
 import { spawn } from 'child-process-promise'
 import workspaceGlob from './workspace-glob'
 import glob from 'glob-promise'
-import gitignoreConfig from './gitignore.config'
-import isWorkspaceRoot from '@dword-design/is-workspace-root'
-import { copyFile, outputFile, readFile, remove, copy } from 'fs-extra'
+import { outputFile, readFile, remove } from 'fs-extra'
 import P from 'path'
-import { join, map, sortBy, identity, jsonToString, filter, zipObject, keys, unary, ary } from '@dword-design/functions'
-import getPackageString from './get-package-string'
+import { join, map, sortBy, identity, jsonToString, filter, unary } from '@dword-design/functions'
 import badges from './badges.config'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import ignore from 'ignore'
 import allowedFilenames from './allowed-filenames.config'
+import editorconfigConfig from './config-files/editorconfig.config'
+import gitignoreConfig from './config-files/gitignore.config'
+import githubWorkflowConfig from './config-files/github-workflow.config'
+import gitpodConfig from './config-files/gitpod.config'
+import gitpodDockerfile from './config-files/gitpod-dockerfile.config'
+import commitizenConfig from './config-files/commitizen.config'
+import renovateConfig from './config-files/renovate.config'
+import semanticReleaseConfig from './config-files/semantic-release.config'
+import license from './config-files/license.config'
+import readme from './config-files/readme.config'
+import getPackageString from './get-package-string'
+import isWorkspaceRoot from '@dword-design/is-workspace-root'
 
 export default async () => {
 
@@ -33,10 +42,9 @@ export default async () => {
     )
     await outputFile(
       'README.md',
-      safeReadFileSync(P.join('..', 'README.md'), 'utf8')
-        ?? (await readFile(P.resolve(__dirname, 'generated-files', 'README.md'))),
+      safeReadFileSync(P.join('..', 'README.md'), 'utf8') ?? readme,
     )
-    await copyFile(P.resolve(__dirname, 'generated-files', 'LICENSE.md'), 'LICENSE.md')
+    await outputFile('LICENSE.md', license)
     try {
       await spawn('projectz', ['compile'], { capture: ['stdout'] })
       return {
@@ -48,39 +56,34 @@ export default async () => {
     }
   })
 
-  const copiedFilenames = isWorkspaceRoot
-    ? await glob('*', { cwd: P.resolve(__dirname, 'copied-files') })
-    : []
-  const copiedFiles = zipObject(
-    copiedFilenames |> map(filename => `.${filename}`),
-    copiedFilenames |> map(filename => P.resolve(__dirname, 'copied-files', filename)),
-  )
-
-  const generatedFiles = {
-    '.gitignore': gitignoreConfig |> sortBy(identity) |> map(entry => `${entry}\n`) |> join(''),
+  const configFiles = {
+    ...isWorkspaceRoot
+      ? {
+        '.cz.json': commitizenConfig,
+        '.editorconfig': editorconfigConfig,
+        '.github/workflows/node.yml': githubWorkflowConfig,
+        '.gitpod.Dockerfile': gitpodDockerfile,
+        '.gitpod.yml': gitpodConfig,
+        '.releaserc.json': semanticReleaseConfig,
+        '.renovaterc.json': renovateConfig,
+      }
+      : {},
+    '.gitignore': gitignoreConfig
+      |> sortBy(identity)
+      |> map(entry => `${entry}\n`)
+      |> join(''),
     'package.json': packageJsonString,
     ...markdownFiles,
   }
 
-  glob('*', {
-    dot: true,
-    ignore: [
-      ...{ ...copiedFiles, ...generatedFiles } |> keys,
-      ...allowedFilenames,
-    ],
-  })
+  glob('*', { dot: true, ignore: allowedFilenames })
     |> await
     |> filter(ignore().add(gitignoreConfig).createFilter())
     |> map(unary(remove))
     |> Promise.all
     |> await
 
-  copiedFiles
-    |> map(ary(copy, 2))
-    |> Promise.all
-    |> await
-
-  await outputFiles(generatedFiles)
+  await outputFiles(configFiles)
 
   if (workspaceGlob !== undefined) {
     return spawn('wsrun', ['--stages', '--bin', require.resolve('./run-command.cli'), '-c', 'prepare'], { stdio: 'inherit' })

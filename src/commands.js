@@ -1,5 +1,7 @@
+import commit from './commit'
 import depgraph from './depgraph'
 import prepare from './prepare'
+import release from './release'
 import test from './test'
 import config from './config'
 import workspaceGlob from './workspace-glob'
@@ -9,11 +11,17 @@ import { spawn } from 'child-process-promise'
 const parallelCommands = ['dev', 'start']
 
 export default {
+  commit: {
+    handler: commit,
+  },
   depgraph: {
     handler: depgraph,
   },
   prepare: {
     handler: prepare,
+  },
+  release: {
+    handler: release,
   },
   test: {
     arguments: '[pattern]',

@@ -21,6 +21,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
   })
   await spawn('base', ['prepare'])
   expect(await glob('*', { dot: true })).toEqual([
+    '.cz.json',
     '.editorconfig',
     '.env',
     '.env.defaults',
@@ -29,6 +30,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     '.gitignore',
     '.gitpod.Dockerfile',
     '.gitpod.yml',
+    '.releaserc.json',
     '.renovaterc.json',
     'LICENSE.md',
     'package.json',

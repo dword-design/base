@@ -23,9 +23,11 @@ export default () => withLocalTmpDir(__dirname, async () => {
         "dist"
       ],
       "scripts": {
+        "commit": "base commit",
         "depgraph": "base depgraph",
         "prepare": "base prepare",
         "prepublishOnly": "base prepublishOnly",
+        "release": "base release",
         "test": "base test"
       }
     }

@@ -32,6 +32,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
       1 passing \\(.*?\\)
   `))
   expect(await glob('*', { dot: true })).toEqual([
+    '.cz.json'
     '.editorconfig',
     '.eslintrc.json',
     '.github',
@@ -39,6 +40,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
     '.gitpod.Dockerfile',
     '.gitpod.yml',
     '.nyc_output',
+    '.releaserc.json',
     '.renovaterc.json',
     'coverage',
     'LICENSE.md',
