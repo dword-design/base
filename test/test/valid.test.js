@@ -32,7 +32,7 @@ export default () => withLocalTmpDir(__dirname, async () => {
       1 passing \\(.*?\\)
   `))
   expect(await glob('*', { dot: true })).toEqual([
-    '.cz.json'
+    '.cz.json',
     '.editorconfig',
     '.eslintrc.json',
     '.github',
