@@ -9,7 +9,7 @@ export default endent`
   on:
     push:
       branches:
-        - master
+        - '**'
 
   jobs:
     test:
