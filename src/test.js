@@ -10,7 +10,7 @@ import { isCI } from '@qawolf/ci-info'
 import isDocker from 'is-docker'
 import isGitpod from 'is-gitpod'
 
-export default async pattern => {
+export default async (pattern, { grep }) => {
   try {
     await spawn(
       'ajv',
@@ -60,9 +60,13 @@ export default async pattern => {
           '--reporter', 'text',
           '--cwd', process.cwd(),
           '--require', require.resolve('./pretest'),
-          'mocha-per-file',
-          '--timeout', 80000,
+          '--all',
+          '--include', 'src/**/*.js',
+          '--exclude', '**/*.spec.js',
+          'mocha-objects',
           ...pattern !== undefined ? [pattern] : [],
+          ...grep !== undefined ? ['--grep', grep] : [],
+          '--timeout', 80000,
         ],
         {
           stdio: 'inherit',

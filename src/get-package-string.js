@@ -46,7 +46,7 @@ export default async () => {
     main: `dist/${config.main}`,
     scripts: commands
       |> mapValues((command, name) => packageConfig.name === '@dword-design/base'
-        ? `rimraf dist && babel --out-dir dist --config-file @dword-design/babel-config --copy-files src && node dist/cli.js ${name}`
+        ? `rimraf dist && babel --config-file @dword-design/babel-config --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
         : `base ${name}`,
       ),
   }

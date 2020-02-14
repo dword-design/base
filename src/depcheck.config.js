@@ -11,7 +11,7 @@ export default {
     : baseConfig?.depcheckConfig?.ignoreMatches
   ) ?? [],
   ignoreDirs: ['.nyc_output', '.vscode', 'coverage', 'dist'],
-  prodDependencyMatches: ['src/**'],
+  prodDependencyMatches: ['!**/*.spec.js'],
   ...config.depcheckConfig,
   specials: [
     baseConfigSpecial,

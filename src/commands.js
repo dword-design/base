@@ -25,6 +25,12 @@ export default {
   },
   test: {
     arguments: '[pattern]',
+    options: [
+      {
+        name: '-g, --grep <grep>',
+        description: 'Only run tests matching this string or regexp',
+      },
+    ],
     handler: test,
   },
   ...config.commands
