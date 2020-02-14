@@ -185,19 +185,17 @@ export default {
           import bar from 'bar'
     
           export default {
-            valid: () => expect(bar).toEqual(1),
+            valid: () => {
+              console.log('run valid in index')
+              expect(bar).toEqual(1)
+            },
           }
         `,
       },
     })
     await spawn('base', ['prepare'])
     const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
-    expect(stdout).toMatch(new RegExp(endent`
-      ^
-
-        index
-          ✓ valid
-    `))
+    expect(stdout).toMatch('run valid in index')
   }),
   'parent package require inside spawn': () => withLocalTmpDir(async () => {
     await outputFiles({
@@ -213,7 +211,7 @@ export default {
   
       `,
       src: {
-        'index.js': 'export default \'foo\'',
+        'index.js': 'export default \'foo bar\'',
         'index.spec.js': endent`
           import { outputFile, chmod } from 'fs-extra'
           import { spawn } from 'child-process-promise'
@@ -237,30 +235,20 @@ export default {
     })
     await spawn('base', ['prepare'])
     const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
-    expect(stdout).toMatch(new RegExp(endent`
-      ^
-
-        index
-      foo
-          ✓ valid \\(.*?\\)
-    `))
+    expect(stdout).toMatch('foo bar')
   }),
   pattern: () => withLocalTmpDir(async () => {
     await outputFiles({
       src: {
         'index.js': 'export default 1',
-        'index.spec.js': 'export default { valid: () => {} }',
-        'index2.spec.js': 'export default { valid: () => {} }',
+        'index1.spec.js': 'export default { valid: () => console.log(\'run index1\') }',
+        'index2.spec.js': 'export default { valid: () => console.log(\'run index2\') }',
       },
     })
     await spawn('base', ['prepare'])
     const { stdout } = await spawn('base', ['test', 'src/index2.spec.js'], { capture: ['stdout'] })
-    expect(stdout).toMatch(new RegExp(endent`
-      ^
-  
-        index2
-          ✓ valid
-    `))
+    expect(stdout).not.toMatch('run index1')
+    expect(stdout).toMatch('run index2')
   }),
   grep: () => withLocalTmpDir(async () => {
     await outputFiles({
@@ -268,20 +256,16 @@ export default {
         'index.js': 'export default 1',
         'index.spec.js': endent`
           export default {
-            bar: () => {},
-            foo: () => {},
+            bar: () => console.log('run bar'),
+            foo: () => console.log('run foo'),
           }
         `,
       },
     })
     await spawn('base', ['prepare'])
     const { stdout } = await spawn('base', ['test', '--grep', 'foo'], { capture: ['stdout'] })
-    expect(stdout).toMatch(new RegExp(endent`
-      ^
-  
-        index
-          ✓ foo
-    `))
+    expect(stdout).not.toMatch('run bar')
+    expect(stdout).toMatch('run foo')
   }),
   'prod dependency only in test': () => withLocalTmpDir(async () => {
     await outputFiles({
@@ -372,6 +356,7 @@ export default {
             valid: () => {
               expect(process.env.NODE_ENV).toEqual('test')
               expect(foo).toEqual(1)
+              console.log('run test')
             },
           }
         `,
@@ -379,12 +364,7 @@ export default {
     })
     await spawn('base', ['prepare'])
     const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
-    expect(stdout).toMatch(new RegExp(endent`
-      ^
-  
-        index
-          ✓ valid
-    `))
+    expect(stdout).toMatch('run test')
     expect(await glob('*', { dot: true })).toEqual([
       '.cz.json',
       '.editorconfig',
