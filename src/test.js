@@ -1,7 +1,7 @@
 import { spawn } from 'child-process-promise'
 import { outputFile, chmod } from 'fs-extra'
 import P from 'path'
-import { mapValues, values, promiseAll, replace, filter, join, endent } from '@dword-design/functions'
+import { mapValues, values, promiseAll, split, filter, join, endent } from '@dword-design/functions'
 import workspaceGlob from './workspace-glob'
 import config from './config'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
@@ -40,18 +40,22 @@ export default async (pattern, { grep }) => {
   }
   const { bin: binEntries = {} } = require(P.resolve('package.json'))
   binEntries
-    |> mapValues(async (filename, binName) =>
-      outputFile(
+    |> mapValues(async (filename, binName) => {
+      const replacedFilename = filename
+        |> split('/')
+        |> segment => segment === 'dist' ? 'src' : segment
+        |> join('/')
+      return outputFile(
         P.join('node_modules', '.bin', binName),
         endent`
           #!/usr/bin/env node
 
-          require('${P.join('..', '..', filename |> replace('dist', 'src'))}')
+          require('../../${replacedFilename}')
         `,
       )
-      |> await
-      |> () => chmod(P.join('node_modules', '.bin', binName), '755'),
-    )
+        |> await
+        |> () => chmod(P.join('node_modules', '.bin', binName), '755')
+    })
     |> values
     |> promiseAll
     |> await
