@@ -40,7 +40,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: yarn
+      - run: yarn --frozen-lockfile
       - name: Push changed files
         run: yarn dw-ci push-changed-files
         env:

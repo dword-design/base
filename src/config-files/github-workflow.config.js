@@ -46,7 +46,7 @@ export default endent`
         - uses: actions/setup-node@v1
           with:
             node-version: 12
-        - run: yarn
+        - run: yarn --frozen-lockfile
         - name: Push changed files
           run: yarn ${bin} push-changed-files
           env:

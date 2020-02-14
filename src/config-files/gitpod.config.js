@@ -6,7 +6,7 @@ export default endent`
     
   tasks:
     - init: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >>~/.npmrc
-    - init: yarn
+    - init: yarn --frozen-lockfile
 
   vscode:
     extensions:
