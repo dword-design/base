@@ -28,7 +28,7 @@ export default endent`
         - uses: actions/setup-node@v1
           with:
             node-version: \${{ matrix.node }}
-        - run: yarn
+        - run: yarn --frozen-lockfile
         - run: yarn test
         - name: Coveralls
           run: yarn ${bin} coveralls
