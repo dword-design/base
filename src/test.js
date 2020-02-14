@@ -1,7 +1,7 @@
 import { spawn } from 'child-process-promise'
-import { remove, symlink } from 'fs-extra'
+import { outputFile, chmod } from 'fs-extra'
 import P from 'path'
-import { mapValues, values, promiseAll, replace, filter, join } from '@dword-design/functions'
+import { mapValues, values, promiseAll, replace, filter, join, endent } from '@dword-design/functions'
 import workspaceGlob from './workspace-glob'
 import config from './config'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
@@ -39,15 +39,22 @@ export default async (pattern, { grep }) => {
     throw new Error(stdout)
   }
   const { bin: binEntries = {} } = require(P.resolve('package.json'))
-  await binEntries
-    |> mapValues((filename, binName) => remove(P.join('node_modules', '.bin', binName))
-      .then(() => symlink(
-        P.relative(P.join('node_modules', '.bin'), filename |> replace('dist', 'src')),
+  binEntries
+    |> mapValues(async (filename, binName) =>
+      outputFile(
         P.join('node_modules', '.bin', binName),
-      )),
+        endent`
+          #!/usr/bin/env node
+
+          require('${P.join('..', '..', filename |> replace('dist', 'src'))}')
+        `,
+      )
+      |> await
+      |> () => chmod(P.join('node_modules', '.bin', binName), '755'),
     )
     |> values
     |> promiseAll
+    |> await
 
   if (workspaceGlob !== undefined) {
     return spawn('wsrun', ['--bin', require.resolve('./run-command.cli'), '-c', 'test'], { stdio: 'inherit' })
