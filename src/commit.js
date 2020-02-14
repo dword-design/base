@@ -1,3 +1,3 @@
-import { spawn } from 'child-process-promise'
+import execa from 'execa'
 
-export default () => spawn('git-cz', [], { stdio: 'inherit' })
+export default () => execa.command('git-cz', { stdio: 'inherit' })

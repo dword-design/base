@@ -2,20 +2,20 @@ import P from 'path'
 import safeRequire from 'safe-require'
 import parseGitConfig from 'parse-git-config'
 import hostedGitInfo from 'hosted-git-info'
-import { jsonToString, add, mapValues, pick } from '@dword-design/functions'
+import { jsonToString, add, mapValues, pick, property } from '@dword-design/functions'
 import sortpackageConfig from 'sort-package-json'
 import config from './config'
 import { exists } from 'fs-extra'
-import findYarnWorkspaceRoot from 'find-yarn-workspace-root'
 import commands from './commands'
 
 export default async () => {
-  const workspaceRoot = findYarnWorkspaceRoot()
-  const gitRoot = workspaceRoot !== null ? workspaceRoot : process.cwd()
   const packageConfig = safeRequire(P.join(process.cwd(), 'package.json')) ?? {}
 
-  const gitUrl = (await exists(P.join(gitRoot, '.git')))
-    ? (await parseGitConfig({ path: P.resolve(gitRoot, '.git', 'config') }))['remote "origin"'].url
+  const gitUrl = (await exists('.git'))
+    ? parseGitConfig({ path: P.resolve('.git', 'config') })
+      |> await
+      |> property('remote "origin"')
+      |> property('url')
     : undefined
 
   const gitInfo = hostedGitInfo.fromUrl(gitUrl) || {}
@@ -34,9 +34,6 @@ export default async () => {
         'dependencies',
         'devDependencies',
       ]),
-    ...packageConfig.workspaces !== undefined
-      ? { workspaces: ['packages/*'], private: true }
-      : {},
     version: packageConfig.version ?? '1.0.0',
     description: packageConfig.description ?? '',
     ...gitUrl !== undefined ? { repository: `${gitInfo.user}/${gitInfo.project}` } : {},

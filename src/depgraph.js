@@ -1,4 +1,4 @@
-import { spawn } from 'child-process-promise'
+import execa from 'execa'
 
 export default ({ log = true } = {}) =>
-  spawn('depgraph', [], { stdio: log ? 'inherit' : 'pipe' })
+  execa.command('depgraph', { stdio: log ? 'inherit' : 'pipe' })

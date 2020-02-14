@@ -3,8 +3,7 @@ import { endent } from '@dword-design/functions'
 import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'
 import { outputFile } from 'fs-extra'
-import { spawn } from 'child-process-promise'
-import P from 'path'
+import execa from 'execa'
 
 export default {
   'custom config': () => withLocalTmpDir(async () => {
@@ -63,7 +62,6 @@ export default {
         "author": "foo bar",
         "files": "foo",
         "main": "dist/index.scss",
-        "workspaces": true,
         "keywords": [
           "foo",
           "bar"
@@ -89,7 +87,6 @@ export default {
       {
         "name": "foo",
         "version": "1.1.0",
-        "private": true,
         "description": "foo bar",
         "keywords": [
           "foo",
@@ -103,9 +100,6 @@ export default {
         },
         "files": [
           "dist"
-        ],
-        "workspaces": [
-          "packages/*"
         ],
         "scripts": {
           "commit": "base commit",
@@ -127,8 +121,8 @@ export default {
     `)
   }),
   'git repo': () => withLocalTmpDir(async () => {
-    await spawn('git', ['init'])
-    await spawn('git', ['remote', 'add', 'origin', 'git@github.com:bar/foo.git'])
+    await execa.command('git init')
+    await execa.command('git remote add origin git@github.com:bar/foo.git')
     const getPackageString = stealthyRequire(require.cache, () => require('../src/get-package-string'))
     expect(await getPackageString()).toEqual(endent`
       {
@@ -154,8 +148,8 @@ export default {
     `)
   }),
   'non-github repo': () => withLocalTmpDir(async () => {
-    await spawn('git', ['init'])
-    await spawn('git', ['remote', 'add', 'origin', 'git@special.com:bar/foo.git'])
+    await execa.command('git init')
+    await execa.command('git remote add origin git@special.com:bar/foo.git')
     const getPackageString = stealthyRequire(require.cache, () => require('../src/get-package-string'))
     await expect(getPackageString()).rejects.toThrow('Only GitHub repositories are supported.')
   }),
@@ -170,8 +164,8 @@ export default {
     expect(await getPackageString()).toMatch('"private": true')
   }),
   'sub-folder': () => withLocalTmpDir(async () => {
-    await spawn('git', ['init'])
-    await spawn('git', ['remote', 'add', 'origin', 'git@github.com:bar/foo.git'])
+    await execa.command('git init')
+    await execa.command('git remote add origin git@github.com:bar/foo.git')
     await outputFiles({
       test: {},
     })
@@ -199,40 +193,4 @@ export default {
   
     `)
   }),
-  'workspace-with-git-repo': () => withLocalTmpDir(async () => {
-    await spawn('git', ['init'])
-    await spawn('git', ['remote', 'add', 'origin', 'git@github.com:bar/foo.git'])
-    await outputFiles({
-      'package.json': endent`
-        {
-          "workspaces": ["packages/*"]
-        }
-      `,
-      'packages/a': {},
-    })
-    process.chdir(P.join('packages', 'a'))
-    const getPackageString = stealthyRequire(require.cache, () => require('../src/get-package-string'))
-    await expect(await getPackageString()).toEqual(endent`
-      {
-        "version": "1.0.0",
-        "description": "",
-        "repository": "bar/foo",
-        "license": "MIT",
-        "author": "Sebastian Landwehr <info@dword-design.de>",
-        "main": "dist/index.js",
-        "files": [
-          "dist"
-        ],
-        "scripts": {
-          "commit": "base commit",
-          "depgraph": "base depgraph",
-          "prepare": "base prepare",
-          "prepublishOnly": "base prepublishOnly",
-          "release": "base release",
-          "test": "base test"
-        }
-      }
-  
-    `)
-  }),  
 }

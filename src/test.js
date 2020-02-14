@@ -1,8 +1,7 @@
-import { spawn } from 'child-process-promise'
+import execa from 'execa'
 import { outputFile, chmod } from 'fs-extra'
 import P from 'path'
 import { mapValues, values, promiseAll, split, filter, join, endent } from '@dword-design/functions'
-import workspaceGlob from './workspace-glob'
 import config from './config'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
@@ -12,17 +11,17 @@ import isGitpod from 'is-gitpod'
 
 export default async (pattern, { grep }) => {
   try {
-    await spawn(
+    await execa(
       'ajv',
       [
         '-s', require.resolve('./package-json-schema.config'),
         '-d', 'package.json',
         '--errors', 'text',
       ],
-      { capture: ['stderr'] },
+      { all: true},
     )
-  } catch ({ stderr }) {
-    throw new Error(stderr)
+  } catch ({ all }) {
+    throw new Error(all)
   }
   
   const readmeContent = safeReadFileSync('README.md', 'utf8') ?? ''
@@ -34,9 +33,9 @@ export default async (pattern, { grep }) => {
 
   await config.test()
   try {
-    await spawn('depcheck', ['--skip-missing', true, '--config', require.resolve('./depcheck.config'), '.'], { capture: ['stdout', 'stderr'] })
-  } catch ({ stdout }) {
-    throw new Error(stdout)
+    await execa('depcheck', ['--skip-missing', true, '--config', require.resolve('./depcheck.config'), '.'], { all: true })
+  } catch ({ all }) {
+    throw new Error(all)
   }
   const { bin: binEntries = {} } = require(P.resolve('package.json'))
   binEntries
@@ -60,36 +59,32 @@ export default async (pattern, { grep }) => {
     |> promiseAll
     |> await
 
-  if (workspaceGlob !== undefined) {
-    return spawn('wsrun', ['--bin', require.resolve('./run-command.cli'), '-c', 'test'], { stdio: 'inherit' })
-  } else {
-    if (!config.testInContainer || isCI || isDocker() || await isGitpod()) {
-      return spawn(
-        'nyc',
-        [
-          '--reporter', 'lcov',
-          '--reporter', 'text',
-          '--cwd', process.cwd(),
-          '--require', require.resolve('./pretest'),
-          '--all',
-          '--include', 'src/**/*.js',
-          '--exclude', '**/*.spec.js',
-          'mocha-objects',
-          ...pattern !== undefined ? [pattern] : [],
-          ...grep !== undefined ? ['--grep', grep] : [],
-          '--timeout', 80000,
-        ],
-        {
-          stdio: 'inherit',
-          env: {
-            ...process.env,
-            NODE_ENV: 'test',
-            BABEL_CACHE_PATH: P.join(process.cwd(), 'node_modules', '.cache', '@babel', 'register', '.babel.json'),
-          },
+  if (!config.testInContainer || isCI || isDocker() || await isGitpod()) {
+    return execa(
+      'nyc',
+      [
+        '--reporter', 'lcov',
+        '--reporter', 'text',
+        '--cwd', process.cwd(),
+        '--require', require.resolve('./pretest'),
+        '--all',
+        '--include', 'src/**/*.js',
+        '--exclude', '**/*.spec.js',
+        'mocha-objects',
+        ...pattern !== undefined ? [pattern] : [],
+        ...grep !== undefined ? ['--grep', grep] : [],
+        '--timeout', 80000,
+      ],
+      {
+        stdio: 'inherit',
+        env: {
+          ...process.env,
+          NODE_ENV: 'test',
+          BABEL_CACHE_PATH: P.join(process.cwd(), 'node_modules', '.cache', '@babel', 'register', '.babel.json'),
         },
-      )
-    } else {
-      throw new Error('This project can only be tested inside of a container. Please consider to test it in a docker container or in GitPod.')
-    }
+      },
+    )
+  } else {
+    throw new Error('This project can only be tested inside of a container. Please consider to test it in a docker container or in GitPod.')
   }
 }

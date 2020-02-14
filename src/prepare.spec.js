@@ -1,10 +1,9 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import outputFiles from 'output-files'
 import glob from 'glob-promise'
-import { spawn } from 'child-process-promise'
+import execa from 'execa'
 import { includes, endent } from '@dword-design/functions'
 import { readFile } from 'fs-extra'
-import P from 'path'
 
 export default {
   'additional file': () => withLocalTmpDir(async () => {
@@ -13,7 +12,7 @@ export default {
       'test/foo.test.js': '',
       'foo.txt': '',
     })
-    await spawn('base', ['prepare'])
+    await execa.command('base prepare')
     expect(glob('*', { dot: true }) |> await |> includes('foo.txt')).toBeFalsy()
   }),
   valid: () => withLocalTmpDir(async () => {
@@ -30,7 +29,7 @@ export default {
       '.env.defaults': '',
       '.env.schema': '',
     })
-    await spawn('base', ['prepare'])
+    await execa.command('base prepare')
     expect(await glob('*', { dot: true })).toEqual([
       '.cz.json',
       '.editorconfig',
@@ -103,70 +102,8 @@ export default {
       <ul><li><a href="http://spdx.org/licenses/MIT.html">MIT License</a></li></ul>
   
       <!-- /LICENSE -->
-    ` + '\n')
+
+    `)
     expect(await readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
   }),
-  workspaces: () => withLocalTmpDir(async () => {
-
-    await outputFiles({
-      'package.json': endent`
-        {
-          "workspaces": ["packages/*"]
-        }
-  
-      `,
-      packages: {
-        a: {
-          'package.json': endent`
-            {
-              "name": "a"
-            }
-  
-          `,
-          'src/index.js': 'export default 1',
-        },
-        b: {
-          'package.json': endent`
-            {
-              "name": "b"
-            }
-  
-          `,
-          'src/index.js': 'export default 2',
-        },
-      },
-    })
-  
-    await spawn('base', ['prepare'])
-  
-    expect(await glob('*', { dot: true })).toEqual([
-      '.cz.json',
-      '.editorconfig',
-      '.gitattributes',
-      '.github',
-      '.gitignore',
-      '.gitpod.Dockerfile',
-      '.gitpod.yml',
-      '.releaserc.json',
-      '.renovaterc.json',
-      'LICENSE.md',
-      'package.json',
-      'packages',
-      'README.md',
-    ])
-    expect(await glob('*', { cwd: P.resolve('packages', 'a'), dot: true })).toEqual([
-      '.gitignore',
-      'LICENSE.md',
-      'package.json',
-      'README.md',
-      'src',
-    ])
-    expect(await glob('*', { cwd: P.resolve('packages', 'b'), dot: true })).toEqual([
-      '.gitignore',
-      'LICENSE.md',
-      'package.json',
-      'README.md',
-      'src',
-    ])
-  }),  
 }

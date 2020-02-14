@@ -1,4 +1,4 @@
-import { spawn } from 'child-process-promise'
+import execa from 'execa'
 import outputFiles from 'output-files'
 import { endent } from '@dword-design/functions'
 import withLocalTmpDir from 'with-local-tmp-dir'
@@ -26,7 +26,7 @@ export default {
 
       `,
     })
-    await spawn('depcheck', [])
+    await execa.command('depcheck')
   }),
   'no config': () => withLocalTmpDir(async () => {
     await outputFiles({
@@ -42,7 +42,7 @@ export default {
         }
       `,
     })
-    await spawn('depcheck', [])
+    await execa.command('depcheck')
   }),
   'prod dependency': () => withLocalTmpDir(async () => {
     await outputFiles({
@@ -67,12 +67,12 @@ export default {
 
       `,
     })
-    let stdout
+    let all
     try {
-      await spawn('depcheck', [], { capture: ['stdout'] })
+      await execa.command('depcheck', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toEqual('Unused dependencies\n* base-config-foo\n')
+    expect(all).toEqual('Unused dependencies\n* base-config-foo')
   }),
 }

@@ -1,3 +1,3 @@
-import { spawn } from 'child-process-promise'
+import execa from 'execa'
 
-export default () => spawn('semantic-release', [], { stdio: 'inherit' })
+export default () => execa.command('semantic-release', { stdio: 'inherit' })

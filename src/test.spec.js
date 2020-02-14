@@ -1,6 +1,6 @@
 import outputFiles from 'output-files'
 import withLocalTmpDir from 'with-local-tmp-dir'
-import { spawn } from 'child-process-promise'
+import execa from 'execa'
 import { outputFile } from 'fs-extra'
 import { endent } from '@dword-design/functions'
 import glob from 'glob-promise'
@@ -17,14 +17,14 @@ export default {
         `,
       },
     })
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout', 'stderr'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch('Error: expect(received).toEqual(expected)')
+    expect(all).toMatch('Error: expect(received).toEqual(expected)')
   }),
   'bin outside dist': () => withLocalTmpDir(async () => {
     await outputFile('package.json', endent`
@@ -34,14 +34,14 @@ export default {
         }
       }
     `)
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch('data.bin[\'foo\'] should match pattern')
+    expect(all).toMatch('data.bin[\'foo\'] should match pattern')
   }),
   'config file errors': () => withLocalTmpDir(async () => {
     await outputFile('package.json', endent`
@@ -50,18 +50,18 @@ export default {
       }
   
     `)
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch('package.json invalid')
+    expect(all).toMatch('package.json invalid')
   }),
   empty: () => withLocalTmpDir(async () => {
-    await spawn('base', ['prepare'])
-    await spawn('base', ['test'])
+    await execa.command('base prepare')
+    await execa.command('base test')
   }),
   'invalid name': () => withLocalTmpDir(async () => {
     await outputFile('package.json', endent`
@@ -69,47 +69,47 @@ export default {
         "name": "_foo"
       }
     `)
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch('data.name should match pattern')
+    expect(all).toMatch('data.name should match pattern')
   }),
   'json errors': () => withLocalTmpDir(async () => {
     await outputFile('src/index.js', 'export default 1')
-    await spawn('base', ['prepare'])
+    await execa.command('base prepare')
     await outputFile('src/test.json', endent`
       {
       "foo": "bar"
       }
     `)
-    let stdout
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch('Format Error: expected "  "')
+    expect(all).toMatch('Format Error: expected "  "')
   }),
   'linting errors': () => withLocalTmpDir(async () => {
     await outputFile('src/index.js', 'export default 1;')
   
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch('error  Extra semicolon  semi')
+    expect(all).toMatch('error  Extra semicolon  semi')
   }),
   minimal: () => withLocalTmpDir(async () => {
     await outputFile('src/index.js', 'export default 1')
-    await spawn('base', ['prepare'])
-    await spawn('base', ['test'])
+    await execa.command('base prepare')
+    await execa.command('base test')
   }),
   'missing readme sections': () => withLocalTmpDir(async () => {
     await outputFile('README.md', endent`
@@ -120,14 +120,14 @@ export default {
       <!-- LICENSE -->
   
     `)
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toEqual('The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL\n')
+    expect(all).toEqual('The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL')
   }),
   'parent package config': () => withLocalTmpDir(async () => {
     // relevant e.g. for base-config-node
@@ -162,8 +162,8 @@ export default {
       `,
     })
     process.chdir('inner')
-    await spawn('base', ['prepare'])
-    await spawn('base', ['test'])
+    await execa.command('base prepare')
+    await execa.command('base test')
   }),
   'parent package inside node modules': () => withLocalTmpDir(async () => {
     await outputFiles({
@@ -193,17 +193,17 @@ export default {
         `,
       },
     })
-    await spawn('base', ['prepare'])
-    const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
-    expect(stdout).toMatch('run valid in index')
+    await execa.command('base prepare')
+    const { all } = await execa.command('base test', { all: true })
+    expect(all).toMatch('run valid in index')
   }),
-  'parent package require inside spawn': () => withLocalTmpDir(async () => {
+  'parent package require inside execa': () => withLocalTmpDir(async () => {
     await outputFiles({
       'package.json': endent`
         {
           "name": "foo",
           "devDependencies": {
-            "child-process-promise": "^1.0.0",
+            "execa": "^1.0.0",
             "fs-extra": "^1.0.0",
             "@dword-design/functions": "^1.0.0"
           }
@@ -214,7 +214,7 @@ export default {
         'index.js': 'export default \'foo bar\'',
         'index.spec.js': endent`
           import { outputFile, chmod } from 'fs-extra'
-          import { spawn } from 'child-process-promise'
+          import execa from 'execa'
           import { endent } from '@dword-design/functions'
   
           export default {
@@ -227,15 +227,15 @@ export default {
                 console.log(foo)
               \`)
               await chmod('cli.js', '755')
-              await spawn('./cli.js', [], { stdio: 'inherit' })
+              await execa.command('./cli.js', { stdio: 'inherit' })
             },
           }
         `,
       },
     })
-    await spawn('base', ['prepare'])
-    const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
-    expect(stdout).toMatch('foo bar')
+    await execa.command('base prepare')
+    const { all } = await execa.command('base test', { all: true })
+    expect(all).toMatch('foo bar')
   }),
   pattern: () => withLocalTmpDir(async () => {
     await outputFiles({
@@ -245,10 +245,10 @@ export default {
         'index2.spec.js': 'export default { valid: () => console.log(\'run index2\') }',
       },
     })
-    await spawn('base', ['prepare'])
-    const { stdout } = await spawn('base', ['test', 'src/index2.spec.js'], { capture: ['stdout'] })
-    expect(stdout).not.toMatch('run index1')
-    expect(stdout).toMatch('run index2')
+    await execa.command('base prepare')
+    const { all } = await execa.command('base test src/index2.spec.js', { all: true })
+    expect(all).not.toMatch('run index1')
+    expect(all).toMatch('run index2')
   }),
   grep: () => withLocalTmpDir(async () => {
     await outputFiles({
@@ -262,10 +262,10 @@ export default {
         `,
       },
     })
-    await spawn('base', ['prepare'])
-    const { stdout } = await spawn('base', ['test', '--grep', 'foo'], { capture: ['stdout'] })
-    expect(stdout).not.toMatch('run bar')
-    expect(stdout).toMatch('run foo')
+    await execa.command('base prepare')
+    const { all } = await execa.command('base test --grep foo', { all: true })
+    expect(all).not.toMatch('run bar')
+    expect(all).toMatch('run foo')
   }),
   'prod dependency only in test': () => withLocalTmpDir(async () => {
     await outputFiles({
@@ -287,14 +287,14 @@ export default {
         `,
       },
     })
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch(endent`
+    expect(all).toMatch(endent`
       Unused dependencies
       * bar
     `)
@@ -305,14 +305,14 @@ export default {
         "version": "0.1.0"
       }
     `)
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch('data.version should match pattern')
+    expect(all).toMatch('data.version should match pattern')
   }),
   'unused dependecy': () => withLocalTmpDir(async () => {
     await outputFiles({
@@ -326,17 +326,16 @@ export default {
       `,
       'src/index.js': 'export default 1',
     })
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch(endent`
+    expect(all).toMatch(endent`
       Unused dependencies
       * change-case
-  
     `)
   }),
   valid: () => withLocalTmpDir(async () => {
@@ -362,9 +361,9 @@ export default {
         `,
       },
     })
-    await spawn('base', ['prepare'])
-    const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
-    expect(stdout).toMatch('run test')
+    await execa.command('base prepare')
+    const { all } = await execa.command('base test', { all: true })
+    expect(all).toMatch('run test')
     expect(await glob('*', { dot: true })).toEqual([
       '.cz.json',
       '.editorconfig',
@@ -385,68 +384,20 @@ export default {
       'src',
     ])
   }),
-  workspaces: () => withLocalTmpDir(async () => {
-    await outputFiles({
-      'package.json': endent`
-        {
-          "workspaces": ["packages/*"]
-        }
-  
-      `,
-      packages: {
-        a: {
-          'package.json': endent`
-            {
-              "name": "a"
-            }
-  
-          `,
-          src: {
-            'index.js': 'export default 1',
-            'index.spec.js': endent`
-              export default {
-                valid: () => console.log('run foo'),
-              }
-            `,
-          },
-        },
-        b: {
-          'package.json': endent`
-            {
-              "name": "b"
-            }
-  
-          `,
-          src: {
-            'index.js': 'export default 1',
-            'index.spec.js': endent`
-              export default {
-                valid: () => console.log('run bar'),
-              }
-            `,
-          },
-        },
-      },
-    })
-    await spawn('base', ['prepare'])
-    const { stdout } = await spawn('base', ['test'], { capture: ['stdout'] })
-    expect(stdout).toMatch('run foo\n')
-    expect(stdout).toMatch('run bar\n')
-  }),
   'wrong dependencies type': () => withLocalTmpDir(async () => {
     await outputFile('package.json', endent`
       {
         "dependencies": 1
       }
     `)
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch('data.dependencies should be object')
+    expect(all).toMatch('data.dependencies should be object')
   }),
   'wrong description type': () => withLocalTmpDir(async () => {
     await outputFile('package.json', endent`
@@ -454,14 +405,14 @@ export default {
         "description": 1
       }
     `)
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch('data.description should be string')
+    expect(all).toMatch('data.description should be string')
   }),
   'wrong dev dependencies type': () => withLocalTmpDir(async () => {
     await outputFile('package.json', endent`
@@ -469,14 +420,14 @@ export default {
         "devDependencies": 1
       }
     `)
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch('data.devDependencies should be object')
+    expect(all).toMatch('data.devDependencies should be object')
   }),
   'wrong keywords type': () => withLocalTmpDir(async () => {
     await outputFile('package.json', endent`
@@ -484,13 +435,13 @@ export default {
         "keywords": 1
       }
     `)
-    await spawn('base', ['prepare'])
-    let stdout
+    await execa.command('base prepare')
+    let all
     try {
-      await spawn('base', ['test'], { capture: ['stdout'] })
+      await execa.command('base test', { all: true })
     } catch (error) {
-      stdout = error.stdout
+      all = error.all
     }
-    expect(stdout).toMatch('data.keywords should be array')
+    expect(all).toMatch('data.keywords should be array')
   }),  
 }

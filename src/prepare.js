@@ -1,6 +1,5 @@
 import outputFiles from 'output-files'
-import { spawn } from 'child-process-promise'
-import workspaceGlob from './workspace-glob'
+import execa from 'execa'
 import glob from 'glob-promise'
 import { outputFile, readFile, remove } from 'fs-extra'
 import P from 'path'
@@ -22,7 +21,6 @@ import semanticReleaseConfig from './config-files/semantic-release.config'
 import license from './config-files/license.config'
 import readme from './config-files/readme.config'
 import getPackageString from './get-package-string'
-import isWorkspaceRoot from '@dword-design/is-workspace-root'
 
 export default async () => {
 
@@ -47,29 +45,25 @@ export default async () => {
     )
     await outputFile('LICENSE.md', license)
     try {
-      await spawn('projectz', ['compile'], { capture: ['stdout'] })
+      await execa.command('projectz compile', { all: true })
       return {
         'LICENSE.md': await readFile('LICENSE.md', 'utf8'),
         'README.md': await readFile('README.md', 'utf8'),
       }
     } catch (error) {
-      throw new Error(error.stdout)
+      throw new Error(error.all)
     }
   })
 
   const configFiles = {
-    ...isWorkspaceRoot
-      ? {
-        '.cz.json': commitizenConfig,
-        '.editorconfig': editorconfigConfig,
-        '.gitattributes': gitattributesConfig,
-        '.github/workflows/node.yml': githubWorkflowConfig,
-        '.gitpod.Dockerfile': gitpodDockerfile,
-        '.gitpod.yml': gitpodConfig,
-        '.releaserc.json': semanticReleaseConfig,
-        '.renovaterc.json': renovateConfig,
-      }
-      : {},
+    '.cz.json': commitizenConfig,
+    '.editorconfig': editorconfigConfig,
+    '.gitattributes': gitattributesConfig,
+    '.github/workflows/node.yml': githubWorkflowConfig,
+    '.gitpod.Dockerfile': gitpodDockerfile,
+    '.gitpod.yml': gitpodConfig,
+    '.releaserc.json': semanticReleaseConfig,
+    '.renovaterc.json': renovateConfig,
     '.gitignore': gitignoreConfig
       |> sortBy(identity)
       |> map(entry => `${entry}\n`)
@@ -86,8 +80,4 @@ export default async () => {
     |> await
 
   await outputFiles(configFiles)
-
-  if (workspaceGlob !== undefined) {
-    return spawn('wsrun', ['--stages', '--bin', require.resolve('./run-command.cli'), '-c', 'prepare'], { stdio: 'inherit' })
-  }
 }
