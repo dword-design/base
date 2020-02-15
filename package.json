@@ -59,7 +59,7 @@
     "projectz": "^1.19.0",
     "resolve-from": "^5.0.0",
     "safe-readfile": "^1.0.2",
-    "safe-require": "^1.0.3",
+    "safe-require": "dword-design/node-safe-require#fork",
     "semantic-release": "^17.0.3",
     "sort-package-json": "^1.39.1",
     "stable-version-regex": "^1.0.4",
