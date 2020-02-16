@@ -67,10 +67,8 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
-    "port-ready": "^0.1.0",
     "rimraf": "^3.0.0",
     "stealthy-require": "^1.1.1",
-    "tree-kill": "^1.2.2",
     "with-local-tmp-dir": "^2.1.2"
   },
   "baseConfig": {
