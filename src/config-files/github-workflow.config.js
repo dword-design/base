@@ -4,8 +4,6 @@ import ci from '@dword-design/ci/package.json'
 const bin = ci.bin |> keys |> first
 
 export default endent`
-  name: Node.js CI
-
   on:
     push:
       branches:
