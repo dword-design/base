@@ -17,7 +17,7 @@ export default {
         `,
       },
     })
-    await execa.command('base prepare')
+    await execa.command('base prepare', { stdio: 'inherit' })
     let all
     try {
       await execa.command('base test', { all: true })

@@ -1,12 +1,7 @@
 import outputFiles from 'output-files'
-import execa from 'execa'
 import glob from 'glob-promise'
-import { outputFile, readFile, remove } from 'fs-extra'
-import P from 'path'
-import { join, map, sortBy, identity, jsonToString, filter, unary } from '@dword-design/functions'
-import badges from './badges.config'
-import withLocalTmpDir from 'with-local-tmp-dir'
-import { readFileSync as safeReadFileSync } from 'safe-readfile'
+import { remove } from 'fs-extra'
+import { jsonToString, add, join, map, sortBy, identity, filter, unary } from '@dword-design/functions'
 import ignore from 'ignore'
 import allowedFilenames from './allowed-filenames.config'
 import editorconfigConfig from './config-files/editorconfig.config'
@@ -18,48 +13,19 @@ import gitpodDockerfile from './config-files/gitpod-dockerfile.config'
 import commitizenConfig from './config-files/commitizen.config'
 import renovateConfig from './config-files/renovate.config'
 import semanticReleaseConfig from './config-files/semantic-release.config'
-import license from './config-files/license.config'
-import readme from './config-files/readme.config'
-import getPackageString from './get-package-string'
+import getPackageConfig from './get-package-config'
+import sortpackageJson from 'sort-package-json'
+import getReadmeString from './get-readme-string'
+import getLicenseString from './get-license-string'
 
 export default async () => {
 
-  const packageJsonString = await getPackageString()
-
-  const markdownFiles = await withLocalTmpDir(async () => {
-    await outputFile(
-      'package.json',
-      {
-        name: 'base-project',
-        repository: 'base/project',
-        ...JSON.parse(packageJsonString),
-        badges: {
-          list: badges,
-        },
-      }
-        |> jsonToString({ indent: 2 }),
-    )
-    await outputFile(
-      'README.md',
-      safeReadFileSync(P.join('..', 'README.md'), 'utf8') ?? readme,
-    )
-    await outputFile('LICENSE.md', license)
-    try {
-      await execa.command('projectz compile', { all: true })
-      return {
-        'LICENSE.md': await readFile('LICENSE.md', 'utf8'),
-        'README.md': await readFile('README.md', 'utf8'),
-      }
-    } catch (error) {
-      throw new Error(error.all)
-    }
-  })
-
+  const packageConfig = getPackageConfig() |> await
   const configFiles = {
     '.cz.json': commitizenConfig,
     '.editorconfig': editorconfigConfig,
     '.gitattributes': gitattributesConfig,
-    '.github/workflows/node.yml': githubWorkflowConfig,
+    '.github/workflows/build.yml': githubWorkflowConfig,
     '.gitpod.Dockerfile': gitpodDockerfile,
     '.gitpod.yml': gitpodConfig,
     '.releaserc.json': semanticReleaseConfig,
@@ -68,8 +34,12 @@ export default async () => {
       |> sortBy(identity)
       |> map(entry => `${entry}\n`)
       |> join(''),
-    'package.json': packageJsonString,
-    ...markdownFiles,
+    'LICENSE.md': getLicenseString(packageConfig),
+    'package.json': packageConfig
+      |> sortpackageJson
+      |> jsonToString({ indent: 2 })
+      |> add('\n'),
+    'README.md': await getReadmeString(packageConfig),
   }
 
   glob('*', { dot: true, ignore: allowedFilenames })

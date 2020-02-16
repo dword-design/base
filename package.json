@@ -56,21 +56,22 @@
     "package-name-regex": "^1.0.5",
     "parse-git-config": "^3.0.0",
     "pre-commit": "^1.2.2",
-    "projectz": "^1.19.0",
     "resolve-from": "^5.0.0",
     "safe-readfile": "^1.0.2",
     "safe-require": "dword-design/node-safe-require#fork",
     "semantic-release": "^17.0.3",
     "sort-package-json": "^1.39.1",
-    "stable-version-regex": "^1.0.4",
-    "with-local-tmp-dir": "^2.1.2"
+    "spdx-expression-parse": "^3.0.0",
+    "spdx-license-list": "^6.1.0",
+    "stable-version-regex": "^1.0.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "port-ready": "^0.1.0",
     "rimraf": "^3.0.0",
     "stealthy-require": "^1.1.1",
-    "tree-kill": "^1.2.2"
+    "tree-kill": "^1.2.2",
+    "with-local-tmp-dir": "^2.1.2"
   },
   "baseConfig": {
     "depcheckConfig": {

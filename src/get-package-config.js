@@ -2,27 +2,33 @@ import P from 'path'
 import safeRequire from 'safe-require'
 import parseGitConfig from 'parse-git-config'
 import hostedGitInfo from 'hosted-git-info'
-import { jsonToString, add, mapValues, pick, property } from '@dword-design/functions'
-import sortpackageConfig from 'sort-package-json'
+import { mapValues, pick, property, ifElse, constant, identity } from '@dword-design/functions'
 import config from './config'
 import { exists } from 'fs-extra'
 import commands from './commands'
 
 export default async () => {
+
   const packageConfig = safeRequire(P.join(process.cwd(), 'package.json')) ?? {}
 
-  const gitUrl = (await exists('.git'))
-    ? parseGitConfig({ path: P.resolve('.git', 'config') })
-      |> await
-      |> property('remote "origin"')
-      |> property('url')
-    : undefined
+  const gitUrl = exists('.git')
+    |> await
+    |> ifElse(
+      identity,
+      async () => parseGitConfig()
+        |> await
+        |> property('remote "origin"')
+        |> property('url'),
+      constant(undefined),
+    )
+    |> await
 
   const gitInfo = hostedGitInfo.fromUrl(gitUrl) || {}
 
   if (gitUrl !== undefined && gitInfo.type !== 'github') {
     throw new Error('Only GitHub repositories are supported.')
   }
+
   return {
     ...packageConfig
       |> pick([
@@ -47,7 +53,4 @@ export default async () => {
         : `base ${name}`,
       ),
   }
-    |> sortpackageConfig
-    |> jsonToString({ indent: 2 })
-    |> add('\n')
 }
