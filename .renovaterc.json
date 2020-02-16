@@ -1,4 +1,8 @@
 {
+  "extends": [
+    ":semanticCommits",
+    ":semanticCommitType(fix)"
+  ],
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": "at any time"
