@@ -1,4 +1,9 @@
-# 1.0.0 (2020-02-16)
+# [5.5.0](https://github.com/dword-design/base/compare/v5.4.0...v5.5.0) (2020-02-16)
+
+
+### Bug Fixes
+
+* **config:** Update changed files ([b787fb9](https://github.com/dword-design/base/commit/b787fb93e1c8653d66ef96645eb5938469765b64))
 
 
 ### Features
