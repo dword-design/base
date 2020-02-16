@@ -8,6 +8,9 @@ import { mapValues } from '@dword-design/functions'
 
 export default {
   commit: {
+    options: [
+      { name: '--allow-empty', description: 'Allow empty commits' },
+    ],
     handler: commit,
   },
   depgraph: {

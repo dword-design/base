@@ -1,3 +1,7 @@
 import execa from 'execa'
 
-export default () => execa.command('git-cz', { stdio: 'inherit' })
+export default ({ allowEmpty }) => execa(
+  'git-cz',
+  allowEmpty ? ['--allow-empty'] : [],
+  { stdio: 'inherit' },
+)
