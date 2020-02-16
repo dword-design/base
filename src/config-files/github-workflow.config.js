@@ -40,6 +40,7 @@ export default endent`
 
     release:
       needs: test
+      if: github.ref == 'refs/heads/master'
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
