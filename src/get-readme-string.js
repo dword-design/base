@@ -26,7 +26,9 @@ export default async packageConfig => {
           getProjectzReadmeSectionRegex(sectionName),
           endent`
             <!-- ${sectionName}/ -->
+
             ${getReplacement(packageConfig)}
+            
             <!-- /${sectionName} -->
           `,
         )
