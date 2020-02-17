@@ -1,11 +1,16 @@
-# [5.5.0](https://github.com/dword-design/base/compare/v5.4.0...v5.5.0) (2020-02-16)
+# [6.0.0](https://github.com/dword-design/base/compare/v5.5.0...v6.0.0) (2020-02-16)
 
 
 ### Bug Fixes
 
-* **config:** Update changed files ([b787fb9](https://github.com/dword-design/base/commit/b787fb93e1c8653d66ef96645eb5938469765b64))
+* **config:** Update changed files ([c140906](https://github.com/dword-design/base/commit/c140906abb8d04cc7b1723c549718f4924cd12bd))
 
 
-### Features
+### chore
 
-* roll out new release ([2bdde5b](https://github.com/dword-design/base/commit/2bdde5b27919d3b7da4f1a37aa1f818dd9312c6a))
+* bump major version ([aa374a3](https://github.com/dword-design/base/commit/aa374a30d05364af9ef937fb79bcc8d9b9ccf6d9))
+
+
+### BREAKING CHANGES
+
+* bump major version
