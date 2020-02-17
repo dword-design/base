@@ -11,7 +11,7 @@ export default {
         const [userName, repoName] = repository |> split('/')
         return endent`
           [![Build status](https://img.shields.io/github/workflow/status/${userName}/${repoName}/build)](https://github.com/${userName}/${repoName}/actions)
-          [![Coverage status](https://img.shields.io/coveralls/${userName}/${repoName})](https://coveralls.io/github/${userName}/${repoName}?branch=master)
+          [![Coverage status](https://img.shields.io/coveralls/${userName}/${repoName})](https://coveralls.io/github/${userName}/${repoName})
           [![Dependency status](https://img.shields.io/david/${userName}/${repoName})](https://david-dm.org/${userName}/${repoName})
           ![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen)
 
