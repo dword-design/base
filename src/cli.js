@@ -8,7 +8,7 @@ makeCli({
   commands: commands
     |> mapValues((command, name) => ({
       ...command,
-      name: name,
+      name,
       handler: async (...args) => {
         try {
           return command.handler(...args) |> await
