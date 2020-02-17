@@ -48,6 +48,8 @@ const commit = async (args = []) => {
 
 export default {
   valid: () => withLocalTmpDir(async () => {
+    await execa.command('git config --global user.email "foo@bar.de"')
+    await execa.command('git config --global user.name "foo"')
     await execa.command('git init')
     await outputFile('foo.txt', '')
     await execa.command('git add .')
@@ -56,6 +58,8 @@ export default {
     expect(stdout).toMatch('feat(config): foo bar')
   }),
   'no-verify': () => withLocalTmpDir(async () => {
+    await execa.command('git config --global user.email "foo@bar.de"')
+    await execa.command('git config --global user.name "foo"')
     await execa.command('git init')
     await outputFiles({
       '.git/hooks/pre-commit': 'exit 1',
@@ -65,6 +69,8 @@ export default {
     await commit()
   }),
   'allow-empty': () => withLocalTmpDir(async () => {
+    await execa.command('git config --global user.email "foo@bar.de"')
+    await execa.command('git config --global user.name "foo"')
     await execa.command('git init')
     await commit(['--allow-empty'])
     const { stdout } = await execa.command('git log')
