@@ -10,6 +10,7 @@ export default {
   commit: {
     options: [
       { name: '--allow-empty', description: 'Allow empty commits' },
+      { name: '--no-verify', description: 'No not run pre-commit hooks' },
     ],
     handler: commit,
   },

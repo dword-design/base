@@ -19,6 +19,7 @@ export default {
     await execa.command('git init')
     await execa.command('git remote add origin git@github.com:dword-design/bar.git')
     await outputFiles({
+      'CHANGELOG.md': '',
       'package.json': endent`
         {
           "name": "foo",
@@ -48,6 +49,7 @@ export default {
       '.gitpod.yml',
       '.releaserc.json',
       '.renovaterc.json',
+      'CHANGELOG.md',
       'LICENSE.md',
       'package.json',
       'README.md',

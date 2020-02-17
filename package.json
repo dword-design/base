@@ -67,6 +67,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
+    "p-event": "^4.1.0",
     "rimraf": "^3.0.0",
     "stealthy-require": "^1.1.1",
     "with-local-tmp-dir": "^2.1.2"
