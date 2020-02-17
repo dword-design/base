@@ -1,3 +1,10 @@
+## [6.0.2](https://github.com/dword-design/base/compare/v6.0.1...v6.0.2) (2020-02-17)
+
+
+### Bug Fixes
+
+* fix readme spacing ([2f834f4](https://github.com/dword-design/base/commit/2f834f42ec3288de7c3c470273e02d20f8710bab))
+
 ## [6.0.1](https://github.com/dword-design/base/compare/v6.0.0...v6.0.1) (2020-02-17)
 
 
