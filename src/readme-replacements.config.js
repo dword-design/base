@@ -14,9 +14,7 @@ export default {
           [![Coverage status](https://img.shields.io/coveralls/${userName}/${repoName})](https://coveralls.io/github/${userName}/${repoName})
           [![Dependency status](https://img.shields.io/david/${userName}/${repoName})](https://david-dm.org/${userName}/${repoName})
           ![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen)
-          ![Ubuntu compatible](https://img.shields.io/badge/os-ubuntu-blue)
-          ![macOS compatible](https://img.shields.io/badge/os-macos-blue)
-          ![Windows compatible](https://img.shields.io/badge/os-windows-blue)
+          ![Linux macOS Windows compatible](https://img.shields.io/badge/platform-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-orange)
 
           [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/${userName}/${repoName})
         `

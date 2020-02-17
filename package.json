@@ -1,7 +1,7 @@
 {
   "name": "@dword-design/base",
   "version": "6.0.1",
-  "description": "",
+  "description": "Base package for projects.",
   "keywords": [],
   "repository": "dword-design/base",
   "license": "MIT",

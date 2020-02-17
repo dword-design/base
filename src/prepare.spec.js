@@ -58,34 +58,25 @@ export default {
     ])
     expect(await readFile('README.md', 'utf8')).toEqual(endent`
       <!-- TITLE/ -->
-
       # foo
-
       <!-- /TITLE -->
   
       <!-- BADGES/ -->
-
       [![NPM version](https://img.shields.io/npm/v/foo.svg)](https://npmjs.org/package/foo)
       [![Build status](https://img.shields.io/github/workflow/status/dword-design/bar/build)](https://github.com/dword-design/bar/actions)
       [![Coverage status](https://img.shields.io/coveralls/dword-design/bar)](https://coveralls.io/github/dword-design/bar)
       [![Dependency status](https://img.shields.io/david/dword-design/bar)](https://david-dm.org/dword-design/bar)
       ![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen)
-      ![Ubuntu compatible](https://img.shields.io/badge/os-ubuntu-blue)
-      ![macOS compatible](https://img.shields.io/badge/os-macos-blue)
-      ![Windows compatible](https://img.shields.io/badge/os-windows-blue)
+      ![Linux macOS Windows compatible](https://img.shields.io/badge/platform-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-orange)
       
       [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/dword-design/bar)
-
       <!-- /BADGES -->
   
       <!-- DESCRIPTION/ -->
-  
-
 
       <!-- /DESCRIPTION -->
   
       <!-- INSTALL/ -->
-
       # Install
       
       \`\`\`bash
@@ -95,11 +86,9 @@ export default {
       # Yarn
       $ yarn add foo
       \`\`\`
-
       <!-- /INSTALL -->
   
       <!-- LICENSE/ -->
-
       # License
   
       Unless stated otherwise all works are:
@@ -109,7 +98,6 @@ export default {
       and licensed under:
   
       [MIT License](https://opensource.org/licenses/MIT)
-
       <!-- /LICENSE -->
 
     `)
