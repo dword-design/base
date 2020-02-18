@@ -1,7 +1,7 @@
 import execa from 'execa'
 import { outputFile, chmod } from 'fs-extra'
 import P from 'path'
-import { mapValues, values, promiseAll, split, filter, join, endent } from '@dword-design/functions'
+import { mapValues, values, promiseAll, split, filter, join, endent, map } from '@dword-design/functions'
 import config from './config'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
@@ -42,7 +42,7 @@ export default async (pattern, { grep }) => {
     |> mapValues(async (filename, binName) => {
       const replacedFilename = filename
         |> split('/')
-        |> segment => segment === 'dist' ? 'src' : segment
+        |> map(segment => segment === 'dist' ? 'src' : segment)
         |> join('/')
       return outputFile(
         P.join('node_modules', '.bin', binName),
