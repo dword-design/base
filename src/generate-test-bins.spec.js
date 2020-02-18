@@ -15,16 +15,24 @@ export default {
           }
         }
       `,
-      'src/cli.js': 'console.log(\'foo\')',
+      'src/cli.js': endent`
+        #!/usr/bin/env node
+        
+        console.log('foo')
+      `,
     })
     await generateTestBins()
-    const { all } = await execa.command('npx foo', { all: true })
+    const { all } = await execa.command('./node_modules/.bin/foo', { all: true })
     expect(all).toEqual('foo')
   }),
   empty: () => withLocalTmpDir(() => generateTestBins()),
   existing: () => withLocalTmpDir(async () => {
     await outputFiles({
-      'node_modules/foo/dist/cli.js': 'console.log(\'bar\')',
+      'node_modules/foo/dist/cli.js': endent`
+        #!/usr/bin/env node
+
+        console.log('bar')
+      `,
       'package.json': endent`
         {
           "bin": {
@@ -32,11 +40,15 @@ export default {
           }
         }
       `,
-      'src/cli.js': 'console.log(\'foo\')',
+      'src/cli.js': endent`
+        #!/usr/bin/env node
+
+        console.log('foo')
+      `,
     })
     await binLinks({ path: 'node_modules/foo', pkg: { bin: { foo: './dist/cli.js' } } })
     await generateTestBins()
-    const { all } = await execa.command('npx foo', { all: true })
+    const { all } = await execa.command('./node_modules/.bin/foo', { all: true })
     expect(all).toEqual('foo')
   }),
 }
