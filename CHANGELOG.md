@@ -1,3 +1,10 @@
+## [6.0.4](https://github.com/dword-design/base/compare/v6.0.3...v6.0.4) (2020-02-18)
+
+
+### Bug Fixes
+
+* adjust badges ([f63e59f](https://github.com/dword-design/base/commit/f63e59fbacc1f0109f7634da1308d8cb003dcbe9))
+
 ## [6.0.3](https://github.com/dword-design/base/compare/v6.0.2...v6.0.3) (2020-02-17)
 
 
