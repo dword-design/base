@@ -1,13 +1,13 @@
 import execa from 'execa'
-import { outputFile, chmod } from 'fs-extra'
 import P from 'path'
-import { mapValues, values, promiseAll, split, filter, join, endent, map } from '@dword-design/functions'
+import { filter, join } from '@dword-design/functions'
 import config from './config'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import { isCI } from '@qawolf/ci-info'
 import isDocker from 'is-docker'
 import isGitpod from 'is-gitpod'
+import generateTestBins from './generate-test-bins'
 
 export default async (pattern, { grep }) => {
   try {
@@ -23,7 +23,7 @@ export default async (pattern, { grep }) => {
   } catch ({ all }) {
     throw new Error(all)
   }
-  
+
   const readmeContent = safeReadFileSync('README.md', 'utf8') ?? ''
   const missingReadmeSections = ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
     |> filter(sectionName => !getProjectzReadmeSectionRegex(sectionName).test(readmeContent))
@@ -37,27 +37,7 @@ export default async (pattern, { grep }) => {
   } catch ({ all }) {
     throw new Error(all)
   }
-  const { bin: binEntries = {} } = require(P.resolve('package.json'))
-  binEntries
-    |> mapValues(async (filename, binName) => {
-      const replacedFilename = filename
-        |> split('/')
-        |> map(segment => segment === 'dist' ? 'src' : segment)
-        |> join('/')
-      return outputFile(
-        P.join('node_modules', '.bin', binName),
-        endent`
-          #!/usr/bin/env node
-
-          require('../../${replacedFilename}')
-        `,
-      )
-        |> await
-        |> () => chmod(P.join('node_modules', '.bin', binName), '755')
-    })
-    |> values
-    |> promiseAll
-    |> await
+  await generateTestBins()
 
   if (!config.testInContainer || isCI || isDocker() || await isGitpod()) {
     return execa(
