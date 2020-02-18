@@ -1,3 +1,12 @@
+## [6.0.6](https://github.com/dword-design/base/compare/v6.0.5...v6.0.6) (2020-02-18)
+
+
+### Bug Fixes
+
+* fix a bug where an existing bin link was overridden by tests ([e56cf2c](https://github.com/dword-design/base/commit/e56cf2c926829e139434fa5f6d6b8263320a6a15))
+* fix tests for windows ([7c36588](https://github.com/dword-design/base/commit/7c365885f2dacb26a7244513cd17da61d333e7b8))
+* move bin-links to deps ([b2363a1](https://github.com/dword-design/base/commit/b2363a1dec2af2071adca3ca5c845e100644cc89))
+
 ## [6.0.5](https://github.com/dword-design/base/compare/v6.0.4...v6.0.5) (2020-02-18)
 
 
