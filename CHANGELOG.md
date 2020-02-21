@@ -1,3 +1,12 @@
+## [6.0.7](https://github.com/dword-design/base/compare/v6.0.6...v6.0.7) (2020-02-21)
+
+
+### Bug Fixes
+
+* add missing dependencies to test ([2b691c0](https://github.com/dword-design/base/commit/2b691c0c12aa03d16249f9ee3b859b79c017cf98))
+* add mocha as dependency ([f77b6b5](https://github.com/dword-design/base/commit/f77b6b553c885cb133e46628b92d68e14d15b234))
+* fix server killing on windows ([3656912](https://github.com/dword-design/base/commit/3656912e3eb90f172aaee56c54a2f43ea3d3e9cd))
+
 ## [6.0.6](https://github.com/dword-design/base/compare/v6.0.5...v6.0.6) (2020-02-18)
 
 
