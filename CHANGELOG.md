@@ -1,3 +1,10 @@
+## [6.0.8](https://github.com/dword-design/base/compare/v6.0.7...v6.0.8) (2020-02-21)
+
+
+### Bug Fixes
+
+* fix server kill ([9aad147](https://github.com/dword-design/base/commit/9aad1478d1cdd2dab900089ce3e6b822f8cea402))
+
 ## [6.0.7](https://github.com/dword-design/base/compare/v6.0.6...v6.0.7) (2020-02-21)
 
 
