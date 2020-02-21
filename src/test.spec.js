@@ -448,6 +448,15 @@ export default {
   }),
   'kill server': () => withLocalTmpDir(async () => {
     await outputFiles({
+      'package.json': endent`
+        {
+          "devDependencies": {
+            "execa": "^1.0.0",
+            "port-ready": "^1.0.0",
+            "tree-kill": "^1.0.0"
+          }
+        }
+      `,
       src: {
         'cli.js': endent`
           #!/usr/bin/env node
