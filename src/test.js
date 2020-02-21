@@ -53,6 +53,7 @@ export default async (pattern, { grep }) => {
         'mocha-objects',
         ...pattern !== undefined ? [pattern] : [],
         ...grep !== undefined ? ['--grep', grep] : [],
+        '--reporter', require.resolve('./mocha-spec-reporter'),
         '--timeout', 80000,
       ],
       {
