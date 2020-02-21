@@ -52,6 +52,7 @@
     "is-gitpod": "^1.0.7",
     "make-cli": "^1.0.9",
     "matchdep": "^2.0.0",
+    "mocha": "^7.0.1",
     "nyc": "^15.0.0",
     "output-files": "^1.1.7",
     "package-name-regex": "^1.0.5",
