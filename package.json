@@ -52,6 +52,7 @@
     "is-gitpod": "^1.0.7",
     "make-cli": "^1.0.9",
     "matchdep": "^2.0.0",
+    "mocha": "^7.0.1",
     "nyc": "^15.0.0",
     "output-files": "^1.1.7",
     "package-name-regex": "^1.0.5",
@@ -69,8 +70,10 @@
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "p-event": "^4.1.0",
+    "port-ready": "^0.1.0",
     "rimraf": "^3.0.0",
     "stealthy-require": "^1.1.1",
+    "tree-kill": "^1.2.2",
     "with-local-tmp-dir": "^2.1.2"
   },
   "baseConfig": {

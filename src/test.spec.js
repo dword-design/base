@@ -1,9 +1,11 @@
 import outputFiles from 'output-files'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import execa from 'execa'
-import { outputFile } from 'fs-extra'
+import { outputFile, chmod } from 'fs-extra'
 import { endent } from '@dword-design/functions'
 import glob from 'glob-promise'
+import getPackageName from 'get-package-name'
+import P from 'path'
 
 export default {
   assertion: () => withLocalTmpDir(async () => {
@@ -443,5 +445,43 @@ export default {
       all = error.all
     }
     expect(all).toMatch('data.keywords should be array')
-  }),  
+  }),
+  'kill server': () => withLocalTmpDir(async () => {
+    await outputFiles({
+      'package.json': endent`
+        {
+          "devDependencies": {
+            "execa": "^1.0.0",
+            "port-ready": "^1.0.0",
+            "tree-kill": "^1.0.0"
+          }
+        }
+      `,
+      src: {
+        'cli.js': endent`
+          #!/usr/bin/env node
+
+          import http from 'http'
+
+          http.createServer().listen(3000)
+        `,
+        'index.spec.js': endent`
+          import execa from '${getPackageName(require.resolve('execa'))}'
+          import portReady from '${getPackageName(require.resolve('port-ready'))}'
+          import kill from '${getPackageName(require.resolve('tree-kill'))}'
+
+          export default {
+            valid: async () => {
+              const childProcess = execa.command(require.resolve('./cli'))
+              await portReady(3000)
+              kill(childProcess.pid)
+            },
+          }
+        `,
+      },
+    })
+    await chmod(P.join('src', 'cli.js'), '755')
+    await execa.command('base prepare')
+    await execa.command('base test')
+  }),
 }
