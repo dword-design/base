@@ -1,3 +1,11 @@
+## [6.0.11](https://github.com/dword-design/base/compare/v6.0.10...v6.0.11) (2020-02-22)
+
+
+### Bug Fixes
+
+* adjust badges alignment ([3a4efe8](https://github.com/dword-design/base/commit/3a4efe84c008d8b3a5237637c0517349d16d4c33))
+* adjust heading level for readme and license ([104b444](https://github.com/dword-design/base/commit/104b4446b8544e40f88c1c48e5cf027c242f24f2))
+
 ## [6.0.10](https://github.com/dword-design/base/compare/v6.0.9...v6.0.10) (2020-02-22)
 
 
