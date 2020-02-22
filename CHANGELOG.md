@@ -1,3 +1,10 @@
+## [6.0.9](https://github.com/dword-design/base/compare/v6.0.8...v6.0.9) (2020-02-22)
+
+
+### Bug Fixes
+
+* force exit tests on windows ([9c5123c](https://github.com/dword-design/base/commit/9c5123c5c4a33cf2461c64e9a252b3dac468ddb4))
+
 ## [6.0.8](https://github.com/dword-design/base/compare/v6.0.7...v6.0.8) (2020-02-21)
 
 
