@@ -1,3 +1,10 @@
+## [6.0.10](https://github.com/dword-design/base/compare/v6.0.9...v6.0.10) (2020-02-22)
+
+
+### Bug Fixes
+
+* remove bin links for testing ([882f91f](https://github.com/dword-design/base/commit/882f91fb4e140709712dbdab11c2838476e625ff))
+
 ## [6.0.9](https://github.com/dword-design/base/compare/v6.0.8...v6.0.9) (2020-02-22)
 
 
