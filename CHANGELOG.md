@@ -1,3 +1,10 @@
+## [6.0.12](https://github.com/dword-design/base/compare/v6.0.11...v6.0.12) (2020-02-22)
+
+
+### Bug Fixes
+
+* remove pre-commit hooks ([e6f8bc2](https://github.com/dword-design/base/commit/e6f8bc2a11e4697438c4da497953a95ad3faa556))
+
 ## [6.0.11](https://github.com/dword-design/base/compare/v6.0.10...v6.0.11) (2020-02-22)
 
 
