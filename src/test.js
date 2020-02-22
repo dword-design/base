@@ -53,6 +53,7 @@ export default async (pattern, { grep }) => {
         'mocha-objects',
         ...pattern !== undefined ? [pattern] : [],
         ...grep !== undefined ? ['--grep', grep] : [],
+        ...process.platform === 'win32' ? ['--exit'] : [],
         '--file', require.resolve('./setup-test'),
         '--timeout', 80000,
       ],
