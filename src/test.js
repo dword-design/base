@@ -17,7 +17,7 @@ export default async (pattern, { grep }) => {
         '-d', 'package.json',
         '--errors', 'text',
       ],
-      { all: true},
+      { all: true },
     )
   } catch ({ all }) {
     throw new Error(all)
