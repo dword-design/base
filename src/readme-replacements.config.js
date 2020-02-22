@@ -18,7 +18,7 @@ export default {
     |> join('\n'),
   description: ({ description }) => description,
   install: ({ name }) => endent`
-    # Install
+    ## Install
 
     \`\`\`bash
     # NPM
@@ -34,7 +34,7 @@ export default {
       const license = spdxList[licenseName]
       
       return endent`
-        # License
+        ## License
 
         Unless stated otherwise all works are:
 

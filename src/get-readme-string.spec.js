@@ -56,7 +56,7 @@ export default {
     `)
     expect(await getReadmeString({ name: 'foo' })).toEqual(endent`
       <!-- INSTALL/ -->
-      # Install
+      ## Install
       
       \`\`\`bash
       # NPM
@@ -76,7 +76,7 @@ export default {
     `)
     expect(await getReadmeString({ author: 'foo bar', license: 'MIT' })).toEqual(endent`
       <!-- LICENSE/ -->
-      # License
+      ## License
 
       Unless stated otherwise all works are:
 
@@ -111,7 +111,7 @@ export default {
         This is a more detailed description
 
         <!-- LICENSE/ -->
-        # License
+        ## License
 
         Unless stated otherwise all works are:
 

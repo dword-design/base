@@ -19,7 +19,7 @@ Base package for projects.
 <!-- /DESCRIPTION -->
 
 <!-- INSTALL/ -->
-# Install
+## Install
 
 ```bash
 # NPM
@@ -31,7 +31,7 @@ $ yarn add @dword-design/base
 <!-- /INSTALL -->
 
 <!-- LICENSE/ -->
-# License
+## License
 
 Unless stated otherwise all works are:
 

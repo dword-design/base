@@ -78,7 +78,7 @@ export default {
       <!-- /DESCRIPTION -->
   
       <!-- INSTALL/ -->
-      # Install
+      ## Install
       
       \`\`\`bash
       # NPM
@@ -90,7 +90,7 @@ export default {
       <!-- /INSTALL -->
   
       <!-- LICENSE/ -->
-      # License
+      ## License
   
       Unless stated otherwise all works are:
   
