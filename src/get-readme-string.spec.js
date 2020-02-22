@@ -26,7 +26,6 @@ export default {
         <!-- BADGES/ -->
         [![NPM version](https://img.shields.io/npm/v/@dword-design/foo.svg)](https://npmjs.org/package/@dword-design/foo)
         ![Linux macOS Windows compatible](https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue)
-
         [![Build status](https://img.shields.io/github/workflow/status/dword-design/bar/build)](https://github.com/dword-design/bar/actions)
         [![Coverage status](https://img.shields.io/coveralls/dword-design/bar)](https://coveralls.io/github/dword-design/bar)
         [![Dependency status](https://img.shields.io/david/dword-design/bar)](https://david-dm.org/dword-design/bar)

@@ -7,7 +7,6 @@ export default {
   badges: ({ name, repository }) => [
     `[![NPM version](https://img.shields.io/npm/v/${name}.svg)](https://npmjs.org/package/${name})`,
     '![Linux macOS Windows compatible](https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue)',
-    '',
     `[![Build status](https://img.shields.io/github/workflow/status/${repository}/build)](https://github.com/${repository}/actions)`,
     `[![Coverage status](https://img.shields.io/coveralls/${repository})](https://coveralls.io/github/${repository})`,
     `[![Dependency status](https://img.shields.io/david/${repository})](https://david-dm.org/${repository})`,
