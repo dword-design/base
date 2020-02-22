@@ -7,7 +7,6 @@ import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import { isCI } from '@qawolf/ci-info'
 import isDocker from 'is-docker'
 import isGitpod from 'is-gitpod'
-import generateTestBins from './generate-test-bins'
 
 export default async (pattern, { grep }) => {
   try {
@@ -37,7 +36,6 @@ export default async (pattern, { grep }) => {
   } catch ({ all }) {
     throw new Error(all)
   }
-  await generateTestBins()
 
   if (!config.testInContainer || isCI || isDocker() || await isGitpod()) {
     return execa(

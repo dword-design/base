@@ -19,10 +19,10 @@ export default {
         `,
       },
     })
-    await execa.command('base prepare', { stdio: 'inherit' })
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -36,10 +36,10 @@ export default {
         }
       }
     `)
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -52,18 +52,18 @@ export default {
       }
   
     `)
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
     expect(all).toMatch('package.json invalid')
   }),
   empty: () => withLocalTmpDir(async () => {
-    await execa.command('base prepare')
-    await execa.command('base test')
+    await execa(require.resolve('./cli'), ['prepare'])
+    await execa(require.resolve('./cli'), ['test'])
   }),
   'invalid name': () => withLocalTmpDir(async () => {
     await outputFile('package.json', endent`
@@ -71,10 +71,10 @@ export default {
         "name": "_foo"
       }
     `)
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -82,7 +82,7 @@ export default {
   }),
   'json errors': () => withLocalTmpDir(async () => {
     await outputFile('src/index.js', 'export default 1')
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     await outputFile('src/test.json', endent`
       {
       "foo": "bar"
@@ -90,7 +90,7 @@ export default {
     `)
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -99,10 +99,10 @@ export default {
   'linting errors': () => withLocalTmpDir(async () => {
     await outputFile('src/index.js', 'export default 1;')
   
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -110,8 +110,8 @@ export default {
   }),
   minimal: () => withLocalTmpDir(async () => {
     await outputFile('src/index.js', 'export default 1')
-    await execa.command('base prepare')
-    await execa.command('base test')
+    await execa(require.resolve('./cli'), ['prepare'])
+    await execa(require.resolve('./cli'), ['test'])
   }),
   'missing readme sections': () => withLocalTmpDir(async () => {
     await outputFile('README.md', endent`
@@ -122,10 +122,10 @@ export default {
       <!-- LICENSE -->
   
     `)
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -164,8 +164,8 @@ export default {
       `,
     })
     process.chdir('inner')
-    await execa.command('base prepare')
-    await execa.command('base test')
+    await execa(require.resolve('./cli'), ['prepare'])
+    await execa(require.resolve('./cli'), ['test'])
   }),
   'parent package inside node modules': () => withLocalTmpDir(async () => {
     await outputFiles({
@@ -195,8 +195,8 @@ export default {
         `,
       },
     })
-    await execa.command('base prepare')
-    const { all } = await execa.command('base test', { all: true })
+    await execa(require.resolve('./cli'), ['prepare'])
+    const { all } = await execa(require.resolve('./cli'), ['test'], { all: true })
     expect(all).toMatch('run valid in index')
   }),
   'parent package require inside execa': () => withLocalTmpDir(async () => {
@@ -235,8 +235,8 @@ export default {
         `,
       },
     })
-    await execa.command('base prepare')
-    const { all } = await execa.command('base test', { all: true })
+    await execa(require.resolve('./cli'), ['prepare'])
+    const { all } = await execa(require.resolve('./cli'), ['test'], { all: true })
     expect(all).toMatch('foo bar')
   }),
   pattern: () => withLocalTmpDir(async () => {
@@ -247,8 +247,8 @@ export default {
         'index2.spec.js': 'export default { valid: () => console.log(\'run index2\') }',
       },
     })
-    await execa.command('base prepare')
-    const { all } = await execa.command('base test src/index2.spec.js', { all: true })
+    await execa(require.resolve('./cli'), ['prepare'])
+    const { all } = await execa(require.resolve('./cli'), ['test', 'src/index2.spec.js'], { all: true })
     expect(all).not.toMatch('run index1')
     expect(all).toMatch('run index2')
   }),
@@ -264,8 +264,8 @@ export default {
         `,
       },
     })
-    await execa.command('base prepare')
-    const { all } = await execa.command('base test --grep foo', { all: true })
+    await execa(require.resolve('./cli'), ['prepare'])
+    const { all } = await execa(require.resolve('./cli'), ['test', '--grep', 'foo'], { all: true })
     expect(all).not.toMatch('run bar')
     expect(all).toMatch('run foo')
   }),
@@ -289,10 +289,10 @@ export default {
         `,
       },
     })
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -307,10 +307,10 @@ export default {
         "version": "0.1.0"
       }
     `)
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -328,10 +328,10 @@ export default {
       `,
       'src/index.js': 'export default 1',
     })
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -363,8 +363,8 @@ export default {
         `,
       },
     })
-    await execa.command('base prepare')
-    const { all } = await execa.command('base test', { all: true })
+    await execa(require.resolve('./cli'), ['prepare'])
+    const { all } = await execa(require.resolve('./cli'), ['test'], { all: true })
     expect(all).toMatch('run test')
     expect(await glob('*', { dot: true })).toEqual([
       '.cz.json',
@@ -392,10 +392,10 @@ export default {
         "dependencies": 1
       }
     `)
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -407,10 +407,10 @@ export default {
         "description": 1
       }
     `)
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -422,10 +422,10 @@ export default {
         "devDependencies": 1
       }
     `)
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
@@ -437,10 +437,10 @@ export default {
         "keywords": 1
       }
     `)
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     let all
     try {
-      await execa.command('base test', { all: true })
+      await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }

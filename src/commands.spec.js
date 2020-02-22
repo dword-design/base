@@ -24,7 +24,7 @@ export default {
       `,
       'src/index.js': 'export default 1',
     })
-    const { all } = await execa.command('base prepublishOnly', { all: true })
+    const { all } = await execa(require.resolve('./cli'), ['prepublishOnly'], { all: true })
     expect(all).toEqual('foo')
   }),
 }

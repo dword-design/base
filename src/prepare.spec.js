@@ -12,7 +12,7 @@ export default {
       'test/foo.test.js': '',
       'foo.txt': '',
     })
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     expect(glob('*', { dot: true }) |> await |> includes('foo.txt')).toBeFalsy()
   }),
   valid: () => withLocalTmpDir(async () => {
@@ -34,7 +34,7 @@ export default {
       '.env.defaults': '',
       '.env.schema': '',
     })
-    await execa.command('base prepare')
+    await execa(require.resolve('./cli'), ['prepare'])
     expect(await glob('*', { dot: true })).toEqual([
       '.cz.json',
       '.editorconfig',

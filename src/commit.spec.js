@@ -7,7 +7,7 @@ import { endent } from '@dword-design/functions'
 
 const commit = async (args = []) => {
 
-  const childProcess = execa('base', ['commit', ...args])
+  const childProcess = execa(require.resolve('./cli'), ['commit', ...args])
   await pEvent(
     childProcess.stdout,
     'data',
