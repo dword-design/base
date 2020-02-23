@@ -1,3 +1,10 @@
+## [6.0.13](https://github.com/dword-design/base/compare/v6.0.12...v6.0.13) (2020-02-23)
+
+
+### Bug Fixes
+
+* upgrades and add depgraph test ([cde7482](https://github.com/dword-design/base/commit/cde7482722aeccc8e9bebfffbb8dc2a3c47dbb36))
+
 ## [6.0.12](https://github.com/dword-design/base/compare/v6.0.11...v6.0.12) (2020-02-22)
 
 
