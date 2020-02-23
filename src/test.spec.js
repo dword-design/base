@@ -5,7 +5,7 @@ import { outputFile, chmod } from 'fs-extra'
 import { endent } from '@dword-design/functions'
 import glob from 'glob-promise'
 import portReady from 'port-ready'
-import kill from 'tree-kill'
+import kill from 'tree-kill-promise'
 
 export default {
   assertion: () => withLocalTmpDir(async () => {
@@ -457,6 +457,6 @@ export default {
     await chmod('cli.js', '755')
     const childProcess = execa.command('./cli.js')
     await portReady(3000)
-    await new Promise(resolve => kill(childProcess.pid, resolve))
+    await kill(childProcess.pid)
   }),
 }
