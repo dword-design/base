@@ -1,3 +1,10 @@
+## [6.0.15](https://github.com/dword-design/base/compare/v6.0.14...v6.0.15) (2020-02-25)
+
+
+### Bug Fixes
+
+* fix test pattern ([b6c4c6f](https://github.com/dword-design/base/commit/b6c4c6f122d6afd4fe651dd7838ff0c0571c53fb))
+
 ## [6.0.14](https://github.com/dword-design/base/compare/v6.0.13...v6.0.14) (2020-02-25)
 
 
