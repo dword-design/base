@@ -1,3 +1,11 @@
+## [6.0.14](https://github.com/dword-design/base/compare/v6.0.13...v6.0.14) (2020-02-25)
+
+
+### Bug Fixes
+
+* fix tests for windows ([08d0508](https://github.com/dword-design/base/commit/08d050805caabb2b4f797ce1e522a6143bd31fa9))
+* use exports-auto-describe instead of mocha-objects ([0635ee0](https://github.com/dword-design/base/commit/0635ee0de5297c26c30891b76267b18cbd9dc410))
+
 ## [6.0.13](https://github.com/dword-design/base/compare/v6.0.12...v6.0.13) (2020-02-23)
 
 
