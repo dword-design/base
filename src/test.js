@@ -54,7 +54,7 @@ export default async (pattern, { grep }) => {
         '--timeout', 80000,
         ...grep !== undefined ? ['--grep', grep] : [],
         ...process.platform === 'win32' ? ['--exit'] : [],
-        ...pattern !== undefined ? [pattern] : [],
+        ...pattern !== undefined ? [pattern] : ['src/**/*.spec.js'],
       ],
       {
         stdio: 'inherit',
