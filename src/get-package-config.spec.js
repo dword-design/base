@@ -60,6 +60,9 @@ export default {
           "author": "foo bar",
           "files": "foo",
           "main": "dist/index.scss",
+          "publishConfig": {
+            "access": "public"
+          },
           "keywords": [
             "foo",
             "bar"
@@ -94,6 +97,9 @@ export default {
       license: 'MIT',
       author: 'Sebastian Landwehr <info@dword-design.de>',
       main: 'dist/index.js',
+      publishConfig: {
+        access: 'public',
+      },
       bin: {
         foo: './dist/cli.js',
       },

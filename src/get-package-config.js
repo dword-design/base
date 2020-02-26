@@ -39,6 +39,7 @@ export default async () => {
         'keywords',
         'dependencies',
         'devDependencies',
+        'publishConfig',
       ]),
     version: packageConfig.version ?? '1.0.0',
     description: packageConfig.description ?? '',
