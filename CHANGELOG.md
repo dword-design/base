@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/dword-design/base/compare/v6.0.15...v6.1.0) (2020-02-26)
+
+
+### Features
+
+* add publish config to package.json ([6d02cb5](https://github.com/dword-design/base/commit/6d02cb59e204861fff8147103d8fef9031d5896e))
+
 ## [6.0.15](https://github.com/dword-design/base/compare/v6.0.14...v6.0.15) (2020-02-25)
 
 
