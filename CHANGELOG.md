@@ -1,3 +1,15 @@
+# [6.2.0](https://github.com/dword-design/base/compare/v6.1.0...v6.2.0) (2020-03-09)
+
+
+### Bug Fixes
+
+* **config:** Update changed files ([8074f04](https://github.com/dword-design/base/commit/8074f04dd5a3cc45db27f34d36450223c577d57a))
+
+
+### Features
+
+* add publish config ([2b9fd08](https://github.com/dword-design/base/commit/2b9fd085157ee2e597295d2d94335de8d5516bdc))
+
 # [6.1.0](https://github.com/dword-design/base/compare/v6.0.15...v6.1.0) (2020-02-26)
 
 
