@@ -34,6 +34,9 @@ export default {
       license: 'MIT',
       author: 'Sebastian Landwehr <info@dword-design.de>',
       main: 'dist/index.js',
+      publishConfig: {
+        access: 'public',
+      },
       files: [
         'dist',
       ],
@@ -82,7 +85,7 @@ export default {
             "base-config-bar": "^1.0.0"
           }
         }
-    
+
       `,
     })
     const getPackageConfig = stealthyRequire(require.cache, () => require('./get-package-config'))
@@ -133,6 +136,9 @@ export default {
       license: 'MIT',
       author: 'Sebastian Landwehr <info@dword-design.de>',
       main: 'dist/index.js',
+      publishConfig: {
+        access: 'public',
+      },
       files: [
         'dist',
       ],
@@ -157,7 +163,7 @@ export default {
       {
         "private": true
       }
-  
+
     `)
     const getPackageConfig = stealthyRequire(require.cache, () => require('./get-package-config'))
     expect(getPackageConfig() |> await |> property('private')).toBeTruthy()
@@ -176,6 +182,9 @@ export default {
       license: 'MIT',
       author: 'Sebastian Landwehr <info@dword-design.de>',
       main: 'dist/index.js',
+      publishConfig: {
+        access: 'public',
+      },
       files: [
         'dist',
       ],

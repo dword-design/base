@@ -43,6 +43,9 @@ export default async () => {
       ]),
     version: packageConfig.version ?? '1.0.0',
     description: packageConfig.description ?? '',
+    publishConfig: {
+      access: 'public',
+    },
     ...gitUrl !== undefined ? { repository: `${gitInfo.user}/${gitInfo.project}` } : {},
     license: 'MIT',
     author: 'Sebastian Landwehr <info@dword-design.de>',
