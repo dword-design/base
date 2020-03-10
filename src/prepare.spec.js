@@ -30,17 +30,15 @@ export default {
       `,
       'src/index.js': 'export default 1',
       'test/foo.test.js': '',
-      '.env': '',
-      '.env.defaults': '',
-      '.env.schema': '',
+      '.env.json': '',
+      '.env.schema.json': '',
     })
     await execa(require.resolve('./cli'), ['prepare'])
     expect(await glob('*', { dot: true })).toEqual([
       '.cz.json',
       '.editorconfig',
-      '.env',
-      '.env.defaults',
-      '.env.schema',
+      '.env.json',
+      '.env.schema.json',
       '.git',
       '.gitattributes',
       '.github',

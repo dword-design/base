@@ -4,7 +4,7 @@ export default [
   '.DS_Store',
   '/.cz.json',
   '/.editorconfig',
-  '/.env',
+  '/.env.json',
   '/.nyc_output',
   '/.releaserc.json',
   '/.vscode',
