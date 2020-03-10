@@ -1,3 +1,10 @@
+## [6.2.1](https://github.com/dword-design/base/compare/v6.2.0...v6.2.1) (2020-03-10)
+
+
+### Bug Fixes
+
+* add .env jsons to ignore ([2f88bf1](https://github.com/dword-design/base/commit/2f88bf1aa11fe3b8f6170768ca4edac7a36081e3))
+
 # [6.2.0](https://github.com/dword-design/base/compare/v6.1.0...v6.2.0) (2020-03-09)
 
 
