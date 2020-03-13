@@ -4,6 +4,7 @@ import glob from 'glob-promise'
 import execa from 'execa'
 import { includes, endent } from '@dword-design/functions'
 import { readFile } from 'fs-extra'
+import allowedFilenames from './allowed-filenames.config'
 
 export default {
   'additional file': () => withLocalTmpDir(async () => {
@@ -20,6 +21,7 @@ export default {
     await execa.command('git remote add origin git@github.com:dword-design/bar.git')
     await outputFiles({
       'CHANGELOG.md': '',
+      doc: {},
       'package.json': endent`
         {
           "name": "foo",
@@ -29,31 +31,32 @@ export default {
   
       `,
       'src/index.js': 'export default 1',
+      'supporting-files': {},
       'test/foo.test.js': '',
       '.env.json': '',
       '.env.schema.json': '',
+      'yarn.lock': '',
     })
     await execa(require.resolve('./cli'), ['prepare'])
-    expect(await glob('*', { dot: true })).toEqual([
-      '.cz.json',
-      '.editorconfig',
-      '.env.json',
-      '.env.schema.json',
-      '.git',
-      '.gitattributes',
-      '.github',
-      '.gitignore',
-      '.gitpod.Dockerfile',
-      '.gitpod.yml',
-      '.releaserc.json',
-      '.renovaterc.json',
-      'CHANGELOG.md',
-      'LICENSE.md',
-      'package.json',
-      'README.md',
-      'src',
-      'test',
-    ])
+    expect(await glob('*', { dot: true })).toEqual(
+      [
+        '.cz.json',
+        '.editorconfig',
+        '.env.json',
+        '.gitattributes',
+        '.github',
+        '.gitignore',
+        '.gitpod.Dockerfile',
+        '.gitpod.yml',
+        '.releaserc.json',
+        '.renovaterc.json',
+        'LICENSE.md',
+        'package.json',
+        'README.md',
+        ...allowedFilenames,
+      ]
+        .sort((a, b) => a.localeCompare(b)),
+    )
     expect(await readFile('README.md', 'utf8')).toEqual(endent`
       <!-- TITLE/ -->
       # foo
