@@ -1,3 +1,10 @@
+## [6.2.2](https://github.com/dword-design/base/compare/v6.2.1...v6.2.2) (2020-03-13)
+
+
+### Bug Fixes
+
+* add some files to allowed filenames and make test more flexible ([79be45e](https://github.com/dword-design/base/commit/79be45e76df395e766216c3283cd1d135c141cb6))
+
 ## [6.2.1](https://github.com/dword-design/base/compare/v6.2.0...v6.2.1) (2020-03-10)
 
 
