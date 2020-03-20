@@ -1,3 +1,11 @@
+## [6.2.4](https://github.com/dword-design/base/compare/v6.2.3...v6.2.4) (2020-03-20)
+
+
+### Bug Fixes
+
+* do not use windows and macos for private packages ([4e54885](https://github.com/dword-design/base/commit/4e54885a7a7aabf1d595ac13f2cf2af1f5cd160f))
+* refactoring ([c14492e](https://github.com/dword-design/base/commit/c14492e9969c83f50f63bf839893a8d8b8e24500))
+
 ## [6.2.3](https://github.com/dword-design/base/compare/v6.2.2...v6.2.3) (2020-03-19)
 
 
