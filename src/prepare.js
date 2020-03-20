@@ -17,6 +17,7 @@ import packageConfig from './package-config'
 import sortpackageJson from 'sort-package-json'
 import readmeString from './readme-string'
 import licenseString from './license-string'
+import yaml from 'yaml'
 
 export default async () => {
 
@@ -24,7 +25,7 @@ export default async () => {
     '.cz.json': commitizenConfig,
     '.editorconfig': editorconfigConfig,
     '.gitattributes': gitattributesConfig,
-    '.github/workflows/build.yml': githubWorkflowConfig,
+    '.github/workflows/build.yml': githubWorkflowConfig |> yaml.stringify,
     '.gitpod.Dockerfile': gitpodDockerfile,
     '.gitpod.yml': gitpodConfig,
     '.releaserc.json': semanticReleaseConfig,
