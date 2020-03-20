@@ -13,14 +13,13 @@ import gitpodDockerfile from './config-files/gitpod-dockerfile.config'
 import commitizenConfig from './config-files/commitizen.config'
 import renovateConfig from './config-files/renovate.config'
 import semanticReleaseConfig from './config-files/semantic-release.config'
-import getPackageConfig from './get-package-config'
+import packageConfig from './package-config'
 import sortpackageJson from 'sort-package-json'
-import getReadmeString from './get-readme-string'
-import getLicenseString from './get-license-string'
+import readmeString from './readme-string'
+import licenseString from './license-string'
 
 export default async () => {
 
-  const packageConfig = getPackageConfig() |> await
   const configFiles = {
     '.cz.json': commitizenConfig,
     '.editorconfig': editorconfigConfig,
@@ -34,12 +33,12 @@ export default async () => {
       |> sortBy(identity)
       |> map(entry => `${entry}\n`)
       |> join(''),
-    'LICENSE.md': getLicenseString(packageConfig),
+    'LICENSE.md': licenseString,
     'package.json': packageConfig
       |> sortpackageJson
       |> jsonToString({ indent: 2 })
       |> add('\n'),
-    'README.md': await getReadmeString(packageConfig),
+    'README.md': readmeString,
   }
 
   glob('*', { dot: true, ignore: allowedFilenames })

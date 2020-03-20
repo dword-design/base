@@ -1,15 +1,22 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
-import getReadmeString from './get-readme-string'
-import { outputFile } from 'fs-extra'
+import outputFiles from 'output-files'
 import { endent } from '@dword-design/functions'
+import stealthyRequire from 'stealthy-require'
+import execa from 'execa'
 
 export default {
   title: () => withLocalTmpDir(async () => {
-    await outputFile('README.md', endent`
-      <!-- TITLE -->
-      
-    `)
-    expect(await getReadmeString({ name: 'foo' })).toEqual(endent`
+    await outputFiles({
+      'package.json': JSON.stringify({
+        name: 'foo',
+      }),
+      'README.md': endent`
+        <!-- TITLE -->
+        
+      `,
+    })
+    const readmeString = stealthyRequire(require.cache, () => require('./readme-string'))
+    expect(readmeString).toEqual(endent`
       <!-- TITLE/ -->
       # foo
       <!-- /TITLE -->
@@ -17,11 +24,17 @@ export default {
     `)
   }),
   badges: () => withLocalTmpDir(async () => {
-    await outputFile('README.md', endent`
-      <!-- BADGES -->
-      
-    `)
-    expect(await getReadmeString({ name: '@dword-design/foo', repository: 'dword-design/bar' }))
+    await execa.command('git init')
+    await execa.command('git remote add origin git@github.com:dword-design/bar.git')
+    await outputFiles({
+      'package.json': JSON.stringify({ name: '@dword-design/foo' }),
+      'README.md': endent`
+        <!-- BADGES -->
+        
+      `,
+    })
+    const readmeString = stealthyRequire(require.cache, () => require('./readme-string'))
+    expect(readmeString)
       .toEqual(endent`
         <!-- BADGES/ -->
         [![NPM version](https://img.shields.io/npm/v/@dword-design/foo.svg)](https://npmjs.org/package/@dword-design/foo)
@@ -37,11 +50,15 @@ export default {
       `)
   }),
   description: () => withLocalTmpDir(async () => {
-    await outputFile('README.md', endent`
-      <!-- DESCRIPTION -->
-      
-    `)
-    expect(await getReadmeString({ description: 'foo bar baz' })).toEqual(endent`
+    await outputFiles({
+      'package.json': JSON.stringify({ description: 'foo bar baz' }),
+      'README.md': endent`
+        <!-- DESCRIPTION -->
+        
+      `,
+    })
+    const readmeString = stealthyRequire(require.cache, () => require('./readme-string'))
+    expect(readmeString).toEqual(endent`
       <!-- DESCRIPTION/ -->
       foo bar baz
       <!-- /DESCRIPTION -->
@@ -49,11 +66,15 @@ export default {
     `)
   }),
   install: () => withLocalTmpDir(async () => {
-    await outputFile('README.md', endent`
-      <!-- INSTALL -->
-      
-    `)
-    expect(await getReadmeString({ name: 'foo' })).toEqual(endent`
+    await outputFiles({
+      'package.json': JSON.stringify({ name: 'foo' }),
+      'README.md': endent`
+        <!-- INSTALL -->
+        
+      `,
+    })
+    const readmeString = stealthyRequire(require.cache, () => require('./readme-string'))
+    expect(readmeString).toEqual(endent`
       <!-- INSTALL/ -->
       ## Install
       
@@ -69,17 +90,21 @@ export default {
     `)
   }),
   license: () => withLocalTmpDir(async () => {
-    await outputFile('README.md', endent`
-      <!-- LICENSE -->
-      
-    `)
-    expect(await getReadmeString({ author: 'foo bar', license: 'MIT' })).toEqual(endent`
+    await outputFiles({
+      'package.json': JSON.stringify({ license: 'MIT' }),
+      'README.md': endent`
+        <!-- LICENSE -->
+        
+      `,
+    })
+    const readmeString = stealthyRequire(require.cache, () => require('./readme-string'))
+    expect(readmeString).toEqual(endent`
       <!-- LICENSE/ -->
       ## License
 
       Unless stated otherwise all works are:
 
-      Copyright &copy; foo bar
+      Copyright &copy; Sebastian Landwehr <info@dword-design.de>
 
       and licensed under:
 
@@ -89,19 +114,23 @@ export default {
     `)
   }),
   'existing content': () => withLocalTmpDir(async () => {
-    await outputFile('README.md', endent`
-      <!-- DESCRIPTION -->
+    await outputFiles({
+      'package.json': JSON.stringify({
+        description: 'foo bar baz',
+        author: 'dword-design',
+        license: 'MIT',
+      }),
+      'README.md': endent`
+        <!-- DESCRIPTION -->
 
-      This is a more detailed description
+        This is a more detailed description
 
-      <!-- LICENSE -->
+        <!-- LICENSE -->
 
-    `)
-    expect(await getReadmeString({
-      description: 'foo bar baz',
-      author: 'dword-design',
-      license: 'MIT',
-    }))
+      `,
+    })
+    const readmeString = stealthyRequire(require.cache, () => require('./readme-string'))
+    expect(readmeString)
       .toEqual(endent`
         <!-- DESCRIPTION/ -->
         foo bar baz
@@ -114,7 +143,7 @@ export default {
 
         Unless stated otherwise all works are:
 
-        Copyright &copy; dword-design
+        Copyright &copy; Sebastian Landwehr <info@dword-design.de>
 
         and licensed under:
 

@@ -1,5 +1,5 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
-import { endent, property } from '@dword-design/functions'
+import { endent } from '@dword-design/functions'
 import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'
 import { outputFile } from 'fs-extra'
@@ -23,12 +23,12 @@ export default {
 
       `,
     })
-    const getPackageConfig = stealthyRequire(require.cache, () => require('./get-package-config'))
-    expect(getPackageConfig() |> await |> property('main')).toEqual('dist/index.scss')
+    const { main } = stealthyRequire(require.cache, () => require('./package-config'))
+    expect(main).toEqual('dist/index.scss')
   }),
-  empty: () => withLocalTmpDir(async () => {
-    const getPackageConfig = stealthyRequire(require.cache, () => require('./get-package-config'))
-    expect(getPackageConfig() |> await).toEqual({
+  empty: () => withLocalTmpDir(() => {
+    const packageConfig = stealthyRequire(require.cache, () => require('./package-config'))
+    expect(packageConfig).toEqual({
       version: '1.0.0',
       description: '',
       license: 'MIT',
@@ -88,8 +88,8 @@ export default {
 
       `,
     })
-    const getPackageConfig = stealthyRequire(require.cache, () => require('./get-package-config'))
-    expect(getPackageConfig() |> await).toEqual({
+    const packageConfig = stealthyRequire(require.cache, () => require('./package-config'))
+    expect(packageConfig).toEqual({
       name: 'foo',
       version: '1.1.0',
       description: 'foo bar',
@@ -128,8 +128,8 @@ export default {
   'git repo': () => withLocalTmpDir(async () => {
     await execa.command('git init')
     await execa.command('git remote add origin git@github.com:bar/foo.git')
-    const getPackageConfig = stealthyRequire(require.cache, () => require('./get-package-config'))
-    expect(getPackageConfig() |> await).toEqual({
+    const packageConfig = stealthyRequire(require.cache, () => require('./package-config'))
+    expect(packageConfig).toEqual({
       version: '1.0.0',
       description: '',
       repository: 'bar/foo',
@@ -155,8 +155,10 @@ export default {
   'non-github repo': () => withLocalTmpDir(async () => {
     await execa.command('git init')
     await execa.command('git remote add origin git@special.com:bar/foo.git')
-    const getPackageConfig = stealthyRequire(require.cache, () => require('./get-package-config'))
-    await expect(getPackageConfig()).rejects.toThrow('Only GitHub repositories are supported.')
+    await expect(
+      () => stealthyRequire(require.cache, () => require('./package-config')),
+    )
+      .toThrow('Only GitHub repositories are supported.')
   }),
   private: () => withLocalTmpDir(async () => {
     await outputFile('package.json', endent`
@@ -165,8 +167,8 @@ export default {
       }
 
     `)
-    const getPackageConfig = stealthyRequire(require.cache, () => require('./get-package-config'))
-    expect(getPackageConfig() |> await |> property('private')).toBeTruthy()
+    const { private: isPrivate } = stealthyRequire(require.cache, () => require('./package-config'))
+    expect(isPrivate).toBeTruthy()
   }),
   'sub-folder': () => withLocalTmpDir(async () => {
     await execa.command('git init')
@@ -175,8 +177,8 @@ export default {
       test: {},
     })
     process.chdir('test')
-    const getPackageConfig = stealthyRequire(require.cache, () => require('./get-package-config'))
-    await expect(getPackageConfig() |> await).toEqual({
+    const packageConfig = stealthyRequire(require.cache, () => require('./package-config'))
+    await expect(packageConfig).toEqual({
       version: '1.0.0',
       description: '',
       license: 'MIT',
