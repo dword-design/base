@@ -34,7 +34,11 @@ export default {
       'supporting-files': {},
       'test/foo.test.js': '',
       '.env.json': '',
-      '.env.schema.json': '',
+      '.env.schema.json': endent`
+        {
+          "foo": "bar"
+        }
+      `,
       'yarn.lock': '',
     })
     await execa(require.resolve('./cli'), ['prepare'])
