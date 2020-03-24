@@ -1,3 +1,16 @@
+# [6.3.0](https://github.com/dword-design/base/compare/v6.2.4...v6.3.0) (2020-03-24)
+
+
+### Bug Fixes
+
+* add missing dependency ([525a87e](https://github.com/dword-design/base/commit/525a87ecf992e088c49ede2d4e10cf2e2ccc7f3e))
+* fix test ([bb57826](https://github.com/dword-design/base/commit/bb5782694d549bef3d81b3ce5ae6e04efe81aef6))
+
+
+### Features
+
+* add github secrets to test step ([d6394b7](https://github.com/dword-design/base/commit/d6394b739da79beba9447b719a229646734c8e2e))
+
 ## [6.2.4](https://github.com/dword-design/base/compare/v6.2.3...v6.2.4) (2020-03-20)
 
 
