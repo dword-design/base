@@ -1,8 +1,15 @@
-import { keys, first } from '@dword-design/functions'
+import { keys, first, map, zipObject } from '@dword-design/functions'
 import ci from '@dword-design/ci/package.json'
+import findUp from 'find-up'
+import { constantCase } from 'constant-case'
 import packageConfig from '../package-config'
 
 const bin = ci.bin |> keys |> first
+
+const envSchemaPath = findUp.sync('.env.schema.json')
+const envVariableNames = (envSchemaPath ? require(envSchemaPath) : {})
+  |> keys
+  |> map(constantCase)
 
 export default {
   name: 'build',
@@ -40,7 +47,17 @@ export default {
           },
         },
         { run: 'yarn --frozen-lockfile' },
-        { run: 'yarn test' },
+        {
+          run: 'yarn test',
+          ...envVariableNames.length > 0
+            ? {
+              env: zipObject(
+                envVariableNames,
+                envVariableNames |> map(name => `\${{ secrets.${name} }}`),
+              ),
+            }
+            : {},
+        },
         {
           name: 'Coveralls',
           run: `yarn ${bin} coveralls`,
