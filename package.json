@@ -41,6 +41,7 @@
     "depcheck": "dword-design/depcheck#fork",
     "execa": "^4.0.0",
     "expect": "^25.1.0",
+    "find-up": "^4.1.0",
     "fs-extra": "^9.0.0",
     "get-package-name": "^1.0.0",
     "get-projectz-readme-section-regex": "^1.0.5",
