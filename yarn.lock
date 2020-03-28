@@ -1093,17 +1093,9 @@
     switch-fn "^1.0.2"
     vue-functional-data-merge "^3.1.0"
 
-"@eclass/semantic-release-ssh-commands@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@eclass/semantic-release-ssh-commands/-/semantic-release-ssh-commands-1.0.0.tgz#413093a378ea6899652ea5da0cd365dac30eaadb"
-  integrity sha512-k/c8zrd4VY1VgA4hG+ZTs8uxtw38X96550vCliRIZNgnupxlG3lBDQSF9Av8eSIQSiihy2aAnpMZvc41L8oupA==
-  dependencies:
-    "@semantic-release/error" "^2.1.0"
-    ssh-exec "2.0.0"
-
 "@eclass/semantic-release-ssh-commands@dword-design/semantic-release-ssh-commands#fork":
   version "1.0.0"
-  resolved "https://codeload.github.com/dword-design/semantic-release-ssh-commands/tar.gz/7291bc1b26ea2ab62367779356c0e58a602ee001"
+  resolved "https://codeload.github.com/dword-design/semantic-release-ssh-commands/tar.gz/2112496ab055a4a2500b4681448d313ce86bce65"
   dependencies:
     "@semantic-release/error" "^2.1.0"
     ssh-exec "2.0.0"
