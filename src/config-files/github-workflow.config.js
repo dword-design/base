@@ -96,6 +96,13 @@ export default {
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
             NPM_TOKEN: '${{ secrets.NPM_TOKEN }}',
+            ...packageConfig.deploy
+              ? {
+                SSH_HOST: 'dword-design.de',
+                SSH_USER: '${{ secrets.SSH_USER }}',
+                SSH_PRIVATE_KEY: '${{ secrets.SSH_PRIVATE_KEY }}',
+              }
+              : {},
           },
           run: 'yarn semantic-release',
         },

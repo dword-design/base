@@ -170,6 +170,16 @@ export default {
     const { private: isPrivate } = stealthyRequire(require.cache, () => require('./package-config'))
     expect(isPrivate).toBeTruthy()
   }),
+  deploy: () => withLocalTmpDir(async () => {
+    await outputFile('package.json', endent`
+      {
+        "deploy": true
+      }
+
+    `)
+    const { deploy } = stealthyRequire(require.cache, () => require('./package-config'))
+    expect(deploy).toBeTruthy()
+  }),
   'sub-folder': () => withLocalTmpDir(async () => {
     await execa.command('git init')
     await execa.command('git remote add origin git@github.com:bar/foo.git')

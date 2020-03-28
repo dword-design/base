@@ -30,6 +30,7 @@ export default {
     |> pick([
       'name',
       'private',
+      'deploy',
       'baseConfig',
       'bin',
       'keywords',

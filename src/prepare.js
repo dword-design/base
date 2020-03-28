@@ -12,7 +12,7 @@ import gitpodConfig from './config-files/gitpod.config'
 import gitpodDockerfile from './config-files/gitpod-dockerfile.config'
 import commitizenConfig from './config-files/commitizen.config'
 import renovateConfig from './config-files/renovate.config'
-import semanticReleaseConfig from './config-files/semantic-release.config'
+import releaseConfig from './config-files/release.config'
 import packageConfig from './package-config'
 import sortpackageJson from 'sort-package-json'
 import readmeString from './readme-string'
@@ -28,7 +28,7 @@ export default async () => {
     '.github/workflows/build.yml': githubWorkflowConfig |> yaml.stringify,
     '.gitpod.Dockerfile': gitpodDockerfile,
     '.gitpod.yml': gitpodConfig,
-    '.releaserc.json': semanticReleaseConfig,
+    '.releaserc.json': releaseConfig |> jsonToString({ indent: 2 }),
     '.renovaterc.json': renovateConfig,
     '.gitignore': gitignoreConfig
       |> sortBy(identity)
