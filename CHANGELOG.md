@@ -1,3 +1,15 @@
+# [6.4.0](https://github.com/dword-design/base/compare/v6.3.0...v6.4.0) (2020-03-28)
+
+
+### Bug Fixes
+
+* upgrade release commands ([fc70188](https://github.com/dword-design/base/commit/fc701885e96074b083c97f15d6afa722b4bb9821))
+
+
+### Features
+
+* add auto deploy to release config ([e118e2c](https://github.com/dword-design/base/commit/e118e2c062416f0a4b52a14660e9694c4b85b4a9))
+
 # [6.3.0](https://github.com/dword-design/base/compare/v6.2.4...v6.3.0) (2020-03-24)
 
 
