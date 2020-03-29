@@ -1,3 +1,10 @@
+## [6.6.1](https://github.com/dword-design/base/compare/v6.6.0...v6.6.1) (2020-03-29)
+
+
+### Bug Fixes
+
+* use --global for git user data ([94bfe61](https://github.com/dword-design/base/commit/94bfe61f41a43f355db0df85ebb7ba33bf130b91))
+
 # [6.6.0](https://github.com/dword-design/base/compare/v6.5.1...v6.6.0) (2020-03-29)
 
 
