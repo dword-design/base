@@ -1,3 +1,10 @@
+# [6.6.0](https://github.com/dword-design/base/compare/v6.5.1...v6.6.0) (2020-03-29)
+
+
+### Features
+
+* cancel existing workflows ([e99cae1](https://github.com/dword-design/base/commit/e99cae10bad2be6028edde272f31788955dbb347))
+
 ## [6.5.1](https://github.com/dword-design/base/compare/v6.5.0...v6.5.1) (2020-03-29)
 
 
