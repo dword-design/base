@@ -1,5 +1,6 @@
 export default [
   '.env.schema.json',
+  '.test.env.schema.json',
   '.git',
   'CHANGELOG.md',
   'doc',

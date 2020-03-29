@@ -5,6 +5,7 @@ export default [
   '/.cz.json',
   '/.editorconfig',
   '/.env.json',
+  '/.test.env.json',
   '/.nyc_output',
   '/.releaserc.json',
   '/.vscode',

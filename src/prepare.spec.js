@@ -34,11 +34,13 @@ export default {
       'supporting-files': {},
       'test/foo.test.js': '',
       '.env.json': '',
+      '.test.env.json': '',
       '.env.schema.json': endent`
         {
           "foo": "bar"
         }
       `,
+      '.test.env.schema.json': '',
       'yarn.lock': '',
     })
     await execa(require.resolve('./cli'), ['prepare'])
@@ -47,6 +49,7 @@ export default {
         '.cz.json',
         '.editorconfig',
         '.env.json',
+        '.test.env.json',
         '.gitattributes',
         '.github',
         '.gitignore',
