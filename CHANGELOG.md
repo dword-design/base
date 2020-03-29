@@ -1,3 +1,16 @@
+# [6.5.0](https://github.com/dword-design/base/compare/v6.4.0...v6.5.0) (2020-03-29)
+
+
+### Bug Fixes
+
+* **config:** Update changed files ([e8adb35](https://github.com/dword-design/base/commit/e8adb35cfc14a0121cb990a2a4a6b824bcde9051))
+* remove test env schema again ([8ba5384](https://github.com/dword-design/base/commit/8ba5384d620d732c4147061ce6fb059eb5d55bb2))
+
+
+### Features
+
+* allow dotenv test files ([a20c395](https://github.com/dword-design/base/commit/a20c3955dc365372bdf4afdc11a2d46d16295dbf))
+
 # [6.4.0](https://github.com/dword-design/base/compare/v6.3.0...v6.4.0) (2020-03-28)
 
 
