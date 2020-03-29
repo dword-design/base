@@ -39,7 +39,7 @@ export default {
       },
       'runs-on': '${{ matrix.os }}',
       steps: [
-        { uses: 'actions/checkout@v2' },
+        { uses: 'actions/checkout@v2', with: { 'fetch-depth': 0 } },
         {
           uses: 'actions/setup-node@v1',
           with: {
