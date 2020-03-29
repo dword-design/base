@@ -39,13 +39,15 @@ export default {
       },
       'runs-on': '${{ matrix.os }}',
       steps: [
-        { uses: 'actions/checkout@v2', with: { 'fetch-depth': 0 } },
+        { uses: 'actions/checkout@v2' },
         {
           uses: 'actions/setup-node@v1',
           with: {
             'node-version': '${{ matrix.node }}',
           },
         },
+        { run: 'git config --local user.email "actions@github.com"' },
+        { run: 'git config --local user.name "GitHub Actions"' },
         { run: 'yarn --frozen-lockfile' },
         {
           run: 'yarn test',
@@ -75,13 +77,15 @@ export default {
       if: 'github.ref == \'refs/heads/master\'',
       'runs-on': 'ubuntu-latest',
       steps: [
-        { uses: 'actions/checkout@v2' },
+        { uses: 'actions/checkout@v2', with: { 'fetch-depth': 0 } },
         {
           uses: 'actions/setup-node@v1',
           with: {
             'node-version': 12,
           },
         },
+        { run: 'git config --local user.email "actions@github.com"' },
+        { run: 'git config --local user.name "GitHub Actions"' },
         { run: 'yarn --frozen-lockfile' },
         {
           name: 'Push changed files',
