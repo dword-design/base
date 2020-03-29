@@ -40,7 +40,6 @@ export default {
           "foo": "bar"
         }
       `,
-      '.test.env.schema.json': '',
       'yarn.lock': '',
     })
     await execa(require.resolve('./cli'), ['prepare'])
