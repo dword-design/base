@@ -5,6 +5,7 @@
 /.eslintrc.json
 /.nyc_output
 /.releaserc.json
+/.test.env.json
 /.vscode
 /coverage
 /dist
