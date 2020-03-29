@@ -56,8 +56,8 @@ export default {
             'node-version': '${{ matrix.node }}',
           },
         },
-        { run: 'git config --local user.email "actions@github.com"' },
-        { run: 'git config --local user.name "GitHub Actions"' },
+        { run: 'git config --global user.email "actions@github.com"' },
+        { run: 'git config --global user.name "GitHub Actions"' },
         { run: 'yarn --frozen-lockfile' },
         {
           run: 'yarn test',
@@ -94,8 +94,8 @@ export default {
             'node-version': 12,
           },
         },
-        { run: 'git config --local user.email "actions@github.com"' },
-        { run: 'git config --local user.name "GitHub Actions"' },
+        { run: 'git config --global user.email "actions@github.com"' },
+        { run: 'git config --global user.name "GitHub Actions"' },
         { run: 'yarn --frozen-lockfile' },
         {
           name: 'Push changed files',
