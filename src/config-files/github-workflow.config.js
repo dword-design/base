@@ -19,7 +19,17 @@ export default {
     },
   },
   jobs: {
+    'cancel-existing': {
+      'runs-on': 'ubuntu-latest',
+      steps: [
+        {
+          uses: 'rokroskar/workflow-run-cleanup-action@v0.2.2',
+          env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' },
+        },
+      ],
+    },
     test: {
+      needs: 'cancel-existing',
       strategy: {
         matrix: {
           os: [
