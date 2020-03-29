@@ -1,3 +1,12 @@
+## [6.5.1](https://github.com/dword-design/base/compare/v6.5.0...v6.5.1) (2020-03-29)
+
+
+### Bug Fixes
+
+* **config:** Update changed files ([12b6598](https://github.com/dword-design/base/commit/12b6598ec5a60f2a8d2bfc785d6af8e310cdc443))
+* fixes in github workflow ([18d73bc](https://github.com/dword-design/base/commit/18d73bcdb923512c7daa83e3394d77400e7a0550))
+* set checkout depth for workflows ([4a2a74e](https://github.com/dword-design/base/commit/4a2a74e927630562bee51027d384d1a3f073facc))
+
 # [6.5.0](https://github.com/dword-design/base/compare/v6.4.0...v6.5.0) (2020-03-29)
 
 
