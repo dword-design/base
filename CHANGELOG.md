@@ -1,3 +1,11 @@
+## [6.6.2](https://github.com/dword-design/base/compare/v6.6.1...v6.6.2) (2020-05-10)
+
+
+### Bug Fixes
+
+* fix various issues ([5033a96](https://github.com/dword-design/base/commit/5033a9604e89df3f197bf5b826a35873785e7c20))
+* remove test require hook ([b691060](https://github.com/dword-design/base/commit/b6910609307c483f3b704530ae0c9a24c7653a30))
+
 ## [6.6.1](https://github.com/dword-design/base/compare/v6.6.0...v6.6.1) (2020-03-29)
 
 
