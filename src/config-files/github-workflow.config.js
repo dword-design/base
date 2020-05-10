@@ -71,6 +71,14 @@ export default {
             : {},
         },
         {
+          name: 'Push changed files',
+          run: `yarn ${bin} push-changed-files`,
+          env: {
+            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+            GITHUB_REPOSITORY: '${{ secrets.GITHUB_REPOSITORY }}',
+          },
+        },
+        {
           name: 'Coveralls',
           run: `yarn ${bin} coveralls`,
           env: {
@@ -94,17 +102,7 @@ export default {
             'node-version': 12,
           },
         },
-        { run: 'git config --global user.email "actions@github.com"' },
-        { run: 'git config --global user.name "GitHub Actions"' },
         { run: 'yarn --frozen-lockfile' },
-        {
-          name: 'Push changed files',
-          run: `yarn ${bin} push-changed-files`,
-          env: {
-            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-            GITHUB_REPOSITORY: '${{ secrets.GITHUB_REPOSITORY }}',
-          },
-        },
         {
           name: 'Release',
           env: {

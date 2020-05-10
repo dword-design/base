@@ -63,7 +63,7 @@ export default {
     expect(typeof config.depcheckConfig).toEqual('object')
     expect(config.test(1)).toEqual(1)
   }),
-  'empty': () => withLocalTmpDir(() => {
+  empty: () => withLocalTmpDir(() => {
     const config = stealthyRequire(require.cache, () => require('../src/config'))
     expect(config |> omit(['commands', 'test', 'depcheckConfig'])).toEqual({
       name: '@dword-design/base-config-node',

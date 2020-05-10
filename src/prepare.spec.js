@@ -4,7 +4,7 @@ import glob from 'glob-promise'
 import execa from 'execa'
 import { includes, endent } from '@dword-design/functions'
 import { readFile } from 'fs-extra'
-import allowedFilenames from './allowed-filenames.config'
+import allowedFilenames from './allowed-filenames'
 
 export default {
   'additional file': () => withLocalTmpDir(async () => {

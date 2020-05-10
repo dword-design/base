@@ -36,6 +36,11 @@ jobs:
       - run: git config --global user.name "GitHub Actions"
       - run: yarn --frozen-lockfile
       - run: yarn test
+      - name: Push changed files
+        run: yarn dw-ci push-changed-files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
       - name: Coveralls
         run: yarn dw-ci coveralls
         env:
@@ -54,14 +59,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: git config --global user.email "actions@github.com"
-      - run: git config --global user.name "GitHub Actions"
       - run: yarn --frozen-lockfile
-      - name: Push changed files
-        run: yarn dw-ci push-changed-files
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

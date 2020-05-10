@@ -14,12 +14,11 @@
     "dist"
   ],
   "scripts": {
-    "commit": "rimraf dist && babel --config-file @dword-design/babel-config --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js commit",
-    "depgraph": "rimraf dist && babel --config-file @dword-design/babel-config --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js depgraph",
-    "prepare": "rimraf dist && babel --config-file @dword-design/babel-config --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js prepare",
-    "prepublishOnly": "rimraf dist && babel --config-file @dword-design/babel-config --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js prepublishOnly",
-    "release": "rimraf dist && babel --config-file @dword-design/babel-config --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js release",
-    "test": "rimraf dist && babel --config-file @dword-design/babel-config --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js test"
+    "commit": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js commit",
+    "depgraph": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js depgraph",
+    "prepare": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js prepare",
+    "prepublishOnly": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js prepublishOnly",
+    "test": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js test"
   },
   "dependencies": {
     "@babel/core": "^7.6.4",

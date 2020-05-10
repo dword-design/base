@@ -45,7 +45,6 @@ export default {
         depgraph: 'base depgraph',
         prepare: 'base prepare',
         prepublishOnly: 'base prepublishOnly',
-        release: 'base release',
         test: 'base test',
       },
     })
@@ -113,7 +112,6 @@ export default {
         commit: 'base commit',
         depgraph: 'base depgraph',
         prepare: 'base prepare',
-        release: 'base release',
         test: 'base test',
       },
       dependencies: {
@@ -147,7 +145,6 @@ export default {
         depgraph: 'base depgraph',
         prepare: 'base prepare',
         prepublishOnly: 'base prepublishOnly',
-        release: 'base release',
         test: 'base test',
       },
     })
@@ -205,7 +202,6 @@ export default {
         depgraph: 'base depgraph',
         prepare: 'base prepare',
         prepublishOnly: 'base prepublishOnly',
-        release: 'base release',
         test: 'base test',
       },
     })

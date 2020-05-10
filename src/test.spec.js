@@ -81,23 +81,18 @@ export default {
     expect(all).toMatch('data.name should match pattern')
   }),
   'json errors': () => withLocalTmpDir(async () => {
-    await outputFile('src/index.js', 'export default 1')
+    await outputFile('src/test.json', 'foo bar')
     await execa(require.resolve('./cli'), ['prepare'])
-    await outputFile('src/test.json', endent`
-      {
-      "foo": "bar"
-      }
-    `)
     let all
     try {
       await execa(require.resolve('./cli'), ['test'], { all: true })
     } catch (error) {
       all = error.all
     }
-    expect(all).toMatch('Format Error: expected "  "')
+    expect(all).toMatch('error  Unexpected token o')
   }),
   'linting errors': () => withLocalTmpDir(async () => {
-    await outputFile('src/index.js', 'export default 1;')
+    await outputFile('src/index.js', 'console.log(\'foo\');')
   
     await execa(require.resolve('./cli'), ['prepare'])
     let all

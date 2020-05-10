@@ -3,7 +3,7 @@ import glob from 'glob-promise'
 import { remove } from 'fs-extra'
 import { jsonToString, add, join, map, sortBy, identity, filter, unary } from '@dword-design/functions'
 import ignore from 'ignore'
-import allowedFilenames from './allowed-filenames.config'
+import allowedFilenames from './allowed-filenames'
 import editorconfigConfig from './config-files/editorconfig.config'
 import gitattributesConfig from './config-files/gitattributes.config'
 import gitignoreConfig from './config-files/gitignore.config'
@@ -14,7 +14,7 @@ import commitizenConfig from './config-files/commitizen.config'
 import renovateConfig from './config-files/renovate.config'
 import releaseConfig from './config-files/release.config'
 import packageConfig from './package-config'
-import sortpackageJson from 'sort-package-json'
+import sortPackageJson from 'sort-package-json'
 import readmeString from './readme-string'
 import licenseString from './license-string'
 import yaml from 'yaml'
@@ -36,7 +36,7 @@ export default async () => {
       |> join(''),
     'LICENSE.md': licenseString,
     'package.json': packageConfig
-      |> sortpackageJson
+      |> sortPackageJson
       |> jsonToString({ indent: 2 })
       |> add('\n'),
     'README.md': readmeString,
