@@ -1060,13 +1060,6 @@
     serve-static "^1.14.1"
     webpack-atomizer-loader dword-design/webpack-atomizer-loader#fork
 
-"@dword-design/require-hook-test@^1.0.0":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@dword-design/require-hook-test/-/require-hook-test-1.0.10.tgz#c72f58432f1d28ba8a4d33e34a0b66e5ececd22c"
-  integrity sha512-CNTWq1X2eHHEH5oRd4G8Lmg6a322QN+Gtaqdb8gmvv6ix6K2sIzs+wuDXEIyIhe9xBbdFJM8MOO+aCbnFlKPBQ==
-  dependencies:
-    "@dword-design/resolver-test" "^1.0.0"
-
 "@dword-design/reset-sass@^1.0.7":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@dword-design/reset-sass/-/reset-sass-1.0.8.tgz#ac3a3628e88d2f65763b5b70099daf44a61dd98d"

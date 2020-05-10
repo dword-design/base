@@ -131,114 +131,6 @@ export default {
     }
     expect(all).toEqual('The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL')
   }),
-  'parent package config': () => withLocalTmpDir(async () => {
-    // relevant e.g. for base-config-node
-    await outputFiles({
-      inner: {
-        'package.json': endent`
-          {
-            "baseConfig": "foo",
-            "devDependencies": {
-              "base-config-foo": "^1.0.0"
-            }
-          }
-  
-        `,
-        'test/valid.test.js': endent`
-          import foo from 'base-config-foo'
-  
-          export default () => expect(foo.prepublishOnly()).toEqual(1)
-        `,
-      },
-      'package.json': endent`
-        {
-          "name": "base-config-foo",
-          "main": "src/index.js"
-        }
-  
-      `,
-      'src/index.js': endent`
-        export default {
-          prepublishOnly: () => 1,
-        }
-      `,
-    })
-    process.chdir('inner')
-    await execa(require.resolve('./cli'), ['prepare'])
-    await execa(require.resolve('./cli'), ['test'])
-  }),
-  'parent package inside node modules': () => withLocalTmpDir(async () => {
-    await outputFiles({
-      node_modules: {
-        'bar/index.js': 'module.exports = require(\'foo\')',
-      },
-      'package.json': endent`
-        {
-          "name": "foo",
-          "devDependencies": {
-            "bar": "^1.0.0"
-          }
-        }
-  
-      `,
-      src: {
-        'index.js': 'export default 1',
-        'index.spec.js': endent`
-          import bar from 'bar'
-    
-          export default {
-            valid: () => {
-              console.log('run valid in index')
-              expect(bar).toEqual(1)
-            },
-          }
-        `,
-      },
-    })
-    await execa(require.resolve('./cli'), ['prepare'])
-    const { all } = await execa(require.resolve('./cli'), ['test'], { all: true })
-    expect(all).toMatch('run valid in index')
-  }),
-  'parent package require inside execa': () => withLocalTmpDir(async () => {
-    await outputFiles({
-      'package.json': endent`
-        {
-          "name": "foo",
-          "devDependencies": {
-            "execa": "^1.0.0",
-            "fs-extra": "^1.0.0",
-            "@dword-design/functions": "^1.0.0"
-          }
-        }
-  
-      `,
-      src: {
-        'index.js': 'export default \'foo bar\'',
-        'index.spec.js': endent`
-          import { outputFile, chmod } from 'fs-extra'
-          import execa from 'execa'
-          import { endent } from '@dword-design/functions'
-  
-          export default {
-            valid: async () => {
-              await outputFile('cli.js', endent\`
-                #!/usr/bin/env node
-        
-                import foo from 'foo'
-        
-                console.log(foo)
-              \`)
-              await chmod('cli.js', '755')
-              await execa.command('./cli.js', { stdio: 'inherit' })
-            },
-          }
-        `,
-      },
-    })
-    await execa(require.resolve('./cli'), ['prepare'])
-    const { all } = await execa(require.resolve('./cli'), ['test'], { all: true })
-    expect(all).toMatch('foo bar')
-  }),
   pattern: () => withLocalTmpDir(async () => {
     await outputFiles({
       src: {
@@ -351,7 +243,7 @@ export default {
       src: {
         'index.js': 'export default 1',
         'index.spec.js': endent`
-          import foo from 'foo'
+          import foo from '.'
     
           export default {
             valid: () => {

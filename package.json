@@ -30,7 +30,6 @@
     "@dword-design/depcheck-config": "^1.1.0",
     "@dword-design/depgraph": "^1.0.0",
     "@dword-design/functions": "^2.2.2",
-    "@dword-design/require-hook-test": "^1.0.0",
     "@eclass/semantic-release-ssh-commands": "dword-design/semantic-release-ssh-commands#fork",
     "@qawolf/ci-info": "^2.1.0",
     "@semantic-release/changelog": "^5.0.0",
