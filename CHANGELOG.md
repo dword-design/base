@@ -1,3 +1,10 @@
+## [6.7.1](https://github.com/dword-design/base/compare/v6.7.0...v6.7.1) (2020-05-11)
+
+
+### Bug Fixes
+
+* do not use package.json to calculate the config name ([2b3cf83](https://github.com/dword-design/base/commit/2b3cf835f939eeea37ee25dbabd70b92f023f3e3))
+
 # [6.7.0](https://github.com/dword-design/base/compare/v6.6.2...v6.7.0) (2020-05-11)
 
 
