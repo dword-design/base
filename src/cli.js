@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 import makeCli from 'make-cli'
-import commands from './commands'
 import { mapValues, values } from '@dword-design/functions'
+import commands from './commands'
 
 makeCli({
-  commands: commands
+  commands:
+    commands
     |> mapValues((command, name) => ({
       ...command,
       name,
@@ -15,6 +16,7 @@ makeCli({
         } catch (error) {
           console.log(error.message)
           process.exit(1)
+          return undefined
         }
       },
     }))

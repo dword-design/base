@@ -7,9 +7,8 @@ import packageConfig from '../package-config'
 const bin = ci.bin |> keys |> first
 
 const envSchemaPath = findUp.sync('.env.schema.json')
-const envVariableNames = (envSchemaPath ? require(envSchemaPath) : {})
-  |> keys
-  |> map(constantCase)
+const envVariableNames =
+  (envSchemaPath ? require(envSchemaPath) : {}) |> keys |> map(constantCase)
 
 export default {
   name: 'build',
@@ -33,18 +32,20 @@ export default {
       strategy: {
         matrix: {
           os: [
-            ...!packageConfig.private ? ['macos-latest', 'windows-latest'] : [],
+            ...(!packageConfig.private
+              ? ['macos-latest', 'windows-latest']
+              : []),
             'ubuntu-latest',
           ],
-          node: [...!packageConfig.private ? [10] : [], 12],
-          ...!packageConfig.private
+          node: [...(!packageConfig.private ? [10] : []), 12],
+          ...(!packageConfig.private
             ? {
-              exclude: [
-                { os: 'macos-latest', node: 10 },
-                { os: 'windows-latest', node: 10 },
-              ],
-            }
-            : {},
+                exclude: [
+                  { os: 'macos-latest', node: 10 },
+                  { os: 'windows-latest', node: 10 },
+                ],
+              }
+            : {}),
         },
       },
       'runs-on': '${{ matrix.os }}',
@@ -61,14 +62,14 @@ export default {
         { run: 'yarn --frozen-lockfile' },
         {
           run: 'yarn test',
-          ...envVariableNames.length > 0
+          ...(envVariableNames.length > 0
             ? {
-              env: zipObject(
-                envVariableNames,
-                envVariableNames |> map(name => `\${{ secrets.${name} }}`),
-              ),
-            }
-            : {},
+                env: zipObject(
+                  envVariableNames,
+                  envVariableNames |> map(name => `\${{ secrets.${name} }}`)
+                ),
+              }
+            : {}),
         },
         {
           name: 'Push changed files',
@@ -92,7 +93,7 @@ export default {
     },
     release: {
       needs: 'test',
-      if: 'github.ref == \'refs/heads/master\'',
+      if: "github.ref == 'refs/heads/master'",
       'runs-on': 'ubuntu-latest',
       steps: [
         { uses: 'actions/checkout@v2', with: { 'fetch-depth': 0 } },
@@ -108,13 +109,13 @@ export default {
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
             NPM_TOKEN: '${{ secrets.NPM_TOKEN }}',
-            ...packageConfig.deploy
+            ...(packageConfig.deploy
               ? {
-                SSH_HOST: 'dword-design.de',
-                SSH_USER: '${{ secrets.SSH_USER }}',
-                SSH_PRIVATE_KEY: '${{ secrets.SSH_PRIVATE_KEY }}',
-              }
-              : {},
+                  SSH_HOST: 'dword-design.de',
+                  SSH_USER: '${{ secrets.SSH_USER }}',
+                  SSH_PRIVATE_KEY: '${{ secrets.SSH_PRIVATE_KEY }}',
+                }
+              : {}),
           },
           run: 'yarn semantic-release',
         },

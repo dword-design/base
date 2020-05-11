@@ -2,6 +2,7 @@ import config from '../config'
 
 export default [
   '.DS_Store',
+  '/.babelrc.json',
   '/.cz.json',
   '/.editorconfig',
   '/.env.json',
@@ -12,5 +13,5 @@ export default [
   '/coverage',
   '/dist',
   '/node_modules',
-  ...config.gitignore ?? [],
+  ...(config.gitignore ?? []),
 ]

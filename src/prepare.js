@@ -1,9 +1,20 @@
 import outputFiles from 'output-files'
 import glob from 'glob-promise'
 import { remove } from 'fs-extra'
-import { jsonToString, add, join, map, sortBy, identity, filter, unary } from '@dword-design/functions'
+import {
+  jsonToString,
+  add,
+  join,
+  map,
+  sortBy,
+  identity,
+  filter,
+  unary,
+} from '@dword-design/functions'
 import ignore from 'ignore'
-import allowedFilenames from './allowed-filenames'
+import sortPackageJson from 'sort-package-json'
+import yaml from 'yaml'
+import allowedFilenames from './allowed-filenames.json'
 import editorconfigConfig from './config-files/editorconfig.config'
 import gitattributesConfig from './config-files/gitattributes.config'
 import gitignoreConfig from './config-files/gitignore.config'
@@ -14,14 +25,13 @@ import commitizenConfig from './config-files/commitizen.config'
 import renovateConfig from './config-files/renovate.config'
 import releaseConfig from './config-files/release.config'
 import packageConfig from './package-config'
-import sortPackageJson from 'sort-package-json'
 import readmeString from './readme-string'
 import licenseString from './license-string'
-import yaml from 'yaml'
+import babelConfig from './config-files/babel.json'
 
 export default async () => {
-
   const configFiles = {
+    '.babelrc.json': babelConfig |> jsonToString({ indent: 2 }),
     '.cz.json': commitizenConfig,
     '.editorconfig': editorconfigConfig,
     '.gitattributes': gitattributesConfig,
@@ -30,24 +40,25 @@ export default async () => {
     '.gitpod.yml': gitpodConfig,
     '.releaserc.json': releaseConfig |> jsonToString({ indent: 2 }),
     '.renovaterc.json': renovateConfig,
-    '.gitignore': gitignoreConfig
+    '.gitignore':
+      gitignoreConfig
       |> sortBy(identity)
       |> map(entry => `${entry}\n`)
       |> join(''),
     'LICENSE.md': licenseString,
-    'package.json': packageConfig
+    'package.json':
+      packageConfig
       |> sortPackageJson
       |> jsonToString({ indent: 2 })
       |> add('\n'),
     'README.md': readmeString,
   }
 
-  glob('*', { dot: true, ignore: allowedFilenames })
+  await (glob('*', { dot: true, ignore: allowedFilenames })
     |> await
     |> filter(ignore().add(gitignoreConfig).createFilter())
     |> map(unary(remove))
-    |> Promise.all
-    |> await
+    |> Promise.all)
 
   await outputFiles(configFiles)
 }

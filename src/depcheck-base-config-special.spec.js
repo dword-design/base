@@ -4,9 +4,10 @@ import { endent } from '@dword-design/functions'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
-  'dev dependency': () => withLocalTmpDir(async () => {
-    await outputFiles({
-      'depcheck.config.js': endent`
+  'dev dependency': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'depcheck.config.js': endent`
         const baseConfigSpecial = require('../src/depcheck-base-config-special')
         module.exports = {
           specials: [
@@ -15,8 +16,8 @@ export default {
           prodDependencyMatches: ['src/**'],
         }
       `,
-      'node_modules/base-config-foo/index.js': 'module.exports = 1',
-      'package.json': endent`
+        'node_modules/base-config-foo/index.js': 'module.exports = 1',
+        'package.json': endent`
         {
           "baseConfig": "foo",
           "devDependencies": {
@@ -25,13 +26,14 @@ export default {
         }
 
       `,
-    })
-    await execa.command('depcheck')
-  }),
-  'no config': () => withLocalTmpDir(async () => {
-    await outputFiles({
-      'package.json': '{}',
-      'depcheck.config.js': endent`
+      })
+      await execa.command('depcheck')
+    }),
+  'no config': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'package.json': '{}',
+        'depcheck.config.js': endent`
         const baseConfigSpecial = require('../src/depcheck-base-config-special')
         
         module.exports = {
@@ -41,12 +43,13 @@ export default {
           prodDependencyMatches: ['src/**'],
         }
       `,
-    })
-    await execa.command('depcheck')
-  }),
-  'prod dependency': () => withLocalTmpDir(async () => {
-    await outputFiles({
-      'depcheck.config.js': endent`
+      })
+      await execa.command('depcheck')
+    }),
+  'prod dependency': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'depcheck.config.js': endent`
         const baseConfigSpecial = require('../src/depcheck-base-config-special')
 
         module.exports = {
@@ -56,8 +59,8 @@ export default {
           prodDependencyMatches: ['src/**'],
         }
       `,
-      'node_modules/base-config-foo/index.js': 'module.exports = 1',
-      'package.json': endent`
+        'node_modules/base-config-foo/index.js': 'module.exports = 1',
+        'package.json': endent`
         {
           "baseConfig": "foo",
           "dependencies": {
@@ -66,13 +69,13 @@ export default {
         }
 
       `,
-    })
-    let all
-    try {
-      await execa.command('depcheck', { all: true })
-    } catch (error) {
-      all = error.all
-    }
-    expect(all).toEqual('Unused dependencies\n* base-config-foo')
-  }),
+      })
+      let all
+      try {
+        await execa.command('depcheck', { all: true })
+      } catch (error) {
+        all = error.all
+      }
+      expect(all).toEqual('Unused dependencies\n* base-config-foo')
+    }),
 }

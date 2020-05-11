@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "commit": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js commit",
-    "depgraph": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js depgraph",
+    "dev": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js dev",
     "prepare": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js prepare",
     "prepublishOnly": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js prepublishOnly",
     "test": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js test"
@@ -24,10 +24,9 @@
     "@babel/core": "^7.6.4",
     "@babel/register": "^7.6.2",
     "@dword-design/babel-config": "^1.0.10",
-    "@dword-design/base-config-node": "^1.0.0",
+    "@dword-design/base-config-node": "^1.6.0",
     "@dword-design/ci": "^1.0.1",
     "@dword-design/depcheck-config": "^1.1.0",
-    "@dword-design/depgraph": "^1.0.0",
     "@dword-design/functions": "^2.2.2",
     "@eclass/semantic-release-ssh-commands": "dword-design/semantic-release-ssh-commands#fork",
     "@qawolf/ci-info": "^2.1.0",
@@ -70,7 +69,6 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
-    "axios": "^0.19.2",
     "p-event": "^4.1.0",
     "port-ready": "^0.1.0",
     "rimraf": "^3.0.0",

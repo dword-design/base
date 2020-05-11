@@ -1,18 +1,12 @@
+import { mapValues } from '@dword-design/functions'
 import commit from './commit'
-import depgraph from './depgraph'
 import test from './test'
 import config from './config'
-import { mapValues } from '@dword-design/functions'
 
 export default {
   commit: {
-    options: [
-      { name: '--allow-empty', description: 'Allow empty commits' },
-    ],
+    options: [{ name: '--allow-empty', description: 'Allow empty commits' }],
     handler: commit,
-  },
-  depgraph: {
-    handler: depgraph,
   },
   test: {
     arguments: '[pattern]',
@@ -24,5 +18,5 @@ export default {
     ],
     handler: test,
   },
-  ...config.commands |> mapValues(handler => ({ handler })),
+  ...(config.commands |> mapValues(handler => ({ handler }))),
 }

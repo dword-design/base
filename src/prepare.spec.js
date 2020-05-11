@@ -4,25 +4,31 @@ import glob from 'glob-promise'
 import execa from 'execa'
 import { includes, endent } from '@dword-design/functions'
 import { readFile } from 'fs-extra'
-import allowedFilenames from './allowed-filenames'
+import allowedFilenames from './allowed-filenames.json'
 
 export default {
-  'additional file': () => withLocalTmpDir(async () => {
-    await outputFiles({
-      'src/index.js': 'export default 1',
-      'test/foo.test.js': '',
-      'foo.txt': '',
-    })
-    await execa(require.resolve('./cli'), ['prepare'])
-    expect(glob('*', { dot: true }) |> await |> includes('foo.txt')).toBeFalsy()
-  }),
-  valid: () => withLocalTmpDir(async () => {
-    await execa.command('git init')
-    await execa.command('git remote add origin git@github.com:dword-design/bar.git')
-    await outputFiles({
-      'CHANGELOG.md': '',
-      doc: {},
-      'package.json': endent`
+  'additional file': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'src/index.js': 'export default 1',
+        'test/foo.test.js': '',
+        'foo.txt': '',
+      })
+      await execa(require.resolve('./cli'), ['prepare'])
+      expect(
+        glob('*', { dot: true }) |> await |> includes('foo.txt')
+      ).toBeFalsy()
+    }),
+  valid: () =>
+    withLocalTmpDir(async () => {
+      await execa.command('git init')
+      await execa.command(
+        'git remote add origin git@github.com:dword-design/bar.git'
+      )
+      await outputFiles({
+        'CHANGELOG.md': '',
+        doc: {},
+        'package.json': endent`
         {
           "name": "foo",
           "license": "MIT",
@@ -30,40 +36,40 @@ export default {
         }
   
       `,
-      'src/index.js': 'export default 1',
-      'supporting-files': {},
-      'test/foo.test.js': '',
-      '.env.json': '',
-      '.test.env.json': '',
-      '.env.schema.json': endent`
+        'src/index.js': 'export default 1',
+        'supporting-files': {},
+        'test/foo.test.js': '',
+        '.env.json': '',
+        '.test.env.json': '',
+        '.env.schema.json': endent`
         {
           "foo": "bar"
         }
       `,
-      'yarn.lock': '',
-    })
-    await execa(require.resolve('./cli'), ['prepare'])
-    expect(await glob('*', { dot: true })).toEqual(
-      [
-        '.cz.json',
-        '.editorconfig',
-        '.env.json',
-        '.test.env.json',
-        '.gitattributes',
-        '.github',
-        '.gitignore',
-        '.gitpod.Dockerfile',
-        '.gitpod.yml',
-        '.releaserc.json',
-        '.renovaterc.json',
-        'LICENSE.md',
-        'package.json',
-        'README.md',
-        ...allowedFilenames,
-      ]
-        .sort((a, b) => a.localeCompare(b)),
-    )
-    expect(await readFile('README.md', 'utf8')).toEqual(endent`
+        'yarn.lock': '',
+      })
+      await execa(require.resolve('./cli'), ['prepare'])
+      expect(await glob('*', { dot: true })).toEqual(
+        [
+          '.babelrc.json',
+          '.cz.json',
+          '.editorconfig',
+          '.env.json',
+          '.test.env.json',
+          '.gitattributes',
+          '.github',
+          '.gitignore',
+          '.gitpod.Dockerfile',
+          '.gitpod.yml',
+          '.releaserc.json',
+          '.renovaterc.json',
+          'LICENSE.md',
+          'package.json',
+          'README.md',
+          ...allowedFilenames,
+        ].sort((a, b) => a.localeCompare(b))
+      )
+      expect(await readFile('README.md', 'utf8')).toEqual(endent`
       <!-- TITLE/ -->
       # foo
       <!-- /TITLE -->
@@ -108,6 +114,6 @@ export default {
       <!-- /LICENSE -->
 
     `)
-    expect(await readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
-  }),
+      expect(await readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
+    }),
 }

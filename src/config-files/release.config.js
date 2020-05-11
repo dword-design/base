@@ -10,16 +10,23 @@ export default {
     getPackageName(require.resolve('@semantic-release/changelog')),
     getPackageName(require.resolve('@semantic-release/github')),
     getPackageName(require.resolve('@semantic-release/git')),
-    getPackageName(require.resolve('@semantic-release/npm')),
-    ...packageConfig.deploy
+    ...(!packageConfig.private
+      ? [getPackageName(require.resolve('@semantic-release/npm'))]
+      : []),
+    ...(packageConfig.deploy
       ? (() => {
-        const name = packageConfig.name |> parsePkgName |> property('name')
-        return [
-          [getPackageName(require.resolve('@eclass/semantic-release-ssh-commands')), {
-            publishCmd: `source ~/.nvm/nvm.sh && cd /var/www/${name} && deploy`,
-          }],
-        ]
-      })()
-      : [],
+          const name = packageConfig.name |> parsePkgName |> property('name')
+          return [
+            [
+              getPackageName(
+                require.resolve('@eclass/semantic-release-ssh-commands')
+              ),
+              {
+                publishCmd: `source ~/.nvm/nvm.sh && cd /var/www/${name} && deploy`,
+              },
+            ],
+          ]
+        })()
+      : []),
   ],
 }
