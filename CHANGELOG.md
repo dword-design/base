@@ -1,3 +1,10 @@
+# [6.7.0](https://github.com/dword-design/base/compare/v6.6.2...v6.7.0) (2020-05-11)
+
+
+### Features
+
+* a lot of things ([80c8c66](https://github.com/dword-design/base/commit/80c8c6657abae0bfbb5c4e91fa01d017d25432e2))
+
 ## [6.6.2](https://github.com/dword-design/base/compare/v6.6.1...v6.6.2) (2020-05-10)
 
 
