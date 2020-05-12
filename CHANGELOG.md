@@ -1,3 +1,10 @@
+# [6.8.0](https://github.com/dword-design/base/compare/v6.7.1...v6.8.0) (2020-05-12)
+
+
+### Features
+
+* add vscode config file ([7b2ab2e](https://github.com/dword-design/base/commit/7b2ab2ebce14cb6aabea03c968012cfb2846aa6e))
+
 ## [6.7.1](https://github.com/dword-design/base/compare/v6.7.0...v6.7.1) (2020-05-11)
 
 
