@@ -28,6 +28,7 @@ import packageConfig from './package-config'
 import readmeString from './readme-string'
 import licenseString from './license-string'
 import babelConfig from './config-files/babel.json'
+import vscodeConfig from './config-files/vscode.json'
 
 export default async () => {
   const configFiles = {
@@ -45,6 +46,7 @@ export default async () => {
       |> sortBy(identity)
       |> map(entry => `${entry}\n`)
       |> join(''),
+    '.vscode/settings.json': vscodeConfig |> jsonToString({ indent: 2 }),
     'LICENSE.md': licenseString,
     'package.json':
       packageConfig

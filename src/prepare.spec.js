@@ -63,6 +63,7 @@ export default {
           '.gitpod.yml',
           '.releaserc.json',
           '.renovaterc.json',
+          '.vscode',
           'LICENSE.md',
           'package.json',
           'README.md',

@@ -314,6 +314,7 @@ export default {
         '.nyc_output',
         '.releaserc.json',
         '.renovaterc.json',
+        '.vscode',
         'coverage',
         'LICENSE.md',
         'node_modules',

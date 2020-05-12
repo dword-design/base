@@ -1,0 +1,22 @@
+{
+  "files.exclude": {
+    ".babelrc.json": true,
+    ".cz.json": true,
+    ".editorconfig": true,
+    ".eslintrc.json": true,
+    ".gitattributes": true,
+    ".github": true,
+    ".gitignore": true,
+    ".gitpod.Dockerfile": true,
+    ".gitpod.yml": true,
+    ".nyc_output": true,
+    ".releaserc.json": true,
+    ".renovaterc.json": true,
+    "CHANGELOG.md": true,
+    "coverage": true,
+    "dist": true,
+    "LICENSE.md": true,
+    "node_modules": true,
+    "yarn.lock": true
+  }
+}
