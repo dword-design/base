@@ -1,3 +1,10 @@
+# [6.9.0](https://github.com/dword-design/base/compare/v6.8.0...v6.9.0) (2020-05-12)
+
+
+### Features
+
+* add allowed matches to config ([eb610e1](https://github.com/dword-design/base/commit/eb610e1dabdc67927742a896a218f83c982db4df))
+
 # [6.8.0](https://github.com/dword-design/base/compare/v6.7.1...v6.8.0) (2020-05-12)
 
 
