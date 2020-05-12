@@ -4,7 +4,7 @@ import glob from 'glob-promise'
 import execa from 'execa'
 import { includes, endent } from '@dword-design/functions'
 import { readFile } from 'fs-extra'
-import allowedFilenames from './allowed-filenames.json'
+import commonAllowedMatches from './common-allowed-matches.json'
 
 export default {
   'additional file': () =>
@@ -18,6 +18,30 @@ export default {
       expect(
         glob('*', { dot: true }) |> await |> includes('foo.txt')
       ).toBeFalsy()
+    }),
+  'additional allowed match': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'node_modules/foo/index.js': endent`
+          module.exports = {
+            allowedMatches: [
+              'foo.txt',
+            ],
+          }
+        `,
+        'package.json': JSON.stringify(
+          {
+            baseConfig: 'foo',
+          },
+          undefined,
+          2
+        ),
+        'foo.txt': '',
+      })
+      await execa(require.resolve('./cli'), ['prepare'], { stdio: 'inherit' })
+      expect(
+        glob('*', { dot: true }) |> await |> includes('foo.txt')
+      ).toBeTruthy()
     }),
   valid: () =>
     withLocalTmpDir(async () => {
@@ -67,7 +91,7 @@ export default {
           'LICENSE.md',
           'package.json',
           'README.md',
-          ...allowedFilenames,
+          ...commonAllowedMatches,
         ].sort((a, b) => a.localeCompare(b))
       )
       expect(await readFile('README.md', 'utf8')).toEqual(endent`

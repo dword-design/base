@@ -14,7 +14,7 @@ import {
 import ignore from 'ignore'
 import sortPackageJson from 'sort-package-json'
 import yaml from 'yaml'
-import allowedFilenames from './allowed-filenames.json'
+import allowedMatches from './allowed-matches.config'
 import editorconfigConfig from './config-files/editorconfig.config'
 import gitattributesConfig from './config-files/gitattributes.config'
 import gitignoreConfig from './config-files/gitignore.config'
@@ -56,7 +56,7 @@ export default async () => {
     'README.md': readmeString,
   }
 
-  await (glob('*', { dot: true, ignore: allowedFilenames })
+  await (glob('*', { dot: true, ignore: allowedMatches })
     |> await
     |> filter(ignore().add(gitignoreConfig).createFilter())
     |> map(unary(remove))
