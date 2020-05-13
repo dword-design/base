@@ -72,9 +72,15 @@ export default async (pattern, { grep }) => {
         require.resolve('./pretest'),
         '--all',
         '--include',
-        'src/**/*.js',
+        '**/*.js',
         '--exclude',
         '**/*.spec.js',
+        '--exclude',
+        'coverage/**',
+        '--exclude',
+        'tmp-*/**',
+        '--exclude',
+        'dist/**',
         'mocha',
         '--ui',
         'exports-auto-describe',
@@ -84,7 +90,9 @@ export default async (pattern, { grep }) => {
         80000,
         ...(grep !== undefined ? ['--grep', grep] : []),
         ...(process.platform === 'win32' ? ['--exit'] : []),
-        ...(pattern !== undefined ? [pattern] : ['src/**/*.spec.js']),
+        ...(pattern !== undefined
+          ? [pattern]
+          : ['{,!(node_modules)/**/}*.spec.js']),
       ],
       {
         stdio: 'inherit',

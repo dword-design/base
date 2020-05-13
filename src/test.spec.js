@@ -323,6 +323,35 @@ export default {
         'src',
       ])
     }),
+  'test in project root': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'node_modules/foo/index.js': endent`
+          module.exports = {
+            allowedMatches: [
+              'index.spec.js',
+            ],
+          }
+        `,
+        'package.json': endent`
+          {
+            "baseConfig": "foo"
+          }
+    
+        `,
+        'index.spec.js': endent`
+          export default {
+            valid: () => console.log('run test')
+          }
+
+        `,
+      })
+      await execa(require.resolve('./cli'), ['prepare'])
+      const { all } = await execa(require.resolve('./cli'), ['test'], {
+        all: true,
+      })
+      expect(all).toMatch('run test')
+    }),
   'wrong dependencies type': () =>
     withLocalTmpDir(async () => {
       await outputFile(
