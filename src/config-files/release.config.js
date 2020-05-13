@@ -9,9 +9,13 @@ export default {
     '@semantic-release/release-notes-generator',
     getPackageName(require.resolve('@semantic-release/changelog')),
     getPackageName(require.resolve('@semantic-release/github')),
-    ...[packageConfig.private
-      ? [getPackageName(require.resolve('@semantic-release/npm')), { npmPublish: false }]
-      : getPackageName(require.resolve('@semantic-release/npm'))
+    ...[
+      packageConfig.private
+        ? [
+            getPackageName(require.resolve('@semantic-release/npm')),
+            { npmPublish: false },
+          ]
+        : getPackageName(require.resolve('@semantic-release/npm')),
     ],
     ...(packageConfig.deploy
       ? (() => {
