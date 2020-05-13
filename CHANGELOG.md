@@ -1,3 +1,15 @@
+# [6.10.0](https://github.com/dword-design/base/compare/v6.9.1...v6.10.0) (2020-05-13)
+
+
+### Bug Fixes
+
+* fix tests ([097a66c](https://github.com/dword-design/base/commit/097a66c738ef30ac39535a087e54df71b573d807))
+
+
+### Features
+
+* add custom prepare function ([245fc7f](https://github.com/dword-design/base/commit/245fc7fbad66c5adafba40589913ce808cd7842b))
+
 ## [6.9.1](https://github.com/dword-design/base/compare/v6.9.0...v6.9.1) (2020-05-13)
 
 
