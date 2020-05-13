@@ -38,10 +38,32 @@ export default {
         ),
         'foo.txt': '',
       })
-      await execa(require.resolve('./cli'), ['prepare'], { stdio: 'inherit' })
+      await execa(require.resolve('./cli'), ['prepare'])
       expect(
         glob('*', { dot: true }) |> await |> includes('foo.txt')
       ).toBeTruthy()
+    }),
+  'custom prepare': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'node_modules/foo/index.js': endent`
+          module.exports = {
+            prepare: () => console.log('custom prepare'),
+          }
+        `,
+        'package.json': JSON.stringify(
+          {
+            baseConfig: 'foo',
+          },
+          undefined,
+          2
+        ),
+        'foo.txt': '',
+      })
+      const { all } = await execa(require.resolve('./cli'), ['prepare'], {
+        all: true,
+      })
+      expect(all).toMatch('custom prepare')
     }),
   valid: () =>
     withLocalTmpDir(async () => {

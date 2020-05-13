@@ -16,6 +16,7 @@ export default {
   depcheckConfig,
   gitignore: [],
   main: 'index.js',
+  prepare: identity,
   test: identity,
   commands: {},
   ...(testInContainer ? { testInContainer } : {}),

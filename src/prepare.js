@@ -29,9 +29,16 @@ import readmeString from './readme-string'
 import licenseString from './license-string'
 import babelConfig from './config-files/babel.json'
 import vscodeConfig from './config-files/vscode.json'
+import config from './config'
 
 export default async () => {
-  const configFiles = {
+  await (glob('*', { dot: true, ignore: allowedMatches })
+    |> await
+    |> filter(ignore().add(gitignoreConfig).createFilter())
+    |> map(unary(remove))
+    |> Promise.all)
+
+  await outputFiles({
     '.babelrc.json': babelConfig |> jsonToString({ indent: 2 }),
     '.cz.json': commitizenConfig,
     '.editorconfig': editorconfigConfig,
@@ -54,13 +61,7 @@ export default async () => {
       |> jsonToString({ indent: 2 })
       |> add('\n'),
     'README.md': readmeString,
-  }
+  })
 
-  await (glob('*', { dot: true, ignore: allowedMatches })
-    |> await
-    |> filter(ignore().add(gitignoreConfig).createFilter())
-    |> map(unary(remove))
-    |> Promise.all)
-
-  await outputFiles(configFiles)
+  await config.prepare()
 }
