@@ -1,3 +1,10 @@
+## [6.9.1](https://github.com/dword-design/base/compare/v6.9.0...v6.9.1) (2020-05-13)
+
+
+### Bug Fixes
+
+* run tests from root ([535de02](https://github.com/dword-design/base/commit/535de0274ed955a5b32b7509931099492b97a72c))
+
 # [6.9.0](https://github.com/dword-design/base/compare/v6.8.0...v6.9.0) (2020-05-12)
 
 
