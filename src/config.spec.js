@@ -11,7 +11,8 @@ export default {
         module.exports = {
           gitignore: ['foo'],
           main: 'index.scss',
-          test: x => x + 2,
+          prepare: x => x + 2,
+          test: x => x + 3,
           commands: {
             prepublishOnly: x => x + 1,
             start: x => x + 3,
@@ -28,7 +29,9 @@ export default {
       `,
       })
       const config = stealthyRequire(require.cache, () => require('./config'))
-      expect(config |> omit(['commands', 'depcheckConfig', 'test'])).toEqual({
+      expect(
+        config |> omit(['commands', 'depcheckConfig', 'prepare', 'test'])
+      ).toEqual({
         name: 'base-config-foo',
         gitignore: ['foo'],
         main: 'index.scss',
@@ -39,7 +42,8 @@ export default {
       ])
       expect(config.commands.prepublishOnly(1)).toEqual(2)
       expect(config.commands.start(1)).toEqual(4)
-      expect(config.test(1)).toEqual(3)
+      expect(config.prepare(1)).toEqual(3)
+      expect(config.test(1)).toEqual(4)
       expect(typeof config.depcheckConfig).toEqual('object')
     }),
   'custom config': () =>
@@ -56,7 +60,7 @@ export default {
       `,
       })
       const config = stealthyRequire(require.cache, () => require('./config'))
-      expect(config |> omit(['depcheckConfig', 'test'])).toEqual({
+      expect(config |> omit(['depcheckConfig', 'prepare', 'test'])).toEqual({
         name: 'base-config-foo',
         gitignore: [],
         main: 'index.js',
@@ -68,7 +72,9 @@ export default {
   empty: () =>
     withLocalTmpDir(() => {
       const config = stealthyRequire(require.cache, () => require('./config'))
-      expect(config |> omit(['commands', 'test', 'depcheckConfig'])).toEqual({
+      expect(
+        config |> omit(['commands', 'prepare', 'test', 'depcheckConfig'])
+      ).toEqual({
         name: '@dword-design/base-config-node',
         gitignore: ['/.eslintrc.json'],
         main: 'index.js',
@@ -79,6 +85,7 @@ export default {
         'gitignore',
         'main',
         'name',
+        'prepare',
         'test',
       ])
     }),
