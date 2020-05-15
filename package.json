@@ -28,7 +28,7 @@
     "@dword-design/ci": "^1.0.1",
     "@dword-design/depcheck-config": "^1.1.0",
     "@dword-design/functions": "^2.2.2",
-    "@eclass/semantic-release-ssh-commands": "dword-design/semantic-release-ssh-commands#fork",
+    "@eclass/semantic-release-ssh-commands": "^1.0.1",
     "@qawolf/ci-info": "^2.1.0",
     "@semantic-release/changelog": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
