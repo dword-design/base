@@ -1,3 +1,10 @@
+## [6.10.2](https://github.com/dword-design/base/compare/v6.10.1...v6.10.2) (2020-05-15)
+
+
+### Bug Fixes
+
+* use semantic-release-vserver ([7d8cdb7](https://github.com/dword-design/base/commit/7d8cdb70780793d2ae20b0d03e4d6f07aa3daddb))
+
 ## [6.10.1](https://github.com/dword-design/base/compare/v6.10.0...v6.10.1) (2020-05-15)
 
 
