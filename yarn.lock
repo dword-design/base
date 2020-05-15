@@ -906,6 +906,16 @@
     safe-require dword-design/node-safe-require#fork
     vue-eslint-parser "^7.0.0"
 
+"@dword-design/functions@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-1.1.1.tgz#255a4661dba1271f70fe40d0dc7379a14b685294"
+  integrity sha512-djaV/ExhyXvhHOyisML8GGULqgbQsydpsf3Lfqe0D0GKeWPrsnYBqmJHk80wRzYqiRtbVPE9LadYVrIz/m4LUg==
+  dependencies:
+    endent dword-design/endent#fork
+    lodash "^4.17.15"
+    p-is-promise "^3.0.0"
+    tinycolor2 "^1.4.1"
+
 "@dword-design/functions@^2.2.2", "@dword-design/functions@^2.2.4", "@dword-design/functions@^2.7.2":
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-2.7.2.tgz#08ef65bf7fea7cfb1e4252ce4536df46b866cf0e"
@@ -922,6 +932,16 @@
   dependencies:
     "@babel/core" "^7.7.7"
     fs-extra "^9.0.0"
+
+"@dword-design/semantic-release-vserver@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/semantic-release-vserver/-/semantic-release-vserver-1.0.0.tgz#421d1b1fedcde8931946fdca1ca72f7dca87c2bc"
+  integrity sha512-OuPiMwtGEbOAUTnJRcVv0zz40CHhx7qpUBDOKeD/cvHpJCqoYRWcd0YSb3BG8zG0Knsm4M3FzGuR8uy1OEFVlQ==
+  dependencies:
+    "@dword-design/functions" "^1.1.1"
+    "@eclass/semantic-release-ssh-commands" "^1.0.1"
+    parse-pkg-name "^2.0.0"
+    read-pkg-up "^7.0.1"
 
 "@eclass/semantic-release-ssh-commands@^1.0.1":
   version "1.0.1"
