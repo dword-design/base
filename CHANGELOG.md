@@ -1,3 +1,11 @@
+## [6.10.1](https://github.com/dword-design/base/compare/v6.10.0...v6.10.1) (2020-05-15)
+
+
+### Bug Fixes
+
+* fix release config ([ec06dc7](https://github.com/dword-design/base/commit/ec06dc72ca1ef4b2e6314f2cb0d6ebe8b744dd3f))
+* use official ssh commands version ([755c58f](https://github.com/dword-design/base/commit/755c58fd7faccc33ba6fb63b62d058a5e8ebf880))
+
 # [6.10.0](https://github.com/dword-design/base/compare/v6.9.1...v6.10.0) (2020-05-13)
 
 
