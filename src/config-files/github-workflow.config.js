@@ -3,6 +3,7 @@ import ci from '@dword-design/ci/package.json'
 import findUp from 'find-up'
 import { constantCase } from 'constant-case'
 import packageConfig from '../package-config'
+import config from '../config'
 
 const bin = ci.bin |> keys |> first
 
@@ -113,14 +114,10 @@ export default {
           name: 'Release',
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-            NPM_TOKEN: '${{ secrets.NPM_TOKEN }}',
-            ...(packageConfig.deploy
-              ? {
-                  SSH_HOST: 'dword-design.de',
-                  SSH_USER: '${{ secrets.SSH_USER }}',
-                  SSH_PRIVATE_KEY: '${{ secrets.SSH_PRIVATE_KEY }}',
-                }
+            ...(config.npmPublish
+              ? { NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' }
               : {}),
+            ...packageConfig.deployEnv,
           },
           run: 'yarn semantic-release',
         },

@@ -20,6 +20,9 @@ export default {
           deployPlugins: [
             'semantic-release-foo',
           ],
+          deployEnv: {
+            'FOO': '\${{ secrets.FOO }}',
+          },
         }
       `,
         'package.json': endent`
@@ -39,6 +42,9 @@ export default {
         gitignore: ['foo'],
         main: 'index.scss',
         deployPlugins: ['semantic-release-foo'],
+        deployEnv: {
+          FOO: '${{ secrets.FOO }}',
+        },
       })
       expect(config.commands |> keys |> sortBy(identity)).toEqual([
         'prepublishOnly',
@@ -70,6 +76,7 @@ export default {
         main: 'index.js',
         commands: {},
         deployPlugins: [],
+        deployEnv: {},
       })
       expect(typeof config.depcheckConfig).toEqual('object')
       expect(config.test(1)).toEqual(1)
@@ -86,11 +93,13 @@ export default {
         main: 'index.js',
         npmPublish: true,
         deployPlugins: [],
+        deployEnv: {},
       })
       expect(config |> keys |> sortBy(identity)).toEqual([
         'allowedMatches',
         'commands',
         'depcheckConfig',
+        'deployEnv',
         'deployPlugins',
         'gitignore',
         'main',
