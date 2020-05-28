@@ -9,12 +9,12 @@ export default {
     getPackageName(require.resolve('@semantic-release/changelog')),
     getPackageName(require.resolve('@semantic-release/github')),
     ...[
-      packageConfig.private || !config.npmPublish
-        ? [
+      config.npmPublish
+        ? getPackageName(require.resolve('@semantic-release/npm'))
+        : [
             getPackageName(require.resolve('@semantic-release/npm')),
             { npmPublish: false },
-          ]
-        : getPackageName(require.resolve('@semantic-release/npm')),
+          ],
     ],
     ...(packageConfig.private ? [] : config.deployPlugins),
     getPackageName(require.resolve('@semantic-release/git')),

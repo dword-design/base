@@ -21,31 +21,6 @@ export default {
         ],
       })
     }),
-  private: () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'package.json',
-        JSON.stringify({ private: true }, undefined, 2)
-      )
-      const config = stealthyRequire(require.cache, () =>
-        require('./release.config')
-      )
-      expect(config).toEqual({
-        plugins: [
-          '@semantic-release/commit-analyzer',
-          '@semantic-release/release-notes-generator',
-          '@semantic-release/changelog',
-          '@semantic-release/github',
-          [
-            '@semantic-release/npm',
-            {
-              npmPublish: false,
-            },
-          ],
-          '@semantic-release/git',
-        ],
-      })
-    }),
   'custom config': () =>
     withLocalTmpDir(async () => {
       await outputFiles({

@@ -1,4 +1,4 @@
-import { keys, first, map, zipObject } from '@dword-design/functions'
+import { keys, first, map, zipObject, endent } from '@dword-design/functions'
 import ci from '@dword-design/ci/package.json'
 import findUp from 'find-up'
 import { constantCase } from 'constant-case'
@@ -31,36 +31,41 @@ export default {
       needs: 'cancel-existing',
       strategy: {
         matrix: {
-          os: [
-            ...(!packageConfig.private
-              ? ['macos-latest', 'windows-latest']
-              : []),
-            'ubuntu-latest',
+          os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
+          node: [10, 12],
+          exclude: [
+            { os: 'macos-latest', node: 10 },
+            { os: 'windows-latest', node: 10 },
           ],
-          node: [...(!packageConfig.private ? [10] : []), 12],
-          ...(!packageConfig.private
-            ? {
-                exclude: [
-                  { os: 'macos-latest', node: 10 },
-                  { os: 'windows-latest', node: 10 },
-                ],
-              }
-            : {}),
         },
       },
       'runs-on': '${{ matrix.os }}',
       steps: [
-        { uses: 'actions/checkout@v2' },
         {
+          if:
+            "!github.event.repository.private || (matrix.os == 'ubuntu-latest' && matrix.node == 12)",
+          uses: 'actions/checkout@v2',
+        },
+        {
+          if:
+            "!github.event.repository.private || (matrix.os == 'ubuntu-latest' && matrix.node == 12)",
           uses: 'actions/setup-node@v1',
           with: {
             'node-version': '${{ matrix.node }}',
           },
         },
-        { run: 'git config --global user.email "actions@github.com"' },
-        { run: 'git config --global user.name "GitHub Actions"' },
-        { run: 'yarn --frozen-lockfile' },
         {
+          if:
+            "!github.event.repository.private || (matrix.os == 'ubuntu-latest' && matrix.node == 12)",
+          run: endent`
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Actions"
+            yarn --frozen-lockfile
+          `,
+        },
+        {
+          if:
+            "!github.event.repository.private || (matrix.os == 'ubuntu-latest' && matrix.node == 12)",
           run: 'yarn test',
           ...(envVariableNames.length > 0
             ? {
