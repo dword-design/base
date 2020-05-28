@@ -16,7 +16,10 @@ export default {
           commands: {
             prepublishOnly: x => x + 1,
             start: x => x + 3,
-          }
+          },
+          deployPlugins: [
+            'semantic-release-foo',
+          ],
         }
       `,
         'package.json': endent`
@@ -35,6 +38,7 @@ export default {
         name: 'base-config-foo',
         gitignore: ['foo'],
         main: 'index.scss',
+        deployPlugins: ['semantic-release-foo'],
       })
       expect(config.commands |> keys |> sortBy(identity)).toEqual([
         'prepublishOnly',
@@ -65,6 +69,7 @@ export default {
         gitignore: [],
         main: 'index.js',
         commands: {},
+        deployPlugins: [],
       })
       expect(typeof config.depcheckConfig).toEqual('object')
       expect(config.test(1)).toEqual(1)
@@ -76,15 +81,21 @@ export default {
         config |> omit(['commands', 'prepare', 'test', 'depcheckConfig'])
       ).toEqual({
         name: '@dword-design/base-config-node',
+        allowedMatches: ['src'],
         gitignore: ['/.eslintrc.json'],
         main: 'index.js',
+        npmPublish: true,
+        deployPlugins: [],
       })
       expect(config |> keys |> sortBy(identity)).toEqual([
+        'allowedMatches',
         'commands',
         'depcheckConfig',
+        'deployPlugins',
         'gitignore',
         'main',
         'name',
+        'npmPublish',
         'prepare',
         'test',
       ])

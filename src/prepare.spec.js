@@ -101,6 +101,7 @@ export default {
           '.cz.json',
           '.editorconfig',
           '.env.json',
+          '.eslintrc.json',
           '.test.env.json',
           '.gitattributes',
           '.github',
