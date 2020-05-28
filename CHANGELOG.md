@@ -1,3 +1,10 @@
+# [6.12.0](https://github.com/dword-design/base/compare/v6.11.0...v6.12.0) (2020-05-28)
+
+
+### Features
+
+* detect private repos inside the workflow ([687593d](https://github.com/dword-design/base/commit/687593d42c2d60140027c8086c9d0a316851af09))
+
 # [6.11.0](https://github.com/dword-design/base/compare/v6.10.2...v6.11.0) (2020-05-28)
 
 
