@@ -1,3 +1,10 @@
+# [6.11.0](https://github.com/dword-design/base/compare/v6.10.2...v6.11.0) (2020-05-28)
+
+
+### Features
+
+* simplified release config ([1f6c41e](https://github.com/dword-design/base/commit/1f6c41eea50942783a78cd6682ad4fcef63968a7))
+
 ## [6.10.2](https://github.com/dword-design/base/compare/v6.10.1...v6.10.2) (2020-05-15)
 
 
