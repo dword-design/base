@@ -18,6 +18,7 @@ export default {
   main: 'index.js',
   prepare: identity,
   test: identity,
+  deployPlugins: [],
   commands: {},
   ...(testInContainer ? { testInContainer } : {}),
   ...config,

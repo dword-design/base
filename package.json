@@ -28,7 +28,6 @@
     "@dword-design/ci": "^1.0.1",
     "@dword-design/depcheck-config": "^1.1.0",
     "@dword-design/functions": "^2.2.2",
-    "@dword-design/semantic-release-vserver": "^1.0.0",
     "@qawolf/ci-info": "^2.1.0",
     "@semantic-release/changelog": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
