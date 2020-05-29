@@ -2,7 +2,6 @@ import { keys, first, map, zipObject } from '@dword-design/functions'
 import ci from '@dword-design/ci/package.json'
 import findUp from 'find-up'
 import { constantCase } from 'constant-case'
-import packageConfig from '../package-config'
 import config from '../config'
 
 const bin = ci.bin |> keys |> first
