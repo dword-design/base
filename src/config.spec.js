@@ -92,6 +92,7 @@ export default {
         gitignore: ['/.eslintrc.json'],
         main: 'index.js',
         npmPublish: true,
+        useJobMatrix: true,
         deployPlugins: [],
         deployEnv: {},
       })
@@ -107,6 +108,7 @@ export default {
         'npmPublish',
         'prepare',
         'test',
+        'useJobMatrix',
       ])
     }),
 }
