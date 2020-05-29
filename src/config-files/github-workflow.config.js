@@ -30,43 +30,31 @@ export default {
     },
     test: {
       needs: 'cancel-existing',
-      strategy: {
-        matrix: {
-          os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
-          node: [10, 12],
-          exclude: [
-            { os: 'macos-latest', node: 10 },
-            { os: 'windows-latest', node: 10 },
-          ],
-        },
-      },
-      'runs-on': '${{ matrix.os }}',
-      steps: [
-        {
-          if:
-            "!github.event.repository.private || (matrix.os == 'ubuntu-latest' && matrix.node == 12)",
-          uses: 'actions/checkout@v2',
-        },
-        {
-          if:
-            "!github.event.repository.private || (matrix.os == 'ubuntu-latest' && matrix.node == 12)",
-          uses: 'actions/setup-node@v1',
-          with: {
-            'node-version': '${{ matrix.node }}',
+      ...config.useJobMatrix && {
+        strategy: {
+          matrix: {
+            os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
+            node: [10, 12],
+            exclude: [
+              { os: 'macos-latest', node: 10 },
+              { os: 'windows-latest', node: 10 },
+            ],
           },
         },
+      },
+      'runs-on': config.useJobMatrix ? '${{ matrix.os }}' : 'ubuntu-latest',
+      steps: [
+        { uses: 'actions/checkout@v2' },
         {
-          if:
-            "!github.event.repository.private || (matrix.os == 'ubuntu-latest' && matrix.node == 12)",
-          run: endent`
-            git config --global user.email "actions@github.com"
-            git config --global user.name "GitHub Actions"
-            yarn --frozen-lockfile
-          `,
+          uses: 'actions/setup-node@v1',
+          with: {
+            'node-version': config.useJobMatrix ? '${{ matrix.node }}' : 12,
+          },
         },
+        { run: 'git config --global user.email "actions@github.com"' },
+        { run: 'git config --global user.name "GitHub Actions"' },
+        { run: 'yarn --frozen-lockfile' },
         {
-          if:
-            "!github.event.repository.private || (matrix.os == 'ubuntu-latest' && matrix.node == 12)",
           run: 'yarn test',
           ...(envVariableNames.length > 0
             ? {

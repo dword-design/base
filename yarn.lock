@@ -891,9 +891,9 @@
     param-case "^3.0.3"
 
 "@dword-design/base-config-node@^1.6.0":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.7.1.tgz#f7ba275412894f2953d6baf2ffaa8b47f111ff95"
-  integrity sha512-IZIoo/xfl5dZS9Dy1sYfH9sD5nXqhTJcs1Xz8lVidccZo95wUdXnRMsCU2booA5LKJZ4v1etuAWthbn5Mg0ISA==
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.8.0.tgz#b0004a80c3e8227843d7f1a4d6debb4f7343254d"
+  integrity sha512-ws+SWpUh1O3EyavsYh7iOcQ1V7QOUOPMQxpkPSROdP8+4kdyUb8RbhJnIB5K3nJauJeTMGwkig9zc2krUCX/QA==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
@@ -3160,7 +3160,7 @@ eslint-module-utils@^2.4.1:
     debug "^2.6.9"
     pkg-dir "^2.0.0"
 
-eslint-plugin-import@dword-design/eslint-plugin-import#fork:
+"eslint-plugin-import@github:dword-design/eslint-plugin-import#fork":
   version "2.20.1"
   resolved "https://codeload.github.com/dword-design/eslint-plugin-import/tar.gz/092878bcc1f9b7ef80ca755bfd77e13b15aa9ef3"
   dependencies:
@@ -7051,7 +7051,7 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@prettier/prettier#19545e049ea424273fb6d647eefd1787d998b333:
+"prettier@github:prettier/prettier#19545e049ea424273fb6d647eefd1787d998b333":
   version "2.1.0-dev"
   resolved "https://codeload.github.com/prettier/prettier/tar.gz/19545e049ea424273fb6d647eefd1787d998b333"
   dependencies:
@@ -7793,7 +7793,7 @@ safe-regex@^1.1.0:
   dependencies:
     ret "~0.1.10"
 
-safe-require@dword-design/node-safe-require#fork:
+safe-require@dword-design/node-safe-require#fork, "safe-require@github:dword-design/node-safe-require#fork":
   version "1.0.3"
   resolved "https://codeload.github.com/dword-design/node-safe-require/tar.gz/53682cf7aa25d784c6278f8ccbc9986ad0dd5f38"
 
