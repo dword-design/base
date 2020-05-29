@@ -1,5 +1,4 @@
 import getPackageName from 'get-package-name'
-import packageConfig from '../package-config'
 import config from '../config'
 
 export default {
@@ -13,7 +12,7 @@ export default {
           getPackageName(require.resolve('@semantic-release/npm')),
           { npmPublish: false },
         ],
-    ...(packageConfig.private ? [] : config.deployPlugins),
+    ...config.deployPlugins,
     config.deployAssets.length
       ? [
           getPackageName(require.resolve('@semantic-release/github')),
