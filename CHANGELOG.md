@@ -1,3 +1,11 @@
+## [6.13.1](https://github.com/dword-design/base/compare/v6.13.0...v6.13.1) (2020-05-29)
+
+
+### Bug Fixes
+
+* fix ([5664d41](https://github.com/dword-design/base/commit/5664d41bb34e905cdcef7032ff532cffa058cce7))
+* use deploy env from config ([2ad465d](https://github.com/dword-design/base/commit/2ad465df25444e6845e19d366bc9fb813e4960d3))
+
 # [6.13.0](https://github.com/dword-design/base/compare/v6.12.1...v6.13.0) (2020-05-29)
 
 
