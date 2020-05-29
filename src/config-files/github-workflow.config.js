@@ -105,7 +105,7 @@ export default {
             ...(config.npmPublish
               ? { NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' }
               : {}),
-            ...packageConfig.deployEnv,
+            ...config.deployEnv,
           },
           run: 'yarn semantic-release',
         },
