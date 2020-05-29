@@ -1,3 +1,10 @@
+# [6.14.0](https://github.com/dword-design/base/compare/v6.13.1...v6.14.0) (2020-05-29)
+
+
+### Features
+
+* add deploy assets ([30e6b01](https://github.com/dword-design/base/commit/30e6b018ee8bdcca418563a34c2d69fab3774d44))
+
 ## [6.13.1](https://github.com/dword-design/base/compare/v6.13.0...v6.13.1) (2020-05-29)
 
 
