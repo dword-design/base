@@ -18,5 +18,8 @@ export default {
     ],
     handler: test,
   },
-  ...(config.commands |> mapValues(handler => ({ handler }))),
+  ...(config.commands
+    |> mapValues(command =>
+      typeof command === 'function' ? { handler: command } : command
+    )),
 }
