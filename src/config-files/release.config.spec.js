@@ -15,8 +15,8 @@ export default {
           '@semantic-release/commit-analyzer',
           '@semantic-release/release-notes-generator',
           '@semantic-release/changelog',
-          '@semantic-release/github',
           '@semantic-release/npm',
+          '@semantic-release/github',
           '@semantic-release/git',
         ],
       })
@@ -41,13 +41,13 @@ export default {
           '@semantic-release/commit-analyzer',
           '@semantic-release/release-notes-generator',
           '@semantic-release/changelog',
-          '@semantic-release/github',
           [
             '@semantic-release/npm',
             {
               npmPublish: false,
             },
           ],
+          '@semantic-release/github',
           '@semantic-release/git',
         ],
       })
@@ -73,7 +73,6 @@ export default {
           '@semantic-release/commit-analyzer',
           '@semantic-release/release-notes-generator',
           '@semantic-release/changelog',
-          '@semantic-release/github',
           [
             '@semantic-release/npm',
             {
@@ -81,6 +80,44 @@ export default {
             },
           ],
           'semantic-release-foo',
+          '@semantic-release/github',
+          '@semantic-release/git',
+        ],
+      })
+    }),
+  'deploy assets': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'node_modules/foo/index.js':
+          "module.exports = { deployAssets: [{ path: 'foo.js', label: 'Foo' }] }",
+        'package.json': JSON.stringify(
+          {
+            baseConfig: 'foo',
+          },
+          undefined,
+          2
+        ),
+      })
+      const config = stealthyRequire(require.cache, () =>
+        require('./release.config')
+      )
+      expect(config).toEqual({
+        plugins: [
+          '@semantic-release/commit-analyzer',
+          '@semantic-release/release-notes-generator',
+          '@semantic-release/changelog',
+          [
+            '@semantic-release/npm',
+            {
+              npmPublish: false,
+            },
+          ],
+          [
+            '@semantic-release/github',
+            {
+              assets: [{ path: 'foo.js', label: 'Foo' }],
+            },
+          ],
           '@semantic-release/git',
         ],
       })

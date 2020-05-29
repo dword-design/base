@@ -19,6 +19,7 @@ export default {
   prepare: identity,
   test: identity,
   deployPlugins: [],
+  deployAssets: [],
   deployEnv: {},
   commands: {},
   ...(testInContainer ? { testInContainer } : {}),

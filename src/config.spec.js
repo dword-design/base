@@ -20,6 +20,9 @@ export default {
           deployPlugins: [
             'semantic-release-foo',
           ],
+          deployAssets: [
+            { path: 'foo.js', label: 'Foo' },
+          ],
           deployEnv: {
             'FOO': '\${{ secrets.FOO }}',
           },
@@ -42,6 +45,7 @@ export default {
         gitignore: ['foo'],
         main: 'index.scss',
         deployPlugins: ['semantic-release-foo'],
+        deployAssets: [{ path: 'foo.js', label: 'Foo' }],
         deployEnv: {
           FOO: '${{ secrets.FOO }}',
         },
@@ -76,6 +80,7 @@ export default {
         main: 'index.js',
         commands: {},
         deployPlugins: [],
+        deployAssets: [],
         deployEnv: {},
       })
       expect(typeof config.depcheckConfig).toEqual('object')
@@ -94,12 +99,14 @@ export default {
         npmPublish: true,
         useJobMatrix: true,
         deployPlugins: [],
+        deployAssets: [],
         deployEnv: {},
       })
       expect(config |> keys |> sortBy(identity)).toEqual([
         'allowedMatches',
         'commands',
         'depcheckConfig',
+        'deployAssets',
         'deployEnv',
         'deployPlugins',
         'gitignore',
