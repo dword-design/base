@@ -1,3 +1,16 @@
+# [6.13.0](https://github.com/dword-design/base/compare/v6.12.1...v6.13.0) (2020-05-29)
+
+
+### Bug Fixes
+
+* fix unneeded import ([04bb520](https://github.com/dword-design/base/commit/04bb520712ebb1dbbb1f3556c226e29fdb3fd0a2))
+
+
+### Features
+
+* add useJobMatrix config option ([64456f5](https://github.com/dword-design/base/commit/64456f5a685a407530e10daf989fc1bb2db62b34))
+* allow params for commands ([6254c5b](https://github.com/dword-design/base/commit/6254c5bca127ca62dfeac23228efa36d5b1a840a))
+
 ## [6.12.1](https://github.com/dword-design/base/compare/v6.12.0...v6.12.1) (2020-05-28)
 
 
