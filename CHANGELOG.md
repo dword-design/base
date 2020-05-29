@@ -1,3 +1,10 @@
+# [6.15.0](https://github.com/dword-design/base/compare/v6.14.0...v6.15.0) (2020-05-29)
+
+
+### Features
+
+* add deploy plugins always ([de30ba3](https://github.com/dword-design/base/commit/de30ba378c8264f69ac0cbf567a2d81ccbf1f356))
+
 # [6.14.0](https://github.com/dword-design/base/compare/v6.13.1...v6.14.0) (2020-05-29)
 
 
