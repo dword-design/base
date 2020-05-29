@@ -1,4 +1,4 @@
-import { keys, first, map, zipObject, endent } from '@dword-design/functions'
+import { keys, first, map, zipObject } from '@dword-design/functions'
 import ci from '@dword-design/ci/package.json'
 import findUp from 'find-up'
 import { constantCase } from 'constant-case'
@@ -30,7 +30,7 @@ export default {
     },
     test: {
       needs: 'cancel-existing',
-      ...config.useJobMatrix && {
+      ...(config.useJobMatrix && {
         strategy: {
           matrix: {
             os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
@@ -41,7 +41,7 @@ export default {
             ],
           },
         },
-      },
+      }),
       'runs-on': config.useJobMatrix ? '${{ matrix.os }}' : 'ubuntu-latest',
       steps: [
         { uses: 'actions/checkout@v2' },
