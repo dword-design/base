@@ -74,7 +74,9 @@ export default {
         },
         {
           name: 'Coveralls',
-          ...config.useJobMatrix && { if: "matrix.os == 'ubuntu-latest' && matrix.node == 12" },
+          ...(config.useJobMatrix && {
+            if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
+          }),
           run: `yarn ${bin} coveralls`,
           env: {
             COVERALLS_REPO_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
