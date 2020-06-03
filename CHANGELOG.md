@@ -1,3 +1,10 @@
+## [6.15.1](https://github.com/dword-design/base/compare/v6.15.0...v6.15.1) (2020-06-03)
+
+
+### Bug Fixes
+
+* run coveralls only once ([4400cff](https://github.com/dword-design/base/commit/4400cffe0da763772266873a2f7e75f8723eed7e))
+
 # [6.15.0](https://github.com/dword-design/base/compare/v6.14.0...v6.15.0) (2020-05-29)
 
 
