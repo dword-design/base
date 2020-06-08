@@ -1,3 +1,10 @@
+## [6.15.2](https://github.com/dword-design/base/compare/v6.15.1...v6.15.2) (2020-06-08)
+
+
+### Bug Fixes
+
+* only push back on one system ([3eeaad0](https://github.com/dword-design/base/commit/3eeaad0aefd2eabc96ddd4d56efe22a5d69162f9))
+
 ## [6.15.1](https://github.com/dword-design/base/compare/v6.15.0...v6.15.1) (2020-06-03)
 
 
