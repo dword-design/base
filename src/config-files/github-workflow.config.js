@@ -66,6 +66,9 @@ export default {
         },
         {
           name: 'Push changed files',
+          ...(config.useJobMatrix && {
+            if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
+          }),
           run: `yarn ${bin} push-changed-files`,
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
