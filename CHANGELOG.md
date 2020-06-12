@@ -1,3 +1,10 @@
+## [6.15.4](https://github.com/dword-design/base/compare/v6.15.3...v6.15.4) (2020-06-12)
+
+
+### Bug Fixes
+
+* remove unneeded files ([8222f0c](https://github.com/dword-design/base/commit/8222f0ca3bf24368ce0504f430141aca087c81d6))
+
 ## [6.15.3](https://github.com/dword-design/base/compare/v6.15.2...v6.15.3) (2020-06-12)
 
 
