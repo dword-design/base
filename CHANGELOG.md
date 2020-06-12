@@ -1,3 +1,12 @@
+## [6.15.5](https://github.com/dword-design/base/compare/v6.15.4...v6.15.5) (2020-06-12)
+
+
+### Bug Fixes
+
+* comment strange babel behavior ([77c1967](https://github.com/dword-design/base/commit/77c1967867a14b0db7676d7407a8624a16fff2be))
+* remove babel cache dir ([19698a6](https://github.com/dword-design/base/commit/19698a6352586664c0f7ef8ec118135eb3e8e18c))
+* remove test env ([8d47374](https://github.com/dword-design/base/commit/8d47374f597e35e8ad1ee7e72ea742cf770fe2e8))
+
 ## [6.15.4](https://github.com/dword-design/base/compare/v6.15.3...v6.15.4) (2020-06-12)
 
 
