@@ -285,17 +285,20 @@ export default {
           2
         ),
         src: {
-          'index.js': 'export default 1',
+          'index.js': endent`
+            export default 1
+            
+          `,
           'index.spec.js': endent`
           import foo from '.'
     
           export default {
             valid: () => {
-              expect(process.env.NODE_ENV).toEqual('test')
               expect(foo).toEqual(1)
               console.log('run test')
             },
           }
+          
         `,
         },
       })
