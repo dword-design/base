@@ -13,6 +13,7 @@ import {
   zipObject,
 } from '@dword-design/functions'
 import { existsSync } from 'fs-extra'
+import getPackageName from 'get-package-name'
 import config from './config'
 import commands from './additional-commands'
 
@@ -64,7 +65,9 @@ export default {
     commandNames
       |> map(name =>
         packageConfig.name === '@dword-design/base'
-          ? `rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
+          ? `rimraf dist && babel --config-file ${getPackageName(
+              require.resolve('@dword-design/babel-config')
+            )} --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
           : `base ${name}`
       )
   ),

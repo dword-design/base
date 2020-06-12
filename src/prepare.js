@@ -27,7 +27,7 @@ import releaseConfig from './config-files/release.config'
 import packageConfig from './package-config'
 import readmeString from './readme-string'
 import licenseString from './license-string'
-import babelConfig from './config-files/babel.json'
+import babelConfig from './config-files/babel.config'
 import vscodeConfig from './config-files/vscode.json'
 import config from './config'
 
