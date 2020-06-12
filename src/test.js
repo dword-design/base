@@ -1,5 +1,4 @@
 import execa from 'execa'
-import P from 'path'
 import { filter, join } from '@dword-design/functions'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
@@ -94,20 +93,7 @@ export default async (pattern, options) => {
         ...(process.platform === 'win32' ? ['--exit'] : []),
         ...(pattern ? [pattern] : ['{,!(node_modules)/**/}*.spec.js']),
       ],
-      {
-        stdio: 'inherit',
-        env: {
-          ...process.env,
-          BABEL_CACHE_PATH: P.join(
-            process.cwd(),
-            'node_modules',
-            '.cache',
-            '@babel',
-            'register',
-            '.babel.json'
-          ),
-        },
-      }
+      { stdio: 'inherit' }
     )
   }
   throw new Error(
