@@ -3,8 +3,8 @@ import spdxList from 'spdx-license-list/full'
 import { endent } from '@dword-design/functions'
 import packageConfig from './package-config'
 
-const { license: licenseName } = spdxParse(packageConfig.license)
-const license = spdxList[licenseName]
+const parsed = spdxParse(packageConfig.license)
+const license = spdxList[parsed.license]
 
 export default endent`
   # License

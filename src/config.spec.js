@@ -12,7 +12,7 @@ export default {
           gitignore: ['foo'],
           main: 'index.scss',
           prepare: x => x + 2,
-          test: x => x + 3,
+          lint: x => x + 3,
           commands: {
             prepublishOnly: x => x + 1,
             start: x => x + 3,
@@ -28,18 +28,20 @@ export default {
           },
         }
       `,
-        'package.json': endent`
-        {
-          "baseConfig": "foo",
-          "devDependencies": {
-            "base-config-foo": "^1.0.0"
-          }
-        }
-      `,
+        'package.json': JSON.stringify(
+          {
+            baseConfig: 'foo',
+            devDependencies: {
+              'base-config-foo': '^1.0.0',
+            },
+          },
+          undefined,
+          2
+        ),
       })
       const config = stealthyRequire(require.cache, () => require('./config'))
       expect(
-        config |> omit(['commands', 'depcheckConfig', 'prepare', 'test'])
+        config |> omit(['commands', 'depcheckConfig', 'prepare', 'lint'])
       ).toEqual({
         name: 'base-config-foo',
         gitignore: ['foo'],
@@ -57,24 +59,26 @@ export default {
       expect(config.commands.prepublishOnly(1)).toEqual(2)
       expect(config.commands.start(1)).toEqual(4)
       expect(config.prepare(1)).toEqual(3)
-      expect(config.test(1)).toEqual(4)
+      expect(config.lint(1)).toEqual(4)
       expect(typeof config.depcheckConfig).toEqual('object')
     }),
   'custom config': () =>
     withLocalTmpDir(async () => {
       await outputFiles({
         'node_modules/base-config-foo/index.js': '',
-        'package.json': endent`
-        {
-          "baseConfig": "foo",
-          "devDependencies": {
-            "base-config-foo": "^1.0.0"
-          }
-        }
-      `,
+        'package.json': JSON.stringify(
+          {
+            baseConfig: 'foo',
+            devDependencies: {
+              'base-config-foo': '^1.0.0',
+            },
+          },
+          undefined,
+          2
+        ),
       })
       const config = stealthyRequire(require.cache, () => require('./config'))
-      expect(config |> omit(['depcheckConfig', 'prepare', 'test'])).toEqual({
+      expect(config |> omit(['depcheckConfig', 'prepare', 'lint'])).toEqual({
         name: 'base-config-foo',
         gitignore: [],
         main: 'index.js',
@@ -84,13 +88,13 @@ export default {
         deployEnv: {},
       })
       expect(typeof config.depcheckConfig).toEqual('object')
-      expect(config.test(1)).toEqual(1)
+      expect(config.lint(1)).toEqual(1)
     }),
   empty: () =>
     withLocalTmpDir(() => {
       const config = stealthyRequire(require.cache, () => require('./config'))
       expect(
-        config |> omit(['commands', 'prepare', 'test', 'depcheckConfig'])
+        config |> omit(['commands', 'prepare', 'lint', 'depcheckConfig'])
       ).toEqual({
         name: '@dword-design/base-config-node',
         allowedMatches: ['src'],
@@ -110,11 +114,11 @@ export default {
         'deployEnv',
         'deployPlugins',
         'gitignore',
+        'lint',
         'main',
         'name',
         'npmPublish',
         'prepare',
-        'test',
         'useJobMatrix',
       ])
     }),

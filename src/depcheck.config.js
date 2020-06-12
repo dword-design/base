@@ -10,9 +10,9 @@ export default {
   ignores:
     (typeof baseConfig === 'string'
       ? undefined
-      : baseConfig?.depcheckConfig?.ignoreMatches) ?? [],
+      : baseConfig?.depcheckConfig?.ignoreMatches) || [],
   ignoreDirs: ['.nyc_output', '.vscode', 'coverage', 'dist'],
   prodDependencyMatches: ['!**/*.spec.js'],
   ...config.depcheckConfig,
-  specials: [baseConfigSpecial, ...(config.depcheckConfig.specials ?? [])],
+  specials: [baseConfigSpecial, ...(config.depcheckConfig.specials || [])],
 }

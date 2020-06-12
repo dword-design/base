@@ -1,27 +1,28 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import outputFiles from 'output-files'
-import { endent, mapValues } from '@dword-design/functions'
+import { mapValues } from '@dword-design/functions'
 import stealthyRequire from 'stealthy-require'
 
-const runTest = ({ shortName, longName }) => () =>
+const runTest = config => () =>
   withLocalTmpDir(async () => {
     await outputFiles({
-      [`node_modules/${longName}/index.js`]: '',
-      ...(shortName
+      [`node_modules/${config.longName}/index.js`]: '',
+      ...(config.shortName
         ? {
-            'package.json': endent`
+            'package.json': JSON.stringify(
               {
-                "baseConfig": "${shortName}"
-              }
-
-            `,
+                baseConfig: config.shortName,
+              },
+              undefined,
+              2
+            ),
           }
         : {}),
     })
     const configName = stealthyRequire(require.cache, () =>
       require('./config-name')
     )
-    expect(configName).toEqual(longName)
+    expect(configName).toEqual(config.longName)
   })
 
 export default {

@@ -165,13 +165,13 @@ export default {
         },
       })
       await execa(require.resolve('./cli'), ['prepare'])
-      const { all } = await execa(
+      const output = await execa(
         require.resolve('./cli'),
         ['test', 'src/index2.spec.js'],
         { all: true }
       )
-      expect(all).not.toMatch('run index1')
-      expect(all).toMatch('run index2')
+      expect(output.all).not.toMatch('run index1')
+      expect(output.all).toMatch('run index2')
     }),
   grep: () =>
     withLocalTmpDir(async () => {
@@ -187,26 +187,27 @@ export default {
         },
       })
       await execa(require.resolve('./cli'), ['prepare'])
-      const { all } = await execa(
+      const output = await execa(
         require.resolve('./cli'),
         ['test', '--grep', 'foo'],
         { all: true }
       )
-      expect(all).not.toMatch('run bar')
-      expect(all).toMatch('run foo')
+      expect(output.all).not.toMatch('run bar')
+      expect(output.all).toMatch('run foo')
     }),
   'prod dependency only in test': () =>
     withLocalTmpDir(async () => {
       await outputFiles({
         'node_modules/bar/index.js': 'export default 1',
-        'package.json': endent`
-        {
-          "dependencies": {
-            "bar": "^1.0.0"
-          }
-        }
-  
-      `,
+        'package.json': JSON.stringify(
+          {
+            dependencies: {
+              bar: '^1.0.0',
+            },
+          },
+          undefined,
+          2
+        ),
         src: {
           'index.js': 'export default 1',
           'index.spec.js': endent`
@@ -250,14 +251,15 @@ export default {
   'unused dependecy': () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        'package.json': endent`
-        {
-          "dependencies": {
-            "change-case": "^1.0.0"
-          }
-        }
-  
-      `,
+        'package.json': JSON.stringify(
+          {
+            dependencies: {
+              'change-case': '^1.0.0',
+            },
+          },
+          undefined,
+          2
+        ),
         'src/index.js': 'export default 1',
       })
       await execa(require.resolve('./cli'), ['prepare'])
@@ -275,12 +277,13 @@ export default {
   valid: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        'package.json': endent`
-        {
-          "name": "foo"
-        }
-  
-      `,
+        'package.json': JSON.stringify(
+          {
+            name: 'foo',
+          },
+          undefined,
+          2
+        ),
         src: {
           'index.js': 'export default 1',
           'index.spec.js': endent`
@@ -297,10 +300,10 @@ export default {
         },
       })
       await execa(require.resolve('./cli'), ['prepare'])
-      const { all } = await execa(require.resolve('./cli'), ['test'], {
+      const output = await execa(require.resolve('./cli'), ['test'], {
         all: true,
       })
-      expect(all).toMatch('run test')
+      expect(output.all).toMatch('run test')
       expect(await glob('*', { dot: true })).toEqual([
         '.babelrc.json',
         '.cz.json',
@@ -333,12 +336,13 @@ export default {
             ],
           }
         `,
-        'package.json': endent`
+        'package.json': JSON.stringify(
           {
-            "baseConfig": "foo"
-          }
-    
-        `,
+            baseConfig: 'foo',
+          },
+          undefined,
+          2
+        ),
         'index.spec.js': endent`
           export default {
             valid: () => console.log('run test')
@@ -347,20 +351,22 @@ export default {
         `,
       })
       await execa(require.resolve('./cli'), ['prepare'])
-      const { all } = await execa(require.resolve('./cli'), ['test'], {
+      const output = await execa(require.resolve('./cli'), ['test'], {
         all: true,
       })
-      expect(all).toMatch('run test')
+      expect(output.all).toMatch('run test')
     }),
   'wrong dependencies type': () =>
     withLocalTmpDir(async () => {
       await outputFile(
         'package.json',
-        endent`
-      {
-        "dependencies": 1
-      }
-    `
+        JSON.stringify(
+          {
+            dependencies: 1,
+          },
+          undefined,
+          2
+        )
       )
       await execa(require.resolve('./cli'), ['prepare'])
       let all

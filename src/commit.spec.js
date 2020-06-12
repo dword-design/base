@@ -41,8 +41,8 @@ export default {
       await outputFile('foo.txt', '')
       await execa.command('git add .')
       await commit()
-      const { stdout } = await execa.command('git log')
-      expect(stdout).toMatch('feat(config): foo bar')
+      const output = await execa.command('git log')
+      expect(output.stdout).toMatch('feat(config): foo bar')
     }),
   'allow-empty': () =>
     withLocalTmpDir(async () => {
@@ -50,7 +50,7 @@ export default {
       await execa.command('git config --global user.name "foo"')
       await execa.command('git init')
       await commit(['--allow-empty'])
-      const { stdout } = await execa.command('git log')
-      expect(stdout).toMatch('feat(config): foo bar')
+      const output = await execa.command('git log')
+      expect(output.stdout).toMatch('feat(config): foo bar')
     }),
 }

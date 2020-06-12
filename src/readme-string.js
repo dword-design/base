@@ -5,7 +5,7 @@ import replacements from './readme-replacements.config'
 import packageConfig from './package-config'
 
 const readme =
-  safeReadFileSync('README.md', 'utf8') ??
+  safeReadFileSync('README.md', 'utf8') ||
   endent`
   <!-- TITLE -->
 

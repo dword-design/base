@@ -17,15 +17,16 @@ export default {
         }
       `,
         'node_modules/base-config-foo/index.js': 'module.exports = 1',
-        'package.json': endent`
-        {
-          "baseConfig": "foo",
-          "devDependencies": {
-            "base-config-foo": "^1.0.0"
-          }
-        }
-
-      `,
+        'package.json': JSON.stringify(
+          {
+            baseConfig: 'foo',
+            devDependencies: {
+              'base-config-foo': '^1.0.0',
+            },
+          },
+          undefined,
+          2
+        ),
       })
       await execa.command('depcheck')
     }),
@@ -60,15 +61,16 @@ export default {
         }
       `,
         'node_modules/base-config-foo/index.js': 'module.exports = 1',
-        'package.json': endent`
-        {
-          "baseConfig": "foo",
-          "dependencies": {
-            "base-config-foo": "^1.0.0"
-          }
-        }
-
-      `,
+        'package.json': JSON.stringify(
+          {
+            baseConfig: 'foo',
+            dependencies: {
+              'base-config-foo': '^1.0.0',
+            },
+          },
+          undefined,
+          2
+        ),
       })
       let all
       try {

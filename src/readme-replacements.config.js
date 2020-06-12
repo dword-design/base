@@ -3,41 +3,41 @@ import spdxList from 'spdx-license-list/full'
 import { endent, join } from '@dword-design/functions'
 
 export default {
-  title: ({ name }) => `# ${name}`,
-  badges: ({ name, repository }) =>
+  title: packageConfig => `# ${packageConfig.name}`,
+  badges: packageConfig =>
     [
-      `[![NPM version](https://img.shields.io/npm/v/${name}.svg)](https://npmjs.org/package/${name})`,
+      `[![NPM version](https://img.shields.io/npm/v/${packageConfig.name}.svg)](https://npmjs.org/package/${packageConfig.name})`,
       '![Linux macOS Windows compatible](https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue)',
-      `[![Build status](https://img.shields.io/github/workflow/status/${repository}/build)](https://github.com/${repository}/actions)`,
-      `[![Coverage status](https://img.shields.io/coveralls/${repository})](https://coveralls.io/github/${repository})`,
-      `[![Dependency status](https://img.shields.io/david/${repository})](https://david-dm.org/${repository})`,
+      `[![Build status](https://img.shields.io/github/workflow/status/${packageConfig.repository}/build)](https://github.com/${packageConfig.repository}/actions)`,
+      `[![Coverage status](https://img.shields.io/coveralls/${packageConfig.repository})](https://coveralls.io/github/${packageConfig.repository})`,
+      `[![Dependency status](https://img.shields.io/david/${packageConfig.repository})](https://david-dm.org/${packageConfig.repository})`,
       '![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen)',
       '',
-      `[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/${repository})`,
+      `[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/${packageConfig.repository})`,
     ] |> join('\n'),
-  description: ({ description }) => description,
-  install: ({ name }) => endent`
+  description: packageConfig => packageConfig.description,
+  install: packageConfig => endent`
     ## Install
 
     \`\`\`bash
     # NPM
-    $ npm install ${name}
+    $ npm install ${packageConfig.name}
 
     # Yarn
-    $ yarn add ${name}
+    $ yarn add ${packageConfig.name}
     \`\`\`
   `,
-  license: ({ author, license: licenseExpression }) => {
-    if (licenseExpression !== undefined) {
-      const { license: licenseName } = spdxParse(licenseExpression)
-      const license = spdxList[licenseName]
+  license: packageConfig => {
+    if (packageConfig.license) {
+      const parsed = spdxParse(packageConfig.license)
+      const license = spdxList[parsed.license]
 
       return endent`
         ## License
 
         Unless stated otherwise all works are:
 
-        Copyright &copy; ${author}
+        Copyright &copy; ${packageConfig.author}
 
         and licensed under:
 

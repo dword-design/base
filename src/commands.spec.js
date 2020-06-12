@@ -14,22 +14,21 @@ export default {
           },
         }
       `,
-        'package.json': endent`
-        {
-          "baseConfig": "foo",
-          "devDependencies": {
-            "base-config-foo": "^1.0.0"
-          }
-        }
-
-      `,
+        'package.json': JSON.stringify(
+          {
+            baseConfig: 'foo',
+            devDependencies: {
+              'base-config-foo': '^1.0.0',
+            },
+          },
+          undefined,
+          2
+        ),
         'src/index.js': 'export default 1',
       })
-      const { all } = await execa(
-        require.resolve('./cli'),
-        ['prepublishOnly'],
-        { all: true }
-      )
-      expect(all).toEqual('foo')
+      const output = await execa(require.resolve('./cli'), ['prepublishOnly'], {
+        all: true,
+      })
+      expect(output.all).toEqual('foo')
     }),
 }

@@ -16,7 +16,7 @@ import { existsSync } from 'fs-extra'
 import config from './config'
 import commands from './additional-commands'
 
-const packageConfig = safeRequire(P.join(process.cwd(), 'package.json')) ?? {}
+const packageConfig = safeRequire(P.join(process.cwd(), 'package.json')) || {}
 const commandNames = ['prepare', ...(commands |> keys)]
 
 const gitUrl =
@@ -47,8 +47,8 @@ export default {
       'devDependencies',
       'publishConfig',
     ])),
-  version: packageConfig.version ?? '1.0.0',
-  description: packageConfig.description ?? '',
+  version: packageConfig.version || '1.0.0',
+  description: packageConfig.description || '',
   publishConfig: {
     access: 'public',
   },

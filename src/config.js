@@ -7,7 +7,7 @@ import name from './config-name'
 
 const config = require(resolveFrom(process.cwd(), name))
 const baseConfig =
-  safeRequire(P.join(process.cwd(), 'package.json'))?.baseConfig ?? {}
+  safeRequire(P.join(process.cwd(), 'package.json'))?.baseConfig || {}
 const testInContainer =
   typeof baseConfig === 'string' ? undefined : baseConfig?.testInContainer
 
@@ -17,7 +17,7 @@ export default {
   gitignore: [],
   main: 'index.js',
   prepare: identity,
-  test: identity,
+  lint: identity,
   deployPlugins: [],
   deployAssets: [],
   deployEnv: {},

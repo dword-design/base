@@ -1,11 +1,11 @@
 import execa from 'execa'
 
-export default ({ allowEmpty, verify }) =>
+export default options =>
   execa(
     'git-cz',
     [
-      ...(allowEmpty ? ['--allow-empty'] : []),
-      ...(verify ? [] : ['--no-verify']),
+      ...(options.allowEmpty ? ['--allow-empty'] : []),
+      ...(options.verify ? [] : ['--no-verify']),
     ],
     { stdio: 'inherit' }
   )

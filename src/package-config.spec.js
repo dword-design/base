@@ -14,20 +14,21 @@ export default {
           main: 'index.scss',
         }
       `,
-        'package.json': endent`
-        {
-          "baseConfig": "foo",
-          "devDependencies": {
-            "base-config-foo": "^1.0.0"
-          }
-        }
-
-      `,
+        'package.json': JSON.stringify(
+          {
+            baseConfig: 'foo',
+            devDependencies: {
+              'base-config-foo': '^1.0.0',
+            },
+          },
+          undefined,
+          2
+        ),
       })
-      const { main } = stealthyRequire(require.cache, () =>
+      const packageConfig = stealthyRequire(require.cache, () =>
         require('./package-config')
       )
-      expect(main).toEqual('dist/index.scss')
+      expect(packageConfig.main).toEqual('dist/index.scss')
     }),
   empty: () =>
     withLocalTmpDir(() => {
@@ -47,6 +48,7 @@ export default {
         scripts: {
           commit: 'base commit',
           dev: 'base dev',
+          lint: 'base lint',
           prepare: 'base prepare',
           prepublishOnly: 'base prepublishOnly',
           test: 'base test',
@@ -57,40 +59,38 @@ export default {
     withLocalTmpDir(async () => {
       await outputFiles({
         'node_modules/base-config-bar/index.js': '',
-        'package.json': endent`
-        {
-          "name": "foo",
-          "version": "1.1.0",
-          "description": "foo bar",
-          "baseConfig": "bar",
-          "license": "ISC",
-          "author": "foo bar",
-          "files": "foo",
-          "main": "dist/index.scss",
-          "publishConfig": {
-            "access": "public"
+        'package.json': JSON.stringify(
+          {
+            name: 'foo',
+            version: '1.1.0',
+            description: 'foo bar',
+            baseConfig: 'bar',
+            license: 'ISC',
+            author: 'foo bar',
+            files: 'foo',
+            main: 'dist/index.scss',
+            publishConfig: {
+              access: 'public',
+            },
+            keywords: ['foo', 'bar'],
+            bin: {
+              foo: './dist/cli.js',
+            },
+            extra: 'foo',
+            scripts: {
+              test: 'echo \\"foo\\"',
+              foo: 'echo \\"foo\\"',
+            },
+            dependencies: {
+              foo: '^1.0.0',
+            },
+            devDependencies: {
+              'base-config-bar': '^1.0.0',
+            },
           },
-          "keywords": [
-            "foo",
-            "bar"
-          ],
-          "bin": {
-            "foo": "./dist/cli.js"
-          },
-          "extra": "foo",
-          "scripts": {
-            "test": "echo \\"foo\\"",
-            "foo": "echo \\"foo\\""
-          },
-          "dependencies": {
-            "foo": "^1.0.0"
-          },
-          "devDependencies": {
-            "base-config-bar": "^1.0.0"
-          }
-        }
-
-      `,
+          undefined,
+          2
+        ),
       })
       const packageConfig = stealthyRequire(require.cache, () =>
         require('./package-config')
@@ -112,6 +112,7 @@ export default {
         files: ['dist'],
         scripts: {
           commit: 'base commit',
+          lint: 'base lint',
           prepare: 'base prepare',
           test: 'base test',
         },
@@ -145,6 +146,7 @@ export default {
         scripts: {
           commit: 'base commit',
           dev: 'base dev',
+          lint: 'base lint',
           prepare: 'base prepare',
           prepublishOnly: 'base prepublishOnly',
           test: 'base test',
@@ -170,10 +172,10 @@ export default {
 
     `
       )
-      const { private: isPrivate } = stealthyRequire(require.cache, () =>
+      const packageConfig = stealthyRequire(require.cache, () =>
         require('./package-config')
       )
-      expect(isPrivate).toBeTruthy()
+      expect(packageConfig.private).toBeTruthy()
     }),
   deploy: () =>
     withLocalTmpDir(async () => {
@@ -186,10 +188,10 @@ export default {
 
     `
       )
-      const { deploy } = stealthyRequire(require.cache, () =>
+      const packageConfig = stealthyRequire(require.cache, () =>
         require('./package-config')
       )
-      expect(deploy).toBeTruthy()
+      expect(packageConfig.deploy).toBeTruthy()
     }),
   'sub-folder': () =>
     withLocalTmpDir(async () => {
@@ -215,6 +217,7 @@ export default {
         scripts: {
           commit: 'base commit',
           dev: 'base dev',
+          lint: 'base lint',
           prepare: 'base prepare',
           prepublishOnly: 'base prepublishOnly',
           test: 'base test',

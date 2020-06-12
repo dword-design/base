@@ -60,10 +60,10 @@ export default {
         ),
         'foo.txt': '',
       })
-      const { all } = await execa(require.resolve('./cli'), ['prepare'], {
+      const output = await execa(require.resolve('./cli'), ['prepare'], {
         all: true,
       })
-      expect(all).toMatch('custom prepare')
+      expect(output.all).toMatch('custom prepare')
     }),
   valid: () =>
     withLocalTmpDir(async () => {
@@ -74,14 +74,15 @@ export default {
       await outputFiles({
         'CHANGELOG.md': '',
         doc: {},
-        'package.json': endent`
-        {
-          "name": "foo",
-          "license": "MIT",
-          "author": "dword-design"
-        }
-  
-      `,
+        'package.json': JSON.stringify(
+          {
+            name: 'foo',
+            license: 'MIT',
+            author: 'dword-design',
+          },
+          undefined,
+          2
+        ),
         'src/index.js': 'export default 1',
         'supporting-files': {},
         'test/foo.test.js': '',

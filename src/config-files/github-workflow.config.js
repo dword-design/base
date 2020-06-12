@@ -65,17 +65,6 @@ export default {
             : {}),
         },
         {
-          name: 'Push changed files',
-          ...(config.useJobMatrix && {
-            if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
-          }),
-          run: `yarn ${bin} push-changed-files`,
-          env: {
-            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-            GITHUB_REPOSITORY: '${{ secrets.GITHUB_REPOSITORY }}',
-          },
-        },
-        {
           name: 'Coveralls',
           ...(config.useJobMatrix && {
             if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
@@ -95,14 +84,25 @@ export default {
       if: "github.ref == 'refs/heads/master'",
       'runs-on': 'ubuntu-latest',
       steps: [
-        { uses: 'actions/checkout@v2', with: { 'fetch-depth': 0 } },
+        { uses: 'actions/checkout@v2' },
         {
           uses: 'actions/setup-node@v1',
           with: {
             'node-version': 12,
           },
         },
+        { run: 'git config --global user.email "actions@github.com"' },
+        { run: 'git config --global user.name "GitHub Actions"' },
         { run: 'yarn --frozen-lockfile' },
+        { run: 'yarn lint' },
+        {
+          name: 'Push changed files',
+          run: `yarn ${bin} push-changed-files`,
+          env: {
+            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+            GITHUB_REPOSITORY: '${{ secrets.GITHUB_REPOSITORY }}',
+          },
+        },
         {
           name: 'Release',
           env: {

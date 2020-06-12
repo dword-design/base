@@ -7,8 +7,9 @@ import { isCI } from '@qawolf/ci-info'
 import isDocker from 'is-docker'
 import isGitpod from 'is-gitpod'
 import config from './config'
+import lint from './lint'
 
-export default async (pattern, { grep }) => {
+export default async (pattern, options) => {
   try {
     await execa(
       'ajv',
@@ -22,11 +23,11 @@ export default async (pattern, { grep }) => {
       ],
       { all: true }
     )
-  } catch ({ all }) {
-    throw new Error(all)
+  } catch (error) {
+    throw new Error(error.all)
   }
 
-  const readmeContent = safeReadFileSync('README.md', 'utf8') ?? ''
+  const readmeContent = safeReadFileSync('README.md', 'utf8') || ''
   const missingReadmeSections =
     ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
     |> filter(
@@ -41,7 +42,8 @@ export default async (pattern, { grep }) => {
     )
   }
 
-  await config.test()
+  await lint()
+
   try {
     await execa(
       'depcheck',
@@ -54,8 +56,8 @@ export default async (pattern, { grep }) => {
       ],
       { all: true }
     )
-  } catch ({ all }) {
-    throw new Error(all)
+  } catch (error) {
+    throw new Error(error.all)
   }
 
   if (!config.testInContainer || isCI || isDocker() || (await isGitpod())) {
@@ -88,11 +90,9 @@ export default async (pattern, { grep }) => {
         require.resolve('./setup-test'),
         '--timeout',
         80000,
-        ...(grep !== undefined ? ['--grep', grep] : []),
+        ...(options.grep ? ['--grep', options.grep] : []),
         ...(process.platform === 'win32' ? ['--exit'] : []),
-        ...(pattern !== undefined
-          ? [pattern]
-          : ['{,!(node_modules)/**/}*.spec.js']),
+        ...(pattern ? [pattern] : ['{,!(node_modules)/**/}*.spec.js']),
       ],
       {
         stdio: 'inherit',
