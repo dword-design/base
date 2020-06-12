@@ -1,3 +1,10 @@
+## [6.15.3](https://github.com/dword-design/base/compare/v6.15.2...v6.15.3) (2020-06-12)
+
+
+### Bug Fixes
+
+* fix pushback ([91227b7](https://github.com/dword-design/base/commit/91227b713258b994b1061bdd6b034664baac3428))
+
 ## [6.15.2](https://github.com/dword-design/base/compare/v6.15.1...v6.15.2) (2020-06-08)
 
 
