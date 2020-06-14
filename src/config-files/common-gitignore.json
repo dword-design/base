@@ -9,6 +9,5 @@
   "/.releaserc.json",
   "/.vscode",
   "/coverage",
-  "/dist",
   "/node_modules"
 ]
