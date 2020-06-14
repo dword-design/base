@@ -1,7 +1,7 @@
-import withLocalTmpDir from 'with-local-tmp-dir'
-import { endent, keys, sortBy, identity, omit } from '@dword-design/functions'
+import { endent, identity, keys, omit, sortBy } from '@dword-design/functions'
 import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'
+import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
   'custom config filled': () =>
@@ -10,7 +10,7 @@ export default {
         'node_modules/base-config-foo/index.js': endent`
         module.exports = {
           gitignore: ['foo'],
-          main: 'index.scss',
+          main: 'dist/index.scss',
           prepare: x => x + 2,
           lint: x => x + 3,
           commands: {
@@ -45,7 +45,7 @@ export default {
       ).toEqual({
         name: 'base-config-foo',
         gitignore: ['foo'],
-        main: 'index.scss',
+        main: 'dist/index.scss',
         deployPlugins: ['semantic-release-foo'],
         deployAssets: [{ path: 'foo.js', label: 'Foo' }],
         deployEnv: {
@@ -81,7 +81,6 @@ export default {
       expect(config |> omit(['depcheckConfig', 'prepare', 'lint'])).toEqual({
         name: 'base-config-foo',
         gitignore: [],
-        main: 'index.js',
         commands: {},
         deployPlugins: [],
         deployAssets: [],
@@ -98,8 +97,8 @@ export default {
       ).toEqual({
         name: '@dword-design/base-config-node',
         allowedMatches: ['src'],
-        gitignore: ['/.eslintrc.json'],
-        main: 'index.js',
+        gitignore: ['/.eslintrc.json', '/dist'],
+        main: 'dist/index.js',
         npmPublish: true,
         useJobMatrix: true,
         deployPlugins: [],

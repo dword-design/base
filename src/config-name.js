@@ -1,8 +1,8 @@
 import { find } from '@dword-design/functions'
-import P from 'path'
 import getPackageName from 'get-package-name'
-import safeRequire from 'safe-require'
+import P from 'path'
 import resolveCwd from 'resolve-cwd'
+import safeRequire from 'safe-require'
 
 const packageConfig = safeRequire(P.join(process.cwd(), 'package.json')) || {}
 const shortName =

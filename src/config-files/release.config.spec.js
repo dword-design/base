@@ -1,7 +1,7 @@
-import withLocalTmpDir from 'with-local-tmp-dir'
 import { outputFile } from 'fs-extra'
 import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'
+import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
   valid: () =>

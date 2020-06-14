@@ -1,9 +1,9 @@
-import withLocalTmpDir from 'with-local-tmp-dir'
 import { endent } from '@dword-design/functions'
+import execa from 'execa'
+import { outputFile } from 'fs-extra'
 import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'
-import { outputFile } from 'fs-extra'
-import execa from 'execa'
+import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
   'custom config': () =>
@@ -11,7 +11,7 @@ export default {
       await outputFiles({
         'node_modules/base-config-foo/index.js': endent`
         module.exports = {
-          main: 'index.scss',
+          main: 'dist/index.scss',
         }
       `,
         'package.json': JSON.stringify(
@@ -102,7 +102,6 @@ export default {
         keywords: ['foo', 'bar'],
         license: 'MIT',
         author: 'Sebastian Landwehr <info@dword-design.de>',
-        main: 'dist/index.js',
         publishConfig: {
           access: 'public',
         },

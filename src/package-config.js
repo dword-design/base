@@ -1,25 +1,25 @@
-import P from 'path'
-import safeRequire from 'safe-require'
-import parseGitConfig from 'parse-git-config'
-import hostedGitInfo from 'hosted-git-info'
 import {
-  pick,
-  property,
-  ifElse,
   constant,
   identity,
+  ifElse,
   keys,
   map,
+  pick,
+  property,
   zipObject,
 } from '@dword-design/functions'
 import { existsSync } from 'fs-extra'
 import getPackageName from 'get-package-name'
-import config from './config'
+import hostedGitInfo from 'hosted-git-info'
+import parseGitConfig from 'parse-git-config'
+import P from 'path'
+import safeRequire from 'safe-require'
+
 import commands from './additional-commands'
+import config from './config'
 
 const packageConfig = safeRequire(P.join(process.cwd(), 'package.json')) || {}
 const commandNames = ['prepare', ...(commands |> keys)]
-
 const gitUrl =
   existsSync('.git')
   |> ifElse(
@@ -28,9 +28,7 @@ const gitUrl =
       parseGitConfig.sync() |> property('remote "origin"') |> property('url'),
     constant(undefined)
   )
-
 const gitInfo = hostedGitInfo.fromUrl(gitUrl) || {}
-
 if (gitUrl !== undefined && gitInfo.type !== 'github') {
   throw new Error('Only GitHub repositories are supported.')
 }
@@ -59,7 +57,7 @@ export default {
   license: 'MIT',
   author: 'Sebastian Landwehr <info@dword-design.de>',
   files: ['dist'],
-  main: `dist/${config.main}`,
+  ...(config |> pick('main')),
   scripts: zipObject(
     commandNames,
     commandNames

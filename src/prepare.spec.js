@@ -1,9 +1,10 @@
-import withLocalTmpDir from 'with-local-tmp-dir'
-import outputFiles from 'output-files'
-import glob from 'glob-promise'
+import { endent, includes } from '@dword-design/functions'
 import execa from 'execa'
-import { includes, endent } from '@dword-design/functions'
 import { readFile } from 'fs-extra'
+import glob from 'glob-promise'
+import outputFiles from 'output-files'
+import withLocalTmpDir from 'with-local-tmp-dir'
+
 import commonAllowedMatches from './common-allowed-matches.json'
 
 export default {

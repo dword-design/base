@@ -1,4 +1,5 @@
 import P from 'path'
+
 import configName from './config-name'
 
 export default filePath =>

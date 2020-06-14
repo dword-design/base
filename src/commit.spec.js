@@ -1,7 +1,7 @@
-import withLocalTmpDir from 'with-local-tmp-dir'
 import execa from 'execa'
 import { outputFile } from 'fs-extra'
 import pEvent from 'p-event'
+import withLocalTmpDir from 'with-local-tmp-dir'
 
 const commit = async (args = []) => {
   const childProcess = execa(require.resolve('./cli'), ['commit', ...args])

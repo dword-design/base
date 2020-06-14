@@ -1,10 +1,11 @@
-import execa from 'execa'
 import { filter, join } from '@dword-design/functions'
-import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
-import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import { isCI } from '@qawolf/ci-info'
+import execa from 'execa'
+import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import isDocker from 'is-docker'
 import isGitpod from 'is-gitpod'
+import { readFileSync as safeReadFileSync } from 'safe-readfile'
+
 import config from './config'
 import lint from './lint'
 
@@ -25,7 +26,6 @@ export default async (pattern, options) => {
   } catch (error) {
     throw new Error(error.all)
   }
-
   const readmeContent = safeReadFileSync('README.md', 'utf8') || ''
   const missingReadmeSections =
     ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
@@ -40,9 +40,7 @@ export default async (pattern, options) => {
       }`
     )
   }
-
   await lint()
-
   try {
     await execa(
       'depcheck',
@@ -58,7 +56,6 @@ export default async (pattern, options) => {
   } catch (error) {
     throw new Error(error.all)
   }
-
   if (!config.testInContainer || isCI || isDocker() || (await isGitpod())) {
     return execa(
       'nyc',

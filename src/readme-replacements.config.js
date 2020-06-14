@@ -1,6 +1,6 @@
+import { endent, join } from '@dword-design/functions'
 import spdxParse from 'spdx-expression-parse'
 import spdxList from 'spdx-license-list/full'
-import { endent, join } from '@dword-design/functions'
 
 export default {
   title: packageConfig => `# ${packageConfig.name}`,
@@ -31,7 +31,6 @@ export default {
     if (packageConfig.license) {
       const parsed = spdxParse(packageConfig.license)
       const license = spdxList[parsed.license]
-
       return endent`
         ## License
 

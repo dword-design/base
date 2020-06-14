@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-import makeCli from 'make-cli'
 import { mapValues, values } from '@dword-design/functions'
+import makeCli from 'make-cli'
+
 import commands from './commands'
 
 makeCli({

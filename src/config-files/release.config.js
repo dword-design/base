@@ -1,4 +1,5 @@
 import getPackageName from 'get-package-name'
+
 import config from '../config'
 
 export default {

@@ -1,5 +1,5 @@
-import prepare from './prepare'
 import additionalCommands from './additional-commands'
+import prepare from './prepare'
 
 export default {
   prepare: {

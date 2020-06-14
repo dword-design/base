@@ -1,5 +1,6 @@
 import P from 'path'
 import safeRequire from 'safe-require'
+
 import config from './config'
 import baseConfigSpecial from './depcheck-base-config-special'
 

@@ -1,11 +1,11 @@
-import { keys, first, map, zipObject } from '@dword-design/functions'
 import ci from '@dword-design/ci/package.json'
-import findUp from 'find-up'
+import { first, keys, map, zipObject } from '@dword-design/functions'
 import { constantCase } from 'constant-case'
+import findUp from 'find-up'
+
 import config from '../config'
 
 const bin = ci.bin |> keys |> first
-
 const envSchemaPath = findUp.sync('.env.schema.json')
 const envVariableNames =
   (envSchemaPath ? require(envSchemaPath) : {}) |> keys |> map(constantCase)

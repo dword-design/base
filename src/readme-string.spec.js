@@ -1,8 +1,8 @@
-import withLocalTmpDir from 'with-local-tmp-dir'
-import outputFiles from 'output-files'
 import { endent } from '@dword-design/functions'
-import stealthyRequire from 'stealthy-require'
 import execa from 'execa'
+import outputFiles from 'output-files'
+import stealthyRequire from 'stealthy-require'
+import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
   title: () =>

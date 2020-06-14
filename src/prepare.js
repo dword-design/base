@@ -1,35 +1,36 @@
-import outputFiles from 'output-files'
-import glob from 'glob-promise'
-import { remove } from 'fs-extra'
 import {
-  jsonToString,
   add,
+  filter,
+  identity,
   join,
+  jsonToString,
   map,
   sortBy,
-  identity,
-  filter,
   unary,
 } from '@dword-design/functions'
+import { remove } from 'fs-extra'
+import glob from 'glob-promise'
 import ignore from 'ignore'
+import outputFiles from 'output-files'
 import sortPackageJson from 'sort-package-json'
 import yaml from 'yaml'
+
 import allowedMatches from './allowed-matches.config'
+import config from './config'
+import babelConfig from './config-files/babel.config'
+import commitizenConfig from './config-files/commitizen.config'
 import editorconfigConfig from './config-files/editorconfig.config'
 import gitattributesConfig from './config-files/gitattributes.config'
-import gitignoreConfig from './config-files/gitignore.config'
 import githubWorkflowConfig from './config-files/github-workflow.config'
-import gitpodConfig from './config-files/gitpod.config'
+import gitignoreConfig from './config-files/gitignore.config'
 import gitpodDockerfile from './config-files/gitpod-dockerfile.config'
-import commitizenConfig from './config-files/commitizen.config'
-import renovateConfig from './config-files/renovate.config'
+import gitpodConfig from './config-files/gitpod.config'
 import releaseConfig from './config-files/release.config'
+import renovateConfig from './config-files/renovate.config'
+import vscodeConfig from './config-files/vscode.json'
+import licenseString from './license-string'
 import packageConfig from './package-config'
 import readmeString from './readme-string'
-import licenseString from './license-string'
-import babelConfig from './config-files/babel.config'
-import vscodeConfig from './config-files/vscode.json'
-import config from './config'
 
 export default async () => {
   await (glob('*', { dot: true, ignore: allowedMatches })
@@ -37,7 +38,6 @@ export default async () => {
     |> filter(ignore().add(gitignoreConfig).createFilter())
     |> map(unary(remove))
     |> Promise.all)
-
   await outputFiles({
     '.babelrc.json': babelConfig |> jsonToString({ indent: 2 }),
     '.cz.json': commitizenConfig,
@@ -62,6 +62,5 @@ export default async () => {
       |> add('\n'),
     'README.md': readmeString,
   })
-
   await config.prepare()
 }

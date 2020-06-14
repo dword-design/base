@@ -1,6 +1,6 @@
+import { endent } from '@dword-design/functions'
 import execa from 'execa'
 import outputFiles from 'output-files'
-import { endent } from '@dword-design/functions'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {

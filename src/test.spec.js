@@ -1,11 +1,11 @@
-import outputFiles from 'output-files'
-import withLocalTmpDir from 'with-local-tmp-dir'
-import execa from 'execa'
-import { outputFile, chmod } from 'fs-extra'
 import { endent } from '@dword-design/functions'
+import execa from 'execa'
+import { chmod, outputFile } from 'fs-extra'
 import glob from 'glob-promise'
+import outputFiles from 'output-files'
 import portReady from 'port-ready'
 import kill from 'tree-kill-promise'
+import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
   assertion: () =>
@@ -111,7 +111,6 @@ export default {
   'linting errors': () =>
     withLocalTmpDir(async () => {
       await outputFile('src/index.js', "var foo = 'bar'")
-
       await execa(require.resolve('./cli'), ['prepare'])
       let all
       try {

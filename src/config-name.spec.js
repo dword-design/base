@@ -1,7 +1,7 @@
-import withLocalTmpDir from 'with-local-tmp-dir'
-import outputFiles from 'output-files'
 import { mapValues } from '@dword-design/functions'
+import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'
+import withLocalTmpDir from 'with-local-tmp-dir'
 
 const runTest = config => () =>
   withLocalTmpDir(async () => {

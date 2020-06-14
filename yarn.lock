@@ -891,9 +891,9 @@
     param-case "^3.0.3"
 
 "@dword-design/base-config-node@^1.6.0":
-  version "1.8.4"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.8.4.tgz#f5bf42c0d3d0e464bc10eccd89811ff0ad4ecaa8"
-  integrity sha512-Vbf5J4P3ezAHfkV4H+6CtO7vsGDCMGv3+4CQ/SQgaM5N5niEu/N1SM4Iatx7IaPHrwPub6YuwjkjPAylPNa0QQ==
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.8.5.tgz#fe80488dc91dd26c8fa8094a456a7a0b9b93fb7c"
+  integrity sha512-joxO5llL2ZXi1xkSkhmjv2eEZz7AXxD8rm+9fezSopc0ADbSU0S9PwH6twYsr4+I36LcPdFtaV4gzz9g+ifoOQ==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
