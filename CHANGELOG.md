@@ -1,3 +1,11 @@
+## [6.15.6](https://github.com/dword-design/base/compare/v6.15.5...v6.15.6) (2020-06-14)
+
+
+### Bug Fixes
+
+* fix various issues ([10bfbbd](https://github.com/dword-design/base/commit/10bfbbd7b2631e27af52e348cc137a5cfb897c87))
+* outsource dist ignore ([d6f3f97](https://github.com/dword-design/base/commit/d6f3f9751729701088e1c3dba09bdf75f97dd1f8))
+
 ## [6.15.5](https://github.com/dword-design/base/compare/v6.15.4...v6.15.5) (2020-06-12)
 
 
