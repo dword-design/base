@@ -1,3 +1,10 @@
+## [6.15.7](https://github.com/dword-design/base/compare/v6.15.6...v6.15.7) (2020-06-15)
+
+
+### Bug Fixes
+
+* upgrades ([17f7657](https://github.com/dword-design/base/commit/17f76571ca1c9f01ec1a85f31571645ebb41fb2f))
+
 ## [6.15.6](https://github.com/dword-design/base/compare/v6.15.5...v6.15.6) (2020-06-14)
 
 
