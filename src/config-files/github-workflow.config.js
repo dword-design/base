@@ -3,7 +3,7 @@ import { first, keys, map, zipObject } from '@dword-design/functions'
 import { constantCase } from 'constant-case'
 import findUp from 'find-up'
 
-import config from '../config'
+import config from '@/src/config'
 
 const bin = ci.bin |> keys |> first
 const envSchemaPath = findUp.sync('.env.schema.json')

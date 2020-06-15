@@ -1,6 +1,6 @@
 import getPackageName from 'get-package-name'
 
-import config from '../config'
+import config from '@/src/config'
 
 export default {
   plugins: [
