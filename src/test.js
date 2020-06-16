@@ -2,9 +2,9 @@ import { filter, join, map } from '@dword-design/functions'
 import { isCI } from '@qawolf/ci-info'
 import execa from 'execa'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
+import globby from 'globby'
 import isDocker from 'is-docker'
 import isGitpod from 'is-gitpod'
-import matched from 'matched'
 import promiseSequential from 'promise-sequential'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 
@@ -62,7 +62,7 @@ export default async (pattern, options) => {
   }
   if (config.packageConfig?.workspaces) {
     try {
-      await (matched(config.packageConfig.workspaces)
+      await (globby(config.packageConfig.workspaces, { onlyDirectories: true })
         |> await
         |> map(workspace => () =>
           execa(
