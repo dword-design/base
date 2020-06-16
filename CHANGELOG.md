@@ -1,3 +1,15 @@
+# [6.17.0](https://github.com/dword-design/base/compare/v6.16.0...v6.17.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* fix for windows ([6a9663b](https://github.com/dword-design/base/commit/6a9663b93baf6c0a10643e5afa4c36d407fdd366))
+
+
+### Features
+
+* add workspace test support ([c8f600a](https://github.com/dword-design/base/commit/c8f600a3f34cc5386eba857fa0d4f7229b396881))
+
 # [6.16.0](https://github.com/dword-design/base/compare/v6.15.7...v6.16.0) (2020-06-16)
 
 
