@@ -1,10 +1,8 @@
 import { endent } from '@dword-design/functions'
 import execa from 'execa'
-import { chmod, outputFile } from 'fs-extra'
+import { outputFile } from 'fs-extra'
 import glob from 'glob-promise'
 import outputFiles from 'output-files'
-import portReady from 'port-ready'
-import kill from 'tree-kill-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
@@ -273,6 +271,91 @@ export default {
       * change-case
     `)
     }),
+  'unused workspace root dependency': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'node_modules/config/index.js': endent`
+          module.exports = {
+            allowedMatches: [
+              'packages',
+            ],
+            packageConfig: {
+              workspaces: ['packages/*'],
+            },
+          }
+          
+        `,
+        'packages/a/index.js': endent`
+          import 'change-case'
+
+        `,
+        'package.json': JSON.stringify(
+          {
+            dependencies: {
+              'change-case': '^1.0.0',
+            },
+            baseConfig: 'config',
+          },
+          undefined,
+          2
+        ),
+      })
+      await execa(require.resolve('./cli'), ['prepare'])
+      let all
+      try {
+        await execa(require.resolve('./cli'), ['test'], { all: true })
+      } catch (error) {
+        all = error.all
+      }
+      expect(all).toMatch(endent`
+      Unused dependencies
+      * change-case
+    `)
+    }),
+  'unused workspace dependency': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'node_modules/config/index.js': endent`
+          module.exports = {
+            allowedMatches: [
+              'packages',
+            ],
+            packageConfig: {
+              private: true,
+              workspaces: ['packages/*'],
+            },
+          }
+          
+        `,
+        'packages/a/package.json': JSON.stringify(
+          {
+            dependencies: {
+              'change-case': '^1.0.0',
+            },
+          },
+          undefined,
+          2
+        ),
+        'package.json': JSON.stringify(
+          {
+            baseConfig: 'config',
+          },
+          undefined,
+          2
+        ),
+      })
+      await execa(require.resolve('./cli'), ['prepare'])
+      let all
+      try {
+        await execa(require.resolve('./cli'), ['test'], { all: true })
+      } catch (error) {
+        all = error.all
+      }
+      expect(all).toMatch(endent`
+      Unused dependencies
+      * change-case
+    `)
+    }),
   valid: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
@@ -435,22 +518,5 @@ export default {
         all = error.all
       }
       expect(all).toMatch('data.keywords should be array')
-    }),
-  'kill server': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'cli.js',
-        endent`
-      #!/usr/bin/env node
-
-      import http from 'http'
-
-      http.createServer().listen(3000)
-    `
-      )
-      await chmod('cli.js', '755')
-      const childProcess = execa.command('./cli.js')
-      await portReady(3000)
-      await kill(childProcess.pid)
     }),
 }

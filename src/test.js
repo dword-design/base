@@ -1,9 +1,11 @@
-import { filter, join } from '@dword-design/functions'
+import { filter, join, map } from '@dword-design/functions'
 import { isCI } from '@qawolf/ci-info'
 import execa from 'execa'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import isDocker from 'is-docker'
 import isGitpod from 'is-gitpod'
+import matched from 'matched'
+import promiseSequential from 'promise-sequential'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 
 import config from './config'
@@ -48,13 +50,37 @@ export default async (pattern, options) => {
         '--skip-missing',
         true,
         '--config',
-        require.resolve('./depcheck.config'),
+        require.resolve(
+          `./depcheck${config.packageConfig?.workspaces ? '.root' : ''}.config`
+        ),
         '.',
       ],
       { all: true }
     )
   } catch (error) {
     throw new Error(error.all)
+  }
+  if (config.packageConfig?.workspaces) {
+    try {
+      await (matched(config.packageConfig.workspaces)
+        |> await
+        |> map(workspace => () =>
+          execa(
+            'depcheck',
+            [
+              '--skip-missing',
+              true,
+              '--config',
+              require.resolve('./depcheck.config'),
+              '.',
+            ],
+            { all: true, cwd: workspace }
+          )
+        )
+        |> promiseSequential)
+    } catch (error) {
+      throw new Error(error.all)
+    }
   }
   if (!config.testInContainer || isCI || isDocker() || (await isGitpod())) {
     return execa(
