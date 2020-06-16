@@ -11,7 +11,9 @@ export default {
       await outputFiles({
         'node_modules/base-config-foo/index.js': endent`
         module.exports = {
-          main: 'dist/index.scss',
+          packageConfig: {
+            main: 'dist/index.scss',
+          },
         }
       `,
         'package.json': JSON.stringify(

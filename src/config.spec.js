@@ -10,7 +10,9 @@ export default {
         'node_modules/base-config-foo/index.js': endent`
         module.exports = {
           gitignore: ['foo'],
-          main: 'dist/index.scss',
+          packageConfig: {
+            main: 'dist/index.scss',
+          },
           prepare: x => x + 2,
           lint: x => x + 3,
           commands: {
@@ -45,7 +47,9 @@ export default {
       ).toEqual({
         name: 'base-config-foo',
         gitignore: ['foo'],
-        main: 'dist/index.scss',
+        packageConfig: {
+          main: 'dist/index.scss',
+        },
         deployPlugins: ['semantic-release-foo'],
         deployAssets: [{ path: 'foo.js', label: 'Foo' }],
         deployEnv: {

@@ -58,6 +58,7 @@ export default {
   author: 'Sebastian Landwehr <info@dword-design.de>',
   files: ['dist'],
   ...(config |> pick('main')),
+  ...config.packageConfig,
   scripts: zipObject(
     commandNames,
     commandNames
