@@ -1,3 +1,10 @@
+# [6.16.0](https://github.com/dword-design/base/compare/v6.15.7...v6.16.0) (2020-06-16)
+
+
+### Features
+
+* add packageConfig feature for configs ([0add9b5](https://github.com/dword-design/base/commit/0add9b56193fb4310b1c24def3f7abf688087d82))
+
 ## [6.15.7](https://github.com/dword-design/base/compare/v6.15.6...v6.15.7) (2020-06-15)
 
 
