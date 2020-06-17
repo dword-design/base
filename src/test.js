@@ -1,39 +1,13 @@
-import { endent, filter, join, map, property } from '@dword-design/functions'
+import { filter, join } from '@dword-design/functions'
 import { isCI } from '@qawolf/ci-info'
 import execa from 'execa'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
-import globby from 'globby'
 import isDocker from 'is-docker'
 import isGitpod from 'is-gitpod'
-import loadPkg from 'load-pkg'
-import promiseSequential from 'promise-sequential'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 
 import config from './config'
 import lint from './lint'
-
-const workspaceDepcheck = async workspace => {
-  try {
-    await execa(
-      'depcheck',
-      [
-        '--skip-missing',
-        true,
-        '--config',
-        require.resolve('./depcheck.config'),
-        '.',
-      ],
-      { all: true, cwd: workspace }
-    )
-  } catch (error) {
-    const workspaceName =
-      loadPkg({ cwd: workspace }) |> await |> property('name')
-    throw new Error(endent`
-      Error in ${workspaceName}:
-      ${error.all}
-    `)
-  }
-}
 
 export default async (pattern, options) => {
   try {
@@ -74,21 +48,13 @@ export default async (pattern, options) => {
         '--skip-missing',
         true,
         '--config',
-        require.resolve(
-          `./depcheck${config.packageConfig?.workspaces ? '.root' : ''}.config`
-        ),
+        require.resolve('./depcheck.config'),
         '.',
       ],
       { all: true }
     )
   } catch (error) {
     throw new Error(error.all)
-  }
-  if (config.packageConfig?.workspaces) {
-    await (globby(config.packageConfig.workspaces, { onlyDirectories: true })
-      |> await
-      |> map(workspace => () => workspaceDepcheck(workspace))
-      |> promiseSequential)
   }
   if (!config.testInContainer || isCI || isDocker() || (await isGitpod())) {
     return execa(
