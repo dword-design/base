@@ -329,6 +329,7 @@ export default {
         `,
         'packages/a/package.json': JSON.stringify(
           {
+            name: 'a',
             dependencies: {
               'change-case': '^1.0.0',
             },
@@ -352,6 +353,7 @@ export default {
         all = error.all
       }
       expect(all).toMatch(endent`
+      Error in workspace a:
       Unused dependencies
       * change-case
     `)

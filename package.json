@@ -49,6 +49,7 @@
     "ignore": "^5.1.4",
     "is-docker": "^2.0.0",
     "is-gitpod": "^1.0.7",
+    "load-pkg": "^4.0.0",
     "make-cli": "^1.0.9",
     "mocha": "^7.0.1",
     "mocha-ui-exports-auto-describe": "^1.0.0",

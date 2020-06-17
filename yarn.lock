@@ -3654,6 +3654,13 @@ find-cache-dir@^3.2.0:
     make-dir "^3.0.2"
     pkg-dir "^4.1.0"
 
+find-file-up@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/find-file-up/-/find-file-up-2.0.1.tgz#4932dd81551af643893f8cda7453f221e3e28261"
+  integrity sha512-qVdaUhYO39zmh28/JLQM5CoYN9byEOKEH4qfa8K1eNV17W0UUMJ9WgbR/hHFH+t5rcl+6RTb5UC7ck/I+uRkpQ==
+  dependencies:
+    resolve-dir "^1.0.1"
+
 find-node-modules@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/find-node-modules/-/find-node-modules-2.0.0.tgz#5db1fb9e668a3d451db3d618cd167cdd59e41b69"
@@ -3671,6 +3678,13 @@ find-parent-dir@0.3.0, find-parent-dir@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/find-parent-dir/-/find-parent-dir-0.3.0.tgz#33c44b429ab2b2f0646299c5f9f718f376ff8d54"
   integrity sha1-M8RLQpqysvBkYpnF+fcY83b/jVQ=
+
+find-pkg@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/find-pkg/-/find-pkg-2.0.0.tgz#3a7c35c704e11a6e5722c56e45bd7e587507735e"
+  integrity sha512-WgZ+nKbELDa6N3i/9nrHeNznm+lY3z4YfhDDWgW+5P0pdmMj26bxaxU11ookgY3NyP9GC7HvZ9etp0jRFqGEeQ==
+  dependencies:
+    find-file-up "^2.0.1"
 
 find-project-root@1.1.1:
   version "1.1.1"
@@ -5481,6 +5495,13 @@ load-json-file@^4.0.0:
     parse-json "^4.0.0"
     pify "^3.0.0"
     strip-bom "^3.0.0"
+
+load-pkg@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/load-pkg/-/load-pkg-4.0.0.tgz#f80a29aec2f6d02aadde714099fda4eea1b611f1"
+  integrity sha512-xS6uYdbUzHbwO5bExhtM8RsU6Z/fVEfZE4uZpWQOwVygLSUfXz7J97nGzJfZ+FFCZc0Weabn/wA3y1k9Q7Y4mw==
+  dependencies:
+    find-pkg "^2.0.0"
 
 locate-path@^2.0.0:
   version "2.0.0"
