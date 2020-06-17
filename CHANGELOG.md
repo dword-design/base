@@ -1,3 +1,10 @@
+# [6.18.0](https://github.com/dword-design/base/compare/v6.17.3...v6.18.0) (2020-06-17)
+
+
+### Features
+
+* remove workspace feature ([a8bd6d5](https://github.com/dword-design/base/commit/a8bd6d5a8bc84fc85482f72fcdd23ae3c1dad80e))
+
 ## [6.17.3](https://github.com/dword-design/base/compare/v6.17.2...v6.17.3) (2020-06-17)
 
 
