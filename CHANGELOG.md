@@ -1,3 +1,10 @@
+## [6.18.1](https://github.com/dword-design/base/compare/v6.18.0...v6.18.1) (2020-06-17)
+
+
+### Bug Fixes
+
+* adjust gitignore ([0929146](https://github.com/dword-design/base/commit/092914653d62bdc44b5ea7223e1a473c7f5c930d))
+
 # [6.18.0](https://github.com/dword-design/base/compare/v6.17.3...v6.18.0) (2020-06-17)
 
 
