@@ -1,3 +1,10 @@
+## [6.17.2](https://github.com/dword-design/base/compare/v6.17.1...v6.17.2) (2020-06-17)
+
+
+### Bug Fixes
+
+* output workspace name when error ([d8d9b22](https://github.com/dword-design/base/commit/d8d9b22b79bdf162d64f1abab5b24c36f1e5b145))
+
 ## [6.17.1](https://github.com/dword-design/base/compare/v6.17.0...v6.17.1) (2020-06-16)
 
 
