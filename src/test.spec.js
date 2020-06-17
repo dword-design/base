@@ -353,7 +353,7 @@ export default {
         all = error.all
       }
       expect(all).toMatch(endent`
-      Error in workspace a:
+      Error in a:
       Unused dependencies
       * change-case
     `)

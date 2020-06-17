@@ -29,7 +29,7 @@ const workspaceDepcheck = async workspace => {
     const workspaceName =
       loadPkg({ cwd: workspace }) |> await |> property('name')
     throw new Error(endent`
-      Error in workspace ${workspaceName}:
+      Error in ${workspaceName}:
       ${error.all}
     `)
   }
