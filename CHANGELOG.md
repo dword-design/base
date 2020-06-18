@@ -1,3 +1,10 @@
+# [6.19.0](https://github.com/dword-design/base/compare/v6.18.1...v6.19.0) (2020-06-18)
+
+
+### Features
+
+* add peer dependency support ([6bb60f8](https://github.com/dword-design/base/commit/6bb60f86c40af9c2b3ac89373e2ca81ee774dfd7))
+
 ## [6.18.1](https://github.com/dword-design/base/compare/v6.18.0...v6.18.1) (2020-06-17)
 
 
