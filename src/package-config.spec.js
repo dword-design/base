@@ -89,6 +89,9 @@ export default {
             devDependencies: {
               'base-config-bar': '^1.0.0',
             },
+            peerDependencies: {
+              nuxt: '^1.0.0',
+            },
           },
           undefined,
           2
@@ -122,6 +125,9 @@ export default {
         },
         devDependencies: {
           'base-config-bar': '^1.0.0',
+        },
+        peerDependencies: {
+          nuxt: '^1.0.0',
         },
         baseConfig: 'bar',
       })

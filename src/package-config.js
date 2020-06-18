@@ -44,6 +44,7 @@ export default {
       'keywords',
       'dependencies',
       'devDependencies',
+      'peerDependencies',
       'publishConfig',
     ])),
   version: packageConfig.version || '1.0.0',
