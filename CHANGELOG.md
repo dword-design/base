@@ -1,3 +1,10 @@
+## [6.19.1](https://github.com/dword-design/base/compare/v6.19.0...v6.19.1) (2020-06-25)
+
+
+### Bug Fixes
+
+* only lint test file if pattern is set ([7e08bd5](https://github.com/dword-design/base/commit/7e08bd58b6f771e3773ff789c0fad799f6acefa5))
+
 # [6.19.0](https://github.com/dword-design/base/compare/v6.18.1...v6.19.0) (2020-06-18)
 
 
