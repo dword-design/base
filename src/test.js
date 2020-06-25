@@ -10,51 +10,53 @@ import config from './config'
 import lint from './lint'
 
 export default async (pattern, options) => {
-  try {
-    await execa(
-      'ajv',
-      [
-        '-s',
-        require.resolve('./package-json-schema.config'),
-        '-d',
-        'package.json',
-        '--errors',
-        'text',
-      ],
-      { all: true }
-    )
-  } catch (error) {
-    throw new Error(error.all)
-  }
-  const readmeContent = safeReadFileSync('README.md', 'utf8') || ''
-  const missingReadmeSections =
-    ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
-    |> filter(
-      sectionName =>
-        !getProjectzReadmeSectionRegex(sectionName).test(readmeContent)
-    )
-  if (missingReadmeSections.length > 0) {
-    throw new Error(
-      `The README.md file is missing or misses the following sections: ${
-        missingReadmeSections |> join(', ')
-      }`
-    )
-  }
-  await lint()
-  try {
-    await execa(
-      'depcheck',
-      [
-        '--skip-missing',
-        true,
-        '--config',
-        require.resolve('./depcheck.config'),
-        '.',
-      ],
-      { all: true }
-    )
-  } catch (error) {
-    throw new Error(error.all)
+  if (!pattern) {
+    try {
+      await execa(
+        'ajv',
+        [
+          '-s',
+          require.resolve('./package-json-schema.config'),
+          '-d',
+          'package.json',
+          '--errors',
+          'text',
+        ],
+        { all: true }
+      )
+    } catch (error) {
+      throw new Error(error.all)
+    }
+    const readmeContent = safeReadFileSync('README.md', 'utf8') || ''
+    const missingReadmeSections =
+      ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
+      |> filter(
+        sectionName =>
+          !getProjectzReadmeSectionRegex(sectionName).test(readmeContent)
+      )
+    if (missingReadmeSections.length > 0) {
+      throw new Error(
+        `The README.md file is missing or misses the following sections: ${
+          missingReadmeSections |> join(', ')
+        }`
+      )
+    }
+    await lint()
+    try {
+      await execa(
+        'depcheck',
+        [
+          '--skip-missing',
+          true,
+          '--config',
+          require.resolve('./depcheck.config'),
+          '.',
+        ],
+        { all: true }
+      )
+    } catch (error) {
+      throw new Error(error.all)
+    }
   }
   if (!config.testInContainer || isCI || isDocker() || (await isGitpod())) {
     return execa(
@@ -88,7 +90,7 @@ export default async (pattern, options) => {
         80000,
         ...(options.grep ? ['--grep', options.grep] : []),
         ...(process.platform === 'win32' ? ['--exit'] : []),
-        ...(pattern ? [pattern] : ['{,!(node_modules)/**/}*.spec.js']),
+        pattern || '{,!(node_modules)/**/}*.spec.js',
       ],
       { stdio: 'inherit' }
     )

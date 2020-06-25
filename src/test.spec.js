@@ -160,6 +160,16 @@ export default {
           'index2.spec.js':
             "export default { valid: () => console.log('run index2') }",
         },
+        'package.json': JSON.stringify(
+          {
+            dependencies: {
+              foo: '^1.0.0',
+            },
+          },
+          undefined,
+          2
+        ),
+        'README.md': '',
       })
       await execa(require.resolve('./cli'), ['prepare'])
       const output = await execa(
