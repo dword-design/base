@@ -316,7 +316,8 @@ export default {
       expect(output.all).toMatch('run test')
       expect(
         globby('*', { onlyFiles: false, dot: true })
-          |> await |> sortBy(identity)
+          |> await
+          |> sortBy(identity)
       ).toEqual([
         '.babelrc.json',
         '.cz.json',
