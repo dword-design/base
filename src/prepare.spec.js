@@ -1,7 +1,7 @@
-import { endent, includes } from '@dword-design/functions'
+import { endent, identity, includes, sortBy } from '@dword-design/functions'
 import execa from 'execa'
 import { readFile } from 'fs-extra'
-import glob from 'glob-promise'
+import globby from 'globby'
 import outputFiles from 'output-files'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
@@ -17,13 +17,13 @@ export default {
       })
       await execa(require.resolve('./cli'), ['prepare'])
       expect(
-        glob('*', { dot: true }) |> await |> includes('foo.txt')
+        globby('*', { dot: true }) |> await |> includes('foo.txt')
       ).toBeFalsy()
     }),
   'additional allowed match': () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        'node_modules/foo/index.js': endent`
+        'node_modules/base-config-foo/index.js': endent`
           module.exports = {
             allowedMatches: [
               'foo.txt',
@@ -41,13 +41,13 @@ export default {
       })
       await execa(require.resolve('./cli'), ['prepare'])
       expect(
-        glob('*', { dot: true }) |> await |> includes('foo.txt')
+        globby('*', { dot: true }) |> await |> includes('foo.txt')
       ).toBeTruthy()
     }),
   'custom prepare': () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        'node_modules/foo/index.js': endent`
+        'node_modules/base-config-foo/index.js': endent`
           module.exports = {
             prepare: () => console.log('custom prepare'),
           }
@@ -97,7 +97,11 @@ export default {
         'yarn.lock': '',
       })
       await execa(require.resolve('./cli'), ['prepare'])
-      expect(await glob('*', { dot: true })).toEqual(
+      expect(
+        globby('*', { onlyFiles: false, dot: true })
+          |> await
+          |> sortBy(identity)
+      ).toEqual(
         [
           '.babelrc.json',
           '.cz.json',
@@ -117,7 +121,7 @@ export default {
           'package.json',
           'README.md',
           ...commonAllowedMatches,
-        ].sort((a, b) => a.localeCompare(b))
+        ] |> sortBy(identity)
       )
       expect(await readFile('README.md', 'utf8')).toEqual(endent`
       <!-- TITLE/ -->

@@ -1,52 +1,64 @@
-import { endent, identity, keys, omit, sortBy } from '@dword-design/functions'
-import outputFiles from 'output-files'
-import stealthyRequire from 'stealthy-require'
-import withLocalTmpDir from 'with-local-tmp-dir'
+import {
+  identity,
+  keys,
+  mapValues,
+  omit,
+  sortBy,
+} from '@dword-design/functions'
+import proxyquire from '@dword-design/proxyquire'
+
+const runTest = config => () => {
+  const self = proxyquire('./config', {
+    './package-base-config': config.packageConfig,
+    'import-cwd': () => config.baseConfig,
+  })
+  config.test(self)
+}
 
 export default {
-  'custom config filled': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'node_modules/base-config-foo/index.js': endent`
-        module.exports = {
-          gitignore: ['foo'],
-          packageConfig: {
-            main: 'dist/index.scss',
-          },
-          prepare: x => x + 2,
-          lint: x => x + 3,
-          commands: {
-            prepublishOnly: x => x + 1,
-            start: x => x + 3,
-          },
-          deployPlugins: [
-            'semantic-release-foo',
-          ],
-          deployAssets: [
-            { path: 'foo.js', label: 'Foo' },
-          ],
-          deployEnv: {
-            'FOO': '\${{ secrets.FOO }}',
-          },
-        }
-      `,
-        'package.json': JSON.stringify(
-          {
-            baseConfig: 'foo',
-            devDependencies: {
-              'base-config-foo': '^1.0.0',
-            },
-          },
-          undefined,
-          2
-        ),
+  valid: {
+    packageConfig: { name: 'base-config-foo' },
+    test: config => {
+      expect(config |> omit(['depcheckConfig', 'prepare', 'lint'])).toEqual({
+        name: 'base-config-foo',
+        gitignore: [],
+        editorIgnore: [],
+        commands: {},
+        deployPlugins: [],
+        deployAssets: [],
+        deployEnv: {},
       })
-      const config = stealthyRequire(require.cache, () => require('./config'))
+      expect(typeof config.depcheckConfig).toEqual('object')
+      expect(config.lint(1)).toEqual(1)
+    },
+  },
+  filled: {
+    packageConfig: { name: 'base-config-foo' },
+    baseConfig: {
+      gitignore: ['foo'],
+      editorIgnore: ['foo'],
+      packageConfig: {
+        main: 'dist/index.scss',
+      },
+      prepare: x => x + 2,
+      lint: x => x + 3,
+      commands: {
+        prepublishOnly: x => x + 1,
+        start: x => x + 3,
+      },
+      deployPlugins: ['semantic-release-foo'],
+      deployAssets: [{ path: 'foo.js', label: 'Foo' }],
+      deployEnv: {
+        FOO: '${{ secrets.FOO }}',
+      },
+    },
+    test: config => {
       expect(
         config |> omit(['commands', 'depcheckConfig', 'prepare', 'lint'])
       ).toEqual({
         name: 'base-config-foo',
         gitignore: ['foo'],
+        editorIgnore: ['foo'],
         packageConfig: {
           main: 'dist/index.scss',
         },
@@ -65,64 +77,6 @@ export default {
       expect(config.prepare(1)).toEqual(3)
       expect(config.lint(1)).toEqual(4)
       expect(typeof config.depcheckConfig).toEqual('object')
-    }),
-  'custom config': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'node_modules/base-config-foo/index.js': '',
-        'package.json': JSON.stringify(
-          {
-            baseConfig: 'foo',
-            devDependencies: {
-              'base-config-foo': '^1.0.0',
-            },
-          },
-          undefined,
-          2
-        ),
-      })
-      const config = stealthyRequire(require.cache, () => require('./config'))
-      expect(config |> omit(['depcheckConfig', 'prepare', 'lint'])).toEqual({
-        name: 'base-config-foo',
-        gitignore: [],
-        commands: {},
-        deployPlugins: [],
-        deployAssets: [],
-        deployEnv: {},
-      })
-      expect(typeof config.depcheckConfig).toEqual('object')
-      expect(config.lint(1)).toEqual(1)
-    }),
-  empty: () =>
-    withLocalTmpDir(() => {
-      const config = stealthyRequire(require.cache, () => require('./config'))
-      expect(
-        config |> omit(['commands', 'prepare', 'lint', 'depcheckConfig'])
-      ).toEqual({
-        name: '@dword-design/base-config-node',
-        allowedMatches: ['src'],
-        gitignore: ['/.eslintrc.json', '/dist'],
-        main: 'dist/index.js',
-        npmPublish: true,
-        useJobMatrix: true,
-        deployPlugins: [],
-        deployAssets: [],
-        deployEnv: {},
-      })
-      expect(config |> keys |> sortBy(identity)).toEqual([
-        'allowedMatches',
-        'commands',
-        'depcheckConfig',
-        'deployAssets',
-        'deployEnv',
-        'deployPlugins',
-        'gitignore',
-        'lint',
-        'main',
-        'name',
-        'npmPublish',
-        'prepare',
-        'useJobMatrix',
-      ])
-    }),
-}
+    },
+  },
+} |> mapValues(runTest)

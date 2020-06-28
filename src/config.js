@@ -1,27 +1,19 @@
 import depcheckConfig from '@dword-design/depcheck-config'
 import { identity } from '@dword-design/functions'
-import P from 'path'
-import resolveFrom from 'resolve-from'
-import safeRequire from 'safe-require'
+import importCwd from 'import-cwd'
 
-import name from './config-name'
-
-const config = require(resolveFrom(process.cwd(), name))
-const baseConfig =
-  safeRequire(P.join(process.cwd(), 'package.json'))?.baseConfig || {}
-const testInContainer =
-  typeof baseConfig === 'string' ? undefined : baseConfig?.testInContainer
+import packageBaseConfig from './package-base-config'
 
 export default {
-  name,
   depcheckConfig,
   gitignore: [],
+  editorIgnore: [],
   prepare: identity,
   lint: identity,
   deployPlugins: [],
   deployAssets: [],
   deployEnv: {},
   commands: {},
-  ...(testInContainer ? { testInContainer } : {}),
-  ...config,
+  ...importCwd(packageBaseConfig.name),
+  ...packageBaseConfig,
 }

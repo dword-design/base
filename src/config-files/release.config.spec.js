@@ -1,125 +1,87 @@
-import { outputFile } from 'fs-extra'
-import outputFiles from 'output-files'
-import stealthyRequire from 'stealthy-require'
-import withLocalTmpDir from 'with-local-tmp-dir'
+import { mapValues } from '@dword-design/functions'
+import proxyquire from '@dword-design/proxyquire'
+
+const runTest = config => {
+  config.config = { deployPlugins: [], deployAssets: [], ...config.config }
+  return () => {
+    const self = proxyquire('./release.config', {
+      '../config': config.config,
+    })
+    expect(self).toEqual(config.result)
+  }
+}
 
 export default {
-  valid: () =>
-    withLocalTmpDir(async () => {
-      await outputFile('package.json', JSON.stringify({}, undefined, 2))
-      const config = stealthyRequire(require.cache, () =>
-        require('./release.config')
-      )
-      expect(config).toEqual({
-        plugins: [
-          '@semantic-release/commit-analyzer',
-          '@semantic-release/release-notes-generator',
-          '@semantic-release/changelog',
+  valid: {
+    result: {
+      plugins: [
+        '@semantic-release/commit-analyzer',
+        '@semantic-release/release-notes-generator',
+        '@semantic-release/changelog',
+        [
           '@semantic-release/npm',
-          '@semantic-release/github',
-          '@semantic-release/git',
-        ],
-      })
-    }),
-  'custom config': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'node_modules/foo/index.js': 'module.exports = {}',
-        'package.json': JSON.stringify(
           {
-            baseConfig: 'foo',
+            npmPublish: false,
           },
-          undefined,
-          2
-        ),
-      })
-      const config = stealthyRequire(require.cache, () =>
-        require('./release.config')
-      )
-      expect(config).toEqual({
-        plugins: [
-          '@semantic-release/commit-analyzer',
-          '@semantic-release/release-notes-generator',
-          '@semantic-release/changelog',
-          [
-            '@semantic-release/npm',
-            {
-              npmPublish: false,
-            },
-          ],
-          '@semantic-release/github',
-          '@semantic-release/git',
         ],
-      })
-    }),
-  'deploy plugins': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'node_modules/foo/index.js':
-          "module.exports = { deployPlugins: ['semantic-release-foo'] }",
-        'package.json': JSON.stringify(
+        '@semantic-release/github',
+        '@semantic-release/git',
+      ],
+    },
+  },
+  'npm publish': {
+    config: { npmPublish: true },
+    result: {
+      plugins: [
+        '@semantic-release/commit-analyzer',
+        '@semantic-release/release-notes-generator',
+        '@semantic-release/changelog',
+        '@semantic-release/npm',
+        '@semantic-release/github',
+        '@semantic-release/git',
+      ],
+    },
+  },
+  'deploy plugins': {
+    config: { deployPlugins: ['semantic-release-foo'] },
+    result: {
+      plugins: [
+        '@semantic-release/commit-analyzer',
+        '@semantic-release/release-notes-generator',
+        '@semantic-release/changelog',
+        [
+          '@semantic-release/npm',
           {
-            baseConfig: 'foo',
+            npmPublish: false,
           },
-          undefined,
-          2
-        ),
-      })
-      const config = stealthyRequire(require.cache, () =>
-        require('./release.config')
-      )
-      expect(config).toEqual({
-        plugins: [
-          '@semantic-release/commit-analyzer',
-          '@semantic-release/release-notes-generator',
-          '@semantic-release/changelog',
-          [
-            '@semantic-release/npm',
-            {
-              npmPublish: false,
-            },
-          ],
-          'semantic-release-foo',
-          '@semantic-release/github',
-          '@semantic-release/git',
         ],
-      })
-    }),
-  'deploy assets': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'node_modules/foo/index.js':
-          "module.exports = { deployAssets: [{ path: 'foo.js', label: 'Foo' }] }",
-        'package.json': JSON.stringify(
+        'semantic-release-foo',
+        '@semantic-release/github',
+        '@semantic-release/git',
+      ],
+    },
+  },
+  'deploy assets': {
+    config: { deployAssets: [{ path: 'foo.js', label: 'Foo' }] },
+    result: {
+      plugins: [
+        '@semantic-release/commit-analyzer',
+        '@semantic-release/release-notes-generator',
+        '@semantic-release/changelog',
+        [
+          '@semantic-release/npm',
           {
-            baseConfig: 'foo',
+            npmPublish: false,
           },
-          undefined,
-          2
-        ),
-      })
-      const config = stealthyRequire(require.cache, () =>
-        require('./release.config')
-      )
-      expect(config).toEqual({
-        plugins: [
-          '@semantic-release/commit-analyzer',
-          '@semantic-release/release-notes-generator',
-          '@semantic-release/changelog',
-          [
-            '@semantic-release/npm',
-            {
-              npmPublish: false,
-            },
-          ],
-          [
-            '@semantic-release/github',
-            {
-              assets: [{ path: 'foo.js', label: 'Foo' }],
-            },
-          ],
-          '@semantic-release/git',
         ],
-      })
-    }),
-}
+        [
+          '@semantic-release/github',
+          {
+            assets: [{ path: 'foo.js', label: 'Foo' }],
+          },
+        ],
+        '@semantic-release/git',
+      ],
+    },
+  },
+} |> mapValues(runTest)

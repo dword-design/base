@@ -8,7 +8,7 @@ export default {
     withLocalTmpDir(async () => {
       await outputFiles({
         'depcheck.config.js': endent`
-        const baseConfigSpecial = require('../src/depcheck-base-config-special')
+        const baseConfigSpecial = require('../src/depcheck-special-base-config')
         module.exports = {
           specials: [
             baseConfigSpecial,
@@ -35,7 +35,7 @@ export default {
       await outputFiles({
         'package.json': '{}',
         'depcheck.config.js': endent`
-        const baseConfigSpecial = require('../src/depcheck-base-config-special')
+        const baseConfigSpecial = require('../src/depcheck-special-base-config')
         
         module.exports = {
           specials: [
@@ -51,7 +51,7 @@ export default {
     withLocalTmpDir(async () => {
       await outputFiles({
         'depcheck.config.js': endent`
-        const baseConfigSpecial = require('../src/depcheck-base-config-special')
+        const baseConfigSpecial = require('../src/depcheck-special-base-config')
 
         module.exports = {
           specials: [

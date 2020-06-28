@@ -7,7 +7,7 @@ export default {
   valid: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        'node_modules/foo/index.js': endent`
+        'node_modules/base-config-foo/index.js': endent`
         module.exports = {
           lint: () => 2,
         }

@@ -1,34 +1,26 @@
-import { endent } from '@dword-design/functions'
-import execa from 'execa'
-import outputFiles from 'output-files'
-import withLocalTmpDir from 'with-local-tmp-dir'
+import { keys, mapValues } from '@dword-design/functions'
+import proxyquire from '@dword-design/proxyquire'
+
+const runTest = config => () => {
+  const self = proxyquire('./commands', {
+    './prepare': config.prepare,
+    './additional-commands': config.additional,
+  })
+  config.test(self)
+}
 
 export default {
-  valid: () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'node_modules/base-config-foo/index.js': endent`
-        module.exports = {
-          commands: {
-            prepublishOnly: () => console.log('foo'),
-          },
-        }
-      `,
-        'package.json': JSON.stringify(
-          {
-            baseConfig: 'foo',
-            devDependencies: {
-              'base-config-foo': '^1.0.0',
-            },
-          },
-          undefined,
-          2
-        ),
-        'src/index.js': 'export default 1',
-      })
-      const output = await execa(require.resolve('./cli'), ['prepublishOnly'], {
-        all: true,
-      })
-      expect(output.all).toEqual('foo')
-    }),
-}
+  valid: {
+    prepare: () => 1,
+    additional: {
+      foo: {
+        handler: () => 2,
+      },
+    },
+    test: result => {
+      expect(result |> keys).toEqual(['prepare', 'foo'])
+      expect(result.prepare.handler()).toEqual(1)
+      expect(result.foo.handler()).toEqual(2)
+    },
+  },
+} |> mapValues(runTest)

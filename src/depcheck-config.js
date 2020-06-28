@@ -2,7 +2,7 @@ import P from 'path'
 import safeRequire from 'safe-require'
 
 import config from './config'
-import baseConfigSpecial from './depcheck-base-config-special'
+import depcheckSpecialBaseConfig from './depcheck-special-base-config'
 
 const baseConfig = safeRequire(P.join(process.cwd(), 'package.json'))
   ?.baseConfig
@@ -15,5 +15,8 @@ export default {
   ignoreDirs: ['.nyc_output', '.vscode', 'coverage', 'dist'],
   prodDependencyMatches: ['!**/*.spec.js'],
   ...config.depcheckConfig,
-  specials: [baseConfigSpecial, ...(config.depcheckConfig.specials || [])],
+  specials: [
+    depcheckSpecialBaseConfig,
+    ...(config.depcheckConfig.specials || []),
+  ],
 }

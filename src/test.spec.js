@@ -1,7 +1,7 @@
-import { endent } from '@dword-design/functions'
+import { endent, identity, sortBy } from '@dword-design/functions'
 import execa from 'execa'
 import { outputFile } from 'fs-extra'
-import glob from 'glob-promise'
+import globby from 'globby'
 import outputFiles from 'output-files'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
@@ -314,7 +314,10 @@ export default {
         all: true,
       })
       expect(output.all).toMatch('run test')
-      expect(await glob('*', { dot: true })).toEqual([
+      expect(
+        globby('*', { onlyFiles: false, dot: true })
+          |> await |> sortBy(identity)
+      ).toEqual([
         '.babelrc.json',
         '.cz.json',
         '.editorconfig',
@@ -328,18 +331,18 @@ export default {
         '.releaserc.json',
         '.renovaterc.json',
         '.vscode',
-        'coverage',
         'LICENSE.md',
+        'README.md',
+        'coverage',
         'node_modules',
         'package.json',
-        'README.md',
         'src',
       ])
     }),
   'test in project root': () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        'node_modules/foo/index.js': endent`
+        'node_modules/base-config-foo/index.js': endent`
           module.exports = {
             allowedMatches: [
               'index.spec.js',

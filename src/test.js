@@ -16,7 +16,7 @@ export default async (pattern, options) => {
         'ajv',
         [
           '-s',
-          require.resolve('./package-json-schema.config'),
+          require.resolve('./package-json-schema'),
           '-d',
           'package.json',
           '--errors',
@@ -49,7 +49,7 @@ export default async (pattern, options) => {
           '--skip-missing',
           true,
           '--config',
-          require.resolve('./depcheck.config'),
+          require.resolve('./depcheck-config'),
           '.',
         ],
         { all: true }

@@ -1,0 +1,18 @@
+[
+  ".babelrc.json",
+  ".cz.json",
+  ".editorconfig",
+  ".gitattributes",
+  ".github",
+  ".gitignore",
+  ".gitpod.Dockerfile",
+  ".gitpod.yml",
+  ".nyc_output",
+  ".releaserc.json",
+  ".renovaterc.json",
+  "CHANGELOG.md",
+  "coverage",
+  "LICENSE.md",
+  "node_modules",
+  "yarn.lock"
+]
