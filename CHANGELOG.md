@@ -1,3 +1,10 @@
+# [6.20.0](https://github.com/dword-design/base/compare/v6.19.1...v6.20.0) (2020-06-28)
+
+
+### Features
+
+* refactoring and add editorIgnore feature ([e03a074](https://github.com/dword-design/base/commit/e03a074aa6d9ba371b7f52188ae17fc65ad9e65a))
+
 ## [6.19.1](https://github.com/dword-design/base/compare/v6.19.0...v6.19.1) (2020-06-25)
 
 
