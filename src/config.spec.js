@@ -8,6 +8,7 @@ import {
 import proxyquire from '@dword-design/proxyquire'
 
 const runTest = config => () => {
+  config = { baseConfig: {}, packageConfig: {}, ...config }
   const self = proxyquire('./config', {
     './package-base-config': config.packageConfig,
     'import-cwd': () => config.baseConfig,
