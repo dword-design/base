@@ -1,3 +1,10 @@
+## [6.20.2](https://github.com/dword-design/base/compare/v6.20.1...v6.20.2) (2020-06-30)
+
+
+### Bug Fixes
+
+* use test env ([3ccac23](https://github.com/dword-design/base/commit/3ccac2381b98e68a2cc6d4750eb788d0e6a4d76e))
+
 ## [6.20.1](https://github.com/dword-design/base/compare/v6.20.0...v6.20.1) (2020-06-29)
 
 
