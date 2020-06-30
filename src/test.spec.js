@@ -301,6 +301,7 @@ export default {
     
           export default {
             valid: () => {
+              expect(process.env.NODE_ENV).toEqual('test')
               expect(foo).toEqual(1)
               console.log('run test')
             },

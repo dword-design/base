@@ -92,7 +92,7 @@ export default async (pattern, options) => {
         ...(process.platform === 'win32' ? ['--exit'] : []),
         pattern || '{,!(node_modules)/**/}*.spec.js',
       ],
-      { stdio: 'inherit' }
+      { stdio: 'inherit', env: { ...process.env, NODE_ENV: 'test' } }
     )
   }
   throw new Error(
