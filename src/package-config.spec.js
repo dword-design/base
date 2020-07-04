@@ -32,21 +32,36 @@ export default {
       )
       expect(packageConfig.main).toEqual('dist/index.scss')
     }),
+  deploy: () =>
+    withLocalTmpDir(async () => {
+      await outputFile(
+        'package.json',
+        endent`
+      {
+        "deploy": true
+      }
+
+    `
+      )
+      const packageConfig = stealthyRequire(require.cache, () =>
+        require('./package-config')
+      )
+      expect(packageConfig.deploy).toBeTruthy()
+    }),
   empty: () =>
     withLocalTmpDir(() => {
       const packageConfig = stealthyRequire(require.cache, () =>
         require('./package-config')
       )
       expect(packageConfig).toEqual({
-        version: '1.0.0',
-        description: '',
-        license: 'MIT',
         author: 'Sebastian Landwehr <info@dword-design.de>',
+        description: '',
+        files: ['dist'],
+        license: 'MIT',
         main: 'dist/index.js',
         publishConfig: {
           access: 'public',
         },
-        files: ['dist'],
         scripts: {
           commit: 'base commit',
           dev: 'base dev',
@@ -55,6 +70,7 @@ export default {
           prepublishOnly: 'base prepublishOnly',
           test: 'base test',
         },
+        version: '1.0.0',
       })
     }),
   'existing package': () =>
@@ -63,35 +79,35 @@ export default {
         'node_modules/base-config-bar/index.js': '',
         'package.json': JSON.stringify(
           {
-            name: 'foo',
-            version: '1.1.0',
-            description: 'foo bar',
-            baseConfig: 'bar',
-            license: 'ISC',
             author: 'foo bar',
-            files: 'foo',
-            main: 'dist/index.scss',
-            publishConfig: {
-              access: 'public',
-            },
-            keywords: ['foo', 'bar'],
+            baseConfig: 'bar',
             bin: {
               foo: './dist/cli.js',
-            },
-            extra: 'foo',
-            scripts: {
-              test: 'echo \\"foo\\"',
-              foo: 'echo \\"foo\\"',
             },
             dependencies: {
               foo: '^1.0.0',
             },
+            description: 'foo bar',
             devDependencies: {
               'base-config-bar': '^1.0.0',
             },
+            extra: 'foo',
+            files: 'foo',
+            keywords: ['foo', 'bar'],
+            license: 'ISC',
+            main: 'dist/index.scss',
+            name: 'foo',
             peerDependencies: {
               nuxt: '^1.0.0',
             },
+            publishConfig: {
+              access: 'public',
+            },
+            scripts: {
+              foo: 'echo \\"foo\\"',
+              test: 'echo \\"foo\\"',
+            },
+            version: '1.1.0',
           },
           undefined,
           2
@@ -101,35 +117,35 @@ export default {
         require('./package-config')
       )
       expect(packageConfig).toEqual({
-        name: 'foo',
-        version: '1.1.0',
-        description: 'foo bar',
-        keywords: ['foo', 'bar'],
-        license: 'MIT',
         author: 'Sebastian Landwehr <info@dword-design.de>',
-        publishConfig: {
-          access: 'public',
-        },
+        baseConfig: 'bar',
         bin: {
           foo: './dist/cli.js',
         },
+        dependencies: {
+          foo: '^1.0.0',
+        },
+        description: 'foo bar',
+        devDependencies: {
+          'base-config-bar': '^1.0.0',
+        },
         files: ['dist'],
+        keywords: ['foo', 'bar'],
+        license: 'MIT',
+        name: 'foo',
+        peerDependencies: {
+          nuxt: '^1.0.0',
+        },
+        publishConfig: {
+          access: 'public',
+        },
         scripts: {
           commit: 'base commit',
           lint: 'base lint',
           prepare: 'base prepare',
           test: 'base test',
         },
-        dependencies: {
-          foo: '^1.0.0',
-        },
-        devDependencies: {
-          'base-config-bar': '^1.0.0',
-        },
-        peerDependencies: {
-          nuxt: '^1.0.0',
-        },
-        baseConfig: 'bar',
+        version: '1.1.0',
       })
     }),
   'git repo': () =>
@@ -140,16 +156,15 @@ export default {
         require('./package-config')
       )
       expect(packageConfig).toEqual({
-        version: '1.0.0',
-        description: '',
-        repository: 'bar/foo',
-        license: 'MIT',
         author: 'Sebastian Landwehr <info@dword-design.de>',
+        description: '',
+        files: ['dist'],
+        license: 'MIT',
         main: 'dist/index.js',
         publishConfig: {
           access: 'public',
         },
-        files: ['dist'],
+        repository: 'bar/foo',
         scripts: {
           commit: 'base commit',
           dev: 'base dev',
@@ -158,6 +173,7 @@ export default {
           prepublishOnly: 'base prepublishOnly',
           test: 'base test',
         },
+        version: '1.0.0',
       })
     }),
   'non-github repo': () =>
@@ -184,22 +200,6 @@ export default {
       )
       expect(packageConfig.private).toBeTruthy()
     }),
-  deploy: () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'package.json',
-        endent`
-      {
-        "deploy": true
-      }
-
-    `
-      )
-      const packageConfig = stealthyRequire(require.cache, () =>
-        require('./package-config')
-      )
-      expect(packageConfig.deploy).toBeTruthy()
-    }),
   'sub-folder': () =>
     withLocalTmpDir(async () => {
       await execa.command('git init')
@@ -212,15 +212,14 @@ export default {
         require('./package-config')
       )
       await expect(packageConfig).toEqual({
-        version: '1.0.0',
-        description: '',
-        license: 'MIT',
         author: 'Sebastian Landwehr <info@dword-design.de>',
+        description: '',
+        files: ['dist'],
+        license: 'MIT',
         main: 'dist/index.js',
         publishConfig: {
           access: 'public',
         },
-        files: ['dist'],
         scripts: {
           commit: 'base commit',
           dev: 'base dev',
@@ -229,6 +228,7 @@ export default {
           prepublishOnly: 'base prepublishOnly',
           test: 'base test',
         },
+        version: '1.0.0',
       })
     }),
 }

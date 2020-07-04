@@ -7,21 +7,21 @@ import test from './test'
 
 export default {
   commit: {
-    options: [{ name: '--allow-empty', description: 'Allow empty commits' }],
     handler: commit,
+    options: [{ description: 'Allow empty commits', name: '--allow-empty' }],
   },
   lint: {
     handler: lint,
   },
   test: {
     arguments: '[pattern]',
+    handler: test,
     options: [
       {
-        name: '-g, --grep <grep>',
         description: 'Only run tests matching this string or regexp',
+        name: '-g, --grep <grep>',
       },
     ],
-    handler: test,
   },
   ...(config.commands
     |> mapValues(command =>

@@ -47,17 +47,15 @@ export default {
       'peerDependencies',
       'publishConfig',
     ])),
-  version: packageConfig.version || '1.0.0',
   description: packageConfig.description || '',
   publishConfig: {
     access: 'public',
   },
-  ...(gitUrl !== undefined
-    ? { repository: `${gitInfo.user}/${gitInfo.project}` }
-    : {}),
-  license: 'MIT',
+  version: packageConfig.version || '1.0.0',
+  ...(gitUrl && { repository: `${gitInfo.user}/${gitInfo.project}` }),
   author: 'Sebastian Landwehr <info@dword-design.de>',
   files: ['dist'],
+  license: 'MIT',
   ...(config |> pick('main')),
   ...config.packageConfig,
   scripts: zipObject(

@@ -33,7 +33,6 @@ export default {
   'no config': () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        'package.json': '{}',
         'depcheck.config.js': endent`
         const baseConfigSpecial = require('../src/depcheck-special-base-config')
         
@@ -44,6 +43,7 @@ export default {
           prodDependencyMatches: ['src/**'],
         }
       `,
+        'package.json': '{}',
       })
       await execa.command('depcheck')
     }),

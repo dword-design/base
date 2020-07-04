@@ -3,7 +3,6 @@ import spdxParse from 'spdx-expression-parse'
 import spdxList from 'spdx-license-list/full'
 
 export default {
-  title: packageConfig => `# ${packageConfig.name}`,
   badges: packageConfig =>
     [
       `[![NPM version](https://img.shields.io/npm/v/${packageConfig.name}.svg)](https://npmjs.org/package/${packageConfig.name})`,
@@ -45,4 +44,5 @@ export default {
     }
     return ''
   },
+  title: packageConfig => `# ${packageConfig.name}`,
 }

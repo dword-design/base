@@ -10,22 +10,22 @@ import packageBaseConfig from './package-base-config'
 const baseConfig = importCwd(packageBaseConfig.name)
 
 export default {
-  gitignore: [],
-  editorIgnore: [],
-  prepare: identity,
-  lint: identity,
-  deployPlugins: [],
+  commands: {},
   deployAssets: [],
   deployEnv: {},
-  commands: {},
+  deployPlugins: [],
+  editorIgnore: [],
+  gitignore: [],
+  lint: identity,
+  prepare: identity,
   ...baseConfig,
   ...packageBaseConfig,
   depcheckConfig: {
+    ignoreDirs: ['.nyc_output', '.vscode', 'coverage', 'dist', '.nuxt'],
     ignores:
       (typeof baseConfig === 'string'
         ? undefined
         : packageBaseConfig.depcheckConfig?.ignoreMatches) || [],
-    ignoreDirs: ['.nyc_output', '.vscode', 'coverage', 'dist', '.nuxt'],
     prodDependencyMatches: ['!**/*.spec.js'],
     ...baseConfig.depcheckConfig,
     detectors: [

@@ -8,21 +8,10 @@ import withLocalTmpDir from 'with-local-tmp-dir'
 import commonAllowedMatches from './common-allowed-matches.json'
 
 export default {
-  'additional file': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'src/index.js': 'export default 1',
-        'test/foo.test.js': '',
-        'foo.txt': '',
-      })
-      await execa(require.resolve('./cli'), ['prepare'])
-      expect(
-        globby('*', { dot: true }) |> await |> includes('foo.txt')
-      ).toBeFalsy()
-    }),
   'additional allowed match': () =>
     withLocalTmpDir(async () => {
       await outputFiles({
+        'foo.txt': '',
         'node_modules/base-config-foo/index.js': endent`
           module.exports = {
             allowedMatches: [
@@ -37,16 +26,28 @@ export default {
           undefined,
           2
         ),
-        'foo.txt': '',
       })
       await execa(require.resolve('./cli'), ['prepare'])
       expect(
         globby('*', { dot: true }) |> await |> includes('foo.txt')
       ).toBeTruthy()
     }),
+  'additional file': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'foo.txt': '',
+        'src/index.js': 'export default 1',
+        'test/foo.test.js': '',
+      })
+      await execa(require.resolve('./cli'), ['prepare'])
+      expect(
+        globby('*', { dot: true }) |> await |> includes('foo.txt')
+      ).toBeFalsy()
+    }),
   'custom prepare': () =>
     withLocalTmpDir(async () => {
       await outputFiles({
+        'foo.txt': '',
         'node_modules/base-config-foo/index.js': endent`
           module.exports = {
             prepare: () => console.log('custom prepare'),
@@ -59,7 +60,6 @@ export default {
           undefined,
           2
         ),
-        'foo.txt': '',
       })
       const output = await execa(require.resolve('./cli'), ['prepare'], {
         all: true,
@@ -73,13 +73,20 @@ export default {
         'git remote add origin git@github.com:dword-design/bar.git'
       )
       await outputFiles({
+        '.env.json': '',
+        '.env.schema.json': endent`
+        {
+          "foo": "bar"
+        }
+      `,
+        '.test.env.json': '',
         'CHANGELOG.md': '',
         doc: {},
         'package.json': JSON.stringify(
           {
-            name: 'foo',
-            license: 'MIT',
             author: 'dword-design',
+            license: 'MIT',
+            name: 'foo',
           },
           undefined,
           2
@@ -87,18 +94,11 @@ export default {
         'src/index.js': 'export default 1',
         'supporting-files': {},
         'test/foo.test.js': '',
-        '.env.json': '',
-        '.test.env.json': '',
-        '.env.schema.json': endent`
-        {
-          "foo": "bar"
-        }
-      `,
         'yarn.lock': '',
       })
       await execa(require.resolve('./cli'), ['prepare'])
       expect(
-        globby('*', { onlyFiles: false, dot: true })
+        globby('*', { dot: true, onlyFiles: false })
           |> await
           |> sortBy(identity)
       ).toEqual(

@@ -3,8 +3,8 @@ import proxyquire from '@dword-design/proxyquire'
 
 const runTest = config => () => {
   const self = proxyquire('./gitignore.config', {
-    './common-gitignore.json': config.common,
     '../config': { gitignore: config.config },
+    './common-gitignore.json': config.common,
   })
   expect(self).toEqual(config.result)
 }

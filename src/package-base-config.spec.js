@@ -12,16 +12,16 @@ export default {
   empty: {
     result: { name: '@dword-design/base-config-node' },
   },
-  valid: {
-    baseConfig: 'foo',
-    result: { name: 'base-config-foo' },
+  'package config': {
+    baseConfig: { foo: 1, name: 'foo' },
+    result: { foo: 1, name: 'base-config-foo' },
   },
   scope: {
     baseConfig: '@dword-design/foo',
     result: { name: '@dword-design/base-config-foo' },
   },
-  'package config': {
-    baseConfig: { name: 'foo', foo: 1 },
-    result: { name: 'base-config-foo', foo: 1 },
+  valid: {
+    baseConfig: 'foo',
+    result: { name: 'base-config-foo' },
   },
 } |> mapValues(runTest)

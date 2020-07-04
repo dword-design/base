@@ -10,7 +10,6 @@ makeCli({
     commands
     |> mapValues((command, name) => ({
       ...command,
-      name,
       handler: async (...args) => {
         try {
           return command.handler(...args) |> await
@@ -20,6 +19,7 @@ makeCli({
           return undefined
         }
       },
+      name,
     }))
     |> values,
 })

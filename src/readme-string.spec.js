@@ -5,27 +5,6 @@ import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
-  title: () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'package.json': JSON.stringify({
-          name: 'foo',
-        }),
-        'README.md': endent`
-        <!-- TITLE -->
-        
-      `,
-      })
-      const readmeString = stealthyRequire(require.cache, () =>
-        require('./readme-string')
-      )
-      expect(readmeString).toEqual(endent`
-      <!-- TITLE/ -->
-      # foo
-      <!-- /TITLE -->
-
-    `)
-    }),
   badges: () =>
     withLocalTmpDir(async () => {
       await execa.command('git init')
@@ -33,11 +12,11 @@ export default {
         'git remote add origin git@github.com:dword-design/bar.git'
       )
       await outputFiles({
-        'package.json': JSON.stringify({ name: '@dword-design/foo' }),
         'README.md': endent`
         <!-- BADGES -->
         
       `,
+        'package.json': JSON.stringify({ name: '@dword-design/foo' }),
       })
       const readmeString = stealthyRequire(require.cache, () =>
         require('./readme-string')
@@ -59,11 +38,11 @@ export default {
   description: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        'package.json': JSON.stringify({ description: 'foo bar baz' }),
         'README.md': endent`
         <!-- DESCRIPTION -->
         
       `,
+        'package.json': JSON.stringify({ description: 'foo bar baz' }),
       })
       const readmeString = stealthyRequire(require.cache, () =>
         require('./readme-string')
@@ -75,68 +54,9 @@ export default {
 
     `)
     }),
-  install: () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'package.json': JSON.stringify({ name: 'foo' }),
-        'README.md': endent`
-        <!-- INSTALL -->
-        
-      `,
-      })
-      const readmeString = stealthyRequire(require.cache, () =>
-        require('./readme-string')
-      )
-      expect(readmeString).toEqual(endent`
-      <!-- INSTALL/ -->
-      ## Install
-      
-      \`\`\`bash
-      # NPM
-      $ npm install foo
-
-      # Yarn
-      $ yarn add foo
-      \`\`\`
-      <!-- /INSTALL -->
-
-    `)
-    }),
-  license: () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'package.json': JSON.stringify({ license: 'MIT' }),
-        'README.md': endent`
-        <!-- LICENSE -->
-        
-      `,
-      })
-      const readmeString = stealthyRequire(require.cache, () =>
-        require('./readme-string')
-      )
-      expect(readmeString).toEqual(endent`
-      <!-- LICENSE/ -->
-      ## License
-
-      Unless stated otherwise all works are:
-
-      Copyright &copy; Sebastian Landwehr <info@dword-design.de>
-
-      and licensed under:
-
-      [MIT License](https://opensource.org/licenses/MIT)
-      <!-- /LICENSE -->
-
-    `)
-    }),
   'existing content': () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        'package.json': JSON.stringify({
-          description: 'foo bar baz',
-          author: 'dword-design',
-          license: 'MIT',
-        }),
         'README.md': endent`
         <!-- DESCRIPTION -->
 
@@ -145,6 +65,11 @@ export default {
         <!-- LICENSE -->
 
       `,
+        'package.json': JSON.stringify({
+          author: 'dword-design',
+          description: 'foo bar baz',
+          license: 'MIT',
+        }),
       })
       const readmeString = stealthyRequire(require.cache, () =>
         require('./readme-string')
@@ -169,5 +94,80 @@ export default {
         <!-- /LICENSE -->
 
       `)
+    }),
+  install: () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'README.md': endent`
+        <!-- INSTALL -->
+        
+      `,
+        'package.json': JSON.stringify({ name: 'foo' }),
+      })
+      const readmeString = stealthyRequire(require.cache, () =>
+        require('./readme-string')
+      )
+      expect(readmeString).toEqual(endent`
+      <!-- INSTALL/ -->
+      ## Install
+      
+      \`\`\`bash
+      # NPM
+      $ npm install foo
+
+      # Yarn
+      $ yarn add foo
+      \`\`\`
+      <!-- /INSTALL -->
+
+    `)
+    }),
+  license: () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'README.md': endent`
+        <!-- LICENSE -->
+        
+      `,
+        'package.json': JSON.stringify({ license: 'MIT' }),
+      })
+      const readmeString = stealthyRequire(require.cache, () =>
+        require('./readme-string')
+      )
+      expect(readmeString).toEqual(endent`
+      <!-- LICENSE/ -->
+      ## License
+
+      Unless stated otherwise all works are:
+
+      Copyright &copy; Sebastian Landwehr <info@dword-design.de>
+
+      and licensed under:
+
+      [MIT License](https://opensource.org/licenses/MIT)
+      <!-- /LICENSE -->
+
+    `)
+    }),
+  title: () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'README.md': endent`
+        <!-- TITLE -->
+        
+      `,
+        'package.json': JSON.stringify({
+          name: 'foo',
+        }),
+      })
+      const readmeString = stealthyRequire(require.cache, () =>
+        require('./readme-string')
+      )
+      expect(readmeString).toEqual(endent`
+      <!-- TITLE/ -->
+      # foo
+      <!-- /TITLE -->
+
+    `)
     }),
 }

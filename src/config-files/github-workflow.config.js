@@ -11,19 +11,50 @@ const envVariableNames =
   (envSchemaPath ? require(envSchemaPath) : {}) |> keys |> map(constantCase)
 
 export default {
-  name: 'build',
-  on: {
-    push: {
-      branches: ['**'],
-    },
-  },
   jobs: {
     'cancel-existing': {
       'runs-on': 'ubuntu-latest',
       steps: [
         {
-          uses: 'rokroskar/workflow-run-cleanup-action@v0.2.2',
           env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' },
+          uses: 'rokroskar/workflow-run-cleanup-action@v0.2.2',
+        },
+      ],
+    },
+    release: {
+      if: "github.ref == 'refs/heads/master'",
+      needs: 'test',
+      'runs-on': 'ubuntu-latest',
+      steps: [
+        { uses: 'actions/checkout@v2' },
+        {
+          uses: 'actions/setup-node@v1',
+          with: {
+            'node-version': 12,
+          },
+        },
+        { run: 'git config --global user.email "actions@github.com"' },
+        { run: 'git config --global user.name "GitHub Actions"' },
+        { run: 'yarn --frozen-lockfile' },
+        { run: 'yarn lint' },
+        {
+          env: {
+            GITHUB_REPOSITORY: '${{ secrets.GITHUB_REPOSITORY }}',
+            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+          },
+          name: 'Push changed files',
+          run: `yarn ${bin} push-changed-files`,
+        },
+        {
+          env: {
+            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+            ...(config.npmPublish
+              ? { NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' }
+              : {}),
+            ...config.deployEnv,
+          },
+          name: 'Release',
+          run: 'yarn semantic-release',
         },
       ],
     },
@@ -32,12 +63,12 @@ export default {
       ...(config.useJobMatrix && {
         strategy: {
           matrix: {
-            os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
-            node: [10, 12],
             exclude: [
-              { os: 'macos-latest', node: 10 },
-              { os: 'windows-latest', node: 10 },
+              { node: 10, os: 'macos-latest' },
+              { node: 10, os: 'windows-latest' },
             ],
+            node: [10, 12],
+            os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
           },
         },
       }),
@@ -69,52 +100,21 @@ export default {
           ...(config.useJobMatrix && {
             if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
           }),
-          run: `yarn ${bin} coveralls`,
           env: {
+            COVERALLS_GIT_BRANCH: '${{ github.ref }}',
+            COVERALLS_GIT_COMMIT: '${{ github.sha }}',
             COVERALLS_REPO_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
             COVERALLS_SERVICE_NAME: 'github',
-            COVERALLS_GIT_COMMIT: '${{ github.sha }}',
-            COVERALLS_GIT_BRANCH: '${{ github.ref }}',
           },
+          run: `yarn ${bin} coveralls`,
         },
       ],
     },
-    release: {
-      needs: 'test',
-      if: "github.ref == 'refs/heads/master'",
-      'runs-on': 'ubuntu-latest',
-      steps: [
-        { uses: 'actions/checkout@v2' },
-        {
-          uses: 'actions/setup-node@v1',
-          with: {
-            'node-version': 12,
-          },
-        },
-        { run: 'git config --global user.email "actions@github.com"' },
-        { run: 'git config --global user.name "GitHub Actions"' },
-        { run: 'yarn --frozen-lockfile' },
-        { run: 'yarn lint' },
-        {
-          name: 'Push changed files',
-          run: `yarn ${bin} push-changed-files`,
-          env: {
-            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-            GITHUB_REPOSITORY: '${{ secrets.GITHUB_REPOSITORY }}',
-          },
-        },
-        {
-          name: 'Release',
-          env: {
-            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-            ...(config.npmPublish
-              ? { NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' }
-              : {}),
-            ...config.deployEnv,
-          },
-          run: 'yarn semantic-release',
-        },
-      ],
+  },
+  name: 'build',
+  on: {
+    push: {
+      branches: ['**'],
     },
   },
 }

@@ -2,39 +2,39 @@ import packageNameRegex from 'package-name-regex'
 import stableVersionRegex from 'stable-version-regex'
 
 export default {
-  type: 'object',
   properties: {
-    name: {
-      type: 'string',
-      pattern: packageNameRegex.source,
-    },
-    version: {
-      type: 'string',
-      pattern: stableVersionRegex.source,
-    },
     baseConfig: {
-      type: ['string', 'object'],
       properties: {
-        name: { type: 'string' },
         depcheckConfig: { type: 'object' },
+        name: { type: 'string' },
       },
-    },
-    description: { type: 'string' },
-    keywords: {
-      type: 'array',
-      items: { type: 'string' },
+      type: ['string', 'object'],
     },
     bin: {
+      additionalProperties: { pattern: /^\.\/dist\//.source, type: 'string' },
       type: 'object',
-      additionalProperties: { type: 'string', pattern: /^\.\/dist\//.source },
     },
     dependencies: {
-      type: 'object',
       additionalProperties: { type: 'string' },
+      type: 'object',
     },
+    description: { type: 'string' },
     devDependencies: {
-      type: 'object',
       additionalProperties: { type: 'string' },
+      type: 'object',
+    },
+    keywords: {
+      items: { type: 'string' },
+      type: 'array',
+    },
+    name: {
+      pattern: packageNameRegex.source,
+      type: 'string',
+    },
+    version: {
+      pattern: stableVersionRegex.source,
+      type: 'string',
     },
   },
+  type: 'object',
 }

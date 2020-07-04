@@ -2,7 +2,7 @@ import { mapValues } from '@dword-design/functions'
 import proxyquire from '@dword-design/proxyquire'
 
 const runTest = config => {
-  config.config = { deployPlugins: [], deployAssets: [], ...config.config }
+  config.config = { deployAssets: [], deployPlugins: [], ...config.config }
   return () => {
     const self = proxyquire('./release.config', {
       '../config': config.config,
@@ -12,7 +12,8 @@ const runTest = config => {
 }
 
 export default {
-  valid: {
+  'deploy assets': {
+    config: { deployAssets: [{ label: 'Foo', path: 'foo.js' }] },
     result: {
       plugins: [
         '@semantic-release/commit-analyzer',
@@ -24,20 +25,12 @@ export default {
             npmPublish: false,
           },
         ],
-        '@semantic-release/github',
-        '@semantic-release/git',
-      ],
-    },
-  },
-  'npm publish': {
-    config: { npmPublish: true },
-    result: {
-      plugins: [
-        '@semantic-release/commit-analyzer',
-        '@semantic-release/release-notes-generator',
-        '@semantic-release/changelog',
-        '@semantic-release/npm',
-        '@semantic-release/github',
+        [
+          '@semantic-release/github',
+          {
+            assets: [{ label: 'Foo', path: 'foo.js' }],
+          },
+        ],
         '@semantic-release/git',
       ],
     },
@@ -61,8 +54,20 @@ export default {
       ],
     },
   },
-  'deploy assets': {
-    config: { deployAssets: [{ path: 'foo.js', label: 'Foo' }] },
+  'npm publish': {
+    config: { npmPublish: true },
+    result: {
+      plugins: [
+        '@semantic-release/commit-analyzer',
+        '@semantic-release/release-notes-generator',
+        '@semantic-release/changelog',
+        '@semantic-release/npm',
+        '@semantic-release/github',
+        '@semantic-release/git',
+      ],
+    },
+  },
+  valid: {
     result: {
       plugins: [
         '@semantic-release/commit-analyzer',
@@ -74,12 +79,7 @@ export default {
             npmPublish: false,
           },
         ],
-        [
-          '@semantic-release/github',
-          {
-            assets: [{ path: 'foo.js', label: 'Foo' }],
-          },
-        ],
+        '@semantic-release/github',
         '@semantic-release/git',
       ],
     },

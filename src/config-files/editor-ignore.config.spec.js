@@ -3,8 +3,8 @@ import proxyquire from '@dword-design/proxyquire'
 
 const runTest = config => () => {
   const self = proxyquire('./editor-ignore.config', {
-    './common-editor-ignore.json': config.common,
     '../config': { editorIgnore: config.config },
+    './common-editor-ignore.json': config.common,
   })
   expect(self).toEqual(config.result)
 }

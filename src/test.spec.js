@@ -75,6 +75,28 @@ export default {
       await execa(require.resolve('./cli'), ['prepare'])
       await execa(require.resolve('./cli'), ['test'])
     }),
+  grep: () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        src: {
+          'index.js': 'export default 1',
+          'index.spec.js': endent`
+          export default {
+            bar: () => console.log('run bar'),
+            foo: () => console.log('run foo'),
+          }
+        `,
+        },
+      })
+      await execa(require.resolve('./cli'), ['prepare'])
+      const output = await execa(
+        require.resolve('./cli'),
+        ['test', '--grep', 'foo'],
+        { all: true }
+      )
+      expect(output.all).not.toMatch('run bar')
+      expect(output.all).toMatch('run foo')
+    }),
   'invalid name': () =>
     withLocalTmpDir(async () => {
       await outputFile(
@@ -153,13 +175,7 @@ export default {
   pattern: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        src: {
-          'index.js': 'export default 1',
-          'index1.spec.js':
-            "export default { valid: () => console.log('run index1') }",
-          'index2.spec.js':
-            "export default { valid: () => console.log('run index2') }",
-        },
+        'README.md': '',
         'package.json': JSON.stringify(
           {
             dependencies: {
@@ -169,7 +185,13 @@ export default {
           undefined,
           2
         ),
-        'README.md': '',
+        src: {
+          'index.js': 'export default 1',
+          'index1.spec.js':
+            "export default { valid: () => console.log('run index1') }",
+          'index2.spec.js':
+            "export default { valid: () => console.log('run index2') }",
+        },
       })
       await execa(require.resolve('./cli'), ['prepare'])
       const output = await execa(
@@ -179,28 +201,6 @@ export default {
       )
       expect(output.all).not.toMatch('run index1')
       expect(output.all).toMatch('run index2')
-    }),
-  grep: () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        src: {
-          'index.js': 'export default 1',
-          'index.spec.js': endent`
-          export default {
-            bar: () => console.log('run bar'),
-            foo: () => console.log('run foo'),
-          }
-        `,
-        },
-      })
-      await execa(require.resolve('./cli'), ['prepare'])
-      const output = await execa(
-        require.resolve('./cli'),
-        ['test', '--grep', 'foo'],
-        { all: true }
-      )
-      expect(output.all).not.toMatch('run bar')
-      expect(output.all).toMatch('run foo')
     }),
   'prod dependency only in test': () =>
     withLocalTmpDir(async () => {
@@ -235,6 +235,36 @@ export default {
       Unused dependencies
       * bar
     `)
+    }),
+  'test in project root': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'index.spec.js': endent`
+          export default {
+            valid: () => console.log('run test')
+          }
+
+        `,
+        'node_modules/base-config-foo/index.js': endent`
+          module.exports = {
+            allowedMatches: [
+              'index.spec.js',
+            ],
+          }
+        `,
+        'package.json': JSON.stringify(
+          {
+            baseConfig: 'foo',
+          },
+          undefined,
+          2
+        ),
+      })
+      await execa(require.resolve('./cli'), ['prepare'])
+      const output = await execa(require.resolve('./cli'), ['test'], {
+        all: true,
+      })
+      expect(output.all).toMatch('run test')
     }),
   'unstable version': () =>
     withLocalTmpDir(async () => {
@@ -316,7 +346,7 @@ export default {
       })
       expect(output.all).toMatch('run test')
       expect(
-        globby('*', { onlyFiles: false, dot: true })
+        globby('*', { dot: true, onlyFiles: false })
           |> await
           |> sortBy(identity)
       ).toEqual([
@@ -340,36 +370,6 @@ export default {
         'package.json',
         'src',
       ])
-    }),
-  'test in project root': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'node_modules/base-config-foo/index.js': endent`
-          module.exports = {
-            allowedMatches: [
-              'index.spec.js',
-            ],
-          }
-        `,
-        'package.json': JSON.stringify(
-          {
-            baseConfig: 'foo',
-          },
-          undefined,
-          2
-        ),
-        'index.spec.js': endent`
-          export default {
-            valid: () => console.log('run test')
-          }
-
-        `,
-      })
-      await execa(require.resolve('./cli'), ['prepare'])
-      const output = await execa(require.resolve('./cli'), ['test'], {
-        all: true,
-      })
-      expect(output.all).toMatch('run test')
     }),
   'wrong dependencies type': () =>
     withLocalTmpDir(async () => {

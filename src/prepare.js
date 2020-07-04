@@ -24,14 +24,14 @@ import gitignoreConfig from './config-files/gitignore.config'
 import gitpodDockerfile from './config-files/gitpod-dockerfile.config'
 import gitpodConfig from './config-files/gitpod.config'
 import releaseConfig from './config-files/release.config'
-import renovateConfig from './config-files/renovate.config'
+import renovateConfig from './config-files/renovate.json'
 import vscodeConfig from './config-files/vscode.config'
 import licenseString from './license-string'
 import packageConfig from './package-config'
 import readmeString from './readme-string'
 
 export default async () => {
-  await (globby('*', { onlyFiles: false, dot: true, ignore: allowedMatches })
+  await (globby('*', { dot: true, ignore: allowedMatches, onlyFiles: false })
     |> await
     |> filter(ignore().add(gitignoreConfig).createFilter())
     |> map(unary(remove))
@@ -42,19 +42,19 @@ export default async () => {
     '.editorconfig': editorconfigConfig,
     '.gitattributes': gitattributesConfig,
     '.github/workflows/build.yml': githubWorkflowConfig |> yaml.stringify,
+    '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
     '.gitpod.Dockerfile': gitpodDockerfile,
     '.gitpod.yml': gitpodConfig,
     '.releaserc.json': releaseConfig |> jsonToString({ indent: 2 }),
     '.renovaterc.json': renovateConfig,
-    '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
     '.vscode/settings.json': vscodeConfig |> jsonToString({ indent: 2 }),
     'LICENSE.md': licenseString,
+    'README.md': readmeString,
     'package.json':
       packageConfig
       |> sortPackageJson
       |> jsonToString({ indent: 2 })
       |> add('\n'),
-    'README.md': readmeString,
   })
   await config.prepare()
 }
