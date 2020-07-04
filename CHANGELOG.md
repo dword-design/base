@@ -1,3 +1,11 @@
+## [6.20.3](https://github.com/dword-design/base/compare/v6.20.2...v6.20.3) (2020-07-04)
+
+
+### Bug Fixes
+
+* fix renovate config generation ([ee27e9b](https://github.com/dword-design/base/commit/ee27e9b4aa9522e0b899285fe7ac87360c6a98c8))
+* upgrades and adjust lock file maintenance config ([85ec649](https://github.com/dword-design/base/commit/85ec64941c0b967d4b76974da270be95beb5f8e4))
+
 ## [6.20.2](https://github.com/dword-design/base/compare/v6.20.1...v6.20.2) (2020-06-30)
 
 
