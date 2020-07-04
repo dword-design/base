@@ -46,7 +46,7 @@ export default async () => {
     '.gitpod.Dockerfile': gitpodDockerfile,
     '.gitpod.yml': gitpodConfig,
     '.releaserc.json': releaseConfig |> jsonToString({ indent: 2 }),
-    '.renovaterc.json': renovateConfig,
+    '.renovaterc.json': renovateConfig |> jsonToString({ indent: 2 }),
     '.vscode/settings.json': vscodeConfig |> jsonToString({ indent: 2 }),
     'LICENSE.md': licenseString,
     'README.md': readmeString,
