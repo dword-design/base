@@ -1,3 +1,11 @@
+## [6.20.4](https://github.com/dword-design/base/compare/v6.20.3...v6.20.4) (2020-07-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency expect to v26 ([27dba36](https://github.com/dword-design/base/commit/27dba36e7d9b0b0527f1990067b309ee4e4831a4))
+* **deps:** update dependency get-projectz-readme-section-regex to v2 ([96e258f](https://github.com/dword-design/base/commit/96e258f8cd06b003e4e0ee5314de148408864a42))
+
 ## [6.20.3](https://github.com/dword-design/base/compare/v6.20.2...v6.20.3) (2020-07-04)
 
 
