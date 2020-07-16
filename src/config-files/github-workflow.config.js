@@ -21,21 +21,9 @@ export default {
         },
       ],
     },
-    coverage: {
-      needs: 'test',
-      'runs-on': 'ubuntu-latest',
-      steps: [
-        {
-          uses: 'coverallsapp/github-action@master',
-          with: {
-            'github-token': '${{ secrets.GITHUB_TOKEN }}',
-          },
-        },
-      ]
-    },
     release: {
       if: "github.ref == 'refs/heads/master'",
-      needs: 'coverage',
+      needs: 'test',
       'runs-on': 'ubuntu-latest',
       steps: [
         { uses: 'actions/checkout@v2' },
@@ -107,6 +95,15 @@ export default {
                 ),
               }
             : {}),
+        },
+        {
+          ...(config.useJobMatrix && {
+            if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
+          }),
+          uses: 'coverallsapp/github-action@master',
+          with: {
+            'github-token': '${{ secrets.GITHUB_TOKEN }}',
+          },
         },
       ],
     },
