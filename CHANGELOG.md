@@ -1,3 +1,23 @@
+# [6.21.0](https://github.com/dword-design/base/compare/v6.20.4...v6.21.0) (2020-07-16)
+
+
+### Bug Fixes
+
+* add maintenance label ([681342b](https://github.com/dword-design/base/commit/681342b6560e6f4848bc4bfea290cefa0d161d7c))
+* add maintenance label ([727c264](https://github.com/dword-design/base/commit/727c264d48a1a7cf65d3c4355de28907caf9bdfc))
+* fix package config ([2570eef](https://github.com/dword-design/base/commit/2570eef78c7f7902ed87e68012a68ce8f42f1f1c))
+* fix workflow ([aadb98c](https://github.com/dword-design/base/commit/aadb98c38117ddeb029dd16ac83623d908f8873b))
+* fix workflows ([c7e46d2](https://github.com/dword-design/base/commit/c7e46d2fce9ea0a26772d5c947a3d686ae7129c5))
+* remove main config ([7790cab](https://github.com/dword-design/base/commit/7790cabc231e7ae96a73cb9306c0ef5b07bb5a70))
+* remove unneeded allowed matches ([628493f](https://github.com/dword-design/base/commit/628493f7c5ea18048658349499d37d6c08cd0141))
+* update workflows ([f23d165](https://github.com/dword-design/base/commit/f23d1653a93916d0a342ae0b3598d9cfcaa9daad))
+* use official coverage action ([0da9b61](https://github.com/dword-design/base/commit/0da9b61bc011656338fd8536281d7b6d2df862df))
+
+
+### Features
+
+* clean command ([b611593](https://github.com/dword-design/base/commit/b611593dd33cca60b29c8a530ca9fa7cf8e80c54))
+
 ## [6.20.4](https://github.com/dword-design/base/compare/v6.20.3...v6.20.4) (2020-07-05)
 
 
