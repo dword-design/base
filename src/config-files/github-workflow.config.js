@@ -23,13 +23,14 @@ export default {
     },
     coverage: {
       needs: 'test',
-      steps: {
-        name: 'Coveralls',
-        uses: 'coverallsapp/github-action@master',
-        with: {
-          'github-token': '${{ secrets.GITHUB_TOKEN }}',
+      steps: [
+        {
+          uses: 'coverallsapp/github-action@master',
+          with: {
+            'github-token': '${{ secrets.GITHUB_TOKEN }}',
+          },
         },
-      },
+      ]
     },
     release: {
       if: "github.ref == 'refs/heads/master'",
