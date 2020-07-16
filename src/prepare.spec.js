@@ -32,18 +32,6 @@ export default {
         globby('*', { dot: true }) |> await |> includes('foo.txt')
       ).toBeTruthy()
     }),
-  'additional file': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'foo.txt': '',
-        'src/index.js': 'export default 1',
-        'test/foo.test.js': '',
-      })
-      await execa(require.resolve('./cli'), ['prepare'])
-      expect(
-        globby('*', { dot: true }) |> await |> includes('foo.txt')
-      ).toBeFalsy()
-    }),
   'custom prepare': () =>
     withLocalTmpDir(async () => {
       await outputFiles({
@@ -81,7 +69,6 @@ export default {
       `,
         '.test.env.json': '',
         'CHANGELOG.md': '',
-        doc: {},
         'package.json': JSON.stringify(
           {
             author: 'dword-design',
@@ -92,8 +79,6 @@ export default {
           2
         ),
         'src/index.js': 'export default 1',
-        'supporting-files': {},
-        'test/foo.test.js': '',
         'yarn.lock': '',
       })
       await execa(require.resolve('./cli'), ['prepare'])

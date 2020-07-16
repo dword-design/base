@@ -14,6 +14,7 @@
     "dist"
   ],
   "scripts": {
+    "clean": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js clean",
     "commit": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js commit",
     "dev": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js dev",
     "lint": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js lint",
@@ -60,7 +61,6 @@
     "parse-git-config": "^3.0.0",
     "plugin-name-to-package-name": "^0.1.1",
     "safe-readfile": "^1.0.2",
-    "safe-require": "dword-design/node-safe-require#fork",
     "semantic-release": "^17.0.3",
     "sort-package-json": "^1.39.1",
     "spdx-expression-parse": "^3.0.0",

@@ -2,24 +2,30 @@ import {
   constant,
   identity,
   ifElse,
-  keys,
-  map,
+  mapValues,
   pick,
   property,
-  zipObject,
+  stubTrue,
 } from '@dword-design/functions'
 import { existsSync } from 'fs-extra'
 import getPackageName from 'get-package-name'
 import hostedGitInfo from 'hosted-git-info'
 import parseGitConfig from 'parse-git-config'
 import P from 'path'
-import safeRequire from 'safe-require'
+import loadPkg from 'load-pkg'
 
-import commands from './additional-commands'
-import config from './config'
+import config from '@/src/config'
 
-const packageConfig = safeRequire(P.join(process.cwd(), 'package.json')) || {}
-const commandNames = ['prepare', ...(commands |> keys)]
+const packageConfig = loadPkg.sync() || {}
+
+const commandNames = {
+  clean: true,
+  commit: true,
+  lint: true,
+  prepare: true,
+  test: true,
+  ...config.commands |> mapValues(stubTrue),
+}
 const gitUrl =
   existsSync('.git')
   |> ifElse(
@@ -57,15 +63,13 @@ export default {
   files: ['dist'],
   license: 'MIT',
   ...config.packageConfig,
-  scripts: zipObject(
-    commandNames,
+  scripts:
     commandNames
-      |> map(name =>
-        packageConfig.name === '@dword-design/base'
-          ? `rimraf dist && babel --config-file ${getPackageName(
-              require.resolve('@dword-design/babel-config')
-            )} --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
-          : `base ${name}`
-      )
-  ),
+    |> mapValues((nothing, name) =>
+      packageConfig.name === '@dword-design/base'
+        ? `rimraf dist && babel --config-file ${getPackageName(
+            require.resolve('@dword-design/babel-config')
+          )} --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
+        : `base ${name}`
+    ),
 }
