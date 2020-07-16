@@ -10,21 +10,19 @@ import {
 import { existsSync } from 'fs-extra'
 import getPackageName from 'get-package-name'
 import hostedGitInfo from 'hosted-git-info'
-import parseGitConfig from 'parse-git-config'
-import P from 'path'
 import loadPkg from 'load-pkg'
+import parseGitConfig from 'parse-git-config'
 
 import config from '@/src/config'
 
 const packageConfig = loadPkg.sync() || {}
-
 const commandNames = {
   clean: true,
   commit: true,
   lint: true,
   prepare: true,
   test: true,
-  ...config.commands |> mapValues(stubTrue),
+  ...(config.commands |> mapValues(stubTrue)),
 }
 const gitUrl =
   existsSync('.git')
