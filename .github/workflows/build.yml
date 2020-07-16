@@ -5,9 +5,16 @@ jobs:
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+  coverage:
+    needs: test
+    steps:
+      name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
   release:
     if: github.ref == 'refs/heads/master'
-    needs: test
+    needs: coverage
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,8 +24,8 @@ jobs:
       - run: git config --global user.email "actions@github.com"
       - run: git config --global user.name "GitHub Actions"
       - run: yarn --frozen-lockfile
-      - run: yarn clean
       - run: yarn lint
+      - run: yarn clean
       - env:
           GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,14 +62,6 @@ jobs:
       - run: git config --global user.name "GitHub Actions"
       - run: yarn --frozen-lockfile
       - run: yarn test
-      - name: Coveralls
-        if: matrix.os == 'ubuntu-latest' && matrix.node == 12
-        env:
-          COVERALLS_GIT_BRANCH: ${{ github.ref }}
-          COVERALLS_GIT_COMMIT: ${{ github.sha }}
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COVERALLS_SERVICE_NAME: github
-        run: yarn dw-ci coveralls
 name: build
 on:
   push:
