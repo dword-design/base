@@ -10,6 +10,7 @@ import lint from '@/src/commands/lint'
 import config from '@/src/config'
 
 export default async (pattern, options) => {
+  options = { log: true, ...options }
   if (!pattern) {
     try {
       await execa(
@@ -92,7 +93,10 @@ export default async (pattern, options) => {
         ...(process.platform === 'win32' ? ['--exit'] : []),
         pattern || '{,!(node_modules)/**/}*.spec.js',
       ],
-      { env: { ...process.env, NODE_ENV: 'test' }, stdio: 'inherit' }
+      {
+        env: { ...process.env, NODE_ENV: 'test' },
+        ...(options.log ? { stdio: 'inherit' } : { all: true }),
+      }
     )
   }
   throw new Error(

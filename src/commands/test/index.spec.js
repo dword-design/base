@@ -6,14 +6,15 @@ import {
   property,
   sortBy,
 } from '@dword-design/functions'
-import execa from 'execa'
 import globby from 'globby'
 import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
+import self from '.'
+
 const runTest = config => {
-  config = { arguments: [], files: {}, test: noop, ...config }
+  config = { files: {}, options: {}, test: noop, ...config }
   return () =>
     withLocalTmpDir(async () => {
       await outputFiles(config.files)
@@ -24,13 +25,11 @@ const runTest = config => {
       let output
       try {
         output =
-          execa(require.resolve('../../cli'), ['test', ...config.arguments], {
-            all: true,
-          })
+          self(config.pattern, { log: false, ...config.options })
           |> await
           |> property('all')
       } catch (error) {
-        output = error.all
+        output = error.message
       }
       await config.test(output)
     })
@@ -70,7 +69,6 @@ export default {
   },
   empty: {},
   grep: {
-    arguments: ['--grep', 'foo'],
     files: {
       src: {
         'index.js': 'export default 1',
@@ -82,6 +80,7 @@ export default {
       `,
       },
     },
+    options: { grep: 'foo' },
     test: output => {
       expect(output).not.toMatch('run bar')
       expect(output).toMatch('run foo')
@@ -130,7 +129,6 @@ export default {
       ),
   },
   pattern: {
-    arguments: ['src/index2.spec.js'],
     files: {
       'README.md': '',
       'package.json': JSON.stringify(
@@ -150,6 +148,7 @@ export default {
           "export default { valid: () => console.log('run index2') }",
       },
     },
+    pattern: 'src/index2.spec.js',
     test: output => {
       expect(output).not.toMatch('run index1')
       expect(output).toMatch('run index2')
@@ -261,7 +260,7 @@ export default {
       },
     },
     test: async output => {
-      expect(output.all).toMatch('run test')
+      expect(output).toMatch('run test')
       expect(
         globby('*', { dot: true, onlyFiles: false })
           |> await
