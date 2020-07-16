@@ -17,8 +17,8 @@ jobs:
       - run: git config --global user.email "actions@github.com"
       - run: git config --global user.name "GitHub Actions"
       - run: yarn --frozen-lockfile
-      - run: yarn lint
       - run: yarn clean
+      - run: yarn lint
       - env:
           GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -31,6 +31,21 @@ jobs:
         run: yarn semantic-release
   test:
     needs: cancel-existing
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: git config --global user.email "actions@github.com"
+      - run: git config --global user.name "GitHub Actions"
+      - run: yarn --frozen-lockfile
+      - run: yarn clean
+      - run: yarn test
+      - if: matrix.os == 'ubuntu-latest' && matrix.node == 12
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       matrix:
         exclude:
@@ -45,20 +60,6 @@ jobs:
           - macos-latest
           - windows-latest
           - ubuntu-latest
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-      - run: git config --global user.email "actions@github.com"
-      - run: git config --global user.name "GitHub Actions"
-      - run: yarn --frozen-lockfile
-      - run: yarn test
-      - if: matrix.os == 'ubuntu-latest' && matrix.node == 12
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 name: build
 on:
   push:
