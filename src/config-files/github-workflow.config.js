@@ -21,9 +21,19 @@ export default {
         },
       ],
     },
+    coverage: {
+      needs: 'test',
+      steps: {
+        name: 'Coveralls',
+        uses: 'coverallsapp/github-action@master',
+        with: {
+          'github-token': '${{ secrets.GITHUB_TOKEN }}',
+        },
+      },
+    },
     release: {
       if: "github.ref == 'refs/heads/master'",
-      needs: 'test',
+      needs: 'coverage',
       'runs-on': 'ubuntu-latest',
       steps: [
         { uses: 'actions/checkout@v2' },
@@ -95,19 +105,6 @@ export default {
                 ),
               }
             : {}),
-        },
-        {
-          name: 'Coveralls',
-          ...(config.useJobMatrix && {
-            if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
-          }),
-          env: {
-            COVERALLS_GIT_BRANCH: '${{ github.ref }}',
-            COVERALLS_GIT_COMMIT: '${{ github.sha }}',
-            COVERALLS_REPO_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-            COVERALLS_SERVICE_NAME: 'github',
-          },
-          run: `yarn ${bin} coveralls`,
         },
       ],
     },
