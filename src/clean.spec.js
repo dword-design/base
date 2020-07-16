@@ -27,11 +27,11 @@ const runTest = config => {
       './config': {
         allowedMatches: config.configAllowedMatches,
       },
-      './config-files': zipObject(
+      './generated-files': zipObject(
         config.configFiles,
         config.configFiles |> map(stubString)
       ),
-      './config-files/gitignore.config': config.gitignore,
+      './generated-files/gitignore.config': config.gitignore,
     })
     return withLocalTmpDir(async () => {
       await outputFiles(config.files)

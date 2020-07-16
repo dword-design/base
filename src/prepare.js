@@ -1,7 +1,7 @@
 import outputFiles from 'output-files'
 
 import config from './config'
-import configFiles from './config-files'
+import configFiles from './generated-files'
 
 export default async () => {
   await outputFiles(configFiles)
