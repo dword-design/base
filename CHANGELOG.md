@@ -1,3 +1,10 @@
+# [6.22.0](https://github.com/dword-design/base/compare/v6.21.1...v6.22.0) (2020-07-16)
+
+
+### Features
+
+* simple non-matrix github workflow ([231b317](https://github.com/dword-design/base/commit/231b317b83934ec12ba71f6eda432863a3cd501f))
+
 ## [6.21.1](https://github.com/dword-design/base/compare/v6.21.0...v6.21.1) (2020-07-16)
 
 
