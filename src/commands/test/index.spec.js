@@ -1,332 +1,252 @@
-import { endent, identity, sortBy } from '@dword-design/functions'
+import {
+  endent,
+  identity,
+  mapValues,
+  noop,
+  property,
+  sortBy,
+} from '@dword-design/functions'
 import execa from 'execa'
-import { outputFile } from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
+import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
+const runTest = config => {
+  config = { arguments: [], files: {}, test: noop, ...config }
+  return () =>
+    withLocalTmpDir(async () => {
+      await outputFiles(config.files)
+      const prepare = stealthyRequire(require.cache, () =>
+        require('../prepare')
+      )
+      await prepare()
+      let output
+      try {
+        output =
+          execa(require.resolve('../../cli'), ['test', ...config.arguments], {
+            all: true,
+          })
+          |> await
+          |> property('all')
+      } catch (error) {
+        output = error.all
+      }
+      await config.test(output)
+    })
+}
+
 export default {
-  assertion: () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        src: {
-          'index.js': 'export default 1',
-          'index.spec.js': endent`
-          export default {
-            valid: () => expect(1).toEqual(2),
-          }
-        `,
-        },
-      })
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], {
-          all: true,
-        })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch('Error: expect(received).toEqual(expected)')
-    }),
-  'bin outside dist': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'package.json',
-        endent`
-      {
-        "bin": {
-          "foo": "./src/cli.js"
+  assertion: {
+    files: {
+      src: {
+        'index.js': 'export default 1',
+        'index.spec.js': endent`
+        export default {
+          valid: () => expect(1).toEqual(2),
         }
-      }
-    `
-      )
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch("data.bin['foo'] should match pattern")
-    }),
-  'config file errors': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'package.json',
-        endent`
-      {
-        "name": "_foo"
-      }
-  
-    `
-      )
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch('package.json invalid')
-    }),
-  empty: () =>
-    withLocalTmpDir(async () => {
-      await execa(require.resolve('../../cli'), ['prepare'])
-      await execa(require.resolve('../../cli'), ['test'])
-    }),
-  grep: () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        src: {
-          'index.js': 'export default 1',
-          'index.spec.js': endent`
-          export default {
-            bar: () => console.log('run bar'),
-            foo: () => console.log('run foo'),
-          }
-        `,
-        },
-      })
-      await execa(require.resolve('../../cli'), ['prepare'])
-      const output = await execa(
-        require.resolve('../../cli'),
-        ['test', '--grep', 'foo'],
-        { all: true }
-      )
-      expect(output.all).not.toMatch('run bar')
-      expect(output.all).toMatch('run foo')
-    }),
-  'invalid name': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'package.json',
-        endent`
-      {
-        "name": "_foo"
-      }
-    `
-      )
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch('data.name should match pattern')
-    }),
-  'json errors': () =>
-    withLocalTmpDir(async () => {
-      await outputFile('src/test.json', 'foo bar')
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch('error  Unexpected token o')
-    }),
-  'linting errors': () =>
-    withLocalTmpDir(async () => {
-      await outputFile('src/index.js', "var foo = 'bar'")
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch(
+      `,
+      },
+    },
+    test: output =>
+      expect(output).toMatch('Error: expect(received).toEqual(expected)'),
+  },
+  'bin outside dist': {
+    files: {
+      'package.json': JSON.stringify(
+        { bin: { foo: './src/cli.js' } },
+        undefined,
+        2
+      ),
+    },
+    test: output =>
+      expect(output).toMatch("data.bin['foo'] should match pattern"),
+  },
+  'config file errors': {
+    files: {
+      'package.json': JSON.stringify({ name: '_foo' }, undefined, 2),
+    },
+    test: output => expect(output).toMatch('package.json invalid'),
+  },
+  empty: {},
+  grep: {
+    arguments: ['--grep', 'foo'],
+    files: {
+      src: {
+        'index.js': 'export default 1',
+        'index.spec.js': endent`
+        export default {
+          bar: () => console.log('run bar'),
+          foo: () => console.log('run foo'),
+        }
+      `,
+      },
+    },
+    test: output => {
+      expect(output).not.toMatch('run bar')
+      expect(output).toMatch('run foo')
+    },
+  },
+  'invalid name': {
+    files: {
+      'package.json': JSON.stringify({ name: '_foo' }, undefined, 2),
+    },
+    test: output => expect(output).toMatch('data.name should match pattern'),
+  },
+  'json errors': {
+    files: {
+      'src/test.json': 'foo bar',
+    },
+    test: output => expect(output).toMatch('error  Unexpected token o'),
+  },
+  'linting errors': {
+    files: {
+      'src/index.js': "var foo = 'bar'",
+    },
+    test: output =>
+      expect(output).toMatch(
         "error  'foo' is assigned a value but never used  no-unused-vars"
-      )
-    }),
-  minimal: () =>
-    withLocalTmpDir(async () => {
-      await outputFile('src/index.js', 'export default 1')
-      await execa(require.resolve('../../cli'), ['prepare'])
-      await execa(require.resolve('../../cli'), ['test'])
-    }),
-  'missing readme sections': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'README.md',
-        endent`
-      <!-- TITLE -->
-  
-      <!-- BADGES -->
-  
-      <!-- LICENSE -->
-  
-    `
-      )
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toEqual(
-        'The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL'
-      )
-    }),
-  pattern: () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'README.md': '',
-        'package.json': JSON.stringify(
-          {
-            dependencies: {
-              foo: '^1.0.0',
-            },
-          },
-          undefined,
-          2
-        ),
-        src: {
-          'index.js': 'export default 1',
-          'index1.spec.js':
-            "export default { valid: () => console.log('run index1') }",
-          'index2.spec.js':
-            "export default { valid: () => console.log('run index2') }",
-        },
-      })
-      await execa(require.resolve('../../cli'), ['prepare'])
-      const output = await execa(
-        require.resolve('../../cli'),
-        ['test', 'src/index2.spec.js'],
-        { all: true }
-      )
-      expect(output.all).not.toMatch('run index1')
-      expect(output.all).toMatch('run index2')
-    }),
-  'prod dependency only in test': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'node_modules/bar/index.js': 'export default 1',
-        'package.json': JSON.stringify(
-          {
-            dependencies: {
-              bar: '^1.0.0',
-            },
-          },
-          undefined,
-          2
-        ),
-        src: {
-          'index.js': 'export default 1',
-          'index.spec.js': endent`
-          import bar from 'bar'
+      ),
+  },
+  minimal: {
+    files: {
+      'src/index.js': 'export default 1',
+    },
+  },
+  'missing readme sections': {
+    files: {
+      'README.md': endent`
+        <!-- TITLE -->
     
-          export default bar
-        `,
+        <!-- BADGES -->
+    
+        <!-- LICENSE -->
+    
+      `,
+    },
+    test: output =>
+      expect(output).toEqual(
+        'The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL'
+      ),
+  },
+  pattern: {
+    arguments: ['src/index2.spec.js'],
+    files: {
+      'README.md': '',
+      'package.json': JSON.stringify(
+        {
+          dependencies: {
+            foo: '^1.0.0',
+          },
         },
-      })
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch(endent`
+        undefined,
+        2
+      ),
+      src: {
+        'index.js': 'export default 1',
+        'index1.spec.js':
+          "export default { valid: () => console.log('run index1') }",
+        'index2.spec.js':
+          "export default { valid: () => console.log('run index2') }",
+      },
+    },
+    test: output => {
+      expect(output).not.toMatch('run index1')
+      expect(output).toMatch('run index2')
+    },
+  },
+  'prod dependency only in test': {
+    files: {
+      'node_modules/bar/index.js': 'export default 1',
+      'package.json': JSON.stringify(
+        {
+          dependencies: {
+            bar: '^1.0.0',
+          },
+        },
+        undefined,
+        2
+      ),
+      src: {
+        'index.js': 'export default 1',
+        'index.spec.js': endent`
+        import bar from 'bar'
+  
+        export default bar
+      `,
+      },
+    },
+    test: output =>
+      expect(output).toMatch(endent`
       Unused dependencies
       * bar
-    `)
-    }),
-  'test in project root': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'index.spec.js': endent`
-          export default {
-            valid: () => console.log('run test')
-          }
+    `),
+  },
+  'test in project root': {
+    files: {
+      'index.spec.js': endent`
+        export default {
+          valid: () => console.log('run test')
+        }
 
-        `,
-        'node_modules/base-config-foo/index.js': endent`
-          module.exports = {
-            allowedMatches: [
-              'index.spec.js',
-            ],
-          }
-        `,
-        'package.json': JSON.stringify(
-          {
-            baseConfig: 'foo',
+      `,
+      'node_modules/base-config-foo/index.js': endent`
+        module.exports = {
+          allowedMatches: [
+            'index.spec.js',
+          ],
+        }
+      `,
+      'package.json': JSON.stringify(
+        {
+          baseConfig: 'foo',
+        },
+        undefined,
+        2
+      ),
+    },
+    test: output => expect(output).toMatch('run test'),
+  },
+  'unstable version': {
+    files: {
+      'package.json': JSON.stringify({ version: '0.1.0' }, undefined, 2),
+    },
+    test: output => expect(output).toMatch('data.version should match pattern'),
+  },
+  'unused dependecy': {
+    files: {
+      'package.json': JSON.stringify(
+        {
+          dependencies: {
+            'change-case': '^1.0.0',
           },
-          undefined,
-          2
-        ),
-      })
-      await execa(require.resolve('../../cli'), ['prepare'])
-      const output = await execa(require.resolve('../../cli'), ['test'], {
-        all: true,
-      })
-      expect(output.all).toMatch('run test')
-    }),
-  'unstable version': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'package.json',
-        endent`
-      {
-        "version": "0.1.0"
-      }
-    `
-      )
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch('data.version should match pattern')
-    }),
-  'unused dependecy': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'package.json': JSON.stringify(
-          {
-            dependencies: {
-              'change-case': '^1.0.0',
-            },
-          },
-          undefined,
-          2
-        ),
-        'src/index.js': 'export default 1',
-      })
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch(endent`
+        },
+        undefined,
+        2
+      ),
+      'src/index.js': 'export default 1',
+    },
+    test: output =>
+      expect(output).toMatch(endent`
       Unused dependencies
       * change-case
-    `)
-    }),
-  valid: () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'package.json': JSON.stringify(
-          {
-            name: 'foo',
-          },
-          undefined,
-          2
-        ),
-        src: {
-          'index.js': endent`
-            export default 1
-            
-          `,
-          'index.spec.js': endent`
+    `),
+  },
+  valid: {
+    files: {
+      'package.json': JSON.stringify(
+        {
+          name: 'foo',
+        },
+        undefined,
+        2
+      ),
+      src: {
+        'index.js': endent`
+          export default 1
+          
+        `,
+        'index.spec.js': endent`
           import foo from '.'
     
           export default {
@@ -338,12 +258,9 @@ export default {
           }
           
         `,
-        },
-      })
-      await execa(require.resolve('../../cli'), ['prepare'])
-      const output = await execa(require.resolve('../../cli'), ['test'], {
-        all: true,
-      })
+      },
+    },
+    test: async output => {
       expect(output.all).toMatch('run test')
       expect(
         globby('*', { dot: true, onlyFiles: false })
@@ -370,83 +287,44 @@ export default {
         'package.json',
         'src',
       ])
-    }),
-  'wrong dependencies type': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'package.json',
-        JSON.stringify(
-          {
-            dependencies: 1,
-          },
-          undefined,
-          2
-        )
-      )
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch('data.dependencies should be object')
-    }),
-  'wrong description type': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'package.json',
-        endent`
-      {
-        "description": 1
-      }
-    `
-      )
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch('data.description should be string')
-    }),
-  'wrong dev dependencies type': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'package.json',
-        endent`
-      {
-        "devDependencies": 1
-      }
-    `
-      )
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch('data.devDependencies should be object')
-    }),
-  'wrong keywords type': () =>
-    withLocalTmpDir(async () => {
-      await outputFile(
-        'package.json',
-        endent`
-      {
-        "keywords": 1
-      }
-    `
-      )
-      await execa(require.resolve('../../cli'), ['prepare'])
-      let all
-      try {
-        await execa(require.resolve('../../cli'), ['test'], { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toMatch('data.keywords should be array')
-    }),
-}
+    },
+  },
+  'wrong dependencies type': {
+    files: {
+      'package.json': JSON.stringify(
+        {
+          dependencies: 1,
+        },
+        undefined,
+        2
+      ),
+    },
+    test: output =>
+      expect(output).toMatch('data.dependencies should be object'),
+  },
+  'wrong description type': {
+    files: {
+      'package.json': JSON.stringify(
+        {
+          description: 1,
+        },
+        undefined,
+        2
+      ),
+    },
+    test: output => expect(output).toMatch('data.description should be string'),
+  },
+  'wrong dev dependencies type': {
+    files: {
+      'package.json': JSON.stringify({ devDependencies: 1 }, undefined, 2),
+    },
+    test: output =>
+      expect(output).toMatch('data.devDependencies should be object'),
+  },
+  'wrong keywords type': {
+    files: {
+      'package.json': JSON.stringify({ keywords: 1 }, undefined, 2),
+    },
+    test: output => expect(output).toMatch('data.keywords should be array'),
+  },
+} |> mapValues(runTest)

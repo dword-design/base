@@ -1,4 +1,11 @@
-import { endent, identity, includes, sortBy, keyBy, mapValues, stubTrue } from '@dword-design/functions'
+import {
+  endent,
+  identity,
+  includes,
+  keyBy,
+  mapValues,
+  stubTrue,
+} from '@dword-design/functions'
 import execa from 'execa'
 import { readFile } from 'fs-extra'
 import globby from 'globby'
@@ -85,32 +92,30 @@ export default {
           |> await
           |> keyBy(identity)
           |> mapValues(stubTrue)
-      ).toEqual(
-        {
-          '.babelrc.json': true,
-          '.cz.json': true,
-          '.editorconfig': true,
-          '.env.json': true,
-          '.env.schema.json': true,
-          '.eslintrc.json': true,
-          '.test.env.json': true,
-          '.gitattributes': true,
-          '.git': true,
-          'CHANGELOG.md': true,
-          src: true,
-          'yarn.lock': true,
-          '.github': true,
-          '.gitignore': true,
-          '.gitpod.Dockerfile': true,
-          '.gitpod.yml': true,
-          '.releaserc.json': true,
-          '.renovaterc.json': true,
-          '.vscode': true,
-          'LICENSE.md': true,
-          'package.json': true,
-          'README.md': true,
-        }
-      )
+      ).toEqual({
+        '.babelrc.json': true,
+        '.cz.json': true,
+        '.editorconfig': true,
+        '.env.json': true,
+        '.env.schema.json': true,
+        '.eslintrc.json': true,
+        '.git': true,
+        '.gitattributes': true,
+        '.github': true,
+        '.gitignore': true,
+        '.gitpod.Dockerfile': true,
+        '.gitpod.yml': true,
+        '.releaserc.json': true,
+        '.renovaterc.json': true,
+        '.test.env.json': true,
+        '.vscode': true,
+        'CHANGELOG.md': true,
+        'LICENSE.md': true,
+        'README.md': true,
+        'package.json': true,
+        src: true,
+        'yarn.lock': true,
+      })
       expect(await readFile('README.md', 'utf8')).toEqual(endent`
       <!-- TITLE/ -->
       # foo

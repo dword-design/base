@@ -23,7 +23,6 @@ const runTest = config => {
   }
   return () => {
     const self = proxyquire('.', {
-      './common-allowed-matches.json': config.commonAllowedMatches,
       '../../config': {
         allowedMatches: config.configAllowedMatches,
       },
@@ -32,6 +31,7 @@ const runTest = config => {
         config.configFiles |> map(stubString)
       ),
       '../../generated-files/gitignore': config.gitignore,
+      './common-allowed-matches.json': config.commonAllowedMatches,
     })
     return withLocalTmpDir(async () => {
       await outputFiles(config.files)
