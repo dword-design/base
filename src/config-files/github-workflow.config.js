@@ -23,6 +23,7 @@ export default {
     },
     coverage: {
       needs: 'test',
+      'runs-on': 'ubuntu-latest',
       steps: [
         {
           uses: 'coverallsapp/github-action@master',
