@@ -22,16 +22,16 @@ const runTest = config => {
     ...config,
   }
   return () => {
-    const self = proxyquire('./clean', {
+    const self = proxyquire('.', {
       './common-allowed-matches.json': config.commonAllowedMatches,
-      './config': {
+      '../../config': {
         allowedMatches: config.configAllowedMatches,
       },
-      './generated-files': zipObject(
+      '../../generated-files': zipObject(
         config.configFiles,
         config.configFiles |> map(stubString)
       ),
-      './generated-files/gitignore.config': config.gitignore,
+      '../../generated-files/gitignore': config.gitignore,
     })
     return withLocalTmpDir(async () => {
       await outputFiles(config.files)

@@ -3,10 +3,11 @@ import { remove } from 'fs-extra'
 import globby from 'globby'
 import ignore from 'ignore'
 
+import config from '@/src/config'
+import configFiles from '@/src/generated-files'
+import gitignoreConfig from '@/src/generated-files/gitignore'
+
 import commonAllowedMatches from './common-allowed-matches.json'
-import config from './config'
-import configFiles from './generated-files'
-import gitignoreConfig from './generated-files/gitignore.config'
 
 const allowedMatches = [
   ...(configFiles |> keys |> map(path => path |> split('/') |> first)),

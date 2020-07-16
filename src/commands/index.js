@@ -1,8 +1,9 @@
 import { mapValues } from '@dword-design/functions'
 
+import config from '@/src/config'
+
 import clean from './clean'
 import commit from './commit'
-import config from './config'
 import lint from './lint'
 import prepare from './prepare'
 import test from './test'

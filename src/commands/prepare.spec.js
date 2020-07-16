@@ -1,11 +1,9 @@
-import { endent, identity, includes, sortBy } from '@dword-design/functions'
+import { endent, identity, includes, sortBy, keyBy, mapValues, stubTrue } from '@dword-design/functions'
 import execa from 'execa'
 import { readFile } from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
 import withLocalTmpDir from 'with-local-tmp-dir'
-
-import commonAllowedMatches from './common-allowed-matches.json'
 
 export default {
   'additional allowed match': () =>
@@ -27,7 +25,7 @@ export default {
           2
         ),
       })
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../cli'), ['prepare'])
       expect(
         globby('*', { dot: true }) |> await |> includes('foo.txt')
       ).toBeTruthy()
@@ -49,7 +47,7 @@ export default {
           2
         ),
       })
-      const output = await execa(require.resolve('./cli'), ['prepare'], {
+      const output = await execa(require.resolve('../cli'), ['prepare'], {
         all: true,
       })
       expect(output.all).toMatch('custom prepare')
@@ -81,32 +79,37 @@ export default {
         'src/index.js': 'export default 1',
         'yarn.lock': '',
       })
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../cli'), ['prepare'])
       expect(
         globby('*', { dot: true, onlyFiles: false })
           |> await
-          |> sortBy(identity)
+          |> keyBy(identity)
+          |> mapValues(stubTrue)
       ).toEqual(
-        [
-          '.babelrc.json',
-          '.cz.json',
-          '.editorconfig',
-          '.env.json',
-          '.eslintrc.json',
-          '.test.env.json',
-          '.gitattributes',
-          '.github',
-          '.gitignore',
-          '.gitpod.Dockerfile',
-          '.gitpod.yml',
-          '.releaserc.json',
-          '.renovaterc.json',
-          '.vscode',
-          'LICENSE.md',
-          'package.json',
-          'README.md',
-          ...commonAllowedMatches,
-        ] |> sortBy(identity)
+        {
+          '.babelrc.json': true,
+          '.cz.json': true,
+          '.editorconfig': true,
+          '.env.json': true,
+          '.env.schema.json': true,
+          '.eslintrc.json': true,
+          '.test.env.json': true,
+          '.gitattributes': true,
+          '.git': true,
+          'CHANGELOG.md': true,
+          src: true,
+          'yarn.lock': true,
+          '.github': true,
+          '.gitignore': true,
+          '.gitpod.Dockerfile': true,
+          '.gitpod.yml': true,
+          '.releaserc.json': true,
+          '.renovaterc.json': true,
+          '.vscode': true,
+          'LICENSE.md': true,
+          'package.json': true,
+          'README.md': true,
+        }
       )
       expect(await readFile('README.md', 'utf8')).toEqual(endent`
       <!-- TITLE/ -->

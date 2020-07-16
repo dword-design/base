@@ -6,8 +6,8 @@ import isDocker from 'is-docker'
 import isGitpod from 'is-gitpod'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 
-import config from './config'
-import lint from './lint'
+import lint from '@/src/commands/lint'
+import config from '@/src/config'
 
 export default async (pattern, options) => {
   if (!pattern) {

@@ -4,7 +4,7 @@ import proxyquire from '@dword-design/proxyquire'
 const runTest = config => {
   config.config = { deployAssets: [], deployPlugins: [], ...config.config }
   return () => {
-    const self = proxyquire('./release.config', {
+    const self = proxyquire('./release', {
       '../config': config.config,
     })
     expect(self).toEqual(config.result)

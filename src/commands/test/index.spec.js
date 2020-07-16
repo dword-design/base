@@ -18,10 +18,10 @@ export default {
         `,
         },
       })
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], {
+        await execa(require.resolve('../../cli'), ['test'], {
           all: true,
         })
       } catch (error) {
@@ -41,10 +41,10 @@ export default {
       }
     `
       )
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -61,10 +61,10 @@ export default {
   
     `
       )
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -72,8 +72,8 @@ export default {
     }),
   empty: () =>
     withLocalTmpDir(async () => {
-      await execa(require.resolve('./cli'), ['prepare'])
-      await execa(require.resolve('./cli'), ['test'])
+      await execa(require.resolve('../../cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['test'])
     }),
   grep: () =>
     withLocalTmpDir(async () => {
@@ -88,9 +88,9 @@ export default {
         `,
         },
       })
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       const output = await execa(
-        require.resolve('./cli'),
+        require.resolve('../../cli'),
         ['test', '--grep', 'foo'],
         { all: true }
       )
@@ -107,10 +107,10 @@ export default {
       }
     `
       )
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -119,10 +119,10 @@ export default {
   'json errors': () =>
     withLocalTmpDir(async () => {
       await outputFile('src/test.json', 'foo bar')
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -131,10 +131,10 @@ export default {
   'linting errors': () =>
     withLocalTmpDir(async () => {
       await outputFile('src/index.js', "var foo = 'bar'")
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -145,8 +145,8 @@ export default {
   minimal: () =>
     withLocalTmpDir(async () => {
       await outputFile('src/index.js', 'export default 1')
-      await execa(require.resolve('./cli'), ['prepare'])
-      await execa(require.resolve('./cli'), ['test'])
+      await execa(require.resolve('../../cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['test'])
     }),
   'missing readme sections': () =>
     withLocalTmpDir(async () => {
@@ -161,10 +161,10 @@ export default {
   
     `
       )
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -193,9 +193,9 @@ export default {
             "export default { valid: () => console.log('run index2') }",
         },
       })
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       const output = await execa(
-        require.resolve('./cli'),
+        require.resolve('../../cli'),
         ['test', 'src/index2.spec.js'],
         { all: true }
       )
@@ -224,10 +224,10 @@ export default {
         `,
         },
       })
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -260,8 +260,8 @@ export default {
           2
         ),
       })
-      await execa(require.resolve('./cli'), ['prepare'])
-      const output = await execa(require.resolve('./cli'), ['test'], {
+      await execa(require.resolve('../../cli'), ['prepare'])
+      const output = await execa(require.resolve('../../cli'), ['test'], {
         all: true,
       })
       expect(output.all).toMatch('run test')
@@ -276,10 +276,10 @@ export default {
       }
     `
       )
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -299,10 +299,10 @@ export default {
         ),
         'src/index.js': 'export default 1',
       })
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -340,8 +340,8 @@ export default {
         `,
         },
       })
-      await execa(require.resolve('./cli'), ['prepare'])
-      const output = await execa(require.resolve('./cli'), ['test'], {
+      await execa(require.resolve('../../cli'), ['prepare'])
+      const output = await execa(require.resolve('../../cli'), ['test'], {
         all: true,
       })
       expect(output.all).toMatch('run test')
@@ -383,10 +383,10 @@ export default {
           2
         )
       )
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -402,10 +402,10 @@ export default {
       }
     `
       )
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -421,10 +421,10 @@ export default {
       }
     `
       )
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }
@@ -440,10 +440,10 @@ export default {
       }
     `
       )
-      await execa(require.resolve('./cli'), ['prepare'])
+      await execa(require.resolve('../../cli'), ['prepare'])
       let all
       try {
-        await execa(require.resolve('./cli'), ['test'], { all: true })
+        await execa(require.resolve('../../cli'), ['test'], { all: true })
       } catch (error) {
         all = error.all
       }

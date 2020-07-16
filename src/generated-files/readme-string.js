@@ -3,7 +3,7 @@ import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 
 import packageConfig from './package-config'
-import replacements from './readme-replacements.config'
+import replacements from './readme-replacements'
 
 const readme =
   safeReadFileSync('README.md', 'utf8') ||
