@@ -2,6 +2,7 @@
   "extends": [
     ":semanticCommits"
   ],
+  "labels": ["maintenance"],
   "packageRules": [
     {
       "packagePatterns": [
