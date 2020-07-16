@@ -1,3 +1,13 @@
+## [6.21.1](https://github.com/dword-design/base/compare/v6.21.0...v6.21.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* refactoring ([f36a15f](https://github.com/dword-design/base/commit/f36a15f3f765907d615f6a467fdbed2f605e4539))
+* refactoring ([ea4841c](https://github.com/dword-design/base/commit/ea4841c596852d5e53855547b29ec002f5d2f798))
+* refactoring ([a23090b](https://github.com/dword-design/base/commit/a23090b00f022a318b03bbba3c1171da0b75407d))
+* rename folder ([b5b2356](https://github.com/dword-design/base/commit/b5b2356cb4a78f6bc16259468fec7ba8d2794f5e))
+
 # [6.21.0](https://github.com/dword-design/base/compare/v6.20.4...v6.21.0) (2020-07-16)
 
 
