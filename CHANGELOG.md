@@ -1,3 +1,10 @@
+## [6.22.2](https://github.com/dword-design/base/compare/v6.22.1...v6.22.2) (2020-07-17)
+
+
+### Bug Fixes
+
+* add preDeploySteps ([2d9c4da](https://github.com/dword-design/base/commit/2d9c4daff00ec363e0e885b98e297bd4ceccd1bc))
+
 ## [6.22.1](https://github.com/dword-design/base/compare/v6.22.0...v6.22.1) (2020-07-17)
 
 
