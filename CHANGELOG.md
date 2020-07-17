@@ -1,3 +1,11 @@
+## [6.22.1](https://github.com/dword-design/base/compare/v6.22.0...v6.22.1) (2020-07-17)
+
+
+### Bug Fixes
+
+* fix job matrix config ([41bcb0a](https://github.com/dword-design/base/commit/41bcb0a39039db70548bfce8d436618b7444d9b3))
+* remove coveralls from private relos ([5a21e0d](https://github.com/dword-design/base/commit/5a21e0d31e3847e3437c0726d2a10445e190c844))
+
 # [6.22.0](https://github.com/dword-design/base/compare/v6.21.1...v6.22.0) (2020-07-16)
 
 
