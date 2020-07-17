@@ -34,6 +34,7 @@ export default {
       packageConfig: {
         main: 'dist/index.scss',
       },
+      preDeploySteps: [{ run: 'foo' }],
       prepare: x => x + 2,
     },
     packageConfig: { name: 'base-config-foo' },
@@ -52,6 +53,7 @@ export default {
         packageConfig: {
           main: 'dist/index.scss',
         },
+        preDeploySteps: [{ run: 'foo' }],
       })
       expect(config.commands |> keys |> sortBy(identity)).toEqual([
         'prepublishOnly',
@@ -75,6 +77,7 @@ export default {
         editorIgnore: [],
         gitignore: [],
         name: 'base-config-foo',
+        preDeploySteps: [],
       })
       expect(typeof config.depcheckConfig).toEqual('object')
       expect(config.lint(1)).toEqual(1)

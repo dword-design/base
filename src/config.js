@@ -17,6 +17,7 @@ export default {
   editorIgnore: [],
   gitignore: [],
   lint: identity,
+  preDeploySteps: [],
   prepare: identity,
   ...baseConfig,
   ...packageBaseConfig,

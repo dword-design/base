@@ -6,6 +6,7 @@ import config from '@/src/config'
 const bin = ci.bin |> keys |> first
 
 export default [
+  ...config.preDeploySteps,
   {
     env: {
       GITHUB_REPOSITORY: '${{ secrets.GITHUB_REPOSITORY }}',
