@@ -7,6 +7,7 @@ import testSteps from '@/src/generated-files/github-workflow/steps/test'
 export default {
   jobs: {
     build: {
+      if: "!contains(github.event.head_commit.message, '[skip ci]')",
       'runs-on': 'ubuntu-latest',
       steps: [
         ...cancelExistingSteps,
