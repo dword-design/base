@@ -1,3 +1,10 @@
+# [6.24.0](https://github.com/dword-design/base/compare/v6.23.0...v6.24.0) (2020-07-17)
+
+
+### Features
+
+* pre-commit hooks ([31cfd91](https://github.com/dword-design/base/commit/31cfd918bf37b1930baf654c313b91f56e213843))
+
 # [6.23.0](https://github.com/dword-design/base/compare/v6.22.2...v6.23.0) (2020-07-17)
 
 
