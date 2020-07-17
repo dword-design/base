@@ -94,6 +94,7 @@ export default {
           |> mapValues(stubTrue)
       ).toEqual({
         '.babelrc.json': true,
+        '.commitlintrc.json': true,
         '.cz.json': true,
         '.editorconfig': true,
         '.env.json': true,
@@ -105,6 +106,7 @@ export default {
         '.gitignore': true,
         '.gitpod.Dockerfile': true,
         '.gitpod.yml': true,
+        '.huskyrc.json': true,
         '.releaserc.json': true,
         '.renovaterc.json': true,
         '.test.env.json': true,

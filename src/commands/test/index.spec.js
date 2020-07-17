@@ -1,10 +1,11 @@
 import {
   endent,
   identity,
+  keyBy,
   mapValues,
   noop,
   property,
-  sortBy,
+  stubTrue,
 } from '@dword-design/functions'
 import globby from 'globby'
 import outputFiles from 'output-files'
@@ -264,28 +265,31 @@ export default {
       expect(
         globby('*', { dot: true, onlyFiles: false })
           |> await
-          |> sortBy(identity)
-      ).toEqual([
-        '.babelrc.json',
-        '.cz.json',
-        '.editorconfig',
-        '.eslintrc.json',
-        '.gitattributes',
-        '.github',
-        '.gitignore',
-        '.gitpod.Dockerfile',
-        '.gitpod.yml',
-        '.nyc_output',
-        '.releaserc.json',
-        '.renovaterc.json',
-        '.vscode',
-        'LICENSE.md',
-        'README.md',
-        'coverage',
-        'node_modules',
-        'package.json',
-        'src',
-      ])
+          |> keyBy(identity)
+          |> mapValues(stubTrue)
+      ).toEqual({
+        '.babelrc.json': true,
+        '.commitlintrc.json': true,
+        '.cz.json': true,
+        '.editorconfig': true,
+        '.eslintrc.json': true,
+        '.gitattributes': true,
+        '.github': true,
+        '.gitignore': true,
+        '.gitpod.Dockerfile': true,
+        '.gitpod.yml': true,
+        '.huskyrc.json': true,
+        '.nyc_output': true,
+        '.releaserc.json': true,
+        '.renovaterc.json': true,
+        '.vscode': true,
+        'LICENSE.md': true,
+        'README.md': true,
+        coverage: true,
+        node_modules: true,
+        'package.json': true,
+        src: true,
+      })
     },
   },
   'wrong dependencies type': {

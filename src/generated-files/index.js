@@ -4,12 +4,14 @@ import yaml from 'yaml'
 
 import babelConfig from './babel'
 import commitizenConfig from './commitizen'
+import commitlintConfig from './commitlint'
 import editorconfigConfig from './editorconfig'
 import gitattributesConfig from './gitattributes'
 import githubWorkflowConfig from './github-workflow'
 import gitignoreConfig from './gitignore'
 import gitpodConfig from './gitpod'
 import gitpodDockerfile from './gitpod-dockerfile'
+import huskyConfig from './husky'
 import licenseString from './license-string'
 import packageConfig from './package-config'
 import readmeString from './readme-string'
@@ -19,6 +21,7 @@ import vscodeConfig from './vscode'
 
 export default {
   '.babelrc.json': babelConfig |> jsonToString({ indent: 2 }),
+  '.commitlintrc.json': commitlintConfig |> jsonToString({ indent: 2 }),
   '.cz.json': commitizenConfig,
   '.editorconfig': editorconfigConfig,
   '.gitattributes': gitattributesConfig,
@@ -26,6 +29,7 @@ export default {
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
   '.gitpod.yml': gitpodConfig,
+  '.huskyrc.json': huskyConfig |> jsonToString({ indent: 2 }),
   '.releaserc.json': releaseConfig |> jsonToString({ indent: 2 }),
   '.renovaterc.json': renovateConfig |> jsonToString({ indent: 2 }),
   '.vscode/settings.json': vscodeConfig |> jsonToString({ indent: 2 }),

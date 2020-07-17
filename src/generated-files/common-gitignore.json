@@ -1,9 +1,11 @@
 [
   ".DS_Store",
   "/.babelrc.json",
+  "/.commitlintrc.json",
   "/.cz.json",
   "/.editorconfig",
   "/.env.json",
+  "/.huskyrc.json",
   "/.test.env.json",
   "/.nyc_output",
   "/.releaserc.json",
