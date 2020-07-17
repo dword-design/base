@@ -1,7 +1,6 @@
 import { map } from '@dword-design/functions'
 
 import cancelExistingSteps from '@/src/generated-files/github-workflow/steps/cancel-existing'
-import coverageSteps from '@/src/generated-files/github-workflow/steps/coverage'
 import releaseSteps from '@/src/generated-files/github-workflow/steps/release'
 import testSteps from '@/src/generated-files/github-workflow/steps/test'
 
@@ -22,7 +21,6 @@ export default {
         { run: 'git config --global user.name "GitHub Actions"' },
         { run: 'yarn --frozen-lockfile' },
         ...testSteps,
-        ...coverageSteps,
         ...(releaseSteps
           |> map(step => ({
             if: "github.ref == 'refs/heads/master'",
