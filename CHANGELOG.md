@@ -1,3 +1,10 @@
+# [6.23.0](https://github.com/dword-design/base/compare/v6.22.2...v6.23.0) (2020-07-17)
+
+
+### Features
+
+* add skip ci ([ad8bf43](https://github.com/dword-design/base/commit/ad8bf431530483d1a3a0900e7a94ed003303be95))
+
 ## [6.22.2](https://github.com/dword-design/base/compare/v6.22.1...v6.22.2) (2020-07-17)
 
 
