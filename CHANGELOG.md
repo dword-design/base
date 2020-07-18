@@ -1,3 +1,10 @@
+## [6.24.1](https://github.com/dword-design/base/compare/v6.24.0...v6.24.1) (2020-07-18)
+
+
+### Bug Fixes
+
+* hide files in vscode ([25515c9](https://github.com/dword-design/base/commit/25515c956ab72e8d667eb2730f9cdc9accf78860))
+
 # [6.24.0](https://github.com/dword-design/base/compare/v6.23.0...v6.24.0) (2020-07-17)
 
 
