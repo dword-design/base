@@ -1,5 +1,6 @@
 [
   ".babelrc.json",
+  ".commitlintrc.json",
   ".cz.json",
   ".editorconfig",
   ".gitattributes",
@@ -7,6 +8,7 @@
   ".gitignore",
   ".gitpod.Dockerfile",
   ".gitpod.yml",
+  ".huskyrc.json",
   ".nyc_output",
   ".releaserc.json",
   ".renovaterc.json",
