@@ -1,6 +1,11 @@
+import ci from '@dword-design/ci/package.json'
+import { first, keys } from '@dword-design/functions'
+
 import cancelExistingSteps from '@/src/generated-files/github-workflow/steps/cancel-existing'
 import releaseSteps from '@/src/generated-files/github-workflow/steps/release'
 import testSteps from '@/src/generated-files/github-workflow/steps/test'
+
+const bin = ci.bin |> keys |> first
 
 export default {
   jobs: {
@@ -45,10 +50,15 @@ export default {
         { run: 'yarn --frozen-lockfile' },
         ...testSteps,
         {
+          // Coveralls is only free for public repositories
           if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
-          uses: 'coverallsapp/github-action@master',
+          name: 'Coveralls',
+          run: `yarn ${bin} coveralls`,
           with: {
-            'github-token': '${{ secrets.GITHUB_TOKEN }}',
+            COVERALLS_GIT_BRANCH: '${{ github.ref }}',
+            COVERALLS_GIT_COMMIT: '${{ github.sha }}',
+            COVERALLS_REPO_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+            COVERALLS_SERVICE_NAME: 'github',
           },
         },
       ],

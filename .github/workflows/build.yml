@@ -44,9 +44,13 @@ jobs:
       - run: yarn clean
       - run: yarn test
       - if: matrix.os == 'ubuntu-latest' && matrix.node == 12
-        uses: coverallsapp/github-action@master
+        name: Coveralls
+        run: yarn dw-ci coveralls
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_GIT_BRANCH: ${{ github.ref }}
+          COVERALLS_GIT_COMMIT: ${{ github.sha }}
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_SERVICE_NAME: github
     strategy:
       matrix:
         exclude:
