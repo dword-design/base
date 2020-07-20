@@ -43,14 +43,14 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: yarn clean
       - run: yarn test
-      - if: matrix.os == 'ubuntu-latest' && matrix.node == 12
-        name: Coveralls
-        run: yarn dw-ci coveralls
-        with:
+      - env:
           COVERALLS_GIT_BRANCH: ${{ github.ref }}
           COVERALLS_GIT_COMMIT: ${{ github.sha }}
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COVERALLS_SERVICE_NAME: github
+        if: matrix.os == 'ubuntu-latest' && matrix.node == 12
+        name: Coveralls
+        run: yarn dw-ci coveralls
     strategy:
       matrix:
         exclude:

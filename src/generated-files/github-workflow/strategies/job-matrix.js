@@ -51,15 +51,15 @@ export default {
         ...testSteps,
         {
           // Coveralls is only free for public repositories
-          if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
-          name: 'Coveralls',
-          run: `yarn ${bin} coveralls`,
-          with: {
+          env: {
             COVERALLS_GIT_BRANCH: '${{ github.ref }}',
             COVERALLS_GIT_COMMIT: '${{ github.sha }}',
             COVERALLS_REPO_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
             COVERALLS_SERVICE_NAME: 'github',
           },
+          if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
+          name: 'Coveralls',
+          run: `yarn ${bin} coveralls`,
         },
       ],
       strategy: {
