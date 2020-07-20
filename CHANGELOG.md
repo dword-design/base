@@ -1,3 +1,11 @@
+## [6.24.2](https://github.com/dword-design/base/compare/v6.24.1...v6.24.2) (2020-07-20)
+
+
+### Bug Fixes
+
+* fix ([9cefc4c](https://github.com/dword-design/base/commit/9cefc4c2b94485e5ee5033f752b256a4d257c94d))
+* re-add dw-ci for coverage ([2fac89b](https://github.com/dword-design/base/commit/2fac89b34d42525b2e1fe10642e84cbb31930437))
+
 ## [6.24.1](https://github.com/dword-design/base/compare/v6.24.0...v6.24.1) (2020-07-18)
 
 
