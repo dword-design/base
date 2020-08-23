@@ -1,4 +1,4 @@
-import { endent, join } from '@dword-design/functions'
+import { endent } from '@dword-design/functions'
 import spdxParse from 'spdx-expression-parse'
 import spdxList from 'spdx-license-list/full'
 
