@@ -1,3 +1,10 @@
+## [6.25.2](https://github.com/dword-design/base/compare/v6.25.1...v6.25.2) (2020-08-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency find-up to v5 ([19d82a5](https://github.com/dword-design/base/commit/19d82a5d2a8560d74fca642183df14ef2228a044))
+
 ## [6.25.1](https://github.com/dword-design/base/compare/v6.25.0...v6.25.1) (2020-08-23)
 
 
