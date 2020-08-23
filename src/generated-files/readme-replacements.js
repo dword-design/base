@@ -1,13 +1,20 @@
 import { endent, join } from '@dword-design/functions'
 import spdxParse from 'spdx-expression-parse'
 import spdxList from 'spdx-license-list/full'
-import packageConfig from './package-config'
+
 import config from '@/src/config'
 
+import packageConfig from './package-config'
+
 export default {
-  badges: () => [
-    ...config.npmPublish ? [`[![NPM version](https://img.shields.io/npm/v/${packageConfig.name}.svg)](https://npmjs.org/package/${packageConfig.name})`] : [],
-    endent`
+  badges: () =>
+    [
+      ...(config.npmPublish
+        ? [
+            `[![NPM version](https://img.shields.io/npm/v/${packageConfig.name}.svg)](https://npmjs.org/package/${packageConfig.name})`,
+          ]
+        : []),
+      endent`
       ![Linux macOS Windows compatible](https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue)
       [![Build status](https://img.shields.io/github/workflow/status/${packageConfig.repository}/build)](https://github.com/${packageConfig.repository}/actions)
       [![Coverage status](https://img.shields.io/coveralls/${packageConfig.repository})](https://coveralls.io/github/${packageConfig.repository})
@@ -31,7 +38,7 @@ export default {
         >
       </a>
     `,
-  ] |> join('\n'),
+    ] |> join('\n'),
   description: () => packageConfig.description,
   install: () => endent`
     ## Install
