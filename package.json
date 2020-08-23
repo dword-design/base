@@ -43,7 +43,7 @@
     "depcheck-parser-babel": "^1.2.0",
     "execa": "^4.0.0",
     "expect": "^26.0.0",
-    "find-up": "^4.1.0",
+    "find-up": "^5.0.0",
     "fs-extra": "^9.0.0",
     "get-package-name": "^1.0.0",
     "get-projectz-readme-section-regex": "^2.0.0",
