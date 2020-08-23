@@ -1,3 +1,18 @@
+# [6.25.0](https://github.com/dword-design/base/compare/v6.24.2...v6.25.0) (2020-08-23)
+
+
+### Bug Fixes
+
+* fix linting ([6fcb23f](https://github.com/dword-design/base/commit/6fcb23f45eb70db73a649792ebc6bfd7adb47f90))
+* fix tests ([82162f5](https://github.com/dword-design/base/commit/82162f5e95dd85c618f37c9790a3491d93f5bfc1))
+* fix tests ([95c2a47](https://github.com/dword-design/base/commit/95c2a47438f3a4c388c28fefa4f3826317f9da7d))
+* upgrades ([94bc9fe](https://github.com/dword-design/base/commit/94bc9feb2cf4de7c9149ce7d26cf946d9d0faf23))
+
+
+### Features
+
+* add donate buttons ([9f79d7f](https://github.com/dword-design/base/commit/9f79d7f5fac1fd920cfe444b77021060b1aa96a4))
+
 ## [6.24.2](https://github.com/dword-design/base/compare/v6.24.1...v6.24.2) (2020-07-20)
 
 
