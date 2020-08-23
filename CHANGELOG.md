@@ -1,3 +1,10 @@
+## [6.25.1](https://github.com/dword-design/base/compare/v6.25.0...v6.25.1) (2020-08-23)
+
+
+### Bug Fixes
+
+* show npm badge only if published on npm ([bcfd023](https://github.com/dword-design/base/commit/bcfd023b9d994fdae6e1521ab58d9a5e63604f83))
+
 # [6.25.0](https://github.com/dword-design/base/compare/v6.24.2...v6.25.0) (2020-08-23)
 
 
