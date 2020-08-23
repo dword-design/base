@@ -137,7 +137,7 @@ export default {
           alt="Buy Me a Coffee"
           height="32"
         >
-      </a><a href="https://gitpod.io/#https://github.com/${packageConfig.repository}">
+      </a><a href="https://gitpod.io/#https://github.com/dword-design/bar">
         <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="Open in Gitpod">
       </a>
       <a href="https://paypal.me/SebastianLandwehr">
