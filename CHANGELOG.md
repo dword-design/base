@@ -1,3 +1,10 @@
+# [6.26.0](https://github.com/dword-design/base/compare/v6.25.2...v6.26.0) (2020-08-26)
+
+
+### Features
+
+* add stuff to readme ([04ed971](https://github.com/dword-design/base/commit/04ed971f9a93268507921b50cbf32f0d4b85d0ea))
+
 ## [6.25.2](https://github.com/dword-design/base/compare/v6.25.1...v6.25.2) (2020-08-23)
 
 
