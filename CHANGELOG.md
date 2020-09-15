@@ -1,3 +1,10 @@
+# [6.27.0](https://github.com/dword-design/base/compare/v6.26.0...v6.27.0) (2020-09-15)
+
+
+### Features
+
+* make node version configurable ([fddcedd](https://github.com/dword-design/base/commit/fddcedd7d1a8292a8dbe6d582f5a5ab3df4b57eb))
+
 # [6.26.0](https://github.com/dword-design/base/compare/v6.25.2...v6.26.0) (2020-08-26)
 
 
