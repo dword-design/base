@@ -1,5 +1,6 @@
 import { map } from '@dword-design/functions'
 
+import config from '@/src/config'
 import cancelExistingSteps from '@/src/generated-files/github-workflow/steps/cancel-existing'
 import releaseSteps from '@/src/generated-files/github-workflow/steps/release'
 import testSteps from '@/src/generated-files/github-workflow/steps/test'
@@ -15,7 +16,7 @@ export default {
         {
           uses: 'actions/setup-node@v1',
           with: {
-            'node-version': 12,
+            'node-version': config.nodeVersion,
           },
         },
         { run: 'git config --global user.email "actions@github.com"' },

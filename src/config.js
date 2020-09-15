@@ -17,6 +17,7 @@ export default {
   editorIgnore: [],
   gitignore: [],
   lint: identity,
+  nodeVersion: 12,
   preDeploySteps: [],
   prepare: identity,
   ...baseConfig,
