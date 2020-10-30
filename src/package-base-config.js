@@ -1,6 +1,6 @@
 import getPackageName from 'get-package-name'
-import loadPkg from 'load-pkg'
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name'
+
 import packageConfig from './package-config'
 
 const packageBaseConfig =

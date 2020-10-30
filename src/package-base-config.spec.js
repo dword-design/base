@@ -3,7 +3,9 @@ import proxyquire from '@dword-design/proxyquire'
 
 const runTest = config => () => {
   const self = proxyquire('./package-base-config', {
-    'load-pkg': { sync: () => ({ baseConfig: config.baseConfig }) },
+    './package-config': {
+      baseConfig: config.baseConfig
+    },
   })
   expect(self).toEqual(config.result)
 }
