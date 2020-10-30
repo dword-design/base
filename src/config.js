@@ -1,4 +1,4 @@
-import { identity } from '@dword-design/functions'
+import { endent, identity } from '@dword-design/functions'
 import depcheck from 'depcheck'
 import depcheckDetectorExeca from 'depcheck-detector-execa'
 import depcheckParserBabel from 'depcheck-parser-babel'
@@ -6,6 +6,7 @@ import importCwd from 'import-cwd'
 
 import depcheckSpecialBaseConfig from './depcheck-special-base-config'
 import packageBaseConfig from './package-base-config'
+import packageConfig from './package-config'
 
 const baseConfig = importCwd(packageBaseConfig.name)
 
@@ -20,6 +21,17 @@ export default {
   nodeVersion: 12,
   preDeploySteps: [],
   prepare: identity,
+  readmeInstallString: endent`
+    ## Install
+
+    \`\`\`bash
+    # NPM
+    $ npm install ${packageConfig.name}
+
+    # Yarn
+    $ yarn add ${packageConfig.name}
+    \`\`\`
+  `,
   ...baseConfig,
   ...packageBaseConfig,
   depcheckConfig: {

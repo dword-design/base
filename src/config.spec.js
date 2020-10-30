@@ -1,4 +1,5 @@
 import {
+  endent,
   identity,
   keys,
   mapValues,
@@ -8,9 +9,10 @@ import {
 import proxyquire from '@dword-design/proxyquire'
 
 const runTest = config => () => {
-  config = { baseConfig: {}, packageConfig: {}, ...config }
+  config = { baseConfig: {}, packageConfig: {}, packageBaseConfig: {}, ...config }
   const self = proxyquire('./config', {
-    './package-base-config': config.packageConfig,
+    './package-config': config.packageConfig,
+    './package-base-config': config.packageBaseConfig,
     'import-cwd': () => config.baseConfig,
   })
   config.test(self)
@@ -32,13 +34,14 @@ export default {
       gitignore: ['foo'],
       lint: x => x + 3,
       nodeVersion: 10,
-      packageConfig: {
+      packageBaseConfig: {
         main: 'dist/index.scss',
       },
       preDeploySteps: [{ run: 'foo' }],
       prepare: x => x + 2,
+      readmeInstallString: 'foo',
     },
-    packageConfig: { name: 'base-config-foo' },
+    packageBaseConfig: { name: 'base-config-foo' },
     test: config => {
       expect(
         config |> omit(['commands', 'depcheckConfig', 'prepare', 'lint'])
@@ -52,10 +55,11 @@ export default {
         gitignore: ['foo'],
         name: 'base-config-foo',
         nodeVersion: 10,
-        packageConfig: {
+        packageBaseConfig: {
           main: 'dist/index.scss',
         },
         preDeploySteps: [{ run: 'foo' }],
+        readmeInstallString: 'foo',
       })
       expect(config.commands |> keys |> sortBy(identity)).toEqual([
         'prepublishOnly',
@@ -69,7 +73,10 @@ export default {
     },
   },
   valid: {
-    packageConfig: { name: 'base-config-foo' },
+    packageBaseConfig: { name: 'base-config-foo' },
+    packageConfig: {
+      name: 'foo',
+    },
     test: config => {
       expect(config |> omit(['depcheckConfig', 'prepare', 'lint'])).toEqual({
         commands: {},
@@ -81,6 +88,17 @@ export default {
         name: 'base-config-foo',
         nodeVersion: 12,
         preDeploySteps: [],
+        readmeInstallString: endent`
+          ## Install
+
+          \`\`\`bash
+          # NPM
+          $ npm install foo
+
+          # Yarn
+          $ yarn add foo
+          \`\`\`
+        `,
       })
       expect(typeof config.depcheckConfig).toEqual('object')
       expect(config.lint(1)).toEqual(1)

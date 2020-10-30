@@ -49,17 +49,7 @@ export default {
       `,
     ] |> join('\n'),
   description: () => packageConfig.description,
-  install: () => endent`
-    ## Install
-
-    \`\`\`bash
-    # NPM
-    $ npm install ${packageConfig.name}
-
-    # Yarn
-    $ yarn add ${packageConfig.name}
-    \`\`\`
-  `,
+  install: () => config.readmeInstallString,
   license: () => {
     if (packageConfig.license) {
       const parsed = spdxParse(packageConfig.license)

@@ -10,12 +10,11 @@ import {
 import { existsSync } from 'fs-extra'
 import getPackageName from 'get-package-name'
 import hostedGitInfo from 'hosted-git-info'
-import loadPkg from 'load-pkg'
 import parseGitConfig from 'parse-git-config'
 
 import config from '@/src/config'
+import packageConfig from '@/src/package-config'
 
-const packageConfig = loadPkg.sync() || {}
 const commandNames = {
   clean: true,
   commit: true,
