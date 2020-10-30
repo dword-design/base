@@ -1,3 +1,15 @@
+# [6.28.0](https://github.com/dword-design/base/compare/v6.27.0...v6.28.0) (2020-10-30)
+
+
+### Bug Fixes
+
+* fix base config tests ([528536a](https://github.com/dword-design/base/commit/528536a894be8f89e301ac74309f037d961d02bd))
+
+
+### Features
+
+* add readmeInstallString config property ([c100bd3](https://github.com/dword-design/base/commit/c100bd3affc273ec1f7f81b56a51d0f5a85f1bde))
+
 # [6.27.0](https://github.com/dword-design/base/compare/v6.26.0...v6.27.0) (2020-09-15)
 
 
