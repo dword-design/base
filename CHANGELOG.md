@@ -1,3 +1,10 @@
+# [6.29.0](https://github.com/dword-design/base/compare/v6.28.4...v6.29.0) (2020-12-10)
+
+
+### Features
+
+* add package name depcheck detector ([ef480f3](https://github.com/dword-design/base/commit/ef480f385581a2f08f2c057b8ca9663bbc985926))
+
 ## [6.28.4](https://github.com/dword-design/base/compare/v6.28.3...v6.28.4) (2020-12-10)
 
 
