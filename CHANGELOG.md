@@ -1,3 +1,10 @@
+## [6.29.1](https://github.com/dword-design/base/compare/v6.29.0...v6.29.1) (2020-12-10)
+
+
+### Bug Fixes
+
+* replace get-package-name with depcheck-package-name ([52d4417](https://github.com/dword-design/base/commit/52d44172b142ee5f27cdc8dc226bf27a7252cb1c))
+
 # [6.29.0](https://github.com/dword-design/base/compare/v6.28.4...v6.29.0) (2020-12-10)
 
 
