@@ -1,3 +1,10 @@
+## [6.28.1](https://github.com/dword-design/base/compare/v6.28.0...v6.28.1) (2020-12-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency execa to v5 ([ab89bbd](https://github.com/dword-design/base/commit/ab89bbd2a4ab55b3521948e44d82ea838a02e387))
+
 # [6.28.0](https://github.com/dword-design/base/compare/v6.27.0...v6.28.0) (2020-10-30)
 
 
