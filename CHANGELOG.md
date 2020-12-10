@@ -1,3 +1,10 @@
+## [6.28.2](https://github.com/dword-design/base/compare/v6.28.1...v6.28.2) (2020-12-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency semantic-release to v17.2.3 [security] ([32b7aea](https://github.com/dword-design/base/commit/32b7aea66496393abbe9334d5bb952c6ad36f307))
+
 ## [6.28.1](https://github.com/dword-design/base/compare/v6.28.0...v6.28.1) (2020-12-10)
 
 
