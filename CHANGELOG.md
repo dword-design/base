@@ -1,3 +1,12 @@
+## [6.28.4](https://github.com/dword-design/base/compare/v6.28.3...v6.28.4) (2020-12-10)
+
+
+### Bug Fixes
+
+* fix --ui option for unit tests ([ba825cf](https://github.com/dword-design/base/commit/ba825cf725399f7a5de6b2d0ab056b2604268702))
+* merge master ([632c2ae](https://github.com/dword-design/base/commit/632c2ae00a40afca3910249c05a2d217277b77dc))
+* **deps:** update dependency mocha to v8 ([8361f1d](https://github.com/dword-design/base/commit/8361f1d157ea5ea5ad4334fc89b9ca26937b371e))
+
 ## [6.28.3](https://github.com/dword-design/base/compare/v6.28.2...v6.28.3) (2020-12-10)
 
 
