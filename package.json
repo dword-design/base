@@ -56,7 +56,7 @@
     "is-gitpod": "^1.0.7",
     "load-pkg": "^4.0.0",
     "make-cli": "^1.0.9",
-    "mocha": "^7.0.1",
+    "mocha": "^8.0.0",
     "mocha-ui-exports-auto-describe": "^1.0.0",
     "nyc": "^15.0.0",
     "output-files": "^1.1.7",
