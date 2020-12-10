@@ -3001,6 +3001,13 @@ depcheck-detector-package-name@^1.0.0:
   resolved "https://registry.yarnpkg.com/depcheck-detector-package-name/-/depcheck-detector-package-name-1.0.0.tgz#a5a9f8f9456ce65e38cc56e6c67d493cc63c7f2b"
   integrity sha512-nBheBvQe7H4ilPkfnp8oTUl6rL+iWqSbmKX0rHAWKOaqqM/X/3KkbFEBxQdpCS1WQsEWHl4uvQA2ts+INoYrdg==
 
+depcheck-package-name@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/depcheck-package-name/-/depcheck-package-name-1.0.0.tgz#dfd49da4d93fcde0bbd94024c6402e98c29f1768"
+  integrity sha512-waLEAV5jp0WdqgQoCN0G8SngRB5xmc4WRh6C9L0Bcn6Zk3884XJ6UWH6Cvd5ye5X9dMotkCDTUjUQ5sE+88X+Q==
+  dependencies:
+    resolve-tagged-template "^1.0.0"
+
 depcheck-parser-babel@^1.2.0:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/depcheck-parser-babel/-/depcheck-parser-babel-1.2.5.tgz#9acec50134de28e032d026f3c8b38ff0b08d9f3e"
@@ -7894,6 +7901,13 @@ resolve-global@1.0.0, resolve-global@^1.0.0:
   integrity sha512-zFa12V4OLtT5XUX/Q4VLvTfBf+Ok0SPc1FNGM/z9ctUdiU618qwKpWnd0CHs3+RqROfyEg/DhuHbMWYqcgljEw==
   dependencies:
     global-dirs "^0.1.1"
+
+resolve-tagged-template@^1.0.0:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/resolve-tagged-template/-/resolve-tagged-template-1.0.6.tgz#8a9571647a56e40a1fa62d7fbf5d870cc01d00a7"
+  integrity sha512-+jxVfXIk0e/B1tTszyzArSN5Ax93/uzMY98E+X7U/f68W8UWy6tEv9T/WkdOLrRov64j4LzaAJ/+ZBobv9Pf/g==
+  dependencies:
+    "@dword-design/functions" "^2.2.2"
 
 resolve-url@^0.2.1:
   version "0.2.1"

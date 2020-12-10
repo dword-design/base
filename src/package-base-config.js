@@ -1,4 +1,4 @@
-import getPackageName from 'get-package-name'
+import packageName from 'depcheck-package-name'
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name'
 
 import packageConfig from './package-config'
@@ -12,5 +12,5 @@ export default {
   ...packageBaseConfig,
   name: packageBaseConfig.name
     ? pluginNameToPackageName(packageBaseConfig.name, 'base-config')
-    : getPackageName(require.resolve('@dword-design/base-config-node')),
+    : packageName`@dword-design/base-config-node`,
 }

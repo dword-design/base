@@ -7,8 +7,8 @@ import {
   property,
   stubTrue,
 } from '@dword-design/functions'
+import packageName from 'depcheck-package-name'
 import { existsSync } from 'fs-extra'
-import getPackageName from 'get-package-name'
 import hostedGitInfo from 'hosted-git-info'
 import parseGitConfig from 'parse-git-config'
 
@@ -64,9 +64,7 @@ export default {
     commandNames
     |> mapValues((nothing, name) =>
       packageConfig.name === '@dword-design/base'
-        ? `rimraf dist && babel --config-file ${getPackageName(
-            require.resolve('@dword-design/babel-config')
-          )} --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
+        ? `rimraf dist && babel --config-file ${packageName`@dword-design/babel-config`} --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
         : `base ${name}`
     ),
 }

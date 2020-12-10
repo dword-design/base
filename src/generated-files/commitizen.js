@@ -1,9 +1,9 @@
 import { endent } from '@dword-design/functions'
-import getPackageName from 'get-package-name'
+import packageName from 'depcheck-package-name'
 
 export default endent`
   {
-    "path": "${getPackageName(require.resolve('cz-conventional-changelog'))}"
+    "path": "${packageName`cz-conventional-changelog`}"
   }
 
 `

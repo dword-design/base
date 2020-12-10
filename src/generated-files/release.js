@@ -1,4 +1,4 @@
-import getPackageName from 'get-package-name'
+import packageName from 'depcheck-package-name'
 
 import config from '@/src/config'
 
@@ -6,22 +6,19 @@ export default {
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
-    getPackageName(require.resolve('@semantic-release/changelog')),
+    packageName`@semantic-release/changelog`,
     config.npmPublish
-      ? getPackageName(require.resolve('@semantic-release/npm'))
-      : [
-          getPackageName(require.resolve('@semantic-release/npm')),
-          { npmPublish: false },
-        ],
+      ? packageName`@semantic-release/npm`
+      : [packageName`@semantic-release/npm`, { npmPublish: false }],
     ...config.deployPlugins,
     config.deployAssets.length
       ? [
-          getPackageName(require.resolve('@semantic-release/github')),
+          packageName`@semantic-release/github`,
           {
             assets: config.deployAssets,
           },
         ]
-      : getPackageName(require.resolve('@semantic-release/github')),
-    getPackageName(require.resolve('@semantic-release/git')),
+      : packageName`@semantic-release/github`,
+    packageName`@semantic-release/git`,
   ],
 }
