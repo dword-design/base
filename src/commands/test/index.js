@@ -1,6 +1,7 @@
 import { filter, join } from '@dword-design/functions'
 import { isCI } from '@qawolf/ci-info'
 import execa from 'execa'
+import getPackageName from 'get-package-name'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import isDocker from 'is-docker'
 import isGitpod from 'is-gitpod'
@@ -84,7 +85,7 @@ export default async (pattern, options) => {
         'dist/**',
         'mocha',
         '--ui',
-        'exports-auto-describe',
+        getPackageName(require.resolve('mocha-ui-exports-auto-describe')),
         '--file',
         require.resolve('./setup-test'),
         '--timeout',
