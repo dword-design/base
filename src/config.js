@@ -1,6 +1,7 @@
 import { endent, identity } from '@dword-design/functions'
 import depcheck from 'depcheck'
 import depcheckDetectorExeca from 'depcheck-detector-execa'
+import depcheckDetectorPackageName from 'depcheck-detector-package-name'
 import depcheckParserBabel from 'depcheck-parser-babel'
 import importCwd from 'import-cwd'
 
@@ -47,6 +48,7 @@ export default {
       depcheck.detector.requireCallExpression,
       depcheck.detector.requireResolveCallExpression,
       depcheckDetectorExeca,
+      depcheckDetectorPackageName,
       ...(baseConfig.depcheckConfig?.detectors || []),
     ],
     parsers: {
