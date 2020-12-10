@@ -1,3 +1,24 @@
+## [6.28.3](https://github.com/dword-design/base/compare/v6.28.2...v6.28.3) (2020-12-10)
+
+
+### Bug Fixes
+
+* add libgbm1 for gitpod to enable puppeteer ([b40f631](https://github.com/dword-design/base/commit/b40f6315cad56996cadec215c8685376d989cb82))
+
+## [6.28.2](https://github.com/dword-design/base/compare/v6.28.1...v6.28.2) (2020-12-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency semantic-release to v17.2.3 [security] ([32b7aea](https://github.com/dword-design/base/commit/32b7aea66496393abbe9334d5bb952c6ad36f307))
+
+## [6.28.1](https://github.com/dword-design/base/compare/v6.28.0...v6.28.1) (2020-12-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency execa to v5 ([ab89bbd](https://github.com/dword-design/base/commit/ab89bbd2a4ab55b3521948e44d82ea838a02e387))
+
 # [6.28.0](https://github.com/dword-design/base/compare/v6.27.0...v6.28.0) (2020-10-30)
 
 
