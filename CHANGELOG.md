@@ -1,3 +1,10 @@
+## [6.28.3](https://github.com/dword-design/base/compare/v6.28.2...v6.28.3) (2020-12-10)
+
+
+### Bug Fixes
+
+* add libgbm1 for gitpod to enable puppeteer ([b40f631](https://github.com/dword-design/base/commit/b40f6315cad56996cadec215c8685376d989cb82))
+
 ## [6.28.2](https://github.com/dword-design/base/compare/v6.28.1...v6.28.2) (2020-12-10)
 
 
