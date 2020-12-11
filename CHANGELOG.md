@@ -1,3 +1,10 @@
+## [6.29.2](https://github.com/dword-design/base/compare/v6.29.1...v6.29.2) (2020-12-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @commitlint/cli to v11 ([18ea42d](https://github.com/dword-design/base/commit/18ea42dad153bf77db699311e6d54256e714f0e5))
+
 ## [6.29.1](https://github.com/dword-design/base/compare/v6.29.0...v6.29.1) (2020-12-10)
 
 
