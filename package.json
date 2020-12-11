@@ -26,7 +26,7 @@
     "@babel/core": "^7.6.4",
     "@babel/register": "^7.6.2",
     "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^9.1.1",
+    "@commitlint/config-conventional": "^11.0.0",
     "@dword-design/babel-config": "^1.0.10",
     "@dword-design/base-config-node": "^1.6.0",
     "@dword-design/ci": "^1.0.1",
