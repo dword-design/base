@@ -1,3 +1,10 @@
+## [6.29.4](https://github.com/dword-design/base/compare/v6.29.3...v6.29.4) (2020-12-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @commitlint/config-conventional to v11 ([fa24f20](https://github.com/dword-design/base/commit/fa24f20353857b5f1861cd03354db4ec1f9534a0))
+
 ## [6.29.3](https://github.com/dword-design/base/compare/v6.29.2...v6.29.3) (2020-12-11)
 
 
