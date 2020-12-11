@@ -1,3 +1,10 @@
+## [6.29.3](https://github.com/dword-design/base/compare/v6.29.2...v6.29.3) (2020-12-11)
+
+
+### Bug Fixes
+
+* add :latest to gitpod dockerfile to enforce new node versions ([cd76bd6](https://github.com/dword-design/base/commit/cd76bd6a8d2b1a7f606171904595ac9ebb1164b8))
+
 ## [6.29.2](https://github.com/dword-design/base/compare/v6.29.1...v6.29.2) (2020-12-11)
 
 
