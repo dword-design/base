@@ -1,3 +1,10 @@
+# [6.30.0](https://github.com/dword-design/base/compare/v6.29.4...v6.30.0) (2020-12-12)
+
+
+### Features
+
+* add types.d.ts file support ([791f432](https://github.com/dword-design/base/commit/791f432aaac4bb51651a3f71af6c6a55595c0c8e))
+
 ## [6.29.4](https://github.com/dword-design/base/compare/v6.29.3...v6.29.4) (2020-12-11)
 
 
