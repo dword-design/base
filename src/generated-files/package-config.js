@@ -49,6 +49,7 @@ export default {
       'devDependencies',
       'peerDependencies',
       'publishConfig',
+      'types',
     ])),
   description: packageConfig.description || '',
   publishConfig: {

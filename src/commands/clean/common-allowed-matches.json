@@ -3,5 +3,6 @@
   ".git",
   "CHANGELOG.md",
   "src",
+  "types.d.ts",
   "yarn.lock"
 ]

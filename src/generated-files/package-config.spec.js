@@ -108,6 +108,7 @@ export default {
               foo: 'echo \\"foo\\"',
               test: 'echo \\"foo\\"',
             },
+            types: 'types.d.ts',
             version: '1.1.0',
           },
           undefined,
@@ -147,6 +148,7 @@ export default {
           prepare: 'base prepare',
           test: 'base test',
         },
+        types: 'types.d.ts',
         version: '1.1.0',
       })
     }),
