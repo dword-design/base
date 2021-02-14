@@ -1,3 +1,10 @@
+# [6.32.0](https://github.com/dword-design/base/compare/v6.31.0...v6.32.0) (2021-02-14)
+
+
+### Features
+
+* toggle hidden files in gitpod ([a031ed8](https://github.com/dword-design/base/commit/a031ed8da1ff29c4aede76f1c17dabecb52c2302))
+
 # [6.31.0](https://github.com/dword-design/base/compare/v6.30.0...v6.31.0) (2021-02-14)
 
 
