@@ -1,3 +1,10 @@
+## [6.32.1](https://github.com/dword-design/base/compare/v6.32.0...v6.32.1) (2021-02-14)
+
+
+### Bug Fixes
+
+* use official version of ci-info ([29e7f86](https://github.com/dword-design/base/commit/29e7f8626bef196736729dde1e6b387517a7f1c9))
+
 # [6.32.0](https://github.com/dword-design/base/compare/v6.31.0...v6.32.0) (2021-02-14)
 
 
