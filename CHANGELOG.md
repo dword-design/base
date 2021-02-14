@@ -1,3 +1,10 @@
+# [6.31.0](https://github.com/dword-design/base/compare/v6.30.0...v6.31.0) (2021-02-14)
+
+
+### Features
+
+* version config files ([68d97f7](https://github.com/dword-design/base/commit/68d97f749492c9d381dc3bc321c37c53dfcb9271))
+
 # [6.30.0](https://github.com/dword-design/base/compare/v6.29.4...v6.30.0) (2020-12-12)
 
 
