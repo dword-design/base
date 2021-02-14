@@ -1,3 +1,10 @@
+## [6.32.2](https://github.com/dword-design/base/compare/v6.32.1...v6.32.2) (2021-02-14)
+
+
+### Bug Fixes
+
+* remove release scope from semantic release ([b5522a8](https://github.com/dword-design/base/commit/b5522a8003e35223ed11553a682e1c7fb4a3d16a))
+
 ## [6.32.1](https://github.com/dword-design/base/compare/v6.32.0...v6.32.1) (2021-02-14)
 
 
