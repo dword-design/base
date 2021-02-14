@@ -31,7 +31,9 @@ export default {
             assets: [{ label: 'Foo', path: 'foo.js' }],
           },
         ],
-        '@semantic-release/git',
+        ['@semantic-release/git', {
+          message: 'chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+        }]
       ],
     },
   },
@@ -50,7 +52,9 @@ export default {
         ],
         'semantic-release-foo',
         '@semantic-release/github',
-        '@semantic-release/git',
+        ['@semantic-release/git', {
+          message: 'chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+        }]
       ],
     },
   },
@@ -63,7 +67,9 @@ export default {
         '@semantic-release/changelog',
         '@semantic-release/npm',
         '@semantic-release/github',
-        '@semantic-release/git',
+        ['@semantic-release/git', {
+          message: 'chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+        }]
       ],
     },
   },
@@ -80,7 +86,9 @@ export default {
           },
         ],
         '@semantic-release/github',
-        '@semantic-release/git',
+        ['@semantic-release/git', {
+          message: 'chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+        }]
       ],
     },
   },

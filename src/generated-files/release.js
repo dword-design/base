@@ -19,6 +19,8 @@ export default {
           },
         ]
       : packageName`@semantic-release/github`,
-    packageName`@semantic-release/git`,
+    [packageName`@semantic-release/git`, {
+      message: 'chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
+    }],
   ],
 }
