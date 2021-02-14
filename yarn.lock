@@ -1305,11 +1305,6 @@
     "@octokit/openapi-types" "^2.0.0"
     "@types/node" ">= 8"
 
-"@qawolf/ci-info@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@qawolf/ci-info/-/ci-info-2.1.0.tgz#c7253f6cc208f9af1e4d5ad56e8419aa1d7856d8"
-  integrity sha512-D5H5RjqqE+YxI2oeTgSRuIjdy/hli90H5mMd81bBrYlOfB/f4TBsKMoaWfzI5E4bmFzLfQJuvvepTaWrxVfBug==
-
 "@semantic-release/changelog@^5.0.0":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-5.0.1.tgz#50a84b63e5d391b7debfe021421589fa2bcdafe4"

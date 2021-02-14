@@ -1,5 +1,5 @@
 import { filter, join } from '@dword-design/functions'
-import { isCI } from '@qawolf/ci-info'
+import { isCI } from 'ci-info'
 import packageName from 'depcheck-package-name'
 import execa from 'execa'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
