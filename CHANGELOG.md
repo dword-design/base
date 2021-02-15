@@ -1,3 +1,15 @@
+# [7.0.0](https://github.com/dword-design/base/compare/v6.32.3...v7.0.0) (2021-02-15)
+
+
+### Features
+
+* use git-lfs for images ([#135](https://github.com/dword-design/base/issues/135)) ([818fb50](https://github.com/dword-design/base/commit/818fb5046cc2346bc1a193a4d4a10dcf2695e441))
+
+
+### BREAKING CHANGES
+
+* use git-lfs for images
+
 ## [6.32.3](https://github.com/dword-design/base/compare/v6.32.2...v6.32.3) (2021-02-15)
 
 
