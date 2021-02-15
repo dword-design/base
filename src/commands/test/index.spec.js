@@ -60,7 +60,9 @@ export default {
       ),
     },
     test: output =>
-      expect(output).toMatch("data.bin['foo'] should match pattern"),
+      expect(output).toMatch(
+        'package.json invalid\ndata/bin/foo should match pattern "^\\.\\/dist\\/"'
+      ),
   },
   'config file errors': {
     files: {
@@ -91,7 +93,10 @@ export default {
     files: {
       'package.json': JSON.stringify({ name: '_foo' }, undefined, 2),
     },
-    test: output => expect(output).toMatch('data.name should match pattern'),
+    test: output =>
+      expect(output).toMatch(
+        'package.json invalid\ndata/name should match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"'
+      ),
   },
   'json errors': {
     files: {
@@ -117,11 +122,11 @@ export default {
     files: {
       'README.md': endent`
         <!-- TITLE -->
-    
+
         <!-- BADGES -->
-    
+
         <!-- LICENSE -->
-    
+
       `,
     },
     test: output =>
@@ -171,7 +176,7 @@ export default {
         'index.js': 'export default 1',
         'index.spec.js': endent`
         import bar from 'bar'
-  
+
         export default bar
       `,
       },
@@ -211,7 +216,10 @@ export default {
     files: {
       'package.json': JSON.stringify({ version: '0.1.0' }, undefined, 2),
     },
-    test: output => expect(output).toMatch('data.version should match pattern'),
+    test: output =>
+      expect(output).toMatch(
+        'package.json invalid\ndata/version should match pattern "^[1-9]\\d*\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$"'
+      ),
   },
   'unused dependecy': {
     files: {
@@ -244,11 +252,11 @@ export default {
       src: {
         'index.js': endent`
           export default 1
-          
+
         `,
         'index.spec.js': endent`
           import foo from '.'
-    
+
           export default {
             valid: () => {
               expect(process.env.NODE_ENV).toEqual('test')
@@ -256,7 +264,7 @@ export default {
               console.log('run test')
             },
           }
-          
+
         `,
       },
     },
@@ -303,7 +311,9 @@ export default {
       ),
     },
     test: output =>
-      expect(output).toMatch('data.dependencies should be object'),
+      expect(output).toMatch(
+        'package.json invalid\ndata/dependencies should be object'
+      ),
   },
   'wrong description type': {
     files: {
@@ -315,19 +325,19 @@ export default {
         2
       ),
     },
-    test: output => expect(output).toMatch('data.description should be string'),
+    test: output => expect(output).toMatch('package.json invalid\ndata/description should be string'),
   },
   'wrong dev dependencies type': {
     files: {
       'package.json': JSON.stringify({ devDependencies: 1 }, undefined, 2),
     },
     test: output =>
-      expect(output).toMatch('data.devDependencies should be object'),
+      expect(output).toMatch('package.json invalid\ndata/devDependencies should be object'),
   },
   'wrong keywords type': {
     files: {
       'package.json': JSON.stringify({ keywords: 1 }, undefined, 2),
     },
-    test: output => expect(output).toMatch('data.keywords should be array'),
+    test: output => expect(output).toMatch('package.json invalid\ndata/keywords should be array'),
   },
 } |> mapValues(runTest)

@@ -33,7 +33,7 @@
     "@dword-design/functions": "^2.2.2",
     "@semantic-release/changelog": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
-    "ajv-cli": "^3.0.0",
+    "ajv-cli": "^4.0.0",
     "ci-info": "^2.0.0",
     "commitizen": "^4.0.3",
     "constant-case": "^3.0.3",
