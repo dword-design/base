@@ -21,7 +21,7 @@ export default {
       steps: [
         { uses: 'actions/checkout@v2' },
         {
-          uses: 'actions/setup-node@v1',
+          uses: 'actions/setup-node@v2',
           with: {
             'node-version': 12,
           },
@@ -40,7 +40,7 @@ export default {
       steps: [
         { uses: 'actions/checkout@v2' },
         {
-          uses: 'actions/setup-node@v1',
+          uses: 'actions/setup-node@v2',
           with: {
             'node-version': '${{ matrix.node }}',
           },
