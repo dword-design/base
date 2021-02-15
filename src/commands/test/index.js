@@ -21,6 +21,7 @@ export default async (pattern, options) => {
           require.resolve('./package-json-schema'),
           '-d',
           'package.json',
+          '--allow-union-types',
           '--errors',
           'text',
         ],
