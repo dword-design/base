@@ -1,3 +1,10 @@
+## [7.0.1](https://github.com/dword-design/base/compare/v7.0.0...v7.0.1) (2021-02-15)
+
+
+### Bug Fixes
+
+* update dependency ajv-cli to v4 ([#117](https://github.com/dword-design/base/issues/117)) ([1857b6b](https://github.com/dword-design/base/commit/1857b6bab88fcbe263a58390191398329a5db81d))
+
 # [7.0.0](https://github.com/dword-design/base/compare/v6.32.3...v7.0.0) (2021-02-15)
 
 
