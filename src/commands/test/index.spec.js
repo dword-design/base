@@ -325,19 +325,27 @@ export default {
         2
       ),
     },
-    test: output => expect(output).toMatch('package.json invalid\ndata/description should be string'),
+    test: output =>
+      expect(output).toMatch(
+        'package.json invalid\ndata/description should be string'
+      ),
   },
   'wrong dev dependencies type': {
     files: {
       'package.json': JSON.stringify({ devDependencies: 1 }, undefined, 2),
     },
     test: output =>
-      expect(output).toMatch('package.json invalid\ndata/devDependencies should be object'),
+      expect(output).toMatch(
+        'package.json invalid\ndata/devDependencies should be object'
+      ),
   },
   'wrong keywords type': {
     files: {
       'package.json': JSON.stringify({ keywords: 1 }, undefined, 2),
     },
-    test: output => expect(output).toMatch('package.json invalid\ndata/keywords should be array'),
+    test: output =>
+      expect(output).toMatch(
+        'package.json invalid\ndata/keywords should be array'
+      ),
   },
 } |> mapValues(runTest)
