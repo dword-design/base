@@ -21,6 +21,7 @@ export default [
       ...(config.npmPublish ? { NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' } : {}),
       ...config.deployEnv,
     },
+    if: "github.ref == 'refs/heads/master'",
     name: 'Release',
     run: 'yarn semantic-release',
   },

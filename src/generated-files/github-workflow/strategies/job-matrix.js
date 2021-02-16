@@ -15,7 +15,6 @@ export default {
       steps: cancelExistingSteps,
     },
     release: {
-      if: "github.ref == 'refs/heads/master'",
       needs: 'test',
       'runs-on': 'ubuntu-latest',
       steps: [
@@ -29,7 +28,6 @@ export default {
         { run: 'git config --global user.email "actions@github.com"' },
         { run: 'git config --global user.name "GitHub Actions"' },
         { run: 'yarn --frozen-lockfile' },
-        { run: 'yarn clean' },
         { run: 'yarn lint' },
         ...releaseSteps,
       ],
@@ -45,8 +43,6 @@ export default {
             'node-version': '${{ matrix.node }}',
           },
         },
-        { run: 'git config --global user.email "actions@github.com"' },
-        { run: 'git config --global user.name "GitHub Actions"' },
         { run: 'yarn --frozen-lockfile' },
         ...testSteps,
         {
@@ -72,12 +68,6 @@ export default {
           os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
         },
       },
-    },
-  },
-  name: 'build',
-  on: {
-    push: {
-      branches: ['**'],
     },
   },
 }

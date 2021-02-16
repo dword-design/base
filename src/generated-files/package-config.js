@@ -16,7 +16,7 @@ import config from '@/src/config'
 import packageConfig from '@/src/package-config'
 
 const commandNames = {
-  clean: true,
+  'check-unknown-files': true,
   commit: true,
   lint: true,
   prepare: true,
