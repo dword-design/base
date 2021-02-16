@@ -7,7 +7,6 @@ const envVariableNames =
   (envSchemaPath ? require(envSchemaPath) : {}) |> keys |> map(constantCase)
 
 export default [
-  { run: 'yarn lint' },
   {
     run: 'yarn test',
     ...(envVariableNames.length > 0
