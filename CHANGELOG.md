@@ -1,3 +1,10 @@
+## [7.0.4](https://github.com/dword-design/base/compare/v7.0.3...v7.0.4) (2021-02-16)
+
+
+### Bug Fixes
+
+* commitlint body max length ([fd0717b](https://github.com/dword-design/base/commit/fd0717b969f133feb0a19e78505d144cd214ff61))
+
 ## [7.0.3](https://github.com/dword-design/base/compare/v7.0.2...v7.0.3) (2021-02-16)
 
 
