@@ -7,7 +7,7 @@ const envVariableNames =
   (envSchemaPath ? require(envSchemaPath) : {}) |> keys |> map(constantCase)
 
 export default [
-  { run: 'yarn clean' },
+  { run: 'yarn lint' },
   {
     run: 'yarn test',
     ...(envVariableNames.length > 0
@@ -19,4 +19,5 @@ export default [
         }
       : {}),
   },
+  { run: 'yarn check-unknown-files' },
 ]

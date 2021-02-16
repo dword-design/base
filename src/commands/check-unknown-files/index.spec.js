@@ -1,16 +1,15 @@
 import {
-  identity,
-  keyBy,
+  isEmpty,
   map,
   mapValues,
   stubString,
-  stubTrue,
   zipObject,
 } from '@dword-design/functions'
 import proxyquire from '@dword-design/proxyquire'
-import globby from 'globby'
 import outputFiles from 'output-files'
 import withLocalTmpDir from 'with-local-tmp-dir'
+
+import UnknownFilesError from './unknown-files-error'
 
 const runTest = config => {
   config = {
@@ -19,6 +18,7 @@ const runTest = config => {
     configFiles: [],
     files: {},
     gitignore: [],
+    result: {},
     ...config,
   }
   return () => {
@@ -35,13 +35,11 @@ const runTest = config => {
     })
     return withLocalTmpDir(async () => {
       await outputFiles(config.files)
-      await self()
-      expect(
-        globby('*', { onlyFiles: false })
-          |> await
-          |> keyBy(identity)
-          |> mapValues(stubTrue)
-      ).toEqual(config.result)
+      if (isEmpty(config.result)) {
+        await self()
+      } else {
+        await expect(self).rejects.toThrow(new UnknownFilesError(config.result))
+      }
     })
   }
 }
@@ -54,7 +52,7 @@ export default {
       'foo.txt': '',
     },
     result: {
-      'bar.txt': true,
+      'foo.txt': true,
     },
   },
   'config allowed matches': {
@@ -64,7 +62,7 @@ export default {
       'foo.txt': '',
     },
     result: {
-      'bar.txt': true,
+      'foo.txt': true,
     },
   },
   'config files': {
@@ -74,16 +72,13 @@ export default {
       'foo.txt': '',
     },
     result: {
-      'bar.txt': true,
+      'foo.txt': true,
     },
   },
   'config files: subpath': {
     configFiles: ['sub/foo.txt'],
     files: {
       'sub/foo.txt': '',
-    },
-    result: {
-      sub: true,
     },
   },
   gitignore: {
@@ -93,13 +88,7 @@ export default {
     },
     gitignore: ['/bar.txt'],
     result: {
-      'bar.txt': true,
+      'foo.txt': true,
     },
-  },
-  valid: {
-    files: {
-      'foo.txt': '',
-    },
-    result: {},
   },
 } |> mapValues(runTest)

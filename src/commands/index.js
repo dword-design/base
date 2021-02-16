@@ -2,15 +2,15 @@ import { mapValues } from '@dword-design/functions'
 
 import config from '@/src/config'
 
-import clean from './clean'
+import checkUnknownFiles from './check-unknown-files'
 import commit from './commit'
 import lint from './lint'
 import prepare from './prepare'
 import test from './test'
 
 export default {
-  clean: {
-    handler: clean,
+  'check-unknown-files': {
+    handler: checkUnknownFiles,
   },
   commit: {
     handler: commit,

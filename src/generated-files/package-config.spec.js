@@ -63,7 +63,7 @@ export default {
           access: 'public',
         },
         scripts: {
-          clean: 'base clean',
+          'check-unknown-files': 'base check-unknown-files',
           commit: 'base commit',
           dev: 'base dev',
           lint: 'base lint',
@@ -142,7 +142,7 @@ export default {
           access: 'public',
         },
         scripts: {
-          clean: 'base clean',
+          'check-unknown-files': 'base check-unknown-files',
           commit: 'base commit',
           lint: 'base lint',
           prepare: 'base prepare',
@@ -170,7 +170,7 @@ export default {
         },
         repository: 'bar/foo',
         scripts: {
-          clean: 'base clean',
+          'check-unknown-files': 'base check-unknown-files',
           commit: 'base commit',
           dev: 'base dev',
           lint: 'base lint',
@@ -226,7 +226,7 @@ export default {
           access: 'public',
         },
         scripts: {
-          clean: 'base clean',
+          'check-unknown-files': 'base check-unknown-files',
           commit: 'base commit',
           dev: 'base dev',
           lint: 'base lint',
