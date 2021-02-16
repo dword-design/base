@@ -1,3 +1,11 @@
+## [7.0.2](https://github.com/dword-design/base/compare/v7.0.1...v7.0.2) (2021-02-16)
+
+
+### Bug Fixes
+
+* remove commitlint max line length rule ([#145](https://github.com/dword-design/base/issues/145)) ([b9cc5c1](https://github.com/dword-design/base/commit/b9cc5c15daa8932eeb3bd723c9012bbc5575148f))
+* rework github workflows ([#142](https://github.com/dword-design/base/issues/142)) ([e6ceb54](https://github.com/dword-design/base/commit/e6ceb54ed8008c19703ce7b0cdd0de1c2a1addf0))
+
 ## [7.0.1](https://github.com/dword-design/base/compare/v7.0.0...v7.0.1) (2021-02-15)
 
 
