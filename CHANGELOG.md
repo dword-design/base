@@ -1,3 +1,10 @@
+## [7.0.3](https://github.com/dword-design/base/compare/v7.0.2...v7.0.3) (2021-02-16)
+
+
+### Bug Fixes
+
+* do not double lint ([#147](https://github.com/dword-design/base/issues/147)) ([ab9d541](https://github.com/dword-design/base/commit/ab9d5410021b3036dae10eeb704c52898f8a812a))
+
 ## [7.0.2](https://github.com/dword-design/base/compare/v7.0.1...v7.0.2) (2021-02-16)
 
 
