@@ -62,7 +62,6 @@ export default {
               },
             },
             { run: 'yarn --frozen-lockfile' },
-            { run: 'yarn lint' },
             { run: 'yarn test' },
             { run: 'yarn check-unknown-files' },
             {

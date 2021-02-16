@@ -24,7 +24,6 @@ export default {
             { run: 'git config --global user.email "actions@github.com"' },
             { run: 'git config --global user.name "GitHub Actions"' },
             { run: 'yarn --frozen-lockfile' },
-            { run: 'yarn lint' },
             { run: 'yarn test' },
             { run: 'yarn check-unknown-files' },
             {
