@@ -9,9 +9,9 @@ import self from './commit'
 const runTest = options => () =>
   withLocalTmpDir(async () => {
     await outputFile('foo.txt', '')
-    await execa.command('git config --global user.email "foo@bar.de"')
-    await execa.command('git config --global user.name "foo"')
     await execa.command('git init')
+    await execa.command('git config user.email "foo@bar.de"')
+    await execa.command('git config user.name "foo"')
     await execa.command('git add .')
     const childProcess = self({ ...options, log: false })
     await pEvent(childProcess.stdout, 'data', data =>
