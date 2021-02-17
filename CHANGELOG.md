@@ -1,3 +1,10 @@
+## [7.0.5](https://github.com/dword-design/base/compare/v7.0.4...v7.0.5) (2021-02-17)
+
+
+### Bug Fixes
+
+* remove stable version constraint ([2523050](https://github.com/dword-design/base/commit/252305000bfb33fef2b27b72c864afc6fbe45966))
+
 ## [7.0.4](https://github.com/dword-design/base/compare/v7.0.3...v7.0.4) (2021-02-16)
 
 
