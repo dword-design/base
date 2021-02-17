@@ -212,15 +212,6 @@ export default {
     },
     test: output => expect(output).toMatch('run test'),
   },
-  'unstable version': {
-    files: {
-      'package.json': JSON.stringify({ version: '0.1.0' }, undefined, 2),
-    },
-    test: output =>
-      expect(output).toMatch(
-        'package.json invalid\ndata/version should match pattern "^[1-9]\\d*\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$"'
-      ),
-  },
   'unused dependecy': {
     files: {
       'package.json': JSON.stringify(

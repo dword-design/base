@@ -1,5 +1,4 @@
 import packageNameRegex from 'package-name-regex'
-import stableVersionRegex from 'stable-version-regex'
 
 export default {
   properties: {
@@ -31,10 +30,7 @@ export default {
       pattern: packageNameRegex.source,
       type: 'string',
     },
-    version: {
-      pattern: stableVersionRegex.source,
-      type: 'string',
-    },
+    version: { type: 'string' },
   },
   type: 'object',
 }

@@ -69,7 +69,6 @@
     "sort-package-json": "^1.39.1",
     "spdx-expression-parse": "^3.0.0",
     "spdx-license-list": "^6.1.0",
-    "stable-version-regex": "^1.0.4",
     "yaml": "^1.8.2"
   },
   "devDependencies": {
