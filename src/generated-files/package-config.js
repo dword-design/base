@@ -1,12 +1,4 @@
-import {
-  constant,
-  identity,
-  ifElse,
-  mapValues,
-  pick,
-  property,
-  stubTrue,
-} from '@dword-design/functions'
+import { mapValues, pick, stubTrue } from '@dword-design/functions'
 import packageName from 'depcheck-package-name'
 import { existsSync } from 'fs-extra'
 import hostedGitInfo from 'hosted-git-info'
@@ -23,14 +15,9 @@ const commandNames = {
   test: true,
   ...(config.commands |> mapValues(stubTrue)),
 }
-const gitUrl =
-  existsSync('.git')
-  |> ifElse(
-    identity,
-    () =>
-      parseGitConfig.sync() |> property('remote "origin"') |> property('url'),
-    constant(undefined)
-  )
+const gitUrl = existsSync('.git')
+  ? parseGitConfig.sync()['remote "origin"']?.url
+  : undefined
 const gitInfo = hostedGitInfo.fromUrl(gitUrl) || {}
 if (gitUrl !== undefined && gitInfo.type !== 'github') {
   throw new Error('Only GitHub repositories are supported.')
