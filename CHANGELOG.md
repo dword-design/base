@@ -1,3 +1,10 @@
+## [7.0.6](https://github.com/dword-design/base/compare/v7.0.5...v7.0.6) (2021-02-20)
+
+
+### Bug Fixes
+
+* restrict sort-package-json version ([#152](https://github.com/dword-design/base/issues/152)) ([b64370c](https://github.com/dword-design/base/commit/b64370c939b444e5ef6d64cdf2a4d007d441c851))
+
 ## [7.0.5](https://github.com/dword-design/base/compare/v7.0.4...v7.0.5) (2021-02-17)
 
 
