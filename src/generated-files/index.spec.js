@@ -6,8 +6,8 @@ export default {
     const self = proxyquire('.', {
       './package-config.js': {
         scripts: {
-          test: 'base test',
           dev: 'base dev',
+          test: 'base test',
         },
       },
     })
