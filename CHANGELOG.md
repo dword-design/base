@@ -1,3 +1,10 @@
+## [7.0.7](https://github.com/dword-design/base/compare/v7.0.6...v7.0.7) (2021-02-20)
+
+
+### Bug Fixes
+
+* simplify syntax ([#155](https://github.com/dword-design/base/issues/155)) ([f21858c](https://github.com/dword-design/base/commit/f21858c49913dc96f0959a6687c77119bf49f1dc))
+
 ## [7.0.6](https://github.com/dword-design/base/compare/v7.0.5...v7.0.6) (2021-02-20)
 
 
