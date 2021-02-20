@@ -6,16 +6,16 @@ export default {
     const self = proxyquire('.', {
       './package-config.js': {
         scripts: {
-          bar: 'base bar',
-          foo: 'base foo',
+          test: 'base test',
+          dev: 'base dev',
         },
       },
     })
     expect(self['package.json']).toEqual(endent`
       {
         "scripts": {
-          "bar": "base bar",
-          "foo": "base foo"
+          "dev": "base dev"
+          "test": "base test",
         }
       }
 
