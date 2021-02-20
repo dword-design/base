@@ -14,8 +14,8 @@ export default {
     expect(self['package.json']).toEqual(endent`
       {
         "scripts": {
-          "dev": "base dev"
-          "test": "base test",
+          "dev": "base dev",
+          "test": "base test"
         }
       }
 
