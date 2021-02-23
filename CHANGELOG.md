@@ -1,3 +1,10 @@
+## [7.0.8](https://github.com/dword-design/base/compare/v7.0.7...v7.0.8) (2021-02-23)
+
+
+### Bug Fixes
+
+* checkout with lfs in github actions ([#159](https://github.com/dword-design/base/issues/159)) ([22aff65](https://github.com/dword-design/base/commit/22aff6567e0efe410e02d509cd07ca3be5158d17))
+
 ## [7.0.7](https://github.com/dword-design/base/compare/v7.0.6...v7.0.7) (2021-02-20)
 
 
