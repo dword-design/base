@@ -10,7 +10,7 @@ export default {
       'runs-on': 'ubuntu-latest',
       steps: [
         ...cancelExistingSteps,
-        { uses: 'actions/checkout@v2' },
+        { uses: 'actions/checkout@v2', with: { lfs: true } },
         {
           uses: 'actions/setup-node@v2',
           with: {

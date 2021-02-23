@@ -20,7 +20,7 @@ export default {
           needs: 'test',
           'runs-on': 'ubuntu-latest',
           steps: [
-            { uses: 'actions/checkout@v2' },
+            { uses: 'actions/checkout@v2', with: { lfs: true } },
             {
               uses: 'actions/setup-node@v2',
               with: {
@@ -54,7 +54,7 @@ export default {
           needs: 'cancel-existing',
           'runs-on': '${{ matrix.os }}',
           steps: [
-            { uses: 'actions/checkout@v2' },
+            { uses: 'actions/checkout@v2', with: { lfs: true } },
             {
               uses: 'actions/setup-node@v2',
               with: {
