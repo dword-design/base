@@ -14,7 +14,7 @@ export default {
               },
               uses: 'rokroskar/workflow-run-cleanup-action@v0.3.0',
             },
-            { uses: 'actions/checkout@v2' },
+            { uses: 'actions/checkout@v2', with: { lfs: true } },
             {
               uses: 'actions/setup-node@v2',
               with: {
