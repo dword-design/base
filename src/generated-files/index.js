@@ -28,7 +28,7 @@ export default {
   '.github/workflows/build.yml': githubWorkflowConfig |> yaml.stringify,
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
-  '.gitpod.yml': gitpodConfig,
+  '.gitpod.yml': gitpodConfig |> yaml.stringify,
   '.huskyrc.json': huskyConfig |> jsonToString({ indent: 2 }),
   '.releaserc.json': releaseConfig |> jsonToString({ indent: 2 }),
   '.renovaterc.json': renovateConfig |> jsonToString({ indent: 2 }),
