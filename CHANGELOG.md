@@ -1,3 +1,11 @@
+## [7.0.9](https://github.com/dword-design/base/compare/v7.0.8...v7.0.9) (2021-02-24)
+
+
+### Bug Fixes
+
+* add missing puppeteer dependencies and git-lfs to gitpod ([6ee88e9](https://github.com/dword-design/base/commit/6ee88e9b8a9e085654d1b077be568e4085e64d84))
+* fix ([7859ef3](https://github.com/dword-design/base/commit/7859ef3cbacaeb2e52d439ef58d2718963da72c7))
+
 ## [7.0.8](https://github.com/dword-design/base/compare/v7.0.7...v7.0.8) (2021-02-23)
 
 
