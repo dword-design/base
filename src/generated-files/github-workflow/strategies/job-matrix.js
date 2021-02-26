@@ -1,6 +1,7 @@
 import ci from '@dword-design/ci/package.json'
 import { first, keys } from '@dword-design/functions'
 
+import config from '@/src/config'
 import cancelExistingSteps from '@/src/generated-files/github-workflow/steps/cancel-existing'
 import releaseSteps from '@/src/generated-files/github-workflow/steps/release'
 import testSteps from '@/src/generated-files/github-workflow/steps/test'
@@ -61,11 +62,15 @@ export default {
       strategy: {
         matrix: {
           exclude: [
-            { node: 10, os: 'macos-latest' },
+            ...(config.usesDocker ? [] : [{ node: 10, os: 'macos-latest' }]),
             { node: 10, os: 'windows-latest' },
           ],
           node: [10, 12],
-          os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
+          os: [
+            ...(config.usesDocker ? [] : ['macos-latest']),
+            'windows-latest',
+            'ubuntu-latest',
+          ],
         },
       },
     },
