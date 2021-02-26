@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/dword-design/base/compare/v7.0.9...v7.1.0) (2021-02-26)
+
+
+### Features
+
+* do not run macos if docker is used in tests ([e198b16](https://github.com/dword-design/base/commit/e198b16493cd25b3c2c839b9df70086ec21518f5))
+
 ## [7.0.9](https://github.com/dword-design/base/compare/v7.0.8...v7.0.9) (2021-02-24)
 
 
