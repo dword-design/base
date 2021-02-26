@@ -54,17 +54,10 @@ jobs:
         run: yarn dw-ci coveralls
     strategy:
       matrix:
-        exclude:
-          - node: 10
-            os: macos-latest
-          - node: 10
-            os: windows-latest
         node:
           - 10
           - 12
         os:
-          - macos-latest
-          - windows-latest
           - ubuntu-latest
 name: build
 on:

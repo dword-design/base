@@ -1,9 +1,8 @@
-import config from '@/src/config'
 import cancelExistingSteps from '@/src/generated-files/github-workflow/steps/cancel-existing'
 import releaseSteps from '@/src/generated-files/github-workflow/steps/release'
 import testSteps from '@/src/generated-files/github-workflow/steps/test'
 
-export default {
+export default config => ({
   jobs: {
     build: {
       if: "!contains(github.event.head_commit.message, '[skip ci]')",
@@ -25,4 +24,4 @@ export default {
       ],
     },
   },
-}
+})

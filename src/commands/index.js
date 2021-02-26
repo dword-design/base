@@ -7,6 +7,7 @@ import commit from './commit'
 import lint from './lint'
 import prepare from './prepare'
 import test from './test'
+import testDocker from './test-docker'
 
 export default {
   'check-unknown-files': {
@@ -22,9 +23,21 @@ export default {
   prepare: {
     handler: prepare,
   },
+  ...(config.testInContainer && {
+    'test:raw': {
+      arguments: '[pattern]',
+      handler: test,
+      options: [
+        {
+          description: 'Only run tests matching this string or regexp',
+          name: '-g, --grep <grep>',
+        },
+      ],
+    },
+  }),
   test: {
     arguments: '[pattern]',
-    handler: test,
+    handler: config.testInContainer ? testDocker : test,
     options: [
       {
         description: 'Only run tests matching this string or regexp',
