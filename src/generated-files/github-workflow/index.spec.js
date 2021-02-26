@@ -5,6 +5,7 @@ const runTest = config => () => {
   const self = proxyquire('.', {
     '../../config': {
       useJobMatrix: config.useJobMatrix,
+      usesDocker: false,
     },
   })
   expect(self).toEqual(config.result)

@@ -12,6 +12,7 @@ const commandNames = {
   commit: true,
   lint: true,
   prepare: true,
+  ...(config.testInContainer && { 'test:raw': true }),
   test: true,
   ...(config.commands |> mapValues(stubTrue)),
 }

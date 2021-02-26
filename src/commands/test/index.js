@@ -1,14 +1,10 @@
 import { filter, join } from '@dword-design/functions'
-import { isCI } from 'ci-info'
 import packageName from 'depcheck-package-name'
 import execa from 'execa'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
-import isDocker from 'is-docker'
-import isGitpod from 'is-gitpod'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 
 import lint from '@/src/commands/lint'
-import config from '@/src/config'
 
 export default async (pattern, options) => {
   options = { log: true, ...options }
@@ -61,47 +57,42 @@ export default async (pattern, options) => {
       throw new Error(error.all)
     }
   }
-  if (!config.testInContainer || isCI || isDocker() || (await isGitpod())) {
-    return execa(
-      'nyc',
-      [
-        '--reporter',
-        'lcov',
-        '--reporter',
-        'text',
-        '--cwd',
-        process.cwd(),
-        '--require',
-        require.resolve('./pretest'),
-        '--all',
-        '--include',
-        '**/*.js',
-        '--exclude',
-        '**/*.spec.js',
-        '--exclude',
-        'coverage/**',
-        '--exclude',
-        'tmp-*/**',
-        '--exclude',
-        'dist/**',
-        'mocha',
-        '--ui',
-        packageName`mocha-ui-exports-auto-describe`,
-        '--file',
-        require.resolve('./setup-test'),
-        '--timeout',
-        80000,
-        ...(options.grep ? ['--grep', options.grep] : []),
-        ...(process.platform === 'win32' ? ['--exit'] : []),
-        pattern || '{,!(node_modules)/**/}*.spec.js',
-      ],
-      {
-        env: { ...process.env, NODE_ENV: 'test' },
-        ...(options.log ? { stdio: 'inherit' } : { all: true }),
-      }
-    )
-  }
-  throw new Error(
-    'This project can only be tested inside of a container. Please consider to test it in a docker container or in GitPod.'
+  return execa(
+    'nyc',
+    [
+      '--reporter',
+      'lcov',
+      '--reporter',
+      'text',
+      '--cwd',
+      process.cwd(),
+      '--require',
+      require.resolve('./pretest'),
+      '--all',
+      '--include',
+      '**/*.js',
+      '--exclude',
+      '**/*.spec.js',
+      '--exclude',
+      'coverage/**',
+      '--exclude',
+      'tmp-*/**',
+      '--exclude',
+      'dist/**',
+      'mocha',
+      '--ui',
+      packageName`mocha-ui-exports-auto-describe`,
+      '--file',
+      require.resolve('./setup-test'),
+      '--timeout',
+      80000,
+      ...(options.grep ? ['--grep', options.grep] : []),
+      ...(process.platform === 'win32' ? ['--exit'] : []),
+      pattern || '{,!(node_modules)/**/}*.spec.js',
+    ],
+    {
+      env: { ...process.env, NODE_ENV: 'test' },
+      ...(options.log ? { stdio: 'inherit' } : { all: true }),
+    }
   )
 }
