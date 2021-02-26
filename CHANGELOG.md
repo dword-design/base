@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/dword-design/base/compare/v7.1.0...v7.1.1) (2021-02-26)
+
+
+### Bug Fixes
+
+* do not run windows if docker is used ([85ba5ec](https://github.com/dword-design/base/commit/85ba5ecc6ddbfc7ce867894fb307f00c70f4cc52))
+
 # [7.1.0](https://github.com/dword-design/base/compare/v7.0.9...v7.1.0) (2021-02-26)
 
 
