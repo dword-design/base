@@ -80,14 +80,8 @@ export default {
           ],
           strategy: {
             matrix: {
-              exclude: [
-                {
-                  node: 10,
-                  os: 'windows-latest',
-                },
-              ],
               node: [10, 12],
-              os: ['windows-latest', 'ubuntu-latest'],
+              os: ['ubuntu-latest'],
             },
           },
         },
