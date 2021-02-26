@@ -1,14 +1,13 @@
 import ci from '@dword-design/ci/package.json'
 import { first, keys } from '@dword-design/functions'
 
-import config from '@/src/config'
 import cancelExistingSteps from '@/src/generated-files/github-workflow/steps/cancel-existing'
 import releaseSteps from '@/src/generated-files/github-workflow/steps/release'
 import testSteps from '@/src/generated-files/github-workflow/steps/test'
 
 const bin = ci.bin |> keys |> first
 
-export default {
+export default config => ({
   jobs: {
     'cancel-existing': {
       if: "!contains(github.event.head_commit.message, '[skip ci]')",
@@ -76,4 +75,4 @@ export default {
       },
     },
   },
-}
+})
