@@ -1,3 +1,10 @@
+# [7.2.0](https://github.com/dword-design/base/compare/v7.1.1...v7.2.0) (2021-02-26)
+
+
+### Features
+
+* run tests in docker if testInContainer is configured ([#161](https://github.com/dword-design/base/issues/161)) ([7fc1921](https://github.com/dword-design/base/commit/7fc1921f50ae899ccae8a2a3b249e305e635483d))
+
 ## [7.1.1](https://github.com/dword-design/base/compare/v7.1.0...v7.1.1) (2021-02-26)
 
 
