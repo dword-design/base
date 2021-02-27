@@ -1,3 +1,10 @@
+# [7.3.0](https://github.com/dword-design/base/compare/v7.2.0...v7.3.0) (2021-02-27)
+
+
+### Features
+
+* snapshot testing ([2292ae5](https://github.com/dword-design/base/commit/2292ae56793b00d2f71451ce2101095ecd28a002))
+
 # [7.2.0](https://github.com/dword-design/base/compare/v7.1.1...v7.2.0) (2021-02-26)
 
 
