@@ -3,10 +3,10 @@ import {
   identity,
   keyBy,
   mapValues,
-  noop,
   property,
   stubTrue,
 } from '@dword-design/functions'
+import packageName from 'depcheck-package-name'
 import globby from 'globby'
 import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'
@@ -15,7 +15,7 @@ import withLocalTmpDir from 'with-local-tmp-dir'
 import self from '.'
 
 const runTest = config => {
-  config = { files: {}, options: {}, test: noop, ...config }
+  config = { files: {}, ...config }
   return () =>
     withLocalTmpDir(async () => {
       await outputFiles(config.files)
@@ -23,16 +23,7 @@ const runTest = config => {
         require('../prepare')
       )
       await prepare()
-      let output
-      try {
-        output =
-          self(config.pattern, { log: false, ...config.options })
-          |> await
-          |> property('all')
-      } catch (error) {
-        output = error.message
-      }
-      await config.test(output)
+      await config.test()
     })
 }
 
@@ -48,8 +39,10 @@ export default {
       `,
       },
     },
-    test: output =>
-      expect(output).toMatch('Error: expect(received).toEqual(expected)'),
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
+        'Error: expect(received).toEqual(expected)'
+      ),
   },
   'bin outside dist': {
     files: {
@@ -59,8 +52,8 @@ export default {
         2
       ),
     },
-    test: output =>
-      expect(output).toMatch(
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
         'package.json invalid\ndata/bin/foo should match pattern "^\\.\\/dist\\/"'
       ),
   },
@@ -68,9 +61,12 @@ export default {
     files: {
       'package.json': JSON.stringify({ name: '_foo' }, undefined, 2),
     },
-    test: output => expect(output).toMatch('package.json invalid'),
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow('package.json invalid'),
   },
-  empty: {},
+  empty: {
+    test: () => self('', { log: false }),
+  },
   grep: {
     files: {
       src: {
@@ -83,18 +79,53 @@ export default {
       `,
       },
     },
-    options: { grep: 'foo' },
-    test: output => {
+    test: async () => {
+      const output =
+        self('', { grep: 'foo', log: false }) |> await |> property('all')
       expect(output).not.toMatch('run bar')
       expect(output).toMatch('run foo')
+    },
+  },
+  'image snapshot': {
+    files: {
+      'index.spec.js': endent`
+        import sharp from '${packageName`sharp`}'
+
+        export default {
+          works: async function () {
+            const img = await sharp({
+              create: {
+                background: { b: 0, g: 255, r: 0 },
+                channels: 3,
+                height: 48,
+                width: 48,
+              },
+            })
+              .png()
+              .toBuffer()
+            expect(img).toMatchImageSnapshot(this)
+          },
+        }
+      `,
+      'package.json': JSON.stringify({
+        devDependencies: {
+          sharp: '^1.0.0',
+        },
+      }),
+    },
+    test: async () => {
+      await self('', { log: false })
+      expect(await globby('*', { cwd: '__image_snapshots__' })).toEqual([
+        'index-spec-js-index-works-1-snap.png',
+      ])
     },
   },
   'invalid name': {
     files: {
       'package.json': JSON.stringify({ name: '_foo' }, undefined, 2),
     },
-    test: output =>
-      expect(output).toMatch(
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
         'package.json invalid\ndata/name should match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"'
       ),
   },
@@ -102,14 +133,17 @@ export default {
     files: {
       'src/test.json': 'foo bar',
     },
-    test: output => expect(output).toMatch('error  Unexpected token o'),
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
+        'error  Unexpected token o'
+      ),
   },
   'linting errors': {
     files: {
       'src/index.js': "var foo = 'bar'",
     },
-    test: output =>
-      expect(output).toMatch(
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
         "error  'foo' is assigned a value but never used  no-unused-vars"
       ),
   },
@@ -117,6 +151,7 @@ export default {
     files: {
       'src/index.js': 'export default 1',
     },
+    test: () => self('', { log: false }),
   },
   'missing readme sections': {
     files: {
@@ -129,8 +164,8 @@ export default {
 
       `,
     },
-    test: output =>
-      expect(output).toEqual(
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
         'The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL'
       ),
   },
@@ -154,8 +189,9 @@ export default {
           "export default { valid: () => console.log('run index2') }",
       },
     },
-    pattern: 'src/index2.spec.js',
-    test: output => {
+    test: async () => {
+      const output =
+        self('src/index2.spec.js', { log: false }) |> await |> property('all')
       expect(output).not.toMatch('run index1')
       expect(output).toMatch('run index2')
     },
@@ -181,11 +217,28 @@ export default {
       `,
       },
     },
-    test: output =>
-      expect(output).toMatch(endent`
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(endent`
       Unused dependencies
       * bar
     `),
+  },
+  snapshot: {
+    files: {
+      'index.spec.js': endent`
+        export default {
+          works: function () {
+            expect('foo').toMatchSnapshot(this)
+          },
+        }
+      `,
+    },
+    test: async () => {
+      await self('', { log: false })
+      expect(await globby('*', { cwd: '__snapshots__' })).toEqual([
+        'index.spec.js.snap',
+      ])
+    },
   },
   'test in project root': {
     files: {
@@ -210,7 +263,10 @@ export default {
         2
       ),
     },
-    test: output => expect(output).toMatch('run test'),
+    test: async () =>
+      expect(self('', { log: false }) |> await |> property('all')).toMatch(
+        'run test'
+      ),
   },
   'unused dependecy': {
     files: {
@@ -225,11 +281,11 @@ export default {
       ),
       'src/index.js': 'export default 1',
     },
-    test: output =>
-      expect(output).toMatch(endent`
-      Unused dependencies
-      * change-case
-    `),
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(endent`
+        Unused dependencies
+        * change-case
+      `),
   },
   valid: {
     files: {
@@ -259,8 +315,10 @@ export default {
         `,
       },
     },
-    test: async output => {
-      expect(output).toMatch('run test')
+    test: async () => {
+      expect(
+        (await self('', { log: false })) |> await |> property('all')
+      ).toMatch('run test')
       expect(
         globby('*', { dot: true, onlyFiles: false })
           |> await
@@ -301,8 +359,8 @@ export default {
         2
       ),
     },
-    test: output =>
-      expect(output).toMatch(
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
         'package.json invalid\ndata/dependencies should be object'
       ),
   },
@@ -316,8 +374,8 @@ export default {
         2
       ),
     },
-    test: output =>
-      expect(output).toMatch(
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
         'package.json invalid\ndata/description should be string'
       ),
   },
@@ -325,8 +383,8 @@ export default {
     files: {
       'package.json': JSON.stringify({ devDependencies: 1 }, undefined, 2),
     },
-    test: output =>
-      expect(output).toMatch(
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
         'package.json invalid\ndata/devDependencies should be object'
       ),
   },
@@ -334,8 +392,8 @@ export default {
     files: {
       'package.json': JSON.stringify({ keywords: 1 }, undefined, 2),
     },
-    test: output =>
-      expect(output).toMatch(
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
         'package.json invalid\ndata/keywords should be array'
       ),
   },

@@ -1,4 +1,6 @@
 [
+  "__image_snapshots__",
+  "__snapshots__",
   ".env.schema.json",
   ".git",
   "CHANGELOG.md",
