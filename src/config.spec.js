@@ -97,7 +97,7 @@ export default {
           ## Install
 
           \`\`\`bash
-          # NPM
+          # npm
           $ npm install foo
 
           # Yarn

@@ -11,7 +11,7 @@ export default {
     [
       ...(config.npmPublish
         ? [
-            `[![NPM version](https://img.shields.io/npm/v/${packageConfig.name}.svg)](https://npmjs.org/package/${packageConfig.name})`,
+            `[![npm version](https://img.shields.io/npm/v/${packageConfig.name}.svg)](https://npmjs.org/package/${packageConfig.name})`,
           ]
         : []),
       '![Linux macOS Windows compatible](https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue)',

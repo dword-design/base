@@ -23,7 +23,7 @@ export default {
       )
       expect(readmeString).toEqual(endent`
         <!-- BADGES/ -->
-        [![NPM version](https://img.shields.io/npm/v/@dword-design/foo.svg)](https://npmjs.org/package/@dword-design/foo)
+        [![npm version](https://img.shields.io/npm/v/@dword-design/foo.svg)](https://npmjs.org/package/@dword-design/foo)
         ![Linux macOS Windows compatible](https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue)
         [![Build status](https://github.com/dword-design/bar/workflows/build/badge.svg)](https://github.com/dword-design/bar/actions)
         [![Coverage status](https://img.shields.io/coveralls/dword-design/bar)](https://coveralls.io/github/dword-design/bar)
@@ -132,7 +132,7 @@ export default {
       ## Install
       
       \`\`\`bash
-      # NPM
+      # npm
       $ npm install foo
 
       # Yarn
