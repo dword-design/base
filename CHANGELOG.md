@@ -1,3 +1,10 @@
+## [7.3.1](https://github.com/dword-design/base/compare/v7.3.0...v7.3.1) (2021-03-06)
+
+
+### Bug Fixes
+
+* fix npm casing ([#165](https://github.com/dword-design/base/issues/165)) ([299d49e](https://github.com/dword-design/base/commit/299d49e18b41da02557085f1f66bd4182d5b47c6))
+
 # [7.3.0](https://github.com/dword-design/base/compare/v7.2.0...v7.3.0) (2021-02-27)
 
 
