@@ -26,7 +26,7 @@ export default {
     ## Install
 
     \`\`\`bash
-    # NPM
+    # npm
     $ npm install ${packageConfig.name}
 
     # Yarn
