@@ -1,3 +1,10 @@
+# [7.4.0](https://github.com/dword-design/base/compare/v7.3.1...v7.4.0) (2021-03-07)
+
+
+### Features
+
+* add option to update test snapshots ([#166](https://github.com/dword-design/base/issues/166)) ([ed655b0](https://github.com/dword-design/base/commit/ed655b0635865a2ca6f606898e7c0f299432b79e))
+
 ## [7.3.1](https://github.com/dword-design/base/compare/v7.3.0...v7.3.1) (2021-03-06)
 
 
