@@ -18,7 +18,7 @@ export default (pattern, options) => {
       '-c',
       [
         `yarn --frozen-lockfile && yarn test:raw${
-          options.snapshotUpdate ? ' --snapshot-update' : ''
+          options.updateSnapshots ? ' --snapshot-update' : ''
         }`,
         ...(pattern ? [pattern] : []),
         ...(options.grep ? [`-g ${options.grep}`] : []),

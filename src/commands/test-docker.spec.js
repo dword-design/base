@@ -65,7 +65,7 @@ export default {
 
         `,
       })
-      await self('', { log: false, snapshotUpdate: true })
+      await self('', { log: false, updateSnapshots: true })
     }),
   works: () =>
     withLocalTmpDir(async () => {

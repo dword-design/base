@@ -302,7 +302,7 @@ export default {
       `,
     },
     test: async () => {
-      await self('', { log: false, snapshotUpdate: true })
+      await self('', { log: false, updateSnapshots: true })
     },
   },
   valid: {
