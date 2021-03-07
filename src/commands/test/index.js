@@ -91,7 +91,11 @@ export default async (pattern, options) => {
       pattern || '{,!(node_modules)/**/}*.spec.js',
     ],
     {
-      env: { ...process.env, NODE_ENV: 'test' },
+      env: {
+        ...process.env,
+        NODE_ENV: 'test',
+        ...(options.snapshotUpdate && { SNAPSHOT_UPDATE: 1 }),
+      },
       ...(options.log ? { stdio: 'inherit' } : { all: true }),
     }
   )

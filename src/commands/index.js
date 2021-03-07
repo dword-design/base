@@ -32,6 +32,10 @@ export default {
           description: 'Only run tests matching this string or regexp',
           name: '-g, --grep <grep>',
         },
+        {
+          description: 'Update snapshots',
+          name: '-u, --update-snapshots',
+        },
       ],
     },
   }),
@@ -42,6 +46,10 @@ export default {
       {
         description: 'Only run tests matching this string or regexp',
         name: '-g, --grep <grep>',
+      },
+      {
+        description: 'Update snapshots',
+        name: '-u, --update-snapshots',
       },
     ],
   },

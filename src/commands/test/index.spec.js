@@ -287,6 +287,24 @@ export default {
         * change-case
       `),
   },
+  'update snapshot': {
+    files: {
+      '__snapshots__/index.spec.js.snap': endent`
+        exports[\`index works 1\`] = \`"foo"\`;
+      
+      `,
+      'index.spec.js': endent`
+        export default {
+          works: function () {
+            expect('bar').toMatchSnapshot(this)
+          },
+        }
+      `,
+    },
+    test: async () => {
+      await self('', { log: false, snapshotUpdate: true })
+    },
+  },
   valid: {
     files: {
       'package.json': JSON.stringify(
