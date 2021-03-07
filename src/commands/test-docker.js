@@ -17,7 +17,9 @@ export default (pattern, options) => {
       'bash',
       '-c',
       [
-        'yarn --frozen-lockfile && yarn test:raw',
+        `yarn --frozen-lockfile && yarn test:raw${
+          options.snapshotUpdate ? ' --snapshot-update' : ''
+        }`,
         ...(pattern ? [pattern] : []),
         ...(options.grep ? [`-g ${options.grep}`] : []),
       ] |> join(' '),

@@ -45,6 +45,28 @@ export default {
         self('foobarbaz', { log: false }) |> await |> property('all')
       ).toMatch('foobarbaz')
     }),
+  'update snapshots': () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'package.json': JSON.stringify(
+          {
+            name: 'foo',
+            scripts: {
+              'test:raw': 'node test.js',
+            },
+          },
+          undefined,
+          2
+        ),
+        'test.js': endent`
+          if (!process.env.SNAPSHOT_UPDATE) {
+            exit(1)
+          }
+
+        `,
+      })
+      await self('', { log: false, snapshotUpdate: true })
+    }),
   works: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
