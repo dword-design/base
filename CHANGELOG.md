@@ -1,3 +1,10 @@
+## [7.4.1](https://github.com/dword-design/base/compare/v7.4.0...v7.4.1) (2021-03-07)
+
+
+### Bug Fixes
+
+* fix update snapshots option naming ([ae15988](https://github.com/dword-design/base/commit/ae159883e81f21a22730d1207eb4bf6a8edf0f39))
+
 # [7.4.0](https://github.com/dword-design/base/compare/v7.3.1...v7.4.0) (2021-03-07)
 
 
