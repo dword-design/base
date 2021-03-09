@@ -1,3 +1,13 @@
+## [7.4.5](https://github.com/dword-design/base/compare/v7.4.4...v7.4.5) (2021-03-09)
+
+
+### Bug Fixes
+
+* sort object keys ([d72798c](https://github.com/dword-design/base/commit/d72798ce509fc13290cc47a931119e0605a88808))
+* update changed files ([7aba9c1](https://github.com/dword-design/base/commit/7aba9c125af55d120670fde88bdee53481491650))
+* update changed files ([6a06f25](https://github.com/dword-design/base/commit/6a06f25c0eda2f25307d4026013d843ccdf61209))
+* update dependency sort-package-json to ~1.49.0 ([d369064](https://github.com/dword-design/base/commit/d369064b5ab48bc0053af3aaaf7fae5bcd0b7b88))
+
 ## [7.4.4](https://github.com/dword-design/base/compare/v7.4.3...v7.4.4) (2021-03-09)
 
 
