@@ -1,3 +1,10 @@
+## [7.4.4](https://github.com/dword-design/base/compare/v7.4.3...v7.4.4) (2021-03-09)
+
+
+### Bug Fixes
+
+* update dependency @commitlint/cli to v12 ([4d85dfe](https://github.com/dword-design/base/commit/4d85dfe0e6dd45e49b567b5e51c1c936fd6df1e2))
+
 ## [7.4.3](https://github.com/dword-design/base/compare/v7.4.2...v7.4.3) (2021-03-09)
 
 
