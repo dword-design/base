@@ -1,3 +1,10 @@
+## [7.4.3](https://github.com/dword-design/base/compare/v7.4.2...v7.4.3) (2021-03-09)
+
+
+### Bug Fixes
+
+* update dependency @commitlint/config-conventional to v12 ([85d8408](https://github.com/dword-design/base/commit/85d8408d7c6cd8f3027b5c8d72c557b8337e5ea0))
+
 ## [7.4.2](https://github.com/dword-design/base/compare/v7.4.1...v7.4.2) (2021-03-07)
 
 
