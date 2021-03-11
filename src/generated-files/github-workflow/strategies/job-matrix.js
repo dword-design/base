@@ -1,11 +1,9 @@
-import ci from '@dword-design/ci/package.json'
-import { first, keys } from '@dword-design/functions'
+import { map } from '@dword-design/functions'
 
 import cancelExistingSteps from '@/src/generated-files/github-workflow/steps/cancel-existing'
+import coverageSteps from '@/src/generated-files/github-workflow/steps/coverage'
 import releaseSteps from '@/src/generated-files/github-workflow/steps/release'
 import testSteps from '@/src/generated-files/github-workflow/steps/test'
-
-const bin = ci.bin |> keys |> first
 
 export default config => ({
   jobs: {
@@ -45,18 +43,11 @@ export default config => ({
         },
         { run: 'yarn --frozen-lockfile' },
         ...testSteps,
-        {
-          // Coveralls is only free for public repositories
-          env: {
-            COVERALLS_GIT_BRANCH: '${{ github.ref }}',
-            COVERALLS_GIT_COMMIT: '${{ github.sha }}',
-            COVERALLS_REPO_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-            COVERALLS_SERVICE_NAME: 'github',
-          },
-          if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
-          name: 'Coveralls',
-          run: `yarn ${bin} coveralls`,
-        },
+        ...(coverageSteps
+          |> map(step => ({
+            if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
+            ...step,
+          }))),
       ],
       strategy: {
         matrix: {
