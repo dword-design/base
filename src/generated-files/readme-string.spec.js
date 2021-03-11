@@ -6,7 +6,7 @@ import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
   badges: () =>
-    withLocalTmpDir(async () => {
+    withLocalTmpDir(async function () {
       await execa.command('git init')
       await execa.command(
         'git remote add origin git@github.com:dword-design/bar.git'

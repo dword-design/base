@@ -59,7 +59,7 @@ export default {
       })
       expect(output.all).toMatch('custom prepare')
     }),
-  valid: () =>
+  valid() {
     withLocalTmpDir(async () => {
       await execa.command('git init')
       await execa.command(
