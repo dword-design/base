@@ -1,3 +1,10 @@
+## [7.5.1](https://github.com/dword-design/base/compare/v7.5.0...v7.5.1) (2021-03-11)
+
+
+### Bug Fixes
+
+* coverage also for job matrices ([7f13473](https://github.com/dword-design/base/commit/7f13473b24c55ef7aa3da22d62791140cdf38ac7))
+
 # [7.5.0](https://github.com/dword-design/base/compare/v7.4.5...v7.5.0) (2021-03-11)
 
 
