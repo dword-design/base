@@ -6,7 +6,7 @@
 [![npm version](https://img.shields.io/npm/v/@dword-design/base.svg)](https://npmjs.org/package/@dword-design/base)
 ![Linux macOS Windows compatible](https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue)
 [![Build status](https://github.com/dword-design/base/workflows/build/badge.svg)](https://github.com/dword-design/base/actions)
-[![Coverage status](https://img.shields.io/coveralls/dword-design/base)](https://coveralls.io/github/dword-design/base)
+[![Coverage status](https://codecov.io/gh/dword-design/base/branch/master/graph/badge.svg)](https://codecov.io/gh/dword-design/base)
 [![Dependency status](https://img.shields.io/david/dword-design/base)](https://david-dm.org/dword-design/base)
 ![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen)
 

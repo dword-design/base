@@ -18,7 +18,13 @@ export default {
       `[![Build status](https://github.com/${packageConfig.repository}/workflows/build/badge.svg)](https://github.com/${packageConfig.repository}/actions)`,
       ...(config.useJobMatrix
         ? [
-            `[![Coverage status](https://img.shields.io/coveralls/${packageConfig.repository})](https://coveralls.io/github/${packageConfig.repository})`,
+            [
+              `[![Coverage status](https://codecov.io/gh/${packageConfig.repository}/branch/master/graph/badge.svg`,
+              ...(config.codecovGraphToken
+                ? [`?token=${config.codecovGraphToken}`]
+                : []),
+              [`)](https://codecov.io/gh/${packageConfig.repository})`],
+            ] |> join(''),
           ]
         : []),
       `[![Dependency status](https://img.shields.io/david/${packageConfig.repository})](https://david-dm.org/${packageConfig.repository})`,
