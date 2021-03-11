@@ -1,3 +1,10 @@
+# [7.5.0](https://github.com/dword-design/base/compare/v7.4.5...v7.5.0) (2021-03-11)
+
+
+### Features
+
+* replace coveralls with codecov ([#173](https://github.com/dword-design/base/issues/173)) ([763ce2c](https://github.com/dword-design/base/commit/763ce2c912ff553fe7a6fac1278a2fcefe850cd3))
+
 ## [7.4.5](https://github.com/dword-design/base/compare/v7.4.4...v7.4.5) (2021-03-09)
 
 
