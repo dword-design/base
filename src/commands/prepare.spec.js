@@ -60,7 +60,7 @@ export default {
       expect(output.all).toMatch('custom prepare')
     }),
   valid() {
-    withLocalTmpDir(async () => {
+    return withLocalTmpDir(async () => {
       await execa.command('git init')
       await execa.command(
         'git remote add origin git@github.com:dword-design/bar.git'
@@ -120,5 +120,6 @@ export default {
       })
       expect(await readFile('README.md', 'utf8')).toMatchSnapshot(this)
       expect(await readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
-    }),
+    })
+  },
 }

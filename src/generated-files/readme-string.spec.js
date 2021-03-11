@@ -5,8 +5,8 @@ import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
-  badges: () =>
-    withLocalTmpDir(async function () {
+  badges() {
+    return withLocalTmpDir(async () => {
       await execa.command('git init')
       await execa.command(
         'git remote add origin git@github.com:dword-design/bar.git'
@@ -22,7 +22,8 @@ export default {
         require('./readme-string')
       )
       expect(readmeString).toMatchSnapshot(this)
-    }),
+    })
+  },
   description: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
