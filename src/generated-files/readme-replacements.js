@@ -16,17 +16,13 @@ export default {
         : []),
       '![Linux macOS Windows compatible](https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue)',
       `[![Build status](https://github.com/${packageConfig.repository}/workflows/build/badge.svg)](https://github.com/${packageConfig.repository}/actions)`,
-      ...(config.useJobMatrix
-        ? [
-            [
-              `[![Coverage status](https://codecov.io/gh/${packageConfig.repository}/branch/master/graph/badge.svg`,
-              ...(config.codecovGraphToken
-                ? [`?token=${config.codecovGraphToken}`]
-                : []),
-              [`)](https://codecov.io/gh/${packageConfig.repository})`],
-            ] |> join(''),
-          ]
-        : []),
+      [
+        `[![Coverage status](https://codecov.io/gh/${packageConfig.repository}/branch/master/graph/badge.svg`,
+        ...(config.codecovGraphToken
+          ? [`?token=${config.codecovGraphToken}`]
+          : []),
+        [`)](https://codecov.io/gh/${packageConfig.repository})`],
+      ] |> join(''),
       `[![Dependency status](https://img.shields.io/david/${packageConfig.repository})](https://david-dm.org/${packageConfig.repository})`,
       '![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen)',
       '',
