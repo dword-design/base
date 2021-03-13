@@ -54,27 +54,47 @@ $ yarn add @dword-design/base
 
 Hey, I am Sebastian Landwehr and I love building develop web apps and open source packages. If you want to support me so that I can keep packages up to date and build more helpful tools, you can donate here:
 
-<p>
-  <a href="https://www.buymeacoffee.com/dword">
-    <img
-      src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg"
-      alt="Buy Me a Coffee"
-      height="32"
-    >
-  </a><br/><a href="https://paypal.me/SebastianLandwehr">
-    <img
-      src="https://dword-design.de/images/paypal.svg"
-      alt="PayPal"
-      height="32"
-    >
-  </a><br/><a href="https://www.patreon.com/dworddesign">
-    <img
-      src="https://dword-design.de/images/patreon.svg"
-      alt="Patreon"
-      height="32"
-    >
-  </a>
-</p>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <a href="https://www.buymeacoffee.com/dword">
+          <img
+            src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg"
+            alt="Buy Me a Coffee"
+            height="32"
+          >
+        </a>
+      </td>
+      <td>If you want to send me a one time donation. The coffee there is usually pretty good 😊.</td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://paypal.me/SebastianLandwehr">
+          <img
+            src="https://dword-design.de/images/paypal.svg"
+            alt="PayPal"
+            height="32"
+          >
+        </a>
+      </td>
+      <td>Also for one time donations if you like PayPal.</td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://www.patreon.com/dworddesign">
+          <img
+            src="https://dword-design.de/images/patreon.svg"
+            alt="Patreon"
+            height="32"
+          >
+        </a>
+      </td>
+      <td>Here you can support me regularly, which is great so I can steadily work on projects.</td>
+    </tr>
+  </tbody>
+</table>
+
 
 Thanks a lot for your support! ❤️
 
