@@ -1,3 +1,10 @@
+# [7.6.0](https://github.com/dword-design/base/compare/v7.5.1...v7.6.0) (2021-03-13)
+
+
+### Features
+
+* add donation cta ([#180](https://github.com/dword-design/base/issues/180)) ([a2b704e](https://github.com/dword-design/base/commit/a2b704ee807ea3c5d57e9f4b623d58b7309536db))
+
 ## [7.5.1](https://github.com/dword-design/base/compare/v7.5.0...v7.5.1) (2021-03-11)
 
 
