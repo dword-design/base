@@ -28,24 +28,21 @@ export default {
       '',
       endent`
         <a href="https://gitpod.io/#https://github.com/dword-design/bar">
-          <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="Open in Gitpod">
+          <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="Open in Gitpod" height="20">
         </a><a href="https://www.buymeacoffee.com/dword">
           <img
-            src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg"
+            src="https://img.shields.io/badge/buymeacoffee-donate-FF7924.svg"
             alt="Buy Me a Coffee"
-            height="32"
           >
         </a><a href="https://paypal.me/SebastianLandwehr">
           <img
-            src="https://dword-design.de/images/paypal.svg"
+            src="https://img.shields.io/badge/paypal-donate-FF7924.svg"
             alt="PayPal"
-            height="32"
           >
         </a><a href="https://www.patreon.com/dworddesign">
           <img
-            src="https://dword-design.de/images/patreon.svg"
+            src="https://img.shields.io/badge/patreon-donate-FF7924.svg"
             alt="Patreon"
-            height="32"
           >
         </a>
       `,
@@ -56,7 +53,7 @@ export default {
     endent`
       ## Support Me
 
-      Hey, I am Sebastian Landwehr and I love building develop web apps and open source packages. If you want to support me so that I can keep packages up to date and build more helpful tools, you can donate here:
+      Hey, I am Sebastian Landwehr, a freelance web developer, and I love developing web apps and open source packages. If you want to support me so that I can keep packages up to date and build more helpful tools, you can donate here:
 
       <p>
         <a href="https://www.buymeacoffee.com/dword">
