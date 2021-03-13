@@ -43,7 +43,7 @@ export default {
 
     `)
     }),
-  'existing content'() {
+  'existing content': function () {
     return withLocalTmpDir(async () => {
       await outputFiles({
         'README.md': endent`
