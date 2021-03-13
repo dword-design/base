@@ -58,7 +58,7 @@ Hey, I am Sebastian Landwehr, a freelance web developer, and I love developing w
       alt="Buy Me a Coffee"
       height="32"
     >
-  </a>  &nbsp; If you want to send me a one time donation. The coffee there is usually pretty good 😊.<br/>
+  </a>  &nbsp; If you want to send me a one time donation. The coffee is usually pretty good 😊.<br/>
   <a href="https://paypal.me/SebastianLandwehr">
     <img
       src="https://dword-design.de/images/paypal.svg"

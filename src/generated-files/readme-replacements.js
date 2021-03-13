@@ -27,24 +27,24 @@ export default {
       '![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen)',
       '',
       endent`
-        <a href="https://gitpod.io/#https://github.com/dword-design/bar">
-          <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="Open in Gitpod" height="20">
-        </a><a href="https://www.buymeacoffee.com/dword">
-          <img
-            src="https://img.shields.io/badge/buymeacoffee-donate-FF7924.svg"
-            alt="Buy Me a Coffee"
-          >
-        </a><a href="https://paypal.me/SebastianLandwehr">
-          <img
-            src="https://img.shields.io/badge/paypal-donate-FF7924.svg"
-            alt="PayPal"
-          >
-        </a><a href="https://www.patreon.com/dworddesign">
-          <img
-            src="https://img.shields.io/badge/patreon-donate-FF7924.svg"
-            alt="Patreon"
-          >
-        </a>
+      <a href="https://gitpod.io/#https://github.com/dword-design/bar">
+        <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="Open in Gitpod" height="20">
+      </a><a href="https://www.buymeacoffee.com/dword">
+        <img
+          src="https://img.shields.io/badge/buymeacoffee-donate-FF7924.svg"
+          alt="Buy Me a Coffee"
+        >
+      </a><a href="https://paypal.me/SebastianLandwehr">
+        <img
+          src="https://img.shields.io/badge/paypal-donate-FF7924.svg"
+          alt="PayPal"
+        >
+      </a><a href="https://www.patreon.com/dworddesign">
+        <img
+          src="https://img.shields.io/badge/patreon-donate-FF7924.svg"
+          alt="Patreon"
+        >
+      </a>
       `,
     ] |> join('\n'),
   description: () => packageConfig.description,
@@ -62,7 +62,7 @@ export default {
             alt="Buy Me a Coffee"
             height="32"
           >
-        </a>  &nbsp; If you want to send me a one time donation. The coffee there is usually pretty good 😊.<br/>
+        </a>  &nbsp; If you want to send me a one time donation. The coffee is usually pretty good 😊.<br/>
         <a href="https://paypal.me/SebastianLandwehr">
           <img
             src="https://dword-design.de/images/paypal.svg"
