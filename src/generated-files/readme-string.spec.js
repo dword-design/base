@@ -43,8 +43,8 @@ export default {
 
     `)
     }),
-  'existing content': () =>
-    withLocalTmpDir(async () => {
+  'existing content': function () {
+    return withLocalTmpDir(async () => {
       await outputFiles({
         'README.md': endent`
         <!-- DESCRIPTION -->
@@ -63,27 +63,9 @@ export default {
       const readmeString = stealthyRequire(require.cache, () =>
         require('./readme-string')
       )
-      expect(readmeString).toEqual(endent`
-        <!-- DESCRIPTION/ -->
-        foo bar baz
-        <!-- /DESCRIPTION -->
-
-        This is a more detailed description
-
-        <!-- LICENSE/ -->
-        ## License
-
-        Unless stated otherwise all works are:
-
-        Copyright &copy; Sebastian Landwehr <info@dword-design.de>
-
-        and licensed under:
-
-        [MIT License](https://opensource.org/licenses/MIT)
-        <!-- /LICENSE -->
-
-      `)
-    }),
+      expect(readmeString).toMatchSnapshot(this)
+    })
+  },
   install: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
@@ -111,8 +93,8 @@ export default {
 
     `)
     }),
-  license: () =>
-    withLocalTmpDir(async () => {
+  license() {
+    return withLocalTmpDir(async () => {
       await outputFiles({
         'README.md': endent`
         <!-- LICENSE -->
@@ -123,21 +105,9 @@ export default {
       const readmeString = stealthyRequire(require.cache, () =>
         require('./readme-string')
       )
-      expect(readmeString).toEqual(endent`
-      <!-- LICENSE/ -->
-      ## License
-
-      Unless stated otherwise all works are:
-
-      Copyright &copy; Sebastian Landwehr <info@dword-design.de>
-
-      and licensed under:
-
-      [MIT License](https://opensource.org/licenses/MIT)
-      <!-- /LICENSE -->
-
-    `)
-    }),
+      expect(readmeString).toMatchSnapshot(this)
+    })
+  },
   title: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
