@@ -65,21 +65,21 @@ export default {
             alt="Buy Me a Coffee"
             height="32"
           >
-        </a> &nbsp;&nbsp; If you want to send me a one time donation. The coffee there is usually pretty good 😊.<br/>
+        </a>  &nbsp; If you want to send me a one time donation. The coffee there is usually pretty good 😊.<br/>
         <a href="https://paypal.me/SebastianLandwehr">
           <img
             src="https://dword-design.de/images/paypal.svg"
             alt="PayPal"
             height="32"
           >
-        </a> &nbsp;&nbsp; Also for one time donations if you like PayPal.<br/>
+        </a>  &nbsp; Also for one time donations if you like PayPal.<br/>
         <a href="https://www.patreon.com/dworddesign">
           <img
             src="https://dword-design.de/images/patreon.svg"
             alt="Patreon"
             height="32"
           >
-        </a> &nbsp;&nbsp; Here you can support me regularly, which is great so I can steadily work on projects.
+        </a>  &nbsp; Here you can support me regularly, which is great so I can steadily work on projects.
       </p>
 
       Thanks a lot for your support! ❤️
