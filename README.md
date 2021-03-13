@@ -50,7 +50,7 @@ $ yarn add @dword-design/base
 <!-- /INSTALL -->
 
 <!-- LICENSE/ -->
-## ❤️ Support Me
+## Support Me
 
 Hey, I am Sebastian Landwehr and I love building develop web apps and open source packages. If you want to support me so that I can keep packages up to date and build more helpful tools, you can donate here:
 
@@ -76,16 +76,10 @@ Hey, I am Sebastian Landwehr and I love building develop web apps and open sourc
   </a>
 </p>
 
-Thanks for your support!
+Thanks a lot for your support! ❤️
 
 ## License
 
-Unless stated otherwise all works are:
-
-Copyright &copy; Sebastian Landwehr <info@dword-design.de>
-
-and licensed under:
-
-[MIT License](https://opensource.org/licenses/MIT)
+[MIT License](https://opensource.org/licenses/MIT) © [Sebastian Landwehr](https://dword-design.de)
 <!-- /LICENSE -->
 

@@ -54,7 +54,7 @@ export default {
   install: () => config.readmeInstallString,
   license: () => [
     endent`
-      ## ❤️ Support Me
+      ## Support Me
 
       Hey, I am Sebastian Landwehr and I love building develop web apps and open source packages. If you want to support me so that I can keep packages up to date and build more helpful tools, you can donate here:
 
@@ -80,7 +80,7 @@ export default {
         </a>
       </p>
 
-      Thanks for your support!
+      Thanks a lot for your support! ❤️
     `,
     (() => {
       if (packageConfig.license) {
@@ -89,13 +89,7 @@ export default {
         return endent`
           ## License
       
-          Unless stated otherwise all works are:
-      
-          Copyright &copy; ${packageConfig.author}
-      
-          and licensed under:
-      
-          [${license.name}](${license.url})
+          [${license.name}](${license.url}) © [Sebastian Landwehr](https://dword-design.de)
         `
       }
       return ''
