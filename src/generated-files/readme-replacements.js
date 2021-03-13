@@ -27,24 +27,29 @@ export default {
       '![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen)',
       '',
       endent`
-      <a href="https://gitpod.io/#https://github.com/dword-design/bar">
-        <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="Open in Gitpod" height="20">
-      </a><a href="https://www.buymeacoffee.com/dword">
-        <img
-          src="https://img.shields.io/badge/buymeacoffee-donate-FF7924.svg"
-          alt="Buy Me a Coffee"
-        >
-      </a><a href="https://paypal.me/SebastianLandwehr">
-        <img
-          src="https://img.shields.io/badge/paypal-donate-FF7924.svg"
-          alt="PayPal"
-        >
-      </a><a href="https://www.patreon.com/dworddesign">
-        <img
-          src="https://img.shields.io/badge/patreon-donate-FF7924.svg"
-          alt="Patreon"
-        >
-      </a>
+        <p>
+          <a href="https://gitpod.io/#https://github.com/${packageConfig.repository}">
+            <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="Open in Gitpod">
+          </a><a href="https://www.buymeacoffee.com/dword">
+            <img
+              src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg"
+              alt="Buy Me a Coffee"
+              height="32"
+            >
+          </a><a href="https://paypal.me/SebastianLandwehr">
+            <img
+              src="https://dword-design.de/images/paypal.svg"
+              alt="PayPal"
+              height="32"
+            >
+          </a><a href="https://www.patreon.com/dworddesign">
+            <img
+              src="https://dword-design.de/images/patreon.svg"
+              alt="Patreon"
+              height="32"
+            >
+          </a>
+        </p>
       `,
     ] |> join('\n'),
   description: () => packageConfig.description,
