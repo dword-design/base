@@ -1,3 +1,10 @@
+# [7.8.0](https://github.com/dword-design/base/compare/v7.7.0...v7.8.0) (2021-03-14)
+
+
+### Features
+
+* add funding config ([#184](https://github.com/dword-design/base/issues/184)) ([f31146e](https://github.com/dword-design/base/commit/f31146eab70532c33418679e805e91638e1c7626))
+
 # [7.7.0](https://github.com/dword-design/base/compare/v7.6.0...v7.7.0) (2021-03-14)
 
 
