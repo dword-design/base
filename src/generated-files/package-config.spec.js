@@ -57,6 +57,7 @@ export default {
         author: 'Sebastian Landwehr <info@dword-design.de>',
         description: '',
         files: ['dist'],
+        funding: 'https://www.buymeacoffee.com/dword',
         license: 'MIT',
         main: 'dist/index.js',
         publishConfig: {
@@ -132,6 +133,7 @@ export default {
           'base-config-bar': '^1.0.0',
         },
         files: ['dist'],
+        funding: 'https://www.buymeacoffee.com/dword',
         keywords: ['foo', 'bar'],
         license: 'MIT',
         name: 'foo',
@@ -163,6 +165,7 @@ export default {
         author: 'Sebastian Landwehr <info@dword-design.de>',
         description: '',
         files: ['dist'],
+        funding: 'https://www.buymeacoffee.com/dword',
         license: 'MIT',
         main: 'dist/index.js',
         publishConfig: {
@@ -220,6 +223,7 @@ export default {
         author: 'Sebastian Landwehr <info@dword-design.de>',
         description: '',
         files: ['dist'],
+        funding: 'https://www.buymeacoffee.com/dword',
         license: 'MIT',
         main: 'dist/index.js',
         publishConfig: {

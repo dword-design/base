@@ -41,10 +41,10 @@ export default {
       'types',
     ])),
   description: packageConfig.description || '',
+  funding: 'https://www.buymeacoffee.com/dword',
   publishConfig: {
     access: 'public',
   },
-  funding: 'https://www.buymeacoffee.com/dword',
   version: packageConfig.version || '1.0.0',
   ...(gitUrl && { repository: `${gitInfo.user}/${gitInfo.project}` }),
   author: 'Sebastian Landwehr <info@dword-design.de>',
