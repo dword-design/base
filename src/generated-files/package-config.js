@@ -41,6 +41,7 @@ export default {
       'types',
     ])),
   description: packageConfig.description || '',
+  funding: 'https://www.buymeacoffee.com/dword',
   publishConfig: {
     access: 'public',
   },
