@@ -1,3 +1,10 @@
+# [7.7.0](https://github.com/dword-design/base/compare/v7.6.0...v7.7.0) (2021-03-14)
+
+
+### Features
+
+* add contributing section ([#183](https://github.com/dword-design/base/issues/183)) ([48d7d31](https://github.com/dword-design/base/commit/48d7d3148832df9dc85659462c138f3a72041eba))
+
 # [7.6.0](https://github.com/dword-design/base/compare/v7.5.1...v7.6.0) (2021-03-13)
 
 
