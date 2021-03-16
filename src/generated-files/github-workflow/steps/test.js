@@ -18,5 +18,12 @@ export default [
         }
       : {}),
   },
+  {
+    if: 'failure()',
+    uses: 'actions/upload-artifact@v2',
+    with: {
+      path: '**/__image_snapshots__/__diff_output__',
+    },
+  },
   { run: 'yarn check-unknown-files' },
 ]
