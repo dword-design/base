@@ -11,7 +11,6 @@ export default [
       GITHUB_REPOSITORY: '${{ secrets.GITHUB_REPOSITORY }}',
       GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
     },
-    if: 'always()',
     name: 'Push changed files',
     run: `yarn ${bin} push-changed-files`,
   },

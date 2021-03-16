@@ -48,7 +48,6 @@ Object {
             "GITHUB_REPOSITORY": "\${{ secrets.GITHUB_REPOSITORY }}",
             "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
           },
-          "if": "always()",
           "name": "Push changed files",
           "run": "yarn dw-ci push-changed-files",
         },
@@ -84,6 +83,13 @@ Object {
         },
         Object {
           "run": "yarn test",
+        },
+        Object {
+          "if": "failure()",
+          "uses": "actions/upload-artifact@v2",
+          "with": Object {
+            "path": "**/__image_snapshots__/__diff_output__",
+          },
         },
         Object {
           "run": "yarn check-unknown-files",
@@ -169,7 +175,6 @@ Object {
             "GITHUB_REPOSITORY": "\${{ secrets.GITHUB_REPOSITORY }}",
             "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
           },
-          "if": "always()",
           "name": "Push changed files",
           "run": "yarn dw-ci push-changed-files",
         },
@@ -205,6 +210,13 @@ Object {
         },
         Object {
           "run": "yarn test",
+        },
+        Object {
+          "if": "failure()",
+          "uses": "actions/upload-artifact@v2",
+          "with": Object {
+            "path": "**/__image_snapshots__/__diff_output__",
+          },
         },
         Object {
           "run": "yarn check-unknown-files",
@@ -292,6 +304,13 @@ Object {
           "run": "yarn test",
         },
         Object {
+          "if": "failure()",
+          "uses": "actions/upload-artifact@v2",
+          "with": Object {
+            "path": "**/__image_snapshots__/__diff_output__",
+          },
+        },
+        Object {
           "run": "yarn check-unknown-files",
         },
         Object {
@@ -306,7 +325,6 @@ Object {
             "GITHUB_REPOSITORY": "\${{ secrets.GITHUB_REPOSITORY }}",
             "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
           },
-          "if": "always()",
           "name": "Push changed files",
           "run": "yarn dw-ci push-changed-files",
         },
