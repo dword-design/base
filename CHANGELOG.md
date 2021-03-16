@@ -1,3 +1,10 @@
+## [7.8.1](https://github.com/dword-design/base/compare/v7.8.0...v7.8.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* always run push changed files ([#187](https://github.com/dword-design/base/issues/187)) ([947b3ba](https://github.com/dword-design/base/commit/947b3bacfefe9240e9becc2392353cb7dc005e1a))
+
 # [7.8.0](https://github.com/dword-design/base/compare/v7.7.0...v7.8.0) (2021-03-14)
 
 
