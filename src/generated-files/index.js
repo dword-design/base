@@ -1,4 +1,5 @@
 import { add, join, jsonToString, map } from '@dword-design/functions'
+import sortKeys from 'sort-keys'
 import sortPackageJson from 'sort-package-json'
 import yaml from 'yaml'
 
@@ -25,7 +26,8 @@ export default {
   '.cz.json': commitizenConfig,
   '.editorconfig': editorconfigConfig,
   '.gitattributes': gitattributesConfig,
-  '.github/workflows/build.yml': githubWorkflowConfig |> yaml.stringify,
+  '.github/workflows/build.yml':
+    sortKeys(githubWorkflowConfig, { deep: true }) |> yaml.stringify,
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
   '.gitpod.yml': gitpodConfig |> yaml.stringify,
