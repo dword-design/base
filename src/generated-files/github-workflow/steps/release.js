@@ -1,28 +1,30 @@
 import ci from '@dword-design/ci/package.json'
-import { first, keys } from '@dword-design/functions'
+import { first, keys, map } from '@dword-design/functions'
 
 import config from '@/src/config'
 
 const bin = ci.bin |> keys |> first
 
 export default [
-  ...config.preDeploySteps,
   {
     env: {
       GITHUB_REPOSITORY: '${{ secrets.GITHUB_REPOSITORY }}',
       GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
     },
+    if: 'always()',
     name: 'Push changed files',
     run: `yarn ${bin} push-changed-files`,
   },
-  {
-    env: {
-      GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-      ...(config.npmPublish ? { NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' } : {}),
-      ...config.deployEnv,
+  ...([
+    ...config.preDeploySteps,
+    {
+      env: {
+        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+        ...(config.npmPublish ? { NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' } : {}),
+        ...config.deployEnv,
+      },
+      name: 'Release',
+      run: 'yarn semantic-release',
     },
-    if: "github.ref == 'refs/heads/master'",
-    name: 'Release',
-    run: 'yarn semantic-release',
-  },
+  ] |> map(step => ({ if: "github.ref == 'refs/heads/master'", ...step }))),
 ]
