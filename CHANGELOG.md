@@ -1,3 +1,10 @@
+## [7.8.2](https://github.com/dword-design/base/compare/v7.8.1...v7.8.2) (2021-03-16)
+
+
+### Bug Fixes
+
+* store image diffs as artifacts ([#188](https://github.com/dword-design/base/issues/188)) ([80da042](https://github.com/dword-design/base/commit/80da0428c6fedd7277a0b1046234313dbc43badb))
+
 ## [7.8.1](https://github.com/dword-design/base/compare/v7.8.0...v7.8.1) (2021-03-16)
 
 
