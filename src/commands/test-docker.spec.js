@@ -7,6 +7,34 @@ import withLocalTmpDir from 'with-local-tmp-dir'
 import self from './test-docker'
 
 export default {
+  env: () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        '.env.schema.json': JSON.stringify({
+          foo: { type: 'string' },
+        }),
+        'package.json': JSON.stringify(
+          {
+            name: 'foo',
+            scripts: {
+              'test:raw': 'node test.js',
+            },
+          },
+          undefined,
+          2
+        ),
+        'test.js': endent`
+          if (process.env.FOO !== 'foo') {
+            throw new Error('Environment variable is not set')
+          }
+
+        `,
+      })
+      const previousEnv = process.env
+      process.env.FOO = 'foo'
+      await self('', { log: false })
+      process.env = previousEnv
+    }),
   grep: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
