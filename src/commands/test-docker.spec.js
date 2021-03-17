@@ -59,8 +59,8 @@ export default {
           2
         ),
         'test.js': endent`
-          if (!process.env.SNAPSHOT_UPDATE) {
-            exit(1)
+          if (process.argv[2] !== '--update-snapshots') {
+            throw new Error('--update-snapshots is not set')
           }
 
         `,
@@ -84,7 +84,7 @@ export default {
         'test.js': endent`
           const isDocker = require('./is-docker')
           if (!isDocker) {
-            exit(1)
+            process.exit(1)
           }
 
         `,
