@@ -1,3 +1,10 @@
+## [7.8.4](https://github.com/dword-design/base/compare/v7.8.3...v7.8.4) (2021-03-17)
+
+
+### Bug Fixes
+
+* pass environment variables through testDocker ([#191](https://github.com/dword-design/base/issues/191)) ([6dd5721](https://github.com/dword-design/base/commit/6dd57217a424bcf5d927c9e4b5327a63f5a73a12))
+
 ## [7.8.3](https://github.com/dword-design/base/compare/v7.8.2...v7.8.3) (2021-03-17)
 
 
