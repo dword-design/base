@@ -1,14 +1,21 @@
-import { join } from '@dword-design/functions'
+import { flatMap, join, keys, map } from '@dword-design/functions'
+import { constantCase } from 'constant-case'
 import execa from 'execa'
+import findUp from 'find-up'
 
 export default (pattern, options) => {
   options = { log: true, ...options }
+  const envSchemaPath = findUp.sync('.env.schema.json')
+  const envVariableNames =
+    (envSchemaPath ? require(envSchemaPath) : {}) |> keys |> map(constantCase)
   return execa(
     'docker-multirun',
     [
       '--user',
       'root',
       '--tty',
+      ...(envVariableNames
+        |> flatMap(name => ['--env', `${name}=${process.env[name]}`])),
       '-v',
       `${process.cwd()}:/app`,
       '-v',
