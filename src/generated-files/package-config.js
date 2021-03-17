@@ -3,7 +3,7 @@ import packageName from 'depcheck-package-name'
 import { existsSync } from 'fs-extra'
 import hostedGitInfo from 'hosted-git-info'
 import parseGitConfig from 'parse-git-config'
-import sortObjectKeys from 'sort-object-keys'
+import sortKeys from 'sort-keys'
 
 import config from '@/src/config'
 import packageConfig from '@/src/package-config'
@@ -58,5 +58,5 @@ export default {
         ? `rimraf dist && babel --config-file ${packageName`@dword-design/babel-config`} --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
         : `base ${name}`
     )
-    |> sortObjectKeys,
+    |> sortKeys,
 }
