@@ -1,3 +1,10 @@
+## [7.8.3](https://github.com/dword-design/base/compare/v7.8.2...v7.8.3) (2021-03-17)
+
+
+### Bug Fixes
+
+* update rokroskar/workflow-run-cleanup-action action to v0.3.2 ([#168](https://github.com/dword-design/base/issues/168)) ([46b1294](https://github.com/dword-design/base/commit/46b1294f86880098bb236c480822a89204a8d620))
+
 ## [7.8.2](https://github.com/dword-design/base/compare/v7.8.1...v7.8.2) (2021-03-16)
 
 
