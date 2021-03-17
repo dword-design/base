@@ -60,7 +60,7 @@ export default {
         ),
         'test.js': endent`
           if (!process.env.SNAPSHOT_UPDATE) {
-            exit(1)
+            process.exit(1)
           }
 
         `,
@@ -84,7 +84,7 @@ export default {
         'test.js': endent`
           const isDocker = require('./is-docker')
           if (!isDocker) {
-            exit(1)
+            process.exit(1)
           }
 
         `,
