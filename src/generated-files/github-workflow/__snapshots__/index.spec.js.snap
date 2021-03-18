@@ -69,6 +69,7 @@ Object {
         Object {
           "uses": "actions/checkout@v2",
           "with": Object {
+            "fetch-depth": 0,
             "lfs": true,
           },
         },
@@ -196,6 +197,7 @@ Object {
         Object {
           "uses": "actions/checkout@v2",
           "with": Object {
+            "fetch-depth": 0,
             "lfs": true,
           },
         },
@@ -282,6 +284,7 @@ Object {
         Object {
           "uses": "actions/checkout@v2",
           "with": Object {
+            "fetch-depth": 0,
             "lfs": true,
           },
         },

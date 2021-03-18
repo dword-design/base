@@ -34,7 +34,7 @@ export default config => ({
       needs: 'cancel-existing',
       'runs-on': '${{ matrix.os }}',
       steps: [
-        { uses: 'actions/checkout@v2', with: { lfs: true } },
+        { uses: 'actions/checkout@v2', with: { 'fetch-depth': 0, lfs: true } },
         {
           uses: 'actions/setup-node@v2',
           with: {
