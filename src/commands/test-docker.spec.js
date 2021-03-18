@@ -11,8 +11,8 @@ export default {
     withLocalTmpDir(async () => {
       await outputFiles({
         '.env.schema.json': JSON.stringify({
-          foo: { type: 'string' },
           bar: { type: 'string' },
+          foo: { type: 'string' },
         }),
         'package.json': JSON.stringify(
           {

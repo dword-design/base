@@ -1,4 +1,4 @@
-import { flatMap, join, keys, map, filter } from '@dword-design/functions'
+import { filter, flatMap, join, keys, map } from '@dword-design/functions'
 import { constantCase } from 'constant-case'
 import execa from 'execa'
 import findUp from 'find-up'
