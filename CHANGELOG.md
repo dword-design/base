@@ -1,3 +1,10 @@
+# [7.9.0](https://github.com/dword-design/base/compare/v7.8.5...v7.9.0) (2021-03-18)
+
+
+### Features
+
+* make gitpod docker compatible ([#194](https://github.com/dword-design/base/issues/194)) ([e0d61ba](https://github.com/dword-design/base/commit/e0d61bad2ebd0c9354f63853a66abdefd0c59049))
+
 ## [7.8.5](https://github.com/dword-design/base/compare/v7.8.4...v7.8.5) (2021-03-18)
 
 
