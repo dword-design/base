@@ -1,3 +1,10 @@
+## [7.9.2](https://github.com/dword-design/base/compare/v7.9.1...v7.9.2) (2021-03-18)
+
+
+### Bug Fixes
+
+* update dependency hosted-git-info to v4 ([#167](https://github.com/dword-design/base/issues/167)) ([5e819cb](https://github.com/dword-design/base/commit/5e819cb4c776b73223806ffbd2b8b5b01f88e269))
+
 ## [7.9.1](https://github.com/dword-design/base/compare/v7.9.0...v7.9.1) (2021-03-18)
 
 
