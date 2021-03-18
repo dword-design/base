@@ -39,6 +39,23 @@ export default {
       await self('', { log: false })
       process.env = previousEnv
     }),
+  git: () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'package.json': JSON.stringify(
+          {
+            name: 'foo',
+            scripts: {
+              'test:raw': 'node test.js',
+            },
+          },
+          undefined,
+          2
+        ),
+        'test.js': "require('child_process').spawn('git', ['--help'])",
+      })
+      await self('', { log: false })
+    }),
   grep: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
@@ -76,6 +93,23 @@ export default {
       expect(
         self('foobarbaz', { log: false }) |> await |> property('all')
       ).toMatch('foobarbaz')
+    }),
+  puppeteer: () =>
+    withLocalTmpDir(async () => {
+      await outputFiles({
+        'package.json': JSON.stringify(
+          {
+            name: 'foo',
+            scripts: {
+              'test:raw': 'node test.js',
+            },
+          },
+          undefined,
+          2
+        ),
+        'test.js': "require('puppeteer').launch()",
+      })
+      await self('', { log: false })
     }),
   'update snapshots': () =>
     withLocalTmpDir(async () => {

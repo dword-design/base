@@ -21,7 +21,7 @@ export default (pattern, options) => {
       `${process.cwd()}:/app`,
       '-v',
       '/app/node_modules',
-      'alekzonder/puppeteer:latest',
+      'dworddesign/testing:latest',
       'bash',
       '-c',
       [
