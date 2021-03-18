@@ -11,6 +11,7 @@ export default {
     withLocalTmpDir(async () => {
       await outputFiles({
         '.env.schema.json': JSON.stringify({
+          bar: { type: 'string' },
           foo: { type: 'string' },
         }),
         'package.json': JSON.stringify(
@@ -25,7 +26,10 @@ export default {
         ),
         'test.js': endent`
           if (process.env.FOO !== 'foo') {
-            throw new Error('Environment variable is not set')
+            throw new Error('Environment variable FOO is not set')
+          }
+          if (process.env.BAR !== undefined) {
+            throw new Error('Environment variable BAR is set')
           }
 
         `,

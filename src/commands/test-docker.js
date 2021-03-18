@@ -1,4 +1,4 @@
-import { flatMap, join, keys, map } from '@dword-design/functions'
+import { filter, flatMap, join, keys, map } from '@dword-design/functions'
 import { constantCase } from 'constant-case'
 import execa from 'execa'
 import findUp from 'find-up'
@@ -15,6 +15,7 @@ export default (pattern, options) => {
       'root',
       '--tty',
       ...(envVariableNames
+        |> filter(name => process.env[name] !== undefined)
         |> flatMap(name => ['--env', `${name}=${process.env[name]}`])),
       '-v',
       `${process.cwd()}:/app`,
