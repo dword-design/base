@@ -92,7 +92,7 @@ Object {
           },
         },
         Object {
-          "run": "yarn check-unknown-files",
+          "run": "yarn checkUnknownFiles",
         },
         Object {
           "if": "matrix.os == 'ubuntu-latest' && matrix.node == 12",
@@ -219,7 +219,7 @@ Object {
           },
         },
         Object {
-          "run": "yarn check-unknown-files",
+          "run": "yarn checkUnknownFiles",
         },
         Object {
           "if": "matrix.os == 'ubuntu-latest' && matrix.node == 12",
@@ -311,7 +311,7 @@ Object {
           },
         },
         Object {
-          "run": "yarn check-unknown-files",
+          "run": "yarn checkUnknownFiles",
         },
         Object {
           "uses": "codecov/codecov-action@v1",

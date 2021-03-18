@@ -9,7 +9,7 @@ import config from '@/src/config'
 import packageConfig from '@/src/package-config'
 
 const commandNames = {
-  'check-unknown-files': true,
+  checkUnknownFiles: true,
   commit: true,
   lint: true,
   prepare: true,
