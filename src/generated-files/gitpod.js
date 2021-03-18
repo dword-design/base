@@ -2,9 +2,7 @@ export default {
   image: { file: '.gitpod.Dockerfile' },
   tasks: [
     { before: 'sudo docker-up', name: 'Docker Deamon' },
-    { init: 'git lfs pull' },
-    { init: 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >>~/.npmrc' },
-    { init: 'yarn --frozen-lockfile' },
+    { init: 'git lfs pull && echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >>~/.npmrc yarn --frozen-lockfile' },
   ],
   vscode: {
     extensions: [
