@@ -15,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "check-unknown-files": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js check-unknown-files",
+    "checkUnknownFiles": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js checkUnknownFiles",
     "commit": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js commit",
     "dev": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js dev",
     "lint": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js lint",

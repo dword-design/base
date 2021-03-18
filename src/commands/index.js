@@ -10,7 +10,7 @@ import test from './test'
 import testDocker from './test-docker'
 
 export default {
-  'check-unknown-files': {
+  checkUnknownFiles: {
     handler: checkUnknownFiles,
   },
   commit: {
