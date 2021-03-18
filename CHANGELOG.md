@@ -1,3 +1,10 @@
+## [7.8.5](https://github.com/dword-design/base/compare/v7.8.4...v7.8.5) (2021-03-18)
+
+
+### Bug Fixes
+
+* do not pass undefined variables via docker ([#192](https://github.com/dword-design/base/issues/192)) ([0613a31](https://github.com/dword-design/base/commit/0613a31d7dbea90fdc5e706f4f5c1586e9185cdd))
+
 ## [7.8.4](https://github.com/dword-design/base/compare/v7.8.3...v7.8.4) (2021-03-17)
 
 
