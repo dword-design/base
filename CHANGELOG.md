@@ -1,3 +1,10 @@
+## [7.9.1](https://github.com/dword-design/base/compare/v7.9.0...v7.9.1) (2021-03-18)
+
+
+### Bug Fixes
+
+* support git in docker tests ([#195](https://github.com/dword-design/base/issues/195)) ([3e9ae6f](https://github.com/dword-design/base/commit/3e9ae6f74be862ad588d7061492f88cfafdb7b68))
+
 # [7.9.0](https://github.com/dword-design/base/compare/v7.8.5...v7.9.0) (2021-03-18)
 
 
