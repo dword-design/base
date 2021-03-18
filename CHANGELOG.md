@@ -1,3 +1,10 @@
+## [7.9.3](https://github.com/dword-design/base/compare/v7.9.2...v7.9.3) (2021-03-18)
+
+
+### Bug Fixes
+
+* fix check-unknown-files casing ([#197](https://github.com/dword-design/base/issues/197)) ([87d2172](https://github.com/dword-design/base/commit/87d21727ada09e621d33e227d68c573535366503))
+
 ## [7.9.2](https://github.com/dword-design/base/compare/v7.9.1...v7.9.2) (2021-03-18)
 
 
