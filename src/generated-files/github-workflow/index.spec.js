@@ -12,6 +12,17 @@ export default {
       })
     ).toMatchSnapshot(this)
   },
+  testInContainer() {
+    expect(
+      proxyquire('.', {
+        '../../config': {
+          nodeVersion: 12,
+          useJobMatrix: true,
+          testInContainer: true,
+        },
+      })
+    ).toMatchSnapshot(this)
+  },
   'job matrix': function () {
     expect(
       proxyquire('.', {

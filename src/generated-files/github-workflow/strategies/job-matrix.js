@@ -51,7 +51,7 @@ export default config => ({
       ],
       strategy: {
         matrix: {
-          ...(!config.usesDocker && {
+          ...(!config.usesDocker && !config.testInContainer && {
             exclude: [
               { node: 10, os: 'macos-latest' },
               { node: 10, os: 'windows-latest' },
@@ -59,7 +59,7 @@ export default config => ({
           }),
           node: [10, 12],
           os: [
-            ...(config.usesDocker ? [] : ['macos-latest', 'windows-latest']),
+            ...(config.usesDocker || config.testInContainer ? [] : ['macos-latest', 'windows-latest']),
             'ubuntu-latest',
           ],
         },
