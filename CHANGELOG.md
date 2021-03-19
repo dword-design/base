@@ -1,3 +1,10 @@
+## [7.9.5](https://github.com/dword-design/base/compare/v7.9.4...v7.9.5) (2021-03-19)
+
+
+### Bug Fixes
+
+* instrument vue files ([#199](https://github.com/dword-design/base/issues/199)) ([16ab12d](https://github.com/dword-design/base/commit/16ab12d431de0c4dd86d772a69afc0b3c671ded8))
+
 ## [7.9.4](https://github.com/dword-design/base/compare/v7.9.3...v7.9.4) (2021-03-19)
 
 
