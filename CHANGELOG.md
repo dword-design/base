@@ -1,3 +1,10 @@
+## [7.9.6](https://github.com/dword-design/base/compare/v7.9.5...v7.9.6) (2021-03-19)
+
+
+### Bug Fixes
+
+* do not use windows or mac when using testInContainer ([#201](https://github.com/dword-design/base/issues/201)) ([70531d9](https://github.com/dword-design/base/commit/70531d9e5c8bcddd7f0f3f37e42b42440f6b9744))
+
 ## [7.9.5](https://github.com/dword-design/base/compare/v7.9.4...v7.9.5) (2021-03-19)
 
 
