@@ -1,3 +1,10 @@
+## [7.9.4](https://github.com/dword-design/base/compare/v7.9.3...v7.9.4) (2021-03-19)
+
+
+### Bug Fixes
+
+* clone all commits when testing ([#198](https://github.com/dword-design/base/issues/198)) ([d1ce301](https://github.com/dword-design/base/commit/d1ce3013dadf7f5f4758602b8a1e857bfb26e7d0))
+
 ## [7.9.3](https://github.com/dword-design/base/compare/v7.9.2...v7.9.3) (2021-03-18)
 
 
