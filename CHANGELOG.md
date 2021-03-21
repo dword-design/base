@@ -1,3 +1,10 @@
+## [7.9.7](https://github.com/dword-design/base/compare/v7.9.6...v7.9.7) (2021-03-21)
+
+
+### Bug Fixes
+
+* adjust wording in readme ([0be2dcc](https://github.com/dword-design/base/commit/0be2dccea29e72f1cd6e4c7d58c0e1f4b42067aa))
+
 ## [7.9.6](https://github.com/dword-design/base/compare/v7.9.5...v7.9.6) (2021-03-19)
 
 
