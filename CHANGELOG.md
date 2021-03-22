@@ -1,3 +1,10 @@
+## [7.9.10](https://github.com/dword-design/base/compare/v7.9.9...v7.9.10) (2021-03-22)
+
+
+### Bug Fixes
+
+* simplify nyc exclude ([#210](https://github.com/dword-design/base/issues/210)) ([ea51dfd](https://github.com/dword-design/base/commit/ea51dfd94437181c9843e56aea49e4ce2b75955b))
+
 ## [7.9.9](https://github.com/dword-design/base/compare/v7.9.8...v7.9.9) (2021-03-22)
 
 
