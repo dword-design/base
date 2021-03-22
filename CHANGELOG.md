@@ -1,3 +1,10 @@
+## [7.9.9](https://github.com/dword-design/base/compare/v7.9.8...v7.9.9) (2021-03-22)
+
+
+### Bug Fixes
+
+* use extendEnv ([#205](https://github.com/dword-design/base/issues/205)) ([1ba5f5f](https://github.com/dword-design/base/commit/1ba5f5f40385f0ef73599dc1684648532f5a0050))
+
 ## [7.9.8](https://github.com/dword-design/base/compare/v7.9.7...v7.9.8) (2021-03-22)
 
 
