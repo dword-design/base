@@ -92,7 +92,6 @@ export default async (pattern, options) => {
     ],
     {
       env: {
-        ...process.env,
         NODE_ENV: 'test',
         ...(options.updateSnapshots && { SNAPSHOT_UPDATE: 1 }),
       },
