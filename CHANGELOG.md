@@ -1,3 +1,10 @@
+## [7.9.8](https://github.com/dword-design/base/compare/v7.9.7...v7.9.8) (2021-03-22)
+
+
+### Bug Fixes
+
+* ignore github workflows with renovate when not in base ([#204](https://github.com/dword-design/base/issues/204)) ([46a2106](https://github.com/dword-design/base/commit/46a2106863cb3af5431b22c51a260da96d9b5adb))
+
 ## [7.9.7](https://github.com/dword-design/base/compare/v7.9.6...v7.9.7) (2021-03-21)
 
 
