@@ -1,4 +1,8 @@
-{
+import packageConfig from '@/src/package-config'
+
+export default {
+  ...packageConfig.name !== '@dword-design/base'
+    && { ignorePaths: ['.github/workflows/build.yml'] },
   "extends": [
     ":semanticCommits"
   ],

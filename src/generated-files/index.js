@@ -17,7 +17,7 @@ import licenseString from './license-string'
 import packageConfig from './package-config'
 import readmeString from './readme-string'
 import releaseConfig from './release'
-import renovateConfig from './renovate.json'
+import renovateConfig from './renovate'
 import vscodeConfig from './vscode'
 
 export default {
@@ -33,7 +33,7 @@ export default {
   '.gitpod.yml': gitpodConfig |> yaml.stringify,
   '.huskyrc.json': huskyConfig |> jsonToString({ indent: 2 }),
   '.releaserc.json': releaseConfig |> jsonToString({ indent: 2 }),
-  '.renovaterc.json': renovateConfig |> jsonToString({ indent: 2 }),
+  '.renovaterc.json': sortKeys(renovateConfig, { deep: true }) |> jsonToString({ indent: 2 }),
   '.vscode/settings.json': vscodeConfig |> jsonToString({ indent: 2 }),
   'LICENSE.md': licenseString,
   'README.md': readmeString,
