@@ -33,7 +33,8 @@ export default {
   '.gitpod.yml': gitpodConfig |> yaml.stringify,
   '.huskyrc.json': huskyConfig |> jsonToString({ indent: 2 }),
   '.releaserc.json': releaseConfig |> jsonToString({ indent: 2 }),
-  '.renovaterc.json': sortKeys(renovateConfig, { deep: true }) |> jsonToString({ indent: 2 }),
+  '.renovaterc.json':
+    sortKeys(renovateConfig, { deep: true }) |> jsonToString({ indent: 2 }),
   '.vscode/settings.json': vscodeConfig |> jsonToString({ indent: 2 }),
   'LICENSE.md': licenseString,
   'README.md': readmeString,
