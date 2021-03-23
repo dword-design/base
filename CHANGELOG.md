@@ -1,3 +1,10 @@
+## [7.9.12](https://github.com/dword-design/base/compare/v7.9.11...v7.9.12) (2021-03-23)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/functions to v3 ([#212](https://github.com/dword-design/base/issues/212)) ([abbc5bd](https://github.com/dword-design/base/commit/abbc5bd48171bf5263ac48ece11c53ecf2de6391))
+
 ## [7.9.11](https://github.com/dword-design/base/compare/v7.9.10...v7.9.11) (2021-03-23)
 
 
