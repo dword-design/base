@@ -354,6 +354,96 @@ Object {
 }
 `;
 
+exports[`index test environment variables 1`] = `
+Object {
+  "jobs": Object {
+    "build": Object {
+      "if": "!contains(github.event.head_commit.message, '[skip ci]')",
+      "runs-on": "ubuntu-latest",
+      "steps": Array [
+        Object {
+          "env": Object {
+            "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
+          },
+          "uses": "rokroskar/workflow-run-cleanup-action@v0.3.2",
+        },
+        Object {
+          "uses": "actions/checkout@v2",
+          "with": Object {
+            "fetch-depth": 0,
+            "lfs": true,
+          },
+        },
+        Object {
+          "uses": "actions/setup-node@v2",
+          "with": Object {
+            "node-version": 12,
+          },
+        },
+        Object {
+          "run": "git config --global user.email \\"actions@github.com\\"",
+        },
+        Object {
+          "run": "git config --global user.name \\"GitHub Actions\\"",
+        },
+        Object {
+          "run": "yarn --frozen-lockfile",
+        },
+        Object {
+          "env": Object {
+            "TEST_BAR": "\${{ secrets.TEST_BAR }}",
+            "TEST_FOO": "\${{ secrets.TEST_FOO }}",
+          },
+          "run": "yarn test",
+        },
+        Object {
+          "if": "failure()",
+          "uses": "actions/upload-artifact@v2",
+          "with": Object {
+            "path": "**/__image_snapshots__/__diff_output__",
+          },
+        },
+        Object {
+          "run": "yarn checkUnknownFiles",
+        },
+        Object {
+          "uses": "codecov/codecov-action@v1",
+          "with": Object {
+            "fail_ci_if_error": true,
+            "token": "\${{ secrets.CODECOV_TOKEN }}",
+          },
+        },
+        Object {
+          "env": Object {
+            "GITHUB_REPOSITORY": "\${{ secrets.GITHUB_REPOSITORY }}",
+            "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
+          },
+          "name": "Push changed files",
+          "run": "yarn dw-ci push-changed-files",
+        },
+        Object {
+          "env": Object {
+            "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
+            "NPM_TOKEN": "\${{ secrets.NPM_TOKEN }}",
+          },
+          "if": "github.ref == 'refs/heads/master'",
+          "name": "Release",
+          "run": "yarn semantic-release",
+        },
+      ],
+    },
+  },
+  "name": "build",
+  "on": Object {
+    "push": Object {
+      "branches": Array [
+        "**",
+      ],
+    },
+  },
+}
+`;
+
 exports[`index testInContainer 1`] = `
 Object {
   "jobs": Object {
