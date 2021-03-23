@@ -1,4 +1,6 @@
 import proxyquire from '@dword-design/proxyquire'
+import { outputFile } from 'fs-extra'
+import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
   docker() {
@@ -30,6 +32,24 @@ export default {
         },
       })
     ).toMatchSnapshot(this)
+  },
+  'test environment variables': function () {
+    return withLocalTmpDir(async () => {
+      await outputFile(
+        '.env.schema.json',
+        { bar: {}, foo: {} } |> JSON.stringify
+      )
+      expect(
+        proxyquire('.', {
+          '../../config': {
+            nodeVersion: 12,
+          },
+          './strategies/simple': proxyquire('./strategies/simple', {
+            '../steps/test': proxyquire('./steps/test', {}),
+          }),
+        })
+      ).toMatchSnapshot(this)
+    })
   },
   testInContainer() {
     expect(
