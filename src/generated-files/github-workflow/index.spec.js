@@ -41,6 +41,9 @@ export default {
           '../../config': {
             nodeVersion: 12,
           },
+          './strategies/simple': proxyquire('./strategies/simple', {
+            '../steps/test': proxyquire('./steps/test', {})
+          })
         })
       ).toMatchSnapshot(this)
     })
