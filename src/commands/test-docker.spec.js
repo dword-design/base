@@ -25,17 +25,17 @@ export default {
           2
         ),
         'test.js': endent`
-          if (process.env.FOO !== 'foo') {
-            throw new Error('Environment variable FOO is not set')
+          if (process.env.TEST_FOO !== 'foo') {
+            throw new Error('Environment variable TEST_FOO is not set')
           }
-          if (process.env.BAR !== undefined) {
-            throw new Error('Environment variable BAR is set')
+          if (process.env.TEST_BAR !== undefined) {
+            throw new Error('Environment variable TEST_BAR is set')
           }
 
         `,
       })
       const previousEnv = process.env
-      process.env.FOO = 'foo'
+      process.env.TEST_FOO = 'foo'
       await self('', { log: false })
       process.env = previousEnv
     }),

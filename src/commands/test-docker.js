@@ -7,7 +7,9 @@ export default (pattern, options) => {
   options = { log: true, ...options }
   const envSchemaPath = findUp.sync('.env.schema.json')
   const envVariableNames =
-    (envSchemaPath ? require(envSchemaPath) : {}) |> keys |> map(constantCase)
+    (envSchemaPath ? require(envSchemaPath) : {})
+    |> keys
+    |> map(name => `TEST_${name |> constantCase}`)
   return execa(
     'docker-multirun',
     [
