@@ -71,6 +71,8 @@ export default async (pattern, options) => {
       '--all',
       '--extension',
       '.vue',
+      '--extension',
+      '.scss',
       '--exclude',
       '**/*.spec.js',
       '--exclude',
