@@ -1,3 +1,10 @@
+## [7.9.11](https://github.com/dword-design/base/compare/v7.9.10...v7.9.11) (2021-03-23)
+
+
+### Bug Fixes
+
+* add .scss extension for code coverage ([#211](https://github.com/dword-design/base/issues/211)) ([9a5f078](https://github.com/dword-design/base/commit/9a5f0781103c1731e6753b3a4511881b96bf3afa))
+
 ## [7.9.10](https://github.com/dword-design/base/compare/v7.9.9...v7.9.10) (2021-03-22)
 
 
