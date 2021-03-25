@@ -6,6 +6,7 @@ import {
   property,
   stubTrue,
 } from '@dword-design/functions'
+import proxyquire from '@dword-design/proxyquire'
 import packageName from 'depcheck-package-name'
 import globby from 'globby'
 import outputFiles from 'output-files'
@@ -351,6 +352,47 @@ export default {
     },
     test: async () => {
       await self('', { log: false, updateSnapshots: true })
+    },
+  },
+  'usedockers macOS': {
+    files: {
+      'src/index.usesdocker.spec.js': 'throw new Error()',
+    },
+    test: async () => {
+      const previousPlatform = process.platform
+      Object.defineProperty(process, 'platform', { value: 'darwin' })
+      const specialSelf = proxyquire('.', { 'is-ci': true })
+      try {
+        await specialSelf('', { log: false })
+      } finally {
+        Object.defineProperty(process, 'platform', { value: previousPlatform })
+      }
+    },
+  },
+  'usesdocker outside ci': {
+    files: {
+      'src/index.usesdocker.spec.js': "throw new Error('foobarbaz')",
+    },
+    test: async () => {
+      const previousPlatform = process.platform
+      Object.defineProperty(process, 'platform', { value: 'darwin' })
+      await expect(self('', { log: false })).rejects.toThrow('foobarbaz')
+      Object.defineProperty(process, 'platform', { value: previousPlatform })
+    },
+  },
+  'usesdocker windows': {
+    files: {
+      'src/index.usesdocker.spec.js': 'throw new Error()',
+    },
+    test: async () => {
+      const previousPlatform = process.platform
+      Object.defineProperty(process, 'platform', { value: 'win32' })
+      const specialSelf = proxyquire('.', { 'is-ci': true })
+      try {
+        await specialSelf('', { log: false })
+      } finally {
+        Object.defineProperty(process, 'platform', { value: previousPlatform })
+      }
     },
   },
   valid: {

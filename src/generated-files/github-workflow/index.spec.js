@@ -3,17 +3,6 @@ import { outputFile } from 'fs-extra'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
-  docker() {
-    expect(
-      proxyquire('.', {
-        '../../config': {
-          nodeVersion: 12,
-          useJobMatrix: true,
-          usesDocker: true,
-        },
-      })
-    ).toMatchSnapshot(this)
-  },
   'job matrix': function () {
     expect(
       proxyquire('.', {
