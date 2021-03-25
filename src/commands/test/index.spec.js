@@ -376,7 +376,8 @@ export default {
     test: async () => {
       const previousPlatform = process.platform
       Object.defineProperty(process, 'platform', { value: 'darwin' })
-      await expect(self('', { log: false })).rejects.toThrow('foobarbaz')
+      const specialSelf = proxyquire('.', { 'is-ci': false })
+      await expect(specialSelf('', { log: false })).rejects.toThrow('foobarbaz')
       Object.defineProperty(process, 'platform', { value: previousPlatform })
     },
   },
