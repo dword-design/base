@@ -30,8 +30,8 @@ export default (pattern, options) => {
         `yarn --frozen-lockfile && yarn test:raw${
           options.updateSnapshots ? ' --update-snapshots' : ''
         }`,
-        ...(pattern ? [pattern] : []),
-        ...(options.grep ? [`-g ${options.grep}`] : []),
+        ...(pattern ? [`"${pattern}"`] : []),
+        ...(options.grep ? [`-g "${options.grep}"`] : []),
       ] |> join(' '),
     ],
     options.log ? { stdio: 'inherit' } : { all: true }
