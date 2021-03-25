@@ -1,7 +1,8 @@
-import { filter, join } from '@dword-design/functions'
+import { filter, includes, join } from '@dword-design/functions'
 import packageName from 'depcheck-package-name'
 import execa from 'execa'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
+import isCI from 'is-ci'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 
 import lint from '@/src/commands/lint'
@@ -57,6 +58,8 @@ export default async (pattern, options) => {
       throw new Error(error.all)
     }
   }
+  const runDockerTests =
+    !isCI || !(['win32', 'darwin'] |> includes(process.platform))
   return execa(
     'nyc',
     [
@@ -84,6 +87,7 @@ export default async (pattern, options) => {
       'mocha',
       '--ui',
       packageName`mocha-ui-exports-auto-describe`,
+      ...(runDockerTests ? [] : ['--ignore', '**/*.usesdocker.spec.js']),
       '--file',
       require.resolve('./setup-test'),
       '--timeout',

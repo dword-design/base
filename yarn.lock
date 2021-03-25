@@ -1036,12 +1036,12 @@
     "@babel/plugin-proposal-pipeline-operator" "^7.5.0"
     "@babel/preset-env" "^7.6.3"
     "@dword-design/functions" "^2.2.2"
-    "@vue/babel-preset-jsx" "github:dword-design/jsx#fork-babel-preset-jsx"
+    "@vue/babel-preset-jsx" dword-design/jsx#fork-babel-preset-jsx
     babel-plugin-add-module-exports "^1.0.2"
     babel-plugin-macros "^3.0.1"
     babel-plugin-module-resolver "^4.0.0"
     babel-plugin-transform-imports "^2.0.0"
-    babel-plugin-wildcard "github:dword-design/babel-plugin-wildcard#fork"
+    babel-plugin-wildcard dword-design/babel-plugin-wildcard#fork
     depcheck-package-name "^1.0.0"
     find-up "^5.0.0"
     param-case "^3.0.3"
@@ -1090,7 +1090,7 @@
     depcheck-package-name "^1.0.0"
     eslint-config-airbnb-base "^14.2.1"
     eslint-config-prettier "^8.0.0"
-    eslint-import-resolver-babel-module "github:dword-design/eslint-import-resolver-babel-module#fork"
+    eslint-import-resolver-babel-module dword-design/eslint-import-resolver-babel-module#fork
     eslint-plugin-import "^2.22.1"
     eslint-plugin-json-format "^2.0.1"
     eslint-plugin-prefer-arrow "^1.1.6"
@@ -1118,7 +1118,7 @@
   resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-1.2.2.tgz#c19562d7b652f08fd91758779c46fdd59e13a58e"
   integrity sha512-x3yI/02X//VPBFiYedDojk2quzxRq1p4lyv0i66/rHF+T5pmh95OZcASobQPWMjHyTAOWdrI91vpphhKZnAuig==
   dependencies:
-    endent "github:dword-design/endent#fork"
+    endent dword-design/endent#fork
     lodash "^4.17.15"
     tinycolor2 "^1.4.1"
 
@@ -1137,7 +1137,7 @@
   integrity sha512-CBRMb6eRapNeJ3U6TeXtsLwiqmXEyPZ2gtVErdRCTDt6WTJ2bamt6jHlAGylfa8CoPgo+jIHC09EcPw5Qvbc2w==
   dependencies:
     delay "^5.0.0"
-    endent "github:dword-design/endent#fork"
+    endent dword-design/endent#fork
     lodash "^4.17.15"
     tinycolor2 "^1.4.1"
 
@@ -1566,7 +1566,6 @@
 
 "@vue/babel-preset-jsx@github:dword-design/jsx#fork-babel-preset-jsx":
   version "1.1.2"
-  uid a73cb9961541a60a66b1b99a69a32e00bc66d336
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/a73cb9961541a60a66b1b99a69a32e00bc66d336"
   dependencies:
     "@vue/babel-helper-vue-jsx-merge-props" "^1.0.0"
@@ -1585,7 +1584,6 @@
 
 "@vue/babel-sugar-inject-h@dword-design/jsx#fork-babel-sugar-inject-h":
   version "1.1.2"
-  uid cc36a2200c059120f37944615fb2ec0e22f8f3cc
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/cc36a2200c059120f37944615fb2ec0e22f8f3cc"
   dependencies:
     "@babel/plugin-syntax-jsx" "^7.2.0"
@@ -2041,7 +2039,6 @@ babel-plugin-transform-imports@^2.0.0:
 
 "babel-plugin-wildcard@github:dword-design/babel-plugin-wildcard#fork":
   version "6.0.0"
-  uid "691d11923ee2dcf63e86f205b0a2c998883e3a3c"
   resolved "https://codeload.github.com/dword-design/babel-plugin-wildcard/tar.gz/691d11923ee2dcf63e86f205b0a2c998883e3a3c"
   dependencies:
     rimraf "^2.6.2"
@@ -2407,6 +2404,11 @@ ci-info@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
   integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
+
+ci-info@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-3.1.1.tgz#9a32fcefdf7bcdb6f0a7e1c0f8098ec57897b80a"
+  integrity sha512-kdRWLBIJwdsYJWYJFtAFFYxybguqeF91qpZaggjG5Nf8QKdizFG2hjqvaTXbxFIcYbSaD74KpAXv6BSm17DHEQ==
 
 cidr-regex@^2.0.10:
   version "2.0.10"
@@ -3017,7 +3019,6 @@ decompress-response@^6.0.0:
 
 dedent@0.7.0, dedent@dword-design/dedent#fork:
   version "0.7.0"
-  uid c8d46e5017d60504657c2d01b59082c0329a12a7
   resolved "https://codeload.github.com/dword-design/dedent/tar.gz/c8d46e5017d60504657c2d01b59082c0329a12a7"
   dependencies:
     babel-plugin-add-module-exports "^1.0.2"
@@ -3144,7 +3145,6 @@ depcheck-parser-babel@^1.2.0:
 
 depcheck@dword-design/depcheck#fork:
   version "0.0.1"
-  uid "8a9eb41006c2c6f9cbd79e4e68bf265e1c1df1dc"
   resolved "https://codeload.github.com/dword-design/depcheck/tar.gz/8a9eb41006c2c6f9cbd79e4e68bf265e1c1df1dc"
   dependencies:
     "@babel/parser" "^7.8.4"
@@ -3358,7 +3358,6 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0, end-of-stream@^1.4.1:
 
 endent@dword-design/endent#fork, "endent@github:dword-design/endent#fork":
   version "1.4.0"
-  uid be5433db67eaec07c6c9d00ba3bed2ed946dc664
   resolved "https://codeload.github.com/dword-design/endent/tar.gz/be5433db67eaec07c6c9d00ba3bed2ed946dc664"
   dependencies:
     dedent dword-design/dedent#fork
@@ -3502,7 +3501,6 @@ eslint-config-prettier@^8.0.0:
 
 "eslint-import-resolver-babel-module@github:dword-design/eslint-import-resolver-babel-module#fork":
   version "5.1.2"
-  uid "97550c5b7626a9cf582ea2392b9749702a27473d"
   resolved "https://codeload.github.com/dword-design/eslint-import-resolver-babel-module/tar.gz/97550c5b7626a9cf582ea2392b9749702a27473d"
   dependencies:
     pkg-up "^2.0.0"
@@ -5095,6 +5093,13 @@ is-ci@^2.0.0:
   integrity sha512-YfJT7rkpQB0updsdHLGWrvhBJfcfzNNawYDNIyQXJz0IViGf75O8EBPKSdvw2rF+LGCsX4FZ8tcr3b19LcZq4w==
   dependencies:
     ci-info "^2.0.0"
+
+is-ci@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/is-ci/-/is-ci-3.0.0.tgz#c7e7be3c9d8eef7d0fa144390bd1e4b88dc4c994"
+  integrity sha512-kDXyttuLeslKAHYL/K28F2YkM3x5jvFPEw3yXbRptXydjD9rpLEz+C5K5iutY9ZiUu6AP41JdvRQwF4Iqs4ZCQ==
+  dependencies:
+    ci-info "^3.1.1"
 
 is-cidr@^3.0.0:
   version "3.1.1"
@@ -6985,7 +6990,6 @@ npm@^6.14.9:
     cmd-shim "^3.0.3"
     columnify "~1.5.4"
     config-chain "^1.1.12"
-    debuglog "*"
     detect-indent "~5.0.0"
     detect-newline "^2.1.0"
     dezalgo "~1.0.3"
@@ -7000,7 +7004,6 @@ npm@^6.14.9:
     has-unicode "~2.0.1"
     hosted-git-info "^2.8.8"
     iferr "^1.0.2"
-    imurmurhash "*"
     infer-owner "^1.0.4"
     inflight "~1.0.6"
     inherits "^2.0.4"
@@ -7019,14 +7022,8 @@ npm@^6.14.9:
     libnpx "^10.2.4"
     lock-verify "^2.1.0"
     lockfile "^1.0.4"
-    lodash._baseindexof "*"
     lodash._baseuniq "~4.6.0"
-    lodash._bindcallback "*"
-    lodash._cacheindexof "*"
-    lodash._createcache "*"
-    lodash._getnative "*"
     lodash.clonedeep "~4.5.0"
-    lodash.restparam "*"
     lodash.union "~4.6.0"
     lodash.uniq "~4.5.0"
     lodash.without "~4.4.0"
