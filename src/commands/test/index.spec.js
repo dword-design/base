@@ -28,6 +28,23 @@ const runTest = config => {
 }
 
 export default {
+  '.nuxt': {
+    files: {
+      '.nuxt/index.js': 'export default 1',
+      'src/index.spec.js': "import '@/.nuxt'",
+    },
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
+        /SyntaxError: Unexpected token '?export'?/
+      ),
+  },
+  '.nuxt postfix': {
+    files: {
+      '.nuxt-foo/index.js': 'export default 1',
+      'src/index.spec.js': "import '@/.nuxt-foo'",
+    },
+    test: () => self('', { log: false }),
+  },
   assertion: {
     files: {
       src: {
@@ -167,6 +184,37 @@ export default {
     test: () =>
       expect(self('', { log: false })).rejects.toThrow(
         'The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL'
+      ),
+  },
+  node_modules: {
+    files: {
+      'node_modules/foo/index.js': 'export default 1',
+      'package.json': { devDependencies: { foo: '^1.0.0' } } |> JSON.stringify,
+      'src/index.spec.js': "import 'foo'",
+    },
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
+        /SyntaxError: Unexpected token '?export'?/
+      ),
+  },
+  'node_modules postfix': {
+    files: {
+      'node_modules-foo/index.js': 'export default 1',
+      'src/index.spec.js': "import '@/node_modules-foo'",
+    },
+    test: () => self('', { log: false }),
+  },
+  'node_modules subfolder': {
+    files: {
+      'package.json': { devDependencies: { foo: '^1.0.0' } } |> JSON.stringify,
+      src: {
+        'index.spec.js': "import 'foo'",
+        'node_modules/foo/index.js': 'export default 1',
+      },
+    },
+    test: () =>
+      expect(self('', { log: false })).rejects.toThrow(
+        /SyntaxError: Unexpected token '?export'?/
       ),
   },
   pattern: {
