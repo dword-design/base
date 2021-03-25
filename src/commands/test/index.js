@@ -87,7 +87,7 @@ export default async (pattern, options) => {
       'mocha',
       '--ui',
       packageName`mocha-ui-exports-auto-describe`,
-      ...(runDockerTests ? [] : ['--ignore', '**/*.usesdockers.spec.js']),
+      ...(runDockerTests ? [] : ['--ignore', '**/*.usesdocker.spec.js']),
       '--file',
       require.resolve('./setup-test'),
       '--timeout',
