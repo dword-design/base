@@ -35,7 +35,7 @@ export default {
     },
     test: () =>
       expect(self('', { log: false })).rejects.toThrow(
-        "SyntaxError: Unexpected token 'export'"
+        /SyntaxError: Unexpected token '?export'?/
       ),
   },
   '.nuxt postfix': {
