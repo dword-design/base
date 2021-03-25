@@ -56,7 +56,7 @@ export default {
       })
       await self('', { log: false })
     }),
-    grep: () =>
+  grep: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
         'package.json': JSON.stringify(
