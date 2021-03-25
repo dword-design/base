@@ -354,7 +354,7 @@ export default {
       await self('', { log: false, updateSnapshots: true })
     },
   },
-  'usedockers macOS': {
+  'usesdocker macOS': {
     files: {
       'src/index.usesdocker.spec.js': 'throw new Error()',
     },
