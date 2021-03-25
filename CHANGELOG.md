@@ -1,3 +1,10 @@
+## [7.9.15](https://github.com/dword-design/base/compare/v7.9.14...v7.9.15) (2021-03-25)
+
+
+### Bug Fixes
+
+* ignore .nuxt folder in @babel/register ([#216](https://github.com/dword-design/base/issues/216)) ([668e63d](https://github.com/dword-design/base/commit/668e63d07f71f71921cca91b53cd2016732afea8))
+
 ## [7.9.14](https://github.com/dword-design/base/compare/v7.9.13...v7.9.14) (2021-03-23)
 
 
