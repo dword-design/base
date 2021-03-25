@@ -1,3 +1,10 @@
+# [7.10.0](https://github.com/dword-design/base/compare/v7.9.15...v7.10.0) (2021-03-25)
+
+
+### Features
+
+* add *.usesdocker.spec.js annotation for tests using docker ([#219](https://github.com/dword-design/base/issues/219)) ([7d57137](https://github.com/dword-design/base/commit/7d57137f860168525474ae65bfaeea96197a6e07))
+
 ## [7.9.15](https://github.com/dword-design/base/compare/v7.9.14...v7.9.15) (2021-03-25)
 
 
