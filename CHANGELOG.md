@@ -1,3 +1,10 @@
+## [7.10.1](https://github.com/dword-design/base/compare/v7.10.0...v7.10.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* pass greps with spaces to docker testing ([#220](https://github.com/dword-design/base/issues/220)) ([1445583](https://github.com/dword-design/base/commit/14455831bb1f3819b7772140bb55e5aece4cf4a4))
+
 # [7.10.0](https://github.com/dword-design/base/compare/v7.9.15...v7.10.0) (2021-03-25)
 
 
