@@ -56,7 +56,7 @@ export default {
       })
       await self('', { log: false })
     }),
-  grep: () =>
+    grep: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
         'package.json': JSON.stringify(
@@ -69,11 +69,14 @@ export default {
           undefined,
           2
         ),
-        'test.js': 'console.log(process.argv.slice(2))',
+        'test.js': endent`
+          const fs = require('fs')
+          
+          fs.writeFileSync('grep.txt', process.argv.slice(2))
+        `,
       })
-      expect(
-        self('', { grep: 'foobarbaz', log: false }) |> await |> property('all')
-      ).toMatch('foobarbaz')
+      await self('', { grep: 'foo bar baz', log: false })
+      expect(await readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz')
     }),
   pattern: () =>
     withLocalTmpDir(async () => {
@@ -88,11 +91,15 @@ export default {
           undefined,
           2
         ),
-        'test.js': 'console.log(process.argv[2])',
+        'test.js': endent`
+          const fs = require('fs')
+          
+          fs.writeFileSync('grep.txt', process.argv[2])
+        `,
       })
       expect(
-        self('foobarbaz', { log: false }) |> await |> property('all')
-      ).toMatch('foobarbaz')
+        self('foo bar baz', { log: false }) |> await |> property('all')
+      ).toMatch('foo bar baz')
     }),
   puppeteer: () =>
     withLocalTmpDir(async () => {
