@@ -88,7 +88,6 @@
     "access": "public"
   },
   "baseConfig": {
-    "usesDocker": true,
     "depcheckConfig": {
       "ignoreMatches": [
         "husky"
