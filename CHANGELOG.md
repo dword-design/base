@@ -1,3 +1,10 @@
+## [7.10.2](https://github.com/dword-design/base/compare/v7.10.1...v7.10.2) (2021-03-26)
+
+
+### Bug Fixes
+
+* remove deprecated usesDocker ([#222](https://github.com/dword-design/base/issues/222)) ([b017d3f](https://github.com/dword-design/base/commit/b017d3f447d8e3fa94118944d9ea13daacf4b94d))
+
 ## [7.10.1](https://github.com/dword-design/base/compare/v7.10.0...v7.10.1) (2021-03-25)
 
 
