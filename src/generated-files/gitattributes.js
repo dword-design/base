@@ -5,5 +5,5 @@ export default endent`
   *.glb filter=lfs diff=lfs merge=lfs -text
   *.jpg filter=lfs diff=lfs merge=lfs -text
   *.png filter=lfs diff=lfs merge=lfs -text
-  
+
 `
