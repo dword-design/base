@@ -1,3 +1,10 @@
+## [7.10.3](https://github.com/dword-design/base/compare/v7.10.2...v7.10.3) (2021-03-26)
+
+
+### Bug Fixes
+
+* add .glb to .gitattributes ([#223](https://github.com/dword-design/base/issues/223)) ([9620268](https://github.com/dword-design/base/commit/9620268489ac11d11cf2f345608079bacb9ac6c0))
+
 ## [7.10.2](https://github.com/dword-design/base/compare/v7.10.1...v7.10.2) (2021-03-26)
 
 
