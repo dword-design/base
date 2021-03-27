@@ -15,7 +15,7 @@ jobs:
         if: failure()
         uses: JasonEtco/create-an-issue@v2
         with:
-          filename: DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md
+          filename: .github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md
           update_existing: true
   release:
     needs: test

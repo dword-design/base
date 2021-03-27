@@ -23,7 +23,7 @@ export default config => ({
           },
           with: {
             update_existing: true,
-            filename: 'DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md'
+            filename: '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md'
           },
         },
       ],
