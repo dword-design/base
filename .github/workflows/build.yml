@@ -15,6 +15,7 @@ jobs:
       - env:
           DEPRECATED: ${{ steps.check-deprecated-js-deps.outputs.deprecated }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_URL: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
         if: ${{ steps.check-deprecated-js-deps.outputs.deprecated }}
         uses: JasonEtco/create-an-issue@v2
         with:

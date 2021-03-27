@@ -5,5 +5,7 @@ labels: maintenance
 The following dependencies are deprecated:
 
 {% for dependency in env.DEPRECATED.split(',') %}
-  <li>{{ dependency }}</li>
+  - **{{ dependency }}**
 {% endfor %}
+
+Checkout the [build](env.RUN_URL) for details.

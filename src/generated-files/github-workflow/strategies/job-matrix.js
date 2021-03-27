@@ -24,7 +24,8 @@ export default config => ({
           uses: 'JasonEtco/create-an-issue@v2',
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-            DEPRECATED: "${{ steps.check-deprecated-js-deps.outputs.deprecated }}"
+            DEPRECATED: "${{ steps.check-deprecated-js-deps.outputs.deprecated }}",
+            RUN_URL: 'https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}',
           },
           with: {
             update_existing: true,
