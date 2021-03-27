@@ -13,11 +13,13 @@ jobs:
         id: check-deprecated-js-deps
         uses: tinovyatkin/action-check-deprecated-js-deps@v1
       - env:
+          DEPRECATED: ${{ steps.check-deprecated-js-deps.outputs.deprecated }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ steps.check-deprecated-js-deps.outputs.deprecated }}
         uses: JasonEtco/create-an-issue@v2
         with:
           filename: .github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md
+          foo: ${{ steps['check-deprecated-js-deps'].outputs.deprecated }}
           update_existing: true
   release:
     needs: test

@@ -24,10 +24,12 @@ export default config => ({
           uses: 'JasonEtco/create-an-issue@v2',
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+            DEPRECATED: "${{ steps.check-deprecated-js-deps.outputs.deprecated }}"
           },
           with: {
             update_existing: true,
             filename: '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md',
+            foo: "${{ steps['check-deprecated-js-deps'].outputs.deprecated }}",
           },
         },
       ],
