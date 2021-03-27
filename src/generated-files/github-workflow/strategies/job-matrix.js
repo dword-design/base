@@ -14,7 +14,10 @@ export default config => ({
       steps: [
         ...cancelExistingSteps,
         { uses: 'actions/checkout@v2', with: { lfs: true } },
-        { uses: 'tinovyatkin/action-check-deprecated-js-deps@v1' },
+        {
+          uses: 'tinovyatkin/action-check-deprecated-js-deps@v1',
+          'continue-on-error': true,
+        },
         {
           if: 'failure()',
           uses: 'JasonEtco/create-an-issue@v2',
