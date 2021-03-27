@@ -40,7 +40,7 @@ export default {
       branches: ['dword-design/create-an-issue-if-224'],
     },
     schedule: [
-      { cron: '0/15/30/45 * * * *' }
+      { cron: '0,15,30,45 * * * *' }
     ]
   },
 }
