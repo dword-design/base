@@ -41,6 +41,9 @@ Object {
           "run": "yarn --frozen-lockfile",
         },
         Object {
+          "run": "yarn checkUnknownFiles",
+        },
+        Object {
           "run": "yarn lint",
         },
         Object {
@@ -91,9 +94,6 @@ Object {
           "with": Object {
             "path": "**/__image_snapshots__/__diff_output__",
           },
-        },
-        Object {
-          "run": "yarn checkUnknownFiles",
         },
         Object {
           "if": "matrix.os == 'ubuntu-latest' && matrix.node == 12",
@@ -186,14 +186,14 @@ Object {
           },
         },
         Object {
-          "run": "yarn checkUnknownFiles",
-        },
-        Object {
           "uses": "codecov/codecov-action@v1",
           "with": Object {
             "fail_ci_if_error": true,
             "token": "\${{ secrets.CODECOV_TOKEN }}",
           },
+        },
+        Object {
+          "run": "yarn checkUnknownFiles",
         },
         Object {
           "env": Object {
@@ -276,14 +276,14 @@ Object {
           },
         },
         Object {
-          "run": "yarn checkUnknownFiles",
-        },
-        Object {
           "uses": "codecov/codecov-action@v1",
           "with": Object {
             "fail_ci_if_error": true,
             "token": "\${{ secrets.CODECOV_TOKEN }}",
           },
+        },
+        Object {
+          "run": "yarn checkUnknownFiles",
         },
         Object {
           "env": Object {
@@ -357,6 +357,9 @@ Object {
           "run": "yarn --frozen-lockfile",
         },
         Object {
+          "run": "yarn checkUnknownFiles",
+        },
+        Object {
           "run": "yarn lint",
         },
         Object {
@@ -407,9 +410,6 @@ Object {
           "with": Object {
             "path": "**/__image_snapshots__/__diff_output__",
           },
-        },
-        Object {
-          "run": "yarn checkUnknownFiles",
         },
         Object {
           "if": "matrix.os == 'ubuntu-latest' && matrix.node == 12",
