@@ -8,6 +8,8 @@ import commitizenConfig from './commitizen'
 import commitlintConfig from './commitlint'
 import editorconfigConfig from './editorconfig'
 import gitattributesConfig from './gitattributes'
+import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies'
+import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template'
 import githubWorkflowConfig from './github-workflow'
 import gitignoreConfig from './gitignore'
 import gitpodConfig from './gitpod'
@@ -26,8 +28,16 @@ export default {
   '.cz.json': commitizenConfig,
   '.editorconfig': editorconfigConfig,
   '.gitattributes': gitattributesConfig,
-  '.github/workflows/build.yml':
-    sortKeys(githubWorkflowConfig, { deep: true }) |> yaml.stringify,
+  '.github': {
+    'DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md': deprecatedDependenciesIssueTemplate,
+    workflows: {
+      'build.yml':
+        sortKeys(githubWorkflowConfig, { deep: true }) |> yaml.stringify,
+      'deprecated-dependencies.yml':
+        sortKeys(githubDeprecatedDependenciesConfig, { deep: true })
+        |> yaml.stringify,
+    },
+  },
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
   '.gitpod.yml': gitpodConfig |> yaml.stringify,
