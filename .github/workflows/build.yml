@@ -6,6 +6,9 @@ jobs:
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: rokroskar/workflow-run-cleanup-action@v0.3.2
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
       - uses: tinovyatkin/action-check-deprecated-js-deps@v1
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -13,6 +13,7 @@ export default config => ({
       'runs-on': 'ubuntu-latest',
       steps: [
         ...cancelExistingSteps,
+        { uses: 'actions/checkout@v2', with: { lfs: true } },
         { uses: 'tinovyatkin/action-check-deprecated-js-deps@v1' },
         {
           if: 'failure()',
