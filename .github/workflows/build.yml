@@ -10,10 +10,11 @@ jobs:
         with:
           lfs: true
       - continue-on-error: true
+        id: check-deprecated-js-deps
         uses: tinovyatkin/action-check-deprecated-js-deps@v1
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ steps.action-check-deprecated-js-deps.outputs.deprecated }}
+        if: ${{ steps.check-deprecated-js-deps.outputs.deprecated }}
         uses: JasonEtco/create-an-issue@v2
         with:
           filename: .github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md
