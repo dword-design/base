@@ -19,7 +19,6 @@ jobs:
         uses: JasonEtco/create-an-issue@v2
         with:
           filename: .github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md
-          foo: ${{ steps['check-deprecated-js-deps'].outputs.deprecated }}
           update_existing: true
   release:
     needs: test

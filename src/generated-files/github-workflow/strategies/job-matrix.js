@@ -29,7 +29,6 @@ export default config => ({
           with: {
             update_existing: true,
             filename: '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md',
-            foo: "${{ steps['check-deprecated-js-deps'].outputs.deprecated }}",
           },
         },
       ],

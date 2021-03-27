@@ -7,7 +7,7 @@ export default endent`
   ---
   The following dependencies are deprecated:
 
-  {% for dependency in env.DEPRECATED|split(',') %}
+  {% for dependency in env.DEPRECATED.split(',') %}
     <li>{{ dependency }}</li>
   {% endfor %}
   
