@@ -6,6 +6,6 @@ export default endent`
   labels: maintenance
   ---
   There are deprecated dependencies. See workflow run for details.
-  {{ env.DEPRECATED }}
+  {{ steps.check-deprecated-js-deps.outputs.deprecated }}
   
 `
