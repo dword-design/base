@@ -6,6 +6,6 @@ export default endent`
   labels: maintenance
   ---
   There are deprecated dependencies. See workflow run for details.
-  {{ tools.outputs }}
+  {{ env.DEPRECATED }}
   
 `
