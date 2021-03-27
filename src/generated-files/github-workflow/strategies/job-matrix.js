@@ -22,6 +22,7 @@ export default config => ({
         {
           if: '${{ steps.check-deprecated-js-deps.outputs.deprecated }}',
           uses: 'JasonEtco/create-an-issue@v2',
+          id: 'create-deprecation-issue',
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
             DEPRECATED: "${{ steps.check-deprecated-js-deps.outputs.deprecated }}",
@@ -32,6 +33,14 @@ export default config => ({
             filename: '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md',
           },
         },
+        {
+          if: '${{ steps.create-deprecation-issue.outputs.number }}',
+          uses: 'peter-evans/close-issue@v1',
+          with: {
+            'issue-number': '${{ steps.create-deprecation-issue.outputs.number }}',
+            comment: 'Auto-closing the issue',
+          }
+        }
       ],
     },
     release: {

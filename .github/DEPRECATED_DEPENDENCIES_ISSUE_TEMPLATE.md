@@ -8,4 +8,4 @@ The following dependencies are deprecated:
   - **{{ dependency }}**
 {% endfor %}
 
-Checkout the [build](env.RUN_URL) for details.
+Check out the [build]({{ env.RUN_URL }}) for details.
