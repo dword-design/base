@@ -1,3 +1,10 @@
+## [7.10.4](https://github.com/dword-design/base/compare/v7.10.3...v7.10.4) (2021-03-27)
+
+
+### Bug Fixes
+
+* move checkUnknownFiles to release phase ([#225](https://github.com/dword-design/base/issues/225)) ([8489e76](https://github.com/dword-design/base/commit/8489e76fd5b3118644fe9be83464629472bada7f))
+
 ## [7.10.3](https://github.com/dword-design/base/compare/v7.10.2...v7.10.3) (2021-03-26)
 
 
