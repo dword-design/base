@@ -1,3 +1,10 @@
+## [7.10.5](https://github.com/dword-design/base/compare/v7.10.4...v7.10.5) (2021-03-27)
+
+
+### Bug Fixes
+
+* create an issue if there are deprecated dependencies ([#227](https://github.com/dword-design/base/issues/227)) ([a7b222c](https://github.com/dword-design/base/commit/a7b222c3d114b8de3fd6061ee229236b116ae708))
+
 ## [7.10.4](https://github.com/dword-design/base/compare/v7.10.3...v7.10.4) (2021-03-27)
 
 
