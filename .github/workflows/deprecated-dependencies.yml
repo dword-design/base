@@ -26,8 +26,5 @@ jobs:
           issue-number: ${{ steps.create-deprecation-issue.outputs.number }}
 name: deprecated-dependencies
 on:
-  push:
-    branches:
-      - dword-design/create-an-issue-if-224
   schedule:
-    - cron: 0,15,30,45 * * * *
+    - cron: 0 5 * * MON

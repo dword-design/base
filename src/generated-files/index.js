@@ -8,8 +8,9 @@ import commitizenConfig from './commitizen'
 import commitlintConfig from './commitlint'
 import editorconfigConfig from './editorconfig'
 import gitattributesConfig from './gitattributes'
-import githubWorkflowConfig from './github-workflow'
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies'
+import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template'
+import githubWorkflowConfig from './github-workflow'
 import gitignoreConfig from './gitignore'
 import gitpodConfig from './gitpod'
 import gitpodDockerfile from './gitpod-dockerfile'
@@ -20,7 +21,6 @@ import readmeString from './readme-string'
 import releaseConfig from './release'
 import renovateConfig from './renovate'
 import vscodeConfig from './vscode'
-import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template'
 
 export default {
   '.babelrc.json': babelConfig |> jsonToString({ indent: 2 }),
@@ -34,7 +34,8 @@ export default {
       'build.yml':
         sortKeys(githubWorkflowConfig, { deep: true }) |> yaml.stringify,
       'deprecated-dependencies.yml':
-        sortKeys(githubDeprecatedDependenciesConfig, { deep: true }) |> yaml.stringify,
+        sortKeys(githubDeprecatedDependenciesConfig, { deep: true })
+        |> yaml.stringify,
     },
   },
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),

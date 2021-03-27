@@ -5,42 +5,41 @@ export default {
       steps: [
         { uses: 'actions/checkout@v2', with: { lfs: true } },
         {
-          uses: 'tinovyatkin/action-check-deprecated-js-deps@v1',
           'continue-on-error': true,
           id: 'check-deprecated-js-deps',
+          uses: 'tinovyatkin/action-check-deprecated-js-deps@v1',
         },
         {
+          env: {
+            DEPRECATED:
+              '${{ steps.check-deprecated-js-deps.outputs.deprecated }}',
+            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+            RUN_URL:
+              'https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}',
+          },
+          id: 'create-deprecation-issue',
           if: '${{ steps.check-deprecated-js-deps.outputs.deprecated }}',
           uses: 'JasonEtco/create-an-issue@v2',
-          id: 'create-deprecation-issue',
-          env: {
-            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-            DEPRECATED: "${{ steps.check-deprecated-js-deps.outputs.deprecated }}",
-            RUN_URL: 'https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}',
-          },
           with: {
-            update_existing: true,
             filename: '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md',
+            update_existing: true,
           },
         },
         {
-          if: '${{ !steps.check-deprecated-js-deps.outputs.deprecated && steps.create-deprecation-issue.outputs.number }}',
+          if:
+            '${{ !steps.check-deprecated-js-deps.outputs.deprecated && steps.create-deprecation-issue.outputs.number }}',
           uses: 'peter-evans/close-issue@v1',
           with: {
-            'issue-number': '${{ steps.create-deprecation-issue.outputs.number }}',
             comment: 'Auto-closing the issue',
-          }
-        }
+            'issue-number':
+              '${{ steps.create-deprecation-issue.outputs.number }}',
+          },
+        },
       ],
-    }
+    },
   },
   name: 'deprecated-dependencies',
   on: {
-    push: {
-      branches: ['dword-design/create-an-issue-if-224'],
-    },
-    schedule: [
-      { cron: '0,15,30,45 * * * *' }
-    ]
+    schedule: [{ cron: '0 5 * * MON' }],
   },
 }

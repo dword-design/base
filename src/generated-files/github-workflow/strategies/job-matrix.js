@@ -60,9 +60,7 @@ export default config => ({
         }),
         node: [10, 12],
         os: [
-          ...(config.testInContainer
-            ? []
-            : ['macos-latest', 'windows-latest']),
+          ...(config.testInContainer ? [] : ['macos-latest', 'windows-latest']),
           'ubuntu-latest',
         ],
       },
