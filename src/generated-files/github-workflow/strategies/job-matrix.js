@@ -17,9 +17,10 @@ export default config => ({
         {
           uses: 'tinovyatkin/action-check-deprecated-js-deps@v1',
           'continue-on-error': true,
+          id: 'check-deprecated-js-deps',
         },
         {
-          if: '${{ steps.action-check-deprecated-js-deps.outputs.deprecated }}',
+          if: '${{ steps.check-deprecated-js-deps.outputs.deprecated }}',
           uses: 'JasonEtco/create-an-issue@v2',
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
