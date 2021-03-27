@@ -11,7 +11,21 @@ export default config => ({
     'cancel-existing': {
       if: "!contains(github.event.head_commit.message, '[skip ci]')",
       'runs-on': 'ubuntu-latest',
-      steps: cancelExistingSteps,
+      steps: [
+        ...cancelExistingSteps,
+        { uses: 'tinovyatkin/action-check-deprecated-js-deps@v1' },
+        {
+          if: 'failure()',
+          uses: 'JasonEtco/create-an-issue@v2',
+          env: {
+            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+          },
+          with: {
+            update_existing: true,
+            filename: 'DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md'
+          },
+        },
+      ],
     },
     release: {
       needs: 'test',

@@ -19,6 +19,7 @@ import readmeString from './readme-string'
 import releaseConfig from './release'
 import renovateConfig from './renovate'
 import vscodeConfig from './vscode'
+import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template'
 
 export default {
   '.babelrc.json': babelConfig |> jsonToString({ indent: 2 }),
@@ -26,8 +27,11 @@ export default {
   '.cz.json': commitizenConfig,
   '.editorconfig': editorconfigConfig,
   '.gitattributes': gitattributesConfig,
-  '.github/workflows/build.yml':
-    sortKeys(githubWorkflowConfig, { deep: true }) |> yaml.stringify,
+  '.github': {
+    'DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md': deprecatedDependenciesIssueTemplate,
+    'workflows/build.yml':
+      sortKeys(githubWorkflowConfig, { deep: true }) |> yaml.stringify,
+  },
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
   '.gitpod.yml': gitpodConfig |> yaml.stringify,

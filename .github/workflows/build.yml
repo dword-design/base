@@ -6,6 +6,13 @@ jobs:
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: rokroskar/workflow-run-cleanup-action@v0.3.2
+      - uses: tinovyatkin/action-check-deprecated-js-deps@v1
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: failure()
+        uses: JasonEtco/create-an-issue@v2
+        with:
+          update_existing: true
   release:
     needs: test
     runs-on: ubuntu-latest
