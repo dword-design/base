@@ -27,5 +27,4 @@ export default [
       path: '**/__image_snapshots__/__diff_output__',
     },
   },
-  { run: 'yarn checkUnknownFiles' },
 ]
