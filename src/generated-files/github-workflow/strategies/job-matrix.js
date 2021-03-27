@@ -19,7 +19,7 @@ export default config => ({
           'continue-on-error': true,
         },
         {
-          if: 'failure()',
+          if: '${{ steps.action-check-deprecated-js-deps.outputs.deprecated }}',
           uses: 'JasonEtco/create-an-issue@v2',
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
