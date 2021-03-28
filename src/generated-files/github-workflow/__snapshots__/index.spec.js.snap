@@ -131,9 +131,10 @@ Object {
   },
   "name": "build",
   "on": Object {
+    "pull_request": Object {},
     "push": Object {
       "branches": Array [
-        "**",
+        "master",
       ],
     },
   },
@@ -217,9 +218,10 @@ Object {
   },
   "name": "build",
   "on": Object {
+    "pull_request": Object {},
     "push": Object {
       "branches": Array [
-        "**",
+        "master",
       ],
     },
   },
@@ -307,9 +309,10 @@ Object {
   },
   "name": "build",
   "on": Object {
+    "pull_request": Object {},
     "push": Object {
       "branches": Array [
-        "**",
+        "master",
       ],
     },
   },
@@ -435,9 +438,10 @@ Object {
   },
   "name": "build",
   "on": Object {
+    "pull_request": Object {},
     "push": Object {
       "branches": Array [
-        "**",
+        "master",
       ],
     },
   },
