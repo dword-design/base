@@ -7,8 +7,9 @@ export default {
   jobs: (config.useJobMatrix ? jobMatrixStrategy : simpleStrategy)(config),
   name: 'build',
   on: {
+    pull_request: {},
     push: {
-      branches: ['**'],
+      branches: ['master'],
     },
   },
 }
