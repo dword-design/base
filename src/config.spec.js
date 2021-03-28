@@ -85,8 +85,8 @@ export default {
     },
     test: config => {
       expect(config |> omit(['depcheckConfig', 'prepare', 'lint'])).toEqual({
-        commands: {},
         allowedMatches: [],
+        commands: {},
         deployAssets: [],
         deployEnv: {},
         deployPlugins: [],

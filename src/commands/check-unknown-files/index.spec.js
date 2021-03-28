@@ -43,17 +43,17 @@ export default {
       'foo.txt': true,
     },
   },
-  gitignore: {
-    files: {
-      '.env.json': '',
-    },
-  },
   'full path': {
     files: {
       '.github/workflows/foo.yml': '',
     },
     result: {
       '.github/workflows/foo.yml': true,
+    },
+  },
+  gitignore: {
+    files: {
+      '.env.json': '',
     },
   },
   subfolder: {
