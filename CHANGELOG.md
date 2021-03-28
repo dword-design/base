@@ -1,3 +1,11 @@
+## [7.10.6](https://github.com/dword-design/base/compare/v7.10.5...v7.10.6) (2021-03-28)
+
+
+### Bug Fixes
+
+* check exact files and patterns in checkUnknownFiles ([#231](https://github.com/dword-design/base/issues/231)) ([2c933fa](https://github.com/dword-design/base/commit/2c933fa0ec806eaba52df9b585651f63e7dd22f7))
+* fix generated file paths ([5bc0671](https://github.com/dword-design/base/commit/5bc06718b1fbed71565c93c425a0192c6c6ddc2a))
+
 ## [7.10.5](https://github.com/dword-design/base/compare/v7.10.4...v7.10.5) (2021-03-27)
 
 
