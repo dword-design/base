@@ -1,11 +1,4 @@
-import {
-  filter,
-  first,
-  keys,
-  map,
-  split,
-  zipObject,
-} from '@dword-design/functions'
+import { filter, fromPairs, keys, map } from '@dword-design/functions'
 import globby from 'globby'
 import ignore from 'ignore'
 
@@ -17,19 +10,19 @@ import commonAllowedMatches from './common-allowed-matches.json'
 import UnknownFilesError from './unknown-files-error'
 
 const allowedMatches = [
-  ...(configFiles |> keys |> map(path => path |> split('/') |> first)),
+  ...(configFiles |> keys),
   ...commonAllowedMatches,
-  ...(config.allowedMatches || []),
+  ...config.allowedMatches,
 ]
 
 export default async () => {
   const unknownFiles =
-    globby('*', { dot: true, ignore: allowedMatches, onlyFiles: false })
+    globby('**', { dot: true, gitignore: true, ignore: allowedMatches })
     |> await
     |> filter(ignore().add(gitignoreConfig).createFilter())
   if (unknownFiles.length > 0) {
     throw new UnknownFilesError(
-      zipObject(unknownFiles, unknownFiles |> map(() => true))
+      unknownFiles |> map(file => [file, true]) |> fromPairs
     )
   }
 }

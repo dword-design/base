@@ -12,6 +12,7 @@ import packageConfig from './package-config'
 const baseConfig = importCwd(packageBaseConfig.name)
 
 export default {
+  allowedMatches: [],
   commands: {},
   deployAssets: [],
   deployEnv: {},
