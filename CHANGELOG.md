@@ -1,3 +1,10 @@
+## [7.10.7](https://github.com/dword-design/base/compare/v7.10.6...v7.10.7) (2021-03-28)
+
+
+### Bug Fixes
+
+* run github workflows on forks ([#235](https://github.com/dword-design/base/issues/235)) ([b7d4bd5](https://github.com/dword-design/base/commit/b7d4bd5a12ba8cfb09f44799cb792beef005da62))
+
 ## [7.10.6](https://github.com/dword-design/base/compare/v7.10.5...v7.10.6) (2021-03-28)
 
 
