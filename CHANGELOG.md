@@ -1,3 +1,10 @@
+## [7.10.8](https://github.com/dword-design/base/compare/v7.10.7...v7.10.8) (2021-03-29)
+
+
+### Bug Fixes
+
+* various fixes ([#238](https://github.com/dword-design/base/issues/238)) ([141a545](https://github.com/dword-design/base/commit/141a54546dbcc104259f6167af1d74abc989293d))
+
 ## [7.10.7](https://github.com/dword-design/base/compare/v7.10.6...v7.10.7) (2021-03-28)
 
 
