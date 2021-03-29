@@ -4,7 +4,7 @@ export default {
     { before: 'sudo docker-up', name: 'Docker Deamon' },
     {
       init:
-        'git lfs pull && echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >>~/.npmrc && yarn --frozen-lockfile',
+        'git lfs pull && echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >>~/.npmrc && yarn global add @babel/core @babel/node && yarn --frozen-lockfile',
     },
   ],
   vscode: {
