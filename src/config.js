@@ -28,10 +28,10 @@ export default {
 
     \`\`\`bash
     # npm
-    $ npm install ${packageConfig.name}
+    $ npm install ${baseConfig.global ? '-g ' : ''}${packageConfig.name}
 
     # Yarn
-    $ yarn add ${packageConfig.name}
+    $ yarn ${baseConfig.global ? 'global ' : ''}add ${packageConfig.name}
     \`\`\`
   `,
   ...baseConfig,

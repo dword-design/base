@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`readme-string badges 1`] = `
+exports[`index badges 1`] = `
 "<!-- BADGES/ -->
   <p>
     <a href=\\"https://npmjs.org/package/@dword-design/foo\\">
@@ -46,7 +46,7 @@ exports[`readme-string badges 1`] = `
 "
 `;
 
-exports[`readme-string existing content 1`] = `
+exports[`index existing content 1`] = `
 "<!-- DESCRIPTION/ -->
 foo bar baz
 <!-- /DESCRIPTION -->
@@ -56,7 +56,7 @@ This is a more detailed description
 <!-- LICENSE/ -->
 ## Contribute
 
-Are you missing something or want to contribute? Feel free to file an [issue](https://github.com/undefined/issues) or [pull request](https://github.com/undefined/pulls)! ⚙️
+Are you missing something or want to contribute? Feel free to file an [issue](https://github.com/undefined/issues) or a [pull request](https://github.com/undefined/pulls)! ⚙️
 
 ## Support
 
@@ -95,11 +95,11 @@ Thanks a lot for your support! ❤️
 "
 `;
 
-exports[`readme-string license 1`] = `
+exports[`index license 1`] = `
 "<!-- LICENSE/ -->
 ## Contribute
 
-Are you missing something or want to contribute? Feel free to file an [issue](https://github.com/undefined/issues) or [pull request](https://github.com/undefined/pulls)! ⚙️
+Are you missing something or want to contribute? Feel free to file an [issue](https://github.com/undefined/issues) or a [pull request](https://github.com/undefined/pulls)! ⚙️
 
 ## Support
 

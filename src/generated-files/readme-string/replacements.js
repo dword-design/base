@@ -3,8 +3,7 @@ import spdxParse from 'spdx-expression-parse'
 import spdxList from 'spdx-license-list/full'
 
 import config from '@/src/config'
-
-import packageConfig from './package-config'
+import packageConfig from '@/src/generated-files/package-config'
 
 export default {
   badges: () =>
@@ -97,7 +96,7 @@ export default {
       endent`
       ## Contribute
 
-      Are you missing something or want to contribute? Feel free to file an [issue](https://github.com/${packageConfig.repository}/issues) or [pull request](https://github.com/${packageConfig.repository}/pulls)! ⚙️
+      Are you missing something or want to contribute? Feel free to file an [issue](https://github.com/${packageConfig.repository}/issues) or a [pull request](https://github.com/${packageConfig.repository}/pulls)! ⚙️
 
       ## Support
 

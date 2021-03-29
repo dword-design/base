@@ -2,8 +2,9 @@ import { endent, reduce, replace } from '@dword-design/functions'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 
-import packageConfig from './package-config'
-import replacements from './readme-replacements'
+import packageConfig from '@/src/generated-files/package-config'
+
+import replacements from './replacements'
 
 const readme =
   safeReadFileSync('README.md', 'utf8') ||
