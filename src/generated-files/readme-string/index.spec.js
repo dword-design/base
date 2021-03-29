@@ -18,9 +18,7 @@ export default {
       `,
         'package.json': JSON.stringify({ name: '@dword-design/foo' }),
       })
-      const readmeString = stealthyRequire(require.cache, () =>
-        require('./readme-string')
-      )
+      const readmeString = stealthyRequire(require.cache, () => require('.'))
       expect(readmeString).toMatchSnapshot(this)
     })
   },
@@ -33,9 +31,7 @@ export default {
       `,
         'package.json': JSON.stringify({ description: 'foo bar baz' }),
       })
-      const readmeString = stealthyRequire(require.cache, () =>
-        require('./readme-string')
-      )
+      const readmeString = stealthyRequire(require.cache, () => require('.'))
       expect(readmeString).toEqual(endent`
       <!-- DESCRIPTION/ -->
       foo bar baz
@@ -60,9 +56,7 @@ export default {
           license: 'MIT',
         }),
       })
-      const readmeString = stealthyRequire(require.cache, () =>
-        require('./readme-string')
-      )
+      const readmeString = stealthyRequire(require.cache, () => require('.'))
       expect(readmeString).toMatchSnapshot(this)
     })
   },
@@ -75,9 +69,7 @@ export default {
       `,
         'package.json': JSON.stringify({ name: 'foo' }),
       })
-      const readmeString = stealthyRequire(require.cache, () =>
-        require('./readme-string')
-      )
+      const readmeString = stealthyRequire(require.cache, () => require('.'))
       expect(readmeString).toEqual(endent`
       <!-- INSTALL/ -->
       ## Install
@@ -102,9 +94,7 @@ export default {
       `,
         'package.json': JSON.stringify({ license: 'MIT' }),
       })
-      const readmeString = stealthyRequire(require.cache, () =>
-        require('./readme-string')
-      )
+      const readmeString = stealthyRequire(require.cache, () => require('.'))
       expect(readmeString).toMatchSnapshot(this)
     })
   },
@@ -119,9 +109,7 @@ export default {
           name: 'foo',
         }),
       })
-      const readmeString = stealthyRequire(require.cache, () =>
-        require('./readme-string')
-      )
+      const readmeString = stealthyRequire(require.cache, () => require('.'))
       expect(readmeString).toEqual(endent`
       <!-- TITLE/ -->
       # foo

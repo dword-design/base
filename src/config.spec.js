@@ -78,6 +78,24 @@ export default {
       expect(typeof config.depcheckConfig).toEqual('object')
     },
   },
+  global: {
+    baseConfig: { global: true },
+    packageConfig: {
+      name: 'foo',
+    },
+    test: config =>
+      expect(config.readmeInstallString).toEqual(endent`
+        ## Install
+
+        \`\`\`bash
+        # npm
+        $ npm install -g foo
+
+        # Yarn
+        $ yarn global add foo
+        \`\`\`
+      `),
+  },
   valid: {
     packageBaseConfig: { name: 'base-config-foo' },
     packageConfig: {
