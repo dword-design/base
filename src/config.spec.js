@@ -79,7 +79,7 @@ export default {
     },
   },
   global: {
-    baseConfig: { global: true },
+    packageBaseConfig: { global: true },
     packageConfig: {
       name: 'foo',
     },
