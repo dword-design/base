@@ -1,3 +1,10 @@
+## [7.11.1](https://github.com/dword-design/base/compare/v7.11.0...v7.11.1) (2021-03-30)
+
+
+### Bug Fixes
+
+* allow to push back in pull requests ([#246](https://github.com/dword-design/base/issues/246)) ([8da5b1d](https://github.com/dword-design/base/commit/8da5b1d32d5ea3e573433a58c61b596c2925cf63))
+
 # [7.11.0](https://github.com/dword-design/base/compare/v7.10.9...v7.11.0) (2021-03-30)
 
 
