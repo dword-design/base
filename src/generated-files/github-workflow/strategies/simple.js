@@ -10,7 +10,15 @@ export default config => ({
     'runs-on': 'ubuntu-latest',
     steps: [
       ...cancelExistingSteps,
-      { uses: 'actions/checkout@v2', with: { 'fetch-depth': 0, lfs: true } },
+      {
+        uses: 'actions/checkout@v2',
+        with: {
+          'fetch-depth': 0,
+          lfs: true,
+          ref:
+            "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
+        },
+      },
       {
         uses: 'actions/setup-node@v2',
         with: {
