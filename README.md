@@ -1,5 +1,5 @@
 <!-- TITLE/ -->
-# @dword-design/base
+# @dword-design/base foo
 <!-- /TITLE -->
 
 <!-- BADGES/ -->
