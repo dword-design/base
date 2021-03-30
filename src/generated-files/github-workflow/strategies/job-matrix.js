@@ -16,7 +16,14 @@ export default config => ({
     needs: 'test',
     'runs-on': 'ubuntu-latest',
     steps: [
-      { uses: 'actions/checkout@v2', with: { lfs: true } },
+      {
+        uses: 'actions/checkout@v2',
+        with: {
+          lfs: true,
+          ref:
+            "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
+        },
+      },
       {
         uses: 'actions/setup-node@v2',
         with: {
