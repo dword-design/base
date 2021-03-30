@@ -1,3 +1,10 @@
+# [7.11.0](https://github.com/dword-design/base/compare/v7.10.9...v7.11.0) (2021-03-30)
+
+
+### Features
+
+* add @babel/node to GitPod ([#244](https://github.com/dword-design/base/issues/244)) ([f95c520](https://github.com/dword-design/base/commit/f95c52037e030dbf87f22f07b37aa6a55045816c))
+
 ## [7.10.9](https://github.com/dword-design/base/compare/v7.10.8...v7.10.9) (2021-03-29)
 
 
