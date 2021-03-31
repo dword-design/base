@@ -15,12 +15,14 @@ const runTest = config => {
     result: {},
     ...config,
   }
+
   return () => {
     const self = proxyquire('.', {
       '../../config': {
         allowedMatches: config.configAllowedMatches,
       },
     })
+
     return withLocalTmpDir(async () => {
       await outputFiles(config.files)
       if (isEmpty(config.result)) {

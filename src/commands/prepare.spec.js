@@ -54,6 +54,7 @@ export default {
           2
         ),
       })
+
       const output = await execa(require.resolve('../cli'), ['prepare'], {
         all: true,
       })

@@ -5,6 +5,7 @@ import spdxList from 'spdx-license-list/full'
 import packageConfig from './package-config'
 
 const parsed = spdxParse(packageConfig.license)
+
 const license = spdxList[parsed.license]
 
 export default endent`

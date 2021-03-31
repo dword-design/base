@@ -17,9 +17,11 @@ import self from '.'
 
 const runTest = config => {
   config = { files: {}, ...config }
+
   return () =>
     withLocalTmpDir(async () => {
       await outputFiles(config.files)
+
       const prepare = stealthyRequire(require.cache, () =>
         require('../prepare')
       )
@@ -361,6 +363,7 @@ export default {
     test: async () => {
       const previousPlatform = process.platform
       Object.defineProperty(process, 'platform', { value: 'darwin' })
+
       const specialSelf = proxyquire('.', { 'is-ci': true })
       try {
         await specialSelf('', { log: false })
@@ -376,6 +379,7 @@ export default {
     test: async () => {
       const previousPlatform = process.platform
       Object.defineProperty(process, 'platform', { value: 'darwin' })
+
       const specialSelf = proxyquire('.', { 'is-ci': false })
       await expect(specialSelf('', { log: false })).rejects.toThrow('foobarbaz')
       Object.defineProperty(process, 'platform', { value: previousPlatform })
@@ -388,6 +392,7 @@ export default {
     test: async () => {
       const previousPlatform = process.platform
       Object.defineProperty(process, 'platform', { value: 'win32' })
+
       const specialSelf = proxyquire('.', { 'is-ci': true })
       try {
         await specialSelf('', { log: false })

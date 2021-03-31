@@ -27,6 +27,7 @@ export default {
           2
         ),
       })
+
       const packageConfig = stealthyRequire(require.cache, () =>
         require('./package-config')
       )
@@ -43,6 +44,7 @@ export default {
 
     `
       )
+
       const packageConfig = stealthyRequire(require.cache, () =>
         require('./package-config')
       )
@@ -116,6 +118,7 @@ export default {
           2
         ),
       })
+
       const packageConfig = stealthyRequire(require.cache, () =>
         require('./package-config')
       )
@@ -158,6 +161,7 @@ export default {
     withLocalTmpDir(async () => {
       await execa.command('git init')
       await execa.command('git remote add origin git@github.com:bar/foo.git')
+
       const packageConfig = stealthyRequire(require.cache, () =>
         require('./package-config')
       )
@@ -203,6 +207,7 @@ export default {
 
     `
       )
+
       const packageConfig = stealthyRequire(require.cache, () =>
         require('./package-config')
       )
@@ -216,6 +221,7 @@ export default {
         test: {},
       })
       process.chdir('test')
+
       const packageConfig = stealthyRequire(require.cache, () =>
         require('./package-config')
       )

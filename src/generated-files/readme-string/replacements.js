@@ -131,13 +131,16 @@ export default {
       (() => {
         if (packageConfig.license) {
           const parsed = spdxParse(packageConfig.license)
+
           const license = spdxList[parsed.license]
+
           return endent`
           ## License
       
           [${license.name}](${license.url}) © [Sebastian Landwehr](https://dword-design.de)
         `
         }
+
         return ''
       })(),
     ]

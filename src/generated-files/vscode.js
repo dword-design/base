@@ -1,10 +1,8 @@
-import { map, stubTrue, zipObject } from '@dword-design/functions'
+import { fromPairs, map } from '@dword-design/functions'
 
 import editorIgnoreConfig from './editor-ignore'
 
 export default {
-  'files.exclude': zipObject(
-    editorIgnoreConfig,
-    editorIgnoreConfig |> map(stubTrue)
-  ),
+  'files.exclude':
+    editorIgnoreConfig |> map(config => [config, true]) |> fromPairs,
 }

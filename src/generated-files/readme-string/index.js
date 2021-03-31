@@ -24,6 +24,7 @@ const readme =
 export default replacements
   |> reduce((current, getReplacement, name) => {
     const sectionName = name.toUpperCase()
+
     return (
       current
       |> replace(
