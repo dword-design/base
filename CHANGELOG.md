@@ -1,3 +1,10 @@
+# [7.12.0](https://github.com/dword-design/base/compare/v7.11.4...v7.12.0) (2021-03-31)
+
+
+### Features
+
+* add graphviz to gitpod ([#251](https://github.com/dword-design/base/issues/251)) ([67c1c0d](https://github.com/dword-design/base/commit/67c1c0d00bb627a443cb66e619b53f92169b4e74))
+
 ## [7.11.4](https://github.com/dword-design/base/compare/v7.11.3...v7.11.4) (2021-03-31)
 
 
