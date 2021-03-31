@@ -9,7 +9,7 @@ export default endent`
   RUN git lfs install
   RUN echo "\\nexport PATH=$(yarn global bin):\\$PATH" >> /home/gitpod/.bashrc
   RUN yarn global add @babel/core @babel/node
-  RUN apt-get install graphviz
+  RUN sudo apt-get install graphviz
 
   # Puppeteer dependencies
   RUN sudo apt-get update && sudo apt-get install -y libgtk-3-0 libx11-xcb1 libnss3 libxss1 libasound2 libgbm1 libxshmfence1
