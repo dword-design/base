@@ -80,7 +80,7 @@
     "is-docker": "^2.1.1",
     "p-event": "^4.2.0",
     "rimraf": "^3.0.0",
-    "sharp": "^0.27.2",
+    "sharp": "^0.28.0",
     "stealthy-require": "^1.1.1",
     "with-local-tmp-dir": "^2.1.2"
   },
