@@ -1,3 +1,10 @@
+## [7.11.2](https://github.com/dword-design/base/compare/v7.11.1...v7.11.2) (2021-03-31)
+
+
+### Bug Fixes
+
+* update dependency sharp to ^0.28.0 ([#242](https://github.com/dword-design/base/issues/242)) ([17c7bf6](https://github.com/dword-design/base/commit/17c7bf6531d5493e6426a936b2068e26171d7ce5))
+
 ## [7.11.1](https://github.com/dword-design/base/compare/v7.11.0...v7.11.1) (2021-03-30)
 
 
