@@ -34,6 +34,7 @@ export default {
 
         `,
       })
+
       const previousEnv = process.env
       process.env.TEST_FOO = 'foo'
       await self('', { log: false })

@@ -17,9 +17,11 @@ const commandNames = {
   test: true,
   ...(config.commands |> mapValues(stubTrue)),
 }
+
 const gitUrl = existsSync('.git')
   ? parseGitConfig.sync()['remote "origin"']?.url
   : undefined
+
 const gitInfo = hostedGitInfo.fromUrl(gitUrl) || {}
 if (gitUrl !== undefined && gitInfo.type !== 'github') {
   throw new Error('Only GitHub repositories are supported.')

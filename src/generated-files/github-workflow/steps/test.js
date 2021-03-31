@@ -3,6 +3,7 @@ import { constantCase } from 'constant-case'
 import findUp from 'find-up'
 
 const envSchemaPath = findUp.sync('.env.schema.json')
+
 const envVariableNames =
   (envSchemaPath ? require(envSchemaPath) : {})
   |> keys

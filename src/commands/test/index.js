@@ -27,7 +27,9 @@ export default async (pattern, options) => {
     } catch (error) {
       throw new Error(error.all)
     }
+
     const readmeContent = safeReadFileSync('README.md', 'utf8') || ''
+
     const missingReadmeSections =
       ['TITLE', 'BADGES', 'DESCRIPTION', 'INSTALL', 'LICENSE']
       |> filter(
@@ -58,8 +60,10 @@ export default async (pattern, options) => {
       throw new Error(error.all)
     }
   }
+
   const runDockerTests =
     !isCI || !(['win32', 'darwin'] |> includes(process.platform))
+
   return execa(
     'nyc',
     [

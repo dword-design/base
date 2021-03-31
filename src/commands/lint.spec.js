@@ -16,6 +16,7 @@ export default {
           baseConfig: 'foo',
         }),
       })
+
       const lint = stealthyRequire(require.cache, () => require('./lint'))
       expect(lint()).toEqual(2)
     }),

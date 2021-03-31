@@ -15,6 +15,7 @@ const runTest = config => () => {
     packageConfig: {},
     ...config,
   }
+
   const self = proxyquire('./config', {
     './package-base-config': config.packageBaseConfig,
     './package-config': config.packageConfig,

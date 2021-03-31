@@ -13,6 +13,7 @@ const runTest = options => () =>
     await execa.command('git config user.email "foo@bar.de"')
     await execa.command('git config user.name "foo"')
     await execa.command('git add .')
+
     const childProcess = self({ ...options, log: false })
     await pEvent(childProcess.stdout, 'data', data =>
       data.toString().includes('Select the type of change')
@@ -39,6 +40,7 @@ const runTest = options => () =>
     )
     childProcess.stdin.write('\n')
     await childProcess
+
     const output = await execa.command('git log')
     expect(output.stdout).toMatch('feat(config): foo bar')
   })
