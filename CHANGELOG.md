@@ -1,3 +1,10 @@
+## [7.11.3](https://github.com/dword-design/base/compare/v7.11.2...v7.11.3) (2021-03-31)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#237](https://github.com/dword-design/base/issues/237)) ([6f62b4c](https://github.com/dword-design/base/commit/6f62b4c8c3c91433a17a1b5367fd4d95ba147e0f))
+
 ## [7.11.2](https://github.com/dword-design/base/compare/v7.11.1...v7.11.2) (2021-03-31)
 
 
