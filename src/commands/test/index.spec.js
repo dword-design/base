@@ -74,7 +74,7 @@ export default {
     },
     test: () =>
       expect(self('', { log: false })).rejects.toThrow(
-        'package.json invalid\ndata/bin/foo should match pattern "^\\.\\/dist\\/"'
+        'package.json invalid\ndata/bin/foo must match pattern "^\\.\\/dist\\/"'
       ),
   },
   'config file errors': {
@@ -146,7 +146,7 @@ export default {
     },
     test: () =>
       expect(self('', { log: false })).rejects.toThrow(
-        'package.json invalid\ndata/name should match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"'
+        'package.json invalid\ndata/name must match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"'
       ),
   },
   'json errors': {
@@ -475,7 +475,7 @@ export default {
     },
     test: () =>
       expect(self('', { log: false })).rejects.toThrow(
-        'package.json invalid\ndata/dependencies should be object'
+        'package.json invalid\ndata/dependencies must be object'
       ),
   },
   'wrong description type': {
@@ -490,7 +490,7 @@ export default {
     },
     test: () =>
       expect(self('', { log: false })).rejects.toThrow(
-        'package.json invalid\ndata/description should be string'
+        'package.json invalid\ndata/description must be string'
       ),
   },
   'wrong dev dependencies type': {
@@ -499,7 +499,7 @@ export default {
     },
     test: () =>
       expect(self('', { log: false })).rejects.toThrow(
-        'package.json invalid\ndata/devDependencies should be object'
+        'package.json invalid\ndata/devDependencies must be object'
       ),
   },
   'wrong keywords type': {
@@ -508,7 +508,7 @@ export default {
     },
     test: () =>
       expect(self('', { log: false })).rejects.toThrow(
-        'package.json invalid\ndata/keywords should be array'
+        'package.json invalid\ndata/keywords must be array'
       ),
   },
 } |> mapValues(runTest)
