@@ -1,3 +1,10 @@
+## [7.12.1](https://github.com/dword-design/base/compare/v7.12.0...v7.12.1) (2021-04-06)
+
+
+### Bug Fixes
+
+* add dockerfile extension to nyc ([e2c9b6c](https://github.com/dword-design/base/commit/e2c9b6c1b9f855b5785e4054febcb832efb3a6bf))
+
 # [7.12.0](https://github.com/dword-design/base/compare/v7.11.4...v7.12.0) (2021-03-31)
 
 
