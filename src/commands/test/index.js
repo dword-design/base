@@ -80,6 +80,8 @@ export default async (pattern, options) => {
       '.vue',
       '--extension',
       '.scss',
+      '--extension',
+      '.dockerfile',
       '--exclude',
       '**/*.spec.js',
       '--exclude',
