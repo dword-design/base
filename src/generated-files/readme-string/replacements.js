@@ -55,7 +55,11 @@ export default {
             '<br/>',
             endent`
             <a href="https://gitpod.io/#https://github.com/${packageConfig.repository}">
-              <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="Open in Gitpod">
+              <img
+                src="https://gitpod.io/button/open-in-gitpod.svg"
+                alt="Open in Gitpod"
+                height="32"
+              >
             </a>
           `,
             endent`
