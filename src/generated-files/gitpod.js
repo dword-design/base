@@ -1,11 +1,9 @@
-import packageName from 'depcheck-package-name'
-
 export default {
   image: { file: '.gitpod.Dockerfile' },
   tasks: [
     { before: 'sudo docker-up', name: 'Docker Deamon' },
     {
-      init: `${packageName`gitpod-env-per-project`} && git lfs pull && echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >>~/.npmrc && yarn --frozen-lockfile`,
+      init: 'gitpod-env-per-project && git lfs pull && echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >>~/.npmrc && yarn --frozen-lockfile',
     },
   ],
   vscode: {
