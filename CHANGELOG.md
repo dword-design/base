@@ -1,3 +1,10 @@
+## [7.12.3](https://github.com/dword-design/base/compare/v7.12.2...v7.12.3) (2021-04-08)
+
+
+### Bug Fixes
+
+* fix gitpod button height ([#270](https://github.com/dword-design/base/issues/270)) ([0b492e4](https://github.com/dword-design/base/commit/0b492e410e3ac256afcedc98086fd9afb927a18b))
+
 ## [7.12.2](https://github.com/dword-design/base/compare/v7.12.1...v7.12.2) (2021-04-08)
 
 
