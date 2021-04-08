@@ -1,3 +1,10 @@
+## [7.12.2](https://github.com/dword-design/base/compare/v7.12.1...v7.12.2) (2021-04-08)
+
+
+### Bug Fixes
+
+* project-specific gitpod variables ([#268](https://github.com/dword-design/base/issues/268)) ([78bf6e1](https://github.com/dword-design/base/commit/78bf6e105d87825fd18f2c136467fc3cb77dbbf0))
+
 ## [7.12.1](https://github.com/dword-design/base/compare/v7.12.0...v7.12.1) (2021-04-06)
 
 
