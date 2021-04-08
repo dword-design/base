@@ -51,6 +51,7 @@
     "find-up": "^5.0.0",
     "fs-extra": "^9.0.0",
     "get-projectz-readme-section-regex": "^2.0.0",
+    "gitpod-env-per-project": "^1.0.0",
     "globby": "^11.0.1",
     "hosted-git-info": "^4.0.0",
     "husky": "^4.2.5",
