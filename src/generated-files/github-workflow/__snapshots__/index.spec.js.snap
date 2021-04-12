@@ -325,7 +325,7 @@ Object {
 exports[`index testInContainer 1`] = `
 Object {
   "jobs": Object {
-    "cancel-existing": Object {
+    "build": Object {
       "if": "!contains(github.event.head_commit.message, '[skip ci]')",
       "runs-on": "ubuntu-latest",
       "steps": Array [
@@ -335,15 +335,10 @@ Object {
           },
           "uses": "rokroskar/workflow-run-cleanup-action@v0.3.2",
         },
-      ],
-    },
-    "release": Object {
-      "needs": "test",
-      "runs-on": "ubuntu-latest",
-      "steps": Array [
         Object {
           "uses": "actions/checkout@v2",
           "with": Object {
+            "fetch-depth": 0,
             "lfs": true,
             "ref": "\${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
           },
@@ -364,10 +359,24 @@ Object {
           "run": "yarn --frozen-lockfile",
         },
         Object {
-          "run": "yarn checkUnknownFiles",
+          "run": "yarn test",
         },
         Object {
-          "run": "yarn lint",
+          "if": "failure()",
+          "uses": "actions/upload-artifact@v2",
+          "with": Object {
+            "path": "**/__image_snapshots__/__diff_output__",
+          },
+        },
+        Object {
+          "uses": "codecov/codecov-action@v1",
+          "with": Object {
+            "fail_ci_if_error": true,
+            "token": "\${{ secrets.CODECOV_TOKEN }}",
+          },
+        },
+        Object {
+          "run": "yarn checkUnknownFiles",
         },
         Object {
           "env": Object {
@@ -387,57 +396,6 @@ Object {
           "run": "yarn semantic-release",
         },
       ],
-    },
-    "test": Object {
-      "needs": "cancel-existing",
-      "runs-on": "\${{ matrix.os }}",
-      "steps": Array [
-        Object {
-          "uses": "actions/checkout@v2",
-          "with": Object {
-            "fetch-depth": 0,
-            "lfs": true,
-          },
-        },
-        Object {
-          "uses": "actions/setup-node@v2",
-          "with": Object {
-            "node-version": "\${{ matrix.node }}",
-          },
-        },
-        Object {
-          "run": "yarn --frozen-lockfile",
-        },
-        Object {
-          "run": "yarn test",
-        },
-        Object {
-          "if": "failure()",
-          "uses": "actions/upload-artifact@v2",
-          "with": Object {
-            "path": "**/__image_snapshots__/__diff_output__",
-          },
-        },
-        Object {
-          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 12",
-          "uses": "codecov/codecov-action@v1",
-          "with": Object {
-            "fail_ci_if_error": true,
-            "token": "\${{ secrets.CODECOV_TOKEN }}",
-          },
-        },
-      ],
-      "strategy": Object {
-        "matrix": Object {
-          "node": Array [
-            10,
-            12,
-          ],
-          "os": Array [
-            "ubuntu-latest",
-          ],
-        },
-      },
     },
   },
   "name": "build",

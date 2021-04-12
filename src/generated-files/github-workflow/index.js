@@ -4,7 +4,7 @@ import jobMatrixStrategy from './strategies/job-matrix'
 import simpleStrategy from './strategies/simple'
 
 export default {
-  jobs: (config.useJobMatrix ? jobMatrixStrategy : simpleStrategy)(config),
+  jobs: ((config.useJobMatrix && !config.testInContainer) ? jobMatrixStrategy : simpleStrategy)(config),
   name: 'build',
   on: {
     pull_request: {},

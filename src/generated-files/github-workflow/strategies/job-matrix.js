@@ -59,17 +59,12 @@ export default config => ({
     ],
     strategy: {
       matrix: {
-        ...(!config.testInContainer && {
-          exclude: [
-            { node: 10, os: 'macos-latest' },
-            { node: 10, os: 'windows-latest' },
-          ],
-        }),
-        node: [10, 12],
-        os: [
-          ...(config.testInContainer ? [] : ['macos-latest', 'windows-latest']),
-          'ubuntu-latest',
+        exclude: [
+          { node: 10, os: 'macos-latest' },
+          { node: 10, os: 'windows-latest' },
         ],
+        node: [10, 12],
+        os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
       },
     },
   },
