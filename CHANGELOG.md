@@ -1,3 +1,10 @@
+## [7.12.4](https://github.com/dword-design/base/compare/v7.12.3...v7.12.4) (2021-04-12)
+
+
+### Bug Fixes
+
+* do not use job matrix with testInContainer ([#279](https://github.com/dword-design/base/issues/279)) ([05597d3](https://github.com/dword-design/base/commit/05597d3be700460c61df04d36866791de43cf29b))
+
 ## [7.12.3](https://github.com/dword-design/base/compare/v7.12.2...v7.12.3) (2021-04-08)
 
 
