@@ -6,7 +6,7 @@ import coverageSteps from '@/src/generated-files/github-workflow/steps/coverage'
 import releaseSteps from '@/src/generated-files/github-workflow/steps/release'
 import testSteps from '@/src/generated-files/github-workflow/steps/test'
 
-export default config => ({
+export default () => ({
   'cancel-existing': {
     if: "!contains(github.event.head_commit.message, '[skip ci]')",
     'runs-on': 'ubuntu-latest',
@@ -59,17 +59,12 @@ export default config => ({
     ],
     strategy: {
       matrix: {
-        ...(!config.testInContainer && {
-          exclude: [
-            { node: 10, os: 'macos-latest' },
-            { node: 10, os: 'windows-latest' },
-          ],
-        }),
-        node: [10, 12],
-        os: [
-          ...(config.testInContainer ? [] : ['macos-latest', 'windows-latest']),
-          'ubuntu-latest',
+        exclude: [
+          { node: 10, os: 'macos-latest' },
+          { node: 10, os: 'windows-latest' },
         ],
+        node: [10, 12],
+        os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
       },
     },
   },
