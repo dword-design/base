@@ -93,6 +93,7 @@ Object {
           "if": "failure()",
           "uses": "actions/upload-artifact@v2",
           "with": Object {
+            "name": "Image Snapshot Diffs",
             "path": "**/__image_snapshots__/__diff_output__",
           },
         },
@@ -185,6 +186,7 @@ Object {
           "if": "failure()",
           "uses": "actions/upload-artifact@v2",
           "with": Object {
+            "name": "Image Snapshot Diffs",
             "path": "**/__image_snapshots__/__diff_output__",
           },
         },
@@ -277,6 +279,7 @@ Object {
           "if": "failure()",
           "uses": "actions/upload-artifact@v2",
           "with": Object {
+            "name": "Image Snapshot Diffs",
             "path": "**/__image_snapshots__/__diff_output__",
           },
         },
@@ -365,6 +368,7 @@ Object {
           "if": "failure()",
           "uses": "actions/upload-artifact@v2",
           "with": Object {
+            "name": "Image Snapshot Diffs",
             "path": "**/__image_snapshots__/__diff_output__",
           },
         },

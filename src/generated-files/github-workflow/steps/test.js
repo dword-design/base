@@ -25,6 +25,7 @@ export default [
     if: 'failure()',
     uses: 'actions/upload-artifact@v2',
     with: {
+      name: 'Image Snapshot Diffs',
       path: '**/__image_snapshots__/__diff_output__',
     },
   },
