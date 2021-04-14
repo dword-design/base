@@ -1,3 +1,10 @@
+## [7.12.6](https://github.com/dword-design/base/compare/v7.12.5...v7.12.6) (2021-04-14)
+
+
+### Bug Fixes
+
+* add vetur for gitpod ([#284](https://github.com/dword-design/base/issues/284)) ([4c6266d](https://github.com/dword-design/base/commit/4c6266d851fff79ea43d438ff265d5eb40da105e))
+
 ## [7.12.5](https://github.com/dword-design/base/compare/v7.12.4...v7.12.5) (2021-04-14)
 
 
