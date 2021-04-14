@@ -1,3 +1,10 @@
+## [7.12.5](https://github.com/dword-design/base/compare/v7.12.4...v7.12.5) (2021-04-14)
+
+
+### Bug Fixes
+
+* give snapshot diffs artifact a name ([#282](https://github.com/dword-design/base/issues/282)) ([a7b6c36](https://github.com/dword-design/base/commit/a7b6c3674bc5faea15ce687e35e8b4a85fe15d4d))
+
 ## [7.12.4](https://github.com/dword-design/base/compare/v7.12.3...v7.12.4) (2021-04-12)
 
 
