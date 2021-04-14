@@ -11,6 +11,7 @@ export default {
     extensions: [
       'karlito40.fix-irregular-whitespace@0.0.3:8jjyZYuYF6yW6nwsAiulrg==',
       'adrianwilczynski.toggle-hidden@1.0.2:pj4yxebPvdfdMeVIjOEuRQ==',
+      'octref.vetur@0.33.1',
     ],
   },
 }
