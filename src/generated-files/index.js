@@ -10,6 +10,7 @@ import editorconfigConfig from './editorconfig'
 import gitattributesConfig from './gitattributes'
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies'
 import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template'
+import githubSyncMetadataConfig from './github-sync-metadata'
 import githubWorkflowConfig from './github-workflow'
 import gitignoreConfig from './gitignore'
 import gitpodConfig from './gitpod'
@@ -34,6 +35,8 @@ export default {
   '.github/workflows/deprecated-dependencies.yml':
     sortKeys(githubDeprecatedDependenciesConfig, { deep: true })
     |> yaml.stringify,
+  '.github/workflows/sync-metadata.yml':
+    sortKeys(githubSyncMetadataConfig, { deep: true }) |> yaml.stringify,
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
   '.gitpod.yml': gitpodConfig |> yaml.stringify,
