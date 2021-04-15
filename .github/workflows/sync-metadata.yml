@@ -9,4 +9,5 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 name: sync-metadata
 on:
-  workflow_dispatch:
+  schedule:
+    - cron: 0 */6 * * *
