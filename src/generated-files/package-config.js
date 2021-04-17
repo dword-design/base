@@ -1,12 +1,10 @@
 import { mapValues, pick, stubTrue } from '@dword-design/functions'
 import packageName from 'depcheck-package-name'
-import { existsSync } from 'fs-extra'
-import hostedGitInfo from 'hosted-git-info'
-import parseGitConfig from 'parse-git-config'
 import sortKeys from 'sort-keys'
 
 import config from '@/src/config'
 import packageConfig from '@/src/package-config'
+import gitInfo from './git-info'
 
 const commandNames = {
   checkUnknownFiles: true,
@@ -16,15 +14,6 @@ const commandNames = {
   ...(config.testInContainer && { 'test:raw': true }),
   test: true,
   ...(config.commands |> mapValues(stubTrue)),
-}
-
-const gitUrl = existsSync('.git')
-  ? parseGitConfig.sync()['remote "origin"']?.url
-  : undefined
-
-const gitInfo = hostedGitInfo.fromUrl(gitUrl) || {}
-if (gitUrl !== undefined && gitInfo.type !== 'github') {
-  throw new Error('Only GitHub repositories are supported.')
 }
 
 export default {
@@ -48,7 +37,7 @@ export default {
     access: 'public',
   },
   version: packageConfig.version || '1.0.0',
-  ...(gitUrl && { repository: `${gitInfo.user}/${gitInfo.project}` }),
+  ...(gitInfo && { repository: `dword-design/${gitInfo.project}` }),
   author: 'Sebastian Landwehr <info@dword-design.de>',
   files: ['dist'],
   license: 'MIT',

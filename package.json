@@ -77,6 +77,8 @@
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "@dword-design/proxyquire": "^1.0.0",
+    "@dword-design/tester": "^1.2.5",
+    "@dword-design/tester-plugin-tmp-dir": "^1.0.1",
     "is-docker": "^2.1.1",
     "p-event": "^4.2.0",
     "rimraf": "^3.0.0",
