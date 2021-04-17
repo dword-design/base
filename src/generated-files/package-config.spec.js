@@ -175,7 +175,7 @@ export default {
         publishConfig: {
           access: 'public',
         },
-        repository: 'bar/foo',
+        repository: 'dword-design/foo',
         scripts: {
           checkUnknownFiles: 'base checkUnknownFiles',
           commit: 'base commit',
