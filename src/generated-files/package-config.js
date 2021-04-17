@@ -4,6 +4,7 @@ import sortKeys from 'sort-keys'
 
 import config from '@/src/config'
 import packageConfig from '@/src/package-config'
+
 import gitInfo from './git-info'
 
 const commandNames = {

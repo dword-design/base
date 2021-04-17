@@ -4,7 +4,6 @@ import spdxList from 'spdx-license-list/full'
 
 import config from '@/src/config'
 import packageConfig from '@/src/generated-files/package-config'
-import gitInfo from '@/src/generated-files/git-info'
 
 export default {
   badges: () =>
@@ -26,15 +25,15 @@ export default {
               : []),
             '<img src="https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue" alt="Linux macOS Windows compatible">',
             endent`
-            <a href="https://github.com/dword-design/${gitInfo.project}/actions">
+            <a href="https://github.com/${packageConfig.repository}/actions">
               <img
-                src="https://github.com/dword-design/${gitInfo.project}/workflows/build/badge.svg"
+                src="https://github.com/${packageConfig.repository}/workflows/build/badge.svg"
                 alt="Build status"
               >
             </a>
           `,
             endent`
-            <a href="https://codecov.io/gh/dword-design/${gitInfo.project}">
+            <a href="https://codecov.io/gh/${packageConfig.repository}">
               <img
                 src="https://codecov.io/gh/${
                   packageConfig.repository
@@ -48,14 +47,14 @@ export default {
             </a>
           `,
             endent`
-            <a href="https://david-dm.org/dword-design/${gitInfo.project}">
-              <img src="https://img.shields.io/david/dword-design/${gitInfo.project}" alt="Dependency status">
+            <a href="https://david-dm.org/${packageConfig.repository}">
+              <img src="https://img.shields.io/david/${packageConfig.repository}" alt="Dependency status">
             </a>
           `,
             '<img src="https://img.shields.io/badge/renovate-enabled-brightgreen" alt="Renovate enabled">',
             '<br/>',
             endent`
-            <a href="https://gitpod.io/#https://github.com/dword-design/${gitInfo.project}">
+            <a href="https://gitpod.io/#https://github.com/${packageConfig.repository}">
               <img
                 src="https://gitpod.io/button/open-in-gitpod.svg"
                 alt="Open in Gitpod"
