@@ -1,10 +1,10 @@
-import { endent } from '@dword-design/functions'
+import { endent, keys } from '@dword-design/functions'
 import proxyquire from '@dword-design/proxyquire'
 
 export default {
   'package.json script sort order': () => {
     const self = proxyquire('.', {
-      './package-config.js': {
+      './package-config': {
         scripts: {
           dev: 'base dev',
           test: 'base test',
@@ -20,5 +20,17 @@ export default {
       }
 
     `)
+  },
+  works() {
+    const self = proxyquire('.', {})
+    expect(self |> keys).toMatchSnapshot(this)
+  },
+  'no metadata sync'() {
+    const self = proxyquire('.', {
+      '../config': {
+        syncMetadata: false,
+      },
+    })
+    expect(self |> keys).toMatchSnapshot(this)
   },
 }
