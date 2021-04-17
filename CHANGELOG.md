@@ -1,3 +1,10 @@
+## [7.13.1](https://github.com/dword-design/base/compare/v7.13.0...v7.13.1) (2021-04-17)
+
+
+### Bug Fixes
+
+* support forks for file generation ([#288](https://github.com/dword-design/base/issues/288)) ([d7d1177](https://github.com/dword-design/base/commit/d7d1177700b83687f7a3f792ca0bd53f740d139e))
+
 # [7.13.0](https://github.com/dword-design/base/compare/v7.12.6...v7.13.0) (2021-04-17)
 
 
