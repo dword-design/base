@@ -2,6 +2,14 @@ import { endent, keys } from '@dword-design/functions'
 import proxyquire from '@dword-design/proxyquire'
 
 export default {
+  'no metadata sync': function () {
+    const self = proxyquire('.', {
+      '../config': {
+        syncMetadata: false,
+      },
+    })
+    expect(self |> keys).toMatchSnapshot(this)
+  },
   'package.json script sort order': () => {
     const self = proxyquire('.', {
       './package-config': {
@@ -23,14 +31,6 @@ export default {
   },
   works() {
     const self = proxyquire('.', {})
-    expect(self |> keys).toMatchSnapshot(this)
-  },
-  'no metadata sync'() {
-    const self = proxyquire('.', {
-      '../config': {
-        syncMetadata: false,
-      },
-    })
     expect(self |> keys).toMatchSnapshot(this)
   },
 }

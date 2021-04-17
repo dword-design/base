@@ -7,6 +7,7 @@ export default {
         {
           uses: 'dword-design/action-sync-node-meta@fork',
           with: {
+            approve: false,
             commitMessagePrefix: 'fix:',
             githubToken: '${{ secrets.GITHUB_TOKEN }}',
           },
@@ -16,6 +17,7 @@ export default {
   },
   name: 'sync-metadata',
   on: {
-    schedule: [{ cron: '0 */6 * * *' }],
+    schedule: [{ cron: '0 5 * * *' }],
+    workflow_dispatch: {},
   },
 }
