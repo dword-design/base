@@ -3,6 +3,8 @@ import sortKeys from 'sort-keys'
 import sortPackageJson from 'sort-package-json'
 import yaml from 'yaml'
 
+import config from '@/src/config'
+
 import babelConfig from './babel'
 import commitizenConfig from './commitizen'
 import commitlintConfig from './commitlint'
@@ -10,6 +12,7 @@ import editorconfigConfig from './editorconfig'
 import gitattributesConfig from './gitattributes'
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies'
 import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template'
+import githubSyncMetadataConfig from './github-sync-metadata'
 import githubWorkflowConfig from './github-workflow'
 import gitignoreConfig from './gitignore'
 import gitpodConfig from './gitpod'
@@ -34,6 +37,10 @@ export default {
   '.github/workflows/deprecated-dependencies.yml':
     sortKeys(githubDeprecatedDependenciesConfig, { deep: true })
     |> yaml.stringify,
+  ...(config.syncMetadata && {
+    '.github/workflows/sync-metadata.yml':
+      sortKeys(githubSyncMetadataConfig, { deep: true }) |> yaml.stringify,
+  }),
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
   '.gitpod.yml': gitpodConfig |> yaml.stringify,
