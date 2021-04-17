@@ -1,3 +1,10 @@
+# [7.13.0](https://github.com/dword-design/base/compare/v7.12.6...v7.13.0) (2021-04-17)
+
+
+### Features
+
+* sync github metadata ([#285](https://github.com/dword-design/base/issues/285)) ([e3ee11e](https://github.com/dword-design/base/commit/e3ee11e16b1fbef373d1b203e43be83ba6fd71b9))
+
 ## [7.12.6](https://github.com/dword-design/base/compare/v7.12.5...v7.12.6) (2021-04-14)
 
 
