@@ -1,3 +1,11 @@
+## [7.13.2](https://github.com/dword-design/base/compare/v7.13.1...v7.13.2) (2021-04-18)
+
+
+### Bug Fixes
+
+* update config files ([af487fb](https://github.com/dword-design/base/commit/af487fbb916d4d8a904047add4234abf02f8e8d2))
+* updated package.json[homepage] ([#293](https://github.com/dword-design/base/issues/293)) ([d2b5b20](https://github.com/dword-design/base/commit/d2b5b20c7aee3450af89ce961c197cbc65bcbf4c))
+
 ## [7.13.1](https://github.com/dword-design/base/compare/v7.13.0...v7.13.1) (2021-04-17)
 
 
