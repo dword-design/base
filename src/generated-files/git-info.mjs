@@ -1,8 +1,8 @@
-import { existsSync } from 'fs-extra'
+import fs from 'fs-extra'
 import hostedGitInfo from 'hosted-git-info'
 import parseGitConfig from 'parse-git-config'
 
-const gitUrl = existsSync('.git')
+const gitUrl = fs.existsSync('.git')
   ? parseGitConfig.sync()['remote "origin"']?.url
   : undefined
 

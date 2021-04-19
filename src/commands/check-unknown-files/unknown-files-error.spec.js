@@ -1,6 +1,6 @@
 import { endent, fromPairs, map } from '@dword-design/functions'
 
-import self from './unknown-files-error'
+import self from './unknown-files-error.mjs'
 
 export default {
   works: () => {

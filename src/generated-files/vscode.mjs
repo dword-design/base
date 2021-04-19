@@ -1,6 +1,6 @@
 import { fromPairs, map } from '@dword-design/functions'
 
-import editorIgnoreConfig from './editor-ignore'
+import editorIgnoreConfig from './editor-ignore.mjs'
 
 export default {
   'files.exclude':

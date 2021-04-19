@@ -1,5 +1,5 @@
 import proxyquire from '@dword-design/proxyquire'
-import { outputFile } from 'fs-extra'
+import fs from 'fs-extra'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
@@ -24,7 +24,7 @@ export default {
   },
   'test environment variables': function () {
     return withLocalTmpDir(async () => {
-      await outputFile(
+      await fs.outputFile(
         '.env.schema.json',
         { bar: {}, foo: {} } |> JSON.stringify
       )

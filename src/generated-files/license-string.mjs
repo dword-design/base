@@ -1,8 +1,8 @@
 import { endent } from '@dword-design/functions'
 import spdxParse from 'spdx-expression-parse'
-import spdxList from 'spdx-license-list/full'
+import spdxList from 'spdx-license-list/full.js'
 
-import packageConfig from './package-config'
+import packageConfig from './package-config.mjs'
 
 const parsed = spdxParse(packageConfig.license)
 

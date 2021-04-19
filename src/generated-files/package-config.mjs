@@ -2,10 +2,10 @@ import { mapValues, pick, stubTrue } from '@dword-design/functions'
 import packageName from 'depcheck-package-name'
 import sortKeys from 'sort-keys'
 
-import config from '@/src/config'
-import packageConfig from '@/src/package-config'
+import config from '@/src/config.mjs'
+import packageConfig from '@/src/package-config.mjs'
 
-import gitInfo from './git-info'
+import gitInfo from './git-info.mjs'
 
 const commandNames = {
   checkUnknownFiles: true,
@@ -47,7 +47,7 @@ export default {
     commandNames
     |> mapValues((nothing, name) =>
       packageConfig.name === '@dword-design/base'
-        ? `rimraf dist && babel --config-file ${packageName`@dword-design/babel-config`} --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
+        ? `rimraf dist && babel --config-file ${packageName`@dword-design/babel-config`} --keep-file-extension --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && dist/cli.mjs ${name}`
         : `base ${name}`
     )
     |> sortKeys,

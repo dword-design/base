@@ -1,6 +1,6 @@
 import packageName from 'depcheck-package-name'
 
-import config from '@/src/config'
+import config from '@/src/config.mjs'
 
 export default {
   plugins: [

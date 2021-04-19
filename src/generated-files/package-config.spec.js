@@ -1,6 +1,6 @@
 import { endent } from '@dword-design/functions'
 import execa from 'execa'
-import { outputFile } from 'fs-extra'
+import fs from 'fs-extra'
 import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
@@ -35,7 +35,7 @@ export default {
     }),
   deploy: () =>
     withLocalTmpDir(async () => {
-      await outputFile(
+      await fs.outputFile(
         'package.json',
         endent`
       {
@@ -86,7 +86,7 @@ export default {
             author: 'foo bar',
             baseConfig: 'bar',
             bin: {
-              foo: './dist/cli.js',
+              foo: './dist/cli.mjs',
             },
             dependencies: {
               foo: '^1.0.0',
@@ -126,7 +126,7 @@ export default {
         author: 'Sebastian Landwehr <info@dword-design.de>',
         baseConfig: 'bar',
         bin: {
-          foo: './dist/cli.js',
+          foo: './dist/cli.mjs',
         },
         dependencies: {
           foo: '^1.0.0',
@@ -198,7 +198,7 @@ export default {
     }),
   private: () =>
     withLocalTmpDir(async () => {
-      await outputFile(
+      await fs.outputFile(
         'package.json',
         endent`
       {

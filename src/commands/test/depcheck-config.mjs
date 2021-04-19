@@ -1,3 +1,3 @@
-import config from '@/src/config'
+import config from '@/src/config.mjs'
 
 export default config.depcheckConfig

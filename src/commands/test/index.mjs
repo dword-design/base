@@ -5,7 +5,7 @@ import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import isCI from 'is-ci'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 
-import lint from '@/src/commands/lint'
+import lint from '@/src/commands/lint.mjs'
 
 export default async (pattern, options) => {
   options = { log: true, ...options }

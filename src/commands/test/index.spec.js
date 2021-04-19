@@ -67,7 +67,7 @@ export default {
   'bin outside dist': {
     files: {
       'package.json': JSON.stringify(
-        { bin: { foo: './src/cli.js' } },
+        { bin: { foo: './src/cli.mjs' } },
         undefined,
         2
       ),
