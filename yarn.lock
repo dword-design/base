@@ -1043,7 +1043,7 @@
   dependencies:
     chalk "^4.0.0"
 
-"@dword-design/babel-config@^1.0.0", "@dword-design/babel-config@^1.0.10":
+"@dword-design/babel-config@^1.0.0":
   version "1.8.4"
   resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-1.8.4.tgz#28d9f7db70668c5aeb754291165df67b0d0eb4a7"
   integrity sha512-+rHamvW4WhRgGjEvCmTPeqQ3C2eZ9QIVNT2kZLxpSnKZaq1owTsQfHjUMNPdzhGvAKOGVhFhhXLEaCaB7wuRyA==
@@ -1058,6 +1058,25 @@
     babel-plugin-module-resolver "^4.0.0"
     babel-plugin-transform-imports "^2.0.0"
     babel-plugin-wildcard dword-design/babel-plugin-wildcard#fork
+    depcheck-package-name "^1.0.0"
+    find-up "^5.0.0"
+    param-case "^3.0.3"
+
+"@dword-design/babel-config@^1.8.4":
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-1.8.5.tgz#1429f793561eb264aa8d43d81ce7d828603d2657"
+  integrity sha512-Z82Z5wP5BFeI93Aa1gByNh4G+S+Zje3bx8+u8jkCYhHZI14fT8wvQ6rVUCDky24oZ7ApxSY1AvoQnH7Z5sQPmg==
+  dependencies:
+    "@babel/plugin-proposal-optional-chaining" "^7.6.0"
+    "@babel/plugin-proposal-pipeline-operator" "^7.5.0"
+    "@babel/preset-env" "^7.6.3"
+    "@dword-design/functions" "^3.0.0"
+    "@vue/babel-preset-jsx" "github:dword-design/jsx#fork-babel-preset-jsx"
+    babel-plugin-add-module-exports "^1.0.2"
+    babel-plugin-macros "^3.0.1"
+    babel-plugin-module-resolver "^4.0.0"
+    babel-plugin-transform-imports "^2.0.0"
+    babel-plugin-wildcard "github:dword-design/babel-plugin-wildcard#fork"
     depcheck-package-name "^1.0.0"
     find-up "^5.0.0"
     param-case "^3.0.3"
@@ -1700,8 +1719,9 @@
     lodash.kebabcase "^4.1.1"
     svg-tags "^1.0.0"
 
-"@vue/babel-preset-jsx@github:dword-design/jsx#fork-babel-preset-jsx":
+"@vue/babel-preset-jsx@dword-design/jsx#fork-babel-preset-jsx", "@vue/babel-preset-jsx@github:dword-design/jsx#fork-babel-preset-jsx":
   version "1.1.2"
+  uid a73cb9961541a60a66b1b99a69a32e00bc66d336
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/a73cb9961541a60a66b1b99a69a32e00bc66d336"
   dependencies:
     "@vue/babel-helper-vue-jsx-merge-props" "^1.0.0"
@@ -2140,8 +2160,9 @@ babel-plugin-transform-imports@^2.0.0:
     "@babel/types" "^7.4"
     is-valid-path "^0.1.1"
 
-"babel-plugin-wildcard@github:dword-design/babel-plugin-wildcard#fork":
+babel-plugin-wildcard@dword-design/babel-plugin-wildcard#fork, "babel-plugin-wildcard@github:dword-design/babel-plugin-wildcard#fork":
   version "6.0.0"
+  uid "691d11923ee2dcf63e86f205b0a2c998883e3a3c"
   resolved "https://codeload.github.com/dword-design/babel-plugin-wildcard/tar.gz/691d11923ee2dcf63e86f205b0a2c998883e3a3c"
   dependencies:
     rimraf "^2.6.2"
@@ -3273,8 +3294,9 @@ end-of-stream@^1.1.0, end-of-stream@^1.4.1:
   dependencies:
     once "^1.4.0"
 
-"endent@github:dword-design/endent#fork":
+endent@dword-design/endent#fork:
   version "1.4.0"
+  uid be5433db67eaec07c6c9d00ba3bed2ed946dc664
   resolved "https://codeload.github.com/dword-design/endent/tar.gz/be5433db67eaec07c6c9d00ba3bed2ed946dc664"
   dependencies:
     dedent dword-design/dedent#fork
@@ -3397,8 +3419,9 @@ eslint-config-prettier@^8.0.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.1.0.tgz#4ef1eaf97afe5176e6a75ddfb57c335121abc5a6"
   integrity sha512-oKMhGv3ihGbCIimCAjqkdzx2Q+jthoqnXSP+d86M9tptwugycmTFdVR4IpLgq2c4SHifbwO90z2fQ8/Aio73yw==
 
-"eslint-import-resolver-babel-module@github:dword-design/eslint-import-resolver-babel-module#fork":
+eslint-import-resolver-babel-module@dword-design/eslint-import-resolver-babel-module#fork:
   version "5.1.2"
+  uid "97550c5b7626a9cf582ea2392b9749702a27473d"
   resolved "https://codeload.github.com/dword-design/eslint-import-resolver-babel-module/tar.gz/97550c5b7626a9cf582ea2392b9749702a27473d"
   dependencies:
     pkg-up "^2.0.0"
