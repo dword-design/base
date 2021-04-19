@@ -40,7 +40,7 @@
     "cz-conventional-changelog": "^3.1.0",
     "depcheck": "dword-design/depcheck#fork",
     "depcheck-detector-execa": "^1.2.1",
-    "depcheck-detector-package-name": "^1.0.0",
+    "depcheck-detector-package-name": "^1.0.8",
     "depcheck-package-name": "^1.0.0",
     "depcheck-parser-babel": "^1.2.0",
     "docker-multirun": "^1.0.3",
