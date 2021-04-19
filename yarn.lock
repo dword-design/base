@@ -1700,8 +1700,9 @@
     lodash.kebabcase "^4.1.1"
     svg-tags "^1.0.0"
 
-"@vue/babel-preset-jsx@github:dword-design/jsx#fork-babel-preset-jsx":
+"@vue/babel-preset-jsx@dword-design/jsx#fork-babel-preset-jsx":
   version "1.1.2"
+  uid a73cb9961541a60a66b1b99a69a32e00bc66d336
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/a73cb9961541a60a66b1b99a69a32e00bc66d336"
   dependencies:
     "@vue/babel-helper-vue-jsx-merge-props" "^1.0.0"
@@ -2140,8 +2141,9 @@ babel-plugin-transform-imports@^2.0.0:
     "@babel/types" "^7.4"
     is-valid-path "^0.1.1"
 
-"babel-plugin-wildcard@github:dword-design/babel-plugin-wildcard#fork":
+babel-plugin-wildcard@dword-design/babel-plugin-wildcard#fork:
   version "6.0.0"
+  uid "691d11923ee2dcf63e86f205b0a2c998883e3a3c"
   resolved "https://codeload.github.com/dword-design/babel-plugin-wildcard/tar.gz/691d11923ee2dcf63e86f205b0a2c998883e3a3c"
   dependencies:
     rimraf "^2.6.2"
@@ -3189,10 +3191,10 @@ dir-glob@^3.0.0, dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-docker-multirun@^1.0.3:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/docker-multirun/-/docker-multirun-1.0.12.tgz#efc3408dc7a100f10a2a341aafa535338ce95c63"
-  integrity sha512-TYdMEmBz7g+Isl4BhekwAKPaHYCZm8E6YJz7U/dykqstt+iH6tIBvC93MGP9lKdLTkDTY1Y8dRx6BbzXVoRKLg==
+docker-multirun@^1.0.12:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/docker-multirun/-/docker-multirun-1.0.13.tgz#589f0c67b3948468c02e49d9fa7dd674bc2cf4d4"
+  integrity sha512-e2vnVppiBxrM67KUPmUSs3nIsvky4k+ZKuABHStsduN4opM+nSKL/Ideeo56uFbge/uFKqSrrIPd8uj5MrLpOA==
   dependencies:
     "@dword-design/functions" "^3.0.0"
     execa "^5.0.0"
@@ -3273,8 +3275,9 @@ end-of-stream@^1.1.0, end-of-stream@^1.4.1:
   dependencies:
     once "^1.4.0"
 
-"endent@github:dword-design/endent#fork":
+endent@dword-design/endent#fork:
   version "1.4.0"
+  uid be5433db67eaec07c6c9d00ba3bed2ed946dc664
   resolved "https://codeload.github.com/dword-design/endent/tar.gz/be5433db67eaec07c6c9d00ba3bed2ed946dc664"
   dependencies:
     dedent dword-design/dedent#fork
@@ -3397,8 +3400,9 @@ eslint-config-prettier@^8.0.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.1.0.tgz#4ef1eaf97afe5176e6a75ddfb57c335121abc5a6"
   integrity sha512-oKMhGv3ihGbCIimCAjqkdzx2Q+jthoqnXSP+d86M9tptwugycmTFdVR4IpLgq2c4SHifbwO90z2fQ8/Aio73yw==
 
-"eslint-import-resolver-babel-module@github:dword-design/eslint-import-resolver-babel-module#fork":
+eslint-import-resolver-babel-module@dword-design/eslint-import-resolver-babel-module#fork:
   version "5.1.2"
+  uid "97550c5b7626a9cf582ea2392b9749702a27473d"
   resolved "https://codeload.github.com/dword-design/eslint-import-resolver-babel-module/tar.gz/97550c5b7626a9cf582ea2392b9749702a27473d"
   dependencies:
     pkg-up "^2.0.0"
