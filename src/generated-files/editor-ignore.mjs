@@ -1,6 +1,6 @@
 import { identity, sortBy } from '@dword-design/functions'
 
-import config from '@/src/config'
+import config from '@/src/config.mjs'
 
 import commonEditorIgnore from './common-editor-ignore.json'
 

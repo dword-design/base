@@ -5,9 +5,9 @@ import depcheckDetectorPackageName from 'depcheck-detector-package-name'
 import depcheckParserBabel from 'depcheck-parser-babel'
 import importCwd from 'import-cwd'
 
-import depcheckSpecialBaseConfig from './depcheck-special-base-config'
-import packageBaseConfig from './package-base-config'
-import packageConfig from './package-config'
+import depcheckSpecialBaseConfig from './depcheck-special-base-config.mjs'
+import packageBaseConfig from './package-base-config.mjs'
+import packageConfig from './package-config.mjs'
 
 const baseConfig = importCwd(packageBaseConfig.name)
 
@@ -20,7 +20,7 @@ export default {
   editorIgnore: [],
   gitignore: [],
   lint: identity,
-  nodeVersion: 12,
+  nodeVersion: 14,
   preDeploySteps: [],
   prepare: identity,
   readmeInstallString: endent`

@@ -7,7 +7,7 @@ import {
   stubTrue,
 } from '@dword-design/functions'
 import execa from 'execa'
-import { readFile } from 'fs-extra'
+import fs from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
 import withLocalTmpDir from 'with-local-tmp-dir'
@@ -119,8 +119,8 @@ export default {
         src: true,
         'yarn.lock': true,
       })
-      expect(await readFile('README.md', 'utf8')).toMatchSnapshot(this)
-      expect(await readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
+      expect(await fs.readFile('README.md', 'utf8')).toMatchSnapshot(this)
+      expect(await fs.readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
     })
   },
 }

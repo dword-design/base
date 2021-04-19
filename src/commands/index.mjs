@@ -1,13 +1,13 @@
 import { mapValues } from '@dword-design/functions'
 
-import config from '@/src/config'
+import config from '@/src/config.mjs'
 
-import checkUnknownFiles from './check-unknown-files'
-import commit from './commit'
-import lint from './lint'
-import prepare from './prepare'
-import test from './test'
-import testDocker from './test-docker'
+import checkUnknownFiles from './check-unknown-files/index.mjs'
+import commit from './commit.mjs'
+import lint from './lint.mjs'
+import prepare from './prepare.mjs'
+import test from './test/index.mjs'
+import testDocker from './test-docker.mjs'
 
 export default {
   checkUnknownFiles: {

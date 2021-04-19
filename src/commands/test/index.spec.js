@@ -13,7 +13,7 @@ import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
-import self from '.'
+import self from './index.mjs'
 
 const runTest = config => {
   config = { files: {}, ...config }
@@ -67,7 +67,7 @@ export default {
   'bin outside dist': {
     files: {
       'package.json': JSON.stringify(
-        { bin: { foo: './src/cli.js' } },
+        { bin: { foo: './src/cli.mjs' } },
         undefined,
         2
       ),

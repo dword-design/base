@@ -1,14 +1,14 @@
 import { mapValues } from '@dword-design/functions'
 import execa from 'execa'
-import { outputFile } from 'fs-extra'
+import fs from 'fs-extra'
 import pEvent from 'p-event'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
-import self from './commit'
+import self from './commit.mjs'
 
 const runTest = options => () =>
   withLocalTmpDir(async () => {
-    await outputFile('foo.txt', '')
+    await fs.outputFile('foo.txt', '')
     await execa.command('git init')
     await execa.command('git config user.email "foo@bar.de"')
     await execa.command('git config user.name "foo"')

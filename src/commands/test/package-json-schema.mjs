@@ -32,5 +32,5 @@ export default {
     },
     version: { type: 'string' },
   },
-  type: 'object',
+  type: 'string',
 }

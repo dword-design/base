@@ -39,7 +39,7 @@ export default {
       editorIgnore: ['foo'],
       gitignore: ['foo'],
       lint: x => x + 3,
-      nodeVersion: 10,
+      nodeVersion: 2,
       packageBaseConfig: {
         main: 'dist/index.scss',
       },
@@ -61,7 +61,7 @@ export default {
         editorIgnore: ['foo'],
         gitignore: ['foo'],
         name: 'base-config-foo',
-        nodeVersion: 10,
+        nodeVersion: 2,
         packageBaseConfig: {
           main: 'dist/index.scss',
         },
@@ -112,7 +112,7 @@ export default {
         editorIgnore: [],
         gitignore: [],
         name: 'base-config-foo',
-        nodeVersion: 12,
+        nodeVersion: 14,
         preDeploySteps: [],
         readmeInstallString: endent`
           ## Install

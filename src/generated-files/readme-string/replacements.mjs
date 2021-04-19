@@ -1,9 +1,9 @@
 import { compact, endent, join } from '@dword-design/functions'
 import spdxParse from 'spdx-expression-parse'
-import spdxList from 'spdx-license-list/full'
+import spdxList from 'spdx-license-list/full.js'
 
-import config from '@/src/config'
-import packageConfig from '@/src/generated-files/package-config'
+import config from '@/src/config.mjs'
+import packageConfig from '@/src/generated-files/package-config.mjs'
 
 export default {
   badges: () =>

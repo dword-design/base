@@ -1,7 +1,7 @@
 import ci from '@dword-design/ci/package.json'
 import { first, keys, map } from '@dword-design/functions'
 
-import config from '@/src/config'
+import config from '@/src/config.mjs'
 
 const bin = ci.bin |> keys |> first
 

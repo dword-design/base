@@ -1,5 +1,5 @@
 import proxyquire from '@dword-design/proxyquire'
-import { outputFile } from 'fs-extra'
+import fs from 'fs-extra'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
@@ -7,7 +7,7 @@ export default {
     expect(
       proxyquire('.', {
         '../../config': {
-          nodeVersion: 12,
+          nodeVersion: 14,
           useJobMatrix: true,
         },
       })
@@ -17,21 +17,21 @@ export default {
     expect(
       proxyquire('.', {
         '../../config': {
-          nodeVersion: 12,
+          nodeVersion: 14,
         },
       })
     ).toMatchSnapshot(this)
   },
   'test environment variables': function () {
     return withLocalTmpDir(async () => {
-      await outputFile(
+      await fs.outputFile(
         '.env.schema.json',
         { bar: {}, foo: {} } |> JSON.stringify
       )
       expect(
         proxyquire('.', {
           '../../config': {
-            nodeVersion: 12,
+            nodeVersion: 14,
           },
           './strategies/simple': proxyquire('./strategies/simple', {
             '../steps/test': proxyquire('./steps/test', {}),
@@ -44,7 +44,7 @@ export default {
     expect(
       proxyquire('.', {
         '../../config': {
-          nodeVersion: 12,
+          nodeVersion: 14,
           testInContainer: true,
           useJobMatrix: true,
         },

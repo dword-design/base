@@ -3,7 +3,7 @@ import proxyquire from '@dword-design/proxyquire'
 import outputFiles from 'output-files'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
-import UnknownFilesError from './unknown-files-error'
+import UnknownFilesError from './unknown-files-error.mjs'
 
 const runTest = config => {
   config = {

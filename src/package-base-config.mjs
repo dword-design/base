@@ -1,7 +1,7 @@
 import packageName from 'depcheck-package-name'
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name'
 
-import packageConfig from './package-config'
+import packageConfig from './package-config.mjs'
 
 const packageBaseConfig =
   typeof packageConfig.baseConfig === 'string'

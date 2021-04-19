@@ -1,10 +1,10 @@
 import { map } from '@dword-design/functions'
 
-import cancelExistingSteps from '@/src/generated-files/github-workflow/steps/cancel-existing'
-import checkUnknownFilesSteps from '@/src/generated-files/github-workflow/steps/check-unknown-files'
-import coverageSteps from '@/src/generated-files/github-workflow/steps/coverage'
-import releaseSteps from '@/src/generated-files/github-workflow/steps/release'
-import testSteps from '@/src/generated-files/github-workflow/steps/test'
+import cancelExistingSteps from '@/src/generated-files/github-workflow/steps/cancel-existing.mjs'
+import checkUnknownFilesSteps from '@/src/generated-files/github-workflow/steps/check-unknown-files.mjs'
+import coverageSteps from '@/src/generated-files/github-workflow/steps/coverage.mjs'
+import releaseSteps from '@/src/generated-files/github-workflow/steps/release.mjs'
+import testSteps from '@/src/generated-files/github-workflow/steps/test.mjs'
 
 export default () => ({
   'cancel-existing': {
@@ -27,7 +27,7 @@ export default () => ({
       {
         uses: 'actions/setup-node@v2',
         with: {
-          'node-version': 12,
+          'node-version': 14,
         },
       },
       { run: 'git config --global user.email "actions@github.com"' },
@@ -53,17 +53,17 @@ export default () => ({
       ...testSteps,
       ...(coverageSteps
         |> map(step => ({
-          if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
+          if: "matrix.os == 'ubuntu-latest' && matrix.node == 14",
           ...step,
         }))),
     ],
     strategy: {
       matrix: {
         exclude: [
-          { node: 10, os: 'macos-latest' },
-          { node: 10, os: 'windows-latest' },
+          { node: 12, os: 'macos-latest' },
+          { node: 12, os: 'windows-latest' },
         ],
-        node: [10, 12],
+        node: [12, 14],
         os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
       },
     },

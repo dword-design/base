@@ -1,10 +1,10 @@
 import { endent, property } from '@dword-design/functions'
 import execa from 'execa'
-import { readFile } from 'fs-extra'
+import fs from 'fs-extra'
 import outputFiles from 'output-files'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
-import self from './test-docker'
+import self from './test-docker.mjs'
 
 export default {
   env: () =>
@@ -77,7 +77,7 @@ export default {
         `,
       })
       await self('', { grep: 'foo bar baz', log: false })
-      expect(await readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz')
+      expect(await fs.readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz')
     }),
   pattern: () =>
     withLocalTmpDir(async () => {
@@ -144,7 +144,7 @@ export default {
   works: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        'is-docker.js': await readFile(require.resolve('is-docker'), 'utf8'),
+        'is-docker.js': await fs.readFile(require.resolve('is-docker'), 'utf8'),
         'package.json': JSON.stringify(
           {
             name: 'foo',

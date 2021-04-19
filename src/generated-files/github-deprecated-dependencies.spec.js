@@ -1,4 +1,4 @@
-import self from './github-deprecated-dependencies'
+import self from './github-deprecated-dependencies.mjs'
 
 export default {
   valid() {
