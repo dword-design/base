@@ -13,7 +13,7 @@ import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
-import self from '.'
+import self from './index.mjs'
 
 const runTest = config => {
   config = { files: {}, ...config }
