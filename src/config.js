@@ -20,7 +20,7 @@ export default {
   editorIgnore: [],
   gitignore: [],
   lint: identity,
-  nodeVersion: 12,
+  nodeVersion: 14,
   preDeploySteps: [],
   prepare: identity,
   readmeInstallString: endent`
