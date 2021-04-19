@@ -1,3 +1,10 @@
+## [7.13.3](https://github.com/dword-design/base/compare/v7.13.2...v7.13.3) (2021-04-19)
+
+
+### Bug Fixes
+
+* keep unedited files open in gitpod ([#317](https://github.com/dword-design/base/issues/317)) ([8465ee6](https://github.com/dword-design/base/commit/8465ee645660abc79f1a60447e55b51f22def43b))
+
 ## [7.13.2](https://github.com/dword-design/base/compare/v7.13.1...v7.13.2) (2021-04-18)
 
 
