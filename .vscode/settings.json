@@ -1,4 +1,6 @@
 {
+  "editor.tabSize": 2,
+  "workbench.editor.enablePreview": false,
   "files.exclude": {
     ".babelrc.json": true,
     ".commitlintrc.json": true,
