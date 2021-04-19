@@ -29,7 +29,7 @@
     "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",
     "@dword-design/babel-config": "^1.0.10",
-    "@dword-design/base-config-node": "^1.6.0",
+    "@dword-design/base-config-node": "^1.9.9",
     "@dword-design/ci": "^2.0.0",
     "@dword-design/functions": "^3.0.0",
     "@semantic-release/changelog": "^5.0.0",
