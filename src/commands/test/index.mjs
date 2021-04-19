@@ -4,18 +4,27 @@ import execa from 'execa'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import isCI from 'is-ci'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
+import Ajv from 'ajv'
+import packageJsonSchema from './package-json-schema.mjs'
 
 import lint from '@/src/commands/lint.mjs'
+
+const ajv = new Ajv()
+const validate = ajv.compile(packageJsonSchema)
 
 export default async (pattern, options) => {
   options = { log: true, ...options }
   if (!pattern) {
     try {
-      await execa(
+      const isValid = validate('package.json')
+      if (!isValid) {
+        throw new Error(validate.errors)
+      }
+      /*await execa(
         'ajv',
         [
           '-s',
-          require.resolve('./package-json-schema'),
+          new URL('./package-json-schema.mjs', import.meta.url).pathname,
           '-d',
           'package.json',
           '--allow-union-types',
@@ -23,7 +32,7 @@ export default async (pattern, options) => {
           'text',
         ],
         { all: true }
-      )
+      )*/
     } catch (error) {
       throw new Error(error.all)
     }
