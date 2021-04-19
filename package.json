@@ -84,7 +84,7 @@
     "rimraf": "^3.0.0",
     "sharp": "^0.28.0",
     "stealthy-require": "^1.1.1",
-    "with-local-tmp-dir": "^2.1.2"
+    "with-local-tmp-dir": "^2.2.18"
   },
   "publishConfig": {
     "access": "public"
