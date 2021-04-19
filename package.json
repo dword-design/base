@@ -50,7 +50,7 @@
     "expect-mocha-snapshot": "dword-design/expect-mocha-snapshot#fork",
     "find-up": "^5.0.0",
     "fs-extra": "^9.0.0",
-    "get-projectz-readme-section-regex": "^2.0.0",
+    "get-projectz-readme-section-regex": "^2.0.10",
     "globby": "^11.0.1",
     "hosted-git-info": "^4.0.0",
     "husky": "^4.2.5",
