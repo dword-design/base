@@ -37,10 +37,7 @@ export default {
   '.github/workflows/deprecated-dependencies.yml':
     sortKeys(githubDeprecatedDependenciesConfig, { deep: true })
     |> yaml.stringify,
-  ...(config.syncMetadata && {
-    '.github/workflows/sync-metadata.yml':
-      sortKeys(githubSyncMetadataConfig, { deep: true }) |> yaml.stringify,
-  }),
+  '.github/workflows/sync-metadata.yml': sortKeys(githubSyncMetadataConfig, { deep: true }) |> yaml.stringify,
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
   '.gitpod.yml': gitpodConfig |> yaml.stringify,
