@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`github-sync-metadata do not sync keywords 1`] = `
+Object {
+  "jobs": Object {
+    "build": Object {
+      "runs-on": "ubuntu-latest",
+      "steps": Array [
+        Object {
+          "uses": "actions/checkout@v2",
+        },
+        Object {
+          "uses": "dword-design/action-sync-node-meta@fork",
+          "with": Object {
+            "approve": false,
+            "commitMessagePrefix": "fix:",
+            "githubToken": "\${{ secrets.GITHUB_TOKEN }}",
+            "syncKeywords": false,
+          },
+        },
+      ],
+    },
+  },
+  "name": "sync-metadata",
+  "on": Object {
+    "schedule": Array [
+      Object {
+        "cron": "0 5 * * *",
+      },
+    ],
+    "workflow_dispatch": Object {},
+  },
+}
+`;
+
+exports[`github-sync-metadata valid 1`] = `
+Object {
+  "jobs": Object {
+    "build": Object {
+      "runs-on": "ubuntu-latest",
+      "steps": Array [
+        Object {
+          "uses": "actions/checkout@v2",
+        },
+        Object {
+          "uses": "dword-design/action-sync-node-meta@fork",
+          "with": Object {
+            "approve": false,
+            "commitMessagePrefix": "fix:",
+            "githubToken": "\${{ secrets.GITHUB_TOKEN }}",
+            "syncKeywords": false,
+          },
+        },
+      ],
+    },
+  },
+  "name": "sync-metadata",
+  "on": Object {
+    "schedule": Array [
+      Object {
+        "cron": "0 5 * * *",
+      },
+    ],
+    "workflow_dispatch": Object {},
+  },
+}
+`;

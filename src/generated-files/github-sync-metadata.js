@@ -1,3 +1,5 @@
+import config from '@/src/config'
+
 export default {
   jobs: {
     build: {
@@ -8,6 +10,7 @@ export default {
           uses: 'dword-design/action-sync-node-meta@fork',
           with: {
             approve: false,
+            ...(!config.syncKeywords && { syncKeywords: false }),
             commitMessagePrefix: 'fix:',
             githubToken: '${{ secrets.GITHUB_TOKEN }}',
           },

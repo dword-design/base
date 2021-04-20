@@ -9,7 +9,7 @@ const packageBaseConfig =
     : packageConfig.baseConfig || {}
 
 export default {
-  syncMetadata: true,
+  syncKeywords: true,
   ...packageBaseConfig,
   name: packageBaseConfig.name
     ? pluginNameToPackageName(packageBaseConfig.name, 'base-config')
