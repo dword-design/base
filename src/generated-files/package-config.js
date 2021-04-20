@@ -23,6 +23,7 @@ export default {
       'name',
       'private',
       'deploy',
+      'description',
       'baseConfig',
       'bin',
       'keywords',
@@ -32,7 +33,6 @@ export default {
       'publishConfig',
       'types',
     ])),
-  description: packageConfig.description || '',
   funding: 'https://www.buymeacoffee.com/dword',
   publishConfig: {
     access: 'public',

@@ -57,7 +57,6 @@ export default {
       )
       expect(packageConfig).toEqual({
         author: 'Sebastian Landwehr <info@dword-design.de>',
-        description: '',
         files: ['dist'],
         funding: 'https://www.buymeacoffee.com/dword',
         license: 'MIT',
@@ -167,7 +166,6 @@ export default {
       )
       expect(packageConfig).toEqual({
         author: 'Sebastian Landwehr <info@dword-design.de>',
-        description: '',
         files: ['dist'],
         funding: 'https://www.buymeacoffee.com/dword',
         license: 'MIT',
@@ -227,7 +225,6 @@ export default {
       )
       await expect(packageConfig).toEqual({
         author: 'Sebastian Landwehr <info@dword-design.de>',
-        description: '',
         files: ['dist'],
         funding: 'https://www.buymeacoffee.com/dword',
         license: 'MIT',
