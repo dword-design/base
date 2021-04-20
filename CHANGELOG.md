@@ -1,3 +1,11 @@
+## [7.13.4](https://github.com/dword-design/base/compare/v7.13.3...v7.13.4) (2021-04-20)
+
+
+### Bug Fixes
+
+* remove default description ([#319](https://github.com/dword-design/base/issues/319)) ([bfc0c51](https://github.com/dword-design/base/commit/bfc0c51705548f4d73d0fc0f424ce24f09eab5eb))
+* rename syncMetadata to syncKeywords ([#320](https://github.com/dword-design/base/issues/320)) ([0daac20](https://github.com/dword-design/base/commit/0daac20d06154c6d2fedd74ad127bf7689213a8b))
+
 ## [7.13.3](https://github.com/dword-design/base/compare/v7.13.2...v7.13.3) (2021-04-19)
 
 
