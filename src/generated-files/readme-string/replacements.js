@@ -93,7 +93,7 @@ export default {
         }
     </p>
   `,
-  description: () => packageConfig.description,
+  description: () => packageConfig.description || '',
   install: () => config.readmeInstallString,
   license: () =>
     [
