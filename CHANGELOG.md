@@ -1,3 +1,11 @@
+## [7.13.5](https://github.com/dword-design/base/compare/v7.13.4...v7.13.5) (2021-04-26)
+
+
+### Bug Fixes
+
+* update dependency with-local-tmp-dir to v3 ([#322](https://github.com/dword-design/base/issues/322)) ([a96876e](https://github.com/dword-design/base/commit/a96876e464b7d95e1e72de7336682563a96e02fa))
+* updated package.json[keywords] ([#323](https://github.com/dword-design/base/issues/323)) ([291f1d3](https://github.com/dword-design/base/commit/291f1d3bee18e9b8c6219434a8c552a6df7b6a7e))
+
 ## [7.13.4](https://github.com/dword-design/base/compare/v7.13.3...v7.13.4) (2021-04-20)
 
 
