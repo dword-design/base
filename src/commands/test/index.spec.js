@@ -8,8 +8,10 @@ import {
 } from '@dword-design/functions'
 import proxyquire from '@dword-design/proxyquire'
 import packageName from 'depcheck-package-name'
+import { readFile } from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
+import P from 'path'
 import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
@@ -188,6 +190,34 @@ export default {
       expect(self('', { log: false })).rejects.toThrow(
         'The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL'
       ),
+  },
+  'multiple snapshots': {
+    files: {
+      'index.spec.js': endent`
+        export default {
+          works: function () {
+            expect('foo').toMatchSnapshot(this)
+            expect('bar').toMatchSnapshot(this)
+          },
+        }
+      `,
+    },
+    test: async () => {
+      await self('', { log: false })
+      expect(await globby('*', { cwd: '__snapshots__' })).toEqual([
+        'index.spec.js.snap',
+      ])
+      expect(
+        await readFile(P.join('__snapshots__', 'index.spec.js.snap'), 'utf8')
+      ).toEqual(endent`
+        // Jest Snapshot v1, https://goo.gl/fbAQLP
+
+        exports[\`index works 1\`] = \`"foo"\`;
+
+        exports[\`index works 2\`] = \`"bar"\`;
+
+      `)
+    },
   },
   node_modules: {
     files: {
