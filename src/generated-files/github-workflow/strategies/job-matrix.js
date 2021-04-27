@@ -27,7 +27,7 @@ export default () => ({
       {
         uses: 'actions/setup-node@v2',
         with: {
-          'node-version': 12,
+          'node-version': 14,
         },
       },
       { run: 'git config --global user.email "actions@github.com"' },
@@ -53,17 +53,17 @@ export default () => ({
       ...testSteps,
       ...(coverageSteps
         |> map(step => ({
-          if: "matrix.os == 'ubuntu-latest' && matrix.node == 12",
+          if: "matrix.os == 'ubuntu-latest' && matrix.node == 14",
           ...step,
         }))),
     ],
     strategy: {
       matrix: {
         exclude: [
-          { node: 10, os: 'macos-latest' },
-          { node: 10, os: 'windows-latest' },
+          { node: 12, os: 'macos-latest' },
+          { node: 12, os: 'windows-latest' },
         ],
-        node: [10, 12],
+        node: [12, 14],
         os: ['macos-latest', 'windows-latest', 'ubuntu-latest'],
       },
     },

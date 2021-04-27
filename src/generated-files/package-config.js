@@ -42,6 +42,9 @@ export default {
   author: 'Sebastian Landwehr <info@dword-design.de>',
   files: ['dist'],
   license: 'MIT',
+  engines: {
+    "node": ">=12"
+  },
   ...config.packageConfig,
   scripts:
     commandNames
