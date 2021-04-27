@@ -17,7 +17,7 @@ export default {
   on: {
     push: {
       branches: ['master'],
-      paths: ['.github/labels.yml'],
+      paths: ['.github/labels.yml', '.github/workflows/sync-labels.yml'],
     },
   },
 }
