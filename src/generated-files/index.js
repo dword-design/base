@@ -22,6 +22,8 @@ import readmeString from './readme-string'
 import releaseConfig from './release'
 import renovateConfig from './renovate'
 import vscodeConfig from './vscode'
+import githubLabelsConfig from './github-labels'
+import githubSyncLabelsConfig from './github-sync-labels'
 
 export default {
   '.babelrc.json': babelConfig |> jsonToString({ indent: 2 }),
@@ -37,6 +39,10 @@ export default {
     |> yaml.stringify,
   '.github/workflows/sync-metadata.yml':
     sortKeys(githubSyncMetadataConfig, { deep: true }) |> yaml.stringify,
+  '.github/workflows/sync-labels.yml':
+    sortKeys(githubSyncLabelsConfig, { deep: true }) |> yaml.stringify,
+  '.github/labels.yml':
+    sortKeys(githubLabelsConfig, { deep: true }) |> yaml.stringify,
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
   '.gitpod.yml': gitpodConfig |> yaml.stringify,
