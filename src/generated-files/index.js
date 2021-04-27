@@ -10,6 +10,8 @@ import editorconfigConfig from './editorconfig'
 import gitattributesConfig from './gitattributes'
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies'
 import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template'
+import githubLabelsConfig from './github-labels'
+import githubSyncLabelsConfig from './github-sync-labels'
 import githubSyncMetadataConfig from './github-sync-metadata'
 import githubWorkflowConfig from './github-workflow'
 import gitignoreConfig from './gitignore'
@@ -22,8 +24,6 @@ import readmeString from './readme-string'
 import releaseConfig from './release'
 import renovateConfig from './renovate'
 import vscodeConfig from './vscode'
-import githubLabelsConfig from './github-labels'
-import githubSyncLabelsConfig from './github-sync-labels'
 
 export default {
   '.babelrc.json': babelConfig |> jsonToString({ indent: 2 }),
@@ -32,17 +32,17 @@ export default {
   '.editorconfig': editorconfigConfig,
   '.gitattributes': gitattributesConfig,
   '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md': deprecatedDependenciesIssueTemplate,
+  '.github/labels.yml':
+    sortKeys(githubLabelsConfig, { deep: true }) |> yaml.stringify,
   '.github/workflows/build.yml':
     sortKeys(githubWorkflowConfig, { deep: true }) |> yaml.stringify,
   '.github/workflows/deprecated-dependencies.yml':
     sortKeys(githubDeprecatedDependenciesConfig, { deep: true })
     |> yaml.stringify,
-  '.github/workflows/sync-metadata.yml':
-    sortKeys(githubSyncMetadataConfig, { deep: true }) |> yaml.stringify,
   '.github/workflows/sync-labels.yml':
     sortKeys(githubSyncLabelsConfig, { deep: true }) |> yaml.stringify,
-  '.github/labels.yml':
-    sortKeys(githubLabelsConfig, { deep: true }) |> yaml.stringify,
+  '.github/workflows/sync-metadata.yml':
+    sortKeys(githubSyncMetadataConfig, { deep: true }) |> yaml.stringify,
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
   '.gitpod.yml': gitpodConfig |> yaml.stringify,

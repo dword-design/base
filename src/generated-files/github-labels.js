@@ -1,12 +1,18 @@
-import { map, mapValues, sortBy, values, flatten } from '@dword-design/functions'
+import {
+  flatten,
+  map,
+  mapValues,
+  sortBy,
+  values,
+} from '@dword-design/functions'
 
 export default {
-  'C2E0C6': ['active', 'blocked', 'maintenance', 'waiting-for'],
-  'BFD4F2': ['blocking', 'breaking'],
-  'F9D0C4': ['important'],
-  'EDEDED': ['released', 'semantic-release'],
+  BFD4F2: ['blocking', 'breaking'],
+  C2E0C6: ['active', 'blocked', 'maintenance', 'waiting-for'],
+  EDEDED: ['released', 'semantic-release'],
+  F9D0C4: ['important'],
 }
-  |> mapValues((names, color) => names |> map(name => ({ name, color })))
+  |> mapValues((names, color) => names |> map(name => ({ color, name })))
   |> values
   |> flatten
   |> sortBy('name')

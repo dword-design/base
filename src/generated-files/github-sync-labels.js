@@ -1,5 +1,3 @@
-import config from '@/src/config'
-
 export default {
   jobs: {
     build: {
@@ -7,10 +5,10 @@ export default {
       steps: [
         { uses: 'actions/checkout@v2' },
         {
-          uses: 'micnncim/action-label-syncer@v1',
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
           },
+          uses: 'micnncim/action-label-syncer@v1',
           with: {
             manifest: '.github/labels.yml',
           },
@@ -21,7 +19,7 @@ export default {
   name: 'sync-labels',
   on: {
     push: {
-      branches: ['master']
+      branches: ['master'],
     },
   },
 }
