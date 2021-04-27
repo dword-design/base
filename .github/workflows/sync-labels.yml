@@ -10,4 +10,6 @@ jobs:
           manifest: .github/labels.yml
 name: sync-labels
 on:
-  pull_request: {}
+  push:
+    branches:
+      - master

@@ -20,6 +20,8 @@ export default {
   },
   name: 'sync-labels',
   on: {
-    pull_request: {},
+    push: {
+      branches: ['master']
+    },
   },
 }
