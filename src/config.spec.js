@@ -53,6 +53,7 @@ export default {
         config |> omit(['commands', 'depcheckConfig', 'prepare', 'lint'])
       ).toEqual({
         allowedMatches: [],
+        coverageFileExtensions: [],
         deployAssets: [{ label: 'Foo', path: 'foo.js' }],
         deployEnv: {
           FOO: '${{ secrets.FOO }}',
@@ -106,6 +107,7 @@ export default {
       expect(config |> omit(['depcheckConfig', 'prepare', 'lint'])).toEqual({
         allowedMatches: [],
         commands: {},
+        coverageFileExtensions: [],
         deployAssets: [],
         deployEnv: {},
         deployPlugins: [],
