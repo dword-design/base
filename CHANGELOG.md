@@ -1,3 +1,10 @@
+## [7.14.3](https://github.com/dword-design/base/compare/v7.14.2...v7.14.3) (2021-04-27)
+
+
+### Bug Fixes
+
+* use snapshot testing ([b3d477e](https://github.com/dword-design/base/commit/b3d477e8ba4abf9b4194a2b988dab7d6e486946d))
+
 ## [7.14.2](https://github.com/dword-design/base/compare/v7.14.1...v7.14.2) (2021-04-27)
 
 
