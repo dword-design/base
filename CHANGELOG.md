@@ -1,3 +1,10 @@
+## [7.14.1](https://github.com/dword-design/base/compare/v7.14.0...v7.14.1) (2021-04-27)
+
+
+### Bug Fixes
+
+* remove src from allowed matches ([#331](https://github.com/dword-design/base/issues/331)) ([69cf346](https://github.com/dword-design/base/commit/69cf3462d6dbfab7e897cf87467fa00a149c9810))
+
 # [7.14.0](https://github.com/dword-design/base/compare/v7.13.6...v7.14.0) (2021-04-27)
 
 
