@@ -9,9 +9,6 @@ export default {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
           },
           uses: 'micnncim/action-label-syncer@v1',
-          with: {
-            manifest: '.github/labels.yml',
-          },
         },
       ],
     },
@@ -20,6 +17,7 @@ export default {
   on: {
     push: {
       branches: ['master'],
+      paths: ['.github/labels.yml'],
     },
   },
 }
