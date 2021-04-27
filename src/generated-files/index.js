@@ -7,6 +7,7 @@ import babelConfig from './babel'
 import commitizenConfig from './commitizen'
 import commitlintConfig from './commitlint'
 import editorconfigConfig from './editorconfig'
+import eslintConfig from './eslint'
 import gitattributesConfig from './gitattributes'
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies'
 import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template'
@@ -30,6 +31,7 @@ export default {
   '.commitlintrc.json': commitlintConfig |> jsonToString({ indent: 2 }),
   '.cz.json': commitizenConfig,
   '.editorconfig': editorconfigConfig,
+  '.eslintrc.json': `${eslintConfig |> jsonToString({ indent: 2 })}\n`,
   '.gitattributes': gitattributesConfig,
   '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md': deprecatedDependenciesIssueTemplate,
   '.github/labels.yml':
