@@ -1,3 +1,10 @@
+## [7.14.2](https://github.com/dword-design/base/compare/v7.14.1...v7.14.2) (2021-04-27)
+
+
+### Bug Fixes
+
+* add eslint ([#333](https://github.com/dword-design/base/issues/333)) ([e1bf109](https://github.com/dword-design/base/commit/e1bf109237b5d12235e25285c1e60d342ce59534))
+
 ## [7.14.1](https://github.com/dword-design/base/compare/v7.14.0...v7.14.1) (2021-04-27)
 
 
