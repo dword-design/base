@@ -1,3 +1,10 @@
+# [7.14.0](https://github.com/dword-design/base/compare/v7.13.6...v7.14.0) (2021-04-27)
+
+
+### Features
+
+* sync labels centrally ([#330](https://github.com/dword-design/base/issues/330)) ([70872b0](https://github.com/dword-design/base/commit/70872b0beaffb59082fdeae623ec328e6945cfb3))
+
 ## [7.13.6](https://github.com/dword-design/base/compare/v7.13.5...v7.13.6) (2021-04-27)
 
 
