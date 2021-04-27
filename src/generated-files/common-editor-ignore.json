@@ -3,6 +3,7 @@
   ".commitlintrc.json",
   ".cz.json",
   ".editorconfig",
+  ".eslintrc.json",
   ".gitattributes",
   ".github",
   ".gitignore",

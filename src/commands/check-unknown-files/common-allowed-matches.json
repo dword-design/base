@@ -2,6 +2,7 @@
   "__image_snapshots__",
   "__snapshots__",
   ".env.schema.json",
+  ".eslintrc.json",
   ".git",
   "CHANGELOG.md",
   "types.d.ts",
