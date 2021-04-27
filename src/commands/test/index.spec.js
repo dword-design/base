@@ -13,23 +13,23 @@ import globby from 'globby'
 import outputFiles from 'output-files'
 import P from 'path'
 import stealthyRequire from 'stealthy-require'
+import unifyMochaOutput from 'unify-mocha-output'
 import withLocalTmpDir from 'with-local-tmp-dir'
-
-import self from '.'
 
 const runTest = config => {
   config = { files: {}, ...config }
 
-  return () =>
-    withLocalTmpDir(async () => {
+  return function () {
+    return withLocalTmpDir(async () => {
       await outputFiles(config.files)
 
       const prepare = stealthyRequire(require.cache, () =>
         require('../prepare')
       )
       await prepare()
-      await config.test()
+      await config.test.call(this)
     })
+  }
 }
 
 export default {
@@ -38,17 +38,22 @@ export default {
       '.nuxt/index.js': 'export default 1',
       'src/index.spec.js': "import '@/.nuxt'",
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         /SyntaxError: Unexpected token '?export'?/
-      ),
+      )
+    },
   },
   '.nuxt postfix': {
     files: {
       '.nuxt-foo/index.js': 'export default 1',
       'src/index.spec.js': "import '@/.nuxt-foo'",
     },
-    test: () => self('', { log: false }),
+    test: async () => {
+      const self = proxyquire('.', {})
+      await self()
+    },
   },
   assertion: {
     files: {
@@ -61,10 +66,12 @@ export default {
       `,
       },
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         'Error: expect(received).toEqual(expected)'
-      ),
+      )
+    },
   },
   'bin outside dist': {
     files: {
@@ -74,20 +81,80 @@ export default {
         2
       ),
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/bin/foo must match pattern "^\\.\\/dist\\/"'
-      ),
+      )
+    },
   },
   'config file errors': {
     files: {
       'package.json': JSON.stringify({ name: '_foo' }, undefined, 2),
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow('package.json invalid'),
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow('package.json invalid')
+    },
+  },
+  'coverage file extension': {
+    files: {
+      'index.foo': '',
+      'index.spec.js': endent`
+        import { outputFile } from 'fs-extra'
+        import P from 'path'
+
+        const fooPath = P.resolve('index.foo')
+
+        export default {
+          works: () => outputFile(
+            '.nyc_output/foo.js',
+            JSON.stringify({
+              [fooPath]: {
+                all: true,
+                b: {},
+                branchMap: {},
+                f: {},
+                fnMap: {},
+                path: fooPath,
+                s: {
+                  0: 0,
+                },
+                statementMap: {
+                  0: {
+                    end: {
+                      column: 0,
+                      line: 0,
+                    },
+                    start: {
+                      column: 0,
+                      line: 0,
+                    },
+                  },
+                },
+              },
+            })
+          )
+        }
+      `,
+      'package.json': JSON.stringify({
+        devDependencies: { 'fs-extra': '^1.0.0' },
+      }),
+    },
+    async test() {
+      const self = proxyquire('.', {
+        '../../config': { coverageFileExtensions: ['.foo'] },
+      })
+      expect(
+        self() |> await |> property('all') |> unifyMochaOutput
+      ).toMatchSnapshot(this)
+    },
   },
   empty: {
-    test: () => self('', { log: false }),
+    test: async () => {
+      const self = proxyquire('.', {})
+      await self()
+    },
   },
   grep: {
     files: {
@@ -102,8 +169,9 @@ export default {
       },
     },
     test: async () => {
-      const output =
-        self('', { grep: 'foo', log: false }) |> await |> property('all')
+      const self = proxyquire('.', {})
+
+      const output = self('', { grep: 'foo' }) |> await |> property('all')
       expect(output).not.toMatch('run bar')
       expect(output).toMatch('run foo')
     },
@@ -136,7 +204,8 @@ export default {
       }),
     },
     test: async () => {
-      await self('', { log: false })
+      const self = proxyquire('.', {})
+      await self()
       expect(await globby('*', { cwd: '__image_snapshots__' })).toEqual([
         'index-spec-js-index-works-1-snap.png',
       ])
@@ -146,34 +215,41 @@ export default {
     files: {
       'package.json': JSON.stringify({ name: '_foo' }, undefined, 2),
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/name must match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"'
-      ),
+      )
+    },
   },
   'json errors': {
     files: {
       'src/test.json': 'foo bar',
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
-        'error  Unexpected token o'
-      ),
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow('error  Unexpected token o')
+    },
   },
   'linting errors': {
     files: {
       'src/index.js': "var foo = 'bar'",
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         "error  'foo' is assigned a value but never used  no-unused-vars"
-      ),
+      )
+    },
   },
   minimal: {
     files: {
       'src/index.js': 'export default 1',
     },
-    test: () => self('', { log: false }),
+    test: async () => {
+      const self = proxyquire('.', {})
+      await self()
+    },
   },
   'missing readme sections': {
     files: {
@@ -186,10 +262,12 @@ export default {
 
       `,
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         'The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL'
-      ),
+      )
+    },
   },
   'multiple snapshots': {
     files: {
@@ -203,7 +281,8 @@ export default {
       `,
     },
     test: async () => {
-      await self('', { log: false })
+      const self = proxyquire('.', {})
+      await self()
       expect(await globby('*', { cwd: '__snapshots__' })).toEqual([
         'index.spec.js.snap',
       ])
@@ -225,17 +304,22 @@ export default {
       'package.json': { devDependencies: { foo: '^1.0.0' } } |> JSON.stringify,
       'src/index.spec.js': "import 'foo'",
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         /SyntaxError: Unexpected token '?export'?/
-      ),
+      )
+    },
   },
   'node_modules postfix': {
     files: {
       'node_modules-foo/index.js': 'export default 1',
       'src/index.spec.js': "import '@/node_modules-foo'",
     },
-    test: () => self('', { log: false }),
+    test: async () => {
+      const self = proxyquire('.', {})
+      await self()
+    },
   },
   'node_modules subfolder': {
     files: {
@@ -245,10 +329,12 @@ export default {
         'node_modules/foo/index.js': 'export default 1',
       },
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         /SyntaxError: Unexpected token '?export'?/
-      ),
+      )
+    },
   },
   pattern: {
     files: {
@@ -271,8 +357,9 @@ export default {
       },
     },
     test: async () => {
-      const output =
-        self('src/index2.spec.js', { log: false }) |> await |> property('all')
+      const self = proxyquire('.', {})
+
+      const output = self('src/index2.spec.js') |> await |> property('all')
       expect(output).not.toMatch('run index1')
       expect(output).toMatch('run index2')
     },
@@ -298,11 +385,13 @@ export default {
       `,
       },
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(endent`
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(endent`
       Unused dependencies
       * bar
-    `),
+    `)
+    },
   },
   snapshot: {
     files: {
@@ -315,7 +404,8 @@ export default {
       `,
     },
     test: async () => {
-      await self('', { log: false })
+      const self = proxyquire('.', {})
+      await self()
       expect(await globby('*', { cwd: '__snapshots__' })).toEqual([
         'index.spec.js.snap',
       ])
@@ -344,10 +434,10 @@ export default {
         2
       ),
     },
-    test: async () =>
-      expect(self('', { log: false }) |> await |> property('all')).toMatch(
-        'run test'
-      ),
+    test: async () => {
+      const self = proxyquire('.', {})
+      expect(self() |> await |> property('all')).toMatch('run test')
+    },
   },
   'unused dependecy': {
     files: {
@@ -362,11 +452,13 @@ export default {
       ),
       'src/index.js': 'export default 1',
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(endent`
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(endent`
         Unused dependencies
         * change-case
-      `),
+      `)
+    },
   },
   'update snapshot': {
     files: {
@@ -383,7 +475,8 @@ export default {
       `,
     },
     test: async () => {
-      await self('', { log: false, updateSnapshots: true })
+      const self = proxyquire('.', {})
+      await self('', { updateSnapshots: true })
     },
   },
   'usesdocker macOS': {
@@ -394,9 +487,9 @@ export default {
       const previousPlatform = process.platform
       Object.defineProperty(process, 'platform', { value: 'darwin' })
 
-      const specialSelf = proxyquire('.', { 'is-ci': true })
+      const self = proxyquire('.', { 'is-ci': true })
       try {
-        await specialSelf('', { log: false })
+        await self()
       } finally {
         Object.defineProperty(process, 'platform', { value: previousPlatform })
       }
@@ -410,8 +503,8 @@ export default {
       const previousPlatform = process.platform
       Object.defineProperty(process, 'platform', { value: 'darwin' })
 
-      const specialSelf = proxyquire('.', { 'is-ci': false })
-      await expect(specialSelf('', { log: false })).rejects.toThrow('foobarbaz')
+      const self = proxyquire('.', { 'is-ci': false })
+      await expect(self()).rejects.toThrow('foobarbaz')
       Object.defineProperty(process, 'platform', { value: previousPlatform })
     },
   },
@@ -423,9 +516,9 @@ export default {
       const previousPlatform = process.platform
       Object.defineProperty(process, 'platform', { value: 'win32' })
 
-      const specialSelf = proxyquire('.', { 'is-ci': true })
+      const self = proxyquire('.', { 'is-ci': true })
       try {
-        await specialSelf('', { log: false })
+        await self()
       } finally {
         Object.defineProperty(process, 'platform', { value: previousPlatform })
       }
@@ -460,9 +553,8 @@ export default {
       },
     },
     test: async () => {
-      expect(
-        (await self('', { log: false })) |> await |> property('all')
-      ).toMatch('run test')
+      const self = proxyquire('.', {})
+      expect((await self()) |> await |> property('all')).toMatch('run test')
       expect(
         globby('*', { dot: true, onlyFiles: false })
           |> await
@@ -503,10 +595,12 @@ export default {
         2
       ),
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/dependencies must be object'
-      ),
+      )
+    },
   },
   'wrong description type': {
     files: {
@@ -518,27 +612,33 @@ export default {
         2
       ),
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/description must be string'
-      ),
+      )
+    },
   },
   'wrong dev dependencies type': {
     files: {
       'package.json': JSON.stringify({ devDependencies: 1 }, undefined, 2),
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/devDependencies must be object'
-      ),
+      )
+    },
   },
   'wrong keywords type': {
     files: {
       'package.json': JSON.stringify({ keywords: 1 }, undefined, 2),
     },
-    test: () =>
-      expect(self('', { log: false })).rejects.toThrow(
+    test: async () => {
+      const self = proxyquire('.', {})
+      await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/keywords must be array'
-      ),
+      )
+    },
   },
 } |> mapValues(runTest)

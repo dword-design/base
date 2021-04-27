@@ -14,6 +14,7 @@ const baseConfig = importCwd(packageBaseConfig.name)
 export default {
   allowedMatches: [],
   commands: {},
+  coverageFileExtensions: [],
   deployAssets: [],
   deployEnv: {},
   deployPlugins: [],
