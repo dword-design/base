@@ -1,3 +1,11 @@
+## [7.13.6](https://github.com/dword-design/base/compare/v7.13.5...v7.13.6) (2021-04-27)
+
+
+### Bug Fixes
+
+* install github cli on gitpod ([#329](https://github.com/dword-design/base/issues/329)) ([cf25a7c](https://github.com/dword-design/base/commit/cf25a7c12232ed326c466339f2a9d806500ef3a0))
+* replace expect-mocha-snapshot fork ([#328](https://github.com/dword-design/base/issues/328)) ([338eee8](https://github.com/dword-design/base/commit/338eee8a61883fe871e35dcf48ecc51ea4668d02))
+
 ## [7.13.5](https://github.com/dword-design/base/compare/v7.13.4...v7.13.5) (2021-04-26)
 
 
