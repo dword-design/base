@@ -1,3 +1,10 @@
+## [7.14.4](https://github.com/dword-design/base/compare/v7.14.3...v7.14.4) (2021-04-30)
+
+
+### Bug Fixes
+
+* update labels ([#339](https://github.com/dword-design/base/issues/339)) ([0a5783f](https://github.com/dword-design/base/commit/0a5783f040a3a80a4007b795b25553af7456c7c5))
+
 ## [7.14.3](https://github.com/dword-design/base/compare/v7.14.2...v7.14.3) (2021-04-27)
 
 
