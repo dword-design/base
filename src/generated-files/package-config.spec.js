@@ -57,6 +57,7 @@ export default {
       )
       expect(packageConfig).toEqual({
         author: 'Sebastian Landwehr <info@dword-design.de>',
+        engines: { node: '>=12' },
         files: ['dist'],
         funding: 'https://www.buymeacoffee.com/dword',
         license: 'MIT',
@@ -134,6 +135,7 @@ export default {
         devDependencies: {
           'base-config-bar': '^1.0.0',
         },
+        engines: { node: '>=12' },
         files: ['dist'],
         funding: 'https://www.buymeacoffee.com/dword',
         keywords: ['foo', 'bar'],
@@ -166,6 +168,7 @@ export default {
       )
       expect(packageConfig).toEqual({
         author: 'Sebastian Landwehr <info@dword-design.de>',
+        engines: { node: '>=12' },
         files: ['dist'],
         funding: 'https://www.buymeacoffee.com/dword',
         license: 'MIT',
@@ -225,6 +228,7 @@ export default {
       )
       await expect(packageConfig).toEqual({
         author: 'Sebastian Landwehr <info@dword-design.de>',
+        engines: { node: '>=12' },
         files: ['dist'],
         funding: 'https://www.buymeacoffee.com/dword',
         license: 'MIT',

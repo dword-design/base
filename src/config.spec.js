@@ -114,7 +114,7 @@ export default {
         editorIgnore: [],
         gitignore: [],
         name: 'base-config-foo',
-        nodeVersion: 12,
+        nodeVersion: 14,
         preDeploySteps: [],
         readmeInstallString: endent`
           ## Install

@@ -7,7 +7,7 @@ export default {
     expect(
       proxyquire('.', {
         '../../config': {
-          nodeVersion: 12,
+          nodeVersion: 14,
           useJobMatrix: true,
         },
       })
@@ -17,7 +17,7 @@ export default {
     expect(
       proxyquire('.', {
         '../../config': {
-          nodeVersion: 12,
+          nodeVersion: 14,
         },
       })
     ).toMatchSnapshot(this)
@@ -31,7 +31,7 @@ export default {
       expect(
         proxyquire('.', {
           '../../config': {
-            nodeVersion: 12,
+            nodeVersion: 14,
           },
           './strategies/simple': proxyquire('./strategies/simple', {
             '../steps/test': proxyquire('./steps/test', {}),
@@ -44,7 +44,7 @@ export default {
     expect(
       proxyquire('.', {
         '../../config': {
-          nodeVersion: 12,
+          nodeVersion: 14,
           testInContainer: true,
           useJobMatrix: true,
         },
