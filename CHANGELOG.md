@@ -1,3 +1,10 @@
+## [7.14.6](https://github.com/dword-design/base/compare/v7.14.5...v7.14.6) (2021-05-03)
+
+
+### Bug Fixes
+
+* require Node.js >= 12 ([#335](https://github.com/dword-design/base/issues/335)) ([8647619](https://github.com/dword-design/base/commit/8647619289fbb9cf21712d85c1b92b911db5f820))
+
 ## [7.14.5](https://github.com/dword-design/base/compare/v7.14.4...v7.14.5) (2021-05-03)
 
 
