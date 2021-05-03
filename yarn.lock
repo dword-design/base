@@ -1207,10 +1207,10 @@
   dependencies:
     proxyquire "^2.1.3"
 
-"@dword-design/tester-plugin-tmp-dir@^1.0.1":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@dword-design/tester-plugin-tmp-dir/-/tester-plugin-tmp-dir-1.0.5.tgz#c5913855647a6f4724aeee04b8155ec28c892c32"
-  integrity sha512-rqciwFq/32u9oa+AKNtIHBXm++ATQyDVsnNN2Rj80iNEYlDlT+/BlyTzYtZIQOiouvkaUje3oz983rZq1k5YzA==
+"@dword-design/tester-plugin-tmp-dir@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/tester-plugin-tmp-dir/-/tester-plugin-tmp-dir-2.0.0.tgz#0541b56771f749ee7f1669770ad876ffb56fdefe"
+  integrity sha512-n1nB41QaTKuKzjtXQ/nC0S1eIVxSTzLWGzuMTqg9mcWJd2W5Sb4auZK0guiZKKB1WpL1Dw1kEAhuo5iRIFRiWQ==
   dependencies:
     with-local-tmp-dir "^3.0.0"
 
