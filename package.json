@@ -31,7 +31,7 @@
     "@dword-design/base-config-node": "^1.6.0",
     "@dword-design/ci": "^2.0.0",
     "@dword-design/eslint-config": "^1.27.16",
-    "@dword-design/functions": "^3.0.0",
+    "@dword-design/functions": "^4.0.0",
     "@semantic-release/changelog": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
     "ajv-cli": "^5.0.0",
