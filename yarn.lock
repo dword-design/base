@@ -3147,10 +3147,10 @@ delete-empty@^3.0.0:
     path-starts-with "^2.0.0"
     rimraf "^2.6.2"
 
-depcheck-detector-execa@^1.2.1:
-  version "1.2.14"
-  resolved "https://registry.yarnpkg.com/depcheck-detector-execa/-/depcheck-detector-execa-1.2.14.tgz#d29fa86864106895c3695f51f90f7373b3a6cc13"
-  integrity sha512-lDg0G7O+7rm8c8P7aKG3x7OpJmOXz1ZbmbG9fiYR/v1L4K3iOe5orZBWVq212zHrF0H5CybVK8GJMIqJ9djTvg==
+depcheck-detector-execa@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/depcheck-detector-execa/-/depcheck-detector-execa-2.0.0.tgz#c95fd8f0306afd8402b97d3935ca98e69ac0bb5b"
+  integrity sha512-DWKMmWv+edcWUB6d1UrL33nBKZfZOsgJMwCAJCf8VuuUW8K3JYCeVlySR2a3XAhypVMTE1GqsANdg8mGKHQzow==
   dependencies:
     "@dword-design/functions" "^3.0.0"
     resolve-from "^5.0.0"
