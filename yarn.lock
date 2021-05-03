@@ -5962,10 +5962,18 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-make-cli@^1.0.16, make-cli@^1.0.9:
+make-cli@^1.0.16:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-1.2.4.tgz#e3a0c617706cefdb403441377dafde0bdeeb4999"
   integrity sha512-eF14PkYwNhKW+rnahEtblWdXTXkZSguLXrOoRwvfywmijBbHl68k8iHRo3zkYeUSeykVLBT5HzJZZYq7+xZ4RA==
+  dependencies:
+    "@dword-design/functions" "^3.0.0"
+    commander "^7.0.0"
+
+make-cli@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-2.0.0.tgz#23b8ee3cdd8ea8169a57e9c747edce81f9b72764"
+  integrity sha512-hLU/DbGtVHTe5IzxWjcMimLjN8BgWsuwtWs31Fn0NZdCM2f/6r+iLpWzolU0QNPKTD9bSOuGB4A6cLStE30TwQ==
   dependencies:
     "@dword-design/functions" "^3.0.0"
     commander "^7.0.0"
