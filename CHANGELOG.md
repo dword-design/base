@@ -1,3 +1,15 @@
+## [8.0.2](https://github.com/dword-design/base/compare/v8.0.1...v8.0.2) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/babel-config to v2 ([#342](https://github.com/dword-design/base/issues/342)) ([2c9235d](https://github.com/dword-design/base/commit/2c9235d684727f9acdc643c4df724f1d3662af23))
+* update dependency @dword-design/tester-plugin-tmp-dir to v2 ([#346](https://github.com/dword-design/base/issues/346)) ([516c211](https://github.com/dword-design/base/commit/516c211003d8b8b49b962e7254166ecfb068f10b))
+* update dependency depcheck-detector-execa to v2 ([#355](https://github.com/dword-design/base/issues/355)) ([650b15e](https://github.com/dword-design/base/commit/650b15e3f5d7d90f146da4174bc3ab41d7af7075))
+* update dependency fs-extra to v10 ([#357](https://github.com/dword-design/base/issues/357)) ([82ab067](https://github.com/dword-design/base/commit/82ab06743af84bef620113ea27972e815c8ae72f))
+* update dependency output-files to v2 ([#360](https://github.com/dword-design/base/issues/360)) ([318ad8d](https://github.com/dword-design/base/commit/318ad8d48cacb9c3db7e75a890053b17145c3dc1))
+* update dependency with-local-tmp-dir to v4 ([#361](https://github.com/dword-design/base/issues/361)) ([9abd24f](https://github.com/dword-design/base/commit/9abd24f80d746fefa26381df5f988100c485cf02))
+
 ## [8.0.1](https://github.com/dword-design/base/compare/v8.0.0...v8.0.1) (2021-05-04)
 
 
