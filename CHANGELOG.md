@@ -1,3 +1,10 @@
+## [8.0.5](https://github.com/dword-design/base/compare/v8.0.4...v8.0.5) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency husky to v6 ([#243](https://github.com/dword-design/base/issues/243)) ([05bccb7](https://github.com/dword-design/base/commit/05bccb7482a0cb9cc3f2a7d9c6d78227ff034476))
+
 ## [8.0.4](https://github.com/dword-design/base/compare/v8.0.3...v8.0.4) (2021-05-04)
 
 
