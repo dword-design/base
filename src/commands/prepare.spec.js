@@ -41,6 +41,15 @@ export default tester(
         globby('*', { dot: true }) |> await |> includes('foo.txt')
       ).toBeTruthy()
     },
+    'commit valid': async () => {
+      await execa.command('git init')
+      await execa.command('git config user.email "foo@bar.de"')
+      await execa.command('git config user.name "foo"')
+
+      const self = stealthyRequire(require.cache, () => require('./prepare'))
+      await self()
+      await execa('git', ['commit', '--allow-empty', '-m', 'fix: foo'])
+    },
     'commit with linting errors': async () => {
       await execa.command('git init')
       await execa.command('git config user.email "foo@bar.de"')
@@ -111,15 +120,6 @@ export default tester(
       ).toMatchSnapshot(this)
       expect(await readFile('README.md', 'utf8')).toMatchSnapshot(this)
       expect(await readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
-    },
-    'commit valid': async () => {
-      await execa.command('git init')
-      await execa.command('git config user.email "foo@bar.de"')
-      await execa.command('git config user.name "foo"')
-
-      const self = stealthyRequire(require.cache, () => require('./prepare'))
-      await self()
-      await execa('git', ['commit', '--allow-empty', '-m', 'fix: foo'])
     },
   },
   [testerPluginTmpDir()]
