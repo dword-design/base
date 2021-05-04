@@ -40,6 +40,9 @@ export default {
   version: packageConfig.version || '1.0.0',
   ...(gitInfo && { repository: `dword-design/${gitInfo.project}` }),
   author: 'Sebastian Landwehr <info@dword-design.de>',
+  engines: {
+    node: '>=12',
+  },
   files: ['dist'],
   license: 'MIT',
   ...config.packageConfig,

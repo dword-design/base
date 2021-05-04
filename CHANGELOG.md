@@ -1,3 +1,125 @@
+## [8.0.4](https://github.com/dword-design/base/compare/v8.0.3...v8.0.4) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/eslint-config to v2 ([#343](https://github.com/dword-design/base/issues/343)) ([7d7d450](https://github.com/dword-design/base/commit/7d7d45091b40f7389805eaf0f014aab982792cec))
+* update dependency @dword-design/proxyquire to v2 ([#345](https://github.com/dword-design/base/issues/345)) ([e21ac36](https://github.com/dword-design/base/commit/e21ac360b36e6f3543e15bdff67f37882e67035a))
+* update dependency depcheck-package-name to v2 ([#347](https://github.com/dword-design/base/issues/347)) ([db6d416](https://github.com/dword-design/base/commit/db6d416fdb5a43a5db0bf73f33f88ea3ee50ac57))
+* update dependency expect-mocha-image-snapshot to v2 ([#349](https://github.com/dword-design/base/issues/349)) ([98de1e3](https://github.com/dword-design/base/commit/98de1e371d36d857cb6a3d70d43897fd44941b88))
+
+## [8.0.3](https://github.com/dword-design/base/compare/v8.0.2...v8.0.3) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/ci to v3 ([#353](https://github.com/dword-design/base/issues/353)) ([96c4751](https://github.com/dword-design/base/commit/96c47514aaa93b4edfc142ef9d9a08736e069b96))
+* update dependency @dword-design/functions to v4 ([#344](https://github.com/dword-design/base/issues/344)) ([f94536c](https://github.com/dword-design/base/commit/f94536c47a32fdfec58078d28a2b2eaec424744d))
+* update dependency @dword-design/tester to v2 ([#354](https://github.com/dword-design/base/issues/354)) ([257a3b1](https://github.com/dword-design/base/commit/257a3b19539ec740f23285cf1e2fab4e39d831c6))
+* update dependency depcheck-detector-package-name to v2 ([#356](https://github.com/dword-design/base/issues/356)) ([c3d404e](https://github.com/dword-design/base/commit/c3d404e62616a1250ee0db0d367b50f5bd022d35))
+* update dependency docker-multirun to v2 ([#348](https://github.com/dword-design/base/issues/348)) ([2005bd0](https://github.com/dword-design/base/commit/2005bd034e22ca3ff4d1ca2f8b887c23b41648b7))
+* update dependency get-projectz-readme-section-regex to v3 ([#358](https://github.com/dword-design/base/issues/358)) ([ea8d960](https://github.com/dword-design/base/commit/ea8d9606b2cf3aa513e1e0282e6a569c1c0d6f4b))
+* update dependency make-cli to v2 ([#359](https://github.com/dword-design/base/issues/359)) ([f3449af](https://github.com/dword-design/base/commit/f3449afd04d74bbcecc1bee1afb443c660d75527))
+* update dependency mocha-ui-exports-auto-describe to v2 ([#350](https://github.com/dword-design/base/issues/350)) ([55e5492](https://github.com/dword-design/base/commit/55e54925bfbcae200000aa36306fdd7d2aa8cb37))
+* update dependency package-name-regex to v2 ([#351](https://github.com/dword-design/base/issues/351)) ([5d54a8d](https://github.com/dword-design/base/commit/5d54a8d33a71f24f548c8bacff12935f8682bc10))
+* update dependency unify-mocha-output to v2 ([#352](https://github.com/dword-design/base/issues/352)) ([63e97eb](https://github.com/dword-design/base/commit/63e97ebe787549fef2a4095d8bd73e218a0b6db2))
+
+## [8.0.2](https://github.com/dword-design/base/compare/v8.0.1...v8.0.2) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/babel-config to v2 ([#342](https://github.com/dword-design/base/issues/342)) ([2c9235d](https://github.com/dword-design/base/commit/2c9235d684727f9acdc643c4df724f1d3662af23))
+* update dependency @dword-design/tester-plugin-tmp-dir to v2 ([#346](https://github.com/dword-design/base/issues/346)) ([516c211](https://github.com/dword-design/base/commit/516c211003d8b8b49b962e7254166ecfb068f10b))
+* update dependency depcheck-detector-execa to v2 ([#355](https://github.com/dword-design/base/issues/355)) ([650b15e](https://github.com/dword-design/base/commit/650b15e3f5d7d90f146da4174bc3ab41d7af7075))
+* update dependency fs-extra to v10 ([#357](https://github.com/dword-design/base/issues/357)) ([82ab067](https://github.com/dword-design/base/commit/82ab06743af84bef620113ea27972e815c8ae72f))
+* update dependency output-files to v2 ([#360](https://github.com/dword-design/base/issues/360)) ([318ad8d](https://github.com/dword-design/base/commit/318ad8d48cacb9c3db7e75a890053b17145c3dc1))
+* update dependency with-local-tmp-dir to v4 ([#361](https://github.com/dword-design/base/issues/361)) ([9abd24f](https://github.com/dword-design/base/commit/9abd24f80d746fefa26381df5f988100c485cf02))
+
+## [8.0.1](https://github.com/dword-design/base/compare/v8.0.0...v8.0.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency depcheck-parser-babel to v2 ([#362](https://github.com/dword-design/base/issues/362)) ([3f85b16](https://github.com/dword-design/base/commit/3f85b16cf029ac6e84fce005eaec5e65a436dac6))
+
+# [8.0.0](https://github.com/dword-design/base/compare/v7.14.6...v8.0.0) (2021-05-03)
+
+
+### Bug Fixes
+
+* require Node.js >= 12 ([d2afe99](https://github.com/dword-design/base/commit/d2afe99e2226d272214055ae7dbd6927de49f225))
+
+
+### BREAKING CHANGES
+
+* require Node.js >= 12
+
+## [7.14.6](https://github.com/dword-design/base/compare/v7.14.5...v7.14.6) (2021-05-03)
+
+
+### Bug Fixes
+
+* require Node.js >= 12 ([#335](https://github.com/dword-design/base/issues/335)) ([8647619](https://github.com/dword-design/base/commit/8647619289fbb9cf21712d85c1b92b911db5f820))
+
+## [7.14.5](https://github.com/dword-design/base/compare/v7.14.4...v7.14.5) (2021-05-03)
+
+
+### Bug Fixes
+
+* update rokroskar/workflow-run-cleanup-action action to v0.3.3 ([#332](https://github.com/dword-design/base/issues/332)) ([d336635](https://github.com/dword-design/base/commit/d3366356686263c30be4296b7f4d48a2893e53cc))
+
+## [7.14.4](https://github.com/dword-design/base/compare/v7.14.3...v7.14.4) (2021-04-30)
+
+
+### Bug Fixes
+
+* update labels ([#339](https://github.com/dword-design/base/issues/339)) ([0a5783f](https://github.com/dword-design/base/commit/0a5783f040a3a80a4007b795b25553af7456c7c5))
+
+## [7.14.3](https://github.com/dword-design/base/compare/v7.14.2...v7.14.3) (2021-04-27)
+
+
+### Bug Fixes
+
+* use snapshot testing ([b3d477e](https://github.com/dword-design/base/commit/b3d477e8ba4abf9b4194a2b988dab7d6e486946d))
+
+## [7.14.2](https://github.com/dword-design/base/compare/v7.14.1...v7.14.2) (2021-04-27)
+
+
+### Bug Fixes
+
+* add eslint ([#333](https://github.com/dword-design/base/issues/333)) ([e1bf109](https://github.com/dword-design/base/commit/e1bf109237b5d12235e25285c1e60d342ce59534))
+
+## [7.14.1](https://github.com/dword-design/base/compare/v7.14.0...v7.14.1) (2021-04-27)
+
+
+### Bug Fixes
+
+* remove src from allowed matches ([#331](https://github.com/dword-design/base/issues/331)) ([69cf346](https://github.com/dword-design/base/commit/69cf3462d6dbfab7e897cf87467fa00a149c9810))
+
+# [7.14.0](https://github.com/dword-design/base/compare/v7.13.6...v7.14.0) (2021-04-27)
+
+
+### Features
+
+* sync labels centrally ([#330](https://github.com/dword-design/base/issues/330)) ([70872b0](https://github.com/dword-design/base/commit/70872b0beaffb59082fdeae623ec328e6945cfb3))
+
+## [7.13.6](https://github.com/dword-design/base/compare/v7.13.5...v7.13.6) (2021-04-27)
+
+
+### Bug Fixes
+
+* install github cli on gitpod ([#329](https://github.com/dword-design/base/issues/329)) ([cf25a7c](https://github.com/dword-design/base/commit/cf25a7c12232ed326c466339f2a9d806500ef3a0))
+* replace expect-mocha-snapshot fork ([#328](https://github.com/dword-design/base/issues/328)) ([338eee8](https://github.com/dword-design/base/commit/338eee8a61883fe871e35dcf48ecc51ea4668d02))
+
+## [7.13.5](https://github.com/dword-design/base/compare/v7.13.4...v7.13.5) (2021-04-26)
+
+
+### Bug Fixes
+
+* update dependency with-local-tmp-dir to v3 ([#322](https://github.com/dword-design/base/issues/322)) ([a96876e](https://github.com/dword-design/base/commit/a96876e464b7d95e1e72de7336682563a96e02fa))
+* updated package.json[keywords] ([#323](https://github.com/dword-design/base/issues/323)) ([291f1d3](https://github.com/dword-design/base/commit/291f1d3bee18e9b8c6219434a8c552a6df7b6a7e))
+
 ## [7.13.4](https://github.com/dword-design/base/compare/v7.13.3...v7.13.4) (2021-04-20)
 
 

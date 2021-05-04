@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index coverage file extension 1`] = `
+"
+
+  index
+    ✓ works
+
+
+  1 passing
+
+-----------|---------|----------|---------|---------|-------------------
+File       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------|---------|----------|---------|---------|-------------------
+All files  |       0 |        0 |       0 |       0 |                   
+ index.foo |       0 |        0 |       0 |       0 |                   
+-----------|---------|----------|---------|---------|-------------------"
+`;

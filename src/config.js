@@ -14,13 +14,14 @@ const baseConfig = importCwd(packageBaseConfig.name)
 export default {
   allowedMatches: [],
   commands: {},
+  coverageFileExtensions: [],
   deployAssets: [],
   deployEnv: {},
   deployPlugins: [],
   editorIgnore: [],
   gitignore: [],
   lint: identity,
-  nodeVersion: 12,
+  nodeVersion: 14,
   preDeploySteps: [],
   prepare: identity,
   readmeInstallString: endent`

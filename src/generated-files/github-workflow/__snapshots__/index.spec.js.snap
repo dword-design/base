@@ -11,7 +11,7 @@ Object {
           "env": Object {
             "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
           },
-          "uses": "rokroskar/workflow-run-cleanup-action@v0.3.2",
+          "uses": "rokroskar/workflow-run-cleanup-action@v0.3.3",
         },
       ],
     },
@@ -29,7 +29,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v2",
           "with": Object {
-            "node-version": 12,
+            "node-version": 14,
           },
         },
         Object {
@@ -98,7 +98,7 @@ Object {
           },
         },
         Object {
-          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 12",
+          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 14",
           "uses": "codecov/codecov-action@v1",
           "with": Object {
             "fail_ci_if_error": true,
@@ -110,17 +110,17 @@ Object {
         "matrix": Object {
           "exclude": Array [
             Object {
-              "node": 10,
+              "node": 12,
               "os": "macos-latest",
             },
             Object {
-              "node": 10,
+              "node": 12,
               "os": "windows-latest",
             },
           ],
           "node": Array [
-            10,
             12,
+            14,
           ],
           "os": Array [
             "macos-latest",
@@ -154,7 +154,7 @@ Object {
           "env": Object {
             "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
           },
-          "uses": "rokroskar/workflow-run-cleanup-action@v0.3.2",
+          "uses": "rokroskar/workflow-run-cleanup-action@v0.3.3",
         },
         Object {
           "uses": "actions/checkout@v2",
@@ -167,7 +167,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v2",
           "with": Object {
-            "node-version": 12,
+            "node-version": 14,
           },
         },
         Object {
@@ -243,7 +243,7 @@ Object {
           "env": Object {
             "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
           },
-          "uses": "rokroskar/workflow-run-cleanup-action@v0.3.2",
+          "uses": "rokroskar/workflow-run-cleanup-action@v0.3.3",
         },
         Object {
           "uses": "actions/checkout@v2",
@@ -256,7 +256,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v2",
           "with": Object {
-            "node-version": 12,
+            "node-version": 14,
           },
         },
         Object {
@@ -336,7 +336,7 @@ Object {
           "env": Object {
             "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
           },
-          "uses": "rokroskar/workflow-run-cleanup-action@v0.3.2",
+          "uses": "rokroskar/workflow-run-cleanup-action@v0.3.3",
         },
         Object {
           "uses": "actions/checkout@v2",
@@ -349,7 +349,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v2",
           "with": Object {
-            "node-version": 12,
+            "node-version": 14,
           },
         },
         Object {

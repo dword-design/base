@@ -53,6 +53,7 @@ export default {
         config |> omit(['commands', 'depcheckConfig', 'prepare', 'lint'])
       ).toEqual({
         allowedMatches: [],
+        coverageFileExtensions: [],
         deployAssets: [{ label: 'Foo', path: 'foo.js' }],
         deployEnv: {
           FOO: '${{ secrets.FOO }}',
@@ -106,13 +107,14 @@ export default {
       expect(config |> omit(['depcheckConfig', 'prepare', 'lint'])).toEqual({
         allowedMatches: [],
         commands: {},
+        coverageFileExtensions: [],
         deployAssets: [],
         deployEnv: {},
         deployPlugins: [],
         editorIgnore: [],
         gitignore: [],
         name: 'base-config-foo',
-        nodeVersion: 12,
+        nodeVersion: 14,
         preDeploySteps: [],
         readmeInstallString: endent`
           ## Install
