@@ -1175,7 +1175,7 @@
     execa "^5.0.0"
     make-cli "^1.0.16"
 
-"@dword-design/eslint-config@^1.27.16", "@dword-design/eslint-config@^1.9.0":
+"@dword-design/eslint-config@^1.9.0":
   version "1.27.17"
   resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-1.27.17.tgz#ef7dec0cd2eefbb1c3d8de9d056458fff2af7925"
   integrity sha512-FFKoZjB1A5pvsX3qmME+usbNsZLw+ZhwuDqLg+QrgK5U1evfcVd0Y5PBYNy+JIfOFTCCWYejrKarZJ3nt4a1tA==
@@ -1185,6 +1185,32 @@
     "@dword-design/eslint-plugin-import-alias" "^1.1.1"
     "@dword-design/functions" "^3.0.0"
     depcheck-package-name "^1.0.0"
+    eslint-config-airbnb-base "^14.2.1"
+    eslint-config-prettier "^8.0.0"
+    eslint-import-resolver-babel-module "^5.3.0"
+    eslint-plugin-import "^2.22.1"
+    eslint-plugin-json-format "^2.0.1"
+    eslint-plugin-prefer-arrow "^1.1.6"
+    eslint-plugin-prettier "^3.1.3"
+    eslint-plugin-promise "^5.0.0"
+    eslint-plugin-react "^7.20.0"
+    eslint-plugin-simple-import-sort "^7.0.0"
+    eslint-plugin-sort-keys-fix "^1.1.1"
+    eslint-plugin-vue "^7.0.0-alpha.6"
+    load-pkg "^4.0.0"
+    prettier "^2.1.1"
+    vue-eslint-parser "^7.0.0"
+
+"@dword-design/eslint-config@^2.0.0":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-2.0.2.tgz#da2f09f7fd28f37f8c70a5cbf0a4bb09cb85606e"
+  integrity sha512-zqu2cWrVYv3Xy2Wmb8G4qEOZxQOulZdVRN8YHnVwIh8dfxj6kNl1jIfQZ+e7N07CSzdcgblFCLMVcLY6EKNJpA==
+  dependencies:
+    "@babel/eslint-parser" "^7.13.14"
+    "@dword-design/babel-config" "^2.0.0"
+    "@dword-design/eslint-plugin-import-alias" "^1.1.1"
+    "@dword-design/functions" "^3.0.0"
+    depcheck-package-name "^2.0.0"
     eslint-config-airbnb-base "^14.2.1"
     eslint-config-prettier "^8.0.0"
     eslint-import-resolver-babel-module "^5.3.0"
