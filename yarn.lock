@@ -1166,10 +1166,10 @@
   resolved "https://registry.yarnpkg.com/@dword-design/chdir/-/chdir-1.0.11.tgz#2483a61eec5c69d6c9f06b2e636004763383d323"
   integrity sha512-JZvxuzhepjP9FZ4gLNTLWq7k8de/JwamaER9TI1ulTReLCBDzEKWEe24oOY8x7LmrSxYff6kOprcvI1Gs+8+lA==
 
-"@dword-design/ci@^2.0.0":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@dword-design/ci/-/ci-2.0.7.tgz#cda39ea190b88571c9ada2265c35073146f8257c"
-  integrity sha512-eVSxHTJseFfnjNo/GpV1QJ6H8u76pyd5nKFGP21GIiXs9jRjk8bULZ84s8w0Q5HMlCNsIzuNxjJixkjOt3rYBg==
+"@dword-design/ci@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/ci/-/ci-3.0.0.tgz#6a7d5060d8f2610f85704df7f93b627be916343b"
+  integrity sha512-Y7I8sZg7PZQUk/shERf/d8NICOAMnS7AzFq/io9k2v0mqBD7OKOCJqREg9TATlGsktigqPeBsPU1WHPUUt3zQw==
   dependencies:
     "@dword-design/functions" "^3.0.0"
     execa "^5.0.0"
