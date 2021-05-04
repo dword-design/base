@@ -43,6 +43,8 @@ export default tester(
     },
     'commit with linting errors': async () => {
       await execa.command('git init')
+      await execa.command('git config user.email "foo@bar.de"')
+      await execa.command('git config user.name "foo"')
 
       const self = stealthyRequire(require.cache, () => require('./prepare'))
       await self()
@@ -110,8 +112,10 @@ export default tester(
       expect(await readFile('README.md', 'utf8')).toMatchSnapshot(this)
       expect(await readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
     },
-    'valid commit': async () => {
+    'commit valid': async () => {
       await execa.command('git init')
+      await execa.command('git config user.email "foo@bar.de"')
+      await execa.command('git config user.name "foo"')
 
       const self = stealthyRequire(require.cache, () => require('./prepare'))
       await self()
