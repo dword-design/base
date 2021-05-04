@@ -3185,10 +3185,10 @@ depcheck-detector-execa@^2.0.0:
     "@dword-design/functions" "^3.0.0"
     resolve-from "^5.0.0"
 
-depcheck-detector-package-name@^1.0.0:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/depcheck-detector-package-name/-/depcheck-detector-package-name-1.0.10.tgz#6f9e887364a56d2def8f7a7ab686558713d1c89e"
-  integrity sha512-V24JKeiVUzBC/w/aal7+T7HZzFGiQO+Gq0U/6LEDJMv2zqfRh5cqxvIfBX/EjlPewrukKkoHD+dkDa8KmqSjdg==
+depcheck-detector-package-name@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/depcheck-detector-package-name/-/depcheck-detector-package-name-2.0.2.tgz#190616dda36401bdb6814c05c1b97221b2d94e7c"
+  integrity sha512-F2csdF3I6FGBdF5mcZyksyRKW0Sb+QQlgfb1O+rQWUEnGNXWOtp8L1qI++ifk958VwVFe7ffeJLUzEucO71cjA==
 
 depcheck-package-name@^1.0.0:
   version "1.0.7"
