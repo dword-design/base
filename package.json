@@ -41,7 +41,7 @@
     "depcheck": "dword-design/depcheck#fork",
     "depcheck-detector-execa": "^2.0.0",
     "depcheck-detector-package-name": "^2.0.0",
-    "depcheck-package-name": "^1.0.0",
+    "depcheck-package-name": "^2.0.0",
     "depcheck-parser-babel": "^2.0.0",
     "docker-multirun": "^1.0.3",
     "eslint": "~7.25.0",
