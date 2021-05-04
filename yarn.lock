@@ -3293,10 +3293,10 @@ dir-glob@^3.0.0, dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-docker-multirun@^1.0.3:
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/docker-multirun/-/docker-multirun-1.0.14.tgz#4cff15a34421a447885dba464c28cd64ae1a2d84"
-  integrity sha512-j+aNCtNOpN4Tgv7Gl6mXCMwXkVyewrrxTc36VQ1uJmDgLW99M5AwhfyAPBQdwda/aC9UoF2DnZzHoMTbd5g+Tw==
+docker-multirun@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/docker-multirun/-/docker-multirun-2.0.0.tgz#38d0e17877cb21961aa133f10ff24c9c34c5624e"
+  integrity sha512-9m3EDto+m/PeRg/vyiUQPozTVPru2w2vONcAEBsgZv8DwaLyR06RIhAf8ORu1zyrCDFx1mpWmlc5oRcyzgit0w==
   dependencies:
     "@dword-design/functions" "^3.0.0"
     execa "^5.0.0"
