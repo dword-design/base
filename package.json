@@ -86,7 +86,7 @@
     "rimraf": "^3.0.0",
     "sharp": "^0.28.0",
     "stealthy-require": "^1.1.1",
-    "unify-mocha-output": "^1.0.7",
+    "unify-mocha-output": "^2.0.0",
     "with-local-tmp-dir": "^4.0.0"
   },
   "engines": {
