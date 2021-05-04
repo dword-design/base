@@ -1,6 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`prepare valid 1`] = `
+Object {
+  ".babelrc.json": true,
+  ".commitlintrc.json": true,
+  ".cz.json": true,
+  ".editorconfig": true,
+  ".env.json": true,
+  ".env.schema.json": true,
+  ".eslintrc.json": true,
+  ".git": true,
+  ".gitattributes": true,
+  ".github": true,
+  ".gitignore": true,
+  ".gitpod.Dockerfile": true,
+  ".gitpod.yml": true,
+  ".husky": true,
+  ".releaserc.json": true,
+  ".renovaterc.json": true,
+  ".test.env.json": true,
+  ".vscode": true,
+  "CHANGELOG.md": true,
+  "LICENSE.md": true,
+  "README.md": true,
+  "package.json": true,
+  "src": true,
+  "yarn.lock": true,
+}
+`;
+
+exports[`prepare valid 2`] = `
 "<!-- TITLE/ -->
 # foo
 <!-- /TITLE -->

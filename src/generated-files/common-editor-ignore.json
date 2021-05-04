@@ -9,7 +9,7 @@
   ".gitignore",
   ".gitpod.Dockerfile",
   ".gitpod.yml",
-  ".huskyrc.json",
+  ".husky",
   ".nyc_output",
   ".releaserc.json",
   ".renovaterc.json",
