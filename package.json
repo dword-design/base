@@ -61,7 +61,7 @@
     "load-pkg": "^4.0.0",
     "make-cli": "^2.0.0",
     "mocha": "^8.0.0",
-    "mocha-ui-exports-auto-describe": "^1.0.0",
+    "mocha-ui-exports-auto-describe": "^2.0.0",
     "nyc": "^15.0.0",
     "output-files": "^2.0.0",
     "package-name-regex": "^2.0.0",
