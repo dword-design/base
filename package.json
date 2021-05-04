@@ -63,7 +63,7 @@
     "mocha": "^8.0.0",
     "mocha-ui-exports-auto-describe": "^1.0.0",
     "nyc": "^15.0.0",
-    "output-files": "^1.1.7",
+    "output-files": "^2.0.0",
     "package-name-regex": "^1.0.5",
     "parse-git-config": "^3.0.0",
     "plugin-name-to-package-name": "^0.1.1",
