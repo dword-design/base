@@ -42,7 +42,7 @@
     "depcheck-detector-execa": "^1.2.1",
     "depcheck-detector-package-name": "^1.0.0",
     "depcheck-package-name": "^1.0.0",
-    "depcheck-parser-babel": "^1.2.0",
+    "depcheck-parser-babel": "^2.0.0",
     "docker-multirun": "^1.0.3",
     "eslint": "~7.25.0",
     "execa": "^5.0.0",
