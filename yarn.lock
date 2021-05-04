@@ -1244,10 +1244,10 @@
   dependencies:
     with-local-tmp-dir "^3.0.0"
 
-"@dword-design/tester@^1.2.5":
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/@dword-design/tester/-/tester-1.2.9.tgz#458e87adbd6ff2b8b36d8a653b7bfe69fce97683"
-  integrity sha512-WeunmhxdeGhq/IsOPVV34jLmQZqvwsXbUe38/6Urzsksc0V1WNylZcHCCoO/lCy/WsN0ts58XoGDC/9NKPEbNQ==
+"@dword-design/tester@^2.0.0":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/tester/-/tester-2.0.1.tgz#9e9ed5d05fbc053b94c6493cd000c98234adedf5"
+  integrity sha512-Ms4b3aonfPhRyUBRiQLZPCi9Ua35UEr+xBx3Y5NEZGwLybWeRe8ith3RYaBnIH4Y95yBn8/2ZPbja6uIS83s2g==
   dependencies:
     "@dword-design/functions" "^3.0.0"
     promise-sequential "^1.1.1"
