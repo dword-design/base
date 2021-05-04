@@ -18,7 +18,6 @@ import githubWorkflowConfig from './github-workflow'
 import gitignoreConfig from './gitignore'
 import gitpodConfig from './gitpod'
 import gitpodDockerfile from './gitpod-dockerfile'
-import huskyConfig from './husky'
 import licenseString from './license-string'
 import packageConfig from './package-config'
 import readmeString from './readme-string'
@@ -48,7 +47,6 @@ export default {
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
   '.gitpod.yml': gitpodConfig |> yaml.stringify,
-  '.huskyrc.json': huskyConfig |> jsonToString({ indent: 2 }),
   '.releaserc.json': releaseConfig |> jsonToString({ indent: 2 }),
   '.renovaterc.json':
     sortKeys(renovateConfig, { deep: true }) |> jsonToString({ indent: 2 }),
