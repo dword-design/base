@@ -1,3 +1,19 @@
+## [8.0.3](https://github.com/dword-design/base/compare/v8.0.2...v8.0.3) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/ci to v3 ([#353](https://github.com/dword-design/base/issues/353)) ([96c4751](https://github.com/dword-design/base/commit/96c47514aaa93b4edfc142ef9d9a08736e069b96))
+* update dependency @dword-design/functions to v4 ([#344](https://github.com/dword-design/base/issues/344)) ([f94536c](https://github.com/dword-design/base/commit/f94536c47a32fdfec58078d28a2b2eaec424744d))
+* update dependency @dword-design/tester to v2 ([#354](https://github.com/dword-design/base/issues/354)) ([257a3b1](https://github.com/dword-design/base/commit/257a3b19539ec740f23285cf1e2fab4e39d831c6))
+* update dependency depcheck-detector-package-name to v2 ([#356](https://github.com/dword-design/base/issues/356)) ([c3d404e](https://github.com/dword-design/base/commit/c3d404e62616a1250ee0db0d367b50f5bd022d35))
+* update dependency docker-multirun to v2 ([#348](https://github.com/dword-design/base/issues/348)) ([2005bd0](https://github.com/dword-design/base/commit/2005bd034e22ca3ff4d1ca2f8b887c23b41648b7))
+* update dependency get-projectz-readme-section-regex to v3 ([#358](https://github.com/dword-design/base/issues/358)) ([ea8d960](https://github.com/dword-design/base/commit/ea8d9606b2cf3aa513e1e0282e6a569c1c0d6f4b))
+* update dependency make-cli to v2 ([#359](https://github.com/dword-design/base/issues/359)) ([f3449af](https://github.com/dword-design/base/commit/f3449afd04d74bbcecc1bee1afb443c660d75527))
+* update dependency mocha-ui-exports-auto-describe to v2 ([#350](https://github.com/dword-design/base/issues/350)) ([55e5492](https://github.com/dword-design/base/commit/55e54925bfbcae200000aa36306fdd7d2aa8cb37))
+* update dependency package-name-regex to v2 ([#351](https://github.com/dword-design/base/issues/351)) ([5d54a8d](https://github.com/dword-design/base/commit/5d54a8d33a71f24f548c8bacff12935f8682bc10))
+* update dependency unify-mocha-output to v2 ([#352](https://github.com/dword-design/base/issues/352)) ([63e97eb](https://github.com/dword-design/base/commit/63e97ebe787549fef2a4095d8bd73e218a0b6db2))
+
 ## [8.0.2](https://github.com/dword-design/base/compare/v8.0.1...v8.0.2) (2021-05-04)
 
 
