@@ -9103,6 +9103,14 @@ with-local-tmp-dir@^3.0.0:
     "@dword-design/chdir" "^1.0.0"
     tmp-promise "^3.0.0"
 
+with-local-tmp-dir@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/with-local-tmp-dir/-/with-local-tmp-dir-4.0.0.tgz#1b0affaef7d266395c5d7d8e7e0945de0591f24b"
+  integrity sha512-dwDkVK6/KCak2i9sh2EAJWqJr3ry1RjMPk/DOOM4IEfecIAX87CLjViAgGo1PenOeIkFphL7OBa0upaiigvs6w==
+  dependencies:
+    "@dword-design/chdir" "^1.0.0"
+    tmp-promise "^3.0.0"
+
 word-wrap@^1.0.3, word-wrap@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
