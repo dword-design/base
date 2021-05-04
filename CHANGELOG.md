@@ -1,3 +1,10 @@
+## [8.0.1](https://github.com/dword-design/base/compare/v8.0.0...v8.0.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency depcheck-parser-babel to v2 ([#362](https://github.com/dword-design/base/issues/362)) ([3f85b16](https://github.com/dword-design/base/commit/3f85b16cf029ac6e84fce005eaec5e65a436dac6))
+
 # [8.0.0](https://github.com/dword-design/base/compare/v7.14.6...v8.0.0) (2021-05-03)
 
 
