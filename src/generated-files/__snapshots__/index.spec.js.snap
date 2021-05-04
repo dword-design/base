@@ -43,7 +43,6 @@ Array [
   ".gitignore",
   ".gitpod.Dockerfile",
   ".gitpod.yml",
-  ".huskyrc.json",
   ".releaserc.json",
   ".renovaterc.json",
   ".vscode/settings.json",

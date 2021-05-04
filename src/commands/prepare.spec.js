@@ -12,7 +12,7 @@ import execa from 'execa'
 import { readFile } from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
-import proxyquire from '@dword-design/proxyquire'
+import stealthyRequire from 'stealthy-require'
 
 export default tester(
   {
@@ -34,7 +34,8 @@ export default tester(
           2
         ),
       })
-      const self = proxyquire('./prepare', {})
+
+      const self = stealthyRequire(require.cache, () => require('./prepare'))
       await self()
       expect(
         globby('*', { dot: true }) |> await |> includes('foo.txt')
@@ -42,7 +43,8 @@ export default tester(
     },
     'commit with linting errors': async () => {
       await execa.command('git init')
-      const self = proxyquire('./prepare', {})
+
+      const self = stealthyRequire(require.cache, () => require('./prepare'))
       await self()
       await expect(
         execa.command('git commit --allow-empty -m foo')
@@ -96,7 +98,8 @@ export default tester(
         'src/index.js': 'export default 1',
         'yarn.lock': '',
       })
-      const self = proxyquire('./prepare', {})
+
+      const self = stealthyRequire(require.cache, () => require('./prepare'))
       await self()
       expect(
         globby('*', { dot: true, onlyFiles: false })
@@ -109,7 +112,8 @@ export default tester(
     },
     'valid commit': async () => {
       await execa.command('git init')
-      const self = proxyquire('./prepare', {})
+
+      const self = stealthyRequire(require.cache, () => require('./prepare'))
       await self()
       await execa('git', ['commit', '--allow-empty', '-m', 'fix: foo'])
     },

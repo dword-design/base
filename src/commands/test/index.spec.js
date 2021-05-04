@@ -571,7 +571,6 @@ export default {
         '.gitignore': true,
         '.gitpod.Dockerfile': true,
         '.gitpod.yml': true,
-        '.husky': true,
         '.nyc_output': true,
         '.releaserc.json': true,
         '.renovaterc.json': true,
