@@ -1,3 +1,13 @@
+## [8.0.4](https://github.com/dword-design/base/compare/v8.0.3...v8.0.4) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/eslint-config to v2 ([#343](https://github.com/dword-design/base/issues/343)) ([7d7d450](https://github.com/dword-design/base/commit/7d7d45091b40f7389805eaf0f014aab982792cec))
+* update dependency @dword-design/proxyquire to v2 ([#345](https://github.com/dword-design/base/issues/345)) ([e21ac36](https://github.com/dword-design/base/commit/e21ac360b36e6f3543e15bdff67f37882e67035a))
+* update dependency depcheck-package-name to v2 ([#347](https://github.com/dword-design/base/issues/347)) ([db6d416](https://github.com/dword-design/base/commit/db6d416fdb5a43a5db0bf73f33f88ea3ee50ac57))
+* update dependency expect-mocha-image-snapshot to v2 ([#349](https://github.com/dword-design/base/issues/349)) ([98de1e3](https://github.com/dword-design/base/commit/98de1e371d36d857cb6a3d70d43897fd44941b88))
+
 ## [8.0.3](https://github.com/dword-design/base/compare/v8.0.2...v8.0.3) (2021-05-04)
 
 
