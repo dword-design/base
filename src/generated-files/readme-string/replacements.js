@@ -74,7 +74,7 @@ export default {
             endent`
             <a href="https://paypal.me/SebastianLandwehr">
               <img
-                src="https://dword-design.de/images/paypal.svg"
+                src="https://sebastianlandwehr.com/images/paypal.svg"
                 alt="PayPal"
                 height="32"
               >
@@ -83,7 +83,7 @@ export default {
             endent`
             <a href="https://www.patreon.com/dworddesign">
               <img
-                src="https://dword-design.de/images/patreon.svg"
+                src="https://sebastianlandwehr.com/images/patreon.svg"
                 alt="Patreon"
                 height="32"
               >
@@ -116,14 +116,14 @@ export default {
         </a>&nbsp;If you want to send me a one time donation. The coffee is pretty good 😊.<br/>
         <a href="https://paypal.me/SebastianLandwehr">
           <img
-            src="https://dword-design.de/images/paypal.svg"
+            src="https://sebastianlandwehr.com/images/paypal.svg"
             alt="PayPal"
             height="32"
           >
         </a>&nbsp;Also for one time donations if you like PayPal.<br/>
         <a href="https://www.patreon.com/dworddesign">
           <img
-            src="https://dword-design.de/images/patreon.svg"
+            src="https://sebastianlandwehr.com/images/patreon.svg"
             alt="Patreon"
             height="32"
           >
@@ -141,7 +141,7 @@ export default {
           return endent`
           ## License
       
-          [${license.name}](${license.url}) © [Sebastian Landwehr](https://dword-design.de)
+          [${license.name}](${license.url}) © [Sebastian Landwehr](https://sebastianlandwehr.com)
         `
         }
 
