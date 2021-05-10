@@ -26,8 +26,7 @@ export default {
           },
         },
         {
-          if:
-            '${{ !steps.check-deprecated-js-deps.outputs.deprecated && steps.create-deprecation-issue.outputs.number }}',
+          if: '${{ !steps.check-deprecated-js-deps.outputs.deprecated && steps.create-deprecation-issue.outputs.number }}',
           uses: 'peter-evans/close-issue@v1',
           with: {
             comment: 'Auto-closing the issue',

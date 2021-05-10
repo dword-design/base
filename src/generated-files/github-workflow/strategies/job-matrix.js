@@ -20,8 +20,7 @@ export default () => ({
         uses: 'actions/checkout@v2',
         with: {
           lfs: true,
-          ref:
-            "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
+          ref: "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
         },
       },
       {

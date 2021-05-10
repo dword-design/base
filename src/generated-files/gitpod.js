@@ -3,8 +3,7 @@ export default {
   tasks: [
     { before: 'sudo docker-up', name: 'Docker Deamon' },
     {
-      init:
-        'eval $(gitpod-env-per-project) && git lfs pull && yarn --frozen-lockfile',
+      init: 'eval $(gitpod-env-per-project) && git lfs pull && yarn --frozen-lockfile',
     },
   ],
   vscode: {
