@@ -15,8 +15,7 @@ export default config => ({
         with: {
           'fetch-depth': 0,
           lfs: true,
-          ref:
-            "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
+          ref: "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
         },
       },
       {

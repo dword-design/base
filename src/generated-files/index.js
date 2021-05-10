@@ -32,7 +32,8 @@ export default {
   '.editorconfig': editorconfigConfig,
   '.eslintrc.json': `${eslintConfig |> jsonToString({ indent: 2 })}\n`,
   '.gitattributes': gitattributesConfig,
-  '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md': deprecatedDependenciesIssueTemplate,
+  '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md':
+    deprecatedDependenciesIssueTemplate,
   '.github/labels.yml':
     sortKeys(githubLabelsConfig, { deep: true }) |> yaml.stringify,
   '.github/workflows/build.yml':
