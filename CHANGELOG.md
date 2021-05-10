@@ -1,3 +1,10 @@
+## [8.0.7](https://github.com/dword-design/base/compare/v8.0.6...v8.0.7) (2021-05-10)
+
+
+### Bug Fixes
+
+* rename domain ([#368](https://github.com/dword-design/base/issues/368)) ([05be792](https://github.com/dword-design/base/commit/05be7922dc4caa70c97dbff3499b34e1c441ba00))
+
 ## [8.0.6](https://github.com/dword-design/base/compare/v8.0.5...v8.0.6) (2021-05-09)
 
 
