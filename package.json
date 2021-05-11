@@ -70,7 +70,7 @@
     "safe-readfile": "^1.0.2",
     "semantic-release": "^17.0.3",
     "sort-keys": "^4.2.0",
-    "sort-package-json": "~1.49.0",
+    "sort-package-json": "~1.50.0",
     "spdx-expression-parse": "^3.0.0",
     "spdx-license-list": "^6.1.0",
     "std-env": "^2.3.0",
