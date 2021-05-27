@@ -1,3 +1,10 @@
+## [8.0.9](https://github.com/dword-design/base/compare/v8.0.8...v8.0.9) (2021-05-27)
+
+
+### Bug Fixes
+
+* use official action-sync-node-meta ([#377](https://github.com/dword-design/base/issues/377)) ([4cc0d25](https://github.com/dword-design/base/commit/4cc0d25ebc61c10e6f62ce745c201840e1667b02))
+
 ## [8.0.8](https://github.com/dword-design/base/compare/v8.0.7...v8.0.8) (2021-05-11)
 
 
