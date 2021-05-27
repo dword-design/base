@@ -11,7 +11,8 @@ export default {
           with: {
             approve: false,
             ...(!config.syncKeywords && { syncKeywords: false }),
-            commitMessage: 'fix: write GitHub metadata to package.json [{changes}]',
+            commitMessage:
+              'fix: write GitHub metadata to package.json [{changes}]',
             githubToken: '${{ secrets.GITHUB_TOKEN }}',
           },
         },
