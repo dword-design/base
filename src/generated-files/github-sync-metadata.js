@@ -7,11 +7,12 @@ export default {
       steps: [
         { uses: 'actions/checkout@v2' },
         {
-          uses: 'dword-design/action-sync-node-meta@fork',
+          uses: 'jaid/action-sync-node-meta@v2.0.0',
           with: {
             approve: false,
             ...(!config.syncKeywords && { syncKeywords: false }),
-            commitMessagePrefix: 'fix:',
+            commitMessage:
+              'fix: write GitHub metadata to package.json [{changes}]',
             githubToken: '${{ secrets.GITHUB_TOKEN }}',
           },
         },
