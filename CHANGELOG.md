@@ -1,3 +1,10 @@
+## [8.0.11](https://github.com/dword-design/base/compare/v8.0.10...v8.0.11) (2021-05-28)
+
+
+### Bug Fixes
+
+* update dependency expect to v27 ([a0e0c2d](https://github.com/dword-design/base/commit/a0e0c2de189a2537a69804e4970608a0c66c1b59))
+
 ## [8.0.10](https://github.com/dword-design/base/compare/v8.0.9...v8.0.10) (2021-05-28)
 
 
