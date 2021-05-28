@@ -17,7 +17,7 @@ export default {
   },
   /**
    * Manual Tests
-   * 
+   *
    * - Creates branch action-sync-node-meta
    * - Changing the description updates the PR
    * - Changing the topics updates the PR
