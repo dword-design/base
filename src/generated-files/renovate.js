@@ -1,5 +1,5 @@
-import packageConfig from '@/src/package-config'
 import baseConfig from '@/src/config'
+import packageConfig from '@/src/package-config'
 
 export default {
   ...(packageConfig.name !== '@dword-design/base' && {
@@ -14,7 +14,7 @@ export default {
     {
       matchPaths: [
         'package.json',
-        ...baseConfig.isLockFileFixCommitType ? ['yarn.lock'] : [],
+        ...(baseConfig.isLockFileFixCommitType ? ['yarn.lock'] : []),
       ],
       semanticCommitType: 'fix',
     },
