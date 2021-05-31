@@ -1,3 +1,10 @@
+# [8.1.0](https://github.com/dword-design/base/compare/v8.0.11...v8.1.0) (2021-05-31)
+
+
+### Features
+
+* allow to set if lock file is a fix commit type ([b6ef3c1](https://github.com/dword-design/base/commit/b6ef3c1024a67dd4183806c0c959a54026e1fe90))
+
 ## [8.0.11](https://github.com/dword-design/base/compare/v8.0.10...v8.0.11) (2021-05-28)
 
 
