@@ -13,4 +13,11 @@ export default {
     })
     expect(self).toMatchSnapshot(this)
   },
+  'lock file fix commit type': function () {
+    const self = proxyquire('./renovate', {
+      '../package-config': { name: 'foo' },
+      '../config': { isLockFileFixCommitType: true },
+    })
+    expect(self).toMatchSnapshot(this)
+  },
 }

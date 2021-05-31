@@ -13,17 +13,64 @@ Object {
   },
   "packageRules": Array [
     Object {
-      "packagePatterns": Array [
-        "*",
+      "matchPaths": Array [
+        "package.json",
       ],
-      "semanticCommitType": "chore",
+      "semanticCommitType": "fix",
     },
+  ],
+  "semanticCommitScope": null,
+}
+`;
+
+exports[`renovate lock file commit type 1`] = `
+Object {
+  "extends": Array [
+    ":semanticCommits",
+  ],
+  "ignorePaths": Array [
+    ".github/workflows/build.yml",
+  ],
+  "labels": Array [
+    "maintenance",
+  ],
+  "lockFileMaintenance": Object {
+    "enabled": true,
+  },
+  "packageRules": Array [
     Object {
       "depTypeList": Array [
         "dependencies",
         "devDependencies",
         "peerDependencies",
         "optionalDependencies",
+      ],
+      "semanticCommitType": "fix",
+    },
+  ],
+  "semanticCommitScope": null,
+}
+`;
+
+exports[`renovate lock file fix commit type 1`] = `
+Object {
+  "extends": Array [
+    ":semanticCommits",
+  ],
+  "ignorePaths": Array [
+    ".github/workflows/build.yml",
+  ],
+  "labels": Array [
+    "maintenance",
+  ],
+  "lockFileMaintenance": Object {
+    "enabled": true,
+  },
+  "packageRules": Array [
+    Object {
+      "matchPaths": Array [
+        "package.json",
+        "yarn.lock",
       ],
       "semanticCommitType": "fix",
     },
@@ -48,17 +95,8 @@ Object {
   },
   "packageRules": Array [
     Object {
-      "packagePatterns": Array [
-        "*",
-      ],
-      "semanticCommitType": "chore",
-    },
-    Object {
-      "depTypeList": Array [
-        "dependencies",
-        "devDependencies",
-        "peerDependencies",
-        "optionalDependencies",
+      "matchPaths": Array [
+        "package.json",
       ],
       "semanticCommitType": "fix",
     },
