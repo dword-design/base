@@ -56,7 +56,7 @@ export default {
         require('./package-config')
       )
       expect(packageConfig).toEqual({
-        author: 'Sebastian Landwehr <info@dword-design.de>',
+        author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
         engines: { node: '>=12' },
         files: ['dist'],
         funding: 'https://www.buymeacoffee.com/dword',
@@ -123,7 +123,7 @@ export default {
         require('./package-config')
       )
       expect(packageConfig).toEqual({
-        author: 'Sebastian Landwehr <info@dword-design.de>',
+        author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
         baseConfig: 'bar',
         bin: {
           foo: './dist/cli.js',
@@ -167,7 +167,7 @@ export default {
         require('./package-config')
       )
       expect(packageConfig).toEqual({
-        author: 'Sebastian Landwehr <info@dword-design.de>',
+        author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
         engines: { node: '>=12' },
         files: ['dist'],
         funding: 'https://www.buymeacoffee.com/dword',
@@ -227,7 +227,7 @@ export default {
         require('./package-config')
       )
       await expect(packageConfig).toEqual({
-        author: 'Sebastian Landwehr <info@dword-design.de>',
+        author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
         engines: { node: '>=12' },
         files: ['dist'],
         funding: 'https://www.buymeacoffee.com/dword',

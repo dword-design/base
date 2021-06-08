@@ -5,7 +5,7 @@
   "repository": "dword-design/base",
   "funding": "https://www.buymeacoffee.com/dword",
   "license": "MIT",
-  "author": "Sebastian Landwehr <info@dword-design.de>",
+  "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "main": "dist/index.js",
   "bin": {
     "base": "./dist/cli.js"
