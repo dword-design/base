@@ -1,3 +1,10 @@
+## [8.1.1](https://github.com/dword-design/base/compare/v8.1.0...v8.1.1) (2021-06-08)
+
+
+### Bug Fixes
+
+* add types.d.ts to files if it exists ([#386](https://github.com/dword-design/base/issues/386)) ([135e000](https://github.com/dword-design/base/commit/135e00022dee6e56289cf435aff15e31510fede9))
+
 # [8.1.0](https://github.com/dword-design/base/compare/v8.0.11...v8.1.0) (2021-05-31)
 
 
