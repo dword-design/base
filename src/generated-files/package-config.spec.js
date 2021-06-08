@@ -248,4 +248,13 @@ export default {
         version: '1.0.0',
       })
     }),
+  'types.d.ts': () =>
+    withLocalTmpDir(async () => {
+      await outputFile('types.d.ts', '')
+
+      const packageConfig = stealthyRequire(require.cache, () =>
+        require('./package-config')
+      )
+      expect(packageConfig.files).toEqual(['dist', 'types.d.ts'])
+    }),
 }
