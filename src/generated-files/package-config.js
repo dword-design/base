@@ -1,5 +1,6 @@
 import { mapValues, pick, stubTrue } from '@dword-design/functions'
 import packageName from 'depcheck-package-name'
+import { existsSync } from 'fs-extra'
 import sortKeys from 'sort-keys'
 
 import config from '@/src/config'
@@ -43,7 +44,7 @@ export default {
   engines: {
     node: '>=12',
   },
-  files: ['dist'],
+  files: ['dist', ...(existsSync('types.d.ts') ? ['types.d.ts'] : [])],
   license: 'MIT',
   ...config.packageConfig,
   scripts:
