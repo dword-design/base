@@ -39,7 +39,7 @@ export default {
       process.env.TEST_FOO = 'foo'
       try {
         await self('', { log: false })
-      } finally {
+      } finally {
         process.env = previousEnv
       }
     }),
