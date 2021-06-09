@@ -506,15 +506,15 @@ export default {
     test: async () => {
       const previousPlatform = process.platform
 
-      const previousCI = process.env.CI
+      const previousEnv = process.env
       delete process.env.CI
-      console.log(process.env)
+      delete process.env.GITHUB_ACTIONS
 
       const self = stealthyRequire(require.cache, () => require('.'))
       Object.defineProperty(process, 'platform', { value: 'darwin' })
       await expect(self()).rejects.toThrow('foobarbaz')
       Object.defineProperty(process, 'platform', { value: previousPlatform })
-      process.env.CI = previousCI
+      process.env = previousEnv
     },
   },
   'usesdocker windows': {
