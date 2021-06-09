@@ -486,7 +486,7 @@ export default {
     test: async () => {
       const previousPlatform = process.platform
 
-      const previousCI = process.env.CI
+      const previousEnv = process.env
       process.env.CI = true
 
       const self = stealthyRequire(require.cache, () => require('.'))
@@ -495,7 +495,7 @@ export default {
         await self()
       } finally {
         Object.defineProperty(process, 'platform', { value: previousPlatform })
-        process.env.CI = previousCI
+        process.env = previousEnv
       }
     },
   },
@@ -524,7 +524,7 @@ export default {
     test: async () => {
       const previousPlatform = process.platform
 
-      const previousCI = process.env.CI
+      const previousEnv = process.env
       process.env.CI = true
 
       const self = stealthyRequire(require.cache, () => require('.'))
@@ -533,7 +533,7 @@ export default {
         await self()
       } finally {
         Object.defineProperty(process, 'platform', { value: previousPlatform })
-        process.env.CI = previousCI
+        process.env = previousEnv
       }
     },
   },

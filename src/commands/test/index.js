@@ -50,11 +50,6 @@ export default async (pattern, options) => {
     await lint()
     await depcheck()
   }
-  console.log(isCI)
-  console.log(process.env.CI)
-  console.log(process.env.CONTINUOUS_INTEGRATION)
-  console.log(process.env.BUILD_NUMBER)
-  console.log(process.env.RUN_ID)
 
   const runDockerTests =
     !isCI || !(['win32', 'darwin'] |> includes(process.platform))
