@@ -137,10 +137,10 @@ export default {
         }
       `,
       'package.json': JSON.stringify({
-        devDependencies: { 'fs-extra': '^1.0.0' },
         baseConfig: {
-          coverageFileExtensions: ['.foo']
-        }
+          coverageFileExtensions: ['.foo'],
+        },
+        devDependencies: { 'fs-extra': '^1.0.0' },
       }),
     },
     async test() {
@@ -485,11 +485,12 @@ export default {
     },
     test: async () => {
       const previousPlatform = process.platform
+
       const previousCI = process.env.CI
       process.env.CI = true
+
       const self = stealthyRequire(require.cache, () => require('.'))
       Object.defineProperty(process, 'platform', { value: 'darwin' })
-
       try {
         await self()
       } finally {
@@ -504,11 +505,13 @@ export default {
     },
     test: async () => {
       const previousPlatform = process.platform
+
       const previousCI = process.env.CI
       delete process.env.CI
+      console.log(process.env)
+
       const self = stealthyRequire(require.cache, () => require('.'))
       Object.defineProperty(process, 'platform', { value: 'darwin' })
-
       await expect(self()).rejects.toThrow('foobarbaz')
       Object.defineProperty(process, 'platform', { value: previousPlatform })
       process.env.CI = previousCI
@@ -520,11 +523,12 @@ export default {
     },
     test: async () => {
       const previousPlatform = process.platform
+
       const previousCI = process.env.CI
       process.env.CI = true
+
       const self = stealthyRequire(require.cache, () => require('.'))
       Object.defineProperty(process, 'platform', { value: 'win32' })
-
       try {
         await self()
       } finally {
