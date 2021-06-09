@@ -73,7 +73,7 @@ export default {
         'test.js': endent`
           const fs = require('fs')
           
-          fs.writeFileSync('grep.txt', process.argv.slice(2))
+          fs.writeFileSync('grep.txt', process.argv.slice(2).toString())
         `,
       })
       await self('', { grep: 'foo bar baz', log: false })
