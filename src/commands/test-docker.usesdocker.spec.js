@@ -37,8 +37,11 @@ export default {
 
       const previousEnv = process.env
       process.env.TEST_FOO = 'foo'
-      await self('', { log: false })
-      process.env = previousEnv
+      try {
+        await self('', { log: false })
+      } finally {
+        process.env = previousEnv
+      }
     }),
   git: () =>
     withLocalTmpDir(async () => {
