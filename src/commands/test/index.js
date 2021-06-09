@@ -9,6 +9,8 @@ import stdEnv from 'std-env'
 import lint from '@/src/commands/lint'
 import config from '@/src/config'
 
+import depcheck from './depcheck'
+
 export default async (pattern, options) => {
   options = { log: !stdEnv.test, ...options }
   if (!pattern) {
@@ -46,21 +48,7 @@ export default async (pattern, options) => {
       )
     }
     await lint()
-    try {
-      await execa(
-        'depcheck',
-        [
-          '--skip-missing',
-          true,
-          '--config',
-          require.resolve('./depcheck-config'),
-          '.',
-        ],
-        { all: true }
-      )
-    } catch (error) {
-      throw new Error(error.all)
-    }
+    await depcheck()
   }
 
   const runDockerTests =
