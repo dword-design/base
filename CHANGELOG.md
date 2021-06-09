@@ -1,3 +1,11 @@
+## [8.1.2](https://github.com/dword-design/base/compare/v8.1.1...v8.1.2) (2021-06-09)
+
+
+### Bug Fixes
+
+* change email address ([#387](https://github.com/dword-design/base/issues/387)) ([63507ff](https://github.com/dword-design/base/commit/63507ff3f2d884c6f2d3a5b1c65f88271724c251))
+* update dependency eslint to ~7.28.0 ([#384](https://github.com/dword-design/base/issues/384)) ([b8bff34](https://github.com/dword-design/base/commit/b8bff34ad5463be23d27307dfaf0a63a1fc3d2fb))
+
 ## [8.1.1](https://github.com/dword-design/base/compare/v8.1.0...v8.1.1) (2021-06-08)
 
 
