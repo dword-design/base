@@ -1,3 +1,10 @@
+## [8.1.3](https://github.com/dword-design/base/compare/v8.1.2...v8.1.3) (2021-06-09)
+
+
+### Bug Fixes
+
+* update dependency mocha to v9 ([#385](https://github.com/dword-design/base/issues/385)) ([36955ac](https://github.com/dword-design/base/commit/36955ac2090b5dfec1d58438fe398a0afe322095))
+
 ## [8.1.2](https://github.com/dword-design/base/compare/v8.1.1...v8.1.2) (2021-06-09)
 
 
