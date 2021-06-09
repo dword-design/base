@@ -6,7 +6,6 @@ import {
   property,
   stubTrue,
 } from '@dword-design/functions'
-import proxyquire from '@dword-design/proxyquire'
 import packageName from 'depcheck-package-name'
 import { readFile } from 'fs-extra'
 import globby from 'globby'
@@ -139,12 +138,13 @@ export default {
       `,
       'package.json': JSON.stringify({
         devDependencies: { 'fs-extra': '^1.0.0' },
+        baseConfig: {
+          coverageFileExtensions: ['.foo']
+        }
       }),
     },
     async test() {
-      const self = proxyquire('.', {
-        '../../config': { coverageFileExtensions: ['.foo'] },
-      })
+      const self = stealthyRequire(require.cache, () => require('.'))
       expect(
         self() |> await |> property('all') |> unifyMochaOutput
       ).toMatchSnapshot(this)
