@@ -1,3 +1,10 @@
+## [8.1.5](https://github.com/dword-design/base/compare/v8.1.4...v8.1.5) (2021-06-10)
+
+
+### Bug Fixes
+
+* official depcheck ([#389](https://github.com/dword-design/base/issues/389)) ([f1603bc](https://github.com/dword-design/base/commit/f1603bcca9782ab1808a9efef2dbc4357104a4d2))
+
 ## [8.1.4](https://github.com/dword-design/base/compare/v8.1.3...v8.1.4) (2021-06-09)
 
 
