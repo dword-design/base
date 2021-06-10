@@ -17,7 +17,7 @@ export default async () => {
     package: packageConfig |> omit(['devDependencies']),
     skipMissing: true,
     ...config.depcheckConfig,
-    ignorePatterns: ['*.spec.js'],
+    ignorePatterns: ['*.spec.js', 'package.json'],
   })
   processResult('Unused dependencies', result.dependencies)
   result = await depcheck('.', {
