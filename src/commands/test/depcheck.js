@@ -17,14 +17,14 @@ export default async () => {
     package: packageConfig |> omit(['devDependencies']),
     skipMissing: true,
     ...config.depcheckConfig,
-    ignorePatterns: [...config.depcheckConfig.ignorePatterns, '*.spec.js'],
+    ignorePatterns: ['*.spec.js'],
   })
   processResult('Unused dependencies', result.dependencies)
   result = await depcheck('.', {
     package: packageConfig |> omit(['dependencies']),
     skipMissing: true,
     ...config.depcheckConfig,
-    ignorePatterns: [...config.depcheckConfig.ignorePatterns, '!*.spec.js'],
+    ignorePatterns: ['!*.spec.js'],
   })
   processResult('Unused devDependencies', result.devDependencies)
 }

@@ -38,7 +38,7 @@ export default {
   ...baseConfig,
   ...packageBaseConfig,
   depcheckConfig: {
-    ignorePatterns: ['.nyc_output', '.vscode', 'coverage', 'dist', '.nuxt'],
+    ignorePath: '.gitignore',
     ...baseConfig.depcheckConfig,
     detectors: [
       depcheck.detector.importDeclaration,
