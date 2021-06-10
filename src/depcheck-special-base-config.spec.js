@@ -1,83 +1,52 @@
-import { endent } from '@dword-design/functions'
-import execa from 'execa'
+import depcheck from 'depcheck'
+import { outputFile } from 'fs-extra'
 import outputFiles from 'output-files'
+import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
+const myStealthyRequire = (...args) => {
+  const previousChildren = module.children.slice()
+
+  const result = stealthyRequire(...args)
+  module.children = previousChildren
+
+  return result
+}
+
 export default {
-  'dev dependency': () =>
-    withLocalTmpDir(async () => {
-      await outputFiles({
-        'depcheck.config.js': endent`
-        const baseConfigSpecial = require('../src/depcheck-special-base-config')
-        module.exports = {
-          specials: [
-            baseConfigSpecial,
-          ],
-          prodDependencyMatches: ['src/**'],
-        }
-      `,
-        'node_modules/base-config-foo/index.js': 'module.exports = 1',
-        'package.json': JSON.stringify(
-          {
-            baseConfig: 'foo',
-            devDependencies: {
-              'base-config-foo': '^1.0.0',
-            },
-          },
-          undefined,
-          2
-        ),
-      })
-      await execa.command('depcheck')
-    }),
   'no config': () =>
     withLocalTmpDir(async () => {
-      await outputFiles({
-        'depcheck.config.js': endent`
-        const baseConfigSpecial = require('../src/depcheck-special-base-config')
-        
-        module.exports = {
-          specials: [
-            baseConfigSpecial,
-          ],
-          prodDependencyMatches: ['src/**'],
-        }
-      `,
-        'package.json': '{}',
+      await outputFile('package.json', JSON.stringify({}))
+
+      const self = myStealthyRequire(require.cache, () =>
+        require('./depcheck-special-base-config')
+      )
+      await depcheck('.', {
+        package: {},
+        specials: [self],
       })
-      await execa.command('depcheck')
     }),
-  'prod dependency': () =>
+  valid: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
-        'depcheck.config.js': endent`
-        const baseConfigSpecial = require('../src/depcheck-special-base-config')
-
-        module.exports = {
-          specials: [
-            baseConfigSpecial,
-          ],
-          prodDependencyMatches: ['src/**'],
-        }
-      `,
         'node_modules/base-config-foo/index.js': 'module.exports = 1',
-        'package.json': JSON.stringify(
-          {
-            baseConfig: 'foo',
-            dependencies: {
-              'base-config-foo': '^1.0.0',
-            },
-          },
-          undefined,
-          2
-        ),
+        'package.json': JSON.stringify({
+          baseConfig: 'foo',
+        }),
       })
-      let all
-      try {
-        await execa.command('depcheck', { all: true })
-      } catch (error) {
-        all = error.all
-      }
-      expect(all).toEqual('Unused dependencies\n* base-config-foo')
+
+      const self = myStealthyRequire(require.cache, () =>
+        require('./depcheck-special-base-config')
+      )
+
+      const result = await depcheck('.', {
+        package: {
+          devDependencies: {
+            'base-config-foo': '^1.0.0',
+          },
+        },
+        specials: [self],
+      })
+      expect(result.devDependencies).toEqual([])
     }),
 }
