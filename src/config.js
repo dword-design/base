@@ -38,12 +38,7 @@ export default {
   ...baseConfig,
   ...packageBaseConfig,
   depcheckConfig: {
-    ignoreDirs: ['.nyc_output', '.vscode', 'coverage', 'dist', '.nuxt'],
-    ignores:
-      (typeof baseConfig === 'string'
-        ? undefined
-        : packageBaseConfig.depcheckConfig?.ignoreMatches) || [],
-    prodDependencyMatches: ['!**/*.spec.js'],
+    ignorePatterns: ['.nyc_output', '.vscode', 'coverage', 'dist', '.nuxt'],
     ...baseConfig.depcheckConfig,
     detectors: [
       depcheck.detector.importDeclaration,
@@ -54,7 +49,7 @@ export default {
       ...(baseConfig.depcheckConfig?.detectors || []),
     ],
     parsers: {
-      '*.js': depcheckParserBabel,
+      '**/*.js': depcheckParserBabel,
       ...baseConfig.depcheckConfig?.parsers,
     },
     specials: [
