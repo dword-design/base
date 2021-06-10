@@ -1,24 +1,16 @@
 import depcheck from 'depcheck'
 import { outputFile } from 'fs-extra'
 import outputFiles from 'output-files'
-import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
-const myStealthyRequire = (...args) => {
-  const previousChildren = module.children.slice()
-
-  const result = stealthyRequire(...args)
-  module.children = previousChildren
-
-  return result
-}
+import stealthyRequire from './stealthy-require'
 
 export default {
   'no config': () =>
     withLocalTmpDir(async () => {
       await outputFile('package.json', JSON.stringify({}))
 
-      const self = myStealthyRequire(require.cache, () =>
+      const self = stealthyRequire(require.cache, () =>
         require('./depcheck-special-base-config')
       )
       await depcheck('.', {
@@ -35,7 +27,7 @@ export default {
         }),
       })
 
-      const self = myStealthyRequire(require.cache, () =>
+      const self = stealthyRequire(require.cache, () =>
         require('./depcheck-special-base-config')
       )
 

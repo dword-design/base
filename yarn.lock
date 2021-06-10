@@ -3545,14 +3545,6 @@ dir-glob@^3.0.0, dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-docker-multirun@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/docker-multirun/-/docker-multirun-2.0.2.tgz#326ae95ba7483e1dc3790ced892a26568583b94d"
-  integrity sha512-ZkkmuAlQpeZCZ6mKOeLRHrOdcwW5egl8NkbDnacgQVJkjPvxY+h2HupxeqTbpegVr+OhtB7I3lhIdL63rECG7Q==
-  dependencies:
-    "@dword-design/functions" "^4.0.0"
-    execa "^5.0.0"
-
 doctrine@1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-1.5.0.tgz#379dce730f6166f76cefa4e6707a159b02c5a6fa"

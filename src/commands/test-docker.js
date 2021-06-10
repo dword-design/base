@@ -1,10 +1,21 @@
-import { filter, flatMap, join, keys, map } from '@dword-design/functions'
+import {
+  filter,
+  flatMap,
+  join,
+  keys,
+  map,
+  replace,
+} from '@dword-design/functions'
 import { constantCase } from 'constant-case'
 import execa from 'execa'
 import findUp from 'find-up'
 
+import packageConfig from '@/src/package-config'
+
 export default (pattern, options) => {
   options = { log: true, ...options }
+
+  const volumeName = packageConfig.name |> replace('@', '') |> replace('/', '-')
 
   const envSchemaPath = findUp.sync('.env.schema.json')
 
@@ -14,8 +25,10 @@ export default (pattern, options) => {
     |> map(name => `TEST_${name |> constantCase}`)
 
   return execa(
-    'docker-multirun',
+    'docker',
     [
+      'run',
+      '--rm',
       '--user',
       'root',
       '--tty',
@@ -25,7 +38,7 @@ export default (pattern, options) => {
       '-v',
       `${process.cwd()}:/app`,
       '-v',
-      '/app/node_modules',
+      `${volumeName}:/app/node_modules`,
       'dworddesign/testing:latest',
       'bash',
       '-c',

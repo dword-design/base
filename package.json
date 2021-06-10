@@ -43,7 +43,6 @@
     "depcheck-detector-package-name": "^2.0.0",
     "depcheck-package-name": "^2.0.0",
     "depcheck-parser-babel": "^2.0.0",
-    "docker-multirun": "^2.0.0",
     "eslint": "~7.28.0",
     "execa": "^5.0.0",
     "expect": "^27.0.0",
@@ -74,6 +73,7 @@
     "spdx-expression-parse": "^3.0.0",
     "spdx-license-list": "^6.1.0",
     "std-env": "^2.3.0",
+    "stealthy-require": "^1.1.1",
     "yaml": "^1.8.2"
   },
   "devDependencies": {
@@ -85,7 +85,6 @@
     "p-event": "^4.2.0",
     "rimraf": "^3.0.0",
     "sharp": "^0.28.0",
-    "stealthy-require": "^1.1.1",
     "unify-mocha-output": "^2.0.0",
     "with-local-tmp-dir": "^4.0.0"
   },

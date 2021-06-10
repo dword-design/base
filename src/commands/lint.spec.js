@@ -2,8 +2,9 @@ import { endent } from '@dword-design/functions'
 import { outputFile, readFile } from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
-import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
+
+import stealthyRequire from '@/src/stealthy-require'
 
 export default {
   'custom linter': () =>

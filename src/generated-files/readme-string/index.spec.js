@@ -1,8 +1,9 @@
 import { endent } from '@dword-design/functions'
 import execa from 'execa'
 import outputFiles from 'output-files'
-import stealthyRequire from 'stealthy-require'
 import withLocalTmpDir from 'with-local-tmp-dir'
+
+import stealthyRequire from '@/src/stealthy-require'
 
 export default {
   badges() {
