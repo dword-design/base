@@ -1,3 +1,10 @@
+## [8.1.7](https://github.com/dword-design/base/compare/v8.1.6...v8.1.7) (2021-06-11)
+
+
+### Bug Fixes
+
+* support headful puppeteer ([#391](https://github.com/dword-design/base/issues/391)) ([5690fee](https://github.com/dword-design/base/commit/5690fee828b0da938d009840dea810f429293c13))
+
 ## [8.1.6](https://github.com/dword-design/base/compare/v8.1.5...v8.1.6) (2021-06-11)
 
 
