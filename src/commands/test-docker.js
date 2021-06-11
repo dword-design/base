@@ -43,7 +43,7 @@ export default (pattern, options) => {
       'bash',
       '-c',
       [
-        `yarn --frozen-lockfile && yarn test:raw${
+        `yarn --frozen-lockfile && xvfb-run yarn test:raw${
           options.updateSnapshots ? ' --update-snapshots' : ''
         }`,
         ...(pattern ? [`"${pattern}"`] : []),
