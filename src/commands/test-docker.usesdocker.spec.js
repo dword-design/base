@@ -5,8 +5,7 @@ import execa from 'execa'
 import { readFile } from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
-
-import stealthyRequire from '@/src/stealthy-require'
+import stealthyRequire from 'stealthy-require-no-leak'
 
 export default tester(
   {

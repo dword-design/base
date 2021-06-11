@@ -9132,6 +9132,13 @@ std-env@^2.3.0:
   dependencies:
     ci-info "^3.0.0"
 
+stealthy-require-no-leak@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/stealthy-require-no-leak/-/stealthy-require-no-leak-1.0.0.tgz#f34030e6b4a88d8b49f32dbd9023fdd13cf83648"
+  integrity sha512-WMrgUqaOIAE8zon01MLFVqGEKxZ0hFuiumKeDydUUFRmz/4vAPEyvX1qObL+Wyqu+jFU+a3IZfzMJAuwbkdVVQ==
+  dependencies:
+    stealthy-require "^1.1.1"
+
 stealthy-require@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"

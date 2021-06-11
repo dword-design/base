@@ -2,8 +2,7 @@ import { pick } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
-
-import stealthyRequire from '@/src/stealthy-require'
+import stealthyRequire from 'stealthy-require-no-leak'
 
 export default tester(
   {

@@ -73,7 +73,6 @@
     "spdx-expression-parse": "^3.0.0",
     "spdx-license-list": "^6.1.0",
     "std-env": "^2.3.0",
-    "stealthy-require": "^1.1.1",
     "yaml": "^1.8.2"
   },
   "devDependencies": {
@@ -85,6 +84,7 @@
     "p-event": "^4.2.0",
     "rimraf": "^3.0.0",
     "sharp": "^0.28.0",
+    "stealthy-require-no-leak": "^1.0.0",
     "unify-mocha-output": "^2.0.0",
     "with-local-tmp-dir": "^4.0.0"
   },

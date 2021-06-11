@@ -11,10 +11,9 @@ import { readFile } from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
 import P from 'path'
+import stealthyRequire from 'stealthy-require-no-leak'
 import unifyMochaOutput from 'unify-mocha-output'
 import withLocalTmpDir from 'with-local-tmp-dir'
-
-import stealthyRequire from '@/src/stealthy-require'
 
 const runTest = config => {
   config = { files: {}, ...config }

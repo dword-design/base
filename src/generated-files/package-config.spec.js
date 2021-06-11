@@ -2,9 +2,8 @@ import { endent } from '@dword-design/functions'
 import execa from 'execa'
 import { outputFile } from 'fs-extra'
 import outputFiles from 'output-files'
+import stealthyRequire from 'stealthy-require-no-leak'
 import withLocalTmpDir from 'with-local-tmp-dir'
-
-import stealthyRequire from '@/src/stealthy-require'
 
 export default {
   'custom config': () =>

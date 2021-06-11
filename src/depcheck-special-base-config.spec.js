@@ -1,9 +1,8 @@
 import depcheck from 'depcheck'
 import { outputFile } from 'fs-extra'
 import outputFiles from 'output-files'
+import stealthyRequire from 'stealthy-require-no-leak'
 import withLocalTmpDir from 'with-local-tmp-dir'
-
-import stealthyRequire from './stealthy-require'
 
 export default {
   'no config': () =>
