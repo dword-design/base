@@ -1,3 +1,10 @@
+## [8.1.6](https://github.com/dword-design/base/compare/v8.1.5...v8.1.6) (2021-06-11)
+
+
+### Bug Fixes
+
+* replace docker-multirun ([#390](https://github.com/dword-design/base/issues/390)) ([da1cfdf](https://github.com/dword-design/base/commit/da1cfdf231ac8239689df55f32afbcf62b802a06))
+
 ## [8.1.5](https://github.com/dword-design/base/compare/v8.1.4...v8.1.5) (2021-06-10)
 
 
