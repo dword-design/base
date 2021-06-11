@@ -1,14 +1,15 @@
 import { endent, property } from '@dword-design/functions'
+import tester from '@dword-design/tester'
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
 import { readFile } from 'fs-extra'
 import outputFiles from 'output-files'
-import withLocalTmpDir from 'with-local-tmp-dir'
+import P from 'path'
+import stealthyRequire from 'stealthy-require-no-leak'
 
-import self from './test-docker'
-
-export default {
-  env: () =>
-    withLocalTmpDir(async () => {
+export default tester(
+  {
+    env: async () => {
       await outputFiles({
         '.env.schema.json': JSON.stringify({
           bar: { type: 'string' },
@@ -16,7 +17,7 @@ export default {
         }),
         'package.json': JSON.stringify(
           {
-            name: 'foo',
+            name: P.basename(process.cwd()),
             scripts: {
               'test:raw': 'node test.js',
             },
@@ -25,30 +26,33 @@ export default {
           2
         ),
         'test.js': endent`
-          if (process.env.TEST_FOO !== 'foo') {
-            throw new Error('Environment variable TEST_FOO is not set')
-          }
-          if (process.env.TEST_BAR !== undefined) {
-            throw new Error('Environment variable TEST_BAR is set')
-          }
+        if (process.env.TEST_FOO !== 'foo') {
+          throw new Error('Environment variable TEST_FOO is not set')
+        }
+        if (process.env.TEST_BAR !== undefined) {
+          throw new Error('Environment variable TEST_BAR is set')
+        }
 
-        `,
+      `,
       })
 
       const previousEnv = process.env
       process.env.TEST_FOO = 'foo'
+
+      const self = stealthyRequire(require.cache, () =>
+        require('./test-docker')
+      )
       try {
         await self('', { log: false })
       } finally {
         process.env = previousEnv
       }
-    }),
-  git: () =>
-    withLocalTmpDir(async () => {
+    },
+    git: async () => {
       await outputFiles({
         'package.json': JSON.stringify(
           {
-            name: 'foo',
+            name: P.basename(process.cwd()),
             scripts: {
               'test:raw': 'node test.js',
             },
@@ -58,14 +62,17 @@ export default {
         ),
         'test.js': "require('child_process').spawn('git', ['--help'])",
       })
+
+      const self = stealthyRequire(require.cache, () =>
+        require('./test-docker')
+      )
       await self('', { log: false })
-    }),
-  grep: () =>
-    withLocalTmpDir(async () => {
+    },
+    grep: async () => {
       await outputFiles({
         'package.json': JSON.stringify(
           {
-            name: 'foo',
+            name: P.basename(process.cwd()),
             scripts: {
               'test:raw': 'node test.js',
             },
@@ -74,20 +81,23 @@ export default {
           2
         ),
         'test.js': endent`
-          const fs = require('fs')
-          
-          fs.writeFileSync('grep.txt', process.argv.slice(2).toString())
-        `,
+        const fs = require('fs')
+        
+        fs.writeFileSync('grep.txt', process.argv.slice(2).toString())
+      `,
       })
+
+      const self = stealthyRequire(require.cache, () =>
+        require('./test-docker')
+      )
       await self('', { grep: 'foo bar baz', log: false })
       expect(await readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz')
-    }),
-  pattern: () =>
-    withLocalTmpDir(async () => {
+    },
+    pattern: async () => {
       await outputFiles({
         'package.json': JSON.stringify(
           {
-            name: 'foo',
+            name: P.basename(process.cwd()),
             scripts: {
               'test:raw': 'node test.js',
             },
@@ -96,21 +106,24 @@ export default {
           2
         ),
         'test.js': endent`
-          const fs = require('fs')
-          
-          fs.writeFileSync('grep.txt', process.argv[2])
-        `,
+        const fs = require('fs')
+        
+        fs.writeFileSync('grep.txt', process.argv[2])
+      `,
       })
+
+      const self = stealthyRequire(require.cache, () =>
+        require('./test-docker')
+      )
       expect(
         self('foo bar baz', { log: false }) |> await |> property('all')
       ).toMatch('foo bar baz')
-    }),
-  puppeteer: () =>
-    withLocalTmpDir(async () => {
+    },
+    puppeteer: async () => {
       await outputFiles({
         'package.json': JSON.stringify(
           {
-            name: 'foo',
+            name: P.basename(process.cwd()),
             scripts: {
               'test:raw': 'node test.js',
             },
@@ -120,14 +133,17 @@ export default {
         ),
         'test.js': "require('puppeteer').launch()",
       })
+
+      const self = stealthyRequire(require.cache, () =>
+        require('./test-docker')
+      )
       await self('', { log: false })
-    }),
-  'update snapshots': () =>
-    withLocalTmpDir(async () => {
+    },
+    'update snapshots': async () => {
       await outputFiles({
         'package.json': JSON.stringify(
           {
-            name: 'foo',
+            name: P.basename(process.cwd()),
             scripts: {
               'test:raw': 'node test.js',
             },
@@ -136,21 +152,24 @@ export default {
           2
         ),
         'test.js': endent`
-          if (process.argv[2] !== '--update-snapshots') {
-            throw new Error('--update-snapshots is not set')
-          }
+        if (process.argv[2] !== '--update-snapshots') {
+          throw new Error('--update-snapshots is not set')
+        }
 
-        `,
+      `,
       })
+
+      const self = stealthyRequire(require.cache, () =>
+        require('./test-docker')
+      )
       await self('', { log: false, updateSnapshots: true })
-    }),
-  works: () =>
-    withLocalTmpDir(async () => {
+    },
+    works: async () => {
       await outputFiles({
         'is-docker.js': await readFile(require.resolve('is-docker'), 'utf8'),
         'package.json': JSON.stringify(
           {
-            name: 'foo',
+            name: P.basename(process.cwd()),
             scripts: {
               'test:raw': 'node test.js',
             },
@@ -159,19 +178,36 @@ export default {
           2
         ),
         'test.js': endent`
-          const isDocker = require('./is-docker')
-          if (!isDocker) {
-            process.exit(1)
-          }
+        const isDocker = require('./is-docker')
+        if (!isDocker) {
+          process.exit(1)
+        }
 
-        `,
+      `,
       })
       await execa.command('yarn')
+
+      const self = stealthyRequire(require.cache, () =>
+        require('./test-docker')
+      )
       expect(self('', { log: false }) |> await |> property('all')).not.toMatch(
         'Already up-to-date.'
       )
       expect(self('', { log: false }) |> await |> property('all')).toMatch(
         'Already up-to-date.'
       )
-    }),
-}
+    },
+  },
+  [
+    {
+      transform: test => async () => {
+        try {
+          await test()
+        } finally {
+          await execa.command(`docker volume rm ${P.basename(process.cwd())}`)
+        }
+      },
+    },
+    testerPluginTmpDir(),
+  ]
+)

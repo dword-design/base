@@ -11,18 +11,9 @@ import { readFile } from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
 import P from 'path'
-import stealthyRequire from 'stealthy-require'
+import stealthyRequire from 'stealthy-require-no-leak'
 import unifyMochaOutput from 'unify-mocha-output'
 import withLocalTmpDir from 'with-local-tmp-dir'
-
-const myStealthyRequire = (...args) => {
-  const previousChildren = module.children.slice()
-
-  const result = stealthyRequire(...args)
-  module.children = previousChildren
-
-  return result
-}
 
 const runTest = config => {
   config = { files: {}, ...config }
@@ -47,7 +38,7 @@ export default {
       'src/index.spec.js': "import '@/.nuxt'",
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         /SyntaxError: Unexpected token '?export'?/
       )
@@ -59,7 +50,7 @@ export default {
       'src/index.spec.js': "import '@/.nuxt-foo'",
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await self()
     },
   },
@@ -75,7 +66,7 @@ export default {
       },
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         'Error: expect(received).toEqual(expected)'
       )
@@ -96,7 +87,7 @@ export default {
       ),
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(endent`
       Unused dependencies
       * base-config-foo
@@ -112,7 +103,7 @@ export default {
       ),
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/bin/foo must match pattern "^\\.\\/dist\\/"'
       )
@@ -123,7 +114,7 @@ export default {
       'package.json': JSON.stringify({ name: '_foo' }, undefined, 2),
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow('package.json invalid')
     },
   },
@@ -175,7 +166,7 @@ export default {
       }),
     },
     async test() {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       expect(
         self() |> await |> property('all') |> unifyMochaOutput
       ).toMatchSnapshot(this)
@@ -183,7 +174,7 @@ export default {
   },
   empty: {
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await self()
     },
   },
@@ -200,7 +191,7 @@ export default {
       },
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
 
       const output = self('', { grep: 'foo' }) |> await |> property('all')
       expect(output).not.toMatch('run bar')
@@ -235,7 +226,7 @@ export default {
       }),
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await self()
       expect(await globby('*', { cwd: '__image_snapshots__' })).toEqual([
         'index-spec-js-index-works-1-snap.png',
@@ -247,7 +238,7 @@ export default {
       'package.json': JSON.stringify({ name: '_foo' }, undefined, 2),
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/name must match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"'
       )
@@ -258,7 +249,7 @@ export default {
       'src/test.json': 'foo bar',
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow('error  Unexpected token o')
     },
   },
@@ -267,7 +258,7 @@ export default {
       'src/index.js': "var foo = 'bar'",
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         "error  'foo' is assigned a value but never used  no-unused-vars"
       )
@@ -278,7 +269,7 @@ export default {
       'src/index.js': 'export default 1',
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await self()
     },
   },
@@ -294,7 +285,7 @@ export default {
       `,
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         'The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL'
       )
@@ -312,7 +303,7 @@ export default {
       `,
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await self()
       expect(await globby('*', { cwd: '__snapshots__' })).toEqual([
         'index.spec.js.snap',
@@ -336,7 +327,7 @@ export default {
       'src/index.spec.js': "import 'foo'",
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         /SyntaxError: Unexpected token '?export'?/
       )
@@ -348,7 +339,7 @@ export default {
       'src/index.spec.js': "import '@/node_modules-foo'",
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await self()
     },
   },
@@ -361,7 +352,7 @@ export default {
       },
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         /SyntaxError: Unexpected token '?export'?/
       )
@@ -388,7 +379,7 @@ export default {
       },
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
 
       const output = self('src/index2.spec.js') |> await |> property('all')
       expect(output).not.toMatch('run index1')
@@ -417,7 +408,7 @@ export default {
       },
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(endent`
       Unused dependencies
       * bar
@@ -435,7 +426,7 @@ export default {
       `,
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await self()
       expect(await globby('*', { cwd: '__snapshots__' })).toEqual([
         'index.spec.js.snap',
@@ -466,7 +457,7 @@ export default {
       ),
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       expect(self() |> await |> property('all')).toMatch('run test')
     },
   },
@@ -484,7 +475,7 @@ export default {
       'src/index.js': 'export default 1',
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(endent`
         Unused dependencies
         * change-case
@@ -506,7 +497,7 @@ export default {
       `,
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await self('', { updateSnapshots: true })
     },
   },
@@ -520,7 +511,7 @@ export default {
       const previousEnv = process.env
       process.env.CI = true
 
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       Object.defineProperty(process, 'platform', { value: 'darwin' })
       try {
         await self()
@@ -541,7 +532,7 @@ export default {
       delete process.env.CI
       delete process.env.GITHUB_ACTIONS
 
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       Object.defineProperty(process, 'platform', { value: 'darwin' })
       await expect(self()).rejects.toThrow('foobarbaz')
       Object.defineProperty(process, 'platform', { value: previousPlatform })
@@ -558,7 +549,7 @@ export default {
       const previousEnv = process.env
       process.env.CI = true
 
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       Object.defineProperty(process, 'platform', { value: 'win32' })
       try {
         await self()
@@ -597,7 +588,7 @@ export default {
       },
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       expect((await self()) |> await |> property('all')).toMatch('run test')
       expect(
         globby('*', { dot: true, onlyFiles: false })
@@ -639,7 +630,7 @@ export default {
       ),
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/dependencies must be object'
       )
@@ -656,7 +647,7 @@ export default {
       ),
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/description must be string'
       )
@@ -667,7 +658,7 @@ export default {
       'package.json': JSON.stringify({ devDependencies: 1 }, undefined, 2),
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/devDependencies must be object'
       )
@@ -678,7 +669,7 @@ export default {
       'package.json': JSON.stringify({ keywords: 1 }, undefined, 2),
     },
     test: async () => {
-      const self = myStealthyRequire(require.cache, () => require('.'))
+      const self = stealthyRequire(require.cache, () => require('.'))
       await expect(self()).rejects.toThrow(
         'package.json invalid\ndata/keywords must be array'
       )

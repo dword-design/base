@@ -3545,14 +3545,6 @@ dir-glob@^3.0.0, dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-docker-multirun@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/docker-multirun/-/docker-multirun-2.0.2.tgz#326ae95ba7483e1dc3790ced892a26568583b94d"
-  integrity sha512-ZkkmuAlQpeZCZ6mKOeLRHrOdcwW5egl8NkbDnacgQVJkjPvxY+h2HupxeqTbpegVr+OhtB7I3lhIdL63rECG7Q==
-  dependencies:
-    "@dword-design/functions" "^4.0.0"
-    execa "^5.0.0"
-
 doctrine@1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-1.5.0.tgz#379dce730f6166f76cefa4e6707a159b02c5a6fa"
@@ -9139,6 +9131,13 @@ std-env@^2.3.0:
   integrity sha512-4qT5B45+Kjef2Z6pE0BkskzsH0GO7GrND0wGlTM1ioUe3v0dGYx9ZJH0Aro/YyA8fqQ5EyIKDRjZojJYMFTflw==
   dependencies:
     ci-info "^3.0.0"
+
+stealthy-require-no-leak@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/stealthy-require-no-leak/-/stealthy-require-no-leak-1.0.0.tgz#f34030e6b4a88d8b49f32dbd9023fdd13cf83648"
+  integrity sha512-WMrgUqaOIAE8zon01MLFVqGEKxZ0hFuiumKeDydUUFRmz/4vAPEyvX1qObL+Wyqu+jFU+a3IZfzMJAuwbkdVVQ==
+  dependencies:
+    stealthy-require "^1.1.1"
 
 stealthy-require@^1.1.1:
   version "1.1.1"

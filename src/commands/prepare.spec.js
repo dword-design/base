@@ -12,7 +12,7 @@ import execa from 'execa'
 import { readFile } from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
-import stealthyRequire from 'stealthy-require'
+import stealthyRequire from 'stealthy-require-no-leak'
 
 export default tester(
   {

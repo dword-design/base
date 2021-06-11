@@ -2,7 +2,7 @@ import { endent } from '@dword-design/functions'
 import { outputFile, readFile } from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
-import stealthyRequire from 'stealthy-require'
+import stealthyRequire from 'stealthy-require-no-leak'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
