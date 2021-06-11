@@ -131,8 +131,23 @@ export default tester(
           undefined,
           2
         ),
-        'test.js': "require('puppeteer').launch()",
+        'test.js': endent`
+          const puppeteer = require('@dword-design/puppeteer')
+          
+          const run = async () => {
+            try {
+              const browser = await puppeteer.launch({ headless: false })
+              await browser.close()
+            } catch (error) {
+              console.error(error)
+              process.exit(1)
+            }
+          }
+
+          run()
+        `,
       })
+      await execa.command('yarn add @dword-design/puppeteer')
 
       const self = stealthyRequire(require.cache, () =>
         require('./test-docker')
