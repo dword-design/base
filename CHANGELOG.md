@@ -1,3 +1,11 @@
+## [8.1.8](https://github.com/dword-design/base/compare/v8.1.7...v8.1.8) (2021-06-14)
+
+
+### Bug Fixes
+
+* fix depcheck ignoreMatches ([448b400](https://github.com/dword-design/base/commit/448b40099711f82947fe70b8d47b169870e34066))
+* lock file maintenance ([376d3fe](https://github.com/dword-design/base/commit/376d3fecc517225766cb7e1451e6e64576047753))
+
 ## [8.1.7](https://github.com/dword-design/base/compare/v8.1.6...v8.1.7) (2021-06-11)
 
 
