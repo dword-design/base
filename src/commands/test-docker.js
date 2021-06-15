@@ -29,16 +29,20 @@ export default async (pattern, options) => {
   const dockerfilePath = P.resolve(__dirname, 'Dockerfile')
 
   const userInfo = os.userInfo()
-  await execa('docker', [
-    'build',
-    '--build-arg',
-    `user=${userInfo.uid}:${userInfo.gid}`,
-    '-f',
-    dockerfilePath,
-    '-t',
-    'dworddesign/testing:latest',
-    '.',
-  ], options.log ? { stdio: 'inherit' } : { all: true })
+  await execa(
+    'docker',
+    [
+      'build',
+      '--build-arg',
+      `user=${userInfo.uid}:${userInfo.gid}`,
+      '-f',
+      dockerfilePath,
+      '-t',
+      'dworddesign/testing:latest',
+      '.',
+    ],
+    options.log ? { stdio: 'inherit' } : { all: true }
+  )
 
   return execa(
     'docker',
