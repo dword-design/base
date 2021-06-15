@@ -20,5 +20,5 @@ RUN chown $user /app/node_modules
 # RUN chown -R $user /screenshots
 # RUN chown -R $user /app
 # RUN chown -R $user /tools
-  
+
 USER $user
