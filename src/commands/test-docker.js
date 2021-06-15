@@ -9,10 +9,12 @@ import {
 import { constantCase } from 'constant-case'
 import execa from 'execa'
 import findUp from 'find-up'
+import os from 'os'
+import P from 'path'
 
 import packageConfig from '@/src/package-config'
 
-export default (pattern, options) => {
+export default async (pattern, options) => {
   options = { log: true, ...options }
 
   const volumeName = packageConfig.name |> replace('@', '') |> replace('/', '-')
@@ -24,13 +26,25 @@ export default (pattern, options) => {
     |> keys
     |> map(name => `TEST_${name |> constantCase}`)
 
+  const dockerfilePath = P.resolve(__dirname, 'Dockerfile')
+
+  const userInfo = os.userInfo()
+  await execa('docker', [
+    'build',
+    '--build-arg',
+    `user=${userInfo.uid}:${userInfo.gid}`,
+    '-f',
+    dockerfilePath,
+    '-t',
+    'dworddesign/testing:latest',
+    '.',
+  ], options.log ? { stdio: 'inherit' } : { all: true })
+
   return execa(
     'docker',
     [
       'run',
       '--rm',
-      '--user',
-      'root',
       '--tty',
       ...(envVariableNames
         |> filter(name => process.env[name] !== undefined)
