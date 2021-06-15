@@ -1319,9 +1319,9 @@
     proxyquire "^2.1.3"
 
 "@dword-design/tester-plugin-tmp-dir@^2.0.0":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@dword-design/tester-plugin-tmp-dir/-/tester-plugin-tmp-dir-2.0.3.tgz#249f72e6c781f23ee1a82f521e00bac6acd3a2a6"
-  integrity sha512-Wq1WW22JCGRI2W/ZNACFA31h9zt8nBi2t+uO3i9uX5sfazjs2sg24Dacgu18DCrScmy1cyA9DHCRnWSZBduX2Q==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/tester-plugin-tmp-dir/-/tester-plugin-tmp-dir-2.1.1.tgz#a100ffd68b75809606aae3417e4ea26f1a9aefb8"
+  integrity sha512-JXeIyMBAhS/Bd3z+4h0Gj1xmXCCIPBM4FGhGSf/e/wcTJshMkTVmyILJQCrMbY+0xQZHV8AdEV7h/DqiEVITxQ==
   dependencies:
     with-local-tmp-dir "^4.0.0"
 

@@ -27,7 +27,7 @@ export default tester(
       const self = stealthyRequire(require.cache, () =>
         require('./test-docker')
       )
-      await self(''/*, { log: false }*/)
+      await self('' /* , { log: false } */)
       await remove('dist')
     },
     env: async () => {
@@ -157,7 +157,7 @@ export default tester(
           
           const run = async () => {
             try {
-              const browser = await puppeteer.launch({ headless: false })
+              const browser = await puppeteer.launch({ headless: true })
               await browser.close()
             } catch (error) {
               console.error(error)
@@ -173,7 +173,7 @@ export default tester(
       const self = stealthyRequire(require.cache, () =>
         require('./test-docker')
       )
-      await self('', { log: false })
+      await self(''/*, { log: false }*/)
     },
     'update snapshots': async () => {
       await outputFiles({
