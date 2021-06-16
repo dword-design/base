@@ -40,6 +40,7 @@ export default {
   depcheckConfig: {
     ignorePath: '.gitignore',
     ...baseConfig.depcheckConfig,
+    ...packageBaseConfig.depcheckConfig,
     detectors: [
       depcheck.detector.importDeclaration,
       depcheck.detector.requireCallExpression,

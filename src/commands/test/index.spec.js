@@ -172,6 +172,28 @@ export default {
       ).toMatchSnapshot(this)
     },
   },
+  'depcheck ignoreMatches': {
+    files: {
+      'package.json': JSON.stringify(
+        {
+          baseConfig: {
+            depcheckConfig: {
+              ignoreMatches: ['foo'],
+            },
+          },
+          dependencies: {
+            foo: '^1.0.0',
+          },
+        },
+        undefined,
+        2
+      ),
+    },
+    test: async () => {
+      const self = stealthyRequire(require.cache, () => require('.'))
+      await self()
+    },
+  },
   empty: {
     test: async () => {
       const self = stealthyRequire(require.cache, () => require('.'))
