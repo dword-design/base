@@ -9,6 +9,7 @@ import {
 import { constantCase } from 'constant-case'
 import execa from 'execa'
 import findUp from 'find-up'
+import os from 'os'
 
 import packageConfig from '@/src/package-config'
 
@@ -24,13 +25,13 @@ export default (pattern, options) => {
     |> keys
     |> map(name => `TEST_${name |> constantCase}`)
 
+  const userInfo = os.userInfo()
+
   return execa(
     'docker',
     [
       'run',
       '--rm',
-      '--user',
-      'root',
       '--tty',
       ...(envVariableNames
         |> filter(name => process.env[name] !== undefined)
@@ -43,11 +44,16 @@ export default (pattern, options) => {
       'bash',
       '-c',
       [
-        `yarn --frozen-lockfile && xvfb-run yarn test:raw${
-          options.updateSnapshots ? ' --update-snapshots' : ''
-        }`,
+        'yarn --frozen-lockfile',
+        '&&',
+        'xvfb-run',
+        'yarn test:raw',
+        ...(options.updateSnapshots ? [' --update-snapshots'] : []),
         ...(pattern ? [`"${pattern}"`] : []),
         ...(options.grep ? [`-g "${options.grep}"`] : []),
+        '&&',
+        `chown -R ${userInfo.uid}:${userInfo.gid}`,
+        '/app',
       ] |> join(' '),
     ],
     options.log ? { stdio: 'inherit' } : { all: true }

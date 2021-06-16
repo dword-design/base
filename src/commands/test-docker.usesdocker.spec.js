@@ -2,13 +2,34 @@ import { endent, property } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
-import { readFile } from 'fs-extra'
+import { outputFile, readFile, remove } from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
 import stealthyRequire from 'stealthy-require-no-leak'
 
 export default tester(
   {
+    'create file': async () => {
+      await outputFile(
+        'package.json',
+        JSON.stringify(
+          {
+            name: P.basename(process.cwd()),
+            scripts: {
+              'test:raw': 'mkdir dist && echo "foo bar" > dist/index.js',
+            },
+          },
+          undefined,
+          2
+        )
+      )
+
+      const self = stealthyRequire(require.cache, () =>
+        require('./test-docker')
+      )
+      await self('', { log: false })
+      await remove('dist')
+    },
     env: async () => {
       await outputFiles({
         '.env.schema.json': JSON.stringify({
