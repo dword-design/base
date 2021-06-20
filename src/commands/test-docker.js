@@ -46,7 +46,6 @@ export default (pattern, options) => {
       [
         'yarn --frozen-lockfile',
         '&&',
-        'xvfb-run',
         'yarn test:raw',
         ...(options.updateSnapshots ? [' --update-snapshots'] : []),
         ...(pattern ? [`"${pattern}"`] : []),

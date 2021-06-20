@@ -154,11 +154,15 @@ export default tester(
         ),
         'test.js': endent`
           const puppeteer = require('@dword-design/puppeteer')
-          
+          const Xvfb = require('xvfb')
+          const xvfb = new Xvfb()
+
           const run = async () => {
             try {
+              xvfb.startSync()
               const browser = await puppeteer.launch({ headless: false })
               await browser.close()
+              xvfb.stopSync()
             } catch (error) {
               console.error(error)
               process.exit(1)
@@ -168,7 +172,7 @@ export default tester(
           run()
         `,
       })
-      await execa.command('yarn add @dword-design/puppeteer')
+      await execa.command('yarn add @dword-design/puppeteer xvfb')
 
       const self = stealthyRequire(require.cache, () =>
         require('./test-docker')
