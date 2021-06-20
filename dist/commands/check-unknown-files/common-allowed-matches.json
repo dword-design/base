@@ -1,0 +1,11 @@
+[
+  "__image_snapshots__",
+  "__snapshots__",
+  ".env.schema.json",
+  ".eslintrc.json",
+  ".git",
+  ".husky",
+  "CHANGELOG.md",
+  "types.d.ts",
+  "yarn.lock"
+]
