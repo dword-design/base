@@ -1,3 +1,10 @@
+## [8.1.10](https://github.com/dword-design/base/compare/v8.1.9...v8.1.10) (2021-06-20)
+
+
+### Bug Fixes
+
+* remove xvfb ([#400](https://github.com/dword-design/base/issues/400)) ([94b1c2f](https://github.com/dword-design/base/commit/94b1c2f2e8171bf06502ae16b2cef1bc43e64d49))
+
 ## [8.1.9](https://github.com/dword-design/base/compare/v8.1.8...v8.1.9) (2021-06-16)
 
 
