@@ -4,21 +4,15 @@ exports[`renovate base 1`] = `
 Object {
   "extends": Array [
     ":semanticCommits",
+    ":semanticPrefixFix",
   ],
   "labels": Array [
     "maintenance",
   ],
   "lockFileMaintenance": Object {
     "enabled": true,
+    "semanticCommitType": "chore",
   },
-  "packageRules": Array [
-    Object {
-      "matchPaths": Array [
-        "package.json",
-      ],
-      "semanticCommitType": "fix",
-    },
-  ],
   "semanticCommitScope": null,
 }
 `;
@@ -56,6 +50,7 @@ exports[`renovate lock file fix commit type 1`] = `
 Object {
   "extends": Array [
     ":semanticCommits",
+    ":semanticPrefixFix",
   ],
   "ignorePaths": Array [
     ".github/workflows/build.yml",
@@ -66,15 +61,6 @@ Object {
   "lockFileMaintenance": Object {
     "enabled": true,
   },
-  "packageRules": Array [
-    Object {
-      "matchPaths": Array [
-        "package.json",
-        "yarn.lock",
-      ],
-      "semanticCommitType": "fix",
-    },
-  ],
   "semanticCommitScope": null,
 }
 `;
@@ -83,6 +69,7 @@ exports[`renovate not base 1`] = `
 Object {
   "extends": Array [
     ":semanticCommits",
+    ":semanticPrefixFix",
   ],
   "ignorePaths": Array [
     ".github/workflows/build.yml",
@@ -92,15 +79,8 @@ Object {
   ],
   "lockFileMaintenance": Object {
     "enabled": true,
+    "semanticCommitType": "chore",
   },
-  "packageRules": Array [
-    Object {
-      "matchPaths": Array [
-        "package.json",
-      ],
-      "semanticCommitType": "fix",
-    },
-  ],
   "semanticCommitScope": null,
 }
 `;

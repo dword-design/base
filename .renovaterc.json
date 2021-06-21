@@ -1,20 +1,14 @@
 {
   "extends": [
-    ":semanticCommits"
+    ":semanticCommits",
+    ":semanticPrefixFix"
   ],
   "labels": [
     "maintenance"
   ],
   "lockFileMaintenance": {
-    "enabled": true
+    "enabled": true,
+    "semanticCommitType": "chore"
   },
-  "packageRules": [
-    {
-      "matchPaths": [
-        "package.json"
-      ],
-      "semanticCommitType": "fix"
-    }
-  ],
   "semanticCommitScope": null
 }
