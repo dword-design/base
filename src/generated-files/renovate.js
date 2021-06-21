@@ -5,19 +5,13 @@ export default {
   ...(packageConfig.name !== '@dword-design/base' && {
     ignorePaths: ['.github/workflows/build.yml'],
   }),
-  extends: [':semanticCommits'],
+  extends: [':semanticCommits', ':semanticPrefixFix'],
   labels: ['maintenance'],
   lockFileMaintenance: {
     enabled: true,
+    ...(baseConfig.isLockFileFixCommitType
+      ? {}
+      : { semanticCommitType: 'chore' }),
   },
-  packageRules: [
-    {
-      matchPaths: [
-        'package.json',
-        ...(baseConfig.isLockFileFixCommitType ? ['yarn.lock'] : []),
-      ],
-      semanticCommitType: 'fix',
-    },
-  ],
   semanticCommitScope: null,
 }
