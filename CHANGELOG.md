@@ -1,3 +1,10 @@
+## [8.1.12](https://github.com/dword-design/base/compare/v8.1.11...v8.1.12) (2021-06-21)
+
+
+### Bug Fixes
+
+* fix lock file commit type ([#403](https://github.com/dword-design/base/issues/403)) ([3780ed4](https://github.com/dword-design/base/commit/3780ed4353441898fa2e2498779b554e2d4e8dd8))
+
 ## [8.1.11](https://github.com/dword-design/base/compare/v8.1.10...v8.1.11) (2021-06-21)
 
 
