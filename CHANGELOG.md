@@ -1,3 +1,10 @@
+## [8.1.14](https://github.com/dword-design/base/compare/v8.1.13...v8.1.14) (2021-06-27)
+
+
+### Bug Fixes
+
+* fix gitpod extensions ([#404](https://github.com/dword-design/base/issues/404)) ([0d36e46](https://github.com/dword-design/base/commit/0d36e461d754d3a831292749bf823d9f34619202))
+
 ## [8.1.13](https://github.com/dword-design/base/compare/v8.1.12...v8.1.13) (2021-06-27)
 
 
