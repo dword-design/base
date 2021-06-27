@@ -1,3 +1,10 @@
+## [8.1.13](https://github.com/dword-design/base/compare/v8.1.12...v8.1.13) (2021-06-27)
+
+
+### Bug Fixes
+
+* add .vsix to git lfs ([#406](https://github.com/dword-design/base/issues/406)) ([c34fd40](https://github.com/dword-design/base/commit/c34fd40ec379816bc74d47b92e4da1a4e7953288))
+
 ## [8.1.12](https://github.com/dword-design/base/compare/v8.1.11...v8.1.12) (2021-06-21)
 
 
