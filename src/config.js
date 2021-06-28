@@ -35,6 +35,7 @@ export default {
     $ yarn ${packageBaseConfig.global ? 'global ' : ''}add ${packageConfig.name}
     \`\`\`
   `,
+  seeAlso: [],
   ...baseConfig,
   ...packageBaseConfig,
   depcheckConfig: {

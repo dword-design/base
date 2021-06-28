@@ -1,9 +1,12 @@
-import { compact, endent, join } from '@dword-design/functions'
+import { endent, join, map } from '@dword-design/functions'
+import { Octokit } from '@octokit/rest'
 import spdxParse from 'spdx-expression-parse'
 import spdxList from 'spdx-license-list/full'
 
 import config from '@/src/config'
 import packageConfig from '@/src/generated-files/package-config'
+
+const octokit = new Octokit()
 
 export default {
   badges: () =>
@@ -95,7 +98,7 @@ export default {
   `,
   description: () => packageConfig.description || '',
   install: () => config.readmeInstallString,
-  license: () =>
+  license: async () =>
     [
       endent`
       ## Contribute
@@ -132,23 +135,55 @@ export default {
 
       Thanks a lot for your support! ❤️
     `,
-      (() => {
-        if (packageConfig.license) {
-          const parsed = spdxParse(packageConfig.license)
+      ...(config.seeAlso.length > 0
+        ? [
+            await (async () => {
+              const repos =
+                config.seeAlso
+                |> map(seeAlso => {
+                  let parts = seeAlso.split('/')
+                  if (parts.length <= 1) {
+                    parts = ['dword-design', ...parts]
+                  }
 
-          const license = spdxList[parsed.license]
+                  return octokit.rest.repos.get({
+                    owner: parts[0],
+                    repo: parts[1],
+                  })
+                })
+                |> Promise.all
+                |> await
 
-          return endent`
-          ## License
-      
-          [${license.name}](${license.url}) © [Sebastian Landwehr](https://sebastianlandwehr.com)
+              return endent`
+          ## See Also
+
+          ${
+            repos
+            |> map('data')
+            |> map(
+              repo => `* [${repo.name}](${repo.html_url}): ${repo.description}`
+            )
+            |> join('\n')
+          }
         `
-        }
+            })(),
+          ]
+        : []),
+      packageConfig.license
+        ? [
+            (() => {
+              const parsed = spdxParse(packageConfig.license)
 
-        return ''
-      })(),
-    ]
-    |> compact
-    |> join('\n\n'),
+              const license = spdxList[parsed.license]
+
+              return endent`
+      ## License
+  
+      [${license.name}](${license.url}) © [Sebastian Landwehr](https://sebastianlandwehr.com)
+    `
+            })(),
+          ]
+        : [],
+    ] |> join('\n\n'),
   title: () => `# ${packageConfig.name}`,
 }

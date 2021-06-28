@@ -19,7 +19,7 @@ export default {
         'package.json': JSON.stringify({ name: '@dword-design/foo' }),
       })
 
-      const readmeString = stealthyRequire(require.cache, () => require('.'))
+      const readmeString = await stealthyRequire(require.cache, () => require('.'))()
       expect(readmeString).toMatchSnapshot(this)
     })
   },
@@ -33,7 +33,9 @@ export default {
         'package.json': JSON.stringify({ description: 'foo bar baz' }),
       })
 
-      const readmeString = stealthyRequire(require.cache, () => require('.'))
+      const readmeString = await stealthyRequire(require.cache, () =>
+        require('.')
+      )()
       expect(readmeString).toEqual(endent`
       <!-- DESCRIPTION/ -->
       foo bar baz
@@ -59,7 +61,9 @@ export default {
         }),
       })
 
-      const readmeString = stealthyRequire(require.cache, () => require('.'))
+      const readmeString = await stealthyRequire(require.cache, () =>
+        require('.')
+      )()
       expect(readmeString).toMatchSnapshot(this)
     })
   },
@@ -73,7 +77,9 @@ export default {
         'package.json': JSON.stringify({ name: 'foo' }),
       })
 
-      const readmeString = stealthyRequire(require.cache, () => require('.'))
+      const readmeString = await stealthyRequire(require.cache, () =>
+        require('.')
+      )()
       expect(readmeString).toEqual(endent`
       <!-- INSTALL/ -->
       ## Install
@@ -99,7 +105,30 @@ export default {
         'package.json': JSON.stringify({ license: 'MIT' }),
       })
 
-      const readmeString = stealthyRequire(require.cache, () => require('.'))
+      const readmeString = await stealthyRequire(require.cache, () =>
+        require('.')
+      )()
+      expect(readmeString).toMatchSnapshot(this)
+    })
+  },
+  seeAlso() {
+    return withLocalTmpDir(async () => {
+      await outputFiles({
+        'README.md': endent`
+        <!-- LICENSE -->
+        
+      `,
+        'package.json': JSON.stringify({
+          baseConfig: {
+            seeAlso: ['output-files', 'dword-design/with-local-tmp-dir'],
+          },
+          license: 'MIT',
+        }),
+      })
+
+      const readmeString = await stealthyRequire(require.cache, () =>
+        require('.')
+      )()
       expect(readmeString).toMatchSnapshot(this)
     })
   },
@@ -115,7 +144,9 @@ export default {
         }),
       })
 
-      const readmeString = stealthyRequire(require.cache, () => require('.'))
+      const readmeString = await stealthyRequire(require.cache, () =>
+        require('.')
+      )()
       expect(readmeString).toEqual(endent`
       <!-- TITLE/ -->
       # foo

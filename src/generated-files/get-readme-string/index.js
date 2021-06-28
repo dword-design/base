@@ -21,19 +21,22 @@ const readme =
 
 `
 
-export default replacements
-  |> reduce((current, getReplacement, name) => {
+export default async () =>
+  replacements
+  |> reduce(async (current, getReplacement, name) => {
     const sectionName = name.toUpperCase()
 
     return (
       current
+      |> await
       |> replace(
         getProjectzReadmeSectionRegex(sectionName),
         endent`
-          <!-- ${sectionName}/ -->
-          ${getReplacement(packageConfig)}
-          <!-- /${sectionName} -->
-        `
+        <!-- ${sectionName}/ -->
+        ${getReplacement(packageConfig) |> await}
+        <!-- /${sectionName} -->
+      `
       )
     )
   }, readme)
+  |> await

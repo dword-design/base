@@ -68,6 +68,7 @@ export default {
         },
         preDeploySteps: [{ run: 'foo' }],
         readmeInstallString: 'foo',
+        seeAlso: [],
       })
       expect(config.commands |> keys |> sortBy(identity)).toEqual([
         'prepublishOnly',
@@ -116,6 +117,7 @@ export default {
         name: 'base-config-foo',
         nodeVersion: 14,
         preDeploySteps: [],
+        seeAlso: [],
         readmeInstallString: endent`
           ## Install
 

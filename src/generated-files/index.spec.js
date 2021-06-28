@@ -2,15 +2,15 @@ import { endent, keys } from '@dword-design/functions'
 import proxyquire from '@dword-design/proxyquire'
 
 export default {
-  'package.json script sort order': () => {
-    const self = proxyquire('.', {
+  'package.json script sort order': async () => {
+    const self = await proxyquire('.', {
       './package-config': {
         scripts: {
           dev: 'base dev',
           test: 'base test',
         },
       },
-    })
+    })()
     expect(self['package.json']).toEqual(endent`
       {
         "scripts": {
@@ -21,8 +21,8 @@ export default {
 
     `)
   },
-  works() {
-    const self = proxyquire('.', {})
+  async works() {
+    const self = await proxyquire('.', {})()
     expect(self |> keys).toMatchSnapshot(this)
   },
 }

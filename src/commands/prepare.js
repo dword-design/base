@@ -5,10 +5,10 @@ import { exists } from 'fs-extra'
 import outputFiles from 'output-files'
 
 import config from '@/src/config'
-import configFiles from '@/src/generated-files'
+import getGeneratedFiles from '@/src/generated-files'
 
 export default async () => {
-  await outputFiles(configFiles)
+  await outputFiles(await getGeneratedFiles())
   if (await exists('.git')) {
     await execa.command('husky install')
     await execa('husky', [
