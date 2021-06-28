@@ -87,6 +87,9 @@ Object {
           "run": "yarn --frozen-lockfile",
         },
         Object {
+          "env": Object {
+            "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
+          },
           "run": "yarn test",
         },
         Object {
@@ -180,6 +183,9 @@ Object {
           "run": "yarn --frozen-lockfile",
         },
         Object {
+          "env": Object {
+            "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
+          },
           "run": "yarn test",
         },
         Object {
@@ -270,6 +276,7 @@ Object {
         },
         Object {
           "env": Object {
+            "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
             "TEST_BAR": "\${{ secrets.TEST_BAR }}",
             "TEST_FOO": "\${{ secrets.TEST_FOO }}",
           },
@@ -362,6 +369,9 @@ Object {
           "run": "yarn --frozen-lockfile",
         },
         Object {
+          "env": Object {
+            "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
+          },
           "run": "yarn test",
         },
         Object {
