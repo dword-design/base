@@ -4,22 +4,19 @@ import findUp from 'find-up'
 
 const envSchemaPath = findUp.sync('.env.schema.json')
 
-const envVariableNames =
-  (envSchemaPath ? require(envSchemaPath) : {})
+const envVariableNames = [
+  'GITHUB_TOKEN',
+  ...(envSchemaPath ? require(envSchemaPath) : {})
   |> keys
   |> map(name => `TEST_${name |> constantCase}`)
+]
 
 export default [
   {
     run: 'yarn test',
-    ...(envVariableNames.length > 0
-      ? {
-          env:
-            envVariableNames
-            |> map(name => [name, `\${{ secrets.${name} }}`])
-            |> fromPairs,
-        }
-      : {}),
+    env: envVariableNames
+      |> map(name => [name, `\${{ secrets.${name} }}`])
+      |> fromPairs,
   },
   {
     if: 'failure()',
