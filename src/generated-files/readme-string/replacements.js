@@ -1,4 +1,4 @@
-import { compact, endent, join } from '@dword-design/functions'
+import { endent, join, last, map, split } from '@dword-design/functions'
 import spdxParse from 'spdx-expression-parse'
 import spdxList from 'spdx-license-list/full'
 
@@ -132,23 +132,42 @@ export default {
 
       Thanks a lot for your support! ❤️
     `,
-      (() => {
-        if (packageConfig.license) {
-          const parsed = spdxParse(packageConfig.license)
+      ...(config.seeAlso.length > 0
+        ? [
+            endent`
+            ## See Also
 
-          const license = spdxList[parsed.license]
+            ${
+              config.seeAlso
+              |> map(entry => {
+                const parts = entry.repository |> split('/')
 
-          return endent`
-          ## License
-      
-          [${license.name}](${license.url}) © [Sebastian Landwehr](https://sebastianlandwehr.com)
-        `
-        }
+                const owner = parts.length >= 2 ? parts[0] : 'dword-design'
 
-        return ''
-      })(),
-    ]
-    |> compact
-    |> join('\n\n'),
+                const name = parts |> last
+
+                return `* [${name}](https://github.com/${owner}/${name}): ${entry.description}`
+              })
+              |> join('\n')
+            }
+          `,
+          ]
+        : []),
+      packageConfig.license
+        ? [
+            (() => {
+              const parsed = spdxParse(packageConfig.license)
+
+              const license = spdxList[parsed.license]
+
+              return endent`
+      ## License
+  
+      [${license.name}](${license.url}) © [Sebastian Landwehr](https://sebastianlandwehr.com)
+    `
+            })(),
+          ]
+        : [],
+    ] |> join('\n\n'),
   title: () => `# ${packageConfig.name}`,
 }

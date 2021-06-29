@@ -103,6 +103,28 @@ export default {
       expect(readmeString).toMatchSnapshot(this)
     })
   },
+  seeAlso() {
+    return withLocalTmpDir(async () => {
+      await outputFiles({
+        'README.md': endent`
+        <!-- LICENSE -->
+        
+      `,
+        'package.json': JSON.stringify({
+          baseConfig: {
+            seeAlso: [
+              { description: 'Foo bar', repository: 'output-files' },
+              { description: 'Bar baz', repository: 'foo/with-local-tmp-dir' },
+            ],
+          },
+          license: 'MIT',
+        }),
+      })
+
+      const readmeString = stealthyRequire(require.cache, () => require('.'))
+      expect(readmeString).toMatchSnapshot(this)
+    })
+  },
   title: () =>
     withLocalTmpDir(async () => {
       await outputFiles({

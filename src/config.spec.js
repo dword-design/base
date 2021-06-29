@@ -68,6 +68,7 @@ export default {
         },
         preDeploySteps: [{ run: 'foo' }],
         readmeInstallString: 'foo',
+        seeAlso: [],
       })
       expect(config.commands |> keys |> sortBy(identity)).toEqual([
         'prepublishOnly',
@@ -127,6 +128,7 @@ export default {
           $ yarn add foo
           \`\`\`
         `,
+        seeAlso: [],
       })
       expect(typeof config.depcheckConfig).toEqual('object')
       expect(config.lint(1)).toEqual(1)
