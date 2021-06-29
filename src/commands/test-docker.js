@@ -13,7 +13,7 @@ import os from 'os'
 
 import packageConfig from '@/src/package-config'
 
-export default (pattern, options) => {
+export default async (pattern, options) => {
   options = { log: true, ...options }
 
   const volumeName = packageConfig.name |> replace('@', '') |> replace('/', '-')
@@ -26,16 +26,39 @@ export default (pattern, options) => {
     |> map(name => `TEST_${name |> constantCase}`)
 
   const userInfo = os.userInfo()
-
-  return execa(
-    'docker',
-    [
+  try {
+    return await execa(
+      'docker',
+      [
+        'run',
+        '--rm',
+        '--tty',
+        ...(envVariableNames
+          |> filter(name => process.env[name] !== undefined)
+          |> flatMap(name => ['--env', `${name}=${process.env[name]}`])),
+        '-v',
+        `${process.cwd()}:/app`,
+        '-v',
+        `${volumeName}:/app/node_modules`,
+        'dworddesign/testing:latest',
+        'bash',
+        '-c',
+        [
+          'yarn --frozen-lockfile',
+          '&&',
+          'yarn test:raw',
+          ...(options.updateSnapshots ? [' --update-snapshots'] : []),
+          ...(pattern ? [`"${pattern}"`] : []),
+          ...(options.grep ? [`-g "${options.grep}"`] : []),
+        ] |> join(' '),
+      ],
+      options.log ? { stdio: 'inherit' } : { all: true }
+    )
+  } finally {
+    await execa('docker', [
       'run',
       '--rm',
       '--tty',
-      ...(envVariableNames
-        |> filter(name => process.env[name] !== undefined)
-        |> flatMap(name => ['--env', `${name}=${process.env[name]}`])),
       '-v',
       `${process.cwd()}:/app`,
       '-v',
@@ -43,18 +66,7 @@ export default (pattern, options) => {
       'dworddesign/testing:latest',
       'bash',
       '-c',
-      [
-        'yarn --frozen-lockfile',
-        '&&',
-        'yarn test:raw',
-        ...(options.updateSnapshots ? [' --update-snapshots'] : []),
-        ...(pattern ? [`"${pattern}"`] : []),
-        ...(options.grep ? [`-g "${options.grep}"`] : []),
-        '&&',
-        `chown -R ${userInfo.uid}:${userInfo.gid}`,
-        '/app',
-      ] |> join(' '),
-    ],
-    options.log ? { stdio: 'inherit' } : { all: true }
-  )
+      `chown -R ${userInfo.uid}:${userInfo.gid} /app`,
+    ])
+  }
 }
