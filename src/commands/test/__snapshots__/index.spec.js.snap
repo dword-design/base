@@ -13,6 +13,6 @@ exports[`index coverage file extension 1`] = `
 File       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------|---------|----------|---------|---------|-------------------
 All files  |       0 |        0 |       0 |       0 |                   
- index.foo |       0 |        0 |       0 |       0 | 0                 
+ index.foo |       0 |        0 |       0 |       0 |                   
 -----------|---------|----------|---------|---------|-------------------"
 `;
