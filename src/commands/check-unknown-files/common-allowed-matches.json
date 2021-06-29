@@ -1,6 +1,7 @@
 [
   "__image_snapshots__",
   "__snapshots__",
+  ".baserc.json",
   ".env.schema.json",
   ".eslintrc.json",
   ".git",

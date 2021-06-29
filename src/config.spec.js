@@ -1,56 +1,105 @@
-import {
-  endent,
-  identity,
-  keys,
-  mapValues,
-  omit,
-  sortBy,
-} from '@dword-design/functions'
-import proxyquire from '@dword-design/proxyquire'
+import { endent, identity, keys, omit, sortBy } from '@dword-design/functions'
+import tester from '@dword-design/tester'
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
+import { outputFile } from 'fs-extra'
+import outputFiles from 'output-files'
+import stealthyRequire from 'stealthy-require-no-leak'
 
-const runTest = config => () => {
-  config = {
-    baseConfig: {},
-    packageBaseConfig: {},
-    packageConfig: {},
-    ...config,
-  }
+export default tester(
+  {
+    empty: async () => {
+      await outputFiles({
+        'node_modules/base-config-foo/index.js': 'module.exports = {}',
+        'package.json': JSON.stringify({ baseConfig: 'foo', name: 'foo' }),
+      })
 
-  const self = proxyquire('./config', {
-    './package-base-config': config.packageBaseConfig,
-    './package-config': config.packageConfig,
-    'import-cwd': () => config.baseConfig,
-  })
-  config.test(self)
-}
+      const self = stealthyRequire(require.cache, () => require('./config'))
+      expect(self |> omit(['depcheckConfig', 'prepare', 'lint'])).toEqual({
+        allowedMatches: [],
+        commands: {},
+        coverageFileExtensions: [],
+        deployAssets: [],
+        deployEnv: {},
+        deployPlugins: [],
+        editorIgnore: [],
+        gitignore: [],
+        name: 'base-config-foo',
+        nodeVersion: 14,
+        preDeploySteps: [],
+        readmeInstallString: endent`
+        ## Install
 
-export default {
-  filled: {
-    baseConfig: {
-      commands: {
-        prepublishOnly: x => x + 1,
-        start: x => x + 3,
-      },
-      deployAssets: [{ label: 'Foo', path: 'foo.js' }],
-      deployEnv: {
-        FOO: '${{ secrets.FOO }}',
-      },
-      deployPlugins: ['semantic-release-foo'],
-      editorIgnore: ['foo'],
-      gitignore: ['foo'],
-      lint: x => x + 3,
-      nodeVersion: 10,
-      packageBaseConfig: {
-        main: 'dist/index.scss',
-      },
-      preDeploySteps: [{ run: 'foo' }],
-      prepare: x => x + 2,
-      readmeInstallString: 'foo',
+        \`\`\`bash
+        # npm
+        $ npm install foo
+
+        # Yarn
+        $ yarn add foo
+        \`\`\`
+      `,
+        seeAlso: [],
+        syncKeywords: true,
+      })
+      expect(typeof self.depcheckConfig).toEqual('object')
+      expect(self.lint(1)).toEqual(1)
     },
-    packageBaseConfig: { name: 'base-config-foo' },
-    test: config => {
+    global: async () => {
+      await outputFile(
+        'package.json',
+        JSON.stringify({
+          baseConfig: { global: true },
+          name: 'foo',
+        })
+      )
+
+      const self = stealthyRequire(require.cache, () => require('./config'))
+      expect(self.readmeInstallString).toEqual(endent`
+      ## Install
+
+      \`\`\`bash
+      # npm
+      $ npm install -g foo
+
+      # Yarn
+      $ yarn global add foo
+      \`\`\`
+    `)
+    },
+    inherited: async () => {
+      await outputFiles({
+        'node_modules/base-config-foo/index.js': endent`
+          module.exports = {
+            commands: {
+              prepublishOnly: x => x + 1,
+              start: x => x + 3,
+            },
+            deployAssets: [{ label: 'Foo', path: 'foo.js' }],
+            deployEnv: {
+              FOO: '\${{ secrets.FOO }}',
+            },
+            deployPlugins: ['semantic-release-foo'],
+            editorIgnore: ['foo'],
+            gitignore: ['foo'],
+            lint: x => x + 3,
+            nodeVersion: 10,
+            packageBaseConfig: {
+              main: 'dist/index.scss',
+            },
+            preDeploySteps: [{ run: 'foo' }],
+            prepare: x => x + 2,
+            readmeInstallString: 'foo',
+          }
+
+        `,
+        'package.json': JSON.stringify({
+          baseConfig: 'foo',
+          name: 'foo',
+        }),
+      })
+
+      const self = stealthyRequire(require.cache, () => require('./config'))
       expect(
-        config |> omit(['commands', 'depcheckConfig', 'prepare', 'lint'])
+        self |> omit(['commands', 'depcheckConfig', 'prepare', 'lint'])
       ).toEqual({
         allowedMatches: [],
         coverageFileExtensions: [],
@@ -69,69 +118,18 @@ export default {
         preDeploySteps: [{ run: 'foo' }],
         readmeInstallString: 'foo',
         seeAlso: [],
+        syncKeywords: true,
       })
-      expect(config.commands |> keys |> sortBy(identity)).toEqual([
+      expect(self.commands |> keys |> sortBy(identity)).toEqual([
         'prepublishOnly',
         'start',
       ])
-      expect(config.commands.prepublishOnly(1)).toEqual(2)
-      expect(config.commands.start(1)).toEqual(4)
-      expect(config.prepare(1)).toEqual(3)
-      expect(config.lint(1)).toEqual(4)
-      expect(typeof config.depcheckConfig).toEqual('object')
+      expect(self.commands.prepublishOnly(1)).toEqual(2)
+      expect(self.commands.start(1)).toEqual(4)
+      expect(self.prepare(1)).toEqual(3)
+      expect(self.lint(1)).toEqual(4)
+      expect(typeof self.depcheckConfig).toEqual('object')
     },
   },
-  global: {
-    packageBaseConfig: { global: true },
-    packageConfig: {
-      name: 'foo',
-    },
-    test: config =>
-      expect(config.readmeInstallString).toEqual(endent`
-        ## Install
-
-        \`\`\`bash
-        # npm
-        $ npm install -g foo
-
-        # Yarn
-        $ yarn global add foo
-        \`\`\`
-      `),
-  },
-  valid: {
-    packageBaseConfig: { name: 'base-config-foo' },
-    packageConfig: {
-      name: 'foo',
-    },
-    test: config => {
-      expect(config |> omit(['depcheckConfig', 'prepare', 'lint'])).toEqual({
-        allowedMatches: [],
-        commands: {},
-        coverageFileExtensions: [],
-        deployAssets: [],
-        deployEnv: {},
-        deployPlugins: [],
-        editorIgnore: [],
-        gitignore: [],
-        name: 'base-config-foo',
-        nodeVersion: 14,
-        preDeploySteps: [],
-        readmeInstallString: endent`
-          ## Install
-
-          \`\`\`bash
-          # npm
-          $ npm install foo
-
-          # Yarn
-          $ yarn add foo
-          \`\`\`
-        `,
-        seeAlso: [],
-      })
-      expect(typeof config.depcheckConfig).toEqual('object')
-      expect(config.lint(1)).toEqual(1)
-    },
-  },
-} |> mapValues(runTest)
+  [testerPluginTmpDir()]
+)
