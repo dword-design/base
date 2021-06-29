@@ -1,3 +1,10 @@
+# [8.4.0](https://github.com/dword-design/base/compare/v8.3.0...v8.4.0) (2021-06-29)
+
+
+### Features
+
+* github sponsors ([#413](https://github.com/dword-design/base/issues/413)) ([b1a74b7](https://github.com/dword-design/base/commit/b1a74b7c6b1c29cf93588542e308efcc92b88404))
+
 # [8.3.0](https://github.com/dword-design/base/compare/v8.2.0...v8.3.0) (2021-06-29)
 
 
