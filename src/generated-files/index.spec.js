@@ -3,14 +3,14 @@ import proxyquire from '@dword-design/proxyquire'
 
 export default {
   'package.json script sort order': async () => {
-    const self = await proxyquire('.', {
+    const self = proxyquire('.', {
       './package-config': {
         scripts: {
           dev: 'base dev',
           test: 'base test',
         },
       },
-    })()
+    })
     expect(self['package.json']).toEqual(endent`
       {
         "scripts": {
@@ -22,7 +22,7 @@ export default {
     `)
   },
   async works() {
-    const self = await proxyquire('.', {})()
+    const self = proxyquire('.', {})
     expect(self |> keys).toMatchSnapshot(this)
   },
 }

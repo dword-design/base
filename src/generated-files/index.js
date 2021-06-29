@@ -8,7 +8,6 @@ import commitizenConfig from './commitizen'
 import commitlintConfig from './commitlint'
 import editorconfigConfig from './editorconfig'
 import eslintConfig from './eslint'
-import getReadmeString from './get-readme-string'
 import gitattributesConfig from './gitattributes'
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies'
 import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template'
@@ -21,11 +20,12 @@ import gitpodConfig from './gitpod'
 import gitpodDockerfile from './gitpod-dockerfile'
 import licenseString from './license-string'
 import packageConfig from './package-config'
+import readmeString from './readme-string'
 import releaseConfig from './release'
 import renovateConfig from './renovate'
 import vscodeConfig from './vscode'
 
-export default async () => ({
+export default {
   '.babelrc.json': babelConfig |> jsonToString({ indent: 2 }),
   '.commitlintrc.json': commitlintConfig |> jsonToString({ indent: 2 }),
   '.cz.json': commitizenConfig,
@@ -53,10 +53,10 @@ export default async () => ({
     sortKeys(renovateConfig, { deep: true }) |> jsonToString({ indent: 2 }),
   '.vscode/settings.json': vscodeConfig |> jsonToString({ indent: 2 }),
   'LICENSE.md': licenseString,
-  'README.md': await getReadmeString(),
+  'README.md': readmeString,
   'package.json':
     packageConfig
     |> sortPackageJson
     |> jsonToString({ indent: 2 })
     |> add('\n'),
-})
+}

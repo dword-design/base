@@ -1,12 +1,9 @@
-import { endent, join, map } from '@dword-design/functions'
-import { Octokit } from '@octokit/rest'
+import { endent, join, last, map, split } from '@dword-design/functions'
 import spdxParse from 'spdx-expression-parse'
 import spdxList from 'spdx-license-list/full'
 
 import config from '@/src/config'
 import packageConfig from '@/src/generated-files/package-config'
-
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
 export default {
   badges: () =>
@@ -98,7 +95,7 @@ export default {
   `,
   description: () => packageConfig.description || '',
   install: () => config.readmeInstallString,
-  license: async () =>
+  license: () =>
     [
       endent`
       ## Contribute
@@ -137,36 +134,23 @@ export default {
     `,
       ...(config.seeAlso.length > 0
         ? [
-            await (async () => {
-              const repos =
-                config.seeAlso
-                |> map(seeAlso => {
-                  let parts = seeAlso.split('/')
-                  if (parts.length <= 1) {
-                    parts = ['dword-design', ...parts]
-                  }
+            endent`
+            ## See Also
 
-                  return octokit.rest.repos.get({
-                    owner: parts[0],
-                    repo: parts[1],
-                  })
-                })
-                |> Promise.all
-                |> await
+            ${
+              config.seeAlso
+              |> map(entry => {
+                const parts = entry.repository |> split('/')
 
-              return endent`
-          ## See Also
+                const owner = parts.length >= 2 ? parts[0] : 'dword-design'
 
-          ${
-            repos
-            |> map('data')
-            |> map(
-              repo => `* [${repo.name}](${repo.html_url}): ${repo.description}`
-            )
-            |> join('\n')
-          }
-        `
-            })(),
+                const name = parts |> last
+
+                return `* [${name}](https://github.com/${owner}/${name}): ${entry.description}`
+              })
+              |> join('\n')
+            }
+          `,
           ]
         : []),
       packageConfig.license

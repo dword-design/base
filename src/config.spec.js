@@ -117,7 +117,6 @@ export default {
         name: 'base-config-foo',
         nodeVersion: 14,
         preDeploySteps: [],
-        seeAlso: [],
         readmeInstallString: endent`
           ## Install
 
@@ -129,6 +128,7 @@ export default {
           $ yarn add foo
           \`\`\`
         `,
+        seeAlso: [],
       })
       expect(typeof config.depcheckConfig).toEqual('object')
       expect(config.lint(1)).toEqual(1)
