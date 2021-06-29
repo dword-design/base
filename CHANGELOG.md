@@ -1,3 +1,10 @@
+## [8.4.1](https://github.com/dword-design/base/compare/v8.4.0...v8.4.1) (2021-06-29)
+
+
+### Bug Fixes
+
+* fix docker permissions also on error ([#416](https://github.com/dword-design/base/issues/416)) ([f1b04e0](https://github.com/dword-design/base/commit/f1b04e0663c1dfde13e8c22fb7354577f90dc17d))
+
 # [8.4.0](https://github.com/dword-design/base/compare/v8.3.0...v8.4.0) (2021-06-29)
 
 
