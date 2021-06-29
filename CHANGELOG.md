@@ -1,3 +1,10 @@
+# [8.3.0](https://github.com/dword-design/base/compare/v8.2.0...v8.3.0) (2021-06-29)
+
+
+### Features
+
+* use cosmiconfig ([#410](https://github.com/dword-design/base/issues/410)) ([ad2dcd5](https://github.com/dword-design/base/commit/ad2dcd51f1c02751540d1cda903e30b089742296))
+
 # [8.2.0](https://github.com/dword-design/base/compare/v8.1.14...v8.2.0) (2021-06-29)
 
 
