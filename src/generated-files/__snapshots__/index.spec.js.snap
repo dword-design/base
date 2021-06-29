@@ -35,6 +35,7 @@ Array [
   ".eslintrc.json",
   ".gitattributes",
   ".github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md",
+  ".github/FUNDING.yml",
   ".github/labels.yml",
   ".github/workflows/build.yml",
   ".github/workflows/deprecated-dependencies.yml",
