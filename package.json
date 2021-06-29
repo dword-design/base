@@ -3,7 +3,7 @@
   "version": "8.3.0",
   "description": "Base package for projects.",
   "repository": "dword-design/base",
-  "funding": "https://www.buymeacoffee.com/dword",
+  "funding": "https://github.com/sponsors/dword-design",
   "license": "MIT",
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "main": "dist/index.js",
