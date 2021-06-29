@@ -11,6 +11,7 @@ import eslintConfig from './eslint'
 import gitattributesConfig from './gitattributes'
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies'
 import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template'
+import githubFunding from './github-funding'
 import githubLabelsConfig from './github-labels'
 import githubSyncLabelsConfig from './github-sync-labels'
 import githubSyncMetadataConfig from './github-sync-metadata'
@@ -34,6 +35,7 @@ export default {
   '.gitattributes': gitattributesConfig,
   '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md':
     deprecatedDependenciesIssueTemplate,
+  '.github/FUNDING.yml': githubFunding |> yaml.stringify,
   '.github/labels.yml':
     sortKeys(githubLabelsConfig, { deep: true }) |> yaml.stringify,
   '.github/workflows/build.yml':

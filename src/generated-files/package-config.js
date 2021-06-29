@@ -34,7 +34,7 @@ export default {
       'publishConfig',
       'types',
     ])),
-  funding: 'https://www.buymeacoffee.com/dword',
+  funding: 'https://github.com/sponsors/dword-design',
   publishConfig: {
     access: 'public',
   },
