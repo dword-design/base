@@ -9,7 +9,7 @@ import stealthyRequire from 'stealthy-require-no-leak'
 
 export default tester(
   {
-    'create file': async () => {
+    'create folder': async () => {
       await outputFile(
         'package.json',
         JSON.stringify(
@@ -28,6 +28,28 @@ export default tester(
         require('./test-docker')
       )
       await self('', { log: false })
+      await remove('dist')
+    },
+    'create folder and error': async () => {
+      await outputFile(
+        'package.json',
+        JSON.stringify(
+          {
+            name: P.basename(process.cwd()),
+            scripts: {
+              'test:raw':
+                'mkdir dist && echo "foo bar" > dist/index.js && exit 1',
+            },
+          },
+          undefined,
+          2
+        )
+      )
+
+      const self = stealthyRequire(require.cache, () =>
+        require('./test-docker')
+      )
+      await expect(self('', { log: false })).rejects.toThrow()
       await remove('dist')
     },
     env: async () => {
