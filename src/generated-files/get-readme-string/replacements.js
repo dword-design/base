@@ -6,7 +6,7 @@ import spdxList from 'spdx-license-list/full'
 import config from '@/src/config'
 import packageConfig from '@/src/generated-files/package-config'
 
-const octokit = new Octokit()
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
 export default {
   badges: () =>
