@@ -1,3 +1,10 @@
+# [8.2.0](https://github.com/dword-design/base/compare/v8.1.14...v8.2.0) (2021-06-29)
+
+
+### Features
+
+* see-also ([#408](https://github.com/dword-design/base/issues/408)) ([0f2964c](https://github.com/dword-design/base/commit/0f2964cfba4c9913aa962f750bd2127a04bfc4a6))
+
 ## [8.1.14](https://github.com/dword-design/base/compare/v8.1.13...v8.1.14) (2021-06-27)
 
 
