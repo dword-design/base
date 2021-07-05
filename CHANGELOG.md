@@ -1,3 +1,11 @@
+## [8.4.2](https://github.com/dword-design/base/compare/v8.4.1...v8.4.2) (2021-07-05)
+
+
+### Bug Fixes
+
+* update dependency eslint to ~7.30.0 ([f495386](https://github.com/dword-design/base/commit/f49538671e75a664c25af23f0adc834fa8d483d5))
+* update dependency husky to v7 ([#417](https://github.com/dword-design/base/issues/417)) ([8a43b89](https://github.com/dword-design/base/commit/8a43b8996a35201f7b9086f76ba245e9a1168249))
+
 ## [8.4.1](https://github.com/dword-design/base/compare/v8.4.0...v8.4.1) (2021-06-29)
 
 
