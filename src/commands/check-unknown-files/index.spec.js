@@ -72,4 +72,23 @@ export default {
       'foo.txt': true,
     },
   },
+  'husky': {
+    files: {
+      '.husky': {
+        'commit-msg': '',
+        'post-checkout': '',
+        'post-commit': '',
+        'pre-push': '',
+        'post-merge': '',
+        '_': {
+          '.gitignore': '',
+          'husky.sh': '',
+        },
+        '.gitignore': '',
+      },
+    },
+    result: {
+      '.husky/.gitignore': true,
+    },
+  },
 } |> mapValues(runTest)
