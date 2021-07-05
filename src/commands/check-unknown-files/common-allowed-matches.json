@@ -5,7 +5,12 @@
   ".env.schema.json",
   ".eslintrc.json",
   ".git",
-  ".husky",
+  ".husky/_",
+  ".husky/commit-msg",
+  ".husky/post-checkout",
+  ".husky/post-commit",
+  ".husky/pre-push",
+  ".husky/post-merge",
   "CHANGELOG.md",
   "types.d.ts",
   "yarn.lock"

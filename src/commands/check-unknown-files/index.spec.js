@@ -58,6 +58,25 @@ export default {
       '.env.json': '',
     },
   },
+  husky: {
+    files: {
+      '.husky': {
+        '.gitignore': '',
+        _: {
+          '.gitignore': '',
+          'husky.sh': '',
+        },
+        'commit-msg': '',
+        'post-checkout': '',
+        'post-commit': '',
+        'post-merge': '',
+        'pre-push': '',
+      },
+    },
+    result: {
+      '.husky/.gitignore': true,
+    },
+  },
   subfolder: {
     configAllowedMatches: ['foo'],
     files: {
