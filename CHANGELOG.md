@@ -1,3 +1,10 @@
+## [8.4.5](https://github.com/dword-design/base/compare/v8.4.4...v8.4.5) (2021-07-06)
+
+
+### Bug Fixes
+
+* disable autosave for gitpod ([#424](https://github.com/dword-design/base/issues/424)) ([d0c315c](https://github.com/dword-design/base/commit/d0c315cabfb410a05a9de276448d3a4ddacf958f))
+
 ## [8.4.4](https://github.com/dword-design/base/compare/v8.4.3...v8.4.4) (2021-07-06)
 
 
