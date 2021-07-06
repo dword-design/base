@@ -1,3 +1,10 @@
+## [8.4.4](https://github.com/dword-design/base/compare/v8.4.3...v8.4.4) (2021-07-06)
+
+
+### Bug Fixes
+
+* centralize babel-register ([#423](https://github.com/dword-design/base/issues/423)) ([ac800bf](https://github.com/dword-design/base/commit/ac800bf5a3efe4bb0ba6e6062d806115e4046e5a))
+
 ## [8.4.3](https://github.com/dword-design/base/compare/v8.4.2...v8.4.3) (2021-07-06)
 
 
