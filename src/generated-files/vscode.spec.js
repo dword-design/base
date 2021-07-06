@@ -13,6 +13,7 @@ export default {
     config: ['bar', 'foo'],
     result: {
       'editor.tabSize': 2,
+      'files.autoSave': 'off',
       'files.exclude': {
         bar: true,
         foo: true,
