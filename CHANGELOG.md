@@ -1,3 +1,10 @@
+## [8.4.3](https://github.com/dword-design/base/compare/v8.4.2...v8.4.3) (2021-07-06)
+
+
+### Bug Fixes
+
+* fix config array merge ([7d778a4](https://github.com/dword-design/base/commit/7d778a4ac56b96379befbe302e083c8a90249e36))
+
 ## [8.4.2](https://github.com/dword-design/base/compare/v8.4.1...v8.4.2) (2021-07-05)
 
 
