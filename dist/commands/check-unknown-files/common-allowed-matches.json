@@ -1,0 +1,17 @@
+[
+  "__image_snapshots__",
+  "__snapshots__",
+  ".baserc.json",
+  ".env.schema.json",
+  ".eslintrc.json",
+  ".git",
+  ".husky/_",
+  ".husky/commit-msg",
+  ".husky/post-checkout",
+  ".husky/post-commit",
+  ".husky/pre-push",
+  ".husky/post-merge",
+  "CHANGELOG.md",
+  "types.d.ts",
+  "yarn.lock"
+]
