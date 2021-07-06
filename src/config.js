@@ -1,4 +1,5 @@
-import { endent, identity, mergeAll } from '@dword-design/functions'
+import { endent, identity } from '@dword-design/functions'
+import deepmerge from 'deepmerge'
 import depcheck from 'depcheck'
 import depcheckDetectorExeca from 'depcheck-detector-execa'
 import depcheckDetectorPackageName from 'depcheck-detector-package-name'
@@ -11,7 +12,7 @@ import rawConfig from './raw-config'
 
 const inheritedConfig = importCwd(rawConfig.name)
 
-export default mergeAll([
+export default deepmerge.all([
   {
     allowedMatches: [],
     commands: {},

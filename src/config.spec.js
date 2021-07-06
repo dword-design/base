@@ -7,6 +7,22 @@ import stealthyRequire from 'stealthy-require-no-leak'
 
 export default tester(
   {
+    'array merge': async () => {
+      await outputFiles({
+        'node_modules/base-config-foo/index.js':
+          "module.exports = { allowedMatches: ['foo.txt'] }",
+        'package.json': JSON.stringify({
+          baseConfig: {
+            allowedMatches: ['bar.txt'],
+            name: 'foo',
+          },
+          name: 'foo',
+        }),
+      })
+
+      const self = stealthyRequire(require.cache, () => require('./config'))
+      expect(self.allowedMatches).toEqual(['foo.txt', 'bar.txt'])
+    },
     empty: async () => {
       await outputFiles({
         'node_modules/base-config-foo/index.js': 'module.exports = {}',
