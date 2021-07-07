@@ -5,7 +5,7 @@ export default {
   ...(packageConfig.name !== '@dword-design/base' && {
     ignorePaths: ['.github/workflows/build.yml'],
   }),
-  extends: [':semanticCommits', ':semanticPrefixFix'],
+  extends: [':semanticCommits', ':semanticPrefixFix', ':automergeMinor'],
   labels: ['maintenance'],
   lockFileMaintenance: {
     enabled: true,
