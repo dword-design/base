@@ -5,15 +5,25 @@ Object {
   "extends": Array [
     ":semanticCommits",
     ":semanticPrefixFix",
-    ":automergeMinor",
   ],
   "labels": Array [
     "maintenance",
   ],
   "lockFileMaintenance": Object {
+    "automerge": true,
     "enabled": true,
     "semanticCommitType": "chore",
   },
+  "packageRules": Array [
+    Object {
+      "automerge": true,
+      "matchCurrentVersion": ">=1.0.0",
+      "matchUpdateTypes": Array [
+        "minor",
+        "patch",
+      ],
+    },
+  ],
   "semanticCommitScope": null,
 }
 `;
@@ -52,7 +62,6 @@ Object {
   "extends": Array [
     ":semanticCommits",
     ":semanticPrefixFix",
-    ":automergeMinor",
   ],
   "ignorePaths": Array [
     ".github/workflows/build.yml",
@@ -61,8 +70,19 @@ Object {
     "maintenance",
   ],
   "lockFileMaintenance": Object {
+    "automerge": true,
     "enabled": true,
   },
+  "packageRules": Array [
+    Object {
+      "automerge": true,
+      "matchCurrentVersion": ">=1.0.0",
+      "matchUpdateTypes": Array [
+        "minor",
+        "patch",
+      ],
+    },
+  ],
   "semanticCommitScope": null,
 }
 `;
@@ -72,7 +92,6 @@ Object {
   "extends": Array [
     ":semanticCommits",
     ":semanticPrefixFix",
-    ":automergeMinor",
   ],
   "ignorePaths": Array [
     ".github/workflows/build.yml",
@@ -81,9 +100,20 @@ Object {
     "maintenance",
   ],
   "lockFileMaintenance": Object {
+    "automerge": true,
     "enabled": true,
     "semanticCommitType": "chore",
   },
+  "packageRules": Array [
+    Object {
+      "automerge": true,
+      "matchCurrentVersion": ">=1.0.0",
+      "matchUpdateTypes": Array [
+        "minor",
+        "patch",
+      ],
+    },
+  ],
   "semanticCommitScope": null,
 }
 `;
