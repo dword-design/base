@@ -1,15 +1,25 @@
 {
   "extends": [
     ":semanticCommits",
-    ":semanticPrefixFix",
-    ":automergeMinor"
+    ":semanticPrefixFix"
   ],
   "labels": [
     "maintenance"
   ],
   "lockFileMaintenance": {
+    "automerge": true,
     "enabled": true,
     "semanticCommitType": "chore"
   },
+  "packageRules": [
+    {
+      "automerge": true,
+      "matchCurrentVersion": ">=1.0.0",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
+    }
+  ],
   "semanticCommitScope": null
 }
