@@ -10,9 +10,20 @@ Object {
     "maintenance",
   ],
   "lockFileMaintenance": Object {
+    "automerge": true,
     "enabled": true,
     "semanticCommitType": "chore",
   },
+  "packageRules": Array [
+    Object {
+      "automerge": true,
+      "matchCurrentVersion": ">=1.0.0",
+      "matchUpdateTypes": Array [
+        "minor",
+        "patch",
+      ],
+    },
+  ],
   "semanticCommitScope": null,
 }
 `;
@@ -59,8 +70,19 @@ Object {
     "maintenance",
   ],
   "lockFileMaintenance": Object {
+    "automerge": true,
     "enabled": true,
   },
+  "packageRules": Array [
+    Object {
+      "automerge": true,
+      "matchCurrentVersion": ">=1.0.0",
+      "matchUpdateTypes": Array [
+        "minor",
+        "patch",
+      ],
+    },
+  ],
   "semanticCommitScope": null,
 }
 `;
@@ -78,9 +100,20 @@ Object {
     "maintenance",
   ],
   "lockFileMaintenance": Object {
+    "automerge": true,
     "enabled": true,
     "semanticCommitType": "chore",
   },
+  "packageRules": Array [
+    Object {
+      "automerge": true,
+      "matchCurrentVersion": ">=1.0.0",
+      "matchUpdateTypes": Array [
+        "minor",
+        "patch",
+      ],
+    },
+  ],
   "semanticCommitScope": null,
 }
 `;

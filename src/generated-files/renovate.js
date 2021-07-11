@@ -8,10 +8,18 @@ export default {
   extends: [':semanticCommits', ':semanticPrefixFix'],
   labels: ['maintenance'],
   lockFileMaintenance: {
+    automerge: true,
     enabled: true,
     ...(baseConfig.isLockFileFixCommitType
       ? {}
       : { semanticCommitType: 'chore' }),
   },
+  packageRules: [
+    {
+      automerge: true,
+      matchCurrentVersion: '>=1.0.0',
+      matchUpdateTypes: ['minor', 'patch'],
+    },
+  ],
   semanticCommitScope: null,
 }
