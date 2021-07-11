@@ -1,3 +1,10 @@
+# [8.5.0](https://github.com/dword-design/base/compare/v8.4.5...v8.5.0) (2021-07-11)
+
+
+### Features
+
+* renovate automerge ([#426](https://github.com/dword-design/base/issues/426)) ([b28cc53](https://github.com/dword-design/base/commit/b28cc535aa745dfe31e3751bef0f6fab9630dd95))
+
 ## [8.4.5](https://github.com/dword-design/base/compare/v8.4.4...v8.4.5) (2021-07-06)
 
 
