@@ -135,7 +135,7 @@ export default {
       ...(config.seeAlso.length > 0
         ? [
             endent`
-            ## See Also
+            ## See also
 
             ${
               config.seeAlso
