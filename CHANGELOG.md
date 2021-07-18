@@ -1,3 +1,10 @@
+## [8.5.3](https://github.com/dword-design/base/compare/v8.5.2...v8.5.3) (2021-07-18)
+
+
+### Bug Fixes
+
+* fix see also casing ([2821e27](https://github.com/dword-design/base/commit/2821e274d92618e20e05cfce9b27c93bf7a4842d))
+
 ## [8.5.2](https://github.com/dword-design/base/compare/v8.5.1...v8.5.2) (2021-07-18)
 
 
