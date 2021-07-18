@@ -1,3 +1,10 @@
+## [8.5.1](https://github.com/dword-design/base/compare/v8.5.0...v8.5.1) (2021-07-18)
+
+
+### Bug Fixes
+
+* update dependency eslint to ~7.31.0 ([b54799f](https://github.com/dword-design/base/commit/b54799f92415efb9bf473d40c8c6637af3a6c07e))
+
 # [8.5.0](https://github.com/dword-design/base/compare/v8.4.5...v8.5.0) (2021-07-11)
 
 
