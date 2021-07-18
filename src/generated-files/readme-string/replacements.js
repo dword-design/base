@@ -58,7 +58,7 @@ export default {
               <img
                 src="https://gitpod.io/button/open-in-gitpod.svg"
                 alt="Open in Gitpod"
-                height="32"
+                width="114"
               >
             </a>
           `,
@@ -67,7 +67,7 @@ export default {
               <img
                 src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg"
                 alt="Buy Me a Coffee"
-                height="32"
+                width="114"
               >
             </a>
           `,
@@ -76,7 +76,7 @@ export default {
               <img
                 src="https://sebastianlandwehr.com/images/paypal.svg"
                 alt="PayPal"
-                height="32"
+                width="163"
               >
             </a>
           `,
@@ -85,7 +85,7 @@ export default {
               <img
                 src="https://sebastianlandwehr.com/images/patreon.svg"
                 alt="Patreon"
-                height="32"
+                width="163"
               >
             </a>
           `,
@@ -111,21 +111,21 @@ export default {
           <img
             src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg"
             alt="Buy Me a Coffee"
-            height="32"
+            width="114"
           >
         </a>&nbsp;If you want to send me a one time donation. The coffee is pretty good 😊.<br/>
         <a href="https://paypal.me/SebastianLandwehr">
           <img
             src="https://sebastianlandwehr.com/images/paypal.svg"
             alt="PayPal"
-            height="32"
+            width="163"
           >
         </a>&nbsp;Also for one time donations if you like PayPal.<br/>
         <a href="https://www.patreon.com/dworddesign">
           <img
             src="https://sebastianlandwehr.com/images/patreon.svg"
             alt="Patreon"
-            height="32"
+            width="163"
           >
         </a>&nbsp;Here you can support me regularly, which is great so I can steadily work on projects.
       </p>
