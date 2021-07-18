@@ -12,6 +12,7 @@
   ".husky/pre-push",
   ".husky/post-merge",
   "CHANGELOG.md",
+  "doc",
   "types.d.ts",
   "yarn.lock"
 ]
