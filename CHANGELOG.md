@@ -1,3 +1,10 @@
+## [8.5.2](https://github.com/dword-design/base/compare/v8.5.1...v8.5.2) (2021-07-18)
+
+
+### Bug Fixes
+
+* add doc to allowed matches ([221f063](https://github.com/dword-design/base/commit/221f0632e644f3ed55502f223062af43bc9d7bc8))
+
 ## [8.5.1](https://github.com/dword-design/base/compare/v8.5.0...v8.5.1) (2021-07-18)
 
 
