@@ -1,3 +1,10 @@
+## [8.5.4](https://github.com/dword-design/base/compare/v8.5.3...v8.5.4) (2021-07-19)
+
+
+### Bug Fixes
+
+* fix donation buttons in readme ([5140857](https://github.com/dword-design/base/commit/51408577ffba27c5c440c155d42c4a21d53b6e99))
+
 ## [8.5.3](https://github.com/dword-design/base/compare/v8.5.2...v8.5.3) (2021-07-18)
 
 
