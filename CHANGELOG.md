@@ -1,3 +1,10 @@
+## [8.5.5](https://github.com/dword-design/base/compare/v8.5.4...v8.5.5) (2021-07-20)
+
+
+### Bug Fixes
+
+* update codecov/codecov-action action to v2 ([#431](https://github.com/dword-design/base/issues/431)) ([c35d8f8](https://github.com/dword-design/base/commit/c35d8f83bf9a346ac6264567568b4ab00c9665f4))
+
 ## [8.5.4](https://github.com/dword-design/base/compare/v8.5.3...v8.5.4) (2021-07-19)
 
 
