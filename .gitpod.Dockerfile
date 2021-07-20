@@ -1,5 +1,10 @@
 # Need to add :latest, otherwise old versions (e.g. of node) are installed
-FROM gitpod/workspace-full:latest
+FROM gitpod/workspace-full-vnc:latest
+
+RUN sudo apt-get update
+
+# UI inside GitPod
+RUN sudo apt-get install -y libgtk-3-dev
 
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 RUN sudo apt-get install git-lfs
