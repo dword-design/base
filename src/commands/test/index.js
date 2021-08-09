@@ -83,7 +83,7 @@ export default async (pattern, options) => {
       '--file',
       require.resolve('./setup-test'),
       '--timeout',
-      80000,
+      130000,
       ...(options.grep ? ['--grep', options.grep] : []),
       ...(process.platform === 'win32' ? ['--exit'] : []),
       pattern || '{,!(node_modules)/**/}*.spec.js',
