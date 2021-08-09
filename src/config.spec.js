@@ -1,9 +1,10 @@
+import chdir from '@dword-design/chdir'
 import { endent, identity, keys, omit, sortBy } from '@dword-design/functions'
 import tester from '@dword-design/tester'
-import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import { outputFile } from 'fs-extra'
 import outputFiles from 'output-files'
 import stealthyRequire from 'stealthy-require-no-leak'
+import { WithTempDir as withTmpDir } from 'with-tmp-dir-promise'
 
 export default tester(
   {
@@ -22,6 +23,18 @@ export default tester(
 
       const self = stealthyRequire(require.cache, () => require('./config'))
       expect(self.allowedMatches).toEqual(['foo.txt', 'bar.txt'])
+    },
+    'config not in project path': async () => {
+      await outputFile(
+        'package.json',
+        JSON.stringify({
+          baseConfig: { name: '@dword-design/node' },
+          name: 'foo',
+        })
+      )
+
+      const self = stealthyRequire(require.cache, () => require('./config'))
+      expect(self.name).toEqual('@dword-design/base-config-node')
     },
     empty: async () => {
       await outputFiles({
@@ -147,5 +160,14 @@ export default tester(
       expect(typeof self.depcheckConfig).toEqual('object')
     },
   },
-  [testerPluginTmpDir()]
+  [
+    {
+      transform: test =>
+        function () {
+          return withTmpDir(cwd => chdir(cwd, () => test.call(this)), {
+            unsafeCleanup: true,
+          })
+        },
+    },
+  ]
 )

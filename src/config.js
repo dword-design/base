@@ -10,7 +10,8 @@ import depcheckSpecialBaseConfig from './depcheck-special-base-config'
 import packageConfig from './package-config'
 import rawConfig from './raw-config'
 
-const inheritedConfig = importCwd(rawConfig.name)
+const inheritedConfig =
+  importCwd.silent(rawConfig.name) || require(rawConfig.name)
 
 export default deepmerge.all([
   {
