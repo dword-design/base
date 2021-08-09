@@ -1,3 +1,10 @@
+## [8.5.8](https://github.com/dword-design/base/compare/v8.5.7...v8.5.8) (2021-08-09)
+
+
+### Bug Fixes
+
+* update dependency @commitlint/config-conventional to v13 ([3476632](https://github.com/dword-design/base/commit/3476632efdf3f47edecf5ca6d2f93c1287c430d5))
+
 ## [8.5.7](https://github.com/dword-design/base/compare/v8.5.6...v8.5.7) (2021-08-09)
 
 
