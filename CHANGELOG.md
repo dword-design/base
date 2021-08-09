@@ -1,3 +1,10 @@
+## [8.5.9](https://github.com/dword-design/base/compare/v8.5.8...v8.5.9) (2021-08-09)
+
+
+### Bug Fixes
+
+* fix test timeout ([eaed73f](https://github.com/dword-design/base/commit/eaed73fee257a4474a4e437b23c3fd51c77ac918))
+
 ## [8.5.8](https://github.com/dword-design/base/compare/v8.5.7...v8.5.8) (2021-08-09)
 
 
