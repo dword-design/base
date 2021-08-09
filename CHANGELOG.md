@@ -1,3 +1,10 @@
+## [8.5.7](https://github.com/dword-design/base/compare/v8.5.6...v8.5.7) (2021-08-09)
+
+
+### Bug Fixes
+
+* fix case where config is not installed in project folder ([#440](https://github.com/dword-design/base/issues/440)) ([d68d66b](https://github.com/dword-design/base/commit/d68d66bfebbd7c833f82ba22373fb9c6f8ad7753))
+
 ## [8.5.6](https://github.com/dword-design/base/compare/v8.5.5...v8.5.6) (2021-07-31)
 
 
