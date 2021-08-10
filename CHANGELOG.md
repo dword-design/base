@@ -1,3 +1,10 @@
+## [8.5.10](https://github.com/dword-design/base/compare/v8.5.9...v8.5.10) (2021-08-10)
+
+
+### Bug Fixes
+
+* update dependency @commitlint/cli to v13 ([cecd1a7](https://github.com/dword-design/base/commit/cecd1a744fd3b55f4108a81dc5c7e6b56c1bc79e))
+
 ## [8.5.9](https://github.com/dword-design/base/compare/v8.5.8...v8.5.9) (2021-08-09)
 
 
