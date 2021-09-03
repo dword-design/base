@@ -10,51 +10,51 @@ import depcheckSpecialBaseConfig from './depcheck-special-base-config'
 import packageConfig from './package-config'
 import rawConfig from './raw-config'
 
-const inheritedConfig =
-  importCwd.silent(rawConfig.name) || require(rawConfig.name)
-
-export default deepmerge.all([
-  {
-    allowedMatches: [],
-    commands: {},
-    coverageFileExtensions: [],
-    depcheckConfig: {
-      detectors: [
-        depcheck.detector.importDeclaration,
-        depcheck.detector.requireCallExpression,
-        depcheck.detector.requireResolveCallExpression,
-        depcheckDetectorExeca,
-        depcheckDetectorPackageName,
-      ],
-      ignorePath: '.gitignore',
-      parsers: {
-        '**/*.js': depcheckParserBabel,
-      },
-      specials: [depcheckSpecialBaseConfig, depcheck.special.bin],
+const defaultConfig = {
+  allowedMatches: [],
+  commands: {},
+  coverageFileExtensions: [],
+  depcheckConfig: {
+    detectors: [
+      depcheck.detector.importDeclaration,
+      depcheck.detector.requireCallExpression,
+      depcheck.detector.requireResolveCallExpression,
+      depcheckDetectorExeca,
+      depcheckDetectorPackageName,
+    ],
+    ignorePath: '.gitignore',
+    parsers: {
+      '**/*.js': depcheckParserBabel,
     },
-    deployAssets: [],
-    deployEnv: {},
-    deployPlugins: [],
-    editorIgnore: [],
-    gitignore: [],
-    lint: identity,
-    nodeVersion: 14,
-    preDeploySteps: [],
-    prepare: identity,
-    readmeInstallString: endent`
-      ## Install
-
-      \`\`\`bash
-      # npm
-      $ npm install ${rawConfig.global ? '-g ' : ''}${packageConfig.name}
-
-      # Yarn
-      $ yarn ${rawConfig.global ? 'global ' : ''}add ${packageConfig.name}
-      \`\`\`
-    `,
-    seeAlso: [],
-    syncKeywords: true,
+    specials: [depcheckSpecialBaseConfig, depcheck.special.bin],
   },
-  inheritedConfig,
-  rawConfig,
-])
+  deployAssets: [],
+  deployEnv: {},
+  deployPlugins: [],
+  editorIgnore: [],
+  gitignore: [],
+  lint: identity,
+  nodeVersion: 14,
+  preDeploySteps: [],
+  prepare: identity,
+  readmeInstallString: endent`
+    ## Install
+
+    \`\`\`bash
+    # npm
+    $ npm install ${rawConfig.global ? '-g ' : ''}${packageConfig.name}
+
+    # Yarn
+    $ yarn ${rawConfig.global ? 'global ' : ''}add ${packageConfig.name}
+    \`\`\`
+  `,
+  seeAlso: [],
+  syncKeywords: true,
+}
+let inheritedConfig =
+  importCwd.silent(rawConfig.name) || require(rawConfig.name)
+if (typeof inheritedConfig === 'function') {
+  inheritedConfig = inheritedConfig(deepmerge.all([defaultConfig, rawConfig]))
+}
+
+export default deepmerge.all([defaultConfig, inheritedConfig, rawConfig])
