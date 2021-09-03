@@ -159,6 +159,24 @@ export default tester(
       expect(self.lint(1)).toEqual(4)
       expect(typeof self.depcheckConfig).toEqual('object')
     },
+    function: async () => {
+      await outputFiles({
+        'node_modules/base-config-foo/index.js': endent`
+          module.exports = config => ({ readmeInstallString: config.bar })
+
+        `,
+        'package.json': JSON.stringify({
+          baseConfig: {
+            name: 'foo',
+            bar: 'baz',
+          },
+          name: 'foo',
+        }),
+      })
+
+      const self = stealthyRequire(require.cache, () => require('./config'))
+      expect(self.readmeInstallString).toEqual('baz')
+    },
   },
   [
     {
