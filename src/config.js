@@ -51,16 +51,10 @@ const defaultConfig = {
   seeAlso: [],
   syncKeywords: true,
 }
-
 let inheritedConfig =
   importCwd.silent(rawConfig.name) || require(rawConfig.name)
-
 if (typeof inheritedConfig === 'function') {
   inheritedConfig = inheritedConfig(deepmerge.all([defaultConfig, rawConfig]))
 }
 
-export default deepmerge.all([
-  defaultConfig,
-  inheritedConfig,
-  rawConfig,
-])
+export default deepmerge.all([defaultConfig, inheritedConfig, rawConfig])
