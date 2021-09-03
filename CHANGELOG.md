@@ -1,3 +1,10 @@
+# [8.6.0](https://github.com/dword-design/base/compare/v8.5.10...v8.6.0) (2021-09-03)
+
+
+### Features
+
+* config function ([#453](https://github.com/dword-design/base/issues/453)) ([94fabed](https://github.com/dword-design/base/commit/94fabed30a00d4f4afe2a050be7d7dc58cb56a65))
+
 ## [8.5.10](https://github.com/dword-design/base/compare/v8.5.9...v8.5.10) (2021-08-10)
 
 
