@@ -1,3 +1,10 @@
+## [8.6.1](https://github.com/dword-design/base/compare/v8.6.0...v8.6.1) (2021-09-06)
+
+
+### Bug Fixes
+
+* update dependency sharp to ^0.29.0 ([#445](https://github.com/dword-design/base/issues/445)) ([ddc4518](https://github.com/dword-design/base/commit/ddc4518741ba698886ea6bf9f0e72a27a5493a2f))
+
 # [8.6.0](https://github.com/dword-design/base/compare/v8.5.10...v8.6.0) (2021-09-03)
 
 
