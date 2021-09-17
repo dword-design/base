@@ -69,7 +69,7 @@
     "parse-git-config": "^3.0.0",
     "plugin-name-to-package-name": "^0.1.1",
     "safe-readfile": "^1.0.2",
-    "semantic-release": "^17.0.3",
+    "semantic-release": "^18.0.0",
     "sort-keys": "^4.2.0",
     "sort-package-json": "~1.51.0",
     "spdx-expression-parse": "^3.0.0",
