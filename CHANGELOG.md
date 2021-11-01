@@ -1,3 +1,10 @@
+## [8.6.4](https://github.com/dword-design/base/compare/v8.6.3...v8.6.4) (2021-11-01)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#467](https://github.com/dword-design/base/issues/467)) ([f63a1ff](https://github.com/dword-design/base/commit/f63a1ff26867e9c5fe8d6ff274be9a5bdcd23bee))
+
 ## [8.6.3](https://github.com/dword-design/base/compare/v8.6.2...v8.6.3) (2021-09-24)
 
 
