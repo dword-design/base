@@ -1,3 +1,10 @@
+## [8.6.5](https://github.com/dword-design/base/compare/v8.6.4...v8.6.5) (2021-11-02)
+
+
+### Bug Fixes
+
+* update dependency expect-mocha-snapshot to v2.1.5 ([#470](https://github.com/dword-design/base/issues/470)) ([f5af186](https://github.com/dword-design/base/commit/f5af186560c0e584a1370bcbfd00bafc1298c18f))
+
 ## [8.6.4](https://github.com/dword-design/base/compare/v8.6.3...v8.6.4) (2021-11-01)
 
 
