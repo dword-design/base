@@ -84,7 +84,7 @@
     "@dword-design/tester": "^2.0.0",
     "@dword-design/tester-plugin-tmp-dir": "^2.0.0",
     "is-docker": "^2.1.1",
-    "p-event": "^4.2.0",
+    "p-event": "^5.0.0",
     "rimraf": "^3.0.0",
     "sharp": "^0.29.0",
     "stealthy-require-no-leak": "^1.0.0",
