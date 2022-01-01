@@ -23,6 +23,27 @@ export default {
       expect(readmeString).toMatchSnapshot(this)
     })
   },
+  'badges private': function () {
+    return withLocalTmpDir(async () => {
+      await execa.command('git init')
+      await execa.command(
+        'git remote add origin git@github.com:dword-design/bar.git'
+      )
+      await outputFiles({
+        'README.md': endent`
+        <!-- BADGES -->
+        
+      `,
+        'package.json': JSON.stringify({
+          name: '@dword-design/foo',
+          private: true,
+        }),
+      })
+
+      const readmeString = stealthyRequire(require.cache, () => require('.'))
+      expect(readmeString).toMatchSnapshot(this)
+    })
+  },
   description: () =>
     withLocalTmpDir(async () => {
       await outputFiles({

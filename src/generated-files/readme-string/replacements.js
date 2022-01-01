@@ -11,7 +11,7 @@ export default {
       <p>
         ${
           [
-            ...(config.npmPublish
+            ...(config.npmPublish && !packageConfig.private
               ? [
                   endent`
                 <a href="https://npmjs.org/package/${packageConfig.name}">
