@@ -1,3 +1,10 @@
+## [8.6.7](https://github.com/dword-design/base/compare/v8.6.6...v8.6.7) (2022-01-01)
+
+
+### Bug Fixes
+
+* do not generate npm badge if private ([42d48e2](https://github.com/dword-design/base/commit/42d48e2fcace0f086c762c7600b7c54bcca61310))
+
 ## [8.6.6](https://github.com/dword-design/base/compare/v8.6.5...v8.6.6) (2021-11-12)
 
 
