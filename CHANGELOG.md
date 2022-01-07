@@ -1,3 +1,10 @@
+## [8.6.8](https://github.com/dword-design/base/compare/v8.6.7...v8.6.8) (2022-01-07)
+
+
+### Bug Fixes
+
+* add @babel/core to gitpod ([d773bb7](https://github.com/dword-design/base/commit/d773bb7feae09ea8933f3497965c954524264ceb))
+
 ## [8.6.7](https://github.com/dword-design/base/compare/v8.6.6...v8.6.7) (2022-01-01)
 
 
