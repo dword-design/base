@@ -8,7 +8,7 @@ export default endent`
   RUN sudo apt-get install git-lfs
   RUN git lfs install
   RUN echo "\\nexport PATH=$(yarn global bin):\\$PATH" >> /home/gitpod/.bashrc
-  RUN yarn global add gitpod-env-per-project @babel/node
+  RUN yarn global add gitpod-env-per-project @babel/node @babel/core
   RUN sudo apt-get install -y graphviz
   RUN brew install gh
 
