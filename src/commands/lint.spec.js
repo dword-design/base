@@ -1,4 +1,5 @@
 import { endent } from '@dword-design/functions'
+import execa from 'execa'
 import { outputFile, readFile } from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
@@ -53,6 +54,22 @@ export default {
       const self = stealthyRequire(require.cache, () => require('./lint'))
       await expect(self()).rejects.toThrow(
         "'foo' is assigned a value but never used"
+      )
+    }),
+  'package name != repository name': () =>
+    withLocalTmpDir(async () => {
+      await execa.command('git init')
+      await execa.command(
+        'git remote add origin https://github.com/xyz/foo.git'
+      )
+      await outputFile('package.json', JSON.stringify({ name: '@scope/bar' }))
+
+      const prepare = stealthyRequire(require.cache, () => require('./prepare'))
+      await prepare()
+
+      const self = stealthyRequire(require.cache, () => require('./lint'))
+      await expect(self()).rejects.toThrow(
+        "Package name '@scope/bar' has to be equal to repository name 'foo'"
       )
     }),
   'plugin next to config': () =>

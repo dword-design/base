@@ -67,6 +67,7 @@
     "output-files": "^2.0.0",
     "package-name-regex": "^2.0.0",
     "parse-git-config": "^3.0.0",
+    "parse-packagejson-name": "^1.0.1",
     "plugin-name-to-package-name": "^0.1.1",
     "safe-readfile": "^1.0.2",
     "semantic-release": "^17.0.3",
