@@ -1,3 +1,10 @@
+## [8.6.9](https://github.com/dword-design/base/compare/v8.6.8...v8.6.9) (2022-01-09)
+
+
+### Bug Fixes
+
+* refactoring ([9de06f9](https://github.com/dword-design/base/commit/9de06f9ba43d2ddb22005edeb7147efdd905c111))
+
 ## [8.6.8](https://github.com/dword-design/base/compare/v8.6.7...v8.6.8) (2022-01-07)
 
 
