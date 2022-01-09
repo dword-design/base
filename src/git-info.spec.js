@@ -33,10 +33,8 @@ export default tester(
         'git remote add origin https://github.com/foo/bar.git'
       )
 
-      const gitInfo = stealthyRequire(require.cache, () =>
-        require('./git-info')
-      )
-      expect(gitInfo |> pick(['user', 'project'])).toEqual({
+      const self = stealthyRequire(require.cache, () => require('./git-info'))
+      expect(self |> pick(['user', 'project'])).toEqual({
         project: 'bar',
         user: 'foo',
       })

@@ -4,9 +4,8 @@ import { existsSync } from 'fs-extra'
 import sortKeys from 'sort-keys'
 
 import config from '@/src/config'
+import gitInfo from '@/src/git-info'
 import packageConfig from '@/src/package-config'
-
-import gitInfo from './git-info'
 
 const commandNames = {
   checkUnknownFiles: true,
