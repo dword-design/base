@@ -1,3 +1,10 @@
+## [8.6.10](https://github.com/dword-design/base/compare/v8.6.9...v8.6.10) (2022-01-10)
+
+
+### Bug Fixes
+
+* repository name match package name ([#491](https://github.com/dword-design/base/issues/491)) ([8c8c242](https://github.com/dword-design/base/commit/8c8c24203bd8f7c8571b0384a7b7ec572bdf5567))
+
 ## [8.6.9](https://github.com/dword-design/base/compare/v8.6.8...v8.6.9) (2022-01-09)
 
 
