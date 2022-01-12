@@ -1,3 +1,10 @@
+## [8.6.11](https://github.com/dword-design/base/compare/v8.6.10...v8.6.11) (2022-01-12)
+
+
+### Bug Fixes
+
+* fix lint ([7e51c4d](https://github.com/dword-design/base/commit/7e51c4d5e35ddf4d8cfbaa0f8eb7f20efabc00f1))
+
 ## [8.6.10](https://github.com/dword-design/base/compare/v8.6.9...v8.6.10) (2022-01-10)
 
 
