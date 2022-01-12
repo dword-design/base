@@ -69,8 +69,22 @@ export default {
 
       const self = stealthyRequire(require.cache, () => require('./lint'))
       await expect(self()).rejects.toThrow(
-        "Package name '@scope/bar' has to be equal to repository name 'foo'"
+        "Package name 'bar' has to be equal to repository name 'foo'"
       )
+    }),
+  'package name with dot': () =>
+    withLocalTmpDir(async () => {
+      await execa.command('git init')
+      await execa.command(
+        'git remote add origin https://github.com/xyz/foo.de.git'
+      )
+      await outputFile('package.json', JSON.stringify({ name: 'foo.de' }))
+
+      const prepare = stealthyRequire(require.cache, () => require('./prepare'))
+      await prepare()
+
+      const self = stealthyRequire(require.cache, () => require('./lint'))
+      await self()
     }),
   'plugin next to config': () =>
     withLocalTmpDir(async () => {
