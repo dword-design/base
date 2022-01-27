@@ -1,3 +1,10 @@
+## [8.6.12](https://github.com/dword-design/base/compare/v8.6.11...v8.6.12) (2022-01-27)
+
+
+### Bug Fixes
+
+* generate gitpod env variables on every start ([#498](https://github.com/dword-design/base/issues/498)) ([bff2cc1](https://github.com/dword-design/base/commit/bff2cc18997475b584716b9f3d31a6f4eb8c28a3))
+
 ## [8.6.11](https://github.com/dword-design/base/compare/v8.6.10...v8.6.11) (2022-01-12)
 
 
