@@ -4,9 +4,11 @@ export default {
     { before: 'sudo docker-up', name: 'Docker' },
     {
       init: 'git lfs pull && yarn --frozen-lockfile',
+      name: 'Init',
     },
     {
       command: 'eval $(gitpod-env-per-project)',
+      name: 'Env',
     },
   ],
   vscode: {
