@@ -1,9 +1,8 @@
 image:
   file: .gitpod.Dockerfile
 tasks:
-  - init: git lfs pull && yarn --frozen-lockfile
+  - init: git lfs pull && yarn --frozen-lockfile && sudo docker-up
     name: Docker
-    command: sudo docker-up
   - command: eval $(gitpod-env-per-project)
 vscode:
   extensions:
