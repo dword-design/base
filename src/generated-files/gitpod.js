@@ -2,9 +2,9 @@ export default {
   image: { file: '.gitpod.Dockerfile' },
   tasks: [
     {
+      command: 'sudo docker-up',
       init: 'git lfs pull && yarn --frozen-lockfile',
       name: 'Docker',
-      command: 'sudo docker-up',
     },
     { command: 'eval $(gitpod-env-per-project)' },
   ],
