@@ -2,10 +2,9 @@ export default {
   image: { file: '.gitpod.Dockerfile' },
   tasks: [
     {
-      init: 'git lfs pull && yarn --frozen-lockfile && sudo docker-up',
-      name: 'Docker',
+      command: 'eval $(gitpod-env-per-project)',
+      init: 'git lfs pull && yarn --frozen-lockfile',
     },
-    { command: 'eval $(gitpod-env-per-project)' },
   ],
   vscode: {
     extensions: [
