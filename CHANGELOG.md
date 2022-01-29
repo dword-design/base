@@ -1,3 +1,10 @@
+## [8.6.13](https://github.com/dword-design/base/compare/v8.6.12...v8.6.13) (2022-01-29)
+
+
+### Bug Fixes
+
+* blank line in json files ([#499](https://github.com/dword-design/base/issues/499)) ([b7a9ac0](https://github.com/dword-design/base/commit/b7a9ac045eb854300a28e32460af017e494fa1f5))
+
 ## [8.6.12](https://github.com/dword-design/base/compare/v8.6.11...v8.6.12) (2022-01-27)
 
 
