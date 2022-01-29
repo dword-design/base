@@ -1,4 +1,4 @@
-import { add, join, jsonToString, map } from '@dword-design/functions'
+import { join, jsonToString, map } from '@dword-design/functions'
 import sortKeys from 'sort-keys'
 import sortPackageJson from 'sort-package-json'
 import yaml from 'yaml'
@@ -27,9 +27,9 @@ import renovateConfig from './renovate'
 import vscodeConfig from './vscode'
 
 export default {
-  '.babelrc.json': babelConfig |> jsonToString({ indent: 2 }),
-  '.commitlintrc.json': commitlintConfig |> jsonToString({ indent: 2 }),
-  '.cz.json': commitizenConfig,
+  '.babelrc.json': `${babelConfig |> jsonToString({ indent: 2 })}\n`,
+  '.commitlintrc.json': `${commitlintConfig |> jsonToString({ indent: 2 })}\n`,
+  '.cz.json': `${commitizenConfig |> jsonToString({ indent: 2 })}\n`,
   '.editorconfig': editorconfigConfig,
   '.eslintrc.json': `${eslintConfig |> jsonToString({ indent: 2 })}\n`,
   '.gitattributes': gitattributesConfig,
@@ -50,15 +50,14 @@ export default {
   '.gitignore': gitignoreConfig |> map(entry => `${entry}\n`) |> join(''),
   '.gitpod.Dockerfile': gitpodDockerfile,
   '.gitpod.yml': gitpodConfig |> yaml.stringify,
-  '.releaserc.json': releaseConfig |> jsonToString({ indent: 2 }),
-  '.renovaterc.json':
-    sortKeys(renovateConfig, { deep: true }) |> jsonToString({ indent: 2 }),
-  '.vscode/settings.json': vscodeConfig |> jsonToString({ indent: 2 }),
+  '.releaserc.json': `${releaseConfig |> jsonToString({ indent: 2 })}\n`,
+  '.renovaterc.json': `${
+    sortKeys(renovateConfig, { deep: true }) |> jsonToString({ indent: 2 })
+  }\n`,
+  '.vscode/settings.json': `${vscodeConfig |> jsonToString({ indent: 2 })}\n`,
   'LICENSE.md': licenseString,
   'README.md': readmeString,
-  'package.json':
-    packageConfig
-    |> sortPackageJson
-    |> jsonToString({ indent: 2 })
-    |> add('\n'),
+  'package.json': `${
+    packageConfig |> sortPackageJson |> jsonToString({ indent: 2 })
+  }\n`,
 }
