@@ -1,3 +1,10 @@
+## [8.6.15](https://github.com/dword-design/base/compare/v8.6.14...v8.6.15) (2022-02-02)
+
+
+### Bug Fixes
+
+* set gitpod user name ([#503](https://github.com/dword-design/base/issues/503)) ([78d14a5](https://github.com/dword-design/base/commit/78d14a57c1bf27bca858bb3cae9e827194b3f2b5))
+
 ## [8.6.14](https://github.com/dword-design/base/compare/v8.6.13...v8.6.14) (2022-02-02)
 
 
