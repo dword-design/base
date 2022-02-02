@@ -5,7 +5,7 @@ export default {
   tasks: [
     {
       command: 'eval $(gitpod-env-per-project)',
-      init: `git config --global "${personalData.name}" && git lfs pull && yarn --frozen-lockfile`,
+      init: `git config --global user.name "${personalData.name}" && git lfs pull && yarn --frozen-lockfile`,
     },
   ],
   vscode: {

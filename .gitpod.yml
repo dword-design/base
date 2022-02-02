@@ -2,7 +2,7 @@ image:
   file: .gitpod.Dockerfile
 tasks:
   - command: eval $(gitpod-env-per-project)
-    init: git config --global "Sebastian Landwehr" && git lfs pull && yarn
+    init: git config --global user.name "Sebastian Landwehr" && git lfs pull && yarn
       --frozen-lockfile
 vscode:
   extensions:
