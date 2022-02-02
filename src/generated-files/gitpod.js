@@ -1,9 +1,11 @@
+import * as personalData from '@dword-design/personal-data'
+
 export default {
   image: { file: '.gitpod.Dockerfile' },
   tasks: [
     {
       command: 'eval $(gitpod-env-per-project)',
-      init: 'git lfs pull && yarn --frozen-lockfile',
+      init: `git config --global user.name "${personalData.name}" && git lfs pull && yarn --frozen-lockfile`,
     },
   ],
   vscode: {
