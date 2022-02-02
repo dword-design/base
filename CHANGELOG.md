@@ -1,3 +1,10 @@
+## [8.6.14](https://github.com/dword-design/base/compare/v8.6.13...v8.6.14) (2022-02-02)
+
+
+### Bug Fixes
+
+* update dependency sort-package-json to ~1.54.0 ([e9a0ae3](https://github.com/dword-design/base/commit/e9a0ae342e24e3e3015e434b738ee7040f9341aa))
+
 ## [8.6.13](https://github.com/dword-design/base/compare/v8.6.12...v8.6.13) (2022-01-29)
 
 
