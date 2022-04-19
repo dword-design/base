@@ -1,3 +1,10 @@
+## [8.6.20](https://github.com/dword-design/base/compare/v8.6.19...v8.6.20) (2022-04-19)
+
+
+### Bug Fixes
+
+* update actions/upload-artifact action to v3 ([#512](https://github.com/dword-design/base/issues/512)) ([15a4645](https://github.com/dword-design/base/commit/15a4645a2d18f41c058a942d55cfbb85f9b2dda7))
+
 ## [8.6.19](https://github.com/dword-design/base/compare/v8.6.18...v8.6.19) (2022-04-19)
 
 
