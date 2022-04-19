@@ -1,3 +1,10 @@
+## [8.6.18](https://github.com/dword-design/base/compare/v8.6.17...v8.6.18) (2022-04-19)
+
+
+### Bug Fixes
+
+* update actions/setup-node action to v3 ([#509](https://github.com/dword-design/base/issues/509)) ([b043bb7](https://github.com/dword-design/base/commit/b043bb7bcb7c2331fa7bd1545c18ea640f4dc33c))
+
 ## [8.6.17](https://github.com/dword-design/base/compare/v8.6.16...v8.6.17) (2022-04-19)
 
 
