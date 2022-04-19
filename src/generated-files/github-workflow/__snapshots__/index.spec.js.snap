@@ -27,7 +27,7 @@ Object {
           },
         },
         Object {
-          "uses": "actions/setup-node@v2",
+          "uses": "actions/setup-node@v3",
           "with": Object {
             "node-version": 14,
           },
@@ -78,7 +78,7 @@ Object {
           },
         },
         Object {
-          "uses": "actions/setup-node@v2",
+          "uses": "actions/setup-node@v3",
           "with": Object {
             "node-version": "\${{ matrix.node }}",
           },
@@ -165,7 +165,7 @@ Object {
           },
         },
         Object {
-          "uses": "actions/setup-node@v2",
+          "uses": "actions/setup-node@v3",
           "with": Object {
             "node-version": 14,
           },
@@ -254,7 +254,7 @@ Object {
           },
         },
         Object {
-          "uses": "actions/setup-node@v2",
+          "uses": "actions/setup-node@v3",
           "with": Object {
             "node-version": 14,
           },
@@ -347,7 +347,7 @@ Object {
           },
         },
         Object {
-          "uses": "actions/setup-node@v2",
+          "uses": "actions/setup-node@v3",
           "with": Object {
             "node-version": 14,
           },
