@@ -1,3 +1,12 @@
+## [8.6.19](https://github.com/dword-design/base/compare/v8.6.18...v8.6.19) (2022-04-19)
+
+
+### Bug Fixes
+
+* update dependency hosted-git-info to v5 ([#517](https://github.com/dword-design/base/issues/517)) ([2854f15](https://github.com/dword-design/base/commit/2854f154db2766802fe68d8740cb501aa998b60a))
+* update dependency sharp to ^0.30.0 ([#501](https://github.com/dword-design/base/issues/501)) ([2c60afb](https://github.com/dword-design/base/commit/2c60afb5ed35c260c8758e06828f6a6059df4fcd))
+* update peter-evans/close-issue action to v2 ([#520](https://github.com/dword-design/base/issues/520)) ([74bb44d](https://github.com/dword-design/base/commit/74bb44dbaacad0885c1ac7dec2a2b46b70e5bfe0))
+
 ## [8.6.18](https://github.com/dword-design/base/compare/v8.6.17...v8.6.18) (2022-04-19)
 
 
