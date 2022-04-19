@@ -55,7 +55,7 @@
     "fs-extra": "^10.0.0",
     "get-projectz-readme-section-regex": "^3.0.0",
     "globby": "^11.0.1",
-    "hosted-git-info": "^4.0.0",
+    "hosted-git-info": "^5.0.0",
     "husky": "^7.0.0",
     "ignore": "^5.1.4",
     "import-cwd": "^3.0.0",
