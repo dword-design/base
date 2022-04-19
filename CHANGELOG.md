@@ -1,3 +1,10 @@
+## [8.6.17](https://github.com/dword-design/base/compare/v8.6.16...v8.6.17) (2022-04-19)
+
+
+### Bug Fixes
+
+* update actions/checkout action to v3 ([#511](https://github.com/dword-design/base/issues/511)) ([c27cbe8](https://github.com/dword-design/base/commit/c27cbe8b62df09b65ca8f66445bd18b3911a8c9b))
+
 ## [8.6.16](https://github.com/dword-design/base/compare/v8.6.15...v8.6.16) (2022-03-21)
 
 
