@@ -19,7 +19,7 @@ export default config => ({
         },
       },
       {
-        uses: 'actions/setup-node@v2',
+        uses: 'actions/setup-node@v3',
         with: {
           'node-version': config.nodeVersion,
         },

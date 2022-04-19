@@ -24,7 +24,7 @@ export default () => ({
         },
       },
       {
-        uses: 'actions/setup-node@v2',
+        uses: 'actions/setup-node@v3',
         with: {
           'node-version': 14,
         },
@@ -43,7 +43,7 @@ export default () => ({
     steps: [
       { uses: 'actions/checkout@v2', with: { 'fetch-depth': 0, lfs: true } },
       {
-        uses: 'actions/setup-node@v2',
+        uses: 'actions/setup-node@v3',
         with: {
           'node-version': '${{ matrix.node }}',
         },
