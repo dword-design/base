@@ -27,7 +27,7 @@ export default {
         },
         {
           if: '${{ !steps.check-deprecated-js-deps.outputs.deprecated && steps.create-deprecation-issue.outputs.number }}',
-          uses: 'peter-evans/close-issue@v1',
+          uses: 'peter-evans/close-issue@v2',
           with: {
             comment: 'Auto-closing the issue',
             'issue-number':
