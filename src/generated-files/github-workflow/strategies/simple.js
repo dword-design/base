@@ -11,7 +11,7 @@ export default config => ({
     steps: [
       ...cancelExistingSteps,
       {
-        uses: 'actions/checkout@v2',
+        uses: 'actions/checkout@v3',
         with: {
           'fetch-depth': 0,
           lfs: true,

@@ -5,7 +5,7 @@ export default {
     build: {
       'runs-on': 'ubuntu-latest',
       steps: [
-        { uses: 'actions/checkout@v2' },
+        { uses: 'actions/checkout@v3' },
         {
           uses: 'jaid/action-sync-node-meta@v2.0.0',
           with: {
