@@ -7,7 +7,7 @@ Object {
       "runs-on": "ubuntu-latest",
       "steps": Array [
         Object {
-          "uses": "actions/checkout@v2",
+          "uses": "actions/checkout@v3",
         },
         Object {
           "uses": "jaid/action-sync-node-meta@v2.0.0",
@@ -40,7 +40,7 @@ Object {
       "runs-on": "ubuntu-latest",
       "steps": Array [
         Object {
-          "uses": "actions/checkout@v2",
+          "uses": "actions/checkout@v3",
         },
         Object {
           "uses": "jaid/action-sync-node-meta@v2.0.0",

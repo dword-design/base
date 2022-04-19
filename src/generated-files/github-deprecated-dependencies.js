@@ -3,7 +3,7 @@ export default {
     run: {
       'runs-on': 'ubuntu-latest',
       steps: [
-        { uses: 'actions/checkout@v2', with: { lfs: true } },
+        { uses: 'actions/checkout@v3', with: { lfs: true } },
         {
           'continue-on-error': true,
           id: 'check-deprecated-js-deps',

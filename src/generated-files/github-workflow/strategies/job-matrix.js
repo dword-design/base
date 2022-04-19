@@ -17,7 +17,7 @@ export default () => ({
     'runs-on': 'ubuntu-latest',
     steps: [
       {
-        uses: 'actions/checkout@v2',
+        uses: 'actions/checkout@v3',
         with: {
           lfs: true,
           ref: "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
@@ -41,7 +41,7 @@ export default () => ({
     needs: 'cancel-existing',
     'runs-on': '${{ matrix.os }}',
     steps: [
-      { uses: 'actions/checkout@v2', with: { 'fetch-depth': 0, lfs: true } },
+      { uses: 'actions/checkout@v3', with: { 'fetch-depth': 0, lfs: true } },
       {
         uses: 'actions/setup-node@v2',
         with: {
