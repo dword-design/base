@@ -2,7 +2,6 @@
 
 exports[`index no metadata sync 1`] = `
 Array [
-  "foo.js",
   ".babelrc.json",
   ".commitlintrc.json",
   ".cz.json",
