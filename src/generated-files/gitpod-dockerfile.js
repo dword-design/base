@@ -1,4 +1,5 @@
 import { endent } from '@dword-design/functions'
+
 import config from '@/src/config'
 
 export default endent`
