@@ -16,6 +16,7 @@ export default {
             githubToken: '${{ secrets.GITHUB_TOKEN }}',
           },
         },
+        { uses: 'gautamkrishnar/keepalive-workflow@v1' },
       ],
     },
   },

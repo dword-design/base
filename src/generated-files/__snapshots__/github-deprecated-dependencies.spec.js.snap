@@ -39,6 +39,9 @@ Object {
             "issue-number": "\${{ steps.create-deprecation-issue.outputs.number }}",
           },
         },
+        Object {
+          "uses": "gautamkrishnar/keepalive-workflow@v1",
+        },
       ],
     },
   },

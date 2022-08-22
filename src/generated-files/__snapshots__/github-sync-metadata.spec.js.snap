@@ -18,6 +18,9 @@ Object {
             "syncKeywords": false,
           },
         },
+        Object {
+          "uses": "gautamkrishnar/keepalive-workflow@v1",
+        },
       ],
     },
   },
@@ -50,6 +53,9 @@ Object {
             "githubToken": "\${{ secrets.GITHUB_TOKEN }}",
             "syncKeywords": false,
           },
+        },
+        Object {
+          "uses": "gautamkrishnar/keepalive-workflow@v1",
         },
       ],
     },
