@@ -1,3 +1,11 @@
+## [8.6.22](https://github.com/dword-design/base/compare/v8.6.21...v8.6.22) (2022-08-22)
+
+
+### Bug Fixes
+
+* add keepalive to cron workflows ([#541](https://github.com/dword-design/base/issues/541)) ([729cb8c](https://github.com/dword-design/base/commit/729cb8cc350c116f29b53e5ed54951b1ab2b6efc))
+* set gitpod node version ([#540](https://github.com/dword-design/base/issues/540)) ([07305ef](https://github.com/dword-design/base/commit/07305ef0c168584b0d4419783d517dfad20f7fb6))
+
 ## [8.6.21](https://github.com/dword-design/base/compare/v8.6.20...v8.6.21) (2022-05-02)
 
 
