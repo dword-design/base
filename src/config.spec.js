@@ -44,7 +44,6 @@ export default tester(
 
       const self = stealthyRequire(require.cache, () => require('./config'))
       expect(self |> omit(['depcheckConfig', 'prepare', 'lint'])).toEqual({
-        supportedNodeVersions: [12, 14],
         allowedMatches: [],
         commands: {},
         coverageFileExtensions: [],
@@ -68,6 +67,7 @@ export default tester(
         \`\`\`
       `,
         seeAlso: [],
+        supportedNodeVersions: [12, 14],
         syncKeywords: true,
       })
       expect(typeof self.depcheckConfig).toEqual('object')
@@ -149,7 +149,6 @@ export default tester(
       expect(
         self |> omit(['commands', 'depcheckConfig', 'prepare', 'lint'])
       ).toEqual({
-        supportedNodeVersions: [12, 14],
         allowedMatches: [],
         coverageFileExtensions: [],
         deployAssets: [{ label: 'Foo', path: 'foo.js' }],
@@ -167,6 +166,7 @@ export default tester(
         preDeploySteps: [{ run: 'foo' }],
         readmeInstallString: 'foo',
         seeAlso: [],
+        supportedNodeVersions: [12, 14],
         syncKeywords: true,
       })
       expect(self.commands |> keys |> sortBy(identity)).toEqual([
