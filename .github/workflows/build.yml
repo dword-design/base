@@ -59,11 +59,15 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
     strategy:
       matrix:
-        exclude:
+        include:
           - node: 12
-            os: macos-latest
-          - node: 12
-            os: windows-latest
+            os: ubuntu-latest
+          - node: 14
+            os: ubuntu-latest
+          - os: macos-latest
+            version: 14
+          - os: windows-latest
+            version: 14
         node:
           - 12
           - 14

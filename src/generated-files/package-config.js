@@ -41,7 +41,7 @@ export default {
   ...(gitInfo && { repository: `dword-design/${gitInfo.project}` }),
   author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
   engines: {
-    node: '>=12',
+    node: `>=${config.supportedNodeVersions[0]}`,
   },
   files: ['dist', ...(existsSync('types.d.ts') ? ['types.d.ts'] : [])],
   license: 'MIT',
