@@ -67,6 +67,7 @@ export default tester(
         \`\`\`
       `,
         seeAlso: [],
+        supportedNodeVersions: [12, 14],
         syncKeywords: true,
       })
       expect(typeof self.depcheckConfig).toEqual('object')
@@ -165,6 +166,7 @@ export default tester(
         preDeploySteps: [{ run: 'foo' }],
         readmeInstallString: 'foo',
         seeAlso: [],
+        supportedNodeVersions: [12, 14],
         syncKeywords: true,
       })
       expect(self.commands |> keys |> sortBy(identity)).toEqual([
