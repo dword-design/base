@@ -35,7 +35,6 @@ const defaultConfig = {
   gitignore: [],
   lint: identity,
   nodeVersion: 14,
-  supportedNodeVersions: [12, 14],
   preDeploySteps: [],
   prepare: identity,
   readmeInstallString: endent`
@@ -50,6 +49,7 @@ const defaultConfig = {
     \`\`\`
   `,
   seeAlso: [],
+  supportedNodeVersions: [12, 14],
   syncKeywords: true,
 }
 let inheritedConfig =

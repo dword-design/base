@@ -108,24 +108,23 @@ Object {
       ],
       "strategy": Object {
         "matrix": Object {
-          "exclude": Array [
+          "include": Array [
             Object {
               "node": 12,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 14,
+              "os": "ubuntu-latest",
+            },
+            Object {
               "os": "macos-latest",
+              "version": 14,
             },
             Object {
-              "node": 12,
               "os": "windows-latest",
+              "version": 14,
             },
-          ],
-          "node": Array [
-            12,
-            14,
-          ],
-          "os": Array [
-            "macos-latest",
-            "windows-latest",
-            "ubuntu-latest",
           ],
         },
       },

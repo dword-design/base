@@ -59,7 +59,10 @@ export default config => ({
     strategy: {
       matrix: {
         include: [
-          ...config.supportedNodeVersions.map(version => ({ node: version, os: 'ubuntu-latest' })),
+          ...config.supportedNodeVersions.map(version => ({
+            node: version,
+            os: 'ubuntu-latest',
+          })),
           { os: 'macos-latest', version: config.nodeVersion },
           { os: 'windows-latest', version: config.nodeVersion },
         ],
