@@ -54,6 +54,7 @@ const defaultConfig = {
 }
 let inheritedConfig =
   importCwd.silent(rawConfig.name) || require(rawConfig.name)
+
 const mergeOptions = {
   customMerge: key =>
     key === 'supportedNodeVersions' ? (a, b) => b : undefined,
@@ -64,4 +65,7 @@ if (typeof inheritedConfig === 'function') {
   )
 }
 
-export default deepmerge.all([defaultConfig, inheritedConfig, rawConfig], mergeOptions)
+export default deepmerge.all(
+  [defaultConfig, inheritedConfig, rawConfig],
+  mergeOptions
+)
