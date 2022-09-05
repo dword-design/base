@@ -1,3 +1,10 @@
+## [8.7.1](https://github.com/dword-design/base/compare/v8.7.0...v8.7.1) (2022-09-05)
+
+
+### Bug Fixes
+
+* foo ([0f9f589](https://github.com/dword-design/base/commit/0f9f589699856c907a49a499b4427f784ab23d4b))
+
 # [8.7.0](https://github.com/dword-design/base/compare/v8.6.22...v8.7.0) (2022-09-05)
 
 
