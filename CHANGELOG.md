@@ -1,3 +1,10 @@
+# [8.7.0](https://github.com/dword-design/base/compare/v8.6.22...v8.7.0) (2022-09-05)
+
+
+### Features
+
+* make supported node versions configurable ([#546](https://github.com/dword-design/base/issues/546)) ([89db3cf](https://github.com/dword-design/base/commit/89db3cfce83ec6dba4a6973efd8e2bd6495ef072))
+
 ## [8.6.22](https://github.com/dword-design/base/compare/v8.6.21...v8.6.22) (2022-08-22)
 
 
