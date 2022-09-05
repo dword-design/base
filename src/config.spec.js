@@ -136,6 +136,7 @@ export default tester(
             preDeploySteps: [{ run: 'foo' }],
             prepare: x => x + 2,
             readmeInstallString: 'foo',
+            supportedNodeVersions: [1, 2],
           }
 
         `,
@@ -166,7 +167,7 @@ export default tester(
         preDeploySteps: [{ run: 'foo' }],
         readmeInstallString: 'foo',
         seeAlso: [],
-        supportedNodeVersions: [12, 14],
+        supportedNodeVersions: [1, 2],
         syncKeywords: true,
       })
       expect(self.commands |> keys |> sortBy(identity)).toEqual([
