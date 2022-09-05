@@ -68,13 +68,6 @@ jobs:
             version: 14
           - os: windows-latest
             version: 14
-        node:
-          - 12
-          - 14
-        os:
-          - macos-latest
-          - windows-latest
-          - ubuntu-latest
 name: build
 on:
   pull_request: {}
