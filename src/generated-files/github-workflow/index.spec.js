@@ -1,5 +1,9 @@
+import chdir from '@dword-design/chdir'
 import proxyquire from '@dword-design/proxyquire'
 import { outputFile } from 'fs-extra'
+import outputFiles from 'output-files'
+import P from 'path'
+import stealthyRequire from 'stealthy-require-no-leak'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
@@ -22,6 +26,38 @@ export default {
         },
       })
     ).toMatchSnapshot(this)
+  },
+  'package.json': function () {
+    return withLocalTmpDir(async () => {
+      await outputFiles({
+        '.env.schema.json': JSON.stringify({
+          foo: { type: 'string' },
+        }),
+        'repos/foo/package.json': JSON.stringify({}),
+      })
+      await chdir(P.join('repos', 'foo'), () =>
+        expect(
+          stealthyRequire(require.cache, () => require('.'))
+        ).toMatchSnapshot(this)
+      )
+    })
+  },
+  'package.json same path as .env.schema.json': function () {
+    return withLocalTmpDir(async () => {
+      await outputFiles({
+        'repos/foo': {
+          '.env.schema.json': JSON.stringify({
+            foo: { type: 'string' },
+          }),
+          'package.json': JSON.stringify({}),
+        },
+      })
+      await chdir(P.join('repos', 'foo'), () =>
+        expect(
+          stealthyRequire(require.cache, () => require('.'))
+        ).toMatchSnapshot(this)
+      )
+    })
   },
   'test environment variables': function () {
     return withLocalTmpDir(async () => {
