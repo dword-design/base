@@ -27,13 +27,30 @@ export default {
       })
     ).toMatchSnapshot(this)
   },
-  subdir() {
+  'package.json': function () {
     return withLocalTmpDir(async () => {
       await outputFiles({
         '.env.schema.json': JSON.stringify({
           foo: { type: 'string' },
         }),
-        'repos/foo': {},
+        'repos/foo/package.json': JSON.stringify({}),
+      })
+      await chdir(P.join('repos', 'foo'), () =>
+        expect(
+          stealthyRequire(require.cache, () => require('.'))
+        ).toMatchSnapshot(this)
+      )
+    })
+  },
+  'package.json same path as .env.schema.json': function () {
+    return withLocalTmpDir(async () => {
+      await outputFiles({
+        'repos/foo': {
+          '.env.schema.json': JSON.stringify({
+            foo: { type: 'string' },
+          }),
+          'package.json': JSON.stringify({}),
+        },
       })
       await chdir(P.join('repos', 'foo'), () =>
         expect(
