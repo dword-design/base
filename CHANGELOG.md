@@ -1,3 +1,10 @@
+## [8.7.2](https://github.com/dword-design/base/compare/v8.7.1...v8.7.2) (2022-09-19)
+
+
+### Bug Fixes
+
+* env schema path ([#548](https://github.com/dword-design/base/issues/548)) ([0cbd1f2](https://github.com/dword-design/base/commit/0cbd1f2eb4a1e8763855cd7532e12479d27815b9))
+
 ## [8.7.1](https://github.com/dword-design/base/compare/v8.7.0...v8.7.1) (2022-09-05)
 
 
