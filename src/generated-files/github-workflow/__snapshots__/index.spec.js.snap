@@ -88,7 +88,7 @@ Object {
         },
         Object {
           "env": Object {
-            "GH_TOKEN": "\${{ secrets.GH_TOKEN }}",
+            "GH_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
           },
           "run": "yarn test",
         },
@@ -183,7 +183,7 @@ Object {
         },
         Object {
           "env": Object {
-            "GH_TOKEN": "\${{ secrets.GH_TOKEN }}",
+            "GH_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
           },
           "run": "yarn test",
         },
@@ -325,7 +325,7 @@ Object {
         },
         Object {
           "env": Object {
-            "GH_TOKEN": "\${{ secrets.GH_TOKEN }}",
+            "GH_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
           },
           "run": "yarn test",
         },
@@ -470,7 +470,7 @@ Object {
         },
         Object {
           "env": Object {
-            "GH_TOKEN": "\${{ secrets.GH_TOKEN }}",
+            "GH_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
             "TEST_FOO": "\${{ secrets.TEST_FOO }}",
           },
           "run": "yarn test",
@@ -708,7 +708,7 @@ Object {
         },
         Object {
           "env": Object {
-            "GH_TOKEN": "\${{ secrets.GH_TOKEN }}",
+            "GH_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
             "TEST_BAR": "\${{ secrets.TEST_BAR }}",
             "TEST_FOO": "\${{ secrets.TEST_FOO }}",
           },
@@ -802,7 +802,7 @@ Object {
         },
         Object {
           "env": Object {
-            "GH_TOKEN": "\${{ secrets.GH_TOKEN }}",
+            "GH_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
           },
           "run": "yarn test",
         },

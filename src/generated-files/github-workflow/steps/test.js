@@ -22,17 +22,13 @@ const envVariableNames =
 
 export default [
   {
+    env: {
+      ...(envVariableNames
+        |> map(name => [name, `\${{ secrets.${name} }}`])
+        |> fromPairs),
+      GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+    },
     run: 'yarn test',
-    ...(envVariableNames.length > 0
-      ? {
-          env: {
-            ...(envVariableNames
-              |> map(name => [name, `\${{ secrets.${name} }}`])
-              |> fromPairs),
-            GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-          },
-        }
-      : {}),
   },
   {
     if: 'failure()',
