@@ -46,9 +46,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: yarn --frozen-lockfile
-      - env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: yarn test
+      - run: yarn test
       - if: failure()
         uses: actions/upload-artifact@v3
         with:
