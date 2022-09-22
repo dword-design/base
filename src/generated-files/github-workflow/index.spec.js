@@ -1,5 +1,6 @@
 import chdir from '@dword-design/chdir'
 import proxyquire from '@dword-design/proxyquire'
+import binExists from 'bin-exists'
 import { outputFile } from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
@@ -7,6 +8,7 @@ import stealthyRequire from 'stealthy-require-no-leak'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
+  'GitHub CLI exists': async () => expect(await binExists('gh')).toEqual(true),
   'job matrix': function () {
     expect(
       proxyquire('.', {
