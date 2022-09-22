@@ -15,22 +15,22 @@ const envSchemaPath = findUp.sync(path => {
   return undefined
 })
 
-const envVariableNames = [
-  ...((envSchemaPath ? require(envSchemaPath) : {})
-    |> keys
-    |> map(name => `TEST_${name |> constantCase}`)),
-  'GH_TOKEN',
-]
+const envVariableNames =
+  (envSchemaPath ? require(envSchemaPath) : {})
+  |> keys
+  |> map(name => `TEST_${name |> constantCase}`)
 
 export default [
   {
     run: 'yarn test',
     ...(envVariableNames.length > 0
       ? {
-          env:
-            envVariableNames
-            |> map(name => [name, `\${{ secrets.${name} }}`])
-            |> fromPairs,
+          env: {
+            ...(envVariableNames
+              |> map(name => [name, `\${{ secrets.${name} }}`])
+              |> fromPairs),
+            GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+          },
         }
       : {}),
   },
