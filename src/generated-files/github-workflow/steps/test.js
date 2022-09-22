@@ -15,10 +15,12 @@ const envSchemaPath = findUp.sync(path => {
   return undefined
 })
 
-const envVariableNames =
-  (envSchemaPath ? require(envSchemaPath) : {})
+const envVariableNames = [
+  ...(envSchemaPath ? require(envSchemaPath) : {})
   |> keys
-  |> map(name => `TEST_${name |> constantCase}`)
+  |> map(name => `TEST_${name |> constantCase}`),
+  'GH_TOKEN',
+]
 
 export default [
   {
