@@ -1,12 +1,19 @@
 import chdir from '@dword-design/chdir'
 import proxyquire from '@dword-design/proxyquire'
+import execa from 'execa'
 import { outputFile } from 'fs-extra'
+import isCI from 'is-ci'
 import outputFiles from 'output-files'
 import P from 'path'
 import stealthyRequire from 'stealthy-require-no-leak'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
+  'GitHub CLI exists': async () => {
+    if (isCI) {
+      await execa.command('gh repo list')
+    }
+  },
   'job matrix': function () {
     expect(
       proxyquire('.', {
