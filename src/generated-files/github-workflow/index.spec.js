@@ -11,7 +11,7 @@ import withLocalTmpDir from 'with-local-tmp-dir'
 export default {
   'GitHub CLI exists': async () => {
     if (isCI) {
-      await execa.command('gh status')
+      await execa.command('gh repo list')
     }
   },
   'job matrix': function () {
