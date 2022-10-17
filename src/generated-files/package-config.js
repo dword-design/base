@@ -31,6 +31,7 @@ export default {
       'devDependencies',
       'peerDependencies',
       'publishConfig',
+      'type',
       'types',
     ])),
   funding: 'https://github.com/sponsors/dword-design',
