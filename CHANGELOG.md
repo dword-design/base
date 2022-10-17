@@ -1,3 +1,10 @@
+## [8.7.4](https://github.com/dword-design/base/compare/v8.7.3...v8.7.4) (2022-10-17)
+
+
+### Bug Fixes
+
+* add type to package config ([917c166](https://github.com/dword-design/base/commit/917c16682a0fe9a0e2788c5b9acfd233dbf4ffdd))
+
 ## [8.7.3](https://github.com/dword-design/base/compare/v8.7.2...v8.7.3) (2022-09-23)
 
 
