@@ -65,8 +65,10 @@ export default tester(
       await outputFiles({
         'foo.txt': '',
         'node_modules/base-config-foo/index.js': endent`
+        const { outputFile } = require('fs-extra')
+        
         module.exports = {
-          prepare: () => console.log('custom prepare'),
+          prepare: () => outputFile('foo.txt', 'bar'),
         }
       `,
         'package.json': JSON.stringify(
@@ -77,11 +79,9 @@ export default tester(
           2
         ),
       })
-
-      const output = await execa(require.resolve('../cli'), ['prepare'], {
-        all: true,
-      })
-      expect(output.all).toMatch('custom prepare')
+      const self = stealthyRequire(require.cache, () => require('./prepare'))
+      await self()
+      expect(await readFile('foo.txt', 'utf8')).toEqual('bar')
     },
     async valid() {
       await execa.command('git init')
