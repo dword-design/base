@@ -1,3 +1,12 @@
+## [8.7.5](https://github.com/dword-design/base/compare/v8.7.4...v8.7.5) (2022-11-03)
+
+
+### Bug Fixes
+
+* esm in tests ([#553](https://github.com/dword-design/base/issues/553)) ([caf5256](https://github.com/dword-design/base/commit/caf5256bf1468bcdf966e8cf68dd5ef550bfef70))
+* fix job matrix ([1a5bddb](https://github.com/dword-design/base/commit/1a5bddb046cb724a001cbc67bfd3fe440223987d))
+* fix tests ([b2ef8de](https://github.com/dword-design/base/commit/b2ef8dec609120fb8ae7d4b55bee95313e834c81))
+
 ## [8.7.4](https://github.com/dword-design/base/compare/v8.7.3...v8.7.4) (2022-10-17)
 
 
