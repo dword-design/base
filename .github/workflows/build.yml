@@ -66,10 +66,10 @@ jobs:
             os: ubuntu-latest
           - node: 14
             os: ubuntu-latest
-          - os: macos-latest
-            version: 14
-          - os: windows-latest
-            version: 14
+          - node: 14
+            os: macos-latest
+          - node: 14
+            os: windows-latest
 name: build
 on:
   pull_request: {}
