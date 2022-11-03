@@ -358,6 +358,10 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
+              "node": 16,
+              "os": "ubuntu-latest",
+            },
+            Object {
               "node": 14,
               "os": "macos-latest",
             },
@@ -501,6 +505,10 @@ Object {
             },
             Object {
               "node": 14,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 16,
               "os": "ubuntu-latest",
             },
             Object {

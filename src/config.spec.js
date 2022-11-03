@@ -67,7 +67,7 @@ export default tester(
         \`\`\`
       `,
         seeAlso: [],
-        supportedNodeVersions: [12, 14],
+        supportedNodeVersions: [12, 14, 16],
         syncKeywords: true,
       })
       expect(typeof self.depcheckConfig).toEqual('object')
