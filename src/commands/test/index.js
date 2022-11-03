@@ -8,6 +8,7 @@ import stdEnv from 'std-env'
 
 import lint from '@/src/commands/lint'
 import config from '@/src/config'
+import packageConfig from '@/src/package-config'
 
 import depcheck from './depcheck'
 
@@ -19,7 +20,7 @@ export default async (pattern, options) => {
         'ajv',
         [
           '-s',
-          require.resolve('./package-json-schema'),
+          require.resolve('@dword-design/package-json-schema'),
           '-d',
           'package.json',
           '--allow-union-types',
@@ -55,7 +56,7 @@ export default async (pattern, options) => {
     !isCI || !(['win32', 'darwin'] |> includes(process.platform))
 
   return execa(
-    'nyc',
+    packageConfig.type === 'module' ? packageName`c8` : packageName`nyc`,
     [
       '--reporter',
       'lcov',
@@ -63,8 +64,6 @@ export default async (pattern, options) => {
       'text',
       '--cwd',
       process.cwd(),
-      '--require',
-      require.resolve('./pretest'),
       '--all',
       ...(config.coverageFileExtensions
         |> flatMap(extension => ['--extension', extension])),
@@ -79,9 +78,13 @@ export default async (pattern, options) => {
       'mocha',
       '--ui',
       packageName`mocha-ui-exports-auto-describe`,
-      ...(runDockerTests ? [] : ['--ignore', '**/*.usesdocker.spec.js']),
+      '--require',
+      packageName`@dword-design/babel-register`,
+      '--require',
+      packageName`@dword-design/pretest`,
       '--file',
-      require.resolve('./setup-test'),
+      require.resolve('@dword-design/setup-test'),
+      ...(runDockerTests ? [] : ['--ignore', '**/*.usesdocker.spec.js']),
       '--timeout',
       130000,
       ...(options.grep ? ['--grep', options.grep] : []),
@@ -91,6 +94,9 @@ export default async (pattern, options) => {
     {
       env: {
         NODE_ENV: 'test',
+        ...(packageConfig.type === 'module' && {
+          NODE_OPTIONS: `--experimental-loader=${packageName`@dword-design/babel-register-esm`}`,
+        }),
         ...(options.updateSnapshots && { SNAPSHOT_UPDATE: 1 }),
       },
       ...(options.log ? { stdio: 'inherit' } : { all: true }),

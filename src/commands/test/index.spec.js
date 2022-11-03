@@ -7,7 +7,7 @@ import {
   stubTrue,
 } from '@dword-design/functions'
 import packageName from 'depcheck-package-name'
-import { readFile } from 'fs-extra'
+import { chmod, readFile } from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
 import P from 'path'
@@ -406,6 +406,37 @@ export default {
       const output = self('src/index2.spec.js') |> await |> property('all')
       expect(output).not.toMatch('run index1')
       expect(output).toMatch('run index2')
+    },
+  },
+  'pipeline operator and esm': {
+    files: {
+      'package.json': JSON.stringify({
+        devDependencies: {
+          execa: '^1',
+        },
+        type: 'module',
+      }),
+      src: {
+        'index.spec.js': endent`
+        import execa from 'execa'
+        import P from 'path'
+
+        export default {
+          valid: () => execa(P.join('src', 'subprocess.js'), { stdio: 'inherit' }),
+        }
+      `,
+        'subprocess.js': endent`
+          #!/usr/bin/env node
+
+          console.log(1 |> x => x * 2)
+        `,
+      },
+    },
+    test: async () => {
+      await chmod(P.join('src', 'subprocess.js'), '755')
+
+      const self = stealthyRequire(require.cache, () => require('.'))
+      await self()
     },
   },
   'prod dependency only in test': {

@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-import './babel-register'
-
 import { mapValues, values } from '@dword-design/functions'
 import makeCli from 'make-cli'
 
