@@ -1,3 +1,10 @@
+## [8.7.6](https://github.com/dword-design/base/compare/v8.7.5...v8.7.6) (2022-11-03)
+
+
+### Bug Fixes
+
+* test node 16 ([#554](https://github.com/dword-design/base/issues/554)) ([9e1470d](https://github.com/dword-design/base/commit/9e1470d2feaf2b4a1b990586c02c6ff723068a80))
+
 ## [8.7.5](https://github.com/dword-design/base/compare/v8.7.4...v8.7.5) (2022-11-03)
 
 
