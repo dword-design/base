@@ -121,12 +121,12 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
+              "node": 14,
               "os": "macos-latest",
-              "version": 14,
             },
             Object {
+              "node": 14,
               "os": "windows-latest",
-              "version": 14,
             },
           ],
         },
@@ -358,12 +358,12 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
+              "node": 14,
               "os": "macos-latest",
-              "version": 14,
             },
             Object {
+              "node": 14,
               "os": "windows-latest",
-              "version": 14,
             },
           ],
         },
@@ -504,12 +504,12 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
+              "node": 14,
               "os": "macos-latest",
-              "version": 14,
             },
             Object {
+              "node": 14,
               "os": "windows-latest",
-              "version": 14,
             },
           ],
         },

@@ -79,6 +79,7 @@ export default tester(
           2
         ),
       })
+
       const self = stealthyRequire(require.cache, () => require('./prepare'))
       await self()
       expect(await readFile('foo.txt', 'utf8')).toEqual('bar')
