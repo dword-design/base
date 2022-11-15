@@ -26,7 +26,7 @@ export default config => ({
       {
         uses: 'actions/setup-node@v3',
         with: {
-          'node-version': 14,
+          'node-version': config.nodeVersion,
         },
       },
       { run: 'git config --global user.email "actions@github.com"' },
@@ -52,7 +52,7 @@ export default config => ({
       ...testSteps,
       ...(coverageSteps
         |> map(step => ({
-          if: "matrix.os == 'ubuntu-latest' && matrix.node == 14",
+          if: `matrix.os == 'ubuntu-latest' && matrix.node == ${config.nodeVersion}`,
           ...step,
         }))),
     ],

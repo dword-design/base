@@ -19,7 +19,7 @@ export default {
       proxyquire('.', {
         '../../config': {
           nodeVersion: 14,
-          supportedNodeVersions: [12, 14],
+          supportedNodeVersions: [14, 16],
           useJobMatrix: true,
         },
       })

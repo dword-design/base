@@ -53,7 +53,7 @@ export default tester(
         editorIgnore: [],
         gitignore: [],
         name: 'base-config-foo',
-        nodeVersion: 14,
+        nodeVersion: 16,
         preDeploySteps: [],
         readmeInstallString: endent`
         ## Install
@@ -67,7 +67,7 @@ export default tester(
         \`\`\`
       `,
         seeAlso: [],
-        supportedNodeVersions: [12, 14, 16],
+        supportedNodeVersions: [14, 16, 18],
         syncKeywords: true,
       })
       expect(typeof self.depcheckConfig).toEqual('object')
