@@ -49,7 +49,7 @@ const defaultConfig = {
     \`\`\`
   `,
   seeAlso: [],
-  supportedNodeVersions: [12, 14, 16],
+  supportedNodeVersions: [14, 16, 18],
   syncKeywords: true,
 }
 let inheritedConfig =

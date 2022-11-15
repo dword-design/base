@@ -57,7 +57,7 @@ export default {
       )
       expect(packageConfig).toEqual({
         author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
-        engines: { node: '>=12' },
+        engines: { node: '>=14' },
         files: ['dist'],
         funding: 'https://github.com/sponsors/dword-design',
         license: 'MIT',
@@ -135,7 +135,7 @@ export default {
         devDependencies: {
           'base-config-bar': '^1.0.0',
         },
-        engines: { node: '>=12' },
+        engines: { node: '>=14' },
         files: ['dist'],
         funding: 'https://github.com/sponsors/dword-design',
         keywords: ['foo', 'bar'],
@@ -168,7 +168,7 @@ export default {
       )
       expect(packageConfig).toEqual({
         author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
-        engines: { node: '>=12' },
+        engines: { node: '>=14' },
         files: ['dist'],
         funding: 'https://github.com/sponsors/dword-design',
         license: 'MIT',
@@ -228,7 +228,7 @@ export default {
       )
       await expect(packageConfig).toEqual({
         author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
-        engines: { node: '>=12' },
+        engines: { node: '>=14' },
         files: ['dist'],
         funding: 'https://github.com/sponsors/dword-design',
         license: 'MIT',
