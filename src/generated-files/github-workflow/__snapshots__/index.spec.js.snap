@@ -264,7 +264,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v3",
           "with": Object {
-            "node-version": 14,
+            "node-version": 16,
           },
         },
         Object {
@@ -336,7 +336,7 @@ Object {
           },
         },
         Object {
-          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 14",
+          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 16",
           "uses": "codecov/codecov-action@v3",
           "with": Object {
             "token": "\${{ secrets.CODECOV_TOKEN }}",
@@ -412,7 +412,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v3",
           "with": Object {
-            "node-version": 14,
+            "node-version": 16,
           },
         },
         Object {
@@ -485,7 +485,7 @@ Object {
           },
         },
         Object {
-          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 14",
+          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 16",
           "uses": "codecov/codecov-action@v3",
           "with": Object {
             "token": "\${{ secrets.CODECOV_TOKEN }}",
