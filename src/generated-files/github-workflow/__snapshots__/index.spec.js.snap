@@ -104,7 +104,6 @@ Object {
           "if": "matrix.os == 'ubuntu-latest' && matrix.node == 14",
           "uses": "codecov/codecov-action@v3",
           "with": Object {
-            "fail_ci_if_error": true,
             "token": "\${{ secrets.CODECOV_TOKEN }}",
           },
         },
@@ -198,7 +197,6 @@ Object {
         Object {
           "uses": "codecov/codecov-action@v3",
           "with": Object {
-            "fail_ci_if_error": true,
             "token": "\${{ secrets.CODECOV_TOKEN }}",
           },
         },
@@ -341,7 +339,6 @@ Object {
           "if": "matrix.os == 'ubuntu-latest' && matrix.node == 14",
           "uses": "codecov/codecov-action@v3",
           "with": Object {
-            "fail_ci_if_error": true,
             "token": "\${{ secrets.CODECOV_TOKEN }}",
           },
         },
@@ -362,11 +359,11 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
-              "node": 14,
+              "node": 16,
               "os": "macos-latest",
             },
             Object {
-              "node": 14,
+              "node": 16,
               "os": "windows-latest",
             },
           ],
@@ -491,7 +488,6 @@ Object {
           "if": "matrix.os == 'ubuntu-latest' && matrix.node == 14",
           "uses": "codecov/codecov-action@v3",
           "with": Object {
-            "fail_ci_if_error": true,
             "token": "\${{ secrets.CODECOV_TOKEN }}",
           },
         },
@@ -512,11 +508,11 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
-              "node": 14,
+              "node": 16,
               "os": "macos-latest",
             },
             Object {
-              "node": 14,
+              "node": 16,
               "os": "windows-latest",
             },
           ],
@@ -637,7 +633,6 @@ Object {
           "if": "matrix.os == 'ubuntu-latest' && matrix.node == 14",
           "uses": "codecov/codecov-action@v3",
           "with": Object {
-            "fail_ci_if_error": true,
             "token": "\${{ secrets.CODECOV_TOKEN }}",
           },
         },
@@ -733,7 +728,6 @@ Object {
         Object {
           "uses": "codecov/codecov-action@v3",
           "with": Object {
-            "fail_ci_if_error": true,
             "token": "\${{ secrets.CODECOV_TOKEN }}",
           },
         },
@@ -825,7 +819,6 @@ Object {
         Object {
           "uses": "codecov/codecov-action@v3",
           "with": Object {
-            "fail_ci_if_error": true,
             "token": "\${{ secrets.CODECOV_TOKEN }}",
           },
         },

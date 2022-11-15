@@ -53,7 +53,7 @@ export default tester(
         editorIgnore: [],
         gitignore: [],
         name: 'base-config-foo',
-        nodeVersion: 14,
+        nodeVersion: 16,
         preDeploySteps: [],
         readmeInstallString: endent`
         ## Install

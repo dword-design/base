@@ -34,7 +34,7 @@ const defaultConfig = {
   editorIgnore: [],
   gitignore: [],
   lint: identity,
-  nodeVersion: 14,
+  nodeVersion: 16,
   preDeploySteps: [],
   prepare: identity,
   readmeInstallString: endent`

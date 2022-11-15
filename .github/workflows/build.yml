@@ -57,7 +57,6 @@ jobs:
       - if: matrix.os == 'ubuntu-latest' && matrix.node == 14
         uses: codecov/codecov-action@v3
         with:
-          fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
     strategy:
       matrix:
@@ -68,9 +67,9 @@ jobs:
             os: ubuntu-latest
           - node: 18
             os: ubuntu-latest
-          - node: 14
+          - node: 16
             os: macos-latest
-          - node: 14
+          - node: 16
             os: windows-latest
 name: build
 on:
