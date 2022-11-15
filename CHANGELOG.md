@@ -1,3 +1,15 @@
+# [9.0.0](https://github.com/dword-design/base/compare/v8.7.6...v9.0.0) (2022-11-15)
+
+
+### Bug Fixes
+
+* upgrades ([#555](https://github.com/dword-design/base/issues/555)) ([47d6a05](https://github.com/dword-design/base/commit/47d6a05b8a72edba6c1b812362c59a561a79a287))
+
+
+### BREAKING CHANGES
+
+* drop node 12 support
+
 ## [8.7.6](https://github.com/dword-design/base/compare/v8.7.5...v8.7.6) (2022-11-03)
 
 
