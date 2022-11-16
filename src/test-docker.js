@@ -11,7 +11,7 @@ import execa from 'execa'
 import findUp from 'find-up'
 import os from 'os'
 
-import packageConfig from '@/src/package-config'
+import packageConfig from './package-config'
 
 export default async (pattern, options) => {
   options = { log: true, ...options }

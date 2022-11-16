@@ -18,7 +18,7 @@ const runTest = config => {
 
   return () => {
     const self = proxyquire('.', {
-      '../../config': {
+      '../config': {
         allowedMatches: config.configAllowedMatches,
       },
     })

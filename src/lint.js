@@ -1,9 +1,9 @@
 import execa from 'execa'
 import parsePackagejsonName from 'parse-packagejson-name'
 
-import config from '@/src/config'
-import gitInfo from '@/src/git-info'
-import packageConfig from '@/src/package-config'
+import config from './config'
+import gitInfo from './git-info'
+import packageConfig from './package-config'
 
 export default async options => {
   const packageName = parsePackagejsonName(packageConfig.name).fullName
