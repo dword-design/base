@@ -1,40 +1,12 @@
-import { isEmpty, mapValues } from '@dword-design/functions'
-import proxyquire from '@dword-design/proxyquire'
+import { isEmpty } from '@dword-design/functions'
 import outputFiles from 'output-files'
-import withLocalTmpDir from 'with-local-tmp-dir'
+import tester from '@dword-design/tester'
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
+import self from '.'
 
 import UnknownFilesError from './unknown-files-error'
 
-const runTest = config => {
-  config = {
-    commonAllowedMatches: [],
-    configAllowedMatches: [],
-    configFiles: [],
-    files: {},
-    gitignore: [],
-    result: {},
-    ...config,
-  }
-
-  return () => {
-    const self = proxyquire('.', {
-      '../config': {
-        allowedMatches: config.configAllowedMatches,
-      },
-    })
-
-    return withLocalTmpDir(async () => {
-      await outputFiles(config.files)
-      if (isEmpty(config.result)) {
-        await self()
-      } else {
-        await expect(self).rejects.toThrow(new UnknownFilesError(config.result))
-      }
-    })
-  }
-}
-
-export default {
+export default tester({
   'config allowed matches': {
     configAllowedMatches: ['bar.txt'],
     files: {
@@ -91,4 +63,29 @@ export default {
       'foo.txt': true,
     },
   },
-} |> mapValues(runTest)
+}, [
+  testerPluginTmpDir(),
+  {
+    transform: test => {
+      test = {
+        commonAllowedMatches: [],
+        configAllowedMatches: [],
+        configFiles: [],
+        files: {},
+        gitignore: [],
+        result: {},
+        ...test,
+      }
+    
+      return async () => {
+        await outputFiles(test.files)
+        const config = await getConfig()
+        if (isEmpty(test.result)) {
+          await self(config)
+        } else {
+          await expect(self(config)).rejects.toThrow(new UnknownFilesError(test.result))
+        }
+      }
+    }
+  }
+])

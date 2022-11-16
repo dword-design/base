@@ -6,13 +6,11 @@ import isCI from 'is-ci'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import stdEnv from 'std-env'
 
-import config from '@/src/config'
 import lint from '@/src/lint'
-import packageConfig from '@/src/package-config'
 
 import depcheck from './depcheck'
 
-export default async (pattern, options) => {
+export default async (config, pattern, options) => {
   options = { log: !stdEnv.test, ...options }
   if (!pattern) {
     try {
@@ -48,15 +46,15 @@ export default async (pattern, options) => {
         }`
       )
     }
-    await lint()
-    await depcheck()
+    await lint(config)
+    await depcheck(config)
   }
 
   const runDockerTests =
     !isCI || !(['win32', 'darwin'] |> includes(process.platform))
 
   return execa(
-    packageConfig.type === 'module' ? packageName`c8` : packageName`nyc`,
+    config.package.type === 'module' ? packageName`c8` : packageName`nyc`,
     [
       '--reporter',
       'lcov',
@@ -94,7 +92,7 @@ export default async (pattern, options) => {
     {
       env: {
         NODE_ENV: 'test',
-        ...(packageConfig.type === 'module' && {
+        ...(config.package.type === 'module' && {
           NODE_OPTIONS: `--experimental-loader=${packageName`@dword-design/babel-register-esm`}`,
         }),
         ...(options.updateSnapshots && { SNAPSHOT_UPDATE: 1 }),

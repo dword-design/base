@@ -11,27 +11,12 @@ import { chmod, readFile } from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
 import P from 'path'
-import stealthyRequire from 'stealthy-require-no-leak'
 import unifyMochaOutput from 'unify-mocha-output'
-import withLocalTmpDir from 'with-local-tmp-dir'
+import prepare from '@/src/prepare'
+import tester from '../@dword-design/tester'
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 
-const runTest = config => {
-  config = { files: {}, ...config }
-
-  return function () {
-    return withLocalTmpDir(async () => {
-      await outputFiles(config.files)
-
-      const prepare = stealthyRequire(require.cache, () =>
-        require('../prepare')
-      )
-      await prepare()
-      await config.test.call(this)
-    })
-  }
-}
-
-export default {
+export default tester({
   '.nuxt': {
     files: {
       '.nuxt/index.js': 'export default 1',
@@ -39,7 +24,7 @@ export default {
     },
     test: async () => {
       const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
+      await expect(self(await getConfig())).rejects.toThrow(
         /SyntaxError: Unexpected token '?export'?/
       )
     },
@@ -49,10 +34,7 @@ export default {
       '.nuxt-foo/index.js': 'export default 1',
       'src/index.spec.js': "import '@/.nuxt-foo'",
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await self()
-    },
+    test: () => self(await getConfig()),
   },
   assertion: {
     files: {
@@ -65,12 +47,9 @@ export default {
       `,
       },
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
-        'Error: expect(received).toEqual(expected)'
-      )
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(
+      'Error: expect(received).toEqual(expected)'
+    ),
   },
   'base config in prod dependencies': {
     files: {
@@ -86,13 +65,10 @@ export default {
         2
       ),
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(endent`
+    test: async () => expect(self(await getConfig())).rejects.toThrow(endent`
       Unused dependencies
       * base-config-foo
-    `)
-    },
+    `),
   },
   'bin outside dist': {
     files: {
@@ -102,21 +78,15 @@ export default {
         2
       ),
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
-        'package.json invalid\ndata/bin/foo must match pattern "^\\.\\/dist\\/"'
-      )
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(
+      'package.json invalid\ndata/bin/foo must match pattern "^\\.\\/dist\\/"'
+    ),
   },
   'config file errors': {
     files: {
-      'package.json': JSON.stringify({ name: '_foo' }, undefined, 2),
+      'package.json': JSON.stringify({ name: '_foo' }),
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow('package.json invalid')
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow('package.json invalid'),
   },
   'coverage file extension': {
     files: {
@@ -166,9 +136,8 @@ export default {
       }),
     },
     async test() {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      expect(
-        self() |> await |> property('all') |> unifyMochaOutput
+      return expect(
+        self(await getConfig()) |> await |> property('all') |> unifyMochaOutput
       ).toMatchSnapshot(this)
     },
   },
@@ -189,16 +158,10 @@ export default {
         2
       ),
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await self()
-    },
+    test: async () => self(await getConfig()),
   },
   empty: {
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await self()
-    },
+    test: async () => self(await getConfig()),
   },
   grep: {
     files: {
@@ -213,9 +176,7 @@ export default {
       },
     },
     test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-
-      const output = self('', { grep: 'foo' }) |> await |> property('all')
+      const output = self(await getConfig(), '', { grep: 'foo' }) |> await |> property('all')
       expect(output).not.toMatch('run bar')
       expect(output).toMatch('run foo')
     },
@@ -248,8 +209,7 @@ export default {
       }),
     },
     test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await self()
+      await self(await getConfig())
       expect(await globby('*', { cwd: '__image_snapshots__' })).toEqual([
         'index-spec-js-index-works-1-snap.png',
       ])
@@ -259,41 +219,29 @@ export default {
     files: {
       'package.json': JSON.stringify({ name: '_foo' }, undefined, 2),
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
-        'package.json invalid\ndata/name must match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"'
-      )
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(
+      'package.json invalid\ndata/name must match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"'
+    ),
   },
   'json errors': {
     files: {
       'src/test.json': 'foo bar',
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow('error  Unexpected token o')
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow('error  Unexpected token o'),
   },
   'linting errors': {
     files: {
       'src/index.js': "var foo = 'bar'",
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
-        "error  'foo' is assigned a value but never used  no-unused-vars"
-      )
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(
+      "error  'foo' is assigned a value but never used  no-unused-vars"
+    ),
   },
   minimal: {
     files: {
       'src/index.js': 'export default 1',
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await self()
-    },
+    test: async () => self(await getConfig()),
   },
   'missing readme sections': {
     files: {
@@ -306,12 +254,9 @@ export default {
 
       `,
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
-        'The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL'
-      )
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(
+      'The README.md file is missing or misses the following sections: DESCRIPTION, INSTALL'
+    ),
   },
   'multiple snapshots': {
     files: {
@@ -325,8 +270,7 @@ export default {
       `,
     },
     test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await self()
+      await self(await getConfig())
       expect(await globby('*', { cwd: '__snapshots__' })).toEqual([
         'index.spec.js.snap',
       ])
@@ -348,22 +292,16 @@ export default {
       'package.json': { devDependencies: { foo: '^1.0.0' } } |> JSON.stringify,
       'src/index.spec.js': "import 'foo'",
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
-        /SyntaxError: Unexpected token '?export'?/
-      )
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(
+      /SyntaxError: Unexpected token '?export'?/
+    ),
   },
   'node_modules postfix': {
     files: {
       'node_modules-foo/index.js': 'export default 1',
       'src/index.spec.js': "import '@/node_modules-foo'",
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await self()
-    },
+    test: async () => self(await getConfig()),
   },
   'node_modules subfolder': {
     files: {
@@ -373,12 +311,9 @@ export default {
         'node_modules/foo/index.js': 'export default 1',
       },
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
-        /SyntaxError: Unexpected token '?export'?/
-      )
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(
+      /SyntaxError: Unexpected token '?export'?/
+    )
   },
   pattern: {
     files: {
@@ -401,9 +336,7 @@ export default {
       },
     },
     test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-
-      const output = self('src/index2.spec.js') |> await |> property('all')
+      const output = self(await getConfig(), 'src/index2.spec.js') |> await |> property('all')
       expect(output).not.toMatch('run index1')
       expect(output).toMatch('run index2')
     },
@@ -434,9 +367,7 @@ export default {
     },
     test: async () => {
       await chmod(P.join('src', 'subprocess.js'), '755')
-
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await self()
+      await self(await getConfig())
     },
   },
   'prod dependency only in test': {
@@ -460,13 +391,10 @@ export default {
       `,
       },
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(endent`
+    test: async () => expect(self(await getConfig())).rejects.toThrow(endent`
       Unused dependencies
       * bar
-    `)
-    },
+    `),
   },
   snapshot: {
     files: {
@@ -479,8 +407,7 @@ export default {
       `,
     },
     test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await self()
+      await self(await getConfig())
       expect(await globby('*', { cwd: '__snapshots__' })).toEqual([
         'index.spec.js.snap',
       ])
@@ -509,10 +436,7 @@ export default {
         2
       ),
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      expect(self() |> await |> property('all')).toMatch('run test')
-    },
+    test: async () => expect(self(await getConfig()) |> await |> property('all')).toMatch('run test'),
   },
   'unused dependency': {
     files: {
@@ -527,13 +451,10 @@ export default {
       ),
       'src/index.js': 'export default 1',
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(endent`
-        Unused dependencies
-        * change-case
-      `)
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(endent`
+      Unused dependencies
+      * change-case
+    `),
   },
   'update snapshot': {
     files: {
@@ -549,10 +470,7 @@ export default {
         }
       `,
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await self('', { updateSnapshots: true })
-    },
+    test: async () => self(await getConfig(), '', { updateSnapshots: true }),
   },
   'usesdocker macOS': {
     files: {
@@ -564,10 +482,9 @@ export default {
       const previousEnv = process.env
       process.env.CI = true
 
-      const self = stealthyRequire(require.cache, () => require('.'))
       Object.defineProperty(process, 'platform', { value: 'darwin' })
       try {
-        await self()
+        await self(await getConfig())
       } finally {
         Object.defineProperty(process, 'platform', { value: previousPlatform })
         process.env = previousEnv
@@ -585,9 +502,8 @@ export default {
       delete process.env.CI
       delete process.env.GITHUB_ACTIONS
 
-      const self = stealthyRequire(require.cache, () => require('.'))
       Object.defineProperty(process, 'platform', { value: 'darwin' })
-      await expect(self()).rejects.toThrow('foobarbaz')
+      await expect(self(await getConfig())).rejects.toThrow('foobarbaz')
       Object.defineProperty(process, 'platform', { value: previousPlatform })
       process.env = previousEnv
     },
@@ -602,10 +518,9 @@ export default {
       const previousEnv = process.env
       process.env.CI = true
 
-      const self = stealthyRequire(require.cache, () => require('.'))
       Object.defineProperty(process, 'platform', { value: 'win32' })
       try {
-        await self()
+        await self(await getConfig())
       } finally {
         Object.defineProperty(process, 'platform', { value: previousPlatform })
         process.env = previousEnv
@@ -641,8 +556,7 @@ export default {
       },
     },
     test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      expect((await self()) |> await |> property('all')).toMatch('run test')
+      expect((await self(await getConfig())) |> await |> property('all')).toMatch('run test')
       expect(
         globby('*', { dot: true, onlyFiles: false })
           |> await
@@ -682,12 +596,9 @@ export default {
         2
       ),
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
-        'package.json invalid\ndata/dependencies must be object'
-      )
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(
+      'package.json invalid\ndata/dependencies must be object'
+    ),
   },
   'wrong description type': {
     files: {
@@ -699,33 +610,37 @@ export default {
         2
       ),
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
-        'package.json invalid\ndata/description must be string'
-      )
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(
+      'package.json invalid\ndata/description must be string'
+    ),
   },
   'wrong dev dependencies type': {
     files: {
       'package.json': JSON.stringify({ devDependencies: 1 }, undefined, 2),
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
-        'package.json invalid\ndata/devDependencies must be object'
-      )
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(
+      'package.json invalid\ndata/devDependencies must be object'
+    ),
   },
   'wrong keywords type': {
     files: {
       'package.json': JSON.stringify({ keywords: 1 }, undefined, 2),
     },
-    test: async () => {
-      const self = stealthyRequire(require.cache, () => require('.'))
-      await expect(self()).rejects.toThrow(
-        'package.json invalid\ndata/keywords must be array'
-      )
-    },
+    test: async () => expect(self(await getConfig())).rejects.toThrow(
+      'package.json invalid\ndata/keywords must be array'
+    ),
   },
-} |> mapValues(runTest)
+}, [
+  testerPluginTmpDir(),
+  {
+    transform: test => {
+      test = { files: {}, ...test }
+    
+      return function () {
+        await outputFiles(test.files)
+        await prepare()
+        await test.test.call(this)
+      }
+    }
+  },
+])

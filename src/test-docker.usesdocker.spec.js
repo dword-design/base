@@ -5,7 +5,7 @@ import execa from 'execa'
 import { outputFile, readFile, remove } from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
-import stealthyRequire from 'stealthy-require-no-leak'
+import self from '.'
 
 export default tester(
   {
@@ -23,11 +23,7 @@ export default tester(
           2
         )
       )
-
-      const self = stealthyRequire(require.cache, () =>
-        require('./test-docker')
-      )
-      await self('', { log: false })
+      await self(await getConfig(), '', { log: false })
       await remove('dist')
     },
     'create folder and error': async () => {
@@ -46,10 +42,7 @@ export default tester(
         )
       )
 
-      const self = stealthyRequire(require.cache, () =>
-        require('./test-docker')
-      )
-      await expect(self('', { log: false })).rejects.toThrow()
+      await expect(self(await getConfig(), '', { log: false })).rejects.toThrow()
       await remove('dist')
     },
     env: async () => {
@@ -81,12 +74,8 @@ export default tester(
 
       const previousEnv = process.env
       process.env.TEST_FOO = 'foo'
-
-      const self = stealthyRequire(require.cache, () =>
-        require('./test-docker')
-      )
       try {
-        await self('', { log: false })
+        await self(await getConfig(), '', { log: false })
       } finally {
         process.env = previousEnv
       }
@@ -105,11 +94,7 @@ export default tester(
         ),
         'test.js': "require('child_process').spawn('git', ['--help'])",
       })
-
-      const self = stealthyRequire(require.cache, () =>
-        require('./test-docker')
-      )
-      await self('', { log: false })
+      await self(await getConfig(), '', { log: false })
     },
     grep: async () => {
       await outputFiles({
@@ -129,11 +114,7 @@ export default tester(
         fs.writeFileSync('grep.txt', process.argv.slice(2).toString())
       `,
       })
-
-      const self = stealthyRequire(require.cache, () =>
-        require('./test-docker')
-      )
-      await self('', { grep: 'foo bar baz', log: false })
+      await self(await getConfig(), '', { grep: 'foo bar baz', log: false })
       expect(await readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz')
     },
     pattern: async () => {
@@ -154,12 +135,8 @@ export default tester(
         fs.writeFileSync('grep.txt', process.argv[2])
       `,
       })
-
-      const self = stealthyRequire(require.cache, () =>
-        require('./test-docker')
-      )
       expect(
-        self('foo bar baz', { log: false }) |> await |> property('all')
+        self(await getConfig(), 'foo bar baz', { log: false }) |> await |> property('all')
       ).toMatch('foo bar baz')
     },
     puppeteer: async () => {
@@ -195,11 +172,7 @@ export default tester(
         `,
       })
       await execa.command('yarn add @dword-design/puppeteer xvfb')
-
-      const self = stealthyRequire(require.cache, () =>
-        require('./test-docker')
-      )
-      await self('', { log: false })
+      await self(await getConfig(), '', { log: false })
     },
     'update snapshots': async () => {
       await outputFiles({
@@ -220,11 +193,7 @@ export default tester(
 
       `,
       })
-
-      const self = stealthyRequire(require.cache, () =>
-        require('./test-docker')
-      )
-      await self('', { log: false, updateSnapshots: true })
+      await self(await getConfig(), '', { log: false, updateSnapshots: true })
     },
     works: async () => {
       await outputFiles({
@@ -248,14 +217,10 @@ export default tester(
       `,
       })
       await execa.command('yarn')
-
-      const self = stealthyRequire(require.cache, () =>
-        require('./test-docker')
-      )
-      expect(self('', { log: false }) |> await |> property('all')).not.toMatch(
+      expect(self(await getConfig(), '', { log: false }) |> await |> property('all')).not.toMatch(
         'Already up-to-date.'
       )
-      expect(self('', { log: false }) |> await |> property('all')).toMatch(
+      expect(self(await getConfig(), '', { log: false }) |> await |> property('all')).toMatch(
         'Already up-to-date.'
       )
     },

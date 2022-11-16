@@ -3,8 +3,9 @@ import execa from 'execa'
 import { outputFile, readFile } from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
-import stealthyRequire from 'stealthy-require-no-leak'
 import withLocalTmpDir from 'with-local-tmp-dir'
+import prepare from '@/src/prepare'
+import getConfig from './get-config'
 
 export default {
   'custom linter': () =>
@@ -21,22 +22,17 @@ export default {
           baseConfig: 'foo',
         }),
       })
+      const config = await getConfig()
 
-      const prepare = stealthyRequire(require.cache, () => require('./prepare'))
-      await prepare()
-
-      const self = stealthyRequire(require.cache, () => require('./lint'))
-      await expect(self()).rejects.toThrow('foobar')
+      await prepare(config)
+      await expect(self(config)).rejects.toThrow('foobar')
     }),
   fixable: () =>
     withLocalTmpDir(async () => {
       await outputFile('src/index.js', "console.log('foo');")
-
-      const prepare = stealthyRequire(require.cache, () => require('./prepare'))
-      await prepare()
-
-      const self = stealthyRequire(require.cache, () => require('./lint'))
-      await self()
+      const config = await getConfig()
+      await prepare(config)
+      await self(config)
       expect(await readFile(P.join('src', 'index.js'), 'utf8')).toEqual(
         endent`
           console.log('foo')
@@ -47,12 +43,9 @@ export default {
   'linting errors': () =>
     withLocalTmpDir(async () => {
       await outputFile('src/index.js', "const foo = 'bar'")
-
-      const prepare = stealthyRequire(require.cache, () => require('./prepare'))
-      await prepare()
-
-      const self = stealthyRequire(require.cache, () => require('./lint'))
-      await expect(self()).rejects.toThrow(
+      const config = await getConfig()
+      await prepare(config)
+      await expect(self(config)).rejects.toThrow(
         "'foo' is assigned a value but never used"
       )
     }),
@@ -63,12 +56,9 @@ export default {
         'git remote add origin https://github.com/xyz/foo.git'
       )
       await outputFile('package.json', JSON.stringify({ name: '@scope/bar' }))
-
-      const prepare = stealthyRequire(require.cache, () => require('./prepare'))
-      await prepare()
-
-      const self = stealthyRequire(require.cache, () => require('./lint'))
-      await expect(self()).rejects.toThrow(
+      const config = await getConfig()
+      await prepare(config)
+      await expect(self(config)).rejects.toThrow(
         "Package name 'bar' has to be equal to repository name 'foo'"
       )
     }),
@@ -79,12 +69,9 @@ export default {
         'git remote add origin https://github.com/xyz/foo.de.git'
       )
       await outputFile('package.json', JSON.stringify({ name: 'foo.de' }))
-
-      const prepare = stealthyRequire(require.cache, () => require('./prepare'))
-      await prepare()
-
-      const self = stealthyRequire(require.cache, () => require('./lint'))
-      await self()
+      const config = await getConfig()
+      await prepare(config)
+      await self(config)
     }),
   'plugin next to config': () =>
     withLocalTmpDir(async () => {
@@ -102,12 +89,9 @@ export default {
         },
         'src/index.js': '',
       })
-
-      const prepare = stealthyRequire(require.cache, () => require('./prepare'))
-      await prepare()
-
-      const self = stealthyRequire(require.cache, () => require('./lint'))
-      await self({
+      const config = await getConfig()
+      await prepare(config)
+      await self(config, {
         resolvePluginsRelativeTo: P.join(
           'node_modules',
           '@dword-design',

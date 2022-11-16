@@ -11,12 +11,10 @@ import execa from 'execa'
 import findUp from 'find-up'
 import os from 'os'
 
-import packageConfig from './package-config'
-
-export default async (pattern, options) => {
+export default async (config, pattern, options) => {
   options = { log: true, ...options }
 
-  const volumeName = packageConfig.name |> replace('@', '') |> replace('/', '-')
+  const volumeName = config.package.name |> replace('@', '') |> replace('/', '-')
 
   const envSchemaPath = findUp.sync('.env.schema.json')
 
