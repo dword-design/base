@@ -1,5 +1,11 @@
-import { mapValues } from '@dword-design/functions'
+export { default as checkUnknownFiles } from './check-unknown-files'
 
-import commands from './commands'
+export { default as commit } from './commit'
 
-export default commands |> mapValues('handler')
+export { default as lint } from './lint'
+
+export { default as prepare } from './prepare'
+
+export { default as test } from './test'
+
+export { default as testDocker } from './test-docker'

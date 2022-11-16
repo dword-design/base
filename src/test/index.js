@@ -6,8 +6,8 @@ import isCI from 'is-ci'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 import stdEnv from 'std-env'
 
-import lint from '@/src/commands/lint'
 import config from '@/src/config'
+import lint from '@/src/lint'
 import packageConfig from '@/src/package-config'
 
 import depcheck from './depcheck'
