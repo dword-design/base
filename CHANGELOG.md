@@ -1,3 +1,10 @@
+## [9.0.1](https://github.com/dword-design/base/compare/v9.0.0...v9.0.1) (2022-11-17)
+
+
+### Bug Fixes
+
+* refactor cli ([#556](https://github.com/dword-design/base/issues/556)) ([f8118cb](https://github.com/dword-design/base/commit/f8118cbb75a4305b8a862ec9c85c7f2e687522c9))
+
 # [9.0.0](https://github.com/dword-design/base/compare/v8.7.6...v9.0.0) (2022-11-15)
 
 
