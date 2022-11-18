@@ -3,17 +3,17 @@ import spdxParse from 'spdx-expression-parse'
 import spdxList from 'spdx-license-list/full'
 
 export default {
-  badges: config =>
-    endent`
+  badges() {
+    return endent`
       <p>
         ${
           [
-            ...(config.npmPublish && !config.package.private
+            ...(this.config.npmPublish && !this.packageConfig.private
               ? [
                   endent`
-                <a href="https://npmjs.org/package/${config.package.name}">
+                <a href="https://npmjs.org/package/${this.packageConfig.name}">
                   <img
-                    src="https://img.shields.io/npm/v/${config.package.name}.svg"
+                    src="https://img.shields.io/npm/v/${this.packageConfig.name}.svg"
                     alt="npm version"
                   >
                 </a>
@@ -22,21 +22,21 @@ export default {
               : []),
             '<img src="https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue" alt="Linux macOS Windows compatible">',
             endent`
-            <a href="https://github.com/${config.package.repository}/actions">
+            <a href="https://github.com/${this.packageConfig.repository}/actions">
               <img
-                src="https://github.com/${config.package.repository}/workflows/build/badge.svg"
+                src="https://github.com/${this.packageConfig.repository}/workflows/build/badge.svg"
                 alt="Build status"
               >
             </a>
           `,
             endent`
-            <a href="https://codecov.io/gh/${config.package.repository}">
+            <a href="https://codecov.io/gh/${this.packageConfig.repository}">
               <img
                 src="https://codecov.io/gh/${
-                  config.package.repository
+                  this.packageConfig.repository
                 }/branch/master/graph/badge.svg${
-              config.codecovGraphToken
-                ? `?token=${config.codecovGraphToken}`
+              this.config.codecovGraphToken
+                ? `?token=${this.config.codecovGraphToken}`
                 : ''
             }"
                 alt="Coverage status"
@@ -44,14 +44,14 @@ export default {
             </a>
           `,
             endent`
-            <a href="https://david-dm.org/${config.package.repository}">
-              <img src="https://img.shields.io/david/${config.package.repository}" alt="Dependency status">
+            <a href="https://david-dm.org/${this.packageConfig.repository}">
+              <img src="https://img.shields.io/david/${this.packageConfig.repository}" alt="Dependency status">
             </a>
           `,
             '<img src="https://img.shields.io/badge/renovate-enabled-brightgreen" alt="Renovate enabled">',
             '<br/>',
             endent`
-            <a href="https://gitpod.io/#https://github.com/${config.package.repository}">
+            <a href="https://gitpod.io/#https://github.com/${this.packageConfig.repository}">
               <img
                 src="https://gitpod.io/button/open-in-gitpod.svg"
                 alt="Open in Gitpod"
@@ -89,15 +89,21 @@ export default {
           ] |> join('')
         }
     </p>
-  `,
-  description: config => config.package.description || '',
-  install: config => config.readmeInstallString,
-  license: config =>
-    [
-      endent`
+  `
+  },
+  description() {
+    return this.packageConfig.description || ''
+  },
+  install() {
+    return this.config.readmeInstallString
+  },
+  license() {
+    return (
+      [
+        endent`
       ## Contribute
 
-      Are you missing something or want to contribute? Feel free to file an [issue](https://github.com/${config.package.repository}/issues) or a [pull request](https://github.com/${config.package.repository}/pulls)! ⚙️
+      Are you missing something or want to contribute? Feel free to file an [issue](https://github.com/${this.packageConfig.repository}/issues) or a [pull request](https://github.com/${this.packageConfig.repository}/pulls)! ⚙️
 
       ## Support
 
@@ -129,13 +135,13 @@ export default {
 
       Thanks a lot for your support! ❤️
     `,
-      ...(config.seeAlso.length > 0
-        ? [
-            endent`
+        ...(this.config.seeAlso.length > 0
+          ? [
+              endent`
             ## See also
 
             ${
-              config.seeAlso
+              this.config.seeAlso
               |> map(entry => {
                 const parts = entry.repository |> split('/')
 
@@ -148,23 +154,27 @@ export default {
               |> join('\n')
             }
           `,
-          ]
-        : []),
-      config.package.license
-        ? [
-            (() => {
-              const parsed = spdxParse(config.package.license)
+            ]
+          : []),
+        this.packageConfig.license
+          ? [
+              (() => {
+                const parsed = spdxParse(this.packageConfig.license)
 
-              const license = spdxList[parsed.license]
+                const license = spdxList[parsed.license]
 
-              return endent`
+                return endent`
       ## License
   
       [${license.name}](${license.url}) © [Sebastian Landwehr](https://sebastianlandwehr.com)
     `
-            })(),
-          ]
-        : [],
-    ] |> join('\n\n'),
-  title: config => `# ${config.package.name}`,
+              })(),
+            ]
+          : [],
+      ] |> join('\n\n')
+    )
+  },
+  title() {
+    return `# ${this.packageConfig.name}`
+  },
 }

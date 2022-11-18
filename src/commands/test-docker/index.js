@@ -15,7 +15,7 @@ export default async function (options) {
   options = { log: true, ...options }
 
   const volumeName =
-    this.config.package.name |> replace('@', '') |> replace('/', '-')
+    this.packageConfig.name |> replace('@', '') |> replace('/', '-')
 
   const envSchemaPath = findUp.sync('.env.schema.json')
 

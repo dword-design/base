@@ -2,6 +2,7 @@ import { endent, identity, keys, omit, sortBy } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import { outputFile } from 'fs-extra'
+import outputFiles from 'output-files'
 import P from 'path'
 
 import { Base as Self } from '.'
@@ -32,12 +33,12 @@ export default tester(
       expect(base.config.name).toEqual('@dword-design/base-config-node')
     },
     'empty parent': async function () {
-      await outputFile(
-        P.join('node_modules', 'base-config-foo', 'index.js'),
-        'module.exports = {}'
-      )
+      await outputFiles({
+        'node_modules/base-config-foo/index.js': 'module.exports = {}',
+        'package.json': JSON.stringify({ name: 'foo' }),
+      })
 
-      const base = new Self({ name: 'foo', package: { name: 'foo' } })
+      const base = new Self({ name: 'foo' })
       expect(
         base.config |> omit(['depcheckConfig', 'prepare', 'lint'])
       ).toMatchSnapshot(this)
@@ -53,8 +54,10 @@ export default tester(
       const base = new Self({ bar: 'baz', name: 'foo' })
       expect(base.config.readmeInstallString).toEqual('baz')
     },
-    global: () => {
-      const base = new Self({ global: true, package: { name: 'foo' } })
+    global: async () => {
+      await outputFile('package.json', JSON.stringify({ name: 'foo' }))
+
+      const base = new Self({ global: true })
       expect(base.config.readmeInstallString).toEqual(endent`
       ## Install
 

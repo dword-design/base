@@ -11,14 +11,14 @@ const processResult = (caption, deps) => {
 
 export default async function () {
   let result = await depcheck('.', {
-    package: this.config.package |> omit(['devDependencies']),
+    package: this.packageConfig |> omit(['devDependencies']),
     skipMissing: true,
     ...this.config.depcheckConfig,
     ignorePatterns: ['*.spec.js', 'package.json'],
   })
   processResult('Unused dependencies', result.dependencies)
   result = await depcheck('.', {
-    package: this.config.package |> omit(['dependencies']),
+    package: this.packageConfig |> omit(['dependencies']),
     skipMissing: true,
     ...this.config.depcheckConfig,
     ignorePatterns: ['!*.spec.js'],

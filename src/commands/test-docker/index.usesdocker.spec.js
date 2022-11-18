@@ -24,9 +24,7 @@ export default tester(
           2
         )
       )
-      await new Base({
-        package: { name: P.basename(process.cwd()) },
-      }).testDocker({ log: false })
+      await new Base().testDocker({ log: false })
       await remove('dist')
     },
     'create folder and error': async () => {
@@ -45,7 +43,7 @@ export default tester(
         )
       )
       await expect(
-        new Base({ package: { name: P.basename(process.cwd()) } }).testDocker({
+        new Base().testDocker({
           log: false,
         })
       ).rejects.toThrow()
@@ -81,9 +79,7 @@ export default tester(
       const previousEnv = process.env
       process.env.TEST_FOO = 'foo'
       try {
-        await new Base({
-          package: { name: P.basename(process.cwd()) },
-        }).testDocker({ log: false })
+        await new Base().testDocker({ log: false })
       } finally {
         process.env = previousEnv
       }
@@ -102,9 +98,7 @@ export default tester(
         ),
         'test.js': "require('child_process').spawn('git', ['--help'])",
       })
-      await new Base({
-        package: { name: P.basename(process.cwd()) },
-      }).testDocker({ log: false })
+      await new Base().testDocker({ log: false })
     },
     grep: async () => {
       await outputFiles({
@@ -124,9 +118,7 @@ export default tester(
         fs.writeFileSync('grep.txt', process.argv.slice(2).toString())
       `,
       })
-      await new Base({
-        package: { name: P.basename(process.cwd()) },
-      }).testDocker({ grep: 'foo bar baz', log: false })
+      await new Base().testDocker({ grep: 'foo bar baz', log: false })
       expect(await readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz')
     },
     pattern: async () => {
@@ -148,9 +140,7 @@ export default tester(
       `,
       })
       expect(
-        (await new Base({
-          package: { name: P.basename(process.cwd()) },
-        }).testDocker({ log: false, pattern: 'foo bar baz' }))
+        (await new Base().testDocker({ log: false, pattern: 'foo bar baz' }))
           |> await
           |> property('all')
       ).toMatch('foo bar baz')
@@ -188,9 +178,7 @@ export default tester(
         `,
       })
       await execa.command('yarn add @dword-design/puppeteer xvfb')
-      await new Base({
-        package: { name: P.basename(process.cwd()) },
-      }).testDocker({ log: false })
+      await new Base().testDocker({ log: false })
     },
     'update snapshots': async () => {
       await outputFiles({
@@ -211,9 +199,7 @@ export default tester(
 
       `,
       })
-      await new Base({
-        package: { name: P.basename(process.cwd()) },
-      }).testDocker({ log: false, updateSnapshots: true })
+      await new Base().testDocker({ log: false, updateSnapshots: true })
     },
     works: async () => {
       await outputFiles({
@@ -238,7 +224,7 @@ export default tester(
       })
       await execa.command('yarn')
 
-      const base = new Base({ package: { name: P.basename(process.cwd()) } })
+      const base = new Base()
       expect(
         base.testDocker({ log: false }) |> await |> property('all')
       ).not.toMatch('Already up-to-date.')

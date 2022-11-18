@@ -8,22 +8,26 @@ import { Base } from '@/src'
 
 export default tester(
   {
-    'custom config': () => {
-      const base = new Base({
-        main: 'dist/index.scss',
-        package: {
+    'custom config': async () => {
+      await outputFile(
+        'package.json',
+        JSON.stringify({
           baseConfig: 'foo',
           devDependencies: {
             'base-config-foo': '^1.0.0',
           },
-        },
-      })
+        })
+      )
+
+      const base = new Base({ main: 'dist/index.scss' })
 
       const packageConfig = base.getPackageConfig()
       expect(packageConfig.main).toEqual('dist/index.scss')
     },
-    deploy: () => {
-      const base = new Base({ package: { deploy: true } })
+    deploy: async () => {
+      await outputFile('package.json', JSON.stringify({ deploy: true }))
+
+      const base = new Base()
 
       const packageConfig = base.getPackageConfig()
       expect(packageConfig.deploy).toBeTruthy()
@@ -50,9 +54,10 @@ export default tester(
         },
         version: '1.0.0',
       }),
-    'existing package': () =>
-      expect(
-        new Base({
+    'existing package': async () => {
+      await outputFile(
+        'package.json',
+        JSON.stringify({
           author: 'foo bar',
           bin: {
             foo: './dist/cli.js',
@@ -82,8 +87,9 @@ export default tester(
           },
           types: 'types.d.ts',
           version: '1.1.0',
-        }).getPackageConfig()
-      ).toEqual({
+        })
+      )
+      expect(new Base().getPackageConfig()).toEqual({
         author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
         baseConfig: 'bar',
         bin: {
@@ -117,7 +123,8 @@ export default tester(
         },
         types: 'types.d.ts',
         version: '1.1.0',
-      }),
+      })
+    },
     'git repo': async () => {
       await execa.command('git init')
       await execa.command('git remote add origin git@github.com:bar/foo.git')

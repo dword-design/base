@@ -1,6 +1,6 @@
 export default function () {
   return {
-    ...(this.config.package.name !== '@dword-design/base' && {
+    ...(this.packageConfig.name !== '@dword-design/base' && {
       ignorePaths: ['.github/workflows/build.yml'],
     }),
     extends: [':semanticCommits', ':semanticPrefixFix'],

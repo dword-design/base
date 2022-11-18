@@ -14,7 +14,7 @@ const validatePackageJson = ajv.compile(packageJsonSchema)
 export default async function (options) {
   options = { log: !stdEnv.test, ...options }
   if (!options.pattern) {
-    if (!validatePackageJson(this.config.package)) {
+    if (!validatePackageJson(this.packageConfig)) {
       throw new Error(endent`
         package.json invalid
         ${ajv.errorsText(validatePackageJson.errors)}
@@ -28,7 +28,7 @@ export default async function (options) {
     !isCI() || !(['win32', 'darwin'] |> includes(process.platform))
 
   return execa(
-    this.config.package.type === 'module' ? packageName`c8` : packageName`nyc`,
+    this.packageConfig.type === 'module' ? packageName`c8` : packageName`nyc`,
     [
       '--reporter',
       'lcov',
@@ -66,7 +66,7 @@ export default async function (options) {
     {
       env: {
         NODE_ENV: 'test',
-        ...(this.config.package.type === 'module' && {
+        ...(this.packageConfig.type === 'module' && {
           NODE_OPTIONS: `--experimental-loader=${packageName`@dword-design/babel-register-esm`}`,
         }),
         ...(options.updateSnapshots && { SNAPSHOT_UPDATE: 1 }),

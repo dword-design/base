@@ -65,17 +65,16 @@ export default tester(
     `,
         '.test.env.json': '',
         'CHANGELOG.md': '',
+        'package.json': JSON.stringify({
+          author: 'dword-design',
+          license: 'MIT',
+          name: 'foo',
+        }),
         'src/index.js': 'export default 1',
         'yarn.lock': '',
       })
 
-      const base = new Base({
-        package: {
-          author: 'dword-design',
-          license: 'MIT',
-          name: 'foo',
-        },
-      })
+      const base = new Base()
       await base.prepare()
       expect(
         globby('*', { dot: true, onlyFiles: false })

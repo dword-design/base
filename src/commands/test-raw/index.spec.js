@@ -54,16 +54,14 @@ export default tester(
       },
     },
     'base config in prod dependencies': {
-      config: {
-        name: 'foo',
-        package: {
+      config: { name: 'foo' },
+      files: {
+        'node_modules/base-config-foo/index.js': 'module.exports = {}',
+        'package.json': JSON.stringify({
           dependencies: {
             'base-config-foo': '^1.0.0',
           },
-        },
-      },
-      files: {
-        'node_modules/base-config-foo/index.js': 'module.exports = {}',
+        }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(endent`
@@ -73,8 +71,8 @@ export default tester(
       },
     },
     'bin outside dist': {
-      config: {
-        package: { bin: { foo: './src/cli.js' } },
+      files: {
+        'package.json': JSON.stringify({ bin: { foo: './src/cli.js' } }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -83,8 +81,8 @@ export default tester(
       },
     },
     'config file errors': {
-      config: {
-        package: { name: '_foo' },
+      files: {
+        'package.json': JSON.stringify({ name: '_foo' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow('package.json invalid')
@@ -93,9 +91,6 @@ export default tester(
     'coverage file extension': {
       config: {
         coverageFileExtensions: ['.foo'],
-        package: {
-          devDependencies: { 'fs-extra': '^1.0.0' },
-        },
       },
       files: {
         'index.foo': '',
@@ -136,6 +131,9 @@ export default tester(
           )
         }
       `,
+        'package.json': JSON.stringify({
+          devDependencies: { 'fs-extra': '^1.0.0' },
+        }),
       },
       async test() {
         return expect(
@@ -148,11 +146,13 @@ export default tester(
         depcheckConfig: {
           ignoreMatches: ['foo'],
         },
-        package: {
+      },
+      files: {
+        'package.json': JSON.stringify({
           dependencies: {
             foo: '^1.0.0',
           },
-        },
+        }),
       },
     },
     empty: {},
@@ -176,13 +176,6 @@ export default tester(
       },
     },
     'image snapshot': {
-      config: {
-        package: {
-          devDependencies: {
-            sharp: '^1.0.0',
-          },
-        },
-      },
       files: {
         'index.spec.js': endent`
         import sharp from '${packageName`sharp`}'
@@ -203,6 +196,11 @@ export default tester(
           },
         }
       `,
+        'package.json': JSON.stringify({
+          devDependencies: {
+            sharp: '^1.0.0',
+          },
+        }),
       },
       async test() {
         await this.base.test()
@@ -212,8 +210,8 @@ export default tester(
       },
     },
     'invalid name': {
-      config: {
-        package: { name: '_foo' },
+      files: {
+        'package.json': JSON.stringify({ name: '_foo' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -275,11 +273,9 @@ export default tester(
       },
     },
     node_modules: {
-      config: {
-        package: { devDependencies: { foo: '^1.0.0' } },
-      },
       files: {
         'node_modules/foo/index.js': 'export default 1',
+        'package.json': JSON.stringify({ devDependencies: { foo: '^1.0.0' } }),
         'src/index.spec.js': "import 'foo'",
       },
       test() {
@@ -295,10 +291,8 @@ export default tester(
       },
     },
     'node_modules subfolder': {
-      config: {
-        package: { devDependencies: { foo: '^1.0.0' } },
-      },
       files: {
+        'package.json': JSON.stringify({ devDependencies: { foo: '^1.0.0' } }),
         src: {
           'index.spec.js': "import 'foo'",
           'node_modules/foo/index.js': 'export default 1',
@@ -313,13 +307,11 @@ export default tester(
     pattern: {
       files: {
         'README.md': '',
-        config: {
-          package: {
-            dependencies: {
-              foo: '^1.0.0',
-            },
+        'package.json': JSON.stringify({
+          dependencies: {
+            foo: '^1.0.0',
           },
-        },
+        }),
         src: {
           'index.js': 'export default 1',
           'index1.spec.js':
@@ -338,15 +330,13 @@ export default tester(
       },
     },
     'pipeline operator and esm': {
-      config: {
-        package: {
+      files: {
+        'package.json': JSON.stringify({
           devDependencies: {
             execa: '^1',
           },
           type: 'module',
-        },
-      },
-      files: {
+        }),
         src: {
           'index.spec.js': endent`
         import execa from 'execa'
@@ -369,15 +359,13 @@ export default tester(
       },
     },
     'prod dependency only in test': {
-      config: {
-        package: {
+      files: {
+        'node_modules/bar/index.js': 'module.exports = 1',
+        'package.json': JSON.stringify({
           dependencies: {
             bar: '^1.0.0',
           },
-        },
-      },
-      files: {
-        'node_modules/bar/index.js': 'module.exports = 1',
+        }),
         src: {
           'index.js': 'export default 1',
           'index.spec.js': endent`
@@ -412,11 +400,6 @@ export default tester(
       },
     },
     'test in project root': {
-      config: {
-        package: {
-          baseConfig: 'foo',
-        },
-      },
       files: {
         'index.spec.js': endent`
         export default {
@@ -431,20 +414,21 @@ export default tester(
           ],
         }
       `,
+        'package.json': JSON.stringify({
+          baseConfig: 'foo',
+        }),
       },
       async test() {
         expect(this.base.test() |> await |> property('all')).toMatch('run test')
       },
     },
     'unused dependency': {
-      config: {
-        package: {
+      files: {
+        'package.json': JSON.stringify({
           dependencies: {
             'change-case': '^1.0.0',
           },
-        },
-      },
-      files: {
+        }),
         'src/index.js': 'export default 1',
       },
       test() {
@@ -529,12 +513,10 @@ export default tester(
       },
     },
     valid: {
-      config: {
-        package: {
-          name: 'foo',
-        },
-      },
       files: {
+        'package.json': JSON.stringify({
+          name: 'foo',
+        }),
         src: {
           'index.js': endent`
           export default 1
@@ -586,10 +568,10 @@ export default tester(
       },
     },
     'wrong dependencies type': {
-      config: {
-        package: {
+      files: {
+        'package.json': JSON.stringify({
           dependencies: 1,
-        },
+        }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -598,10 +580,10 @@ export default tester(
       },
     },
     'wrong description type': {
-      config: {
-        package: {
+      files: {
+        'package.json': JSON.stringify({
           description: 1,
-        },
+        }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -610,8 +592,8 @@ export default tester(
       },
     },
     'wrong dev dependencies type': {
-      config: {
-        package: { devDependencies: 1 },
+      files: {
+        'package.json': JSON.stringify({ devDependencies: 1 }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -620,8 +602,8 @@ export default tester(
       },
     },
     'wrong keywords type': {
-      config: {
-        package: { keywords: 1 },
+      files: {
+        'package.json': JSON.stringify({ keywords: 1 }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(

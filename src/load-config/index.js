@@ -1,6 +1,5 @@
 import { property } from '@dword-design/functions'
 import { cosmiconfig } from 'cosmiconfig'
-import loadPkg from 'load-pkg'
 
 export default async () => {
   const explorer = cosmiconfig('base', { packageProp: 'baseConfig' })
@@ -9,8 +8,5 @@ export default async () => {
     config = { name: config }
   }
 
-  return {
-    ...config,
-    package: await loadPkg(),
-  }
+  return config
 }

@@ -31,7 +31,7 @@ export default function () {
           getProjectzReadmeSectionRegex(sectionName),
           endent`
             <!-- ${sectionName}/ -->
-            ${replacement(this.config)}
+            ${replacement.call(this)}
             <!-- /${sectionName} -->
           `
         )

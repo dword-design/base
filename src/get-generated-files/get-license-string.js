@@ -3,7 +3,7 @@ import spdxParse from 'spdx-expression-parse'
 import spdxList from 'spdx-license-list/full'
 
 export default function () {
-  const parsed = spdxParse(this.config.package.license)
+  const parsed = spdxParse(this.packageConfig.license)
 
   const license = spdxList[parsed.license]
 
@@ -12,7 +12,7 @@ export default function () {
 
     Unless stated otherwise all works are:
 
-    Copyright &copy; ${this.config.package.author}
+    Copyright &copy; ${this.packageConfig.author}
 
     and licensed under:
 

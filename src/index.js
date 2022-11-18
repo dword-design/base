@@ -6,6 +6,7 @@ import depcheckDetectorPackageName from 'depcheck-detector-package-name'
 import packageName from 'depcheck-package-name'
 import depcheckParserBabel from 'depcheck-parser-babel'
 import importCwd from 'import-cwd'
+import loadPkg from 'load-pkg'
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name'
 
 import checkUnknownFiles from './commands/check-unknown-files'
@@ -37,7 +38,7 @@ class Base {
     config.name = config.name
       ? pluginNameToPackageName(config.name, 'base-config')
       : packageName`@dword-design/base-config-node`
-    config.package = config.package || {}
+    this.packageConfig = loadPkg.sync()
 
     const defaultConfig = {
       allowedMatches: [],
@@ -72,10 +73,10 @@ class Base {
 
         \`\`\`bash
         # npm
-        $ npm install ${config.global ? '-g ' : ''}${config.package.name}
+        $ npm install ${config.global ? '-g ' : ''}${this.packageConfig.name}
 
         # Yarn
-        $ yarn ${config.global ? 'global ' : ''}add ${config.package.name}
+        $ yarn ${config.global ? 'global ' : ''}add ${this.packageConfig.name}
         \`\`\`
       `,
       seeAlso: [],
@@ -97,7 +98,7 @@ class Base {
       [defaultConfig, inheritedConfig, config],
       mergeOptions
     )
-    this.config.package = this.getPackageConfig()
+    this.packageConfig = this.getPackageConfig()
     this.generatedFiles = this.getGeneratedFiles()
   }
 }

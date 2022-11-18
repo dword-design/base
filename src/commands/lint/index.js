@@ -2,7 +2,7 @@ import execa from 'execa'
 import parsePackagejsonName from 'parse-packagejson-name'
 
 export default async function (options) {
-  const packageName = parsePackagejsonName(this.config.package.name).fullName
+  const packageName = parsePackagejsonName(this.packageConfig.name).fullName
   if (
     this.config.git !== undefined &&
     packageName !== this.config.git.project

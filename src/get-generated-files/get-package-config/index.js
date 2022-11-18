@@ -15,7 +15,7 @@ export default function () {
   }
 
   return {
-    ...(this.config.package
+    ...(this.packageConfig
       |> pick([
         'name',
         'private',
@@ -35,7 +35,7 @@ export default function () {
     publishConfig: {
       access: 'public',
     },
-    version: this.config.package.version || '1.0.0',
+    version: this.packageConfig.version || '1.0.0',
     ...(this.config.git && {
       repository: `dword-design/${this.config.git.project}`,
     }),
@@ -48,7 +48,7 @@ export default function () {
     scripts:
       commandNames
       |> mapValues((nothing, name) =>
-        this.config.package.name === '@dword-design/base'
+        this.packageConfig.name === '@dword-design/base'
           ? `rimraf dist && babel --config-file ${packageName`@dword-design/babel-config`} --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
           : `base ${name}`
       )

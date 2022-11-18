@@ -42,24 +42,26 @@ export default tester(
       )
     },
     'package name != repository name': async () => {
+      await outputFile('package.json', JSON.stringify({ name: '@scope/bar' }))
       await execa.command('git init')
       await execa.command(
         'git remote add origin https://github.com/xyz/foo.git'
       )
 
-      const base = new Base({ package: { name: '@scope/bar' } })
+      const base = new Base()
       await base.prepare()
       await expect(base.lint()).rejects.toThrow(
         "Package name 'bar' has to be equal to repository name 'foo'"
       )
     },
     'package name with dot': async () => {
+      await outputFile('package.json', JSON.stringify({ name: 'foo.de' }))
       await execa.command('git init')
       await execa.command(
         'git remote add origin https://github.com/xyz/foo.de.git'
       )
 
-      const base = new Base({ package: { name: 'foo.de' } })
+      const base = new Base()
       await base.prepare()
       await base.lint()
     },
