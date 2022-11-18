@@ -150,7 +150,7 @@ export default {
           `,
           ]
         : []),
-        config.package.license
+      config.package.license
         ? [
             (() => {
               const parsed = spdxParse(config.package.license)

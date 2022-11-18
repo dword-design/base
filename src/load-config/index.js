@@ -1,7 +1,6 @@
-import { cosmiconfig } from 'cosmiconfig'
-import packageName from 'depcheck-package-name'
-import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name'
 import { property } from '@dword-design/functions'
+import { cosmiconfig } from 'cosmiconfig'
+import loadPkg from 'load-pkg'
 
 export default async () => {
   const explorer = cosmiconfig('base', { packageProp: 'baseConfig' })
@@ -12,8 +11,6 @@ export default async () => {
 
   return {
     ...config,
-    name: config.name
-      ? pluginNameToPackageName(config.name, 'base-config')
-      : packageName`@dword-design/base-config-node`,
+    package: await loadPkg(),
   }
 }

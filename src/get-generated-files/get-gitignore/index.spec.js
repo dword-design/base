@@ -1,7 +1,8 @@
-import self from '.'
+import { Base } from '@/src'
 
 export default {
   valid() {
-    expect(self({ gitignore: ['foo'] })).toMatchSnapshot(this)
+    const base = new Base({ gitignore: ['foo'] })
+    expect(base.gitignoreConfig()).toMatchSnapshot(this)
   },
 }

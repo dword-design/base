@@ -9,34 +9,19 @@ import {
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
-import { readFile } from 'fs-extra'
+import { outputFile, readFile } from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
-import stealthyRequire from 'stealthy-require-no-leak'
+
+import { Base } from '@/src'
 
 export default tester(
   {
     'additional allowed match': async () => {
-      await outputFiles({
-        'foo.txt': '',
-        'node_modules/base-config-foo/index.js': endent`
-        module.exports = {
-          allowedMatches: [
-            'foo.txt',
-          ],
-        }
-      `,
-        'package.json': JSON.stringify(
-          {
-            baseConfig: 'foo',
-          },
-          undefined,
-          2
-        ),
-      })
+      await outputFile('foo.txt', '')
 
-      const self = stealthyRequire(require.cache, () => require('./prepare'))
-      await self()
+      const base = new Base({ allowedMatches: ['foo.txt'] })
+      await base.prepare()
       expect(
         globby('*', { dot: true }) |> await |> includes('foo.txt')
       ).toBeTruthy()
@@ -46,8 +31,8 @@ export default tester(
       await execa.command('git config user.email "foo@bar.de"')
       await execa.command('git config user.name "foo"')
 
-      const self = stealthyRequire(require.cache, () => require('./prepare'))
-      await self()
+      const base = new Base()
+      await base.prepare()
       await execa('git', ['commit', '--allow-empty', '-m', 'fix: foo'])
     },
     'commit with linting errors': async () => {
@@ -55,33 +40,15 @@ export default tester(
       await execa.command('git config user.email "foo@bar.de"')
       await execa.command('git config user.name "foo"')
 
-      const self = stealthyRequire(require.cache, () => require('./prepare'))
-      await self()
+      const base = new Base()
+      await base.prepare()
       await expect(
         execa.command('git commit --allow-empty -m foo')
       ).rejects.toThrow('subject may not be empty')
     },
     'custom prepare': async () => {
-      await outputFiles({
-        'foo.txt': '',
-        'node_modules/base-config-foo/index.js': endent`
-        const { outputFile } = require('fs-extra')
-        
-        module.exports = {
-          prepare: () => outputFile('foo.txt', 'bar'),
-        }
-      `,
-        'package.json': JSON.stringify(
-          {
-            baseConfig: 'foo',
-          },
-          undefined,
-          2
-        ),
-      })
-
-      const self = stealthyRequire(require.cache, () => require('./prepare'))
-      await self()
+      const base = new Base({ prepare: () => outputFile('foo.txt', 'bar') })
+      await base.prepare()
       expect(await readFile('foo.txt', 'utf8')).toEqual('bar')
     },
     async valid() {
@@ -98,21 +65,18 @@ export default tester(
     `,
         '.test.env.json': '',
         'CHANGELOG.md': '',
-        'package.json': JSON.stringify(
-          {
-            author: 'dword-design',
-            license: 'MIT',
-            name: 'foo',
-          },
-          undefined,
-          2
-        ),
         'src/index.js': 'export default 1',
         'yarn.lock': '',
       })
 
-      const self = stealthyRequire(require.cache, () => require('./prepare'))
-      await self()
+      const base = new Base({
+        package: {
+          author: 'dword-design',
+          license: 'MIT',
+          name: 'foo',
+        },
+      })
+      await base.prepare()
       expect(
         globby('*', { dot: true, onlyFiles: false })
           |> await

@@ -2,8 +2,9 @@ import { endent } from '@dword-design/functions'
 import spdxParse from 'spdx-expression-parse'
 import spdxList from 'spdx-license-list/full'
 
-export default config => {
-  const parsed = spdxParse(config.package.license)
+export default function () {
+  const parsed = spdxParse(this.config.package.license)
+
   const license = spdxList[parsed.license]
 
   return endent`
@@ -11,7 +12,7 @@ export default config => {
 
     Unless stated otherwise all works are:
 
-    Copyright &copy; ${config.package.author}
+    Copyright &copy; ${this.config.package.author}
 
     and licensed under:
 

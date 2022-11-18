@@ -1,78 +1,59 @@
-import { endent } from '@dword-design/functions'
+import tester from '@dword-design/tester'
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
 import { outputFile } from 'fs-extra'
 import outputFiles from 'output-files'
-import tester from '@dword-design/tester'
-import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import getConfig from '../get-config'
-import self from '.'
 
-export default tester({
-  'custom config': async () => {
-    await outputFiles({
-      'node_modules/base-config-foo/index.js': endent`
-      module.exports = {
-        packageConfig: {
-          main: 'dist/index.scss',
-        },
-      }
-    `,
-      'package.json': JSON.stringify(
-        {
+import { Base } from '@/src'
+
+export default tester(
+  {
+    'custom config': () => {
+      const base = new Base({
+        main: 'dist/index.scss',
+        package: {
           baseConfig: 'foo',
           devDependencies: {
             'base-config-foo': '^1.0.0',
           },
         },
-        undefined,
-        2
-      ),
-    })
+      })
 
-    const packageConfig = await self(await getConfig())
-    expect(packageConfig.main).toEqual('dist/index.scss')
-  },
-  deploy: async () => {
-    await outputFile(
-      'package.json',
-      endent`
-    {
-      "deploy": true
-    }
+      const packageConfig = base.getPackageConfig()
+      expect(packageConfig.main).toEqual('dist/index.scss')
+    },
+    deploy: () => {
+      const base = new Base({ package: { deploy: true } })
 
-  `
-    )
-    const packageConfig = await self(await getConfig())
-    expect(packageConfig.deploy).toBeTruthy()
-  },
-  empty: async () => expect(await self(await getConfig())).toEqual({
-    author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
-    engines: { node: '>=14' },
-    files: ['dist'],
-    funding: 'https://github.com/sponsors/dword-design',
-    license: 'MIT',
-    main: 'dist/index.js',
-    publishConfig: {
-      access: 'public',
+      const packageConfig = base.getPackageConfig()
+      expect(packageConfig.deploy).toBeTruthy()
     },
-    scripts: {
-      checkUnknownFiles: 'base checkUnknownFiles',
-      commit: 'base commit',
-      dev: 'base dev',
-      lint: 'base lint',
-      prepare: 'base prepare',
-      prepublishOnly: 'base prepublishOnly',
-      test: 'base test',
-    },
-    version: '1.0.0',
-  }),
-  'existing package': async () => {
-    await outputFiles({
-      'node_modules/base-config-bar/index.js': '',
-      'package.json': JSON.stringify(
-        {
+    empty: () =>
+      expect(new Base().getPackageConfig()).toEqual({
+        author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
+        engines: { node: '>=14' },
+        files: ['dist'],
+        funding: 'https://github.com/sponsors/dword-design',
+        license: 'MIT',
+        main: 'dist/index.js',
+        publishConfig: {
+          access: 'public',
+        },
+        scripts: {
+          checkUnknownFiles: 'base checkUnknownFiles',
+          commit: 'base commit',
+          dev: 'base dev',
+          lint: 'base lint',
+          prepare: 'base prepare',
+          prepublishOnly: 'base prepublishOnly',
+          test: 'base test',
+        },
+        version: '1.0.0',
+      }),
+    'existing package': () =>
+      expect(
+        new Base({
           author: 'foo bar',
-          baseConfig: 'bar',
           bin: {
             foo: './dist/cli.js',
           },
@@ -101,132 +82,112 @@ export default tester({
           },
           types: 'types.d.ts',
           version: '1.1.0',
+        }).getPackageConfig()
+      ).toEqual({
+        author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
+        baseConfig: 'bar',
+        bin: {
+          foo: './dist/cli.js',
         },
-        undefined,
-        2
-      ),
-    })
+        dependencies: {
+          foo: '^1.0.0',
+        },
+        description: 'foo bar',
+        devDependencies: {
+          'base-config-bar': '^1.0.0',
+        },
+        engines: { node: '>=14' },
+        files: ['dist'],
+        funding: 'https://github.com/sponsors/dword-design',
+        keywords: ['foo', 'bar'],
+        license: 'MIT',
+        name: 'foo',
+        peerDependencies: {
+          nuxt: '^1.0.0',
+        },
+        publishConfig: {
+          access: 'public',
+        },
+        scripts: {
+          checkUnknownFiles: 'base checkUnknownFiles',
+          commit: 'base commit',
+          lint: 'base lint',
+          prepare: 'base prepare',
+          test: 'base test',
+        },
+        types: 'types.d.ts',
+        version: '1.1.0',
+      }),
+    'git repo': async () => {
+      await execa.command('git init')
+      await execa.command('git remote add origin git@github.com:bar/foo.git')
+      expect(new Base().getPackageConfig()).toEqual({
+        author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
+        engines: { node: '>=14' },
+        files: ['dist'],
+        funding: 'https://github.com/sponsors/dword-design',
+        license: 'MIT',
+        main: 'dist/index.js',
+        publishConfig: {
+          access: 'public',
+        },
+        repository: 'dword-design/foo',
+        scripts: {
+          checkUnknownFiles: 'base checkUnknownFiles',
+          commit: 'base commit',
+          dev: 'base dev',
+          lint: 'base lint',
+          prepare: 'base prepare',
+          prepublishOnly: 'base prepublishOnly',
+          test: 'base test',
+        },
+        version: '1.0.0',
+      })
+    },
+    'non-github repo': async () => {
+      await execa.command('git init')
+      await execa.command('git remote add origin git@special.com:bar/foo.git')
+      expect(() => new Base().getPackageConfig()).toThrow(
+        'Only GitHub repositories are supported.'
+      )
+    },
+    private: () =>
+      expect(new Base().getPackageConfig({ private: true })).toBeTruthy(),
+    'sub-folder': async () => {
+      await execa.command('git init')
+      await execa.command('git remote add origin git@github.com:bar/foo.git')
+      await outputFiles({
+        test: {},
+      })
+      process.chdir('test')
+      expect(new Base().getPackageConfig()).toEqual({
+        author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
+        engines: { node: '>=14' },
+        files: ['dist'],
+        funding: 'https://github.com/sponsors/dword-design',
+        license: 'MIT',
+        main: 'dist/index.js',
+        publishConfig: {
+          access: 'public',
+        },
+        scripts: {
+          checkUnknownFiles: 'base checkUnknownFiles',
+          commit: 'base commit',
+          dev: 'base dev',
+          lint: 'base lint',
+          prepare: 'base prepare',
+          prepublishOnly: 'base prepublishOnly',
+          test: 'base test',
+        },
+        version: '1.0.0',
+      })
+    },
+    'types.d.ts': async () => {
+      await outputFile('types.d.ts', '')
 
-    const packageConfig = stealthyRequire(require.cache, () =>
-      require('./package-config')
-    )
-    expect(packageConfig).toEqual({
-      author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
-      baseConfig: 'bar',
-      bin: {
-        foo: './dist/cli.js',
-      },
-      dependencies: {
-        foo: '^1.0.0',
-      },
-      description: 'foo bar',
-      devDependencies: {
-        'base-config-bar': '^1.0.0',
-      },
-      engines: { node: '>=14' },
-      files: ['dist'],
-      funding: 'https://github.com/sponsors/dword-design',
-      keywords: ['foo', 'bar'],
-      license: 'MIT',
-      name: 'foo',
-      peerDependencies: {
-        nuxt: '^1.0.0',
-      },
-      publishConfig: {
-        access: 'public',
-      },
-      scripts: {
-        checkUnknownFiles: 'base checkUnknownFiles',
-        commit: 'base commit',
-        lint: 'base lint',
-        prepare: 'base prepare',
-        test: 'base test',
-      },
-      types: 'types.d.ts',
-      version: '1.1.0',
-    })
+      const packageConfig = new Base().getPackageConfig()
+      expect(packageConfig.files).toEqual(['dist', 'types.d.ts'])
+    },
   },
-  'git repo': async () => {
-    await execa.command('git init')
-    await execa.command('git remote add origin git@github.com:bar/foo.git')
-
-    expect(await self(await getConfig())).toEqual({
-      author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
-      engines: { node: '>=14' },
-      files: ['dist'],
-      funding: 'https://github.com/sponsors/dword-design',
-      license: 'MIT',
-      main: 'dist/index.js',
-      publishConfig: {
-        access: 'public',
-      },
-      repository: 'dword-design/foo',
-      scripts: {
-        checkUnknownFiles: 'base checkUnknownFiles',
-        commit: 'base commit',
-        dev: 'base dev',
-        lint: 'base lint',
-        prepare: 'base prepare',
-        prepublishOnly: 'base prepublishOnly',
-        test: 'base test',
-      },
-      version: '1.0.0',
-    })
-  },
-  'non-github repo': async () => {
-    await execa.command('git init')
-    await execa.command('git remote add origin git@special.com:bar/foo.git')
-    await expect(self(await getConfig())).toThrow('Only GitHub repositories are supported.')
-  },
-  private: async () => {
-    await outputFile(
-      'package.json',
-      endent`
-    {
-      "private": true
-    }
-
-  `
-    )
-
-    const packageConfig = await self(await getConfig())
-    expect(packageConfig.private).toBeTruthy()
-  },
-  'sub-folder': async () => {
-    await execa.command('git init')
-    await execa.command('git remote add origin git@github.com:bar/foo.git')
-    await outputFiles({
-      test: {},
-    })
-    process.chdir('test')
-
-    const packageConfig = await self(await getConfig())
-    await expect(packageConfig).toEqual({
-      author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
-      engines: { node: '>=14' },
-      files: ['dist'],
-      funding: 'https://github.com/sponsors/dword-design',
-      license: 'MIT',
-      main: 'dist/index.js',
-      publishConfig: {
-        access: 'public',
-      },
-      scripts: {
-        checkUnknownFiles: 'base checkUnknownFiles',
-        commit: 'base commit',
-        dev: 'base dev',
-        lint: 'base lint',
-        prepare: 'base prepare',
-        prepublishOnly: 'base prepublishOnly',
-        test: 'base test',
-      },
-      version: '1.0.0',
-    })
-  },
-  'types.d.ts': async () => {
-    await outputFile('types.d.ts', '')
-
-    const packageConfig = await self(await getConfig())
-    expect(packageConfig.files).toEqual(['dist', 'types.d.ts'])
-  },
-}, [testerPluginTmpDir()])
+  [testerPluginTmpDir()]
+)

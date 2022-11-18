@@ -1,6 +1,14 @@
-import self from '.'
+import { Base } from '@/src'
 
 export default {
-  'custom config': () => expect(self({ eslintConfig: 'foo' })).toEqual('foo'),
-  valid: () => expect(self()).toEqual({ extends: '@dword-design/eslint-config' }),
+  'custom config': () => {
+    const base = new Base({ eslintConfig: 'foo' })
+    expect(base.getEslintConfig()).toEqual('foo')
+  },
+  valid: () => {
+    const base = new Base()
+    expect(base.getEslintConfig()).toEqual({
+      extends: '@dword-design/eslint-config',
+    })
+  },
 }

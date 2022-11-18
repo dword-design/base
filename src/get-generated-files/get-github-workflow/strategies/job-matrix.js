@@ -4,7 +4,7 @@ import cancelExistingSteps from '@/src/get-generated-files/get-github-workflow/s
 import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflow/steps/check-unknown-files'
 import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/coverage'
 import getReleaseSteps from '@/src/get-generated-files/get-github-workflow/steps/get-release'
-import testSteps from '@/src/get-generated-files/get-github-workflow/steps/test'
+import getTestSteps from '@/src/get-generated-files/get-github-workflow/steps/get-test'
 
 export default config => ({
   'cancel-existing': {
@@ -49,7 +49,7 @@ export default config => ({
         },
       },
       { run: 'yarn --frozen-lockfile' },
-      ...testSteps,
+      ...getTestSteps(),
       ...(coverageSteps
         |> map(step => ({
           if: `matrix.os == 'ubuntu-latest' && matrix.node == ${config.nodeVersion}`,

@@ -5,7 +5,8 @@ import execa from 'execa'
 import { outputFile, readFile, remove } from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
-import self from '.'
+
+import { Base } from '@/src'
 
 export default tester(
   {
@@ -23,7 +24,9 @@ export default tester(
           2
         )
       )
-      await self(await getConfig(), '', { log: false })
+      await new Base({
+        package: { name: P.basename(process.cwd()) },
+      }).testDocker({ log: false })
       await remove('dist')
     },
     'create folder and error': async () => {
@@ -41,8 +44,11 @@ export default tester(
           2
         )
       )
-
-      await expect(self(await getConfig(), '', { log: false })).rejects.toThrow()
+      await expect(
+        new Base({ package: { name: P.basename(process.cwd()) } }).testDocker({
+          log: false,
+        })
+      ).rejects.toThrow()
       await remove('dist')
     },
     env: async () => {
@@ -75,7 +81,9 @@ export default tester(
       const previousEnv = process.env
       process.env.TEST_FOO = 'foo'
       try {
-        await self(await getConfig(), '', { log: false })
+        await new Base({
+          package: { name: P.basename(process.cwd()) },
+        }).testDocker({ log: false })
       } finally {
         process.env = previousEnv
       }
@@ -94,7 +102,9 @@ export default tester(
         ),
         'test.js': "require('child_process').spawn('git', ['--help'])",
       })
-      await self(await getConfig(), '', { log: false })
+      await new Base({
+        package: { name: P.basename(process.cwd()) },
+      }).testDocker({ log: false })
     },
     grep: async () => {
       await outputFiles({
@@ -114,7 +124,9 @@ export default tester(
         fs.writeFileSync('grep.txt', process.argv.slice(2).toString())
       `,
       })
-      await self(await getConfig(), '', { grep: 'foo bar baz', log: false })
+      await new Base({
+        package: { name: P.basename(process.cwd()) },
+      }).testDocker({ grep: 'foo bar baz', log: false })
       expect(await readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz')
     },
     pattern: async () => {
@@ -136,7 +148,11 @@ export default tester(
       `,
       })
       expect(
-        self(await getConfig(), 'foo bar baz', { log: false }) |> await |> property('all')
+        (await new Base({
+          package: { name: P.basename(process.cwd()) },
+        }).testDocker({ log: false, pattern: 'foo bar baz' }))
+          |> await
+          |> property('all')
       ).toMatch('foo bar baz')
     },
     puppeteer: async () => {
@@ -172,7 +188,9 @@ export default tester(
         `,
       })
       await execa.command('yarn add @dword-design/puppeteer xvfb')
-      await self(await getConfig(), '', { log: false })
+      await new Base({
+        package: { name: P.basename(process.cwd()) },
+      }).testDocker({ log: false })
     },
     'update snapshots': async () => {
       await outputFiles({
@@ -193,7 +211,9 @@ export default tester(
 
       `,
       })
-      await self(await getConfig(), '', { log: false, updateSnapshots: true })
+      await new Base({
+        package: { name: P.basename(process.cwd()) },
+      }).testDocker({ log: false, updateSnapshots: true })
     },
     works: async () => {
       await outputFiles({
@@ -217,12 +237,14 @@ export default tester(
       `,
       })
       await execa.command('yarn')
-      expect(self(await getConfig(), '', { log: false }) |> await |> property('all')).not.toMatch(
-        'Already up-to-date.'
-      )
-      expect(self(await getConfig(), '', { log: false }) |> await |> property('all')).toMatch(
-        'Already up-to-date.'
-      )
+
+      const base = new Base({ package: { name: P.basename(process.cwd()) } })
+      expect(
+        base.testDocker({ log: false }) |> await |> property('all')
+      ).not.toMatch('Already up-to-date.')
+      expect(
+        base.testDocker({ log: false }) |> await |> property('all')
+      ).toMatch('Already up-to-date.')
     },
   },
   [

@@ -11,10 +11,11 @@ import execa from 'execa'
 import findUp from 'find-up'
 import os from 'os'
 
-export default async (config, pattern, options) => {
+export default async function (options) {
   options = { log: true, ...options }
 
-  const volumeName = config.package.name |> replace('@', '') |> replace('/', '-')
+  const volumeName =
+    this.config.package.name |> replace('@', '') |> replace('/', '-')
 
   const envSchemaPath = findUp.sync('.env.schema.json')
 
@@ -46,7 +47,7 @@ export default async (config, pattern, options) => {
           '&&',
           'yarn test:raw',
           ...(options.updateSnapshots ? [' --update-snapshots'] : []),
-          ...(pattern ? [`"${pattern}"`] : []),
+          ...(options.pattern ? [`"${options.pattern}"`] : []),
           ...(options.grep ? [`-g "${options.grep}"`] : []),
         ] |> join(' '),
       ],

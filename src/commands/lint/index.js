@@ -1,11 +1,14 @@
 import execa from 'execa'
 import parsePackagejsonName from 'parse-packagejson-name'
 
-export default async (config, options) => {
-  const packageName = parsePackagejsonName(config.package.name).fullName
-  if (config.git !== undefined && packageName !== config.git.project) {
+export default async function (options) {
+  const packageName = parsePackagejsonName(this.config.package.name).fullName
+  if (
+    this.config.git !== undefined &&
+    packageName !== this.config.git.project
+  ) {
     throw new Error(
-      `Package name '${packageName}' has to be equal to repository name '${config.git.project}'`
+      `Package name '${packageName}' has to be equal to repository name '${this.config.git.project}'`
     )
   }
   options = {
@@ -30,5 +33,5 @@ export default async (config, options) => {
   } catch (error) {
     throw new Error(error.all)
   }
-  await config.lint()
+  await this.config.lint()
 }

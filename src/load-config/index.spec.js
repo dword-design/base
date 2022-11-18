@@ -1,6 +1,7 @@
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import { outputFile } from 'fs-extra'
+
 import self from '.'
 
 export default tester(

@@ -1,11 +1,13 @@
-import self from '.'
+import { Base } from '@/src'
 
 export default {
-  'do not sync keywords'() {
-    expect(self({ syncMetadata: false })).toMatchSnapshot(this)
+  'do not sync keywords': function () {
+    const base = new Base({ syncMetadata: false })
+    expect(base.getGithubSyncMetadataConfig()).toMatchSnapshot(this)
   },
   valid() {
-    expect(self()).toMatchSnapshot(this)
+    const base = new Base()
+    expect(base.getGithubSyncMetadataConfig()).toMatchSnapshot(this)
   },
   /**
    * Manual Tests

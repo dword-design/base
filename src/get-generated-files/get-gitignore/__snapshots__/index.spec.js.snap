@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index valid 1`] = `
+Array [
+  ".DS_Store",
+  "/.env.json",
+  "/.nyc_output",
+  "/.test.env.json",
+  "/coverage",
+  "/node_modules",
+  "foo",
+]
+`;

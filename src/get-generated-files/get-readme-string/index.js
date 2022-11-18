@@ -19,19 +19,23 @@ const readme =
 
 `
 
-export default config => replacements
-  |> reduce((current, replacement, name) => {
-    const sectionName = name.toUpperCase()
+export default function () {
+  return (
+    replacements
+    |> reduce((current, replacement, name) => {
+      const sectionName = name.toUpperCase()
 
-    return (
-      current
-      |> replace(
-        getProjectzReadmeSectionRegex(sectionName),
-        endent`
-          <!-- ${sectionName}/ -->
-          ${replacement(config)}
-          <!-- /${sectionName} -->
-        `
+      return (
+        current
+        |> replace(
+          getProjectzReadmeSectionRegex(sectionName),
+          endent`
+            <!-- ${sectionName}/ -->
+            ${replacement(this.config)}
+            <!-- /${sectionName} -->
+          `
+        )
       )
-    )
-  }, readme)
+    }, readme)
+  )
+}

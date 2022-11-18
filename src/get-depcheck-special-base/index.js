@@ -1,7 +1,7 @@
 import P from 'path'
 
-export default rawConfig => filePath =>
+export default name => filePath =>
   (filePath |> P.basename) === 'package.json' &&
-  rawConfig.name !== '@dword-design/base-config-node'
-    ? [rawConfig.name]
+  name !== '@dword-design/base-config-node'
+    ? [name]
     : []

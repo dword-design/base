@@ -4,8 +4,8 @@ import execa from 'execa'
 import { exists } from 'fs-extra'
 import outputFiles from 'output-files'
 
-export default async config => {
-  await outputFiles(config.generatedFiles)
+export default async function () {
+  await outputFiles(this.generatedFiles)
   if (await exists('.git')) {
     await execa.command('husky install')
     await execa('husky', [
@@ -14,6 +14,5 @@ export default async config => {
       `npx ${commitlintPackageConfig.bin |> keys |> first} --edit "$1"`,
     ])
   }
-
-  await config.prepare()
+  await this.config.prepare()
 }

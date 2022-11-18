@@ -1,12 +1,18 @@
-import self from '.'
 import tester from '@dword-design/tester'
 
-export default tester({
-  valid: ['foo'],
-}, [
+import { Base } from '@/src'
+
+export default tester(
   {
-    transform: test => function () {
-      expect(self({ editorIgnore: test })).toMatchSnapshot(this)
-    }
-  }
-])
+    valid: ['foo'],
+  },
+  [
+    {
+      transform: test =>
+        function () {
+          const base = new Base({ editorIgnore: test })
+          expect(base.getEditorIgnore()).toMatchSnapshot(this)
+        },
+    },
+  ]
+)
