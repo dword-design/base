@@ -1,4 +1,5 @@
 import { first, keys } from '@dword-design/functions'
+import packageName from 'depcheck-package-name'
 import execa from 'execa'
 import fs from 'fs-extra'
 import { createRequire } from 'module'
@@ -6,7 +7,9 @@ import outputFiles from 'output-files'
 
 const _require = createRequire(import.meta.url)
 
-const commitlintPackageConfig = _require('@commitlint/cli/package.json')
+const commitlintPackageConfig = _require(
+  packageName`@commitlint/cli/package.json`
+)
 
 export default async function () {
   await outputFiles(this.generatedFiles)

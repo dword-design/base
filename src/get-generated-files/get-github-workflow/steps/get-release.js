@@ -1,9 +1,10 @@
 import { first, keys, map } from '@dword-design/functions'
+import packageName from 'depcheck-package-name'
 import { createRequire } from 'module'
 
 const _require = createRequire(import.meta.url)
 
-const ci = _require('@dword-design/ci/package.json')
+const ci = _require(`${packageName`@dword-design/ci`}/package.json`)
 
 const bin = ci.bin |> keys |> first
 
