@@ -3,8 +3,8 @@
 import { mapValues, values } from '@dword-design/functions'
 import makeCli from 'make-cli'
 
-import { Base } from '.'
-import loadConfig from './load-config'
+import { Base } from './index.js'
+import loadConfig from './load-config/index.js'
 
 const run = async () => {
   const config = await loadConfig()

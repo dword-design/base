@@ -1,10 +1,10 @@
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
-import { outputFile } from 'fs-extra'
+import fs from 'fs-extra'
 import pEvent from 'p-event'
 
-import { Base } from '@/src'
+import { Base } from '@/src/index.js'
 
 export default tester(
   {
@@ -15,7 +15,7 @@ export default tester(
     testerPluginTmpDir(),
     {
       transform: test => async () => {
-        await outputFile('foo.txt', '')
+        await fs.outputFile('foo.txt', '')
         await execa.command('git init')
         await execa.command('git config user.email "foo@bar.de"')
         await execa.command('git config user.name "foo"')

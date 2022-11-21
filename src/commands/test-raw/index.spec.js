@@ -9,13 +9,13 @@ import {
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import packageName from 'depcheck-package-name'
-import { chmod, readFile } from 'fs-extra'
+import fs from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
 import P from 'path'
 import unifyMochaOutput from 'unify-mocha-output'
 
-import { Base } from '@/src'
+import { Base } from '@/src/index.js'
 
 export default tester(
   {
@@ -95,13 +95,13 @@ export default tester(
       files: {
         'index.foo': '',
         'index.spec.js': endent`
-        import { outputFile } from 'fs-extra'
+        import fs from 'fs-extra'
         import P from 'path'
 
         const fooPath = P.resolve('index.foo')
 
         export default {
-          works: () => outputFile(
+          works: () => fs.outputFile(
             '.nyc_output/foo.js',
             JSON.stringify({
               [fooPath]: {
@@ -261,7 +261,10 @@ export default tester(
           'index.spec.js.snap',
         ])
         expect(
-          await readFile(P.join('__snapshots__', 'index.spec.js.snap'), 'utf8')
+          await fs.readFile(
+            P.join('__snapshots__', 'index.spec.js.snap'),
+            'utf8'
+          )
         ).toEqual(endent`
         // Jest Snapshot v1, https://goo.gl/fbAQLP
 
@@ -354,7 +357,7 @@ export default tester(
         },
       },
       async test() {
-        await chmod(P.join('src', 'subprocess.js'), '755')
+        await fs.chmod(P.join('src', 'subprocess.js'), '755')
         await this.base.test()
       },
     },
@@ -523,7 +526,7 @@ export default tester(
 
         `,
           'index.spec.js': endent`
-          import foo from '.'
+          import foo from './index.js'
 
           export default {
             valid: () => {

@@ -1,4 +1,4 @@
-import self from '.'
+import self from './index.js'
 
 export default {
   valid() {

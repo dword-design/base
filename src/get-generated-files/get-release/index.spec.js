@@ -1,6 +1,6 @@
 import tester from '@dword-design/tester'
 
-import { Base } from '@/src'
+import { Base } from '@/src/index.js'
 
 export default tester(
   {

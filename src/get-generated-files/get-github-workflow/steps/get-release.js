@@ -1,5 +1,9 @@
-import ci from '@dword-design/ci/package.json'
 import { first, keys, map } from '@dword-design/functions'
+import { createRequire } from 'module'
+
+const _require = createRequire(import.meta.url)
+
+const ci = _require('@dword-design/ci/package.json')
 
 const bin = ci.bin |> keys |> first
 

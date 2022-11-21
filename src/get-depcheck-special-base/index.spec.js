@@ -1,15 +1,15 @@
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import depcheck from 'depcheck'
-import { outputFile } from 'fs-extra'
+import fs from 'fs-extra'
 
-import self from '.'
+import self from './index.js'
 
 export default tester(
   {
     'no config': async () => {
       const packageConfig = {}
-      await outputFile('package.json', JSON.stringify(packageConfig))
+      await fs.outputFile('package.json', JSON.stringify(packageConfig))
       await depcheck('.', {
         package: packageConfig,
         specials: [self()],
@@ -21,7 +21,7 @@ export default tester(
           'base-config-foo': '^1.0.0',
         },
       }
-      await outputFile('package.json', JSON.stringify(packageConfig))
+      await fs.outputFile('package.json', JSON.stringify(packageConfig))
 
       const result = await depcheck('.', {
         package: {

@@ -1,10 +1,10 @@
 import { map } from '@dword-design/functions'
 
-import cancelExistingSteps from '@/src/get-generated-files/get-github-workflow/steps/cancel-existing'
-import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflow/steps/check-unknown-files'
-import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/coverage'
-import getReleaseSteps from '@/src/get-generated-files/get-github-workflow/steps/get-release'
-import getTestSteps from '@/src/get-generated-files/get-github-workflow/steps/get-test'
+import cancelExistingSteps from '@/src/get-generated-files/get-github-workflow/steps/cancel-existing.js'
+import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflow/steps/check-unknown-files.js'
+import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/coverage.js'
+import getReleaseSteps from '@/src/get-generated-files/get-github-workflow/steps/get-release.js'
+import getTestSteps from '@/src/get-generated-files/get-github-workflow/steps/get-test.js'
 
 export default config => ({
   'cancel-existing': {

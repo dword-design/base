@@ -3,7 +3,7 @@ import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
 
-import self from '.'
+import self from './index.js'
 
 export default tester(
   {

@@ -2,11 +2,11 @@ import { endent } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
-import { outputFile, readFile } from 'fs-extra'
+import fs from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
 
-import { Base } from '@/src'
+import { Base } from '@/src/index.js'
 
 export default tester(
   {
@@ -20,12 +20,12 @@ export default tester(
       await expect(base.lint()).rejects.toThrow('foobar')
     },
     fixable: async () => {
-      await outputFile('src/index.js', "console.log('foo');")
+      await fs.outputFile('src/index.js', "console.log('foo');")
 
       const base = new Base()
       await base.prepare()
       await base.lint()
-      expect(await readFile(P.join('src', 'index.js'), 'utf8')).toEqual(
+      expect(await fs.readFile(P.join('src', 'index.js'), 'utf8')).toEqual(
         endent`
         console.log('foo')
 
@@ -33,7 +33,7 @@ export default tester(
       )
     },
     'linting errors': async () => {
-      await outputFile('src/index.js', "const foo = 'bar'")
+      await fs.outputFile('src/index.js', "const foo = 'bar'")
 
       const base = new Base()
       await base.prepare()
@@ -42,7 +42,10 @@ export default tester(
       )
     },
     'package name != repository name': async () => {
-      await outputFile('package.json', JSON.stringify({ name: '@scope/bar' }))
+      await fs.outputFile(
+        'package.json',
+        JSON.stringify({ name: '@scope/bar' })
+      )
       await execa.command('git init')
       await execa.command(
         'git remote add origin https://github.com/xyz/foo.git'
@@ -55,7 +58,7 @@ export default tester(
       )
     },
     'package name with dot': async () => {
-      await outputFile('package.json', JSON.stringify({ name: 'foo.de' }))
+      await fs.outputFile('package.json', JSON.stringify({ name: 'foo.de' }))
       await execa.command('git init')
       await execa.command(
         'git remote add origin https://github.com/xyz/foo.de.git'

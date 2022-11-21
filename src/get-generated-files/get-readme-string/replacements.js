@@ -1,6 +1,6 @@
 import { endent, join, last, map, split } from '@dword-design/functions'
 import spdxParse from 'spdx-expression-parse'
-import spdxList from 'spdx-license-list/full'
+import spdxList from 'spdx-license-list/full.js'
 
 export default {
   badges() {

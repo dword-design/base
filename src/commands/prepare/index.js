@@ -1,12 +1,16 @@
-import commitlintPackageConfig from '@commitlint/cli/package.json'
 import { first, keys } from '@dword-design/functions'
 import execa from 'execa'
-import { exists } from 'fs-extra'
+import fs from 'fs-extra'
+import { createRequire } from 'module'
 import outputFiles from 'output-files'
+
+const _require = createRequire(import.meta.url)
+
+const commitlintPackageConfig = _require('@commitlint/cli/package.json')
 
 export default async function () {
   await outputFiles(this.generatedFiles)
-  if (await exists('.git')) {
+  if (await fs.exists('.git')) {
     await execa.command('husky install')
     await execa('husky', [
       'set',

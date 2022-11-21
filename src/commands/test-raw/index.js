@@ -3,9 +3,12 @@ import packageJsonSchema from '@dword-design/package-json-schema'
 import Ajv from 'ajv'
 import packageName from 'depcheck-package-name'
 import execa from 'execa'
+import { createRequire } from 'module'
 import stdEnv from 'std-env'
 
-import isCI from './is-ci'
+import isCI from './is-ci.js'
+
+const require = createRequire(import.meta.url)
 
 const ajv = new Ajv({ allowUnionTypes: true })
 

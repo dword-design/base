@@ -1358,6 +1358,33 @@
     prettier "^2.1.1"
     vue-eslint-parser "^7.0.0"
 
+"@dword-design/eslint-config@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-3.0.0.tgz#8224091f81d464fe8ca33d71b69bed8380262e00"
+  integrity sha512-o8KeMzjM6FKqyRCO8KTzUmOM/+aPqzX1PbuE6X65etAgqttg9HaRNuN2OZhv64x7nGaoU2TE6YolN4hiuqNiNg==
+  dependencies:
+    "@babel/eslint-parser" "^7.13.14"
+    "@dword-design/babel-config" "^2.0.0"
+    "@dword-design/eslint-plugin-import-alias" "^2.0.0"
+    "@dword-design/functions" "^4.0.0"
+    depcheck-package-name "^2.0.0"
+    eslint-config-airbnb-base "^14.2.1"
+    eslint-config-prettier "^8.0.0"
+    eslint-import-resolver-babel-module "^5.3.0"
+    eslint-plugin-github "^4.1.3"
+    eslint-plugin-import "~2.22.0"
+    eslint-plugin-json-format "^2.0.1"
+    eslint-plugin-prefer-arrow "^1.1.6"
+    eslint-plugin-prettier "^4.0.0"
+    eslint-plugin-promise "^5.0.0"
+    eslint-plugin-react "^7.20.0"
+    eslint-plugin-simple-import-sort "^7.0.0"
+    eslint-plugin-sort-keys-fix "^1.1.1"
+    eslint-plugin-vue "^7.0.0-alpha.6"
+    load-pkg "^4.0.0"
+    prettier "^2.1.1"
+    vue-eslint-parser "^7.0.0"
+
 "@dword-design/eslint-plugin-import-alias@^2.0.0":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@dword-design/eslint-plugin-import-alias/-/eslint-plugin-import-alias-2.0.7.tgz#2d08c517f337c775422459e1ef8c2c8d1696165a"
@@ -6760,6 +6787,11 @@ jest-worker@^27.5.1:
     "@types/node" "*"
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
+
+jiti@^1.16.0:
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.16.0.tgz#f72065954446ad1866fa8d6bcc3bed3cc1cebdaa"
+  integrity sha512-L3BJStEf5NAqNuzrpfbN71dp43mYIcBUlCRea/vdyv5dW/AYa1d4bpelko4SHdY3I6eN9Wzyasxirj1/vv5kmg==
 
 js-base64@^2.4.9:
   version "2.6.4"

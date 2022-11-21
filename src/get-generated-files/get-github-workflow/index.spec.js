@@ -2,12 +2,12 @@ import chdir from '@dword-design/chdir'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
-import { outputFile } from 'fs-extra'
+import fs from 'fs-extra'
 import isCI from 'is-ci'
 import outputFiles from 'output-files'
 import P from 'path'
 
-import { Base } from '@/src'
+import { Base } from '@/src/index.js'
 
 export default tester(
   {
@@ -57,7 +57,7 @@ export default tester(
       )
     },
     async 'test environment variables'() {
-      await outputFile(
+      await fs.outputFile(
         '.env.schema.json',
         { bar: {}, foo: {} } |> JSON.stringify
       )

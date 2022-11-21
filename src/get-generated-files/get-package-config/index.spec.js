@@ -1,15 +1,15 @@
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
-import { outputFile } from 'fs-extra'
+import fs from 'fs-extra'
 import outputFiles from 'output-files'
 
-import { Base } from '@/src'
+import { Base } from '@/src/index.js'
 
 export default tester(
   {
     'custom config': async () => {
-      await outputFile(
+      await fs.outputFile(
         'package.json',
         JSON.stringify({
           baseConfig: 'foo',
@@ -23,7 +23,7 @@ export default tester(
       expect(base.getPackageConfig().main).toEqual('dist/index.scss')
     },
     deploy: async () => {
-      await outputFile('package.json', JSON.stringify({ deploy: true }))
+      await fs.outputFile('package.json', JSON.stringify({ deploy: true }))
 
       const base = new Base()
 
@@ -53,7 +53,7 @@ export default tester(
         version: '1.0.0',
       }),
     'existing package': async () => {
-      await outputFile(
+      await fs.outputFile(
         'package.json',
         JSON.stringify({
           author: 'foo bar',
@@ -190,7 +190,7 @@ export default tester(
       })
     },
     'types.d.ts': async () => {
-      await outputFile('types.d.ts', '')
+      await fs.outputFile('types.d.ts', '')
 
       const packageConfig = new Base().getPackageConfig()
       expect(packageConfig.files).toEqual(['dist', 'types.d.ts'])

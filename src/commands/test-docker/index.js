@@ -9,6 +9,7 @@ import {
 import { constantCase } from 'constant-case'
 import execa from 'execa'
 import findUp from 'find-up'
+import fs from 'fs-extra'
 import os from 'os'
 
 export default async function (options) {
@@ -20,7 +21,7 @@ export default async function (options) {
   const envSchemaPath = findUp.sync('.env.schema.json')
 
   const envVariableNames =
-    (envSchemaPath ? require(envSchemaPath) : {})
+    (envSchemaPath ? await fs.readJson(envSchemaPath) : {})
     |> keys
     |> map(name => `TEST_${name |> constantCase}`)
 

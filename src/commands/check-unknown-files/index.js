@@ -2,8 +2,8 @@ import { filter, fromPairs, keys, map } from '@dword-design/functions'
 import globby from 'globby'
 import ignore from 'ignore'
 
-import commonAllowedMatches from './common-allowed-matches.json'
-import UnknownFilesError from './unknown-files-error'
+import commonAllowedMatches from './common-allowed-matches.js'
+import UnknownFilesError from './unknown-files-error.js'
 
 export default async function () {
   const allowedMatches = [

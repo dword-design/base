@@ -2,7 +2,7 @@ import { endent, reduce, replace } from '@dword-design/functions'
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
 import { readFileSync as safeReadFileSync } from 'safe-readfile'
 
-import replacements from './replacements'
+import replacements from './replacements.js'
 
 export default function () {
   const readme =

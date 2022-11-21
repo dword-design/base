@@ -1,5 +1,8 @@
 import execa from 'execa'
+import { createRequire } from 'module'
 import parsePackagejsonName from 'parse-packagejson-name'
+
+const require = createRequire(import.meta.url)
 
 export default async function (options) {
   const packageName = parsePackagejsonName(this.packageConfig.name).fullName

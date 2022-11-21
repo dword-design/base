@@ -1,0 +1,18 @@
+export default [
+  '__image_snapshots__',
+  '__snapshots__',
+  '.baserc.json',
+  '.env.schema.json',
+  '.eslintrc.json',
+  '.git',
+  '.husky/_',
+  '.husky/commit-msg',
+  '.husky/post-checkout',
+  '.husky/post-commit',
+  '.husky/pre-push',
+  '.husky/post-merge',
+  'CHANGELOG.md',
+  'doc',
+  'types.d.ts',
+  'yarn.lock',
+]

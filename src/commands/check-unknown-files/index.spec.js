@@ -3,9 +3,9 @@ import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import outputFiles from 'output-files'
 
-import { Base } from '@/src'
+import { Base } from '@/src/index.js'
 
-import UnknownFilesError from './unknown-files-error'
+import UnknownFilesError from './unknown-files-error.js'
 
 export default tester(
   {

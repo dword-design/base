@@ -6,8 +6,11 @@ import {
   map,
   sortBy,
 } from '@dword-design/functions'
+import fs from 'fs-extra'
 
-import packageConfig from '@/package.json'
+const packageConfig = fs.readJsonSync(
+  new URL('../../../package.json', import.meta.url)
+)
 
 export default class extends Error {
   constructor(files) {

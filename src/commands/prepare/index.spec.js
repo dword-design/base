@@ -9,16 +9,16 @@ import {
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
-import { outputFile, readFile } from 'fs-extra'
+import fs from 'fs-extra'
 import globby from 'globby'
 import outputFiles from 'output-files'
 
-import { Base } from '@/src'
+import { Base } from '@/src/index.js'
 
 export default tester(
   {
     'additional allowed match': async () => {
-      await outputFile('foo.txt', '')
+      await fs.outputFile('foo.txt', '')
 
       const base = new Base({ allowedMatches: ['foo.txt'] })
       await base.prepare()
@@ -47,9 +47,9 @@ export default tester(
       ).rejects.toThrow('subject may not be empty')
     },
     'custom prepare': async () => {
-      const base = new Base({ prepare: () => outputFile('foo.txt', 'bar') })
+      const base = new Base({ prepare: () => fs.outputFile('foo.txt', 'bar') })
       await base.prepare()
-      expect(await readFile('foo.txt', 'utf8')).toEqual('bar')
+      expect(await fs.readFile('foo.txt', 'utf8')).toEqual('bar')
     },
     async valid() {
       await execa.command('git init')
@@ -82,8 +82,8 @@ export default tester(
           |> keyBy(identity)
           |> mapValues(stubTrue)
       ).toMatchSnapshot(this)
-      expect(await readFile('README.md', 'utf8')).toMatchSnapshot(this)
-      expect(await readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
+      expect(await fs.readFile('README.md', 'utf8')).toMatchSnapshot(this)
+      expect(await fs.readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
     },
   },
   [testerPluginTmpDir()]

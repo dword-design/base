@@ -1,5 +1,5 @@
-import jobMatrixStrategy from './strategies/job-matrix'
-import simpleStrategy from './strategies/simple'
+import jobMatrixStrategy from './strategies/job-matrix.js'
+import simpleStrategy from './strategies/simple.js'
 
 export default function () {
   return {

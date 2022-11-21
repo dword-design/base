@@ -2,16 +2,19 @@ import { endent, property } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import execa from 'execa'
-import { outputFile, readFile, remove } from 'fs-extra'
+import fs from 'fs-extra'
+import { createRequire } from 'module'
 import outputFiles from 'output-files'
 import P from 'path'
 
-import { Base } from '@/src'
+import { Base } from '@/src/index.js'
+
+const require = createRequire(import.meta.url)
 
 export default tester(
   {
     'create folder': async () => {
-      await outputFile(
+      await fs.outputFile(
         'package.json',
         JSON.stringify(
           {
@@ -25,10 +28,10 @@ export default tester(
         )
       )
       await new Base().testDocker({ log: false })
-      await remove('dist')
+      await fs.remove('dist')
     },
     'create folder and error': async () => {
-      await outputFile(
+      await fs.outputFile(
         'package.json',
         JSON.stringify(
           {
@@ -47,7 +50,7 @@ export default tester(
           log: false,
         })
       ).rejects.toThrow()
-      await remove('dist')
+      await fs.remove('dist')
     },
     env: async () => {
       await outputFiles({
@@ -92,11 +95,16 @@ export default tester(
             scripts: {
               'test:raw': 'node test.js',
             },
+            type: 'module',
           },
           undefined,
           2
         ),
-        'test.js': "require('child_process').spawn('git', ['--help'])",
+        'test.js': endent`
+          import { spawn } from 'child_process'
+          
+          spawn('git', ['--help'])
+        `,
       })
       await new Base().testDocker({ log: false })
     },
@@ -108,18 +116,19 @@ export default tester(
             scripts: {
               'test:raw': 'node test.js',
             },
+            type: 'module',
           },
           undefined,
           2
         ),
         'test.js': endent`
-        const fs = require('fs')
+        import fs from 'fs'
         
         fs.writeFileSync('grep.txt', process.argv.slice(2).toString())
       `,
       })
       await new Base().testDocker({ grep: 'foo bar baz', log: false })
-      expect(await readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz')
+      expect(await fs.readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz')
     },
     pattern: async () => {
       await outputFiles({
@@ -129,12 +138,13 @@ export default tester(
             scripts: {
               'test:raw': 'node test.js',
             },
+            type: 'module',
           },
           undefined,
           2
         ),
         'test.js': endent`
-        const fs = require('fs')
+        import fs from 'fs'
         
         fs.writeFileSync('grep.txt', process.argv[2])
       `,
@@ -153,13 +163,15 @@ export default tester(
             scripts: {
               'test:raw': 'node test.js',
             },
+            type: 'module',
           },
           undefined,
           2
         ),
         'test.js': endent`
-          const puppeteer = require('@dword-design/puppeteer')
-          const Xvfb = require('xvfb')
+          import puppeteer from '@dword-design/puppeteer'
+          import Xvfb from 'xvfb'
+
           const xvfb = new Xvfb()
 
           const run = async () => {
@@ -203,19 +215,24 @@ export default tester(
     },
     works: async () => {
       await outputFiles({
-        'is-docker.js': await readFile(require.resolve('is-docker'), 'utf8'),
+        'is-docker.cjs': await fs.readFile(
+          require.resolve('is-docker'),
+          'utf8'
+        ),
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
             scripts: {
               'test:raw': 'node test.js',
             },
+            type: 'module',
           },
           undefined,
           2
         ),
         'test.js': endent`
-        const isDocker = require('./is-docker')
+        import isDocker from './is-docker.cjs'
+        
         if (!isDocker) {
           process.exit(1)
         }

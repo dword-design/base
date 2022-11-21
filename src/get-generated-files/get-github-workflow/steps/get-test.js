@@ -1,15 +1,15 @@
 import { fromPairs, keys, map } from '@dword-design/functions'
 import { constantCase } from 'constant-case'
 import findUp from 'find-up'
-import { existsSync } from 'fs-extra'
+import fs from 'fs-extra'
 import P from 'path'
 
 export default () => {
   const envSchemaPath = findUp.sync(path => {
-    if (existsSync('.env.schema.json')) {
+    if (fs.existsSync('.env.schema.json')) {
       return '.env.schema.json'
     }
-    if (existsSync(P.join(path, 'package.json'))) {
+    if (fs.existsSync(P.join(path, 'package.json'))) {
       return findUp.stop
     }
 
@@ -17,7 +17,7 @@ export default () => {
   })
 
   const envVariableNames =
-    (envSchemaPath ? require(envSchemaPath) : {})
+    (envSchemaPath ? fs.readJson(envSchemaPath) : {})
     |> keys
     |> map(name => `TEST_${name |> constantCase}`)
 
