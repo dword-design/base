@@ -1,13 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`index coverage file extension 1`] = `
-"(node:x) ExperimentalWarning: Custom ESM Loaders is an experimental feature. This feature could change at any time
-(Use \`node --trace-warnings ...\` to show where the warning was created)
-(node:x) DeprecationWarning: Obsolete loader hook(s) supplied and will be ignored: getFormat, transformSource
-(node:x) ExperimentalWarning: Custom ESM Loaders is an experimental feature. This feature could change at any time
-(Use \`node --trace-warnings ...\` to show where the warning was created)
-(node:x) DeprecationWarning: Obsolete loader hook(s) supplied and will be ignored: getFormat, transformSource
-
+"
 
   index
     ✓ works

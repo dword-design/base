@@ -142,7 +142,11 @@ export default tester(
             |> await
             |> property('all')
             |> unifyMochaOutput
-            |> replace(/\(node:(\d+)\)/g, '(node:x)')
+            |> replace(/^\(node:\d+\).*?Warning.*?\n/gm, '')
+            |> replace(
+              /^\(Use `node --trace-warnings ...` to show where the warning was created\)\n/gm,
+              ''
+            )
         ).toMatchSnapshot(this)
       },
     },
