@@ -21,16 +21,20 @@ export default tester(
       })
       expect(base.config.allowedMatches).toEqual(['foo.txt', 'bar.txt'])
     },
-    empty: async () => {
+    empty: () => expect(new Self().config.name).toEqual('@dword-design/base-config-node'),
+    'name shortcut': async () => {
       await outputFile(
-        'package.json',
-        JSON.stringify({
-          name: 'foo',
-        })
+        P.join('node_modules', 'base-config-foo', 'index.js'),
+        "module.exports = {}"
       )
-
-      const base = new Self()
-      expect(base.config.name).toEqual('@dword-design/base-config-node')
+      expect(new Self({ name: 'foo' }).config.name).toEqual('base-config-foo')
+    },
+    'name scoped': async () => {
+      await outputFile(
+        P.join('node_modules', '@dword-design', 'base-config-foo', 'index.js'),
+        "module.exports = {}"
+      )
+      expect(new Self({ name: '@dword-design/foo' }).config.name).toEqual('@dword-design/base-config-foo')
     },
     async 'empty parent'() {
       await outputFiles({

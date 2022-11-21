@@ -8,9 +8,12 @@ export default tester(
   },
   [
     {
-      transform: test => function () {
-        expect(new Base({ editorIgnore: test }).getVscodeConfig()).toMatchSnapshot(this)
-      }
+      transform: test =>
+        function () {
+          expect(
+            new Base({ editorIgnore: test }).getVscodeConfig()
+          ).toMatchSnapshot(this)
+        },
     },
   ]
 )

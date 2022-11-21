@@ -17,7 +17,7 @@ export default tester(
           },
         })
       )
-      expect(new Base().getGeneratedFiles()['package.json']).toEqual(endent`
+      expect(new Base().getGeneratedFiles()['package.json']).toMatch(endent`
       {
         "scripts": {
           "dev": "base dev",
