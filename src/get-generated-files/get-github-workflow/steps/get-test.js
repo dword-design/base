@@ -17,7 +17,7 @@ export default () => {
   })
 
   const envVariableNames =
-    (envSchemaPath ? fs.readJson(envSchemaPath) : {})
+    (envSchemaPath ? fs.readJsonSync(envSchemaPath) : {})
     |> keys
     |> map(name => `TEST_${name |> constantCase}`)
 

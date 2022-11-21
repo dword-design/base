@@ -4,6 +4,7 @@ import {
   keyBy,
   mapValues,
   property,
+  replace,
   stubTrue,
 } from '@dword-design/functions'
 import tester from '@dword-design/tester'
@@ -137,7 +138,11 @@ export default tester(
       },
       async test() {
         return expect(
-          this.base.test() |> await |> property('all') |> unifyMochaOutput
+          this.base.test()
+            |> await
+            |> property('all')
+            |> unifyMochaOutput
+            |> replace(/\(node:(\d+)\)/g, '(node:x)')
         ).toMatchSnapshot(this)
       },
     },
