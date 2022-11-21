@@ -4,23 +4,13 @@ import { Base } from '@/src'
 
 export default tester(
   {
-    valid: {
-      config: ['bar', 'foo'],
-      result: {
-        'editor.tabSize': 2,
-        'files.autoSave': 'off',
-        'files.exclude': {
-          bar: true,
-          foo: true,
-        },
-        'workbench.editor.enablePreview': false,
-      },
-    },
+    valid: ['bar', 'foo'],
   },
   [
     {
-      transform: test => () =>
-        expect(new Base().getVscodeConfig()).toEqual(test.result),
+      transform: test => function () {
+        expect(new Base({ editorIgnore: test }).getVscodeConfig()).toMatchSnapshot(this)
+      }
     },
   ]
 )

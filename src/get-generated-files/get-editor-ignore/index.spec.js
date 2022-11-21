@@ -11,7 +11,7 @@ export default tester(
       transform: test =>
         function () {
           const base = new Base({ editorIgnore: test })
-          expect(base.getEditorIgnore()).toMatchSnapshot(this)
+          expect(base.getEditorIgnoreConfig()).toMatchSnapshot(this)
         },
     },
   ]

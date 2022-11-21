@@ -38,7 +38,7 @@ class Base {
     config.name = config.name
       ? pluginNameToPackageName(config.name, 'base-config')
       : packageName`@dword-design/base-config-node`
-    this.packageConfig = loadPkg.sync()
+    this.packageConfig = loadPkg.sync() || {}
 
     const defaultConfig = {
       allowedMatches: [],

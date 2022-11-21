@@ -13,29 +13,6 @@ Object {
   "gitignore": Array [],
   "name": "base-config-foo",
   "nodeVersion": 16,
-  "package": Object {
-    "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
-    "engines": Object {
-      "node": ">=14",
-    },
-    "files": Array [
-      "dist",
-    ],
-    "funding": "https://github.com/sponsors/dword-design",
-    "license": "MIT",
-    "name": "foo",
-    "publishConfig": Object {
-      "access": "public",
-    },
-    "scripts": Object {
-      "checkUnknownFiles": "base checkUnknownFiles",
-      "commit": "base commit",
-      "lint": "base lint",
-      "prepare": "base prepare",
-      "test": "base test",
-    },
-    "version": "1.0.0",
-  },
   "preDeploySteps": Array [],
   "readmeInstallString": "## Install
 
@@ -81,30 +58,6 @@ Object {
   ],
   "name": "base-config-foo",
   "nodeVersion": 10,
-  "package": Object {
-    "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
-    "engines": Object {
-      "node": ">=1",
-    },
-    "files": Array [
-      "dist",
-    ],
-    "funding": "https://github.com/sponsors/dword-design",
-    "license": "MIT",
-    "publishConfig": Object {
-      "access": "public",
-    },
-    "scripts": Object {
-      "checkUnknownFiles": "base checkUnknownFiles",
-      "commit": "base commit",
-      "lint": "base lint",
-      "prepare": "base prepare",
-      "prepublishOnly": "base prepublishOnly",
-      "start": "base start",
-      "test": "base test",
-    },
-    "version": "1.0.0",
-  },
   "packageBaseConfig": Object {
     "main": "dist/index.scss",
   },

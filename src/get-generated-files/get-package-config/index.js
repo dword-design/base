@@ -45,6 +45,7 @@ export default function () {
     },
     files: ['dist', ...(existsSync('types.d.ts') ? ['types.d.ts'] : [])],
     license: 'MIT',
+    ...this.config.packageConfig,
     scripts:
       commandNames
       |> mapValues((nothing, name) =>

@@ -32,7 +32,7 @@ export default tester(
       const base = new Self()
       expect(base.config.name).toEqual('@dword-design/base-config-node')
     },
-    'empty parent': async function () {
+    async 'empty parent'() {
       await outputFiles({
         'node_modules/base-config-foo/index.js': 'module.exports = {}',
         'package.json': JSON.stringify({ name: 'foo' }),

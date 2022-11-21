@@ -1,8 +1,8 @@
 import { Base } from '@/src'
 
 export default {
-  'do not sync keywords': function () {
-    const base = new Base({ syncMetadata: false })
+  'do not sync keywords'() {
+    const base = new Base({ syncKeywords: false })
     expect(base.getGithubSyncMetadataConfig()).toMatchSnapshot(this)
   },
   valid() {

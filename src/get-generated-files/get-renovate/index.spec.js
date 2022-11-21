@@ -13,13 +13,13 @@ export default tester(
       )
       expect(new Base().getRenovateConfig()).toMatchSnapshot(this)
     },
-    'lock file fix commit type': async function () {
+    async 'lock file fix commit type'() {
       await outputFile('package.json', JSON.stringify({ name: 'foo' }))
       expect(
         new Base({ isLockFileFixCommitType: true }).getRenovateConfig()
       ).toMatchSnapshot(this)
     },
-    'not base': async function () {
+    async 'not base'() {
       await outputFile('package.json', JSON.stringify({ name: 'foo' }))
       expect(new Base().getRenovateConfig()).toMatchSnapshot(this)
     },

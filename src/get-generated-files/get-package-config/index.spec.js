@@ -19,10 +19,8 @@ export default tester(
         })
       )
 
-      const base = new Base({ main: 'dist/index.scss' })
-
-      const packageConfig = base.getPackageConfig()
-      expect(packageConfig.main).toEqual('dist/index.scss')
+      const base = new Base({ packageConfig: { main: 'dist/index.scss' } })
+      expect(base.getPackageConfig().main).toEqual('dist/index.scss')
     },
     deploy: async () => {
       await outputFile('package.json', JSON.stringify({ deploy: true }))
@@ -91,7 +89,6 @@ export default tester(
       )
       expect(new Base().getPackageConfig()).toEqual({
         author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
-        baseConfig: 'bar',
         bin: {
           foo: './dist/cli.js',
         },
@@ -107,6 +104,7 @@ export default tester(
         funding: 'https://github.com/sponsors/dword-design',
         keywords: ['foo', 'bar'],
         license: 'MIT',
+        main: 'dist/index.js',
         name: 'foo',
         peerDependencies: {
           nuxt: '^1.0.0',
@@ -117,6 +115,8 @@ export default tester(
         scripts: {
           checkUnknownFiles: 'base checkUnknownFiles',
           commit: 'base commit',
+          dev: 'base dev',
+          prepublishOnly: 'prepublishOnly',
           lint: 'base lint',
           prepare: 'base prepare',
           test: 'base test',

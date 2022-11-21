@@ -4,22 +4,22 @@ import { readFileSync as safeReadFileSync } from 'safe-readfile'
 
 import replacements from './replacements'
 
-const readme =
-  safeReadFileSync('README.md', 'utf8') ||
-  endent`
-  <!-- TITLE -->
-
-  <!-- BADGES -->
-
-  <!-- DESCRIPTION -->
-
-  <!-- INSTALL -->
-
-  <!-- LICENSE -->
-
-`
-
 export default function () {
+  const readme =
+    safeReadFileSync('README.md', 'utf8') ||
+    endent`
+      <!-- TITLE -->
+
+      <!-- BADGES -->
+
+      <!-- DESCRIPTION -->
+
+      <!-- INSTALL -->
+
+      <!-- LICENSE -->
+
+    `
+
   return (
     replacements
     |> reduce((current, replacement, name) => {

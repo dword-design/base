@@ -1,7 +1,7 @@
 import { endent } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import { outputFile } from 'fs-extra'
+import execa from 'execa'
 import outputFiles from 'output-files'
 
 import { Base } from '@/src'
@@ -9,6 +9,10 @@ import { Base } from '@/src'
 export default tester(
   {
     async badges() {
+      await execa.command('git init')
+      await execa.command(
+        'git remote add origin git@github.com:dword-design/bar.git'
+      )
       await outputFiles({
         'README.md': endent`
           <!-- BADGES -->
@@ -21,7 +25,11 @@ export default tester(
       })
       expect(new Base().getReadmeString()).toMatchSnapshot(this)
     },
-    'badges private': async function () {
+    async 'badges private'() {
+      await execa.command('git init')
+      await execa.command(
+        'git remote add origin git@github.com:dword-design/bar.git'
+      )
       await outputFiles({
         'README.md': endent`
           <!-- BADGES -->
@@ -49,7 +57,7 @@ export default tester(
 
       `)
     },
-    'existing content': async function () {
+    async 'existing content'() {
       await outputFiles({
         'README.md': endent`
           <!-- DESCRIPTION -->
@@ -118,7 +126,7 @@ export default tester(
       ).toMatchSnapshot(this)
     },
     title: async () => {
-      await outputFile({
+      await outputFiles({
         'README.md': endent`
           <!-- TITLE -->
           

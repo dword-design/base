@@ -1,8 +1,8 @@
 import execa from 'execa'
 
-export default async () => {
+export default () => {
   try {
-    await execa.command('is-ci')
+    execa.commandSync('is-ci')
 
     return true
   } catch {

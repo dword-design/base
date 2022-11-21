@@ -15,7 +15,7 @@ export default async function () {
   const unknownFiles =
     globby('**', { dot: true, gitignore: true, ignore: allowedMatches })
     |> await
-    |> filter(ignore().add(this.generatedFiles.gitignoreConfig).createFilter())
+    |> filter(ignore().add(this.getGitignoreConfig()).createFilter())
   if (unknownFiles.length > 0) {
     throw new UnknownFilesError(
       unknownFiles |> map(file => [file, true]) |> fromPairs

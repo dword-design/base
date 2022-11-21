@@ -11,12 +11,7 @@ export default tester(
           '@semantic-release/commit-analyzer',
           '@semantic-release/release-notes-generator',
           '@semantic-release/changelog',
-          [
-            '@semantic-release/npm',
-            {
-              npmPublish: false,
-            },
-          ],
+          '@semantic-release/npm',
           [
             '@semantic-release/github',
             {
@@ -40,12 +35,7 @@ export default tester(
           '@semantic-release/commit-analyzer',
           '@semantic-release/release-notes-generator',
           '@semantic-release/changelog',
-          [
-            '@semantic-release/npm',
-            {
-              npmPublish: false,
-            },
-          ],
+          '@semantic-release/npm',
           'semantic-release-foo',
           '@semantic-release/github',
           [
@@ -58,14 +48,16 @@ export default tester(
         ],
       },
     },
-    'npm publish': {
-      config: { npmPublish: true },
+    'no npm publish': {
+      config: { npmPublish: false },
       result: {
         plugins: [
           '@semantic-release/commit-analyzer',
           '@semantic-release/release-notes-generator',
           '@semantic-release/changelog',
-          '@semantic-release/npm',
+          ['@semantic-release/npm', {
+            npmPublish: false,
+          }],
           '@semantic-release/github',
           [
             '@semantic-release/git',
@@ -83,12 +75,7 @@ export default tester(
           '@semantic-release/commit-analyzer',
           '@semantic-release/release-notes-generator',
           '@semantic-release/changelog',
-          [
-            '@semantic-release/npm',
-            {
-              npmPublish: false,
-            },
-          ],
+          '@semantic-release/npm',
           '@semantic-release/github',
           [
             '@semantic-release/git',

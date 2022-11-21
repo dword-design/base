@@ -7,6 +7,7 @@ Array [
   "/.nyc_output",
   "/.test.env.json",
   "/coverage",
+  "/dist",
   "/node_modules",
   "foo",
 ]
