@@ -1,3 +1,10 @@
+## [9.0.2](https://github.com/dword-design/base/compare/v9.0.1...v9.0.2) (2022-11-21)
+
+
+### Bug Fixes
+
+* esm ([#557](https://github.com/dword-design/base/issues/557)) ([fab4fab](https://github.com/dword-design/base/commit/fab4fab300623521d558611c855e4e24792125ba))
+
 ## [9.0.1](https://github.com/dword-design/base/compare/v9.0.0...v9.0.1) (2022-11-17)
 
 
