@@ -121,6 +121,16 @@ export default tester(
       )
       expect(new Self({ name: 'foo' }).config.name).toEqual('base-config-foo')
     },
+    'call multiple times': async () => {
+      await fs.outputFile(
+        P.join('node_modules', 'base-config-foo', 'index.js'),
+        'module.exports = {}'
+      )
+      const config = { name: 'foo' }
+      new Self(config)
+      new Self(config)
+      expect(config.name).toEqual('base-config-foo')
+    },
   },
   [testerPluginTmpDir()]
 )

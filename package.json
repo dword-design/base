@@ -72,7 +72,7 @@
     "output-files": "^2.0.0",
     "parse-git-config": "^3.0.0",
     "parse-packagejson-name": "^1.0.1",
-    "plugin-name-to-package-name": "^0.1.1",
+    "plugin-name-to-package-name": "npm:@dword-design/plugin-name-to-package-name",
     "safe-readfile": "^1.0.2",
     "semantic-release": "^17.0.3",
     "sort-keys": "^4.2.0",
