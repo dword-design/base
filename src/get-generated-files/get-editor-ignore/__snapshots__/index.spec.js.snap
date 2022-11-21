@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index valid 1`] = `
+Array [
+  ".babelrc.json",
+  ".commitlintrc.json",
+  ".cz.json",
+  ".editorconfig",
+  ".eslintrc.json",
+  ".gitattributes",
+  ".github",
+  ".gitignore",
+  ".gitpod.Dockerfile",
+  ".gitpod.yml",
+  ".husky",
+  ".nyc_output",
+  ".releaserc.json",
+  ".renovaterc.json",
+  "CHANGELOG.md",
+  "LICENSE.md",
+  "coverage",
+  "dist",
+  "foo",
+  "node_modules",
+  "yarn.lock",
+]
+`;

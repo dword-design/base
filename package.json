@@ -6,6 +6,8 @@
   "funding": "https://github.com/sponsors/dword-design",
   "license": "MIT",
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
+  "type": "module",
+  "exports": "./dist/index.js",
   "main": "dist/index.js",
   "bin": {
     "base": "./dist/cli.js"
@@ -30,7 +32,7 @@
     "@dword-design/babel-register-esm": "^1.0.0",
     "@dword-design/base-config-node": "^1.6.0",
     "@dword-design/ci": "^3.0.0",
-    "@dword-design/eslint-config": "^2.0.0",
+    "@dword-design/eslint-config": "^3.0.0",
     "@dword-design/functions": "^4.0.0",
     "@dword-design/package-json-schema": "^1.0.0",
     "@dword-design/personal-data": "^1.0.1",
@@ -38,7 +40,7 @@
     "@dword-design/setup-test": "^1.0.0",
     "@semantic-release/changelog": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
-    "ajv-cli": "^5.0.0",
+    "ajv": "^8.11.2",
     "c8": "^7.12.0",
     "commitizen": "^4.0.3",
     "constant-case": "^3.0.3",
@@ -61,6 +63,7 @@
     "ignore": "^5.1.4",
     "import-cwd": "^3.0.0",
     "is-ci": "^3.0.0",
+    "jiti": "^1.16.0",
     "load-pkg": "^4.0.0",
     "make-cli": "^2.0.0",
     "mocha": "^9.0.0",
@@ -82,17 +85,13 @@
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "@dword-design/chdir": "^2.0.6",
-    "@dword-design/proxyquire": "^2.0.0",
     "@dword-design/tester": "^2.0.0",
     "@dword-design/tester-plugin-tmp-dir": "^2.0.0",
     "is-docker": "^2.1.1",
     "p-event": "^4.2.0",
     "rimraf": "^3.0.0",
     "sharp": "^0.30.0",
-    "stealthy-require-no-leak": "^1.0.0",
-    "unify-mocha-output": "^2.0.0",
-    "with-local-tmp-dir": "^4.0.0",
-    "with-tmp-dir-promise": "^1.1.2"
+    "unify-mocha-output": "^2.0.0"
   },
   "engines": {
     "node": ">=14"

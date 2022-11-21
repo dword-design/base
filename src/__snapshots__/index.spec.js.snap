@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index empty parent 1`] = `
+Object {
+  "allowedMatches": Array [],
+  "commands": Object {},
+  "coverageFileExtensions": Array [],
+  "deployAssets": Array [],
+  "deployEnv": Object {},
+  "deployPlugins": Array [],
+  "editorIgnore": Array [],
+  "git": undefined,
+  "gitignore": Array [],
+  "name": "base-config-foo",
+  "nodeVersion": 16,
+  "preDeploySteps": Array [],
+  "readmeInstallString": "## Install
+
+\`\`\`bash
+# npm
+$ npm install foo
+
+# Yarn
+$ yarn add foo
+\`\`\`",
+  "seeAlso": Array [],
+  "supportedNodeVersions": Array [
+    14,
+    16,
+    18,
+  ],
+  "syncKeywords": true,
+}
+`;
+
+exports[`index inherited 1`] = `
+Object {
+  "allowedMatches": Array [],
+  "coverageFileExtensions": Array [],
+  "deployAssets": Array [
+    Object {
+      "label": "Foo",
+      "path": "foo.js",
+    },
+  ],
+  "deployEnv": Object {
+    "FOO": "\${{ secrets.FOO }}",
+  },
+  "deployPlugins": Array [
+    "semantic-release-foo",
+  ],
+  "editorIgnore": Array [
+    "foo",
+  ],
+  "git": undefined,
+  "gitignore": Array [
+    "foo",
+  ],
+  "name": "base-config-foo",
+  "nodeVersion": 10,
+  "packageBaseConfig": Object {
+    "main": "dist/index.scss",
+  },
+  "preDeploySteps": Array [
+    Object {
+      "run": "foo",
+    },
+  ],
+  "readmeInstallString": "foo",
+  "seeAlso": Array [],
+  "supportedNodeVersions": Array [
+    1,
+    2,
+  ],
+  "syncKeywords": true,
+}
+`;
