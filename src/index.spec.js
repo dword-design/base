@@ -21,6 +21,17 @@ export default tester(
       })
       expect(base.config.allowedMatches).toEqual(['foo.txt', 'bar.txt'])
     },
+    'call multiple times': async () => {
+      await fs.outputFile(
+        P.join('node_modules', 'base-config-foo', 'index.js'),
+        'module.exports = {}'
+      )
+
+      const config = { name: 'foo' }
+      let self = new Self(config)
+      self = new Self(config)
+      expect(self.config.name).toEqual('base-config-foo')
+    },
     empty: () =>
       expect(new Self().config.name).toEqual('@dword-design/base-config-node'),
     async 'empty parent'() {
@@ -120,16 +131,6 @@ export default tester(
         'module.exports = {}'
       )
       expect(new Self({ name: 'foo' }).config.name).toEqual('base-config-foo')
-    },
-    'call multiple times': async () => {
-      await fs.outputFile(
-        P.join('node_modules', 'base-config-foo', 'index.js'),
-        'module.exports = {}'
-      )
-      const config = { name: 'foo' }
-      new Self(config)
-      new Self(config)
-      expect(config.name).toEqual('base-config-foo')
     },
   },
   [testerPluginTmpDir()]
