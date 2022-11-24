@@ -54,6 +54,17 @@ export default tester(
         )
       },
     },
+    'base config in dev dependencies': {
+      config: { name: 'foo' },
+      files: {
+        'node_modules/base-config-foo/index.js': 'module.exports = {}',
+        'package.json': JSON.stringify({
+          devDependencies: {
+            'base-config-foo': '^1.0.0',
+          },
+        }),
+      },
+    },
     'base config in prod dependencies': {
       config: { name: 'foo' },
       files: {
@@ -246,6 +257,26 @@ export default tester(
         return expect(this.base.test()).rejects.toThrow(
           "error  'foo' is assigned a value but never used  no-unused-vars"
         )
+      },
+    },
+    'mark base as used dependency': {
+      files: {
+        'node_modules/@dword-design': {},
+        'package.json': JSON.stringify({
+          devDependencies: {
+            '@dword-design/base': '^1.0.0',
+          },
+          scripts: {
+            test: 'foo',
+          },
+        }),
+      },
+      async test() {
+        await fs.symlink(
+          P.join('..', '..', '..'),
+          P.join('node_modules', '@dword-design', 'base')
+        )
+        await this.base.test()
       },
     },
     minimal: {
