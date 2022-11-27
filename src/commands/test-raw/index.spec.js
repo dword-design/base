@@ -105,15 +105,9 @@ export default tester(
         coverageFileExtensions: ['.foo'],
       },
       files: {
-        'index.foo': 'module.exports = 1',
-        'index.spec.js': endent`
-          import './index.foo'
-
-          export default {
-            works: () => {},
-          }
-        `,
-        'package.json': JSON.stringify({ type: 'module' }),
+        'index.foo': 'module.exports = {}',
+        'index.spec.js': "import './index.foo'",
+        'package.json': JSON.stringify({}),
       },
       async test() {
         return expect(
