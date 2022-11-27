@@ -105,47 +105,15 @@ export default tester(
         coverageFileExtensions: ['.foo'],
       },
       files: {
-        'index.foo': '',
+        'index.foo': 'module.exports = 1',
         'index.spec.js': endent`
-        import fs from 'fs-extra'
-        import P from 'path'
+          import './index.foo'
 
-        const fooPath = P.resolve('index.foo')
-
-        export default {
-          works: () => fs.outputFile(
-            '.nyc_output/foo.js',
-            JSON.stringify({
-              [fooPath]: {
-                all: true,
-                b: {},
-                branchMap: {},
-                f: {},
-                fnMap: {},
-                path: fooPath,
-                s: {
-                  0: 0,
-                },
-                statementMap: {
-                  0: {
-                    end: {
-                      column: 0,
-                      line: 0,
-                    },
-                    start: {
-                      column: 0,
-                      line: 0,
-                    },
-                  },
-                },
-              },
-            })
-          )
-        }
-      `,
-        'package.json': JSON.stringify({
-          devDependencies: { 'fs-extra': '^1.0.0' },
-        }),
+          export default {
+            works: () => {},
+          }
+        `,
+        'package.json': JSON.stringify({ type: 'module' }),
       },
       async test() {
         return expect(
