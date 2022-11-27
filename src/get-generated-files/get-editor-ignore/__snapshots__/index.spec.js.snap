@@ -19,7 +19,6 @@ Array [
   "CHANGELOG.md",
   "LICENSE.md",
   "coverage",
-  "dist",
   "foo",
   "node_modules",
   "yarn.lock",

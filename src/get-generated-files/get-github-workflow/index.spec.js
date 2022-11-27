@@ -18,19 +18,11 @@ export default tester(
     },
     'job matrix'() {
       expect(
-        new Base({
-          nodeVersion: 14,
-          supportedNodeVersions: [14, 16],
-        }).getGithubWorkflowConfig()
+        new Base({ useJobMatrix: true }).getGithubWorkflowConfig()
       ).toMatchSnapshot(this)
     },
     'no job matrix'() {
-      expect(
-        new Base({
-          nodeVersion: 14,
-          useJobMatrix: false,
-        }).getGithubWorkflowConfig()
-      ).toMatchSnapshot(this)
+      expect(new Base({}).getGithubWorkflowConfig()).toMatchSnapshot(this)
     },
     async 'package.json'() {
       await outputFiles({

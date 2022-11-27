@@ -29,7 +29,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v3",
           "with": Object {
-            "node-version": 14,
+            "node-version": 16,
           },
         },
         Object {
@@ -58,7 +58,6 @@ Object {
         Object {
           "env": Object {
             "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
-            "NPM_TOKEN": "\${{ secrets.NPM_TOKEN }}",
           },
           "if": "github.ref == 'refs/heads/master'",
           "name": "Release",
@@ -101,7 +100,7 @@ Object {
           },
         },
         Object {
-          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 14",
+          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 16",
           "uses": "codecov/codecov-action@v3",
           "with": Object {
             "token": "\${{ secrets.CODECOV_TOKEN }}",
@@ -120,11 +119,15 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
-              "node": 14,
+              "node": 18,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 16,
               "os": "macos-latest",
             },
             Object {
-              "node": 14,
+              "node": 16,
               "os": "windows-latest",
             },
           ],
@@ -168,7 +171,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v3",
           "with": Object {
-            "node-version": 14,
+            "node-version": 16,
           },
         },
         Object {
@@ -214,7 +217,6 @@ Object {
         Object {
           "env": Object {
             "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
-            "NPM_TOKEN": "\${{ secrets.NPM_TOKEN }}",
           },
           "if": "github.ref == 'refs/heads/master'",
           "name": "Release",
@@ -745,7 +747,6 @@ Object {
         Object {
           "env": Object {
             "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
-            "NPM_TOKEN": "\${{ secrets.NPM_TOKEN }}",
           },
           "if": "github.ref == 'refs/heads/master'",
           "name": "Release",
@@ -836,7 +837,6 @@ Object {
         Object {
           "env": Object {
             "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
-            "NPM_TOKEN": "\${{ secrets.NPM_TOKEN }}",
           },
           "if": "github.ref == 'refs/heads/master'",
           "name": "Release",

@@ -23,7 +23,6 @@ Object {
     "LICENSE.md": true,
     "bar": true,
     "coverage": true,
-    "dist": true,
     "foo": true,
     "node_modules": true,
     "yarn.lock": true,
