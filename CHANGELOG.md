@@ -1,3 +1,10 @@
+## [9.0.6](https://github.com/dword-design/base/compare/v9.0.5...v9.0.6) (2022-11-27)
+
+
+### Bug Fixes
+
+* revert last change ([c2235e3](https://github.com/dword-design/base/commit/c2235e3115913c7ad0aaa62653cf4a8fcef9f222))
+
 ## [9.0.5](https://github.com/dword-design/base/compare/v9.0.4...v9.0.5) (2022-11-27)
 
 
