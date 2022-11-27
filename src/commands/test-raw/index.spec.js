@@ -521,6 +521,7 @@ export default tester(
       files: {
         'package.json': JSON.stringify({
           name: 'foo',
+          type: 'module',
         }),
         src: {
           'index.js': endent`
@@ -559,14 +560,12 @@ export default tester(
           '.gitignore': true,
           '.gitpod.Dockerfile': true,
           '.gitpod.yml': true,
-          '.nyc_output': true,
           '.releaserc.json': true,
           '.renovaterc.json': true,
           '.vscode': true,
           'LICENSE.md': true,
           'README.md': true,
           coverage: true,
-          node_modules: true,
           'package.json': true,
           src: true,
         })
