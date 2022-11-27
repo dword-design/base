@@ -35,10 +35,17 @@ import getGeneratedFiles from './get-generated-files/index.js'
 import getGitInfo from './get-git-info/index.js'
 
 class Base {
-  constructor(config = {}) {
-    config.name = config.name
-      ? pluginNameToPackageName(config.name, 'base-config')
-      : packageName`@dword-design/base-config-node`
+  constructor(config) {
+    const jitiInstance = jiti(process.cwd())
+    if (config === undefined) {
+      config = { name: packageName`@dword-design/base-config-node` }
+    }
+    if (typeof config === 'function') {
+      config = config()
+    }
+    if (config.name) {
+      config.name = pluginNameToPackageName(config.name, 'base-config')
+    }
     this.packageConfig = loadPkg.sync() || {}
 
     const defaultConfig = {
@@ -84,7 +91,9 @@ class Base {
       supportedNodeVersions: [14, 16, 18],
       syncKeywords: true,
     }
-    let inheritedConfig = importCwd.silent(config.name) || jiti(config.name)
+    let inheritedConfig = config.name
+      ? importCwd.silent(config.name) || jitiInstance(config.name)
+      : undefined
 
     const mergeOptions = {
       customMerge: key =>
@@ -96,7 +105,7 @@ class Base {
       )
     }
     this.config = deepmerge.all(
-      [defaultConfig, inheritedConfig, config],
+      [defaultConfig, ...(inheritedConfig ? [inheritedConfig] : []), config],
       mergeOptions
     )
     this.packageConfig = this.getPackageConfig()

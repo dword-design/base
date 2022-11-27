@@ -47,7 +47,18 @@ export default tester(
       expect(typeof base.config.depcheckConfig).toEqual('object')
       expect(base.config.lint(1)).toEqual(1)
     },
-    function: async () => {
+    esm: async () => {
+      await fs.outputFile(
+        P.join('node_modules', 'base-config-foo', 'index.js'),
+        'export default {}'
+      )
+      expect(new Self({ name: 'foo' }).config.name).toEqual('base-config-foo')
+    },
+    function: () => {
+      const base = new Self(() => ({ readmeInstallString: 'foo' }))
+      expect(base.config.readmeInstallString).toEqual('foo')
+    },
+    'function inherited': async () => {
       await fs.outputFile(
         P.join('node_modules', 'base-config-foo', 'index.js'),
         'module.exports = config => ({ readmeInstallString: config.bar })'
