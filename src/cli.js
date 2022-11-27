@@ -7,9 +7,7 @@ import { Base } from './index.js'
 import loadConfig from './load-config/index.js'
 
 const run = async () => {
-  const config = await loadConfig()
-
-  const base = new Base(config)
+  const base = new Base(await loadConfig())
   try {
     await makeCli({
       commands:
@@ -29,7 +27,7 @@ const run = async () => {
           prepare: {
             handler: () => base.prepare(),
           },
-          ...(config.testInContainer && {
+          ...(base.config.testInContainer && {
             'test:raw': {
               arguments: '[pattern]',
               handler: (pattern, options) =>
@@ -60,7 +58,7 @@ const run = async () => {
               },
             ],
           },
-          ...(config.commands
+          ...(base.config.commands
             |> mapValues(command =>
               typeof command === 'function' ? { handler: command } : command
             )),
