@@ -1,3 +1,10 @@
+## [9.0.5](https://github.com/dword-design/base/compare/v9.0.4...v9.0.5) (2022-11-27)
+
+
+### Bug Fixes
+
+* webpack 4 compatibility ([78e3cc8](https://github.com/dword-design/base/commit/78e3cc87f6fb06f6218496e18b2e4e1afa5a0bf7))
+
 ## [9.0.4](https://github.com/dword-design/base/compare/v9.0.3...v9.0.4) (2022-11-24)
 
 
