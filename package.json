@@ -100,6 +100,7 @@
     "access": "public"
   },
   "baseConfig": {
+    "name": "@dword-design/node",
     "depcheckConfig": {
       "ignoreMatches": [
         "husky"
