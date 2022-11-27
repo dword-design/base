@@ -1,7 +1,6 @@
 import { endent, property } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import packageName from 'depcheck-package-name'
 import execa from 'execa'
 import fs from 'fs-extra'
 import { createRequire } from 'module'
@@ -213,33 +212,6 @@ export default tester(
       `,
       })
       await new Base().testDocker({ log: false, updateSnapshots: true })
-    },
-    'webpack 4': async () => {
-      await outputFiles({
-        'package.json': JSON.stringify(
-          {
-            devDependencies: {
-              nuxt: '^2',
-            },
-            name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
-            type: 'module',
-          },
-          undefined,
-          2
-        ),
-        'test.js': endent`
-          import { Builder, Nuxt } from '${packageName`nuxt`}'
-
-          const nuxt = new Nuxt({ dev: false })
-          await new Builder(nuxt).build()
-
-        `,
-      })
-      await execa.command('yarn')
-      await new Base().testDocker({ log: false })
     },
     works: async () => {
       await outputFiles({

@@ -46,7 +46,7 @@ export default async function (options) {
         [
           'yarn --frozen-lockfile',
           '&&',
-          'NODE_OPTIONS=--openssl-legacy-provider yarn test:raw',
+          'yarn test:raw',
           ...(options.updateSnapshots ? [' --update-snapshots'] : []),
           ...(options.pattern ? [`"${options.pattern}"`] : []),
           ...(options.grep ? [`-g "${options.grep}"`] : []),
