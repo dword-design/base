@@ -48,7 +48,7 @@ export default async function (options) {
           '&&',
           'yarn test:raw',
           ...(options.updateSnapshots ? [' --update-snapshots'] : []),
-          ...(options.patterns.map(pattern => `"${options.patterns}"`)),
+          ...options.patterns,
           ...(options.grep ? [`-g "${options.grep}"`] : []),
         ] |> join(' '),
       ],
