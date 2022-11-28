@@ -15,8 +15,8 @@ const ajv = new Ajv({ allowUnionTypes: true })
 const validatePackageJson = ajv.compile(packageJsonSchema)
 
 export default async function (options) {
-  options = { log: !stdEnv.test, ...options }
-  if (!options.patterns) {
+  options = { patterns: [], log: !stdEnv.test, ...options }
+  if (!options.patterns.length === 0) {
     if (!validatePackageJson(this.packageConfig)) {
       throw new Error(endent`
         package.json invalid
