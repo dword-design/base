@@ -91,23 +91,26 @@ class Base {
       supportedNodeVersions: [14, 16, 18],
       syncKeywords: true,
     }
-    let inheritedConfig = config.name
-      ? importCwd.silent(config.name) || jitiInstance(config.name)
-      : undefined
 
     const mergeOptions = {
       customMerge: key =>
         key === 'supportedNodeVersions' ? (a, b) => b : undefined,
     }
-    if (typeof inheritedConfig === 'function') {
-      inheritedConfig = inheritedConfig(
-        deepmerge(defaultConfig, config, mergeOptions)
-      )
+
+    const configsToMerge = [defaultConfig]
+    if (config.name) {
+      let inheritedConfig = config.name
+        ? importCwd.silent(config.name) || jitiInstance(config.name).default
+        : undefined
+      if (typeof inheritedConfig === 'function') {
+        inheritedConfig = inheritedConfig(
+          deepmerge(defaultConfig, config, mergeOptions)
+        )
+      }
+      configsToMerge.push(inheritedConfig)
     }
-    this.config = deepmerge.all(
-      [defaultConfig, ...(inheritedConfig ? [inheritedConfig] : []), config],
-      mergeOptions
-    )
+    configsToMerge.push(config)
+    this.config = deepmerge.all(configsToMerge, mergeOptions)
     this.packageConfig = this.getPackageConfig()
     this.generatedFiles = this.getGeneratedFiles()
   }
