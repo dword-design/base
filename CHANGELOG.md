@@ -1,3 +1,10 @@
+# [9.1.0](https://github.com/dword-design/base/compare/v9.0.9...v9.1.0) (2022-11-28)
+
+
+### Features
+
+* multiple test patterns ([#566](https://github.com/dword-design/base/issues/566)) ([d46e190](https://github.com/dword-design/base/commit/d46e190c6a21dafd1e9f8c1e009b6bcfdcd31e74))
+
 ## [9.0.9](https://github.com/dword-design/base/compare/v9.0.8...v9.0.9) (2022-11-28)
 
 
