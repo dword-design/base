@@ -15,8 +15,8 @@ const ajv = new Ajv({ allowUnionTypes: true })
 const validatePackageJson = ajv.compile(packageJsonSchema)
 
 export default async function (options) {
-  options = { log: !stdEnv.test, ...options }
-  if (!options.pattern) {
+  options = { log: !stdEnv.test, patterns: [], ...options }
+  if (options.patterns.length === 0) {
     if (!validatePackageJson(this.packageConfig)) {
       throw new Error(endent`
         package.json invalid
@@ -62,9 +62,11 @@ export default async function (options) {
       ...(runDockerTests ? [] : ['--ignore', '**/*.usesdocker.spec.js']),
       '--timeout',
       130000,
+      ...(options.patterns.length > 0
+        ? options.patterns
+        : ['{,!(node_modules)/**/}*.spec.js']),
       ...(options.grep ? ['--grep', options.grep] : []),
       ...(process.platform === 'win32' ? ['--exit'] : []),
-      options.pattern || '{,!(node_modules)/**/}*.spec.js',
     ],
     {
       env: {
