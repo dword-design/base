@@ -1,3 +1,10 @@
+## [9.0.9](https://github.com/dword-design/base/compare/v9.0.8...v9.0.9) (2022-11-28)
+
+
+### Bug Fixes
+
+* if no config is present, it is undefined ([#565](https://github.com/dword-design/base/issues/565)) ([ce47efb](https://github.com/dword-design/base/commit/ce47efb9fb8cb92aa890c5ba34099e3d0888457e))
+
 ## [9.0.8](https://github.com/dword-design/base/compare/v9.0.7...v9.0.8) (2022-11-27)
 
 
