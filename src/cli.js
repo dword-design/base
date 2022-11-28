@@ -29,9 +29,9 @@ const run = async () => {
           },
           ...(base.config.testInContainer && {
             'test:raw': {
-              arguments: '[pattern]',
-              handler: (pattern, options) =>
-                base.testRaw({ pattern, ...options }),
+              arguments: '[patterns...]',
+              handler: (patterns, options) =>
+                base.testRaw({ patterns, ...options }),
               options: [
                 {
                   description: 'Only run tests matching this string or regexp',
@@ -45,8 +45,8 @@ const run = async () => {
             },
           }),
           test: {
-            arguments: '[pattern]',
-            handler: (pattern, options) => base.test({ pattern, ...options }),
+            arguments: '[patterns...]',
+            handler: (patterns, options) => base.test({ patterns, ...options }),
             options: [
               {
                 description: 'Only run tests matching this string or regexp',

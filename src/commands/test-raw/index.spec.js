@@ -327,11 +327,34 @@ export default tester(
       },
       async test() {
         const output =
-          this.base.test({ pattern: 'src/index2.spec.js' })
+          this.base.test({ patterns: ['src/index2.spec.js'] })
           |> await
           |> property('all')
         expect(output).not.toMatch('run index1')
         expect(output).toMatch('run index2')
+      },
+    },
+    'multiple patterns': {
+      files: {
+        src: {
+          'index1.spec.js':
+            "export default { valid: () => {} }",
+          'index2.spec.js':
+            "export default { valid: () => {} }",
+        },
+      },
+      async test() {
+        const output =
+          this.base.test({ patterns: ['src/index1.spec.js', 'src/index2.spec.js'] })
+          |> await
+          |> property('all')
+          |> unifyMochaOutput
+          |> replace(/^\(node:\d+\).*?Warning.*?\n/gm, '')
+          |> replace(
+            /^\(Use `node --trace-warnings ...` to show where the warning was created\)\n/gm,
+            ''
+          )
+        expect(output).toMatchSnapshot(this)
       },
     },
     'pipeline operator and esm': {

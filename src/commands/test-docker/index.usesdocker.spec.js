@@ -150,7 +150,7 @@ export default tester(
       `,
       })
       expect(
-        (await new Base().testDocker({ log: false, pattern: 'foo bar baz' }))
+        (await new Base().testDocker({ log: false, patterns: ['foo bar baz'] }))
           |> await
           |> property('all')
       ).toMatch('foo bar baz')

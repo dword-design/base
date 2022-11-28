@@ -13,7 +13,7 @@ import fs from 'fs-extra'
 import os from 'os'
 
 export default async function (options) {
-  options = { log: true, ...options }
+  options = { log: true, patterns: [], ...options }
 
   const volumeName =
     this.packageConfig.name |> replace('@', '') |> replace('/', '-')
@@ -48,7 +48,7 @@ export default async function (options) {
           '&&',
           'yarn test:raw',
           ...(options.updateSnapshots ? [' --update-snapshots'] : []),
-          ...(options.pattern ? [`"${options.pattern}"`] : []),
+          ...(options.patterns.map(pattern => `"${options.patterns}"`)),
           ...(options.grep ? [`-g "${options.grep}"`] : []),
         ] |> join(' '),
       ],
