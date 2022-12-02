@@ -35,21 +35,20 @@ export default tester(
     'config is actual project': async () => {
       await outputFiles({
         'node_modules/@dword-design/base-config-node': {
-          'index.js': "export default { readmeInstallString: 'foo' }",
+          'dist/index.js': "export default { readmeInstallString: 'foo' }",
           'package.json': JSON.stringify({
-            main: './index.js',
-            type: 'module',
+            exports: './dist/index.js',
+            name: '@dword-design/base-config-node',
           }),
         },
         'package.json': JSON.stringify({
-          main: './index.js',
+          exports: './dist/index.js',
           name: '@dword-design/base-config-node',
           type: 'module',
         }),
+        'src/index.js': "export default { readmeInstallString: 'bar' }",
       })
-      expect(
-        new Self({ name: '@dword-design/node' }).config.readmeInstallString
-      ).toEqual('foo')
+      expect(new Self().config.readmeInstallString).toEqual('bar')
     },
     empty: () =>
       expect(new Self().config.name).toEqual('@dword-design/base-config-node'),
