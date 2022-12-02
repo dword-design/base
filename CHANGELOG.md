@@ -1,3 +1,10 @@
+## [9.1.3](https://github.com/dword-design/base/compare/v9.1.2...v9.1.3) (2022-12-02)
+
+
+### Bug Fixes
+
+* project is config ([#571](https://github.com/dword-design/base/issues/571)) ([4f56e29](https://github.com/dword-design/base/commit/4f56e2932db297d3385a7688ed2684e3d80c3443))
+
 ## [9.1.2](https://github.com/dword-design/base/compare/v9.1.1...v9.1.2) (2022-12-02)
 
 
