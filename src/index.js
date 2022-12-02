@@ -1,3 +1,4 @@
+import pipelineOperator from '@babel/plugin-proposal-pipeline-operator'
 import { endent, identity } from '@dword-design/functions'
 import deepmerge from 'deepmerge'
 import depcheck from 'depcheck'
@@ -39,6 +40,11 @@ class Base {
     const jitiInstance = jiti(process.cwd(), {
       esmResolve: true,
       interopDefault: true,
+      transformOptions: {
+        babel: {
+          plugins: [[pipelineOperator, { proposal: 'fsharp' }]],
+        },
+      },
     })
     if (config === undefined) {
       config = { name: packageName`@dword-design/base-config-node` }

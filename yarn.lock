@@ -423,7 +423,7 @@
     "@babel/helper-skip-transparent-expression-wrappers" "^7.18.9"
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
 
-"@babel/plugin-proposal-pipeline-operator@^7.5.0":
+"@babel/plugin-proposal-pipeline-operator@^7.18.9", "@babel/plugin-proposal-pipeline-operator@^7.5.0":
   version "7.18.9"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-pipeline-operator/-/plugin-proposal-pipeline-operator-7.18.9.tgz#66a60666efd9c29c7ec4d3e2ccb38f9d97994237"
   integrity sha512-Pc33e6m8f4MJhRXVCUwiKZNtEm+W2CUPHIL0lyJNtkp+w6d75CLw3gsBKQ81VAMUgT9jVPIEU8gwJ5nJgmJ1Ag==
