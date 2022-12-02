@@ -34,9 +34,13 @@ export default tester(
     },
     'config is actual project': async () => {
       await outputFiles({
-        'index.js': "export default { readmeInstallString: 'bar' }",
-        'node_modules/@dword-design/base-config-node/index.js':
-          "export default { readmeInstallString: 'foo' }",
+        'node_modules/@dword-design/base-config-node': {
+          'index.js': "export default { readmeInstallString: 'foo' }",
+          'package.json': JSON.stringify({
+            main: './index.js',
+            type: 'module',
+          }),
+        },
         'package.json': JSON.stringify({
           main: './index.js',
           name: '@dword-design/base-config-node',
