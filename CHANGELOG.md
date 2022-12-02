@@ -1,3 +1,10 @@
+## [9.1.2](https://github.com/dword-design/base/compare/v9.1.1...v9.1.2) (2022-12-02)
+
+
+### Bug Fixes
+
+* jiti ([#570](https://github.com/dword-design/base/issues/570)) ([d474616](https://github.com/dword-design/base/commit/d47461666ec3d6d923448870b0baa3105c4ac07b))
+
 ## [9.1.1](https://github.com/dword-design/base/compare/v9.1.0...v9.1.1) (2022-11-28)
 
 
