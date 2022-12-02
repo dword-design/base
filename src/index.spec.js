@@ -46,9 +46,10 @@ export default tester(
           name: '@dword-design/base-config-node',
           type: 'module',
         }),
-        'src/index.js': "export default { readmeInstallString: 'bar' }",
+        'src/index.js':
+          'export default { readmeInstallString: 1 |> x => x * 2 }',
       })
-      expect(new Self().config.readmeInstallString).toEqual('bar')
+      expect(new Self().config.readmeInstallString).toEqual(2)
     },
     empty: () =>
       expect(new Self().config.name).toEqual('@dword-design/base-config-node'),
