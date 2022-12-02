@@ -1,3 +1,10 @@
+## [9.1.4](https://github.com/dword-design/base/compare/v9.1.3...v9.1.4) (2022-12-02)
+
+
+### Bug Fixes
+
+* pipeline operator ([#572](https://github.com/dword-design/base/issues/572)) ([9604d00](https://github.com/dword-design/base/commit/9604d00bcf1baee5a110d8a16399dda72e0d57aa))
+
 ## [9.1.3](https://github.com/dword-design/base/compare/v9.1.2...v9.1.3) (2022-12-02)
 
 
