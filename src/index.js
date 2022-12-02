@@ -7,6 +7,7 @@ import packageName from 'depcheck-package-name'
 import depcheckParserBabel from 'depcheck-parser-babel'
 import jiti from 'jiti'
 import loadPkg from 'load-pkg'
+import P from 'path'
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name'
 
 import checkUnknownFiles from './commands/check-unknown-files/index.js'
@@ -101,7 +102,13 @@ class Base {
 
     const configsToMerge = [defaultConfig]
     if (config.name) {
-      let inheritedConfig = config.name ? jitiInstance(config.name) : undefined
+      const inheritedConfigPath =
+        config.name === this.packageConfig.name
+          ? P.resolve('src', 'index.js')
+          : config.name
+      let inheritedConfig = inheritedConfigPath
+        ? jitiInstance(inheritedConfigPath)
+        : undefined
       if (typeof inheritedConfig === 'function') {
         inheritedConfig = inheritedConfig(
           deepmerge(defaultConfig, config, mergeOptions)
