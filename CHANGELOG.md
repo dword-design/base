@@ -1,3 +1,10 @@
+## [9.1.5](https://github.com/dword-design/base/compare/v9.1.4...v9.1.5) (2022-12-03)
+
+
+### Bug Fixes
+
+* pin version ([88a3ca1](https://github.com/dword-design/base/commit/88a3ca103ef3d30cea75d46195668871dbe420dc))
+
 ## [9.1.4](https://github.com/dword-design/base/compare/v9.1.3...v9.1.4) (2022-12-02)
 
 
