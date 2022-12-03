@@ -1404,10 +1404,10 @@
     lodash "^4.17.15"
     tinycolor2 "^1.4.1"
 
-"@dword-design/package-json-schema@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@dword-design/package-json-schema/-/package-json-schema-1.0.0.tgz#3e3848b9f297c968bf74fa4561599d7304b5b26c"
-  integrity sha512-Xh0+Mx40pDWUJu0N5AZXeUFUjo2m7ZzfJ/RzLzhDax4F/Fkx3711nP9URhGwtV7A+pqcEG/0N/+2kLXofFL7hw==
+"@dword-design/package-json-schema@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/package-json-schema/-/package-json-schema-2.0.0.tgz#1d6027d942ade5b2dff689f625ad6f1f39aab3e1"
+  integrity sha512-C+ojRc1G3RGKQau8+afqpOkE3yA/0dL6GE/gOUmdUOi4M6Aey65kZdhBHRPuDHA5uW6CV+nQROWIjtw2MOi6IA==
   dependencies:
     package-name-regex "^2.0.6"
 
