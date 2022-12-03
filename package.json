@@ -80,6 +80,7 @@
     "spdx-expression-parse": "^3.0.0",
     "spdx-license-list": "^6.1.0",
     "std-env": "^2.3.0",
+    "suppress-experimental-warnings": "^1.1.0",
     "yaml": "^1.8.2"
   },
   "devDependencies": {

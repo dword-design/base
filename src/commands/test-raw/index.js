@@ -72,7 +72,7 @@ export default async function (options) {
       env: {
         NODE_ENV: 'test',
         ...(this.packageConfig.type === 'module' && {
-          NODE_OPTIONS: `--experimental-loader=${packageName`@dword-design/babel-register-esm`}`,
+          NODE_OPTIONS: `--require=${packageName`suppress-experimental-warnings`} --experimental-loader=${packageName`@dword-design/babel-register-esm`}`,
         }),
         ...(options.updateSnapshots && { SNAPSHOT_UPDATE: 1 }),
       },
