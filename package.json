@@ -33,7 +33,7 @@
     "@dword-design/babel-register-esm": "^1.0.0",
     "@dword-design/base-config-node": "^1.6.0",
     "@dword-design/ci": "^3.0.0",
-    "@dword-design/eslint-config": "3.0.3",
+    "@dword-design/eslint-config": "3.0.5",
     "@dword-design/functions": "^4.0.0",
     "@dword-design/package-json-schema": "^1.0.0",
     "@dword-design/personal-data": "^1.0.1",
