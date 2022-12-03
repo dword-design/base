@@ -1425,6 +1425,11 @@
   resolved "https://registry.yarnpkg.com/@dword-design/setup-test/-/setup-test-1.0.0.tgz#f4f7b2c963a4880cfa51556c10cd3bc58a303e8e"
   integrity sha512-ZF731+RQXFtUnwuraLyV387VJehNCP+vlCqmwU31SH59Sq0siz6iDuuEJBXpBRV3UVECfRsE+sND0Y/MmTym9w==
 
+"@dword-design/suppress-babel-register-esm-warning@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/suppress-babel-register-esm-warning/-/suppress-babel-register-esm-warning-1.1.0.tgz#59499b0ad5ab9c1671eec3cbb09c8fbbc9e72fcd"
+  integrity sha512-vLTve5Gc3+c/ywvBh1wkDQv8EChkiuXOeloLUYAa446q7k5ZYrZYtVzCfcMKNN3cnbg7cJBUkEwW/+lEYOpqdQ==
+
 "@dword-design/tester-plugin-tmp-dir@^2.0.0":
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/@dword-design/tester-plugin-tmp-dir/-/tester-plugin-tmp-dir-2.1.6.tgz#56ea383c31ce9ced144f00e1a322122126a98a12"
