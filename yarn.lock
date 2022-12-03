@@ -1331,10 +1331,10 @@
     fast-json-parse "^1.0.3"
     objectorarray "^1.0.3"
 
-"@dword-design/eslint-config@^2.0.0":
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-2.0.16.tgz#819587f0363604a57c4a37136ccf51438f96e3cf"
-  integrity sha512-+VJ9LyBcGiLjmvsWOc1Sob/kF7c+xrQZrgAIIHEU0syXOSLP0GWWcUcu+2JuM1ktDrJvTR2fmQhI4P/IXt4XQQ==
+"@dword-design/eslint-config@3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-3.0.3.tgz#cebc2027f6616ce16a8ba0bea5ecfda3ff2c2f4d"
+  integrity sha512-UcCoVKhhdExWG5NoOnpoyQ764oo3YWPEjGPmIzYpE0S2aMDdNKX+eqReCn7s2/SqVuTYpwbbwoU1a89dN+BSgg==
   dependencies:
     "@babel/eslint-parser" "^7.13.14"
     "@dword-design/babel-config" "^2.0.0"
@@ -1358,10 +1358,10 @@
     prettier "^2.1.1"
     vue-eslint-parser "^7.0.0"
 
-"@dword-design/eslint-config@^3.0.0":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-3.0.3.tgz#cebc2027f6616ce16a8ba0bea5ecfda3ff2c2f4d"
-  integrity sha512-UcCoVKhhdExWG5NoOnpoyQ764oo3YWPEjGPmIzYpE0S2aMDdNKX+eqReCn7s2/SqVuTYpwbbwoU1a89dN+BSgg==
+"@dword-design/eslint-config@^2.0.0":
+  version "2.0.16"
+  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-2.0.16.tgz#819587f0363604a57c4a37136ccf51438f96e3cf"
+  integrity sha512-+VJ9LyBcGiLjmvsWOc1Sob/kF7c+xrQZrgAIIHEU0syXOSLP0GWWcUcu+2JuM1ktDrJvTR2fmQhI4P/IXt4XQQ==
   dependencies:
     "@babel/eslint-parser" "^7.13.14"
     "@dword-design/babel-config" "^2.0.0"
