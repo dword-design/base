@@ -8,7 +8,7 @@ import stdEnv from 'std-env'
 
 import isCI from './is-ci.js'
 
-const require = createRequire(import.meta.url)
+const _require = createRequire(import.meta.url)
 
 const ajv = new Ajv({ allowUnionTypes: true })
 
@@ -58,7 +58,7 @@ export default async function (options) {
       '--require',
       packageName`@dword-design/pretest`,
       '--file',
-      require.resolve('@dword-design/setup-test'),
+      _require.resolve(packageName`@dword-design/setup-test`),
       ...(runDockerTests ? [] : ['--ignore', '**/*.usesdocker.spec.js']),
       '--timeout',
       130000,
@@ -72,7 +72,7 @@ export default async function (options) {
       env: {
         NODE_ENV: 'test',
         ...(this.packageConfig.type === 'module' && {
-          NODE_OPTIONS: `--require=${packageName`suppress-experimental-warnings`} --experimental-loader=${packageName`@dword-design/babel-register-esm`}`,
+          NODE_OPTIONS: `--require=${packageName`suppress-experimental-warnings`} --experimental-loader=${packageName`babel-register-esm`}`,
         }),
         ...(options.updateSnapshots && { SNAPSHOT_UPDATE: 1 }),
       },

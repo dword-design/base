@@ -1255,13 +1255,6 @@
     load-pkg "^4.0.0"
     param-case "^3.0.3"
 
-"@dword-design/babel-register-esm@^1.0.0":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@dword-design/babel-register-esm/-/babel-register-esm-1.0.7.tgz#197cd97935c30a467dcf7a54d346714579f3550f"
-  integrity sha512-+c6lYJ9OTv34sm3iLjQwQEvSoDjSWOYpbJhwhtD2AdeQoe5qKfQJBfH+LiKNgiTI1MXEhO0bLUMwjvE4Rsbh6A==
-  dependencies:
-    package-resolver "^1.1.0"
-
 "@dword-design/babel-register@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@dword-design/babel-register/-/babel-register-1.0.0.tgz#d6c702c92205700adeb0c97bb04eef66f12054c2"
@@ -2912,6 +2905,13 @@ babel-preset-current-node-syntax@^1.0.0:
     "@babel/plugin-syntax-optional-catch-binding" "^7.8.3"
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
     "@babel/plugin-syntax-top-level-await" "^7.8.3"
+
+"babel-register-esm@npm:@dword-design/babel-register-esm":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@dword-design/babel-register-esm/-/babel-register-esm-1.0.9.tgz#db5ec65ec057d32d7adaa1efb85632bc87c91b90"
+  integrity sha512-HDGYHbyH+bEsbMf1Iy32LbSw47NanAW9Z1LlSF7u9W8rEMd5SJVwskkq+CZMwO5xEBB75n44XnAjLXHeAA6VFg==
+  dependencies:
+    package-resolver "^1.1.0"
 
 balanced-match@^1.0.0:
   version "1.0.2"
