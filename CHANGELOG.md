@@ -1,3 +1,10 @@
+## [9.1.7](https://github.com/dword-design/base/compare/v9.1.6...v9.1.7) (2022-12-03)
+
+
+### Bug Fixes
+
+* suppress experimental warnings ([#575](https://github.com/dword-design/base/issues/575)) ([411c2bc](https://github.com/dword-design/base/commit/411c2bc8e44a1cd857cf8c1a4070f21a5a44d2f5))
+
 ## [9.1.6](https://github.com/dword-design/base/compare/v9.1.5...v9.1.6) (2022-12-03)
 
 
