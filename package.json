@@ -30,7 +30,6 @@
     "@commitlint/config-conventional": "^13.0.0",
     "@dword-design/babel-config": "^2.0.0",
     "@dword-design/babel-register": "^1.0.0",
-    "@dword-design/babel-register-esm": "^1.0.0",
     "@dword-design/base-config-node": "^1.6.0",
     "@dword-design/ci": "^3.0.0",
     "@dword-design/eslint-config": "^3.0.6",
@@ -39,9 +38,11 @@
     "@dword-design/personal-data": "^1.0.1",
     "@dword-design/pretest": "^1.0.0",
     "@dword-design/setup-test": "^1.0.0",
+    "@dword-design/suppress-babel-register-esm-warning": "^1.1.0",
     "@semantic-release/changelog": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
     "ajv": "^8.11.2",
+    "babel-register-esm": "npm:@dword-design/babel-register-esm",
     "c8": "^7.12.0",
     "commitizen": "^4.0.3",
     "constant-case": "^3.0.3",
@@ -80,6 +81,7 @@
     "spdx-expression-parse": "^3.0.0",
     "spdx-license-list": "^6.1.0",
     "std-env": "^2.3.0",
+    "suppress-experimental-warnings": "^1.1.0",
     "yaml": "^1.8.2"
   },
   "devDependencies": {

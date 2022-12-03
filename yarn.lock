@@ -1255,13 +1255,6 @@
     load-pkg "^4.0.0"
     param-case "^3.0.3"
 
-"@dword-design/babel-register-esm@^1.0.0":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@dword-design/babel-register-esm/-/babel-register-esm-1.0.5.tgz#c4e870d41965c6ad55cdae0740faa8d4a74220c5"
-  integrity sha512-INU7SI5Hzg+hDZm93RZBTBKLh3ynn9qvc1Dvj/bHre9JJhSF2m0ydvd1YTazLrMr0VDCC5IA3cAzwuJILYOQ8Q==
-  dependencies:
-    package-resolver "^1.1.0"
-
 "@dword-design/babel-register@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@dword-design/babel-register/-/babel-register-1.0.0.tgz#d6c702c92205700adeb0c97bb04eef66f12054c2"
@@ -1431,6 +1424,11 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@dword-design/setup-test/-/setup-test-1.0.0.tgz#f4f7b2c963a4880cfa51556c10cd3bc58a303e8e"
   integrity sha512-ZF731+RQXFtUnwuraLyV387VJehNCP+vlCqmwU31SH59Sq0siz6iDuuEJBXpBRV3UVECfRsE+sND0Y/MmTym9w==
+
+"@dword-design/suppress-babel-register-esm-warning@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/suppress-babel-register-esm-warning/-/suppress-babel-register-esm-warning-1.1.0.tgz#59499b0ad5ab9c1671eec3cbb09c8fbbc9e72fcd"
+  integrity sha512-vLTve5Gc3+c/ywvBh1wkDQv8EChkiuXOeloLUYAa446q7k5ZYrZYtVzCfcMKNN3cnbg7cJBUkEwW/+lEYOpqdQ==
 
 "@dword-design/tester-plugin-tmp-dir@^2.0.0":
   version "2.1.6"
@@ -2912,6 +2910,13 @@ babel-preset-current-node-syntax@^1.0.0:
     "@babel/plugin-syntax-optional-catch-binding" "^7.8.3"
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
     "@babel/plugin-syntax-top-level-await" "^7.8.3"
+
+"babel-register-esm@npm:@dword-design/babel-register-esm":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@dword-design/babel-register-esm/-/babel-register-esm-1.0.9.tgz#db5ec65ec057d32d7adaa1efb85632bc87c91b90"
+  integrity sha512-HDGYHbyH+bEsbMf1Iy32LbSw47NanAW9Z1LlSF7u9W8rEMd5SJVwskkq+CZMwO5xEBB75n44XnAjLXHeAA6VFg==
+  dependencies:
+    package-resolver "^1.1.0"
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -10524,6 +10529,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+suppress-experimental-warnings@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/suppress-experimental-warnings/-/suppress-experimental-warnings-1.1.0.tgz#7e69f3123d7b3495008e035c724f84014715f26a"
+  integrity sha512-fRFUSnCTJMNJb9wzziSrUNSb6Ww38EDG35cFfzwNET+AVUJB4qpDHqpQyAbH4S/J1RJ9DkP4h8k59m092hgJHg==
 
 svg-element-attributes@^1.3.1:
   version "1.3.1"
