@@ -1,3 +1,10 @@
+## [9.1.6](https://github.com/dword-design/base/compare/v9.1.5...v9.1.6) (2022-12-03)
+
+
+### Bug Fixes
+
+* eslint config ([252fe4e](https://github.com/dword-design/base/commit/252fe4e2a6e15514bacf4ff1cd9fb62857792549))
+
 ## [9.1.5](https://github.com/dword-design/base/compare/v9.1.4...v9.1.5) (2022-12-03)
 
 
