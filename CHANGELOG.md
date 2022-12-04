@@ -1,3 +1,10 @@
+## [9.1.8](https://github.com/dword-design/base/compare/v9.1.7...v9.1.8) (2022-12-04)
+
+
+### Bug Fixes
+
+* jiti babel ([#576](https://github.com/dword-design/base/issues/576)) ([9c4c74c](https://github.com/dword-design/base/commit/9c4c74c482bec44d9366ea560076faf8f8b65bfa))
+
 ## [9.1.7](https://github.com/dword-design/base/compare/v9.1.6...v9.1.7) (2022-12-03)
 
 
