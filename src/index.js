@@ -1,4 +1,4 @@
-import pipelineOperator from '@babel/plugin-proposal-pipeline-operator'
+import babelConfig from '@dword-design/babel-config'
 import { endent, identity } from '@dword-design/functions'
 import deepmerge from 'deepmerge'
 import depcheck from 'depcheck'
@@ -41,9 +41,7 @@ class Base {
       esmResolve: true,
       interopDefault: true,
       transformOptions: {
-        babel: {
-          plugins: [[pipelineOperator, { proposal: 'fsharp' }]],
-        },
+        babel: babelConfig,
       },
     })
     if (config === undefined) {
