@@ -3947,10 +3947,10 @@ depcheck-detector-execa@^2.0.0:
     read-pkg-up "^7"
     resolve-from "^5.0.0"
 
-depcheck-detector-package-name@^2.0.0:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/depcheck-detector-package-name/-/depcheck-detector-package-name-2.0.8.tgz#5007550deb4363fcc7712ba90a61c4f4f0a65926"
-  integrity sha512-LZQxahJ+9aMyG++KNSMgufWWLZlDj2ywM/EXNKjR1zD08iQ+epXN9BqHp96AaHJM69/J4aIpyf3zkX3hocKpTw==
+depcheck-detector-package-name@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/depcheck-detector-package-name/-/depcheck-detector-package-name-3.0.0.tgz#54a0bbbe97eb09c5476c42a7cc2d0becd2491c77"
+  integrity sha512-UjnGnjEvlbC01c2DZMXCHNZaVmLcpTozEEIxO7FaQ0Qc0rPBGLAtsayIfkfQGTVFjmiC+yOV3jpbCToiv/ilgg==
 
 depcheck-package-name@^2.0.0:
   version "2.0.6"

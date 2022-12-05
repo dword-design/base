@@ -50,7 +50,7 @@
     "deepmerge": "^4.2.2",
     "depcheck": "npm:@dword-design/depcheck",
     "depcheck-detector-execa": "^2.0.0",
-    "depcheck-detector-package-name": "^2.0.0",
+    "depcheck-detector-package-name": "^3.0.0",
     "depcheck-package-name": "^2.0.0",
     "depcheck-parser-babel": "^2.0.0",
     "eslint": "~7.32.0",
