@@ -1,27 +1,70 @@
-import { join, map, omit } from '@dword-design/functions'
+import {
+  endent,
+  isEmpty,
+  join,
+  map,
+  mapValues,
+  omit,
+  values,
+} from '@dword-design/functions'
 import depcheck from 'depcheck'
 
-const processResult = (caption, deps) => {
-  if (deps.length > 0) {
-    throw new Error(
-      [caption, ...(deps |> map(dep => `* ${dep}`))] |> join('\n')
-    )
-  }
-}
-
 export default async function () {
-  let result = await depcheck('.', {
+  const dependenciesResult = await depcheck('.', {
     package: this.packageConfig |> omit(['devDependencies']),
     skipMissing: true,
     ...this.config.depcheckConfig,
     ignorePatterns: ['*.spec.js', 'package.json'],
   })
-  processResult('Unused dependencies', result.dependencies)
-  result = await depcheck('.', {
+
+  const devDependenciesResult = await depcheck('.', {
     package: this.packageConfig |> omit(['dependencies']),
     skipMissing: true,
     ...this.config.depcheckConfig,
     ignorePatterns: ['!*.spec.js'],
   })
-  processResult('Unused devDependencies', result.devDependencies)
+
+  const result = {
+    dependencies: dependenciesResult.dependencies,
+    devDependencies: devDependenciesResult.devDependencies,
+    invalidFiles: {
+      ...dependenciesResult.invalidFiles,
+      ...devDependenciesResult.invalidFiles,
+    },
+  }
+
+  const errorMessage =
+    [
+      ...(result.dependencies.length > 0
+        ? [
+            endent`
+            Unused dependencies
+            ${result.dependencies |> map(dep => `* ${dep}`)}
+          `,
+          ]
+        : []),
+      ...(result.devDependencies.length > 0
+        ? [
+            endent`
+            Unused devDependencies
+            ${result.devDependencies |> map(dep => `* ${dep}`)}
+          `,
+          ]
+        : []),
+      ...(isEmpty(result.invalidFiles)
+        ? []
+        : [
+            endent`
+            Invalid files
+            ${
+              result.invalidFiles
+              |> mapValues((error, name) => `* ${name}: ${error}`)
+              |> values
+            }
+          `,
+          ]),
+    ] |> join('\n\n')
+  if (errorMessage) {
+    throw new Error(errorMessage)
+  }
 }
