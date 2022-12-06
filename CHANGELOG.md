@@ -1,3 +1,10 @@
+## [9.1.9](https://github.com/dword-design/base/compare/v9.1.8...v9.1.9) (2022-12-06)
+
+
+### Bug Fixes
+
+* depcheck invalid files ([#579](https://github.com/dword-design/base/issues/579)) ([1773383](https://github.com/dword-design/base/commit/17733838f2759754942d171c76968cdb9f880cab))
+
 ## [9.1.8](https://github.com/dword-design/base/compare/v9.1.7...v9.1.8) (2022-12-04)
 
 
