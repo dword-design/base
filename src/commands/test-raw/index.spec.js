@@ -209,7 +209,7 @@ export default tester(
         * change-case
 
         Invalid files
-        * ${process.cwd()}/foo: Error: foo
+        * ${P.resolve('foo')}: Error: foo
       `),
     },
     'invalid name': {
