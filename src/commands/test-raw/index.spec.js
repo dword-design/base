@@ -182,6 +182,36 @@ export default tester(
         ])
       },
     },
+    'invalid file': {
+      files: {
+        foo: '',
+        'package.json': JSON.stringify({
+          dependencies: {
+            'change-case': '^1.0.0',
+          },
+        }),
+      },
+      test: () =>
+        expect(
+          new Base({
+            depcheckConfig: {
+              specials: [
+                path => {
+                  if (path === P.resolve('foo')) {
+                    throw new Error('foo')
+                  }
+                },
+              ],
+            },
+          }).test()
+        ).rejects.toThrow(endent`
+        Unused dependencies
+        * change-case
+
+        Invalid files
+        * ${P.resolve('foo')}: Error: foo
+      `),
+    },
     'invalid name': {
       files: {
         'package.json': JSON.stringify({ name: '_foo' }),
