@@ -1,3 +1,10 @@
+## [9.1.10](https://github.com/dword-design/base/compare/v9.1.9...v9.1.10) (2023-01-05)
+
+
+### Bug Fixes
+
+* fix depcheck formatting ([#584](https://github.com/dword-design/base/issues/584)) ([d59aa63](https://github.com/dword-design/base/commit/d59aa6326d93f1ca9612653b7019dd27b08b1117))
+
 ## [9.1.9](https://github.com/dword-design/base/compare/v9.1.8...v9.1.9) (2022-12-06)
 
 
