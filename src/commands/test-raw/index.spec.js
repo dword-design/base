@@ -466,11 +466,12 @@ export default tester(
         expect(this.base.test() |> await |> property('all')).toMatch('run test')
       },
     },
-    'unused dependency': {
+    'unused dependencies': {
       files: {
         'package.json': JSON.stringify({
           dependencies: {
             'change-case': '^1.0.0',
+            foo: '^1.0.0',
           },
         }),
         'src/index.js': 'export default 1',
@@ -479,6 +480,7 @@ export default tester(
         return expect(this.base.test()).rejects.toThrow(endent`
           Unused dependencies
           * change-case
+          * foo
         `)
       },
     },
