@@ -39,7 +39,7 @@ export default async function () {
         ? [
             endent`
             Unused dependencies
-            ${result.dependencies |> map(dep => `* ${dep}`)}
+            ${result.dependencies |> map(dep => `* ${dep}`) |> join('\n')}
           `,
           ]
         : []),
@@ -47,7 +47,7 @@ export default async function () {
         ? [
             endent`
             Unused devDependencies
-            ${result.devDependencies |> map(dep => `* ${dep}`)}
+            ${result.devDependencies |> map(dep => `* ${dep}`) |> join('\n')}
           `,
           ]
         : []),
@@ -60,6 +60,7 @@ export default async function () {
               result.invalidFiles
               |> mapValues((error, name) => `* ${name}: ${error}`)
               |> values
+              |> join('\n')
             }
           `,
           ]),
