@@ -21,6 +21,9 @@ const run = async () => {
               { description: 'Allow empty commits', name: '--allow-empty' },
             ],
           },
+          depcheck: {
+            handler: () => base.depcheck(),
+          },
           lint: {
             handler: () => base.lint(),
           },

@@ -7,6 +7,7 @@ export default function () {
   const commandNames = {
     checkUnknownFiles: true,
     commit: true,
+    depcheck: true,
     lint: true,
     prepare: true,
     ...(this.config.testInContainer && { 'test:raw': true }),
