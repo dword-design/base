@@ -1,3 +1,10 @@
+# [9.2.0](https://github.com/dword-design/base/compare/v9.1.10...v9.2.0) (2023-01-06)
+
+
+### Features
+
+* add depcheck command ([#585](https://github.com/dword-design/base/issues/585)) ([7cbcfa4](https://github.com/dword-design/base/commit/7cbcfa4c8579662660b976abf0cdbcaed2d7a938))
+
 ## [9.1.10](https://github.com/dword-design/base/compare/v9.1.9...v9.1.10) (2023-01-05)
 
 
