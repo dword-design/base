@@ -383,7 +383,7 @@ export default tester(
         }),
         src: {
           'index.spec.js': endent`
-        import { execaCommand } from 'execa'
+        import { execa } from 'execa'
         import P from 'path'
 
         export default {

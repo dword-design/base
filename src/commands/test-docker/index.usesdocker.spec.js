@@ -215,10 +215,7 @@ export default tester(
     },
     works: async () => {
       await outputFiles({
-        'is-docker.cjs': await fs.readFile(
-          require.resolve('is-docker'),
-          'utf8'
-        ),
+        'is-docker.js': await fs.readFile(require.resolve('is-docker'), 'utf8'),
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
@@ -231,7 +228,7 @@ export default tester(
           2
         ),
         'test.js': endent`
-        import isDocker from './is-docker.cjs'
+        import isDocker from './is-docker.js'
         
         if (!isDocker) {
           process.exit(1)

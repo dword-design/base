@@ -68,6 +68,7 @@
     "load-pkg": "^4.0.0",
     "make-cli": "^2.0.0",
     "mocha": "^10.2.0",
+    "mocha-spec-reporter-with-file-names": "^0.0.3",
     "mocha-ui-exports-auto-describe": "^2.0.0",
     "nyc": "^15.0.0",
     "output-files": "^2.0.0",
