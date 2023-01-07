@@ -1,7 +1,7 @@
 import { endent } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import execa from 'execa'
+import { execaCommand } from 'execa'
 import outputFiles from 'output-files'
 
 import { Base } from '@/src/index.js'
@@ -9,8 +9,8 @@ import { Base } from '@/src/index.js'
 export default tester(
   {
     async badges() {
-      await execa.command('git init')
-      await execa.command(
+      await execaCommand('git init')
+      await execaCommand(
         'git remote add origin git@github.com:dword-design/bar.git'
       )
       await outputFiles({
@@ -26,8 +26,8 @@ export default tester(
       expect(new Base().getReadmeString()).toMatchSnapshot(this)
     },
     async 'badges private'() {
-      await execa.command('git init')
-      await execa.command(
+      await execaCommand('git init')
+      await execaCommand(
         'git remote add origin git@github.com:dword-design/bar.git'
       )
       await outputFiles({

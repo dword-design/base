@@ -1,7 +1,7 @@
 import { endent, property } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import execa from 'execa'
+import { execaCommand } from 'execa'
 import fs from 'fs-extra'
 import { createRequire } from 'module'
 import outputFiles from 'output-files'
@@ -189,7 +189,7 @@ export default tester(
           run()
         `,
       })
-      await execa.command('yarn add @dword-design/puppeteer xvfb')
+      await execaCommand('yarn add @dword-design/puppeteer xvfb')
       await new Base().testDocker({ log: false })
     },
     'update snapshots': async () => {
@@ -239,7 +239,7 @@ export default tester(
 
       `,
       })
-      await execa.command('yarn')
+      await execaCommand('yarn')
 
       const base = new Base()
       expect(
@@ -256,7 +256,7 @@ export default tester(
         try {
           await test()
         } finally {
-          await execa.command(`docker volume rm ${P.basename(process.cwd())}`)
+          await execaCommand(`docker volume rm ${P.basename(process.cwd())}`)
         }
       },
     },

@@ -7,8 +7,8 @@ import {
   replace,
 } from '@dword-design/functions'
 import { constantCase } from 'constant-case'
-import execa from 'execa'
-import findUp from 'find-up'
+import { execa } from 'execa'
+import { findUpSync } from 'find-up'
 import fs from 'fs-extra'
 import os from 'os'
 
@@ -18,7 +18,7 @@ export default async function (options) {
   const volumeName =
     this.packageConfig.name |> replace('@', '') |> replace('/', '-')
 
-  const envSchemaPath = findUp.sync('.env.schema.json')
+  const envSchemaPath = findUpSync('.env.schema.json')
 
   const envVariableNames =
     (envSchemaPath ? await fs.readJson(envSchemaPath) : {})

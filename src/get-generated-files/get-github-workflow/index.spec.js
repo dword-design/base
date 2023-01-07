@@ -1,7 +1,7 @@
 import chdir from '@dword-design/chdir'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import execa from 'execa'
+import { execaCommand } from 'execa'
 import fs from 'fs-extra'
 import isCI from 'is-ci'
 import outputFiles from 'output-files'
@@ -13,7 +13,7 @@ export default tester(
   {
     'GitHub CLI exists': async () => {
       if (isCI) {
-        await execa.command('gh repo list')
+        await execaCommand('gh repo list')
       }
     },
     'job matrix'() {

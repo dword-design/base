@@ -1,6 +1,6 @@
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import execa from 'execa'
+import { execaCommand } from 'execa'
 import fs from 'fs-extra'
 import outputFiles from 'output-files'
 
@@ -71,13 +71,13 @@ export default tester(
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
     },
     async 'git repo'() {
-      await execa.command('git init')
-      await execa.command('git remote add origin git@github.com:bar/foo.git')
+      await execaCommand('git init')
+      await execaCommand('git remote add origin git@github.com:bar/foo.git')
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
     },
     'non-github repo': async () => {
-      await execa.command('git init')
-      await execa.command('git remote add origin git@special.com:bar/foo.git')
+      await execaCommand('git init')
+      await execaCommand('git remote add origin git@special.com:bar/foo.git')
       expect(() => new Base().getPackageConfig()).toThrow(
         'Only GitHub repositories are supported.'
       )
@@ -85,8 +85,8 @@ export default tester(
     private: () =>
       expect(new Base().getPackageConfig({ private: true })).toBeTruthy(),
     async 'sub-folder'() {
-      await execa.command('git init')
-      await execa.command('git remote add origin git@github.com:bar/foo.git')
+      await execaCommand('git init')
+      await execaCommand('git remote add origin git@github.com:bar/foo.git')
       await outputFiles({
         test: {},
       })

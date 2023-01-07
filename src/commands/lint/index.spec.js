@@ -1,7 +1,7 @@
 import { endent } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import execa from 'execa'
+import { execaCommand } from 'execa'
 import fs from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
@@ -46,10 +46,8 @@ export default tester(
         'package.json',
         JSON.stringify({ name: '@scope/bar' })
       )
-      await execa.command('git init')
-      await execa.command(
-        'git remote add origin https://github.com/xyz/foo.git'
-      )
+      await execaCommand('git init')
+      await execaCommand('git remote add origin https://github.com/xyz/foo.git')
 
       const base = new Base()
       await base.prepare()
@@ -59,8 +57,8 @@ export default tester(
     },
     'package name with dot': async () => {
       await fs.outputFile('package.json', JSON.stringify({ name: 'foo.de' }))
-      await execa.command('git init')
-      await execa.command(
+      await execaCommand('git init')
+      await execaCommand(
         'git remote add origin https://github.com/xyz/foo.de.git'
       )
 

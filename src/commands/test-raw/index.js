@@ -2,9 +2,9 @@ import { endent, flatMap, includes } from '@dword-design/functions'
 import packageJsonSchema from '@dword-design/package-json-schema'
 import Ajv from 'ajv'
 import packageName from 'depcheck-package-name'
-import execa from 'execa'
+import { execa } from 'execa'
 import { createRequire } from 'module'
-import stdEnv from 'std-env'
+import { isTest } from 'std-env'
 
 import isCI from './is-ci.js'
 
@@ -15,7 +15,7 @@ const ajv = new Ajv({ allowUnionTypes: true })
 const validatePackageJson = ajv.compile(packageJsonSchema)
 
 export default async function (options) {
-  options = { log: !stdEnv.test, patterns: [], ...options }
+  options = { log: !isTest, patterns: [], ...options }
   if (options.patterns.length === 0) {
     if (!validatePackageJson(this.packageConfig)) {
       throw new Error(endent`
