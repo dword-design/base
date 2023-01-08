@@ -1,3 +1,10 @@
+## [9.2.3](https://github.com/dword-design/base/compare/v9.2.2...v9.2.3) (2023-01-08)
+
+
+### Bug Fixes
+
+* foo ([558323b](https://github.com/dword-design/base/commit/558323b98590758a55adc88d016063305afc368e))
+
 ## [9.2.2](https://github.com/dword-design/base/compare/v9.2.1...v9.2.2) (2023-01-08)
 
 
