@@ -53,7 +53,7 @@
     "depcheck-detector-execa": "^3.0.4",
     "depcheck-detector-package-name": "^3.0.0",
     "depcheck-package-name": "^2.0.0",
-    "depcheck-parser-babel": "^2.0.0",
+    "depcheck-parser-babel": "^3.0.0",
     "eslint": "~7.32.0",
     "execa": "^6.1.0",
     "find-up": "^6.3.0",
