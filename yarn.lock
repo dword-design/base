@@ -1304,10 +1304,15 @@
     load-pkg "^4.0.0"
     micromatch "^4.0.2"
 
-"@dword-design/chdir@^2.0.0", "@dword-design/chdir@^2.0.6":
+"@dword-design/chdir@^2.0.0":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@dword-design/chdir/-/chdir-2.1.1.tgz#9d7ce6b3530381165415d6b8ed0b0994071ab0e8"
   integrity sha512-PdWo7bwhmplqhJyTF8CNPpECj6Ivv85i+N9AAdTvL0b1xr910xJDAWuYUDUu/Lf1fz5mVeFqarNaxPLsQwNfig==
+
+"@dword-design/chdir@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/chdir/-/chdir-3.0.0.tgz#77132878b6542fc9a723e1eb7faf4b4c75e54b58"
+  integrity sha512-sGIj7DYrxGX8BP1BFRw0DgRWEAL+DyFxvS7iVgNaa4L6n1GU5mmFuqjgPWR88GiP5Sc0IGbBfk7SO57WJvwrkQ==
 
 "@dword-design/ci@^3.0.0":
   version "3.0.9"

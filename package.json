@@ -86,7 +86,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
-    "@dword-design/chdir": "^2.0.6",
+    "@dword-design/chdir": "^3.0.0",
     "@dword-design/tester": "^2.0.0",
     "@dword-design/tester-plugin-tmp-dir": "^2.0.0",
     "is-docker": "^3.0.0",
