@@ -10,7 +10,7 @@ import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import packageName from 'depcheck-package-name'
 import fs from 'fs-extra'
-import globby from 'globby'
+import { globby } from 'globby'
 import outputFiles from 'output-files'
 import P from 'path'
 import unifyMochaOutput from 'unify-mocha-output'
@@ -383,7 +383,7 @@ export default tester(
         }),
         src: {
           'index.spec.js': endent`
-        import execa from 'execa'
+        import { execa } from 'execa'
         import P from 'path'
 
         export default {

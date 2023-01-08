@@ -2,7 +2,6 @@
 
 exports[`index coverage file extension 1`] = `
 "
-
   0 passing
 
 -----------|---------|----------|---------|---------|-------------------
@@ -15,13 +14,13 @@ All files  |     100 |      100 |     100 |     100 |
 
 exports[`index multiple patterns 1`] = `
 "
-
+src/index1.spec.js
   index1
-    ✓ valid
+     ✓ valid
 
+src/index2.spec.js
   index2
-    ✓ valid
-
+     ✓ valid
 
   2 passing
 

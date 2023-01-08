@@ -1,5 +1,5 @@
 import { filter, fromPairs, keys, map } from '@dword-design/functions'
-import globby from 'globby'
+import { globby } from 'globby'
 import ignore from 'ignore'
 
 import commonAllowedMatches from './common-allowed-matches.js'

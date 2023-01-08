@@ -8,9 +8,9 @@ import {
 } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import execa from 'execa'
+import { execa, execaCommand } from 'execa'
 import fs from 'fs-extra'
-import globby from 'globby'
+import { globby } from 'globby'
 import outputFiles from 'output-files'
 
 import { Base } from '@/src/index.js'
@@ -27,23 +27,23 @@ export default tester(
       ).toBeTruthy()
     },
     'commit valid': async () => {
-      await execa.command('git init')
-      await execa.command('git config user.email "foo@bar.de"')
-      await execa.command('git config user.name "foo"')
+      await execaCommand('git init')
+      await execaCommand('git config user.email "foo@bar.de"')
+      await execaCommand('git config user.name "foo"')
 
       const base = new Base()
       await base.prepare()
       await execa('git', ['commit', '--allow-empty', '-m', 'fix: foo'])
     },
     'commit with linting errors': async () => {
-      await execa.command('git init')
-      await execa.command('git config user.email "foo@bar.de"')
-      await execa.command('git config user.name "foo"')
+      await execaCommand('git init')
+      await execaCommand('git config user.email "foo@bar.de"')
+      await execaCommand('git config user.name "foo"')
 
       const base = new Base()
       await base.prepare()
       await expect(
-        execa.command('git commit --allow-empty -m foo')
+        execaCommand('git commit --allow-empty -m foo')
       ).rejects.toThrow('subject may not be empty')
     },
     'custom prepare': async () => {
@@ -52,8 +52,8 @@ export default tester(
       expect(await fs.readFile('foo.txt', 'utf8')).toEqual('bar')
     },
     async valid() {
-      await execa.command('git init')
-      await execa.command(
+      await execaCommand('git init')
+      await execaCommand(
         'git remote add origin git@github.com:dword-design/bar.git'
       )
       await outputFiles({

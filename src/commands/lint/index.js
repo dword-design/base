@@ -1,4 +1,4 @@
-import execa from 'execa'
+import { execa } from 'execa'
 import { createRequire } from 'module'
 import parsePackagejsonName from 'parse-packagejson-name'
 

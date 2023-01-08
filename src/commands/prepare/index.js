@@ -1,6 +1,6 @@
 import { first, keys } from '@dword-design/functions'
 import packageName from 'depcheck-package-name'
-import execa from 'execa'
+import { execa, execaCommand } from 'execa'
 import fs from 'fs-extra'
 import { createRequire } from 'module'
 import outputFiles from 'output-files'
@@ -14,7 +14,7 @@ const commitlintPackageConfig = _require(
 export default async function () {
   await outputFiles(this.generatedFiles)
   if (await fs.exists('.git')) {
-    await execa.command('husky install')
+    await execaCommand('husky install')
     await execa('husky', [
       'set',
       '.husky/commit-msg',

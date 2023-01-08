@@ -1,8 +1,8 @@
-import execa from 'execa'
+import { execaCommandSync } from 'execa'
 
 export default () => {
   try {
-    execa.commandSync('is-ci')
+    execaCommandSync('is-ci')
 
     return true
   } catch {

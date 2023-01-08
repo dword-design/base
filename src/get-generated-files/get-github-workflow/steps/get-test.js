@@ -1,16 +1,16 @@
 import { fromPairs, keys, map } from '@dword-design/functions'
 import { constantCase } from 'constant-case'
-import findUp from 'find-up'
+import { findUpStop, findUpSync } from 'find-up'
 import fs from 'fs-extra'
 import P from 'path'
 
 export default () => {
-  const envSchemaPath = findUp.sync(path => {
+  const envSchemaPath = findUpSync(path => {
     if (fs.existsSync('.env.schema.json')) {
       return '.env.schema.json'
     }
     if (fs.existsSync(P.join(path, 'package.json'))) {
-      return findUp.stop
+      return findUpStop
     }
 
     return undefined
