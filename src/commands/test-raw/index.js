@@ -51,7 +51,7 @@ export default async function (options) {
       'dist',
       'mocha',
       '--reporter',
-      packageName`mocha-spec-reporter-with-file-names`,
+      _require.resolve(packageName`mocha-spec-reporter-with-file-names`),
       '--ui',
       packageName`mocha-ui-exports-auto-describe`,
       '--require',
