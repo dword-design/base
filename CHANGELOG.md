@@ -1,3 +1,10 @@
+## [9.2.2](https://github.com/dword-design/base/compare/v9.2.1...v9.2.2) (2023-01-08)
+
+
+### Bug Fixes
+
+* trigger release ([446b2aa](https://github.com/dword-design/base/commit/446b2aa7e7c9ab5f84186550442270badebc749a))
+
 ## [9.2.1](https://github.com/dword-design/base/compare/v9.2.0...v9.2.1) (2023-01-08)
 
 
