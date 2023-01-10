@@ -13,7 +13,7 @@ import { transform as pluginNameToPackageName } from 'plugin-name-to-package-nam
 
 import checkUnknownFiles from './commands/check-unknown-files/index.js'
 import commit from './commands/commit/index.js'
-import depcheckMethod from './commands/depcheck.js'
+import depcheckMethod from './commands/depcheck/index.js'
 import lint from './commands/lint/index.js'
 import prepare from './commands/prepare/index.js'
 import test from './commands/test/index.js'

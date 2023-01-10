@@ -53,34 +53,6 @@ export default tester(
         )
       },
     },
-    'base config in dev dependencies': {
-      config: { name: 'foo' },
-      files: {
-        'node_modules/base-config-foo/index.js': 'module.exports = {}',
-        'package.json': JSON.stringify({
-          devDependencies: {
-            'base-config-foo': '^1.0.0',
-          },
-        }),
-      },
-    },
-    'base config in prod dependencies': {
-      config: { name: 'foo' },
-      files: {
-        'node_modules/base-config-foo/index.js': 'module.exports = {}',
-        'package.json': JSON.stringify({
-          dependencies: {
-            'base-config-foo': '^1.0.0',
-          },
-        }),
-      },
-      test() {
-        return expect(this.base.test()).rejects.toThrow(endent`
-          Unused dependencies
-          * base-config-foo
-        `)
-      },
-    },
     'bin outside dist': {
       files: {
         'package.json': JSON.stringify({ bin: { foo: './src/cli.js' } }),
@@ -112,20 +84,6 @@ export default tester(
         return expect(
           this.base.test() |> await |> property('all') |> unifyMochaOutput
         ).toMatchSnapshot(this)
-      },
-    },
-    'depcheck ignoreMatches': {
-      config: {
-        depcheckConfig: {
-          ignoreMatches: ['foo'],
-        },
-      },
-      files: {
-        'package.json': JSON.stringify({
-          dependencies: {
-            foo: '^1.0.0',
-          },
-        }),
       },
     },
     empty: {},
@@ -182,36 +140,6 @@ export default tester(
         ])
       },
     },
-    'invalid file': {
-      files: {
-        foo: '',
-        'package.json': JSON.stringify({
-          dependencies: {
-            'change-case': '^1.0.0',
-          },
-        }),
-      },
-      test: () =>
-        expect(
-          new Base({
-            depcheckConfig: {
-              specials: [
-                path => {
-                  if (path === P.resolve('foo')) {
-                    throw new Error('foo')
-                  }
-                },
-              ],
-            },
-          }).test()
-        ).rejects.toThrow(endent`
-        Unused dependencies
-        * change-case
-
-        Invalid files
-        * ${P.resolve('foo')}: Error: foo
-      `),
-    },
     'invalid name': {
       files: {
         'package.json': JSON.stringify({ name: '_foo' }),
@@ -240,26 +168,6 @@ export default tester(
         return expect(this.base.test()).rejects.toThrow(
           "error  'foo' is assigned a value but never used  no-unused-vars"
         )
-      },
-    },
-    'mark base as used dependency': {
-      files: {
-        'node_modules/@dword-design': {},
-        'package.json': JSON.stringify({
-          devDependencies: {
-            '@dword-design/base': '^1.0.0',
-          },
-          scripts: {
-            test: 'foo',
-          },
-        }),
-      },
-      async test() {
-        await fs.symlink(
-          P.join('..', '..', '..'),
-          P.join('node_modules', '@dword-design', 'base')
-        )
-        await this.base.test()
       },
     },
     minimal: {
@@ -402,30 +310,6 @@ export default tester(
         await this.base.test()
       },
     },
-    'prod dependency only in test': {
-      files: {
-        'node_modules/bar/index.js': 'module.exports = 1',
-        'package.json': JSON.stringify({
-          dependencies: {
-            bar: '^1.0.0',
-          },
-        }),
-        src: {
-          'index.js': 'export default 1',
-          'index.spec.js': endent`
-        import bar from 'bar'
-
-        export default bar
-      `,
-        },
-      },
-      test() {
-        return expect(this.base.test()).rejects.toThrow(endent`
-          Unused dependencies
-          * bar
-        `)
-      },
-    },
     snapshot: {
       files: {
         'index.spec.js': endent`
@@ -476,8 +360,8 @@ export default tester(
         }),
         'src/index.js': 'export default 1',
       },
-      test() {
-        return expect(this.base.test()).rejects.toThrow(endent`
+      async test() {
+        await expect(this.base.test()).rejects.toThrow(endent`
           Unused dependencies
           * change-case
           * foo
