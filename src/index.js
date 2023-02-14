@@ -97,6 +97,7 @@ class Base {
       seeAlso: [],
       supportedNodeVersions: [14, 16, 18],
       syncKeywords: true,
+      windows: true,
     }
 
     const mergeOptions = {
