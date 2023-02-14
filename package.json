@@ -55,7 +55,7 @@
     "depcheck-package-name": "^3.0.0",
     "depcheck-parser-babel": "^3.0.1",
     "eslint": "~7.32.0",
-    "execa": "^6.1.0",
+    "execa": "^7.0.0",
     "find-up": "^6.3.0",
     "fs-extra": "^11.1.0",
     "get-projectz-readme-section-regex": "^3.0.0",
