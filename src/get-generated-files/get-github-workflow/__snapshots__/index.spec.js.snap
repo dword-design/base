@@ -147,6 +147,149 @@ Object {
 }
 `;
 
+exports[`index job matrix no windows 1`] = `
+Object {
+  "jobs": Object {
+    "cancel-existing": Object {
+      "if": "!contains(github.event.head_commit.message, '[skip ci]')",
+      "runs-on": "ubuntu-latest",
+      "steps": Array [
+        Object {
+          "env": Object {
+            "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
+          },
+          "uses": "rokroskar/workflow-run-cleanup-action@v0.3.3",
+        },
+      ],
+    },
+    "release": Object {
+      "needs": "test",
+      "runs-on": "ubuntu-latest",
+      "steps": Array [
+        Object {
+          "uses": "actions/checkout@v3",
+          "with": Object {
+            "lfs": true,
+            "ref": "\${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
+          },
+        },
+        Object {
+          "uses": "actions/setup-node@v3",
+          "with": Object {
+            "node-version": 16,
+          },
+        },
+        Object {
+          "run": "git config --global user.email \\"actions@github.com\\"",
+        },
+        Object {
+          "run": "git config --global user.name \\"GitHub Actions\\"",
+        },
+        Object {
+          "run": "yarn --frozen-lockfile",
+        },
+        Object {
+          "run": "yarn checkUnknownFiles",
+        },
+        Object {
+          "run": "yarn lint",
+        },
+        Object {
+          "env": Object {
+            "GITHUB_REPOSITORY": "\${{ secrets.GITHUB_REPOSITORY }}",
+            "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
+          },
+          "name": "Push changed files",
+          "run": "yarn dw-ci push-changed-files",
+        },
+        Object {
+          "env": Object {
+            "GITHUB_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
+          },
+          "if": "github.ref == 'refs/heads/master'",
+          "name": "Release",
+          "run": "yarn semantic-release",
+        },
+      ],
+    },
+    "test": Object {
+      "needs": "cancel-existing",
+      "runs-on": "\${{ matrix.os }}",
+      "steps": Array [
+        Object {
+          "uses": "actions/checkout@v3",
+          "with": Object {
+            "fetch-depth": 0,
+            "lfs": true,
+          },
+        },
+        Object {
+          "uses": "actions/setup-node@v3",
+          "with": Object {
+            "node-version": "\${{ matrix.node }}",
+          },
+        },
+        Object {
+          "run": "yarn --frozen-lockfile",
+        },
+        Object {
+          "env": Object {
+            "GH_TOKEN": "\${{ secrets.GITHUB_TOKEN }}",
+          },
+          "run": "yarn test",
+        },
+        Object {
+          "if": "failure()",
+          "uses": "actions/upload-artifact@v3",
+          "with": Object {
+            "name": "Image Snapshot Diffs",
+            "path": "**/__image_snapshots__/__diff_output__",
+          },
+        },
+        Object {
+          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 16",
+          "uses": "codecov/codecov-action@v3",
+          "with": Object {
+            "token": "\${{ secrets.CODECOV_TOKEN }}",
+          },
+        },
+      ],
+      "strategy": Object {
+        "matrix": Object {
+          "include": Array [
+            Object {
+              "node": 14,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 16,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 18,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 16,
+              "os": "macos-latest",
+            },
+          ],
+        },
+      },
+    },
+  },
+  "name": "build",
+  "on": Object {
+    "pull_request": Object {},
+    "push": Object {
+      "branches": Array [
+        "master",
+      ],
+    },
+  },
+}
+`;
+
 exports[`index no job matrix 1`] = `
 Object {
   "jobs": Object {

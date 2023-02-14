@@ -64,7 +64,9 @@ export default config => ({
             os: 'ubuntu-latest',
           })),
           { node: config.nodeVersion, os: 'macos-latest' },
-          { node: config.nodeVersion, os: 'windows-latest' },
+          ...(config.windows
+            ? [{ node: config.nodeVersion, os: 'windows-latest' }]
+            : []),
         ],
       },
     },
