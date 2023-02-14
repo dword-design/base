@@ -30,6 +30,7 @@ $ yarn add foo
     18,
   ],
   "syncKeywords": true,
+  "windows": true,
 }
 `;
 
@@ -73,5 +74,6 @@ Object {
     2,
   ],
   "syncKeywords": true,
+  "windows": true,
 }
 `;
