@@ -1,3 +1,10 @@
+# [9.3.0](https://github.com/dword-design/base/compare/v9.2.4...v9.3.0) (2023-02-14)
+
+
+### Features
+
+* disable windows ([#596](https://github.com/dword-design/base/issues/596)) ([d74d751](https://github.com/dword-design/base/commit/d74d751b0bfd830c6324ef1da56d002b9d6d7c7e))
+
 ## [9.2.4](https://github.com/dword-design/base/compare/v9.2.3...v9.2.4) (2023-01-10)
 
 
