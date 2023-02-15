@@ -17,7 +17,10 @@ export default tester(
       ).toEqual('dist/index.scss')
     },
     deploy: async () => {
-      await fs.outputFile('package.json', JSON.stringify({ type: 'module', deploy: true }))
+      await fs.outputFile(
+        'package.json',
+        JSON.stringify({ deploy: true, type: 'module' })
+      )
       expect(new Base().getPackageConfig().deploy).toBeTruthy()
     },
     async empty() {
@@ -43,7 +46,6 @@ export default tester(
           files: 'foo',
           keywords: ['foo', 'bar'],
           license: 'ISC',
-          type: 'module',
           main: 'dist/index.scss',
           name: 'foo',
           peerDependencies: {
@@ -56,6 +58,7 @@ export default tester(
             foo: 'echo \\"foo\\"',
             test: 'echo \\"foo\\"',
           },
+          type: 'module',
           types: 'types.d.ts',
           version: '1.1.0',
         })
@@ -77,7 +80,10 @@ export default tester(
       )
     },
     private: async () => {
-      await fs.outputFile('package.json', JSON.stringify({ type: 'module', private: true }))
+      await fs.outputFile(
+        'package.json',
+        JSON.stringify({ private: true, type: 'module' })
+      )
       expect(new Base().getPackageConfig().private).toBeTruthy()
     },
     async 'sub-folder'() {
