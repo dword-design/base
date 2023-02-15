@@ -22,7 +22,7 @@ import testRaw from './commands/test-raw/index.js'
 import getDepcheckSpecialBase from './get-depcheck-special-base/index.js'
 import getEditorIgnoreConfig from './get-generated-files/get-editor-ignore/index.js'
 import getEslintConfig from './get-generated-files/get-eslint/index.js'
-import getGithubCodespacesConfig from './get-generated-files/get-github-codespaces/index.js'
+import getGithubCodespacesDockerfile from './get-generated-files/get-github-codespaces-dockerfile/index.js'
 import getGithubSyncMetadataConfig from './get-generated-files/get-github-sync-metadata/index.js'
 import getGithubWorkflowConfig from './get-generated-files/get-github-workflow/index.js'
 import getGitignoreConfig from './get-generated-files/get-gitignore/index.js'
@@ -135,7 +135,7 @@ Object.assign(Base.prototype, {
   getEditorIgnoreConfig,
   getEslintConfig,
   getGeneratedFiles,
-  getGithubCodespacesConfig,
+  getGithubCodespacesDockerfile,
   getGithubSyncMetadataConfig,
   getGithubWorkflowConfig,
   getGitignoreConfig,
