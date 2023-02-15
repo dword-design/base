@@ -30,7 +30,8 @@ export default tester(
       const packageConfig = base.getPackageConfig()
       expect(packageConfig.deploy).toBeTruthy()
     },
-    empty() {
+    async empty() {
+      await fs.outputFile('package.json', JSON.stringify({}))
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
     },
     async 'existing package'() {
@@ -71,6 +72,7 @@ export default tester(
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
     },
     async 'git repo'() {
+      await fs.outputFile('package.json', JSON.stringify({}))
       await execaCommand('git init')
       await execaCommand('git remote add origin git@github.com:bar/foo.git')
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
@@ -88,7 +90,8 @@ export default tester(
       await execaCommand('git init')
       await execaCommand('git remote add origin git@github.com:bar/foo.git')
       await outputFiles({
-        test: {},
+        'package.json': JSON.stringify({}),
+        'test': {},
       })
       process.chdir('test')
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)

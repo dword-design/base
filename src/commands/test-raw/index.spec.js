@@ -551,7 +551,10 @@ export default tester(
             files: {},
             ...test,
           }
-          await outputFiles(test.files)
+          await outputFiles({
+            'package.json': JSON.stringify({ type: 'module' }),
+            ...test.files,
+          })
           this.base = new Base(test.config)
           test.test = test.test || (() => this.base.test())
           await this.base.prepare()
