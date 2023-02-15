@@ -39,8 +39,6 @@ export default async function (options) {
       '--cwd',
       process.cwd(),
       '--all',
-      ...(this.config.coverageFileExtensions
-        |> flatMap(extension => ['--extension', extension])),
       '--exclude',
       '**/*.spec.js',
       '--exclude',
@@ -54,8 +52,6 @@ export default async function (options) {
       _require.resolve(packageName`mocha-spec-reporter-with-file-names`),
       '--ui',
       packageName`mocha-ui-exports-auto-describe`,
-      '--require',
-      packageName`@dword-design/babel-register`,
       '--require',
       packageName`@dword-design/pretest`,
       '--file',

@@ -9,26 +9,16 @@ import { Base } from '@/src/index.js'
 export default tester(
   {
     'custom config': async () => {
-      await fs.outputFile(
-        'package.json',
-        JSON.stringify({
-          baseConfig: 'foo',
-          devDependencies: {
-            'base-config-foo': '^1.0.0',
-          },
-        })
-      )
-
-      const base = new Base({ packageConfig: { main: 'dist/index.scss' } })
-      expect(base.getPackageConfig().main).toEqual('dist/index.scss')
+      await fs.outputFile('package.json', JSON.stringify({}))
+      expect(
+        new Base({
+          packageConfig: { main: 'dist/index.scss' },
+        }).getPackageConfig().main
+      ).toEqual('dist/index.scss')
     },
     deploy: async () => {
       await fs.outputFile('package.json', JSON.stringify({ deploy: true }))
-
-      const base = new Base()
-
-      const packageConfig = base.getPackageConfig()
-      expect(packageConfig.deploy).toBeTruthy()
+      expect(new Base().getPackageConfig().deploy).toBeTruthy()
     },
     async empty() {
       await fs.outputFile('package.json', JSON.stringify({}))
@@ -84,14 +74,16 @@ export default tester(
         'Only GitHub repositories are supported.'
       )
     },
-    private: () =>
-      expect(new Base().getPackageConfig({ private: true })).toBeTruthy(),
+    private: async () => {
+      await fs.outputFile('package.json', JSON.stringify({ private: true }))
+      expect(new Base().getPackageConfig().private).toBeTruthy()
+    },
     async 'sub-folder'() {
       await execaCommand('git init')
       await execaCommand('git remote add origin git@github.com:bar/foo.git')
       await outputFiles({
         'package.json': JSON.stringify({}),
-        'test': {},
+        test: {},
       })
       process.chdir('test')
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
