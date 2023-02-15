@@ -4,7 +4,6 @@ exports[`index empty parent 1`] = `
 Object {
   "allowedMatches": Array [],
   "commands": Object {},
-  "coverageFileExtensions": Array [],
   "deployAssets": Array [],
   "deployEnv": Object {},
   "deployPlugins": Array [],
@@ -37,7 +36,6 @@ $ yarn add foo
 exports[`index inherited 1`] = `
 Object {
   "allowedMatches": Array [],
-  "coverageFileExtensions": Array [],
   "deployAssets": Array [
     Object {
       "label": "Foo",

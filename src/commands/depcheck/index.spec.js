@@ -91,6 +91,7 @@ export default tester(
           scripts: {
             test: 'foo',
           },
+          type: 'module',
         }),
       },
       async test() {

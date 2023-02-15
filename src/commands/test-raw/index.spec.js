@@ -19,23 +19,6 @@ import { Base } from '@/src/index.js'
 
 export default tester(
   {
-    '.nuxt': {
-      files: {
-        '.nuxt/index.js': 'export default 1',
-        'src/index.spec.js': "import '@/.nuxt'",
-      },
-      test() {
-        return expect(this.base.test()).rejects.toThrow(
-          /SyntaxError: Unexpected token '?export'?/
-        )
-      },
-    },
-    '.nuxt postfix': {
-      files: {
-        '.nuxt-foo/index.js': 'export default 1',
-        'src/index.spec.js': "import '@/.nuxt-foo'",
-      },
-    },
     assertion: {
       files: {
         src: {
@@ -55,7 +38,10 @@ export default tester(
     },
     'bin outside dist': {
       files: {
-        'package.json': JSON.stringify({ bin: { foo: './src/cli.js' } }),
+        'package.json': JSON.stringify({
+          bin: { foo: './src/cli.js' },
+          type: 'module',
+        }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -65,25 +51,10 @@ export default tester(
     },
     'config file errors': {
       files: {
-        'package.json': JSON.stringify({ name: '_foo' }),
+        'package.json': JSON.stringify({ name: '_foo', type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow('package.json invalid')
-      },
-    },
-    'coverage file extension': {
-      config: {
-        coverageFileExtensions: ['.foo'],
-      },
-      files: {
-        'index.foo': 'module.exports = {}',
-        'index.spec.js': "import './index.foo'",
-        'package.json': JSON.stringify({}),
-      },
-      async test() {
-        return expect(
-          this.base.test() |> await |> property('all') |> unifyMochaOutput
-        ).toMatchSnapshot(this)
       },
     },
     empty: {},
@@ -131,6 +102,7 @@ export default tester(
           devDependencies: {
             sharp: '^1.0.0',
           },
+          type: 'module',
         }),
       },
       async test() {
@@ -142,7 +114,7 @@ export default tester(
     },
     'invalid name': {
       files: {
-        'package.json': JSON.stringify({ name: '_foo' }),
+        'package.json': JSON.stringify({ name: '_foo', type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -224,10 +196,13 @@ export default tester(
       `)
       },
     },
-    node_modules: {
+    'node_modules not transpiled': {
       files: {
         'node_modules/foo/index.js': 'export default 1',
-        'package.json': JSON.stringify({ devDependencies: { foo: '^1.0.0' } }),
+        'package.json': JSON.stringify({
+          devDependencies: { foo: '^1.0.0' },
+          type: 'module',
+        }),
         'src/index.spec.js': "import 'foo'",
       },
       test() {
@@ -236,24 +211,10 @@ export default tester(
         )
       },
     },
-    'node_modules postfix': {
+    'node_modules postfix transpiled': {
       files: {
-        'node_modules-foo/index.js': 'export default 1',
-        'src/index.spec.js': "import '@/node_modules-foo'",
-      },
-    },
-    'node_modules subfolder': {
-      files: {
-        'package.json': JSON.stringify({ devDependencies: { foo: '^1.0.0' } }),
-        src: {
-          'index.spec.js': "import 'foo'",
-          'node_modules/foo/index.js': 'export default 1',
-        },
-      },
-      test() {
-        return expect(this.base.test()).rejects.toThrow(
-          /SyntaxError: Unexpected token '?export'?/
-        )
+        'node_modules-foo.js': 'export default 1',
+        'src/index.spec.js': "import '@/node_modules-foo.js'",
       },
     },
     pattern: {
@@ -263,6 +224,7 @@ export default tester(
           dependencies: {
             foo: '^1.0.0',
           },
+          type: 'module',
         }),
         src: {
           'index.js': 'export default 1',
@@ -344,6 +306,7 @@ export default tester(
       `,
         'package.json': JSON.stringify({
           baseConfig: 'foo',
+          type: 'module',
         }),
       },
       async test() {
@@ -357,6 +320,7 @@ export default tester(
             'change-case': '^1.0.0',
             foo: '^1.0.0',
           },
+          type: 'module',
         }),
         'src/index.js': 'export default 1',
       },
@@ -501,6 +465,7 @@ export default tester(
       files: {
         'package.json': JSON.stringify({
           dependencies: 1,
+          type: 'module',
         }),
       },
       test() {
@@ -513,6 +478,7 @@ export default tester(
       files: {
         'package.json': JSON.stringify({
           description: 1,
+          type: 'module',
         }),
       },
       test() {
@@ -523,7 +489,7 @@ export default tester(
     },
     'wrong dev dependencies type': {
       files: {
-        'package.json': JSON.stringify({ devDependencies: 1 }),
+        'package.json': JSON.stringify({ devDependencies: 1, type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -533,7 +499,7 @@ export default tester(
     },
     'wrong keywords type': {
       files: {
-        'package.json': JSON.stringify({ keywords: 1 }),
+        'package.json': JSON.stringify({ keywords: 1, type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -552,7 +518,10 @@ export default tester(
             files: {},
             ...test,
           }
-          await outputFiles(test.files)
+          await outputFiles({
+            'package.json': JSON.stringify({ type: 'module' }),
+            ...test.files,
+          })
           this.base = new Base(test.config)
           test.test = test.test || (() => this.base.test())
           await this.base.prepare()

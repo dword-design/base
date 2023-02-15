@@ -59,7 +59,6 @@ class Base {
     const defaultConfig = {
       allowedMatches: [],
       commands: {},
-      coverageFileExtensions: [],
       depcheckConfig: {
         detectors: [
           depcheck.detector.importDeclaration,
