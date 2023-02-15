@@ -1,3 +1,10 @@
+# [9.4.0](https://github.com/dword-design/base/compare/v9.3.1...v9.4.0) (2023-02-15)
+
+
+### Features
+
+* github codespaces config ([#597](https://github.com/dword-design/base/issues/597)) ([fff8887](https://github.com/dword-design/base/commit/fff8887432acaabdd016adb96166391a2ab7fcdd))
+
 ## [9.3.1](https://github.com/dword-design/base/compare/v9.3.0...v9.3.1) (2023-02-14)
 
 
