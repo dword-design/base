@@ -1,3 +1,10 @@
+## [9.4.1](https://github.com/dword-design/base/compare/v9.4.0...v9.4.1) (2023-02-15)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#593](https://github.com/dword-design/base/issues/593)) ([2b28855](https://github.com/dword-design/base/commit/2b28855e1116264eb8f842bcd46b71b52d0e979d))
+
 # [9.4.0](https://github.com/dword-design/base/compare/v9.3.1...v9.4.0) (2023-02-15)
 
 
