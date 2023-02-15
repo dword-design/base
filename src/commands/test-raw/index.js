@@ -1,5 +1,5 @@
 import { endent, includes } from '@dword-design/functions'
-import packageJsonSchema from '@dword-design/package-json-schema'
+import packageJsonSchema from './package-json-schema.js'
 import Ajv from 'ajv'
 import packageName from 'depcheck-package-name'
 import { execa } from 'execa'
