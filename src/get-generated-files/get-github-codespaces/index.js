@@ -1,6 +1,7 @@
 export default function () {
   return {
-    image: 'universal',
+    name: 'Node.js',
+    image: 'mcr.microsoft.com/devcontainers/universal:2',
     onCreateCommand: `nvm use ${this.config.nodeVersion} && yarn --frozen-lockfile`,
   }
 }
