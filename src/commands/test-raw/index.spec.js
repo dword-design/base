@@ -478,6 +478,7 @@ export default tester(
           '.babelrc.json': true,
           '.commitlintrc.json': true,
           '.cz.json': true,
+          '.devcontainer': true,
           '.editorconfig': true,
           '.eslintrc.json': true,
           '.gitattributes': true,

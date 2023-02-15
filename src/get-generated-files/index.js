@@ -24,6 +24,9 @@ export default function () {
       commitlintConfig |> jsonToString({ indent: 2 })
     }\n`,
     '.cz.json': `${commitizenConfig |> jsonToString({ indent: 2 })}\n`,
+    '.devcontainer/devcontainer.json': `${
+      this.getGithubCodespacesConfig() |> jsonToString({ indent: 2 })
+    }\n`,
     '.editorconfig': editorconfigConfig,
     '.eslintrc.json': `${
       this.getEslintConfig() |> jsonToString({ indent: 2 })

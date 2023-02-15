@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index works 1`] = `
+Object {
+  "features": Object {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": Object {},
+  },
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
+  "updateContentCommand": "yarn --frozen-lockfile",
+}
+`;
