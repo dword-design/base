@@ -1,4 +1,4 @@
-import { endent, flatMap, includes } from '@dword-design/functions'
+import { endent, includes } from '@dword-design/functions'
 import packageJsonSchema from '@dword-design/package-json-schema'
 import Ajv from 'ajv'
 import packageName from 'depcheck-package-name'

@@ -38,7 +38,10 @@ export default tester(
     },
     'bin outside dist': {
       files: {
-        'package.json': JSON.stringify({ type: 'module', bin: { foo: './src/cli.js' } }),
+        'package.json': JSON.stringify({
+          bin: { foo: './src/cli.js' },
+          type: 'module',
+        }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -48,7 +51,7 @@ export default tester(
     },
     'config file errors': {
       files: {
-        'package.json': JSON.stringify({ type: 'module', name: '_foo' }),
+        'package.json': JSON.stringify({ name: '_foo', type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow('package.json invalid')
@@ -96,10 +99,10 @@ export default tester(
         }
       `,
         'package.json': JSON.stringify({
-          type: 'module',
           devDependencies: {
             sharp: '^1.0.0',
           },
+          type: 'module',
         }),
       },
       async test() {
@@ -111,7 +114,7 @@ export default tester(
     },
     'invalid name': {
       files: {
-        'package.json': JSON.stringify({ type: 'module', name: '_foo' }),
+        'package.json': JSON.stringify({ name: '_foo', type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -196,7 +199,10 @@ export default tester(
     'node_modules not transpiled': {
       files: {
         'node_modules/foo/index.js': 'export default 1',
-        'package.json': JSON.stringify({ type: 'module', devDependencies: { foo: '^1.0.0' } }),
+        'package.json': JSON.stringify({
+          devDependencies: { foo: '^1.0.0' },
+          type: 'module',
+        }),
         'src/index.spec.js': "import 'foo'",
       },
       test() {
@@ -215,10 +221,10 @@ export default tester(
       files: {
         'README.md': '',
         'package.json': JSON.stringify({
-          type: 'module',
           dependencies: {
             foo: '^1.0.0',
           },
+          type: 'module',
         }),
         src: {
           'index.js': 'export default 1',
@@ -299,8 +305,8 @@ export default tester(
         }
       `,
         'package.json': JSON.stringify({
-          type: 'module',
           baseConfig: 'foo',
+          type: 'module',
         }),
       },
       async test() {
@@ -310,11 +316,11 @@ export default tester(
     'unused dependencies': {
       files: {
         'package.json': JSON.stringify({
-          type: 'module',
           dependencies: {
             'change-case': '^1.0.0',
             foo: '^1.0.0',
           },
+          type: 'module',
         }),
         'src/index.js': 'export default 1',
       },
@@ -457,8 +463,8 @@ export default tester(
     'wrong dependencies type': {
       files: {
         'package.json': JSON.stringify({
-          type: 'module',
           dependencies: 1,
+          type: 'module',
         }),
       },
       test() {
@@ -470,8 +476,8 @@ export default tester(
     'wrong description type': {
       files: {
         'package.json': JSON.stringify({
-          type: 'module',
           description: 1,
+          type: 'module',
         }),
       },
       test() {
@@ -482,7 +488,7 @@ export default tester(
     },
     'wrong dev dependencies type': {
       files: {
-        'package.json': JSON.stringify({ type: 'module', devDependencies: 1 }),
+        'package.json': JSON.stringify({ devDependencies: 1, type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -492,7 +498,7 @@ export default tester(
     },
     'wrong keywords type': {
       files: {
-        'package.json': JSON.stringify({ type: 'module', keywords: 1 }),
+        'package.json': JSON.stringify({ keywords: 1, type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
