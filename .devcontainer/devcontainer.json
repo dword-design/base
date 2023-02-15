@@ -1,5 +1,5 @@
 {
   "name": "Node.js",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "onCreateCommand": "nvm use 16 && yarn --frozen-lockfile"
+  "onCreateCommand": "echo foo"
 }
