@@ -1,5 +1,5 @@
 export default {
   name: 'Node.js',
-  image: 'Dockerfile',
+  build: { dockerfile: 'Dockerfile' },
   updateContentCommand: 'yarn --frozen-lockfile',
 }
