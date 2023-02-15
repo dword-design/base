@@ -9,7 +9,7 @@ import { Base } from '@/src/index.js'
 export default tester(
   {
     'custom config': async () => {
-      await fs.outputFile('package.json', JSON.stringify({}))
+      await fs.outputFile('package.json', JSON.stringify({ type: 'module' }))
       expect(
         new Base({
           packageConfig: { main: 'dist/index.scss' },
@@ -17,7 +17,7 @@ export default tester(
       ).toEqual('dist/index.scss')
     },
     deploy: async () => {
-      await fs.outputFile('package.json', JSON.stringify({ deploy: true }))
+      await fs.outputFile('package.json', JSON.stringify({ type: 'module', deploy: true }))
       expect(new Base().getPackageConfig().deploy).toBeTruthy()
     },
     async empty() {
@@ -43,6 +43,7 @@ export default tester(
           files: 'foo',
           keywords: ['foo', 'bar'],
           license: 'ISC',
+          type: 'module',
           main: 'dist/index.scss',
           name: 'foo',
           peerDependencies: {
@@ -62,12 +63,13 @@ export default tester(
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
     },
     async 'git repo'() {
-      await fs.outputFile('package.json', JSON.stringify({}))
+      await fs.outputFile('package.json', JSON.stringify({ type: 'module' }))
       await execaCommand('git init')
       await execaCommand('git remote add origin git@github.com:bar/foo.git')
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
     },
     'non-github repo': async () => {
+      await fs.outputFile('package.json', JSON.stringify({ type: 'module' }))
       await execaCommand('git init')
       await execaCommand('git remote add origin git@special.com:bar/foo.git')
       expect(() => new Base().getPackageConfig()).toThrow(
@@ -75,21 +77,24 @@ export default tester(
       )
     },
     private: async () => {
-      await fs.outputFile('package.json', JSON.stringify({ private: true }))
+      await fs.outputFile('package.json', JSON.stringify({ type: 'module', private: true }))
       expect(new Base().getPackageConfig().private).toBeTruthy()
     },
     async 'sub-folder'() {
-      await execaCommand('git init')
-      await execaCommand('git remote add origin git@github.com:bar/foo.git')
       await outputFiles({
-        'package.json': JSON.stringify({}),
+        'package.json': JSON.stringify({ type: 'module' }),
         test: {},
       })
+      await execaCommand('git init')
+      await execaCommand('git remote add origin git@github.com:bar/foo.git')
       process.chdir('test')
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
     },
     'types.d.ts': async () => {
-      await fs.outputFile('types.d.ts', '')
+      await outputFiles({
+        'package.json': JSON.stringify({ type: 'module' }),
+        'types.d.ts': '',
+      })
 
       const packageConfig = new Base().getPackageConfig()
       expect(packageConfig.files).toEqual(['dist', 'types.d.ts'])

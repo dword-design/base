@@ -6,6 +6,7 @@ Object {
   "engines": Object {
     "node": ">=14",
   },
+  "exports": "./dist/index.js",
   "files": Array [
     "dist",
   ],
@@ -45,6 +46,7 @@ Object {
   "engines": Object {
     "node": ">=14",
   },
+  "exports": "./dist/index.js",
   "files": Array [
     "dist",
   ],
@@ -72,6 +74,7 @@ Object {
     "prepublishOnly": "base prepublishOnly",
     "test": "base test",
   },
+  "type": "module",
   "types": "types.d.ts",
   "version": "1.1.0",
 }
@@ -83,6 +86,7 @@ Object {
   "engines": Object {
     "node": ">=14",
   },
+  "exports": "./dist/index.js",
   "files": Array [
     "dist",
   ],
@@ -103,6 +107,7 @@ Object {
     "prepublishOnly": "base prepublishOnly",
     "test": "base test",
   },
+  "type": "module",
   "version": "1.0.0",
 }
 `;
@@ -113,6 +118,7 @@ Object {
   "engines": Object {
     "node": ">=14",
   },
+  "exports": "./dist/index.js",
   "files": Array [
     "dist",
   ],
@@ -132,6 +138,7 @@ Object {
     "prepublishOnly": "base prepublishOnly",
     "test": "base test",
   },
+  "type": "module",
   "version": "1.0.0",
 }
 `;
