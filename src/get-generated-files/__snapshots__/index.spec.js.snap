@@ -31,6 +31,7 @@ Array [
   ".babelrc.json",
   ".commitlintrc.json",
   ".cz.json",
+  ".devcontainer/devcontainer.json",
   ".editorconfig",
   ".eslintrc.json",
   ".gitattributes",

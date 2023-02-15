@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index works 1`] = `
+Object {
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
+  "name": "Node.js",
+  "onCreateCommand": "yarn --frozen-lockfile",
+}
+`;
