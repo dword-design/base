@@ -14,7 +14,6 @@ import githubFunding from './github-funding.js'
 import githubLabelsConfig from './github-labels.js'
 import githubSyncLabelsConfig from './github-sync-labels.js'
 import gitpodConfig from './gitpod.js'
-import githubCodespacesConfig from './github-codespaces.js'
 
 export default function () {
   const packageConfig = this.getPackageConfig()
@@ -26,9 +25,8 @@ export default function () {
     }\n`,
     '.cz.json': `${commitizenConfig |> jsonToString({ indent: 2 })}\n`,
     '.devcontainer/devcontainer.json': `${
-      githubCodespacesConfig |> jsonToString({ indent: 2 })
+      this.getGithubCodespacesConfig() |> jsonToString({ indent: 2 })
     }\n`,
-    '.devcontainer/Dockerfile': this.getGithubCodespacesDockerfile(),
     '.editorconfig': editorconfigConfig,
     '.eslintrc.json': `${
       this.getEslintConfig() |> jsonToString({ indent: 2 })
