@@ -1,5 +1,5 @@
 {
   "name": "Node.js",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "updateContentCommand": "yarn --frozen-lockfile"
+  "updateContentCommand": "nvm install 16 && yarn --frozen-lockfile"
 }
