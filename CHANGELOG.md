@@ -1,3 +1,10 @@
+## [9.4.2](https://github.com/dword-design/base/compare/v9.4.1...v9.4.2) (2023-02-15)
+
+
+### Bug Fixes
+
+* replace package json schema ([#598](https://github.com/dword-design/base/issues/598)) ([a989bb7](https://github.com/dword-design/base/commit/a989bb71b5968b36b84c694822e8041138f66276))
+
 ## [9.4.1](https://github.com/dword-design/base/compare/v9.4.0...v9.4.1) (2023-02-15)
 
 
