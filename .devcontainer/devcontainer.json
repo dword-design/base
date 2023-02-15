@@ -1,3 +1,0 @@
-{
-  "onCreateCommand": "nvm use 16 && yarn --frozen-lockfile"
-}
