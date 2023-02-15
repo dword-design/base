@@ -1,11 +1,11 @@
 import { endent, includes } from '@dword-design/functions'
-import packageJsonSchema from './package-json-schema.js'
 import Ajv from 'ajv'
 import packageName from 'depcheck-package-name'
 import { execa } from 'execa'
 import { createRequire } from 'module'
 
 import isCI from './is-ci.js'
+import packageJsonSchema from './package-json-schema.js'
 
 const _require = createRequire(import.meta.url)
 
