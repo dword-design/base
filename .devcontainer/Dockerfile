@@ -1,3 +1,5 @@
 		FROM mcr.microsoft.com/devcontainers/universal
 
-		RUN nvm install $VERSION && nvm use $VERSION && nvm alias default $VERSION'
+		RUN nvm install 16
+  RUN nvm use 16
+  RUN nvm alias default 16

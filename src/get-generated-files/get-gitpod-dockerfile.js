@@ -10,7 +10,10 @@ export default function () {
     RUN git lfs install
 
     # https://www.gitpod.io/docs/languages/javascript
-    RUN bash -c 'VERSION="${this.config.nodeVersion}" && source $HOME/.nvm/nvm.sh && nvm install $VERSION && nvm use $VERSION && nvm alias default $VERSION'
+    RUN source $HOME/.nvm/nvm.sh
+    RUN nvm install ${this.config.nodeVersion}
+    RUN nvm use ${this.config.nodeVersion}
+    RUN nvm alias default ${this.config.nodeVersion}
     RUN echo "nvm use default &>/dev/null" >> ~/.bashrc.d/51-nvm-fix
 
     RUN echo "\\nexport PATH=$(yarn global bin):\\$PATH" >> /home/gitpod/.bashrc

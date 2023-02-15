@@ -4,6 +4,8 @@ export default function () {
 	return endent`
 		FROM mcr.microsoft.com/devcontainers/universal
 
-		RUN nvm install $VERSION && nvm use $VERSION && nvm alias default $VERSION'
+		RUN nvm install ${this.config.nodeVersion}
+    RUN nvm use ${this.config.nodeVersion}
+    RUN nvm alias default ${this.config.nodeVersion}
 	`
 }
