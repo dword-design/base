@@ -1,11 +1,9 @@
 image:
   file: .gitpod.Dockerfile
 tasks:
-  - env:
-      PUPPETEER_CACHE_DIR: /workspace/base/src
-    command: eval $(gitpod-env-per-project)
+  - command: eval $(gitpod-env-per-project)
     init: git config --global user.name "Sebastian Landwehr" && git lfs pull &&
-      PUPPETEER_CACHE_DIR=node_modules/src yarn --frozen-lockfile
+      PUPPETEER_CACHE_DIR=/workspace/base/src yarn --frozen-lockfile
 vscode:
   extensions:
     - https://sebastianlandwehr.com/vscode-extensions/karlito40.fix-irregular-whitespace-0.1.1.vsix

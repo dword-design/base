@@ -5,14 +5,11 @@ export default {
   image: { file: '.gitpod.Dockerfile' },
   tasks: [
     {
-      env: {
-        PUPPETEER_CACHE_DIR: P.resolve('src'),
-      },
       command: 'eval $(gitpod-env-per-project)',
       // puppeteer by default installs Chromium in the home folder, but since GitPod does not preserve the home folder
       // after restarts, we need to store it in the workspace folder
       // https://www.gitpod.io/docs/configure/workspaces/workspace-lifecycle#workspace-stopped
-      init: `git config --global user.name "${personalData.name}" && git lfs pull && PUPPETEER_CACHE_DIR=node_modules/src yarn --frozen-lockfile`,
+      init: `git config --global user.name "${personalData.name}" && git lfs pull && PUPPETEER_CACHE_DIR=${P.resolve('src')} yarn --frozen-lockfile`,
     },
   ],
   vscode: {
