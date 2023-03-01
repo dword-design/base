@@ -1,3 +1,10 @@
+## [9.4.3](https://github.com/dword-design/base/compare/v9.4.2...v9.4.3) (2023-03-01)
+
+
+### Bug Fixes
+
+* store chromium in workspace ([#601](https://github.com/dword-design/base/issues/601)) ([e0f0a35](https://github.com/dword-design/base/commit/e0f0a35183b7a77591fa51876d1dccb8db65a068))
+
 ## [9.4.2](https://github.com/dword-design/base/compare/v9.4.1...v9.4.2) (2023-02-15)
 
 
