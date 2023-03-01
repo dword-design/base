@@ -1,8 +1,8 @@
 image:
   file: .gitpod.Dockerfile
 tasks:
-  - before: cat "PUPPETEER_CACHE_DIR=/workspace/base/node_modules/.cache/puppeteer"
-      >> ~/.bashrc
+  - before: echo "PUPPETEER_CACHE_DIR=/workspace/base/node_modules/.cache/puppeteer"
+      >> /home/gitpod/.bashrc
     command: eval $(gitpod-env-per-project)
     init: git config --global user.name "Sebastian Landwehr" && git lfs pull && yarn
       --frozen-lockfile
