@@ -2,7 +2,7 @@ image:
   file: .gitpod.Dockerfile
 tasks:
   - env:
-      PUPPETEER_CACHE_DIR: node_modules/src
+      PUPPETEER_CACHE_DIR: /workspace/base/src
     command: eval $(gitpod-env-per-project)
     init: git config --global user.name "Sebastian Landwehr" && git lfs pull &&
       PUPPETEER_CACHE_DIR=node_modules/src yarn --frozen-lockfile

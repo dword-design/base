@@ -1,11 +1,12 @@
 import * as personalData from '@dword-design/personal-data'
+import P from 'path'
 
 export default {
   image: { file: '.gitpod.Dockerfile' },
   tasks: [
     {
       env: {
-        PUPPETEER_CACHE_DIR: 'node_modules/src',
+        PUPPETEER_CACHE_DIR: P.resolve('src'),
       },
       command: 'eval $(gitpod-env-per-project)',
       // puppeteer by default installs Chromium in the home folder, but since GitPod does not preserve the home folder
