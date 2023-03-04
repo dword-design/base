@@ -10,7 +10,7 @@ export default function () {
         // after restarts, we need to store it in the workspace folder
         // https://www.gitpod.io/docs/configure/workspaces/workspace-lifecycle#workspace-stopped
         before: endent`
-          echo "export PUPPETEER_CACHE_DIR=/workspace/${this.config.git.project}/node_modules/.cache/puppeteer" >> /home/gitpod/.bashrc
+          echo "export PUPPETEER_CACHE_DIR=/workspace/${this.packageConfig.name}/node_modules/.cache/puppeteer" >> /home/gitpod/.bashrc
           echo "eval $(gitpod-env-per-project)" >> /home/gitpod/.bashrc && source /home/gitpod/.bashrc
         `,
         init: endent`
