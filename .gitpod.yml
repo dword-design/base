@@ -3,8 +3,8 @@ image:
 tasks:
   - before: >-
       echo "export
-      PUPPETEER_CACHE_DIR=/workspace/@dword-design/base/node_modules/.cache/puppeteer"
-      >> /home/gitpod/.bashrc
+      PUPPETEER_CACHE_DIR=/workspace/base/node_modules/.cache/puppeteer" >>
+      /home/gitpod/.bashrc
 
       echo "eval $(gitpod-env-per-project)" >> /home/gitpod/.bashrc && source /home/gitpod/.bashrc
     init: |-

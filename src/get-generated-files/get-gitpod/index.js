@@ -1,7 +1,9 @@
 import { endent } from '@dword-design/functions'
 import * as personalData from '@dword-design/personal-data'
+import parsePackagejsonName from 'parse-packagejson-name'
 
 export default function () {
+  const packageName = parsePackagejsonName(this.packageConfig.name).fullName
   return {
     image: { file: '.gitpod.Dockerfile' },
     tasks: [
@@ -10,7 +12,7 @@ export default function () {
         // after restarts, we need to store it in the workspace folder
         // https://www.gitpod.io/docs/configure/workspaces/workspace-lifecycle#workspace-stopped
         before: endent`
-          echo "export PUPPETEER_CACHE_DIR=/workspace/${this.packageConfig.name}/node_modules/.cache/puppeteer" >> /home/gitpod/.bashrc
+          echo "export PUPPETEER_CACHE_DIR=/workspace/${packageName}/node_modules/.cache/puppeteer" >> /home/gitpod/.bashrc
           echo "eval $(gitpod-env-per-project)" >> /home/gitpod/.bashrc && source /home/gitpod/.bashrc
         `,
         init: endent`
