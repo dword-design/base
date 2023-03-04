@@ -26,6 +26,7 @@ import getGithubCodespacesConfig from './get-generated-files/get-github-codespac
 import getGithubSyncMetadataConfig from './get-generated-files/get-github-sync-metadata/index.js'
 import getGithubWorkflowConfig from './get-generated-files/get-github-workflow/index.js'
 import getGitignoreConfig from './get-generated-files/get-gitignore/index.js'
+import getGitpodConfig from './get-generated-files/get-gitpod/index.js'
 import getGitpodDockerfile from './get-generated-files/get-gitpod-dockerfile.js'
 import getLicenseString from './get-generated-files/get-license-string.js'
 import getPackageConfig from './get-generated-files/get-package-config/index.js'
@@ -138,6 +139,7 @@ Object.assign(Base.prototype, {
   getGithubSyncMetadataConfig,
   getGithubWorkflowConfig,
   getGitignoreConfig,
+  getGitpodConfig,
   getGitpodDockerfile,
   getLicenseString,
   getPackageConfig,

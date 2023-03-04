@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index works 1`] = `
+Object {
+  "image": Object {
+    "file": ".gitpod.Dockerfile",
+  },
+  "tasks": Array [
+    Object {
+      "before": "echo \\"export PUPPETEER_CACHE_DIR=/workspace/foo/node_modules/.cache/puppeteer\\" >> /home/gitpod/.bashrc
+echo \\"eval $(gitpod-env-per-project)\\" >> /home/gitpod/.bashrc && source /home/gitpod/.bashrc",
+      "init": "git config --global user.name \\"Sebastian Landwehr\\"
+git lfs pull && yarn --frozen-lockfile",
+    },
+  ],
+  "vscode": Object {
+    "extensions": Array [
+      "https://sebastianlandwehr.com/vscode-extensions/karlito40.fix-irregular-whitespace-0.1.1.vsix",
+      "https://sebastianlandwehr.com/vscode-extensions/adrianwilczynski.toggle-hidden-1.0.2.vsix",
+      "octref.vetur@0.33.1",
+    ],
+  },
+}
+`;
