@@ -7,7 +7,10 @@ import { Base } from '@/src/index.js'
 export default tester(
   {
     async works() {
-      await fs.outputFile('package.json', JSON.stringify({ name: '@dword-design/foo' }))
+      await fs.outputFile(
+        'package.json',
+        JSON.stringify({ name: '@dword-design/foo' })
+      )
       expect(new Base().getGitpodConfig()).toMatchSnapshot(this)
     },
   },

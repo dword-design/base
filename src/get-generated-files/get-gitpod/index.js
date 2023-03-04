@@ -4,6 +4,7 @@ import parsePackagejsonName from 'parse-packagejson-name'
 
 export default function () {
   const packageName = parsePackagejsonName(this.packageConfig.name).fullName
+
   return {
     image: { file: '.gitpod.Dockerfile' },
     tasks: [
