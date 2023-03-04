@@ -1,3 +1,10 @@
+## [9.4.4](https://github.com/dword-design/base/compare/v9.4.3...v9.4.4) (2023-03-04)
+
+
+### Bug Fixes
+
+* fix gitpod config ([#602](https://github.com/dword-design/base/issues/602)) ([8dd682c](https://github.com/dword-design/base/commit/8dd682c2c647d15a110a65761c99edded5baec60))
+
 ## [9.4.3](https://github.com/dword-design/base/compare/v9.4.2...v9.4.3) (2023-03-01)
 
 
