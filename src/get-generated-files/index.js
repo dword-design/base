@@ -13,7 +13,6 @@ import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencie
 import githubFunding from './github-funding.js'
 import githubLabelsConfig from './github-labels.js'
 import githubSyncLabelsConfig from './github-sync-labels.js'
-import gitpodConfig from './gitpod.js'
 
 export default function () {
   const packageConfig = this.getPackageConfig()
@@ -51,7 +50,7 @@ export default function () {
     '.gitignore':
       this.getGitignoreConfig() |> map(entry => `${entry}\n`) |> join(''),
     '.gitpod.Dockerfile': this.getGitpodDockerfile(),
-    '.gitpod.yml': gitpodConfig |> yaml.stringify,
+    '.gitpod.yml': this.getGitpodConfig() |> yaml.stringify,
     '.releaserc.json': `${
       this.getReleaseConfig() |> jsonToString({ indent: 2 })
     }\n`,
