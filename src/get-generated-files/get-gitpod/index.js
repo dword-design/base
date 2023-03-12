@@ -14,7 +14,7 @@ export default function () {
         // https://www.gitpod.io/docs/configure/workspaces/workspace-lifecycle#workspace-stopped
         before: endent`
           echo "export PUPPETEER_CACHE_DIR=/workspace/${packageName}/node_modules/.cache/puppeteer" >> /home/gitpod/.bashrc
-          echo "eval $(gitpod-env-per-project)" >> /home/gitpod/.bashrc && source /home/gitpod/.bashrc
+          gitpod-env-per-project >> /home/gitpod/.bashrc && source /home/gitpod/.bashrc
         `,
         init: endent`
           git config --global user.name "${personalData.name}"
