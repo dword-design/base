@@ -8,7 +8,7 @@ Object {
   "tasks": Array [
     Object {
       "before": "echo \\"export PUPPETEER_CACHE_DIR=/workspace/foo/node_modules/.cache/puppeteer\\" >> /home/gitpod/.bashrc
-echo \\"eval $(gitpod-env-per-project)\\" >> /home/gitpod/.bashrc && source /home/gitpod/.bashrc",
+gitpod-env-per-project >> /home/gitpod/.bashrc && source /home/gitpod/.bashrc",
       "init": "git config --global user.name \\"Sebastian Landwehr\\"
 git lfs pull && yarn --frozen-lockfile",
     },
