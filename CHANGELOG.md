@@ -1,3 +1,10 @@
+## [9.4.9](https://github.com/dword-design/base/compare/v9.4.8...v9.4.9) (2023-03-15)
+
+
+### Bug Fixes
+
+* update dependency execa to v7.1.1 ([f573d92](https://github.com/dword-design/base/commit/f573d927c1c04ef417f27ea97f1152c31b61df8a))
+
 ## [9.4.8](https://github.com/dword-design/base/compare/v9.4.7...v9.4.8) (2023-03-12)
 
 
