@@ -117,7 +117,7 @@ class Base {
         : undefined
       if (typeof inheritedConfig === 'function') {
         inheritedConfig = inheritedConfig(
-          deepmerge(defaultConfig, config, mergeOptions)
+          deepmerge(defaultConfig, config, mergeOptions),
         )
       }
       configsToMerge.push(inheritedConfig)

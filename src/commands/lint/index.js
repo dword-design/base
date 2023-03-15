@@ -11,7 +11,7 @@ export default async function (options) {
     packageName !== this.config.git.project
   ) {
     throw new Error(
-      `Package name '${packageName}' has to be equal to repository name '${this.config.git.project}'`
+      `Package name '${packageName}' has to be equal to repository name '${this.config.git.project}'`,
     )
   }
   options = {
@@ -31,7 +31,7 @@ export default async function (options) {
         options.resolvePluginsRelativeTo,
         '.',
       ],
-      { all: true }
+      { all: true },
     )
   } catch (error) {
     throw new Error(error.all)

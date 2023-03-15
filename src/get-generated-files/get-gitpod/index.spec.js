@@ -9,10 +9,10 @@ export default tester(
     async works() {
       await fs.outputFile(
         'package.json',
-        JSON.stringify({ name: '@dword-design/foo' })
+        JSON.stringify({ name: '@dword-design/foo' }),
       )
       expect(new Base().getGitpodConfig()).toMatchSnapshot(this)
     },
   },
-  [testerPluginTmpDir()]
+  [testerPluginTmpDir()],
 )

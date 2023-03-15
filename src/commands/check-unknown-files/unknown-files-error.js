@@ -9,7 +9,7 @@ import {
 import fs from 'fs-extra'
 
 const packageConfig = fs.readJsonSync(
-  new URL('../../../package.json', import.meta.url)
+  new URL('../../../package.json', import.meta.url),
 )
 
 export default class extends Error {
@@ -18,7 +18,7 @@ export default class extends Error {
       There are files in this repository that are not known to ${
         packageConfig.name
       }. Let's discuss about them in a PR!
-      
+
       ${
         files
         |> keys

@@ -11,12 +11,12 @@ export default tester(
     async badges() {
       await execaCommand('git init')
       await execaCommand(
-        'git remote add origin git@github.com:dword-design/bar.git'
+        'git remote add origin git@github.com:dword-design/bar.git',
       )
       await outputFiles({
         'README.md': endent`
           <!-- BADGES -->
-          
+
         `,
         'package.json': JSON.stringify({
           name: '@dword-design/foo',
@@ -28,12 +28,12 @@ export default tester(
     async 'badges private'() {
       await execaCommand('git init')
       await execaCommand(
-        'git remote add origin git@github.com:dword-design/bar.git'
+        'git remote add origin git@github.com:dword-design/bar.git',
       )
       await outputFiles({
         'README.md': endent`
           <!-- BADGES -->
-          
+
         `,
         'package.json': JSON.stringify({
           name: '@dword-design/foo',
@@ -46,7 +46,7 @@ export default tester(
       await outputFiles({
         'README.md': endent`
           <!-- DESCRIPTION -->
-          
+
         `,
         'package.json': JSON.stringify({ description: 'foo bar baz' }),
       })
@@ -79,14 +79,14 @@ export default tester(
       await outputFiles({
         'README.md': endent`
           <!-- INSTALL -->
-          
+
         `,
         'package.json': JSON.stringify({ name: 'foo' }),
       })
       expect(new Base().getReadmeString()).toEqual(endent`
         <!-- INSTALL/ -->
         ## Install
-        
+
         \`\`\`bash
         # npm
         $ npm install foo
@@ -102,7 +102,7 @@ export default tester(
       await outputFiles({
         'README.md': endent`
           <!-- LICENSE -->
-          
+
         `,
         'package.json': JSON.stringify({ license: 'MIT' }),
       })
@@ -112,7 +112,7 @@ export default tester(
       await outputFiles({
         'README.md': endent`
           <!-- LICENSE -->
-          
+
         `,
         'package.json': JSON.stringify({ license: 'MIT' }),
       })
@@ -122,24 +122,24 @@ export default tester(
             { description: 'Foo bar', repository: 'output-files' },
             { description: 'Bar baz', repository: 'foo/with-local-tmp-dir' },
           ],
-        }).getReadmeString()
+        }).getReadmeString(),
       ).toMatchSnapshot(this)
     },
     title: async () => {
       await outputFiles({
         'README.md': endent`
           <!-- TITLE -->
-          
+
         `,
         'package.json': JSON.stringify({ name: 'foo' }),
       })
       expect(new Base().getReadmeString()).toEqual(endent`
-          <!-- TITLE/ -->
-          # foo
-          <!-- /TITLE -->
+        <!-- TITLE/ -->
+        # foo
+        <!-- /TITLE -->
 
-        `)
+      `)
     },
   },
-  [testerPluginTmpDir()]
+  [testerPluginTmpDir()],
 )

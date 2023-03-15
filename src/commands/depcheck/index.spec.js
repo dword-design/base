@@ -32,9 +32,9 @@ export default tester(
       },
       test() {
         return expect(this.base.depcheck()).rejects.toThrow(endent`
-        Unused dependencies
-        * base-config-foo
-      `)
+          Unused dependencies
+          * base-config-foo
+        `)
       },
     },
     'depcheck ignoreMatches': {
@@ -73,12 +73,12 @@ export default tester(
       },
       test() {
         expect(this.base.depcheck).rejects.toThrow(endent`
-        Unused dependencies
-        * change-case
+          Unused dependencies
+          * change-case
 
-        Invalid files
-        * ${P.resolve('foo')}: Error: foo
-      `)
+          Invalid files
+          * ${P.resolve('foo')}: Error: foo
+        `)
       },
     },
     'mark base as used dependency': {
@@ -97,7 +97,7 @@ export default tester(
       async test() {
         await fs.symlink(
           P.join('..', '..', '..'),
-          P.join('node_modules', '@dword-design', 'base')
+          P.join('node_modules', '@dword-design', 'base'),
         )
         await this.base.test()
       },
@@ -113,10 +113,10 @@ export default tester(
         },
         async test() {
           await expect(this.base.depcheck()).rejects.toThrow(endent`
-          Unused dependencies
-          * change-case
-          * foo
-        `)
+            Unused dependencies
+            * change-case
+            * foo
+          `)
         },
       },
     },
@@ -131,17 +131,17 @@ export default tester(
         src: {
           'index.js': 'export default 1',
           'index.spec.js': endent`
-      import bar from 'bar'
+            import bar from 'bar'
 
-      export default bar
-    `,
+            export default bar
+          `,
         },
       },
       async test() {
         await expect(this.base.test()).rejects.toThrow(endent`
-        Unused dependencies
-        * bar
-      `)
+          Unused dependencies
+          * bar
+        `)
       },
     },
   },
@@ -162,5 +162,5 @@ export default tester(
           await test.test.call(this)
         },
     },
-  ]
+  ],
 )

@@ -11,9 +11,9 @@ export default tester(
       transform: test =>
         function () {
           expect(
-            new Base({ editorIgnore: test }).getVscodeConfig()
+            new Base({ editorIgnore: test }).getVscodeConfig(),
           ).toMatchSnapshot(this)
         },
     },
-  ]
+  ],
 )

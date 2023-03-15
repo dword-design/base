@@ -74,6 +74,6 @@ export default async function (options) {
         ...(options.updateSnapshots && { SNAPSHOT_UPDATE: 1 }),
       },
       ...(options.log ? { stdio: 'inherit' } : { all: true }),
-    }
+    },
   )
 }

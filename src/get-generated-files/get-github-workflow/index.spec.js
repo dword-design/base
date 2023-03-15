@@ -18,7 +18,7 @@ export default tester(
     },
     'job matrix'() {
       expect(
-        new Base({ useJobMatrix: true }).getGithubWorkflowConfig()
+        new Base({ useJobMatrix: true }).getGithubWorkflowConfig(),
       ).toMatchSnapshot(this)
     },
     'job matrix no windows'() {
@@ -26,7 +26,7 @@ export default tester(
         new Base({
           useJobMatrix: true,
           windows: false,
-        }).getGithubWorkflowConfig()
+        }).getGithubWorkflowConfig(),
       ).toMatchSnapshot(this)
     },
     'no job matrix'() {
@@ -40,7 +40,7 @@ export default tester(
         'repos/foo/package.json': JSON.stringify({}),
       })
       await chdir(P.join('repos', 'foo'), () =>
-        expect(new Base().getGithubWorkflowConfig()).toMatchSnapshot(this)
+        expect(new Base().getGithubWorkflowConfig()).toMatchSnapshot(this),
       )
     },
     async 'package.json same path as .env.schema.json'() {
@@ -53,19 +53,19 @@ export default tester(
         },
       })
       await chdir(P.join('repos', 'foo'), () =>
-        expect(new Base().getGithubWorkflowConfig()).toMatchSnapshot(this)
+        expect(new Base().getGithubWorkflowConfig()).toMatchSnapshot(this),
       )
     },
     async 'test environment variables'() {
       await fs.outputFile(
         '.env.schema.json',
-        { bar: {}, foo: {} } |> JSON.stringify
+        { bar: {}, foo: {} } |> JSON.stringify,
       )
       expect(
         new Base({
           nodeVersion: 14,
           useJobMatrix: false,
-        }).getGithubWorkflowConfig()
+        }).getGithubWorkflowConfig(),
       ).toMatchSnapshot(this)
     },
     testInContainer() {
@@ -74,9 +74,9 @@ export default tester(
           nodeVersion: 14,
           testInContainer: true,
           useJobMatrix: true,
-        }).getGithubWorkflowConfig()
+        }).getGithubWorkflowConfig(),
       ).toMatchSnapshot(this)
     },
   },
-  [testerPluginTmpDir()]
+  [testerPluginTmpDir()],
 )

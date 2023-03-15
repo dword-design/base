@@ -14,5 +14,5 @@ export default tester(
           expect(base.getEditorIgnoreConfig()).toMatchSnapshot(this)
         },
     },
-  ]
+  ],
 )

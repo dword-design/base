@@ -18,7 +18,7 @@ export default async function () {
     |> filter(ignore().add(this.getGitignoreConfig()).createFilter())
   if (unknownFiles.length > 0) {
     throw new UnknownFilesError(
-      unknownFiles |> map(file => [file, true]) |> fromPairs
+      unknownFiles |> map(file => [file, true]) |> fromPairs,
     )
   }
 }
