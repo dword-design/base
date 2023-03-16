@@ -7665,9 +7665,9 @@ make-cli@^2.0.0:
     commander "^8.0.0"
 
 make-cli@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-3.0.1.tgz#dfe348830d7c052893e9985212b671c325da86db"
-  integrity sha512-aXRKCBNAbsHikUsvcHCN4YBP/quneeJi82jJwaPOowjWZHUofQyX/Zv75kHcx12fz7j6Sf53GDcqLwJo/scsjg==
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-3.0.2.tgz#c9bc4156179e4a23423858bce0fc2e21188421b7"
+  integrity sha512-mtJXv0sSCcdklRZB7dwX2puY1dyHQGGIVkg30yP+ZxUhLo6wQTP+SkWUr5HZkYM7/Qd8rezr4DmJa/tbdVgp+A==
   dependencies:
     "@dword-design/functions" "^4.0.0"
     commander "^9.5.0"
