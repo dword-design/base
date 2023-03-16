@@ -1,3 +1,10 @@
+## [9.4.19](https://github.com/dword-design/base/compare/v9.4.18...v9.4.19) (2023-03-16)
+
+
+### Bug Fixes
+
+* update dependency output-files to v2.0.13 ([4a0aff8](https://github.com/dword-design/base/commit/4a0aff898aa1d94722e813f01aaaf5e2dcb39986))
+
 ## [9.4.18](https://github.com/dword-design/base/compare/v9.4.17...v9.4.18) (2023-03-16)
 
 
