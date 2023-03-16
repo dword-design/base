@@ -1,3 +1,10 @@
+## [9.4.12](https://github.com/dword-design/base/compare/v9.4.11...v9.4.12) (2023-03-16)
+
+
+### Bug Fixes
+
+* update dependency make-cli to v3.0.2 ([7e810eb](https://github.com/dword-design/base/commit/7e810eb521a6978187980061c17fa572524130bc))
+
 ## [9.4.11](https://github.com/dword-design/base/compare/v9.4.10...v9.4.11) (2023-03-16)
 
 
