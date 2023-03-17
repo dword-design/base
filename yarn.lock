@@ -3181,9 +3181,9 @@ camelcase@^6.0.0, camelcase@^6.2.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001449:
-  version "1.0.30001466"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001466.tgz#c1e6197c540392e09709ecaa9e3e403428c53375"
-  integrity sha512-ewtFBSfWjEmxUgNBSZItFSmVtvk9zkwkl1OfRZlKA8slltRN+/C/tuGVrF9styXkN36Yu3+SeJ1qkXxDEyNZ5w==
+  version "1.0.30001467"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001467.tgz#1afc9c16ed61f50dd87139da87ca43a3e0051c77"
+  integrity sha512-cEdN/5e+RPikvl9AHm4uuLXxeCNq8rFsQ+lPHTfe/OtypP3WwnVVbjn+6uBV7PaFL6xUFzTh+sSCOz1rKhcO+Q==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -3983,9 +3983,9 @@ depcheck-package-name@^3.0.0:
     tagged-template-noop "^2.1.1"
 
 depcheck-parser-babel@^3.0.1:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/depcheck-parser-babel/-/depcheck-parser-babel-3.0.4.tgz#bb7f06724ac63aa6d6bf360a677d816714f7e0a7"
-  integrity sha512-06PIcb6rlclyFdwGNS3yaGgOdfofam0BZeP2GTRlVA1mGoIoHA3WMi6YXDcFootTx8HJ9fcfj7osgsrgvun37A==
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/depcheck-parser-babel/-/depcheck-parser-babel-3.0.5.tgz#60b3e05ab19ba7f3a21599bd0f20953d898ac654"
+  integrity sha512-hmbHTmo/6NHPEDTjtlaxDqs80PvWFJP4kakPe2BfN5OsLSfQ5Nqzp1162aEKJaQwKIdOqYx60kgffcL3lbCXsQ==
   dependencies:
     "@babel/core" "^7.7.7"
     fs-extra "^10.0.0"
