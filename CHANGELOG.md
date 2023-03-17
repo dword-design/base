@@ -1,3 +1,10 @@
+## [9.4.21](https://github.com/dword-design/base/compare/v9.4.20...v9.4.21) (2023-03-17)
+
+
+### Bug Fixes
+
+* update dependency deepmerge to v4.3.1 ([463a6e0](https://github.com/dword-design/base/commit/463a6e072533431f61174340cd285e8f9b1c0af2))
+
 ## [9.4.20](https://github.com/dword-design/base/compare/v9.4.19...v9.4.20) (2023-03-16)
 
 
