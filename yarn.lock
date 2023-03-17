@@ -3662,9 +3662,9 @@ cosmiconfig@^7.0.0:
     yaml "^1.10.0"
 
 cosmiconfig@^8.0.0:
-  version "8.1.1"
-  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-8.1.1.tgz#46f82063efe81bb8b8fdb212a45ba785606283e3"
-  integrity sha512-Kw7F5apKYo2Sz12i8sKcuj2iy69VTT5m1WXkdqTjt26YEGbQjJd5WB4JiDjrMB3HBpJ/BAxvYuDuCNXb2NO2eA==
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-8.1.2.tgz#3a9af12d5663d041cd2ab448e9a0e62035ea902a"
+  integrity sha512-rmpUFKMZiawLfug8sP4NbpBSOpWftZB6UACOLEiNbnRAYM1TzgQuTWlMYFRuPgmoTCkcOxSMwQJQpJmiXv/eHw==
   dependencies:
     import-fresh "^3.2.1"
     js-yaml "^4.1.0"
