@@ -3955,9 +3955,9 @@ delete-empty@^3.0.0:
     rimraf "^2.6.2"
 
 depcheck-detector-execa@^3.0.4:
-  version "3.0.7"
-  resolved "https://registry.yarnpkg.com/depcheck-detector-execa/-/depcheck-detector-execa-3.0.7.tgz#51e3c13e65188ba1d5c3f2db02bb4137fd7ee6c2"
-  integrity sha512-WXqSvmjii0te5rTrqiEd3JnJcjUKi00HNAcAzAxWIjzyIJeU2VfhyBwdx/u8CTwnG17dSy7BgzUrCEOmXjt2Dg==
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/depcheck-detector-execa/-/depcheck-detector-execa-3.0.8.tgz#6570ed2d060019712aca05e00e00f110f4e36932"
+  integrity sha512-5eMkGqjWwdeXH0fNRiGm3FIKi/w6tKroM/nzTOQ4hNHtbUO2dr+pZ6mz1RGAmvT2+t6XH4s0swaNafj9pvtsHg==
   dependencies:
     "@dword-design/functions" "^4.0.0"
     fs-extra "^11.1.0"
