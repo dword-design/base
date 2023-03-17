@@ -1,3 +1,11 @@
+## [9.4.22](https://github.com/dword-design/base/compare/v9.4.21...v9.4.22) (2023-03-17)
+
+
+### Bug Fixes
+
+* update dependency jiti to v1.18.2 ([fe47dee](https://github.com/dword-design/base/commit/fe47dee15172cc140e4115c291af31128f58d3e3))
+* update dependency unify-mocha-output to v2.0.12 ([5805851](https://github.com/dword-design/base/commit/5805851cb6ddd6e0f29a1e38c09748c7511e5bb7))
+
 ## [9.4.21](https://github.com/dword-design/base/compare/v9.4.20...v9.4.21) (2023-03-17)
 
 
