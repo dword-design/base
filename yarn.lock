@@ -3983,9 +3983,9 @@ depcheck-package-name@^3.0.0:
     tagged-template-noop "^2.1.1"
 
 depcheck-parser-babel@^3.0.1:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/depcheck-parser-babel/-/depcheck-parser-babel-3.0.5.tgz#60b3e05ab19ba7f3a21599bd0f20953d898ac654"
-  integrity sha512-hmbHTmo/6NHPEDTjtlaxDqs80PvWFJP4kakPe2BfN5OsLSfQ5Nqzp1162aEKJaQwKIdOqYx60kgffcL3lbCXsQ==
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/depcheck-parser-babel/-/depcheck-parser-babel-3.0.6.tgz#f2512db52457c4040b86dceccf08b2d71826d010"
+  integrity sha512-o6G6G1Mc7mFYiV1Jm16nG9tp11TC/yQALT3q6WbNM60Edw/lUN/RTD1mGtT1Sa8ybeUQjdZjxswKvwh64g8tRw==
   dependencies:
     "@babel/core" "^7.7.7"
     fs-extra "^10.0.0"
@@ -4176,9 +4176,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.332"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.332.tgz#b981fcf61587abe03c24b301b2cfbdcc2b70e8a5"
-  integrity sha512-c1Vbv5tuUlBFp0mb3mCIjw+REEsgthRgNE8BlbEDKmvzb8rxjcVki6OkQP83vLN34s0XCxpSkq7AZNep1a6xhw==
+  version "1.4.333"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.333.tgz#ebb21f860f8a29923717b06ec0cb54e77ed34c04"
+  integrity sha512-YyE8+GKyGtPEP1/kpvqsdhD6rA/TP1DUFDN4uiU/YI52NzDxmwHkEb3qjId8hLBa5siJvG0sfC3O66501jMruQ==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
