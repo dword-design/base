@@ -1,3 +1,10 @@
+## [9.4.31](https://github.com/dword-design/base/compare/v9.4.30...v9.4.31) (2023-03-18)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/pretest to v1.0.5 ([a4c9e5f](https://github.com/dword-design/base/commit/a4c9e5ffcb93f065d8284e96b15eccde2e057072))
+
 ## [9.4.30](https://github.com/dword-design/base/compare/v9.4.29...v9.4.30) (2023-03-18)
 
 
