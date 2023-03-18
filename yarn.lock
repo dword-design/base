@@ -1252,9 +1252,9 @@
     param-case "^3.0.3"
 
 "@dword-design/base-config-node@^1.6.0":
-  version "1.10.16"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.10.16.tgz#b4739d18b57bd31a4976a45968a593b8dc0a8cf5"
-  integrity sha512-n2N4lF1qmYd4FPM1BQmA8zgfE21+xTTPym8zxO1yQOt7nUd5xf1PAqBbK427lz9wOCVfVDk2GrrP9NiGFeqWQA==
+  version "1.10.18"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.10.18.tgz#cbe9745b45c3aceca846893609be051a1725c7d1"
+  integrity sha512-joZPRAhGsvkhn1/sTufjj1uCzw1et1TJcFaAFkKM/n2PZMeF0usMJKEr16sZTdhvKfR9h+Kd/EBK0wqr7Ulxvg==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
@@ -1403,9 +1403,9 @@
     "@dword-design/functions" "^4.0.0"
 
 "@eslint-community/eslint-utils@^4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.2.0.tgz#a831e6e468b4b2b5ae42bf658bea015bf10bc518"
-  integrity sha512-gB8T4H4DEfX2IV9zGDJPOBgP1e/DbfCPDTtEqUMckpvzS1OYtva8JdFYBqMwYk7xAQ429WGF/UPqn8uQ//h2vQ==
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.3.0.tgz#a556790523a351b4e47e9d385f47265eaaf9780a"
+  integrity sha512-v3oplH6FYCULtFuCeqyuTd9D2WKO937Dxdq+GmHOLL72TTRriLxz2VLlNfkZRsvj6PKnOPAtuT6dwrs/pA5DvA==
   dependencies:
     eslint-visitor-keys "^3.3.0"
 
