@@ -1252,9 +1252,9 @@
     param-case "^3.0.3"
 
 "@dword-design/base-config-node@^1.6.0":
-  version "1.10.20"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.10.20.tgz#7f823322721353f10897a94d541e839b0bfd12a3"
-  integrity sha512-mjd4V1G1TPJenpjhnBVHxu40bHv2b+yDFGr1ou8mly1iKhzom6bDfwsWtIUqyJEN5mnUk2u3vmT6ZI7GJnk4CA==
+  version "1.10.22"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.10.22.tgz#74dfd72ab6479986ae78a74ecb4baba65e726e2d"
+  integrity sha512-p053OCDoXt8HU2Xxg0+7saLq+LnqBvRpcVZGk750/PyTqI5C4pJptW0OyOFr70/0+8anszkKbUSf/5JmpRq+qA==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
