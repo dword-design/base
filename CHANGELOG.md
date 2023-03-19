@@ -1,3 +1,10 @@
+## [9.4.37](https://github.com/dword-design/base/compare/v9.4.36...v9.4.37) (2023-03-19)
+
+
+### Bug Fixes
+
+* update dependency cosmiconfig to v8.1.3 ([9bc8911](https://github.com/dword-design/base/commit/9bc8911f5e3dbf98c593d33bc0341af05ae85d79))
+
 ## [9.4.36](https://github.com/dword-design/base/compare/v9.4.35...v9.4.36) (2023-03-19)
 
 
