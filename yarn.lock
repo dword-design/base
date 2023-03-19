@@ -1370,9 +1370,9 @@
     "@dword-design/functions" "^4.0.7"
 
 "@dword-design/pretest@^1.0.0":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@dword-design/pretest/-/pretest-1.0.5.tgz#9ebf436041d31cd5918d77df6b9d463ae42b96e3"
-  integrity sha512-Ufv0W9CInzNHUiZIEoDdWf1jkEsgqwaWQyynm6O2RE5UD5SBB0MP+O2pPumy0uXcrmrhJPHA74yBXCHFb48Wlg==
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@dword-design/pretest/-/pretest-1.0.6.tgz#6996010fb89b61d69c90aaba95dbfa353f04226d"
+  integrity sha512-Js4Tr1JCTBVJ+PLu2eXCZlPlppbv2JLwYJfPUmhjRtSWC690lLU+aRuWADfRlMU5HcSBzNofQoU2RAgWmWuHFw==
   dependencies:
     expect "^29.4.0"
     expect-mocha-image-snapshot "^3.0.1"
@@ -4826,9 +4826,9 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
     homedir-polyfill "^1.0.1"
 
 expect-mocha-image-snapshot@^3.0.1:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/expect-mocha-image-snapshot/-/expect-mocha-image-snapshot-3.0.4.tgz#9cf56aef6a24f2871bc38abf2fafa5dac0cb098f"
-  integrity sha512-fNwKK4PBbibNkw4tfuszHZdtxSGmpwRQ//DP9xLUKZEQYnaXPZy9JJNCor0OJyH3N/0zVQidpCRzjpl9C/vVXw==
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/expect-mocha-image-snapshot/-/expect-mocha-image-snapshot-3.0.5.tgz#a6d310b661b8650f4f342a0bebaa9feed89af345"
+  integrity sha512-2Vm6ba1FHXkmzh5hT16urM73eS17ZaDMK0bH5CrKK63wytB0DOyDZo6Ei4c7FlOoED0b46iGSilxjyyrtWirUQ==
   dependencies:
     jest-image-snapshot "^4.4.0"
     jest-snapshot "^27.0.0"
