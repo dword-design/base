@@ -1,3 +1,10 @@
+## [9.4.33](https://github.com/dword-design/base/compare/v9.4.32...v9.4.33) (2023-03-19)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/base-config-node to v1.10.19 ([7814645](https://github.com/dword-design/base/commit/7814645219f98ed367eeccc10f17f6aa32e559a0))
+
 ## [9.4.32](https://github.com/dword-design/base/compare/v9.4.31...v9.4.32) (2023-03-19)
 
 
