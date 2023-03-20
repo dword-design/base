@@ -3983,9 +3983,9 @@ depcheck-package-name@^3.0.0:
     tagged-template-noop "^2.1.1"
 
 depcheck-parser-babel@^3.0.1:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/depcheck-parser-babel/-/depcheck-parser-babel-3.0.6.tgz#f2512db52457c4040b86dceccf08b2d71826d010"
-  integrity sha512-o6G6G1Mc7mFYiV1Jm16nG9tp11TC/yQALT3q6WbNM60Edw/lUN/RTD1mGtT1Sa8ybeUQjdZjxswKvwh64g8tRw==
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/depcheck-parser-babel/-/depcheck-parser-babel-3.0.9.tgz#139cc99191d5e1eca240563e6bcf7b27bfbd70f7"
+  integrity sha512-BCTZpGwDoKiOulEDa+qEpl3UE8PaRYdpIbHD3RouIOHT++iCaiUqLGff3SHhH8M6RZpOMo7G5sTUYrAIm6PJDA==
   dependencies:
     "@babel/core" "^7.7.7"
     fs-extra "^10.0.0"
