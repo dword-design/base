@@ -1,3 +1,10 @@
+## [9.4.44](https://github.com/dword-design/base/compare/v9.4.43...v9.4.44) (2023-03-20)
+
+
+### Bug Fixes
+
+* update dependency depcheck-parser-babel to v3.0.9 ([9e1d44e](https://github.com/dword-design/base/commit/9e1d44e630ccf442aef63b36b8332a97110dcfaa))
+
 ## [9.4.43](https://github.com/dword-design/base/compare/v9.4.42...v9.4.43) (2023-03-20)
 
 
