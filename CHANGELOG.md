@@ -1,3 +1,10 @@
+## [9.4.47](https://github.com/dword-design/base/compare/v9.4.46...v9.4.47) (2023-03-20)
+
+
+### Bug Fixes
+
+* update dependency unify-mocha-output to v2.0.18 ([59221c9](https://github.com/dword-design/base/commit/59221c9fd4a3d79e917a0518dce7e0fbebbf87ea))
+
 ## [9.4.46](https://github.com/dword-design/base/compare/v9.4.45...v9.4.46) (2023-03-20)
 
 
