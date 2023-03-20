@@ -1,3 +1,10 @@
+## [9.4.45](https://github.com/dword-design/base/compare/v9.4.44...v9.4.45) (2023-03-20)
+
+
+### Bug Fixes
+
+* foo ([081ccb6](https://github.com/dword-design/base/commit/081ccb6a265c96f9db5c73df8197ab637b710d94))
+
 ## [9.4.44](https://github.com/dword-design/base/compare/v9.4.43...v9.4.44) (2023-03-20)
 
 
