@@ -24,6 +24,7 @@ Object {
       ],
     },
   ],
+  "rangeStrategy": "auto",
   "semanticCommitScope": null,
 }
 `;
@@ -83,6 +84,7 @@ Object {
       ],
     },
   ],
+  "rangeStrategy": "auto",
   "semanticCommitScope": null,
 }
 `;
@@ -114,6 +116,7 @@ Object {
       ],
     },
   ],
+  "rangeStrategy": "auto",
   "semanticCommitScope": null,
 }
 `;

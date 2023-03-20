@@ -19,6 +19,7 @@ export default function () {
         matchUpdateTypes: ['minor', 'patch'],
       },
     ],
+    rangeStrategy: 'auto',
     semanticCommitScope: null,
   }
 }
