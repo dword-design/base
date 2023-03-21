@@ -1252,9 +1252,9 @@
     param-case "^3.0.3"
 
 "@dword-design/base-config-node@^1.6.0":
-  version "1.10.24"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.10.24.tgz#3306590b64538c3591f9ac3fc7469f0f4a650612"
-  integrity sha512-emDK+tevEXBHEJXxAD7niN9Mo3iugIWL/DXuOJbcwlqs4UBa6DYsvLe5J95m/s1pOml1XLTOI56O0/z2k9Y6+g==
+  version "1.10.26"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.10.26.tgz#67addbce0f0843eaf274738ed90a7d53f5b4861a"
+  integrity sha512-g9kwmdOl2z8hFA2D58RGOSuybyeZ03uwIbSycc9Tym4WubLAdWtkIVXvN/TuRNlBuZk6BtaLek0QsusdcyKISw==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
@@ -4176,9 +4176,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.333"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.333.tgz#ebb21f860f8a29923717b06ec0cb54e77ed34c04"
-  integrity sha512-YyE8+GKyGtPEP1/kpvqsdhD6rA/TP1DUFDN4uiU/YI52NzDxmwHkEb3qjId8hLBa5siJvG0sfC3O66501jMruQ==
+  version "1.4.334"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.334.tgz#eacdcb1145534202d569610c5915b63a3fec0eb9"
+  integrity sha512-laZ1odk+TRen6q0GeyQx/JEkpD3iSZT7ewopCpKqg9bTjP1l8XRfU3Bg20CFjNPZkp5+NDBl3iqd4o/kPO+Vew==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
