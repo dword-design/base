@@ -1,3 +1,10 @@
+## [9.4.50](https://github.com/dword-design/base/compare/v9.4.49...v9.4.50) (2023-03-21)
+
+
+### Bug Fixes
+
+* update dependency depcheck-detector-execa to v3.0.20 ([6c9f0d3](https://github.com/dword-design/base/commit/6c9f0d3f5e1103a420218f29945b844829911306))
+
 ## [9.4.49](https://github.com/dword-design/base/compare/v9.4.48...v9.4.49) (2023-03-21)
 
 
