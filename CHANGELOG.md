@@ -1,3 +1,11 @@
+## [9.4.53](https://github.com/dword-design/base/compare/v9.4.52...v9.4.53) (2023-03-28)
+
+
+### Bug Fixes
+
+* update dependency @commitlint/cli to v17.5.0 ([2d2e842](https://github.com/dword-design/base/commit/2d2e842e1d7d5f3148245bca0eedaa2f258d459d))
+* update dependency @commitlint/cli to v17.5.1 ([030c121](https://github.com/dword-design/base/commit/030c12120a98ed7bfc5961714d1705d1091cb15e))
+
 ## [9.4.52](https://github.com/dword-design/base/compare/v9.4.51...v9.4.52) (2023-03-21)
 
 
