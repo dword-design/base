@@ -52,7 +52,7 @@
     "depcheck-detector-package-name": "^3.0.0",
     "depcheck-package-name": "^3.0.0",
     "depcheck-parser-babel": "^3.0.1",
-    "eslint": "~8.36.0",
+    "eslint": "~8.37.0",
     "execa": "^7.0.0",
     "find-up": "^6.3.0",
     "fs-extra": "^11.1.0",
