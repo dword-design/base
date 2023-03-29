@@ -1,3 +1,11 @@
+## [9.4.54](https://github.com/dword-design/base/compare/v9.4.53...v9.4.54) (2023-03-29)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/base-config-node to v1.10.27 ([5d517ff](https://github.com/dword-design/base/commit/5d517ffce3982a5254d15e9165ee18a577882c23))
+* update dependency eslint to ~8.37.0 ([d41f99b](https://github.com/dword-design/base/commit/d41f99b190e7e4c079df99501ab78c593fe93d8e))
+
 ## [9.4.53](https://github.com/dword-design/base/compare/v9.4.52...v9.4.53) (2023-03-28)
 
 
