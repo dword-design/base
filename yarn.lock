@@ -1328,9 +1328,9 @@
     "@jridgewell/trace-mapping" "0.3.9"
 
 "@dword-design/babel-config@^2.0.0", "@dword-design/babel-config@^2.1.1":
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-2.1.7.tgz#b192039f26b848c981c35a3269bcec40191286fe"
-  integrity sha512-IYZWvS//j8wQMlxawDTDSPQzDfGubRu2K+cmSwh0xWkBgTv3xV2YFgeAg2IhbB3Rhnu7VR5cjxZ5GgjT6vLTww==
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-2.1.8.tgz#8fd91fa92f03f4e570b2e99526a39bb4b4808479"
+  integrity sha512-nACO1q5jILtJGMXuvI12d4O0PZxbLz4pBXMf1THV6cuEM1SAapmtzp1+zAjz2GY8KfVB+eyIDpMHN5eLyDcSEw==
   dependencies:
     "@babel/plugin-proposal-optional-chaining" "^7.6.0"
     "@babel/plugin-proposal-pipeline-operator" "^7.5.0"
