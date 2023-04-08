@@ -19,6 +19,18 @@ export default tester(
       await base.prepare()
       await expect(base.lint()).rejects.toThrow('foobar')
     },
+    'eslint-config project': async () => {
+      await outputFiles({
+        'package.json': JSON.stringify({
+          name: '@dword-design/eslint-config',
+          type: 'module',
+        }),
+      })
+
+      const base = new Base()
+      await base.prepare()
+      await base.lint()
+    },
     fixable: async () => {
       await fs.outputFile('src/index.js', "console.log('foo');")
 
