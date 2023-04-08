@@ -13,13 +13,13 @@ export default tester(
       expect(
         new Base({
           packageConfig: { main: 'dist/index.scss' },
-        }).getPackageConfig().main
+        }).getPackageConfig().main,
       ).toEqual('dist/index.scss')
     },
     deploy: async () => {
       await fs.outputFile(
         'package.json',
-        JSON.stringify({ deploy: true, type: 'module' })
+        JSON.stringify({ deploy: true, type: 'module' }),
       )
       expect(new Base().getPackageConfig().deploy).toBeTruthy()
     },
@@ -61,7 +61,7 @@ export default tester(
           type: 'module',
           types: 'types.d.ts',
           version: '1.1.0',
-        })
+        }),
       )
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
     },
@@ -76,13 +76,13 @@ export default tester(
       await execaCommand('git init')
       await execaCommand('git remote add origin git@special.com:bar/foo.git')
       expect(() => new Base().getPackageConfig()).toThrow(
-        'Only GitHub repositories are supported.'
+        'Only GitHub repositories are supported.',
       )
     },
     private: async () => {
       await fs.outputFile(
         'package.json',
-        JSON.stringify({ private: true, type: 'module' })
+        JSON.stringify({ private: true, type: 'module' }),
       )
       expect(new Base().getPackageConfig().private).toBeTruthy()
     },
@@ -106,5 +106,5 @@ export default tester(
       expect(packageConfig.files).toEqual(['dist', 'types.d.ts'])
     },
   },
-  [testerPluginTmpDir()]
+  [testerPluginTmpDir()],
 )

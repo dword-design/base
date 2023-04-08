@@ -24,15 +24,15 @@ export default tester(
         src: {
           'index.js': 'export default 1',
           'index.spec.js': endent`
-        export default {
-          valid: () => expect(1).toEqual(2),
-        }
-      `,
+            export default {
+              valid: () => expect(1).toEqual(2),
+            }
+          `,
         },
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          'Error: expect(received).toEqual(expected)'
+          'Error: expect(received).toEqual(expected)',
         )
       },
     },
@@ -45,7 +45,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          'package.json invalid\ndata/bin/foo must match pattern "^\\.\\/dist\\/"'
+          'package.json invalid\ndata/bin/foo must match pattern "^\\.\\/dist\\/"',
         )
       },
     },
@@ -63,11 +63,11 @@ export default tester(
         src: {
           'index.js': 'export default 1',
           'index.spec.js': endent`
-        export default {
-          bar: () => console.log('run bar'),
-          foo: () => console.log('run foo'),
-        }
-      `,
+            export default {
+              bar: () => console.log('run bar'),
+              foo: () => console.log('run foo'),
+            }
+          `,
         },
       },
       async test() {
@@ -80,24 +80,24 @@ export default tester(
     'image snapshot': {
       files: {
         'index.spec.js': endent`
-        import sharp from '${packageName`sharp`}'
+          import sharp from '${packageName`sharp`}'
 
-        export default {
-          works: async function () {
-            const img = await sharp({
-              create: {
-                background: { b: 0, g: 255, r: 0 },
-                channels: 3,
-                height: 48,
-                width: 48,
-              },
-            })
-              .png()
-              .toBuffer()
-            expect(img).toMatchImageSnapshot(this)
-          },
-        }
-      `,
+          export default {
+            works: async function () {
+              const img = await sharp({
+                create: {
+                  background: { b: 0, g: 255, r: 0 },
+                  channels: 3,
+                  height: 48,
+                  width: 48,
+                },
+              })
+                .png()
+                .toBuffer()
+              expect(img).toMatchImageSnapshot(this)
+            },
+          }
+        `,
         'package.json': JSON.stringify({
           devDependencies: {
             sharp: '^1.0.0',
@@ -118,7 +118,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          'package.json invalid\ndata/name must match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"'
+          'package.json invalid\ndata/name must match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"',
         )
       },
     },
@@ -128,7 +128,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          'error  Unexpected token o'
+          'error  Unexpected token o',
         )
       },
     },
@@ -138,7 +138,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          "error  'foo' is assigned a value but never used  no-unused-vars"
+          "error  'foo' is assigned a value but never used  no-unused-vars",
         )
       },
     },
@@ -168,13 +168,13 @@ export default tester(
     'multiple snapshots': {
       files: {
         'index.spec.js': endent`
-        export default {
-          works: function () {
-            expect('foo').toMatchSnapshot(this)
-            expect('bar').toMatchSnapshot(this)
-          },
-        }
-      `,
+          export default {
+            works: function () {
+              expect('foo').toMatchSnapshot(this)
+              expect('bar').toMatchSnapshot(this)
+            },
+          }
+        `,
       },
       async test() {
         await this.base.test()
@@ -184,16 +184,16 @@ export default tester(
         expect(
           await fs.readFile(
             P.join('__snapshots__', 'index.spec.js.snap'),
-            'utf8'
-          )
+            'utf8',
+          ),
         ).toEqual(endent`
-        // Jest Snapshot v1, https://goo.gl/fbAQLP
+          // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-        exports[\`index works 1\`] = \`"foo"\`;
+          exports[\`index works 1\`] = \`"foo"\`;
 
-        exports[\`index works 2\`] = \`"bar"\`;
+          exports[\`index works 2\`] = \`"bar"\`;
 
-      `)
+        `)
       },
     },
     'node_modules not transpiled': {
@@ -207,7 +207,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          /SyntaxError: Unexpected token '?export'?/
+          /SyntaxError: Unexpected token '?export'?/,
         )
       },
     },
@@ -253,18 +253,18 @@ export default tester(
         }),
         src: {
           'index.spec.js': endent`
-        import { execa } from 'execa'
-        import P from 'path'
+            import { execa } from 'execa'
+            import P from 'path'
 
-        export default {
-          valid: () => execa(P.join('src', 'subprocess.js'), { stdio: 'inherit' }),
-        }
-      `,
+            export default {
+              valid: () => execa(P.join('src', 'subprocess.js'), { stdio: 'inherit' }),
+            }
+          `,
           'subprocess.js': endent`
-          #!/usr/bin/env node
+            #!/usr/bin/env node
 
-          console.log(1 |> x => x * 2)
-        `,
+            console.log(1 |> x => x * 2)
+          `,
         },
       },
       async test() {
@@ -275,12 +275,12 @@ export default tester(
     snapshot: {
       files: {
         'index.spec.js': endent`
-        export default {
-          works: function () {
-            expect('foo').toMatchSnapshot(this)
-          },
-        }
-      `,
+          export default {
+            works: function () {
+              expect('foo').toMatchSnapshot(this)
+            },
+          }
+        `,
       },
       async test() {
         await this.base.test()
@@ -292,18 +292,18 @@ export default tester(
     'test in project root': {
       files: {
         'index.spec.js': endent`
-        export default {
-          valid: () => console.log('run test')
-        }
+          export default {
+            valid: () => console.log('run test')
+          }
 
-      `,
+        `,
         'node_modules/base-config-foo/index.js': endent`
-        module.exports = {
-          allowedMatches: [
-            'index.spec.js',
-          ],
-        }
-      `,
+          module.exports = {
+            allowedMatches: [
+              'index.spec.js',
+            ],
+          }
+        `,
         'package.json': JSON.stringify({
           baseConfig: 'foo',
           type: 'module',
@@ -335,16 +335,16 @@ export default tester(
     'update snapshot': {
       files: {
         '__snapshots__/index.spec.js.snap': endent`
-        exports[\`index works 1\`] = \`"foo"\`;
+          exports[\`index works 1\`] = \`"foo"\`;
       
-      `,
+        `,
         'index.spec.js': endent`
-        export default {
-          works: function () {
-            expect('bar').toMatchSnapshot(this)
-          },
-        }
-      `,
+          export default {
+            works: function () {
+              expect('bar').toMatchSnapshot(this)
+            },
+          }
+        `,
       },
       test() {
         return this.base.test({ updateSnapshots: true })
@@ -414,21 +414,21 @@ export default tester(
         }),
         src: {
           'index.js': endent`
-          export default 1
+            export default 1
 
-        `,
+          `,
           'index.spec.js': endent`
-          import foo from './index.js'
+            import foo from './index.js'
 
-          export default {
-            valid: () => {
-              expect(process.env.NODE_ENV).toEqual('test')
-              expect(foo).toEqual(1)
-              console.log('run test')
-            },
-          }
+            export default {
+              valid: () => {
+                expect(process.env.NODE_ENV).toEqual('test')
+                expect(foo).toEqual(1)
+                console.log('run test')
+              },
+            }
 
-        `,
+          `,
         },
       },
       async test() {
@@ -437,7 +437,7 @@ export default tester(
           globby('*', { dot: true, onlyFiles: false })
             |> await
             |> keyBy(identity)
-            |> mapValues(stubTrue)
+            |> mapValues(stubTrue),
         ).toEqual({
           '.babelrc.json': true,
           '.commitlintrc.json': true,
@@ -470,7 +470,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          'package.json invalid\ndata/dependencies must be object'
+          'package.json invalid\ndata/dependencies must be object',
         )
       },
     },
@@ -483,7 +483,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          'package.json invalid\ndata/description must be string'
+          'package.json invalid\ndata/description must be string',
         )
       },
     },
@@ -493,7 +493,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          'package.json invalid\ndata/devDependencies must be object'
+          'package.json invalid\ndata/devDependencies must be object',
         )
       },
     },
@@ -503,7 +503,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          'package.json invalid\ndata/keywords must be array'
+          'package.json invalid\ndata/keywords must be array',
         )
       },
     },
@@ -528,5 +528,5 @@ export default tester(
           await test.test.call(this)
         },
     },
-  ]
+  ],
 )

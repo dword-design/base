@@ -12,7 +12,7 @@ export default tester(
     'array merge': async () => {
       await fs.outputFile(
         P.join('node_modules', '@dword-design', 'base-config-foo', 'index.js'),
-        "module.exports = { allowedMatches: ['foo.txt'] }"
+        "module.exports = { allowedMatches: ['foo.txt'] }",
       )
 
       const base = new Self({
@@ -24,7 +24,7 @@ export default tester(
     'call multiple times': async () => {
       await fs.outputFile(
         P.join('node_modules', 'base-config-foo', 'index.js'),
-        'module.exports = {}'
+        'module.exports = {}',
       )
 
       const config = { name: 'foo' }
@@ -61,7 +61,7 @@ export default tester(
 
       const base = new Self({ name: 'foo' })
       expect(
-        base.config |> omit(['depcheckConfig', 'prepare', 'lint'])
+        base.config |> omit(['depcheckConfig', 'prepare', 'lint']),
       ).toMatchSnapshot(this)
       expect(typeof base.config.depcheckConfig).toEqual('object')
       expect(base.config.lint(1)).toEqual(1)
@@ -69,7 +69,7 @@ export default tester(
     esm: async () => {
       await fs.outputFile(
         P.join('node_modules', 'base-config-foo', 'index.js'),
-        'export default {}'
+        'export default {}',
       )
       expect(new Self({ name: 'foo' }).config.name).toEqual('base-config-foo')
     },
@@ -80,7 +80,7 @@ export default tester(
     'function inherited': async () => {
       await fs.outputFile(
         P.join('node_modules', 'base-config-foo', 'index.js'),
-        'module.exports = config => ({ readmeInstallString: config.bar })'
+        'module.exports = config => ({ readmeInstallString: config.bar })',
       )
 
       const base = new Self({ bar: 'baz', name: 'foo' })
@@ -91,50 +91,50 @@ export default tester(
 
       const base = new Self({ global: true })
       expect(base.config.readmeInstallString).toEqual(endent`
-      ## Install
+        ## Install
 
-      \`\`\`bash
-      # npm
-      $ npm install -g foo
+        \`\`\`bash
+        # npm
+        $ npm install -g foo
 
-      # Yarn
-      $ yarn global add foo
-      \`\`\`
-    `)
+        # Yarn
+        $ yarn global add foo
+        \`\`\`
+      `)
     },
     async inherited() {
       await fs.outputFile(
         P.join('node_modules', 'base-config-foo', 'index.js'),
         endent`
-        module.exports = {
-          commands: {
-            prepublishOnly: x => x + 1,
-            start: x => x + 3,
-          },
-          deployAssets: [{ label: 'Foo', path: 'foo.js' }],
-          deployEnv: {
-            FOO: '\${{ secrets.FOO }}',
-          },
-          deployPlugins: ['semantic-release-foo'],
-          editorIgnore: ['foo'],
-          gitignore: ['foo'],
-          lint: x => x + 3,
-          nodeVersion: 10,
-          packageBaseConfig: {
-            main: 'dist/index.scss',
-          },
-          preDeploySteps: [{ run: 'foo' }],
-          prepare: x => x + 2,
-          readmeInstallString: 'foo',
-          supportedNodeVersions: [1, 2],
-        }
+          module.exports = {
+            commands: {
+              prepublishOnly: x => x + 1,
+              start: x => x + 3,
+            },
+            deployAssets: [{ label: 'Foo', path: 'foo.js' }],
+            deployEnv: {
+              FOO: '\${{ secrets.FOO }}',
+            },
+            deployPlugins: ['semantic-release-foo'],
+            editorIgnore: ['foo'],
+            gitignore: ['foo'],
+            lint: x => x + 3,
+            nodeVersion: 10,
+            packageBaseConfig: {
+              main: 'dist/index.scss',
+            },
+            preDeploySteps: [{ run: 'foo' }],
+            prepare: x => x + 2,
+            readmeInstallString: 'foo',
+            supportedNodeVersions: [1, 2],
+          }
 
-      `
+        `,
       )
 
       const base = new Self({ name: 'foo' })
       expect(
-        base.config |> omit(['commands', 'depcheckConfig', 'prepare', 'lint'])
+        base.config |> omit(['commands', 'depcheckConfig', 'prepare', 'lint']),
       ).toMatchSnapshot(this)
       expect(base.config.commands |> keys |> sortBy(identity)).toEqual([
         'prepublishOnly',
@@ -149,19 +149,19 @@ export default tester(
     'name scoped': async () => {
       await fs.outputFile(
         P.join('node_modules', '@dword-design', 'base-config-foo', 'index.js'),
-        'module.exports = {}'
+        'module.exports = {}',
       )
       expect(new Self({ name: '@dword-design/foo' }).config.name).toEqual(
-        '@dword-design/base-config-foo'
+        '@dword-design/base-config-foo',
       )
     },
     'name shortcut': async () => {
       await fs.outputFile(
         P.join('node_modules', 'base-config-foo', 'index.js'),
-        'module.exports = {}'
+        'module.exports = {}',
       )
       expect(new Self({ name: 'foo' }).config.name).toEqual('base-config-foo')
     },
   },
-  [testerPluginTmpDir()]
+  [testerPluginTmpDir()],
 )

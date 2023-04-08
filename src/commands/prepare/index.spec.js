@@ -23,7 +23,7 @@ export default tester(
       const base = new Base({ allowedMatches: ['foo.txt'] })
       await base.prepare()
       expect(
-        globby('*', { dot: true }) |> await |> includes('foo.txt')
+        globby('*', { dot: true }) |> await |> includes('foo.txt'),
       ).toBeTruthy()
     },
     'commit valid': async () => {
@@ -43,7 +43,7 @@ export default tester(
       const base = new Base()
       await base.prepare()
       await expect(
-        execaCommand('git commit --allow-empty -m foo')
+        execaCommand('git commit --allow-empty -m foo'),
       ).rejects.toThrow('subject may not be empty')
     },
     'custom prepare': async () => {
@@ -54,15 +54,15 @@ export default tester(
     async valid() {
       await execaCommand('git init')
       await execaCommand(
-        'git remote add origin git@github.com:dword-design/bar.git'
+        'git remote add origin git@github.com:dword-design/bar.git',
       )
       await outputFiles({
         '.env.json': '',
         '.env.schema.json': endent`
-      {
-        "foo": "bar"
-      }
-    `,
+          {
+            "foo": "bar"
+          }
+        `,
         '.test.env.json': '',
         'CHANGELOG.md': '',
         'package.json': JSON.stringify({
@@ -80,11 +80,11 @@ export default tester(
         globby('*', { dot: true, onlyFiles: false })
           |> await
           |> keyBy(identity)
-          |> mapValues(stubTrue)
+          |> mapValues(stubTrue),
       ).toMatchSnapshot(this)
       expect(await fs.readFile('README.md', 'utf8')).toMatchSnapshot(this)
       expect(await fs.readFile('LICENSE.md', 'utf8')).toMatch('MIT License')
     },
   },
-  [testerPluginTmpDir()]
+  [testerPluginTmpDir()],
 )

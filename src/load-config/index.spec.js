@@ -15,10 +15,10 @@ export default tester(
     'package.json': async () => {
       await fs.outputFile(
         'package.json',
-        JSON.stringify({ baseConfig: { foo: 'bar' } })
+        JSON.stringify({ baseConfig: { foo: 'bar' } }),
       )
       expect(await self()).toEqual({ foo: 'bar' })
     },
   },
-  [testerPluginTmpDir({ dir: os.tmpdir(), tmpdir: os.tmpdir() })]
+  [testerPluginTmpDir({ dir: os.tmpdir(), tmpdir: os.tmpdir() })],
 )

@@ -27,9 +27,9 @@ export default tester(
       await base.lint()
       expect(await fs.readFile(P.join('src', 'index.js'), 'utf8')).toEqual(
         endent`
-        console.log('foo')
+          console.log('foo')
 
-      `
+        `,
       )
     },
     'linting errors': async () => {
@@ -38,13 +38,13 @@ export default tester(
       const base = new Base()
       await base.prepare()
       await expect(base.lint()).rejects.toThrow(
-        "'foo' is assigned a value but never used"
+        "'foo' is assigned a value but never used",
       )
     },
     'package name != repository name': async () => {
       await fs.outputFile(
         'package.json',
-        JSON.stringify({ name: '@scope/bar' })
+        JSON.stringify({ name: '@scope/bar' }),
       )
       await execaCommand('git init')
       await execaCommand('git remote add origin https://github.com/xyz/foo.git')
@@ -52,14 +52,14 @@ export default tester(
       const base = new Base()
       await base.prepare()
       await expect(base.lint()).rejects.toThrow(
-        "Package name 'bar' has to be equal to repository name 'foo'"
+        "Package name 'bar' has to be equal to repository name 'foo'",
       )
     },
     'package name with dot': async () => {
       await fs.outputFile('package.json', JSON.stringify({ name: 'foo.de' }))
       await execaCommand('git init')
       await execaCommand(
-        'git remote add origin https://github.com/xyz/foo.de.git'
+        'git remote add origin https://github.com/xyz/foo.de.git',
       )
 
       const base = new Base()
@@ -71,10 +71,10 @@ export default tester(
         node_modules: {
           '@dword-design/eslint-config': {
             'index.js': endent`
-            module.exports = {
-              plugins: ['foo'],
-            }
-          `,
+              module.exports = {
+                plugins: ['foo'],
+              }
+            `,
             'node_modules/eslint-plugin-foo/index.js': '',
           },
           'eslint-plugin-foo/index.js': 'foo bar',
@@ -88,10 +88,10 @@ export default tester(
         resolvePluginsRelativeTo: P.join(
           'node_modules',
           '@dword-design',
-          'eslint-config'
+          'eslint-config',
         ),
       })
     },
   },
-  [testerPluginTmpDir()]
+  [testerPluginTmpDir()],
 )

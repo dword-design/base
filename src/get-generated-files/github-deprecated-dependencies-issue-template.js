@@ -12,5 +12,5 @@ export default endent`
   {% endfor %}
 
   Check out the [build]({{ env.RUN_URL }}) for details.
-  
+
 `

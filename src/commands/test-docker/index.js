@@ -52,7 +52,7 @@ export default async function (options) {
           ...(options.grep ? [`-g "${options.grep}"`] : []),
         ] |> join(' '),
       ],
-      options.log ? { stdio: 'inherit' } : { all: true }
+      options.log ? { stdio: 'inherit' } : { all: true },
     )
   } finally {
     await execa('docker', [

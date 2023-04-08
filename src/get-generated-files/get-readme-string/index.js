@@ -33,7 +33,7 @@ export default function () {
             <!-- ${sectionName}/ -->
             ${replacement.call(this)}
             <!-- /${sectionName} -->
-          `
+          `,
         )
       )
     }, readme)
