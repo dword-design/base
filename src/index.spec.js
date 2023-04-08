@@ -140,8 +140,8 @@ export default tester(
         'prepublishOnly',
         'start',
       ])
-      expect(base.config.commands.prepublishOnly(1)).toEqual(2)
-      expect(base.config.commands.start(1)).toEqual(4)
+      expect(base.run('prepublishOnly', 1)).toEqual(2)
+      expect(base.run('start', 1)).toEqual(4)
       expect(base.config.prepare(1)).toEqual(3)
       expect(base.config.lint(1)).toEqual(4)
       expect(typeof base.config.depcheckConfig).toEqual('object')
@@ -167,14 +167,16 @@ export default tester(
         P.join('node_modules', 'base-config-foo', 'index.js'),
         'module.exports = {}',
       )
-      expect(new Self({
-        foo: 'bar',
-        commands: {
-          foo() {
-            return this.config.foo
-          }
-        }
-      }).run('foo')).toEqual('bar')
+      expect(
+        new Self({
+          commands: {
+            foo() {
+              return this.config.foo
+            },
+          },
+          foo: 'bar',
+        }).run('foo'),
+      ).toEqual('bar')
     },
   },
   [testerPluginTmpDir()],

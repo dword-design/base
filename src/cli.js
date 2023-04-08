@@ -61,7 +61,11 @@ const run = async () => {
               },
             ],
           },
-          ...base.config.commands |> mapValues(command => (...args) => command.call(base, ...args)),
+          ...(base.config.commands
+            |> mapValues((command, name) => ({
+              ...command,
+              handler: (...args) => base.run(name, ...args),
+            }))),
         }
         |> mapValues((command, name) => ({ name, ...command }))
         |> values,

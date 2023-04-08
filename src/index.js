@@ -124,17 +124,20 @@ class Base {
     }
     configsToMerge.push(config)
     this.config = deepmerge.all(configsToMerge, mergeOptions)
-
     this.config = {
       ...this.config,
-      commands: this.config.commands |> mapValues(command => typeof command === 'function' ? { handler: command } : command),
+      commands:
+        this.config.commands
+        |> mapValues(command =>
+          typeof command === 'function' ? { handler: command } : command,
+        ),
     }
     this.packageConfig = this.getPackageConfig()
     this.generatedFiles = this.getGeneratedFiles()
   }
 
-  run(name) {
-    return this.config.commands[name].handler.call(this)
+  run(name, ...args) {
+    return this.config.commands[name].handler.call(this, ...args)
   }
 }
 Object.assign(Base.prototype, {
