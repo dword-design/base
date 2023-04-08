@@ -1,3 +1,10 @@
+# [9.5.0](https://github.com/dword-design/base/compare/v9.4.60...v9.5.0) (2023-04-08)
+
+
+### Features
+
+* add run function ([#661](https://github.com/dword-design/base/issues/661)) ([59fba2a](https://github.com/dword-design/base/commit/59fba2a35c940cc91aae82ab648744ff797c12b0))
+
 ## [9.4.60](https://github.com/dword-design/base/compare/v9.4.59...v9.4.60) (2023-04-08)
 
 
