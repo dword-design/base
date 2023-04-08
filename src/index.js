@@ -1,5 +1,5 @@
 import babelConfig from '@dword-design/babel-config'
-import { endent, identity } from '@dword-design/functions'
+import { endent, identity, mapValues } from '@dword-design/functions'
 import deepmerge from 'deepmerge'
 import depcheck from 'depcheck'
 import depcheckDetectorExeca from 'depcheck-detector-execa'
@@ -124,8 +124,17 @@ class Base {
     }
     configsToMerge.push(config)
     this.config = deepmerge.all(configsToMerge, mergeOptions)
+
+    this.config = {
+      ...this.config,
+      commands: this.config.commands |> mapValues(command => typeof command === 'function' ? { handler: command } : command),
+    }
     this.packageConfig = this.getPackageConfig()
     this.generatedFiles = this.getGeneratedFiles()
+  }
+
+  run(name) {
+    return this.config.commands[name].handler.call(this)
   }
 }
 Object.assign(Base.prototype, {

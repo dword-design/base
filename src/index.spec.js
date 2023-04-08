@@ -162,6 +162,20 @@ export default tester(
       )
       expect(new Self({ name: 'foo' }).config.name).toEqual('base-config-foo')
     },
+    run: async () => {
+      await fs.outputFile(
+        P.join('node_modules', 'base-config-foo', 'index.js'),
+        'module.exports = {}',
+      )
+      expect(new Self({
+        foo: 'bar',
+        commands: {
+          foo() {
+            return this.config.foo
+          }
+        }
+      }).run('foo')).toEqual('bar')
+    },
   },
   [testerPluginTmpDir()],
 )

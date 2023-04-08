@@ -61,10 +61,7 @@ const run = async () => {
               },
             ],
           },
-          ...(base.config.commands
-            |> mapValues(command =>
-              typeof command === 'function' ? { handler: command } : command,
-            )),
+          ...base.config.commands |> mapValues(command => (...args) => command.call(base, ...args)),
         }
         |> mapValues((command, name) => ({ name, ...command }))
         |> values,
