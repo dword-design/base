@@ -1,3 +1,10 @@
+## [9.5.2](https://github.com/dword-design/base/compare/v9.5.1...v9.5.2) (2023-04-08)
+
+
+### Bug Fixes
+
+* undo last change ([e9c1f05](https://github.com/dword-design/base/commit/e9c1f0525665b6e425af3f0c02e79ae46353083b))
+
 ## [9.5.1](https://github.com/dword-design/base/compare/v9.5.0...v9.5.1) (2023-04-08)
 
 
