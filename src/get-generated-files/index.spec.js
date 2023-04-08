@@ -10,5 +10,5 @@ export default tester(
       expect(new Base().getGeneratedFiles() |> keys).toMatchSnapshot(this)
     },
   },
-  [testerPluginTmpDir()]
+  [testerPluginTmpDir()],
 )

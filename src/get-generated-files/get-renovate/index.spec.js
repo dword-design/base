@@ -9,14 +9,14 @@ export default tester(
     async base() {
       await fs.outputFile(
         'package.json',
-        JSON.stringify({ name: '@dword-design/base' })
+        JSON.stringify({ name: '@dword-design/base' }),
       )
       expect(new Base().getRenovateConfig()).toMatchSnapshot(this)
     },
     async 'lock file fix commit type'() {
       await fs.outputFile('package.json', JSON.stringify({ name: 'foo' }))
       expect(
-        new Base({ isLockFileFixCommitType: true }).getRenovateConfig()
+        new Base({ isLockFileFixCommitType: true }).getRenovateConfig(),
       ).toMatchSnapshot(this)
     },
     async 'not base'() {
@@ -24,5 +24,5 @@ export default tester(
       expect(new Base().getRenovateConfig()).toMatchSnapshot(this)
     },
   },
-  [testerPluginTmpDir()]
+  [testerPluginTmpDir()],
 )

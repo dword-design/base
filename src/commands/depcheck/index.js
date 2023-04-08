@@ -38,31 +38,31 @@ export default async function () {
       ...(result.dependencies.length > 0
         ? [
             endent`
-            Unused dependencies
-            ${result.dependencies |> map(dep => `* ${dep}`) |> join('\n')}
-          `,
+              Unused dependencies
+              ${result.dependencies |> map(dep => `* ${dep}`) |> join('\n')}
+            `,
           ]
         : []),
       ...(result.devDependencies.length > 0
         ? [
             endent`
-            Unused devDependencies
-            ${result.devDependencies |> map(dep => `* ${dep}`) |> join('\n')}
-          `,
+              Unused devDependencies
+              ${result.devDependencies |> map(dep => `* ${dep}`) |> join('\n')}
+            `,
           ]
         : []),
       ...(isEmpty(result.invalidFiles)
         ? []
         : [
             endent`
-            Invalid files
-            ${
-              result.invalidFiles
-              |> mapValues((error, name) => `* ${name}: ${error}`)
-              |> values
-              |> join('\n')
-            }
-          `,
+              Invalid files
+              ${
+                result.invalidFiles
+                |> mapValues((error, name) => `* ${name}: ${error}`)
+                |> values
+                |> join('\n')
+              }
+            `,
           ]),
     ] |> join('\n\n')
   if (errorMessage) {

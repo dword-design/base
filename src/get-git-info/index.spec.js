@@ -31,5 +31,5 @@ export default tester(
       })
     },
   },
-  [testerPluginTmpDir()]
+  [testerPluginTmpDir()],
 )

@@ -95,5 +95,5 @@ export default tester(
           expect(new Base(test.config).getReleaseConfig()).toEqual(test.result)
       },
     },
-  ]
+  ],
 )

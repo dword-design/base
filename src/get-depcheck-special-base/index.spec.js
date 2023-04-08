@@ -34,5 +34,5 @@ export default tester(
       expect(result.devDependencies).toEqual([])
     },
   },
-  [testerPluginTmpDir()]
+  [testerPluginTmpDir()],
 )

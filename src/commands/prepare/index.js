@@ -8,7 +8,7 @@ import outputFiles from 'output-files'
 const _require = createRequire(import.meta.url)
 
 const commitlintPackageConfig = _require(
-  packageName`@commitlint/cli/package.json`
+  packageName`@commitlint/cli/package.json`,
 )
 
 export default async function () {

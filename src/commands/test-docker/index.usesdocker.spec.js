@@ -24,8 +24,8 @@ export default tester(
             },
           },
           undefined,
-          2
-        )
+          2,
+        ),
       )
       await new Base().testDocker({ log: false })
       await fs.remove('dist')
@@ -42,13 +42,13 @@ export default tester(
             },
           },
           undefined,
-          2
-        )
+          2,
+        ),
       )
       await expect(
         new Base().testDocker({
           log: false,
-        })
+        }),
       ).rejects.toThrow()
       await fs.remove('dist')
     },
@@ -66,17 +66,17 @@ export default tester(
             },
           },
           undefined,
-          2
+          2,
         ),
         'test.js': endent`
-        if (process.env.TEST_FOO !== 'foo') {
-          throw new Error('Environment variable TEST_FOO is not set')
-        }
-        if (process.env.TEST_BAR !== undefined) {
-          throw new Error('Environment variable TEST_BAR is set')
-        }
+          if (process.env.TEST_FOO !== 'foo') {
+            throw new Error('Environment variable TEST_FOO is not set')
+          }
+          if (process.env.TEST_BAR !== undefined) {
+            throw new Error('Environment variable TEST_BAR is set')
+          }
 
-      `,
+        `,
       })
 
       const previousEnv = process.env
@@ -98,11 +98,11 @@ export default tester(
             type: 'module',
           },
           undefined,
-          2
+          2,
         ),
         'test.js': endent`
           import { spawn } from 'child_process'
-          
+
           spawn('git', ['--help'])
         `,
       })
@@ -119,13 +119,13 @@ export default tester(
             type: 'module',
           },
           undefined,
-          2
+          2,
         ),
         'test.js': endent`
-        import fs from 'fs'
-        
-        fs.writeFileSync('grep.txt', process.argv.slice(2).toString())
-      `,
+          import fs from 'fs'
+
+          fs.writeFileSync('grep.txt', process.argv.slice(2).toString())
+        `,
       })
       await new Base().testDocker({ grep: 'foo bar baz', log: false })
       expect(await fs.readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz')
@@ -141,18 +141,18 @@ export default tester(
             type: 'module',
           },
           undefined,
-          2
+          2,
         ),
         'test.js': endent`
-        import fs from 'fs'
-        
-        fs.writeFileSync('grep.txt', process.argv[2])
-      `,
+          import fs from 'fs'
+
+          fs.writeFileSync('grep.txt', process.argv[2])
+        `,
       })
       expect(
         (await new Base().testDocker({ log: false, patterns: ['foo bar baz'] }))
           |> await
-          |> property('all')
+          |> property('all'),
       ).toMatch('foo bar baz')
     },
     puppeteer: async () => {
@@ -166,7 +166,7 @@ export default tester(
             type: 'module',
           },
           undefined,
-          2
+          2,
         ),
         'test.js': endent`
           import puppeteer from '@dword-design/puppeteer'
@@ -202,14 +202,14 @@ export default tester(
             },
           },
           undefined,
-          2
+          2,
         ),
         'test.js': endent`
-        if (process.argv[2] !== '--update-snapshots') {
-          throw new Error('--update-snapshots is not set')
-        }
+          if (process.argv[2] !== '--update-snapshots') {
+            throw new Error('--update-snapshots is not set')
+          }
 
-      `,
+        `,
       })
       await new Base().testDocker({ log: false, updateSnapshots: true })
     },
@@ -225,25 +225,25 @@ export default tester(
             type: 'module',
           },
           undefined,
-          2
+          2,
         ),
         'test.js': endent`
-        import isDocker from './is-docker.js'
-        
-        if (!isDocker) {
-          process.exit(1)
-        }
+          import isDocker from './is-docker.js'
 
-      `,
+          if (!isDocker) {
+            process.exit(1)
+          }
+
+        `,
       })
       await execaCommand('yarn')
 
       const base = new Base()
       expect(
-        base.testDocker({ log: false }) |> await |> property('all')
+        base.testDocker({ log: false }) |> await |> property('all'),
       ).not.toMatch('Already up-to-date.')
       expect(
-        base.testDocker({ log: false }) |> await |> property('all')
+        base.testDocker({ log: false }) |> await |> property('all'),
       ).toMatch('Already up-to-date.')
     },
   },
@@ -258,5 +258,5 @@ export default tester(
       },
     },
     testerPluginTmpDir(),
-  ]
+  ],
 )

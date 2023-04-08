@@ -89,11 +89,11 @@ export default tester(
             await base.checkUnknownFiles()
           } else {
             await expect(base.checkUnknownFiles()).rejects.toThrow(
-              new UnknownFilesError(test.result)
+              new UnknownFilesError(test.result),
             )
           }
         }
       },
     },
-  ]
+  ],
 )
