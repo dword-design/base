@@ -2,7 +2,7 @@ import { execa } from 'execa'
 import { createRequire } from 'module'
 import parsePackagejsonName from 'parse-packagejson-name'
 
-const require = createRequire(import.meta.url)
+const _require = createRequire(import.meta.url)
 
 export default async function (options) {
   const packageName = parsePackagejsonName(this.packageConfig.name).fullName
@@ -15,7 +15,7 @@ export default async function (options) {
     )
   }
   options = {
-    resolvePluginsRelativeTo: require.resolve('@dword-design/eslint-config'),
+    resolvePluginsRelativeTo: _require.resolve('@dword-design/eslint-config'),
     ...options,
   }
   try {
@@ -27,6 +27,9 @@ export default async function (options) {
         '.js,.json,.vue',
         '--ignore-path',
         '.gitignore',
+        '--config',
+        _require.resolve('@dword-design/eslint-config'),
+        '--no-eslintrc',
         '--resolve-plugins-relative-to',
         options.resolvePluginsRelativeTo,
         '.',
