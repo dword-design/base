@@ -1,3 +1,10 @@
+## [9.5.7](https://github.com/dword-design/base/compare/v9.5.6...v9.5.7) (2023-04-09)
+
+
+### Bug Fixes
+
+* fix babel config ([3ac69f1](https://github.com/dword-design/base/commit/3ac69f116ce9b59fc186730ff1c0d4ef8ccaf2f4))
+
 ## [9.5.6](https://github.com/dword-design/base/compare/v9.5.5...v9.5.6) (2023-04-09)
 
 
