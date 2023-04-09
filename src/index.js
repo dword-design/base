@@ -1,4 +1,3 @@
-import babelConfig from '@dword-design/babel-config'
 import { endent, identity, mapValues } from '@dword-design/functions'
 import deepmerge from 'deepmerge'
 import depcheck from 'depcheck'
@@ -8,6 +7,7 @@ import packageName from 'depcheck-package-name'
 import depcheckParserBabel from 'depcheck-parser-babel'
 import jiti from 'jiti'
 import loadPkg from 'load-pkg'
+import { createRequire } from 'module'
 import P from 'path'
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name'
 
@@ -37,6 +37,9 @@ import getVscodeConfig from './get-generated-files/get-vscode/index.js'
 import getGeneratedFiles from './get-generated-files/index.js'
 import getGitInfo from './get-git-info/index.js'
 
+const _require = createRequire(import.meta.url)
+
+const babelConfig = _require('@dword-design/babel-config')
 class Base {
   constructor(config) {
     const jitiInstance = jiti(process.cwd(), {
