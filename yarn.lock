@@ -1315,9 +1315,9 @@
     babel-plugin-module-resolver "^4.0.0"
 
 "@dword-design/functions@^4.0.0", "@dword-design/functions@^4.0.7":
-  version "4.1.5"
-  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-4.1.5.tgz#085093243f3a558d84e1c005f4688264df923558"
-  integrity sha512-f+adQT0A+k5wBpIthLqLIRt9ZcxXFhlHdQb6zwJ2VYQWUpl6YgE5R0zSwbmDEXXnkM/QX3vKqkX6EMZ2W9qrSg==
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-4.1.7.tgz#40c8aa7ce0e1c0e345b080ebdc05f3b68d53259d"
+  integrity sha512-kc7bzBKZasf0icxKldgB7dkpd1mcEQkPz8c0BP5Wuxy63bMYs+kNWbywFT+xNBWDT6N9cdTczHwBuVBgc8ZU0A==
   dependencies:
     "@dword-design/endent" "^1.0.0"
     delay "^5.0.0"
