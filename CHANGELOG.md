@@ -1,3 +1,10 @@
+## [9.5.8](https://github.com/dword-design/base/compare/v9.5.7...v9.5.8) (2023-04-09)
+
+
+### Bug Fixes
+
+* update dependency suppress-experimental-warnings to v1.1.7 ([4543d39](https://github.com/dword-design/base/commit/4543d39844f204729794f644108f351bdbc60886))
+
 ## [9.5.7](https://github.com/dword-design/base/compare/v9.5.6...v9.5.7) (2023-04-09)
 
 
