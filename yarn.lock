@@ -1235,9 +1235,9 @@
   integrity sha512-cHpMTx4XepHQi3hmDnKma5YXU4pm01k9xKI1k8Wwq25cN3j0FCWbiji11hdrRYr6+uDC9mrb/M5Mo0okYiNRzA==
 
 "@dword-design/chdir@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@dword-design/chdir/-/chdir-3.0.0.tgz#77132878b6542fc9a723e1eb7faf4b4c75e54b58"
-  integrity sha512-sGIj7DYrxGX8BP1BFRw0DgRWEAL+DyFxvS7iVgNaa4L6n1GU5mmFuqjgPWR88GiP5Sc0IGbBfk7SO57WJvwrkQ==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/chdir/-/chdir-3.0.1.tgz#beda7b619d617b0eaf2e119ae9b767860f5315e7"
+  integrity sha512-CTE2eRjhB8q1OtYvbI1uWKb+VwLRGvdD9dnDHXR8VxV+fetwHxY8IFvU8YIfSO0ji6+DpQWjVDpaiqndjzYE7Q==
 
 "@dword-design/ci@^3.0.0":
   version "3.0.9"
