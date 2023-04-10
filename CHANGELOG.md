@@ -1,3 +1,10 @@
+## [9.5.13](https://github.com/dword-design/base/compare/v9.5.12...v9.5.13) (2023-04-10)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/suppress-babel-register-esm-warning to v1.1.5 ([b62d3b6](https://github.com/dword-design/base/commit/b62d3b63c18b3790b45c24121f0971ca7bc0f0f6))
+
 ## [9.5.12](https://github.com/dword-design/base/compare/v9.5.11...v9.5.12) (2023-04-10)
 
 
