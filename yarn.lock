@@ -1346,14 +1346,14 @@
   integrity sha512-W861E4cbZmUaYri3mhZNfpo2Yxc1hHPP0v5iDZGE+h9EHplY+8tzWaTNHIF67DmrcDLP79zxd/lkJX0xZs0l8Q==
 
 "@dword-design/suppress-babel-register-esm-warning@^1.1.0":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@dword-design/suppress-babel-register-esm-warning/-/suppress-babel-register-esm-warning-1.1.2.tgz#7e7ff5f5e854eb77ad9fcdc77f5b33dcdd071cdc"
-  integrity sha512-4VmNnOzObyXEAdfzLbNZ2RAy00ci7EB954kkB8wz+GEU8v4tMMtf+D36BRUFRUCVJRPpxG8nLkgZ1Lh59ndoFw==
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@dword-design/suppress-babel-register-esm-warning/-/suppress-babel-register-esm-warning-1.1.5.tgz#ad112eb2913bf73c4a2b4f3fd94f4d0c675b943a"
+  integrity sha512-3TTyQk1qvkkmj3lHnV78IcHouFl+s/iTpi9qqcUOEG8Sny+r70tK0KFoBdv9hIAhIu76kuSsNtLuqM4v0h6pMA==
 
 "@dword-design/tester-plugin-tmp-dir@^2.0.0":
-  version "2.1.19"
-  resolved "https://registry.yarnpkg.com/@dword-design/tester-plugin-tmp-dir/-/tester-plugin-tmp-dir-2.1.19.tgz#a9cbfd821e561911ac3616730667a6b7d4406926"
-  integrity sha512-Ei4+e7qP3sXHflWvGNOY3JEE5ApRPP+nF7f2RJQmP62pePvQudw5SVIscK1xNglZ6SEPtgWswTsdD0HCTvp0uQ==
+  version "2.1.23"
+  resolved "https://registry.yarnpkg.com/@dword-design/tester-plugin-tmp-dir/-/tester-plugin-tmp-dir-2.1.23.tgz#b1562944e18b64c2eaa057bfa4d1d3079d6364de"
+  integrity sha512-PouKQU7ekz/Glh1LuoinhyG8UkDnEpLUgMuyaw6A2t9EGaOdFPCiQA8ydyx/XCtDTAc4pH/aM4VCde2zeaY5bg==
   dependencies:
     with-local-tmp-dir "^5.0.0"
 
