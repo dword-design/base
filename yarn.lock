@@ -1212,9 +1212,9 @@
     param-case "^3.0.3"
 
 "@dword-design/base-config-node@^1.6.0":
-  version "1.11.5"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.11.5.tgz#e457bd315e9c22ab82be5cbb2784fd5d33d2af92"
-  integrity sha512-KO4WjLEbbt2jyJotZuk4QTk0qmZi+A6Uf6b8OkSMDy9VVmvwSCvuSJSVbynLj161T6Vrh1b7zHsusXL/Mhy5Dg==
+  version "1.11.6"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.11.6.tgz#c4c7ec241ebaf9f135c91b747bd1f6a8e7c579b3"
+  integrity sha512-4M/5IIlsx2b7HJrh3aNVKIX/IgDNl13GegRtA2JV852H93V7T1BZxZWKtOOul+8Pm3YnwtFsy8FYsy1WVhHneQ==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
@@ -1256,9 +1256,9 @@
     babel-plugin-add-module-exports "^1.0.2"
 
 "@dword-design/depcheck-parser-sass@^3.0.0":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@dword-design/depcheck-parser-sass/-/depcheck-parser-sass-3.0.3.tgz#af07d3b07d7a8d97316438ca2509794178369f5a"
-  integrity sha512-OG3Vo5YKguSx5K0JApM0Ca/4tDuwALp4mGS/n2eYOkBNTBzTfWparw/xSTNlzm9MIGAoyTFJ523wpARZK378yw==
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@dword-design/depcheck-parser-sass/-/depcheck-parser-sass-3.0.5.tgz#eb575ead0a7aa0c217c3bc586e6025750ff226fb"
+  integrity sha512-TUasuhEx7l8mlmAvRPBJNxRtNJczwqECXiHyJcDVOccUezE5iJeEKaj1O5qFh1DoJutdQdu2GStdpaopVwfqzw==
   dependencies:
     "@dword-design/functions" "^4.0.0"
     get-package-name "^2.0.0"
@@ -3154,9 +3154,9 @@ camelcase@^6.0.0, camelcase@^6.2.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001449:
-  version "1.0.30001476"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001476.tgz#759906c53eae17133217d75b482f9dc5c02f7898"
-  integrity sha512-JmpktFppVSvyUN4gsLS0bShY2L9ZUslHLE72vgemBkS43JD2fOvKTKs+GtRwuxrtRGnwJFW0ye7kWRRlLJS9vQ==
+  version "1.0.30001477"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001477.tgz#a2ffb2276258233034bbb869d4558b02658a511e"
+  integrity sha512-lZim4iUHhGcy5p+Ri/G7m84hJwncj+Kz7S5aD4hoQfslKZJgt0tHc/hafVbqHC5bbhHb+mrW2JOUHkI5KH7toQ==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -8034,9 +8034,9 @@ minipass@^3.0.0, minipass@^3.1.0, minipass@^3.1.1, minipass@^3.1.3, minipass@^3.
     yallist "^4.0.0"
 
 minipass@^4.0.0:
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/minipass/-/minipass-4.2.5.tgz#9e0e5256f1e3513f8c34691dd68549e85b2c8ceb"
-  integrity sha512-+yQl7SX3bIT83Lhb4BVorMAHVuqsskxRdlmO9kTpyukp8vsm2Sn/fUOV9xlnG8/a5JsypJzap21lz/y3FBMJ8Q==
+  version "4.2.7"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-4.2.7.tgz#14c6fc0dcab54d9c4dd64b2b7032fef04efec218"
+  integrity sha512-ScVIgqHcXRMyfflqHmEW0bm8z8rb5McHyOY3ewX9JBgZaR77G7nxq9L/mtV96/QbAAwtbCAHVVLzD1kkyfFQEw==
 
 minizlib@^2.0.0, minizlib@^2.1.1, minizlib@^2.1.2:
   version "2.1.2"
