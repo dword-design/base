@@ -1,3 +1,10 @@
+## [9.5.11](https://github.com/dword-design/base/compare/v9.5.10...v9.5.11) (2023-04-10)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/chdir to v3.0.1 ([75fcd35](https://github.com/dword-design/base/commit/75fcd35938101a4d321121ca6250a03ad9a6aa3b))
+
 ## [9.5.10](https://github.com/dword-design/base/compare/v9.5.9...v9.5.10) (2023-04-10)
 
 
