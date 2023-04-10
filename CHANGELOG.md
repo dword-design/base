@@ -1,3 +1,10 @@
+## [9.5.9](https://github.com/dword-design/base/compare/v9.5.8...v9.5.9) (2023-04-10)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/functions to v4.1.7 ([8de9262](https://github.com/dword-design/base/commit/8de9262109460d78fd0310ad412227788a11d59e))
+
 ## [9.5.8](https://github.com/dword-design/base/compare/v9.5.7...v9.5.8) (2023-04-09)
 
 
