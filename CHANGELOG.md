@@ -1,3 +1,10 @@
+## [9.5.14](https://github.com/dword-design/base/compare/v9.5.13...v9.5.14) (2023-04-11)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/tester to v2.0.18 ([acf89f6](https://github.com/dword-design/base/commit/acf89f641a491f77e56428730d17b0d0694de788))
+
 ## [9.5.13](https://github.com/dword-design/base/compare/v9.5.12...v9.5.13) (2023-04-10)
 
 
