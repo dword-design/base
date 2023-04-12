@@ -1,3 +1,11 @@
+## [9.5.17](https://github.com/dword-design/base/compare/v9.5.16...v9.5.17) (2023-04-12)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/pretest to v1.0.14 ([ee94793](https://github.com/dword-design/base/commit/ee947939486eb73ac3a3dc74695d04afde0eb514))
+* update dependency @dword-design/tester-plugin-tmp-dir to v2.1.26 ([1133e83](https://github.com/dword-design/base/commit/1133e8353e7163e4dc02eb4294e30fa7278b1a3c))
+
 ## [9.5.16](https://github.com/dword-design/base/compare/v9.5.15...v9.5.16) (2023-04-11)
 
 
