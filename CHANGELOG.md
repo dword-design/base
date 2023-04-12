@@ -1,3 +1,11 @@
+## [9.5.18](https://github.com/dword-design/base/compare/v9.5.17...v9.5.18) (2023-04-12)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/base-config-node to v1.11.7 ([6a9af03](https://github.com/dword-design/base/commit/6a9af030d03c8d8cb659c4855ef049d6c361edea))
+* update dependency @dword-design/suppress-babel-register-esm-warning to v1.1.8 ([e8aca25](https://github.com/dword-design/base/commit/e8aca259039368fc4ba763db45b8b985b69a75ee))
+
 ## [9.5.17](https://github.com/dword-design/base/compare/v9.5.16...v9.5.17) (2023-04-12)
 
 
