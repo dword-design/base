@@ -3949,9 +3949,9 @@ depcheck-detector-execa@^3.0.4:
     module-root "npm:@dword-design/module-root"
 
 depcheck-detector-package-name@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/depcheck-detector-package-name/-/depcheck-detector-package-name-3.0.1.tgz#da4a99afde8eba10b249b469c2f3e8932eb0af8e"
-  integrity sha512-pn+ES1LmL52TIl0d/SsaHIFAuW9AHWAoSxCkm6K6JOWhNqX3EKjPCaJz8wQPKIt6PHE50HLPET+k4qG2IaF+6Q==
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/depcheck-detector-package-name/-/depcheck-detector-package-name-3.0.2.tgz#b7619eceda72859a2c98894c9fe9ca8ca23c665e"
+  integrity sha512-eZAoQ/A8n9HgEvGOH5VyJB8Fw6agoPCKQX+AQS+97ub4SDwQWr/G7OYODGuwn1aiH4vQcZWDBWJw7ALFV/oQAg==
 
 depcheck-package-name@^3.0.0:
   version "3.0.0"
