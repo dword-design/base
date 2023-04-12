@@ -1346,9 +1346,9 @@
   integrity sha512-W861E4cbZmUaYri3mhZNfpo2Yxc1hHPP0v5iDZGE+h9EHplY+8tzWaTNHIF67DmrcDLP79zxd/lkJX0xZs0l8Q==
 
 "@dword-design/suppress-babel-register-esm-warning@^1.1.0":
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/@dword-design/suppress-babel-register-esm-warning/-/suppress-babel-register-esm-warning-1.1.8.tgz#99ba4fde9426db7d47d7c5c57a7b25ee3db8ffd9"
-  integrity sha512-avkHnlQMU+d1QgCHeuGbAm8ZFFrcBCs2OQWXQAxOsRxMbvh977cYCoWSTsQtF5k8aP7tKWCBQSBw1bU6fqi7/g==
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@dword-design/suppress-babel-register-esm-warning/-/suppress-babel-register-esm-warning-1.1.9.tgz#b9e253b7c9cf2e89166a7bf48e03e7416197da3e"
+  integrity sha512-O65GfYf9G+4emCcK0YiVBm3aReD5eBydD7ZHmmseXsUG08cnixSpSRcLMJ7XQTWVNYSns1A67hnxs0n0sKZ/bw==
 
 "@dword-design/tester-plugin-tmp-dir@^2.0.0":
   version "2.1.26"
