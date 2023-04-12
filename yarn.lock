@@ -5421,9 +5421,9 @@ get-package-type@^0.1.0:
   integrity sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==
 
 get-projectz-readme-section-regex@^3.0.0:
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/get-projectz-readme-section-regex/-/get-projectz-readme-section-regex-3.0.9.tgz#a33ade8efeaef4ffe8fa5b6cccf9a626b1dfab3a"
-  integrity sha512-LoGIWebfQWrxMClWvX9hYUPgDm25v2p6tymSLR1D6dhyprptIZ1gHQQuPOsAxy4cBiwVImVQxfhknBfiPjp3xw==
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/get-projectz-readme-section-regex/-/get-projectz-readme-section-regex-3.0.10.tgz#e457fb0836c912f15ff23ec1288bb6b8b1fbfb93"
+  integrity sha512-Om3mBcQdRQGXAR8WPYBDSFw9GMLGRnnaHpyQPsuTCBzqhO5xAa92HwT7qodY8CYnhpcdd/OtAvj3vyoJYw+2sg==
   dependencies:
     "@dword-design/functions" "^4.0.0"
 
