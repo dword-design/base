@@ -2256,8 +2256,9 @@
     lodash.kebabcase "^4.1.1"
     svg-tags "^1.0.0"
 
-"@vue/babel-preset-jsx@github:dword-design/jsx#fork-babel-preset-jsx":
+"@vue/babel-preset-jsx@dword-design/jsx#fork-babel-preset-jsx":
   version "1.1.2"
+  uid a73cb9961541a60a66b1b99a69a32e00bc66d336
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/a73cb9961541a60a66b1b99a69a32e00bc66d336"
   dependencies:
     "@vue/babel-helper-vue-jsx-merge-props" "^1.0.0"
@@ -9074,10 +9075,10 @@ package-hash@^4.0.0:
     lodash.flattendeep "^4.4.0"
     release-zalgo "^1.0.0"
 
-package-name-regex@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/package-name-regex/-/package-name-regex-2.0.6.tgz#b54bcb04d950e38082b7bb38fa558e01c1679334"
-  integrity sha512-gFL35q7kbE/zBaPA3UKhp2vSzcPYx2ecbYuwv1ucE9Il6IIgBDweBlH8D68UFGZic2MkllKa2KHCfC1IQBQUYA==
+package-name-regex@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/package-name-regex/-/package-name-regex-3.0.0.tgz#551d16f67b6f9c04cc6aa91c4a7f678fd2781bd7"
+  integrity sha512-n4LexlsIvKpV8zfGWDxJIZDqDiZ9kN5JiXgx3K7oy8JbqRdrQvPG8BdJesqvGQMt/bPBG4U0gTf2w+pcNk6VWw==
 
 package-resolver@^1.1.0:
   version "1.1.0"

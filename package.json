@@ -71,7 +71,7 @@
     "mocha-ui-exports-auto-describe": "^2.0.0",
     "nyc": "^15.0.0",
     "output-files": "^2.0.0",
-    "package-name-regex": "^2.0.6",
+    "package-name-regex": "^3.0.0",
     "parse-git-config": "^3.0.0",
     "parse-packagejson-name": "^1.0.1",
     "plugin-name-to-package-name": "npm:@dword-design/plugin-name-to-package-name",
