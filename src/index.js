@@ -1,4 +1,5 @@
 import { endent, identity, mapValues } from '@dword-design/functions'
+import jitiBabelTransform from '@dword-design/jiti-babel-transform'
 import deepmerge from 'deepmerge'
 import depcheck from 'depcheck'
 import depcheckDetectorExeca from 'depcheck-detector-execa'
@@ -45,6 +46,7 @@ class Base {
     const jitiInstance = jiti(process.cwd(), {
       esmResolve: true,
       interopDefault: true,
+      transform: jitiBabelTransform,
       transformOptions: {
         babel: babelConfig,
       },
