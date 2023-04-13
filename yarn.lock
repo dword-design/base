@@ -1346,10 +1346,10 @@
     babel-plugin-transform-import-meta "^2.2.0"
     depcheck-package-name "^3.0.0"
 
-"@dword-design/personal-data@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@dword-design/personal-data/-/personal-data-1.0.1.tgz#2f564f4c10c06c189e23b899148d54d4101b0522"
-  integrity sha512-qD8ihxt/i39/oQsOipovRVOET67yEMINu1SYP7Z5PGFq8Yy8476n27oqCZZ0sjXBXhIDCn1+H/5SD74bYcfEFA==
+"@dword-design/personal-data@^2.0.0":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@dword-design/personal-data/-/personal-data-2.0.3.tgz#6c3eef215a1de8fa9b8b6710412f7bfe5897c0ea"
+  integrity sha512-ufLKbxChE+oKnyDziyMvyiSfdTTaExXuq5u++/opEOgbN5CY+sw9BvAtqR5EbAhfNQhxbwo4jPfWhUkeEwDbwQ==
   dependencies:
     "@dword-design/functions" "^4.0.7"
 
@@ -2256,8 +2256,9 @@
     lodash.kebabcase "^4.1.1"
     svg-tags "^1.0.0"
 
-"@vue/babel-preset-jsx@github:dword-design/jsx#fork-babel-preset-jsx":
+"@vue/babel-preset-jsx@dword-design/jsx#fork-babel-preset-jsx":
   version "1.1.2"
+  uid a73cb9961541a60a66b1b99a69a32e00bc66d336
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/a73cb9961541a60a66b1b99a69a32e00bc66d336"
   dependencies:
     "@vue/babel-helper-vue-jsx-merge-props" "^1.0.0"

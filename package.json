@@ -34,7 +34,7 @@
     "@dword-design/eslint-config": "^3.0.6",
     "@dword-design/functions": "^4.0.0",
     "@dword-design/jiti-babel-transform": "^1.0.7",
-    "@dword-design/personal-data": "^1.0.1",
+    "@dword-design/personal-data": "^2.0.0",
     "@dword-design/pretest": "^1.0.0",
     "@dword-design/setup-test": "^1.0.2",
     "@dword-design/suppress-babel-register-esm-warning": "^1.1.0",
