@@ -1,3 +1,11 @@
+## [9.5.22](https://github.com/dword-design/base/compare/v9.5.21...v9.5.22) (2023-04-13)
+
+
+### Bug Fixes
+
+* fix babel transform ([ad7f301](https://github.com/dword-design/base/commit/ad7f301785eab532dff35f776ac37507c235e849))
+* foo ([52a19c3](https://github.com/dword-design/base/commit/52a19c3440e5f9197d2a84d6caa49a99d41dc0cd))
+
 ## [9.5.21](https://github.com/dword-design/base/compare/v9.5.20...v9.5.21) (2023-04-13)
 
 
