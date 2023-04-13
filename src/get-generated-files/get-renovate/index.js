@@ -20,7 +20,7 @@ export default function () {
         matchStrings: [
           '(^|\\s)gitHubAction`(?<depName>.*?)@v(?<currentValue>.*?)`',
         ],
-        versioning: 'npm',
+        versioningTemplate: 'npm',
       },
     ],
     semanticCommitScope: null,
