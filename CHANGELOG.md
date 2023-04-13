@@ -1,3 +1,10 @@
+## [9.5.21](https://github.com/dword-design/base/compare/v9.5.20...v9.5.21) (2023-04-13)
+
+
+### Bug Fixes
+
+* fix renovate config ([5b2242a](https://github.com/dword-design/base/commit/5b2242aac73a26ac7900ecad8a7c641585b8527c))
+
 ## [9.5.20](https://github.com/dword-design/base/compare/v9.5.19...v9.5.20) (2023-04-12)
 
 
