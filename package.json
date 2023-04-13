@@ -30,7 +30,7 @@
     "@commitlint/config-conventional": "^17.4.0",
     "@dword-design/babel-config": "^2.0.0",
     "@dword-design/base-config-node": "^1.6.0",
-    "@dword-design/ci": "^3.0.0",
+    "@dword-design/ci": "^4.0.0",
     "@dword-design/eslint-config": "^3.0.6",
     "@dword-design/functions": "^4.0.0",
     "@dword-design/jiti-babel-transform": "^1.0.7",

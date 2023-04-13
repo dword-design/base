@@ -1240,13 +1240,13 @@
   resolved "https://registry.yarnpkg.com/@dword-design/chdir/-/chdir-3.0.1.tgz#beda7b619d617b0eaf2e119ae9b767860f5315e7"
   integrity sha512-CTE2eRjhB8q1OtYvbI1uWKb+VwLRGvdD9dnDHXR8VxV+fetwHxY8IFvU8YIfSO0ji6+DpQWjVDpaiqndjzYE7Q==
 
-"@dword-design/ci@^3.0.0":
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/@dword-design/ci/-/ci-3.0.9.tgz#f6ec81e94caaaa19f21f40f5856ba5fb53be54f7"
-  integrity sha512-TFDspLt9wYsX8MEGrYVUjYtEQ8RCl3iXycM1JVnhYHnI6UC3/npqIMzH8MNudbsuEgF3ixxatgywqM8CTDpsgg==
+"@dword-design/ci@^4.0.0":
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/@dword-design/ci/-/ci-4.0.5.tgz#0c71673a836dd1dff449affd41cdc576f36dd0de"
+  integrity sha512-okIqkb1VI1pc+bvr2nwQnhVLjN61mgt4govxSSJee5guk74D8fyiWwE5al4WKwunXeCNygwQo/jLLy1jMROuwQ==
   dependencies:
     "@dword-design/functions" "^4.0.0"
-    execa "^5.0.0"
+    execa "^7.1.1"
     make-cli "^2.0.0"
 
 "@dword-design/dedent@^0.7.0":
@@ -2256,8 +2256,9 @@
     lodash.kebabcase "^4.1.1"
     svg-tags "^1.0.0"
 
-"@vue/babel-preset-jsx@github:dword-design/jsx#fork-babel-preset-jsx":
+"@vue/babel-preset-jsx@dword-design/jsx#fork-babel-preset-jsx":
   version "1.1.2"
+  uid a73cb9961541a60a66b1b99a69a32e00bc66d336
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/a73cb9961541a60a66b1b99a69a32e00bc66d336"
   dependencies:
     "@vue/babel-helper-vue-jsx-merge-props" "^1.0.0"
@@ -4790,7 +4791,7 @@ execa@^5.0.0:
     signal-exit "^3.0.3"
     strip-final-newline "^2.0.0"
 
-execa@^7.0.0:
+execa@^7.0.0, execa@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/execa/-/execa-7.1.1.tgz#3eb3c83d239488e7b409d48e8813b76bb55c9c43"
   integrity sha512-wH0eMf/UXckdUYnO21+HDztteVv05rq2GXksxT4fCGeHkBhw1DROXh40wcjMcRqDOWE7iPJ4n3M7e2+YFP+76Q==
