@@ -1,14 +1,16 @@
+import gitHubAction from 'tagged-template-noop'
+
 export default {
   jobs: {
     build: {
       'runs-on': 'ubuntu-latest',
       steps: [
-        { uses: 'actions/checkout@v3' },
+        { uses: gitHubAction`actions/checkout@v3` },
         {
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
           },
-          uses: 'micnncim/action-label-syncer@v1',
+          uses: gitHubAction`micnncim/action-label-syncer@v1`,
         },
       ],
     },

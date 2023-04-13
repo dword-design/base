@@ -1,12 +1,14 @@
+import gitHubAction from 'tagged-template-noop'
+
 export default function () {
   return {
     jobs: {
       build: {
         'runs-on': 'ubuntu-latest',
         steps: [
-          { uses: 'actions/checkout@v3' },
+          { uses: gitHubAction`actions/checkout@v3` },
           {
-            uses: 'jaid/action-sync-node-meta@v2.0.0',
+            uses: gitHubAction`jaid/action-sync-node-meta@v2.0.0`,
             with: {
               approve: false,
               ...(!this.config.syncKeywords && { syncKeywords: false }),
@@ -15,7 +17,7 @@ export default function () {
               githubToken: '${{ secrets.GITHUB_TOKEN }}',
             },
           },
-          { uses: 'gautamkrishnar/keepalive-workflow@v1' },
+          { uses: gitHubAction`gautamkrishnar/keepalive-workflow@v1` },
         ],
       },
     },

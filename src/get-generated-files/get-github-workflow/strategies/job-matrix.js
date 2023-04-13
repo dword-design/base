@@ -1,4 +1,5 @@
 import { map } from '@dword-design/functions'
+import gitHubAction from 'tagged-template-noop'
 
 import cancelExistingSteps from '@/src/get-generated-files/get-github-workflow/steps/cancel-existing.js'
 import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflow/steps/check-unknown-files.js'
@@ -17,14 +18,14 @@ export default config => ({
     'runs-on': 'ubuntu-latest',
     steps: [
       {
-        uses: 'actions/checkout@v3',
+        uses: gitHubAction`actions/checkout@v3`,
         with: {
           lfs: true,
           ref: "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
         },
       },
       {
-        uses: 'actions/setup-node@v3',
+        uses: gitHubAction`actions/setup-node@v3`,
         with: {
           'node-version': config.nodeVersion,
         },
@@ -41,9 +42,12 @@ export default config => ({
     needs: 'cancel-existing',
     'runs-on': '${{ matrix.os }}',
     steps: [
-      { uses: 'actions/checkout@v3', with: { 'fetch-depth': 0, lfs: true } },
       {
-        uses: 'actions/setup-node@v3',
+        uses: gitHubAction`actions/checkout@v3`,
+        with: { 'fetch-depth': 0, lfs: true },
+      },
+      {
+        uses: gitHubAction`actions/setup-node@v3`,
         with: {
           'node-version': '${{ matrix.node }}',
         },

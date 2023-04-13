@@ -3,6 +3,7 @@ import { constantCase } from 'constant-case'
 import { findUpStop, findUpSync } from 'find-up'
 import fs from 'fs-extra'
 import P from 'path'
+import gitHubAction from 'tagged-template-noop'
 
 export default () => {
   const envSchemaPath = findUpSync(path => {
@@ -33,7 +34,7 @@ export default () => {
     },
     {
       if: 'failure()',
-      uses: 'actions/upload-artifact@v3',
+      uses: gitHubAction`actions/upload-artifact@v3`,
       with: {
         name: 'Image Snapshot Diffs',
         path: '**/__image_snapshots__/__diff_output__',

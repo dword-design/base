@@ -1,9 +1,9 @@
 export default function () {
   return {
-    ...(this.packageConfig.name !== '@dword-design/base' && {
-      ignorePaths: ['.github/workflows/build.yml'],
-    }),
     extends: [':semanticCommits', ':semanticPrefixFix'],
+    'github-actions': {
+      enabled: false,
+    },
     labels: ['maintenance'],
     lockFileMaintenance: {
       automerge: true,
@@ -12,14 +12,17 @@ export default function () {
         ? {}
         : { semanticCommitType: 'chore' }),
     },
-    packageRules: [
+    rangeStrategy: 'replace',
+    regexManagers: [
       {
-        automerge: true,
-        matchCurrentVersion: '>=1.0.0',
-        matchUpdateTypes: ['minor', 'patch'],
+        datasourceTemplate: 'github-tags',
+        fileMatch: ['\\.js$'],
+        matchStrings: [
+          '(^|\\s)gitHubAction`(?<depName>.*?)@v(?<currentValue>.*?)`',
+        ],
+        versioning: 'npm',
       },
     ],
-    rangeStrategy: 'auto',
     semanticCommitScope: null,
   }
 }

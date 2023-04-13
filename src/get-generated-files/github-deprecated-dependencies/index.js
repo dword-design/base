@@ -1,13 +1,15 @@
+import gitHubAction from 'tagged-template-noop'
+
 export default {
   jobs: {
     run: {
       'runs-on': 'ubuntu-latest',
       steps: [
-        { uses: 'actions/checkout@v3', with: { lfs: true } },
+        { uses: gitHubAction`actions/checkout@v3`, with: { lfs: true } },
         {
           'continue-on-error': true,
           id: 'check-deprecated-js-deps',
-          uses: 'tinovyatkin/action-check-deprecated-js-deps@v1',
+          uses: gitHubAction`tinovyatkin/action-check-deprecated-js-deps@v1`,
         },
         {
           env: {
@@ -19,7 +21,7 @@ export default {
           },
           id: 'create-deprecation-issue',
           if: '${{ steps.check-deprecated-js-deps.outputs.deprecated }}',
-          uses: 'JasonEtco/create-an-issue@v2',
+          uses: gitHubAction`JasonEtco/create-an-issue@v2`,
           with: {
             filename: '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md',
             update_existing: true,
@@ -27,14 +29,14 @@ export default {
         },
         {
           if: '${{ !steps.check-deprecated-js-deps.outputs.deprecated && steps.create-deprecation-issue.outputs.number }}',
-          uses: 'peter-evans/close-issue@v2',
+          uses: gitHubAction`peter-evans/close-issue@v2`,
           with: {
             comment: 'Auto-closing the issue',
             'issue-number':
               '${{ steps.create-deprecation-issue.outputs.number }}',
           },
         },
-        { uses: 'gautamkrishnar/keepalive-workflow@v1' },
+        { uses: gitHubAction`gautamkrishnar/keepalive-workflow@v1` },
       ],
     },
   },

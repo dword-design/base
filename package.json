@@ -81,6 +81,7 @@
     "spdx-expression-parse": "^3.0.0",
     "spdx-license-list": "^6.1.0",
     "suppress-experimental-warnings": "^1.1.0",
+    "tagged-template-noop": "^2.1.1",
     "yaml": "^2.2.1"
   },
   "devDependencies": {

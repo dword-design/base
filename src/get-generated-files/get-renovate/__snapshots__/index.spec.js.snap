@@ -6,6 +6,9 @@ Object {
     ":semanticCommits",
     ":semanticPrefixFix",
   ],
+  "github-actions": Object {
+    "enabled": false,
+  },
   "labels": Array [
     "maintenance",
   ],
@@ -14,17 +17,19 @@ Object {
     "enabled": true,
     "semanticCommitType": "chore",
   },
-  "packageRules": Array [
+  "rangeStrategy": "replace",
+  "regexManagers": Array [
     Object {
-      "automerge": true,
-      "matchCurrentVersion": ">=1.0.0",
-      "matchUpdateTypes": Array [
-        "minor",
-        "patch",
+      "datasourceTemplate": "github-tags",
+      "fileMatch": Array [
+        "\\\\.js$",
       ],
+      "matchStrings": Array [
+        "(^|\\\\s)gitHubAction\`(?<depName>.*?)@v(?<currentValue>.*?)\`",
+      ],
+      "versioning": "npm",
     },
   ],
-  "rangeStrategy": "auto",
   "semanticCommitScope": null,
 }
 `;
@@ -64,9 +69,9 @@ Object {
     ":semanticCommits",
     ":semanticPrefixFix",
   ],
-  "ignorePaths": Array [
-    ".github/workflows/build.yml",
-  ],
+  "github-actions": Object {
+    "enabled": false,
+  },
   "labels": Array [
     "maintenance",
   ],
@@ -74,17 +79,19 @@ Object {
     "automerge": true,
     "enabled": true,
   },
-  "packageRules": Array [
+  "rangeStrategy": "replace",
+  "regexManagers": Array [
     Object {
-      "automerge": true,
-      "matchCurrentVersion": ">=1.0.0",
-      "matchUpdateTypes": Array [
-        "minor",
-        "patch",
+      "datasourceTemplate": "github-tags",
+      "fileMatch": Array [
+        "\\\\.js$",
       ],
+      "matchStrings": Array [
+        "(^|\\\\s)gitHubAction\`(?<depName>.*?)@v(?<currentValue>.*?)\`",
+      ],
+      "versioning": "npm",
     },
   ],
-  "rangeStrategy": "auto",
   "semanticCommitScope": null,
 }
 `;
@@ -95,9 +102,9 @@ Object {
     ":semanticCommits",
     ":semanticPrefixFix",
   ],
-  "ignorePaths": Array [
-    ".github/workflows/build.yml",
-  ],
+  "github-actions": Object {
+    "enabled": false,
+  },
   "labels": Array [
     "maintenance",
   ],
@@ -106,17 +113,19 @@ Object {
     "enabled": true,
     "semanticCommitType": "chore",
   },
-  "packageRules": Array [
+  "rangeStrategy": "replace",
+  "regexManagers": Array [
     Object {
-      "automerge": true,
-      "matchCurrentVersion": ">=1.0.0",
-      "matchUpdateTypes": Array [
-        "minor",
-        "patch",
+      "datasourceTemplate": "github-tags",
+      "fileMatch": Array [
+        "\\\\.js$",
       ],
+      "matchStrings": Array [
+        "(^|\\\\s)gitHubAction\`(?<depName>.*?)@v(?<currentValue>.*?)\`",
+      ],
+      "versioning": "npm",
     },
   ],
-  "rangeStrategy": "auto",
   "semanticCommitScope": null,
 }
 `;

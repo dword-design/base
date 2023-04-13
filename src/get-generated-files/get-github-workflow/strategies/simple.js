@@ -1,3 +1,5 @@
+import gitHubAction from 'tagged-template-noop'
+
 import cancelExistingSteps from '@/src/get-generated-files/get-github-workflow/steps/cancel-existing.js'
 import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflow/steps/check-unknown-files.js'
 import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/coverage.js'
@@ -11,7 +13,7 @@ export default config => ({
     steps: [
       ...cancelExistingSteps,
       {
-        uses: 'actions/checkout@v3',
+        uses: gitHubAction`actions/checkout@v3`,
         with: {
           'fetch-depth': 0,
           lfs: true,
@@ -19,7 +21,7 @@ export default config => ({
         },
       },
       {
-        uses: 'actions/setup-node@v3',
+        uses: gitHubAction`actions/setup-node@v3`,
         with: {
           'node-version': config.nodeVersion,
         },

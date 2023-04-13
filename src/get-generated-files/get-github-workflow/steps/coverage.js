@@ -1,6 +1,8 @@
+import gitHubAction from 'tagged-template-noop'
+
 export default [
   {
-    uses: 'codecov/codecov-action@v3',
+    uses: gitHubAction`codecov/codecov-action@v3`,
     with: {
       token: '${{ secrets.CODECOV_TOKEN }}',
     },
