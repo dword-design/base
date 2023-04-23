@@ -1,3 +1,10 @@
+## [9.5.23](https://github.com/dword-design/base/compare/v9.5.22...v9.5.23) (2023-04-23)
+
+
+### Bug Fixes
+
+* add lfs image diff ([f565b24](https://github.com/dword-design/base/commit/f565b24bba981c0f4938a43c2872d03ea5d233dc))
+
 ## [9.5.22](https://github.com/dword-design/base/compare/v9.5.21...v9.5.22) (2023-04-13)
 
 
