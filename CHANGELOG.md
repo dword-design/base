@@ -1,3 +1,10 @@
+## [9.6.1](https://github.com/dword-design/base/compare/v9.6.0...v9.6.1) (2023-05-01)
+
+
+### Bug Fixes
+
+* fix depcheck ([7f2a762](https://github.com/dword-design/base/commit/7f2a7621b8ffd45fb16f1335a7abc67ebe19e6b8))
+
 # [9.6.0](https://github.com/dword-design/base/compare/v9.5.23...v9.6.0) (2023-05-01)
 
 
