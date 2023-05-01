@@ -58,6 +58,21 @@ export default tester(
       },
     },
     empty: {},
+    'global setup': {
+      files: {
+        'global-test-hooks.js':
+          'export const mochaGlobalSetup = () => console.log(1 |> x => x * 2)',
+        src: {
+          'index1.spec.js': 'export default { valid: () => {} }',
+          'index2.spec.js': 'export default { valid: () => {} }',
+        },
+      },
+      async test() {
+        const output =
+          this.base.test() |> await |> property('all') |> unifyMochaOutput
+        expect(output).toMatchSnapshot(this)
+      },
+    },
     grep: {
       files: {
         src: {
