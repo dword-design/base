@@ -120,6 +120,24 @@ export default tester(
         },
       },
     },
+    'prod dependency only in global-test-hooks.js': {
+      files: {
+        'global-test-hooks.js': "import 'bar'",
+        'node_modules/bar/index.js': 'module.exports = 1',
+        'package.json': JSON.stringify({
+          dependencies: {
+            bar: '^1.0.0',
+          },
+          type: 'module',
+        }),
+      },
+      async test() {
+        await expect(this.base.test()).rejects.toThrow(endent`
+          Unused dependencies
+          * bar
+        `)
+      },
+    },
     'prod dependency only in test': {
       files: {
         'node_modules/bar/index.js': 'module.exports = 1',
@@ -128,14 +146,7 @@ export default tester(
             bar: '^1.0.0',
           },
         }),
-        src: {
-          'index.js': 'export default 1',
-          'index.spec.js': endent`
-            import bar from 'bar'
-
-            export default bar
-          `,
-        },
+        'src/index.spec.js': "import 'bar'",
       },
       async test() {
         await expect(this.base.test()).rejects.toThrow(endent`
