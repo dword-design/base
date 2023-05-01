@@ -1,3 +1,10 @@
+# [9.6.0](https://github.com/dword-design/base/compare/v9.5.23...v9.6.0) (2023-05-01)
+
+
+### Features
+
+* global test hooks ([#693](https://github.com/dword-design/base/issues/693)) ([c5743d9](https://github.com/dword-design/base/commit/c5743d954bf76e9072606087c6da0fdfa1c271ec))
+
 ## [9.5.23](https://github.com/dword-design/base/compare/v9.5.22...v9.5.23) (2023-04-23)
 
 
