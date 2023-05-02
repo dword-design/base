@@ -1,3 +1,10 @@
+## [9.6.3](https://github.com/dword-design/base/compare/v9.6.2...v9.6.3) (2023-05-02)
+
+
+### Bug Fixes
+
+* fix allowed matches ([5d15326](https://github.com/dword-design/base/commit/5d15326b9cc200fda98a928e013456c7420e98b0))
+
 ## [9.6.2](https://github.com/dword-design/base/compare/v9.6.1...v9.6.2) (2023-05-02)
 
 
