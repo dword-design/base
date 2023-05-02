@@ -1,3 +1,10 @@
+## [9.6.2](https://github.com/dword-design/base/compare/v9.6.1...v9.6.2) (2023-05-02)
+
+
+### Bug Fixes
+
+* pass this to lint ([d30b4e0](https://github.com/dword-design/base/commit/d30b4e084e532051aa3d8f599b3a01a357a3bd90))
+
 ## [9.6.1](https://github.com/dword-design/base/compare/v9.6.0...v9.6.1) (2023-05-01)
 
 
