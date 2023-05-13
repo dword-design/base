@@ -14,6 +14,7 @@ import { globby } from 'globby'
 import outputFiles from 'output-files'
 import P from 'path'
 import unifyMochaOutput from 'unify-mocha-output'
+import nodeVersion from 'node-version'
 
 import { Base } from '@/src/index.js'
 
@@ -143,7 +144,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          "error  Unexpected token 'o'",
+          `error  Unexpected token ${nodeVersion.major === '20' ? "'o'" : 'o'}`,
         )
       },
     },
