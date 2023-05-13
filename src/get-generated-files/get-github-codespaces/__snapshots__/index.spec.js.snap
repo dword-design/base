@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index works 1`] = `
+exports[`works 1`] = `
 Object {
   "features": Object {
     "ghcr.io/devcontainers/features/docker-in-docker:2": Object {},

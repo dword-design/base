@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index badges 1`] = `
+exports[`badges 1`] = `
 "<!-- BADGES/ -->
   <p>
     <a href=\\"https://npmjs.org/package/@dword-design/foo\\">
@@ -50,7 +50,7 @@ exports[`index badges 1`] = `
 "
 `;
 
-exports[`index badges private 1`] = `
+exports[`badges private 1`] = `
 "<!-- BADGES/ -->
   <p>
     <img src=\\"https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue\\" alt=\\"Linux macOS Windows compatible\\"><a href=\\"https://github.com/dword-design/bar/actions\\">
@@ -95,7 +95,7 @@ exports[`index badges private 1`] = `
 "
 `;
 
-exports[`index existing content 1`] = `
+exports[`existing content 1`] = `
 "<!-- DESCRIPTION/ -->
 foo bar baz
 <!-- /DESCRIPTION -->
@@ -144,7 +144,7 @@ Thanks a lot for your support! ❤️
 "
 `;
 
-exports[`index license 1`] = `
+exports[`license 1`] = `
 "<!-- LICENSE/ -->
 ## Contribute
 
@@ -187,7 +187,7 @@ Thanks a lot for your support! ❤️
 "
 `;
 
-exports[`index seeAlso 1`] = `
+exports[`seeAlso 1`] = `
 "<!-- LICENSE/ -->
 ## Contribute
 

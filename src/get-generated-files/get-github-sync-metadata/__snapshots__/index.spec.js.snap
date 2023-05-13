@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index do not sync keywords 1`] = `
+exports[`do not sync keywords 1`] = `
 Object {
   "jobs": Object {
     "build": Object {
@@ -36,7 +36,7 @@ Object {
 }
 `;
 
-exports[`index valid 1`] = `
+exports[`valid 1`] = `
 Object {
   "jobs": Object {
     "build": Object {

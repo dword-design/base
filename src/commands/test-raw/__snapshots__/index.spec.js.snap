@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index coverage file extension 1`] = `
+exports[`coverage file extension 1`] = `
 "
   0 passing
 
@@ -12,7 +12,7 @@ All files  |     100 |      100 |     100 |     100 |
 -----------|---------|----------|---------|---------|-------------------"
 `;
 
-exports[`index global setup 1`] = `
+exports[`global setup 1`] = `
 "2
 
 src/index1.spec.js
@@ -33,7 +33,7 @@ All files             |     100 |      100 |     100 |     100 |
 ----------------------|---------|----------|---------|---------|-------------------"
 `;
 
-exports[`index multiple patterns 1`] = `
+exports[`multiple patterns 1`] = `
 "
 src/index1.spec.js
   index1

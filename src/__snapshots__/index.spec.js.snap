@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index empty parent 1`] = `
+exports[`empty parent 1`] = `
 Object {
   "allowedMatches": Array [],
   "commands": Object {},
@@ -33,7 +33,7 @@ $ yarn add foo
 }
 `;
 
-exports[`index inherited 1`] = `
+exports[`inherited 1`] = `
 Object {
   "allowedMatches": Array [],
   "deployAssets": Array [

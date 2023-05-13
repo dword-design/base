@@ -204,9 +204,9 @@ export default tester(
         ).toEqual(endent`
           // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-          exports[\`index works 1\`] = \`"foo"\`;
+          exports[\`works 1\`] = \`"foo"\`;
 
-          exports[\`index works 2\`] = \`"bar"\`;
+          exports[\`works 2\`] = \`"bar"\`;
 
         `)
       },

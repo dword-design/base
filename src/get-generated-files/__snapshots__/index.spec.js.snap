@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index no metadata sync 1`] = `
+exports[`no metadata sync 1`] = `
 Array [
   ".babelrc.json",
   ".commitlintrc.json",
@@ -26,7 +26,7 @@ Array [
 ]
 `;
 
-exports[`index works 1`] = `
+exports[`works 1`] = `
 Array [
   ".babelrc.json",
   ".commitlintrc.json",

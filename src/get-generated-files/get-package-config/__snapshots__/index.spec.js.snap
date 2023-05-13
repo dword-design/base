@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index empty 1`] = `
+exports[`empty 1`] = `
 Object {
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "engines": Object {
@@ -30,7 +30,7 @@ Object {
 }
 `;
 
-exports[`index existing package 1`] = `
+exports[`existing package 1`] = `
 Object {
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "bin": Object {
@@ -80,7 +80,7 @@ Object {
 }
 `;
 
-exports[`index git repo 1`] = `
+exports[`git repo 1`] = `
 Object {
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "engines": Object {
@@ -112,7 +112,7 @@ Object {
 }
 `;
 
-exports[`index sub-folder 1`] = `
+exports[`sub-folder 1`] = `
 Object {
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "engines": Object {

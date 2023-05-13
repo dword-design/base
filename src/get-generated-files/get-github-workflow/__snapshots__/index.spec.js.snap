@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index job matrix 1`] = `
+exports[`job matrix 1`] = `
 Object {
   "jobs": Object {
     "cancel-existing": Object {
@@ -147,7 +147,7 @@ Object {
 }
 `;
 
-exports[`index job matrix no windows 1`] = `
+exports[`job matrix no windows 1`] = `
 Object {
   "jobs": Object {
     "cancel-existing": Object {
@@ -290,7 +290,7 @@ Object {
 }
 `;
 
-exports[`index no job matrix 1`] = `
+exports[`no job matrix 1`] = `
 Object {
   "jobs": Object {
     "build": Object {
@@ -380,7 +380,7 @@ Object {
 }
 `;
 
-exports[`index package.json 1`] = `
+exports[`package.json 1`] = `
 Object {
   "jobs": Object {
     "cancel-existing": Object {
@@ -528,7 +528,7 @@ Object {
 }
 `;
 
-exports[`index package.json same path as .env.schema.json 1`] = `
+exports[`package.json same path as .env.schema.json 1`] = `
 Object {
   "jobs": Object {
     "cancel-existing": Object {
@@ -677,7 +677,7 @@ Object {
 }
 `;
 
-exports[`index subdir 1`] = `
+exports[`subdir 1`] = `
 Object {
   "jobs": Object {
     "cancel-existing": Object {
@@ -818,7 +818,7 @@ Object {
 }
 `;
 
-exports[`index test environment variables 1`] = `
+exports[`test environment variables 1`] = `
 Object {
   "jobs": Object {
     "build": Object {
@@ -910,7 +910,7 @@ Object {
 }
 `;
 
-exports[`index testInContainer 1`] = `
+exports[`testInContainer 1`] = `
 Object {
   "jobs": Object {
     "build": Object {

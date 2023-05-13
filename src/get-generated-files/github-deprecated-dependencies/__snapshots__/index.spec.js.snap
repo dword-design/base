@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index valid 1`] = `
+exports[`valid 1`] = `
 Object {
   "jobs": Object {
     "run": Object {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index valid 1`] = `
+exports[`valid 1`] = `
 Object {
   ".babelrc.json": true,
   ".commitlintrc.json": true,
@@ -30,7 +30,7 @@ Object {
 }
 `;
 
-exports[`index valid 2`] = `
+exports[`valid 2`] = `
 "<!-- TITLE/ -->
 # foo
 <!-- /TITLE -->

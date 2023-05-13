@@ -53,7 +53,7 @@ export default async function (options) {
       '--reporter',
       _require.resolve(packageName`mocha-spec-reporter-with-file-names`),
       '--ui',
-      packageName`mocha-ui-exports-auto-describe`,
+      'exports',
       '--require',
       packageName`@dword-design/pretest`,
       ...((await fs.exists(P.join('global-test-hooks.js')))
