@@ -143,7 +143,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          'error  Unexpected token o',
+          "error  Unexpected token 'o'",
         )
       },
     },
