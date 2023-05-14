@@ -1320,9 +1320,9 @@
     param-case "^3.0.3"
 
 "@dword-design/base-config-node@^1.6.0":
-  version "1.11.13"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.11.13.tgz#734c3057333d1ec82050127314dc4a692a5ae1cf"
-  integrity sha512-8ZfLKd3/bLijBYtW+e5EpPAHV7aUSeMA5/U+VL1EASlO5QstlIr/v8BbsyiQNcWiI1eZ0a9ziJVWX7HcCBrcHQ==
+  version "1.11.14"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-1.11.14.tgz#bb26416230cef395106c383519822e69a46e23d8"
+  integrity sha512-+3O8Ngz5gZJ/KlKYtQbBzIq86K44AFHk9Ls++k1GkAzevB1Te/oAdVSYjfdlTWv4/c+kF2hnep/feW5FvBi9gg==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
@@ -1334,7 +1334,6 @@
     eslint "^8.28.0"
     execa "^7.0.0"
     fs-extra "^11.0.0"
-    load-pkg "^4.0.0"
     micromatch "^4.0.2"
 
 "@dword-design/chdir@^2.0.0":
