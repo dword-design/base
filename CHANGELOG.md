@@ -1,3 +1,10 @@
+## [9.6.4](https://github.com/dword-design/base/compare/v9.6.3...v9.6.4) (2023-05-14)
+
+
+### Bug Fixes
+
+* set type module as default ([#696](https://github.com/dword-design/base/issues/696)) ([ef9f6b0](https://github.com/dword-design/base/commit/ef9f6b0dd11082524dc16ac215e81ddf3f2c9028))
+
 ## [9.6.3](https://github.com/dword-design/base/compare/v9.6.2...v9.6.3) (2023-05-02)
 
 
