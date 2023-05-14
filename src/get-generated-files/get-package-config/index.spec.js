@@ -2,29 +2,29 @@ import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import { execaCommand } from 'execa'
 import fs from 'fs-extra'
-import outputFiles from 'output-files'
 
 import { Base } from '@/src/index.js'
 
 export default tester(
   {
-    'custom config': async () => {
-      await fs.outputFile('package.json', JSON.stringify({ type: 'module' }))
+    commonjs: async () => {
+      await fs.outputFile('package.json', JSON.stringify({ type: 'commonjs' }))
+      expect(new Base().getPackageConfig().type).toEqual('commonjs')
+    },
+    'custom config': () =>
       expect(
         new Base({
           packageConfig: { main: 'dist/index.scss' },
         }).getPackageConfig().main,
-      ).toEqual('dist/index.scss')
-    },
+      ).toEqual('dist/index.scss'),
     deploy: async () => {
       await fs.outputFile(
         'package.json',
-        JSON.stringify({ deploy: true, type: 'module' }),
+        JSON.stringify({ deploy: true }),
       )
       expect(new Base().getPackageConfig().deploy).toBeTruthy()
     },
-    async empty() {
-      await fs.outputFile('package.json', JSON.stringify({}))
+    empty() {
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
     },
     async 'existing package'() {
@@ -66,13 +66,11 @@ export default tester(
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
     },
     async 'git repo'() {
-      await fs.outputFile('package.json', JSON.stringify({ type: 'module' }))
       await execaCommand('git init')
       await execaCommand('git remote add origin git@github.com:bar/foo.git')
       expect(new Base().getPackageConfig()).toMatchSnapshot(this)
     },
     'non-github repo': async () => {
-      await fs.outputFile('package.json', JSON.stringify({ type: 'module' }))
       await execaCommand('git init')
       await execaCommand('git remote add origin git@special.com:bar/foo.git')
       expect(() => new Base().getPackageConfig()).toThrow(
@@ -80,30 +78,15 @@ export default tester(
       )
     },
     private: async () => {
-      await fs.outputFile(
-        'package.json',
-        JSON.stringify({ private: true, type: 'module' }),
-      )
+      await fs.outputFile('package.json', JSON.stringify({ private: true }))
       expect(new Base().getPackageConfig().private).toBeTruthy()
     },
-    async 'sub-folder'() {
-      await outputFiles({
-        'package.json': JSON.stringify({ type: 'module' }),
-        test: {},
-      })
-      await execaCommand('git init')
-      await execaCommand('git remote add origin git@github.com:bar/foo.git')
-      process.chdir('test')
-      expect(new Base().getPackageConfig()).toMatchSnapshot(this)
-    },
     'types.d.ts': async () => {
-      await outputFiles({
-        'package.json': JSON.stringify({ type: 'module' }),
-        'types.d.ts': '',
-      })
-
-      const packageConfig = new Base().getPackageConfig()
-      expect(packageConfig.files).toEqual(['dist', 'types.d.ts'])
+      await fs.outputFile('types.d.ts', '')
+      expect(new Base().getPackageConfig().files).toEqual([
+        'dist',
+        'types.d.ts',
+      ])
     },
   },
   [testerPluginTmpDir()],
