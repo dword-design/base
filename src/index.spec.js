@@ -1,3 +1,4 @@
+import chdir from '@dword-design/chdir'
 import { endent, identity, keys, omit, sortBy } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
@@ -50,6 +51,16 @@ export default tester(
           'export default { readmeInstallString: 1 |> x => x * 2 }',
       })
       expect(new Self().config.readmeInstallString).toEqual(2)
+    },
+    'do not recurse up to find package.json': async () => {
+      await fs.outputFile(
+        'package.json',
+        JSON.stringify({ description: 'foo' }),
+      )
+      await fs.ensureDir('sub')
+      await chdir('sub', () => {
+        expect(new Self().packageConfig.description).toBeUndefined()
+      })
     },
     empty: () =>
       expect(new Self().config.name).toEqual('@dword-design/base-config-node'),

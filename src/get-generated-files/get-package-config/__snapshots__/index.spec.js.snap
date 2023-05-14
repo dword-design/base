@@ -6,13 +6,11 @@ Object {
   "engines": Object {
     "node": ">=14",
   },
-  "exports": "./dist/index.js",
   "files": Array [
     "dist",
   ],
   "funding": "https://github.com/sponsors/dword-design",
   "license": "MIT",
-  "main": "dist/index.js",
   "publishConfig": Object {
     "access": "public",
   },
@@ -26,6 +24,7 @@ Object {
     "prepublishOnly": "base prepublishOnly",
     "test": "base test",
   },
+  "type": "module",
   "version": "1.0.0",
 }
 `;
@@ -46,7 +45,6 @@ Object {
   "engines": Object {
     "node": ">=14",
   },
-  "exports": "./dist/index.js",
   "files": Array [
     "dist",
   ],
@@ -56,7 +54,6 @@ Object {
     "bar",
   ],
   "license": "MIT",
-  "main": "dist/index.js",
   "name": "foo",
   "peerDependencies": Object {
     "nuxt": "^1.0.0",
@@ -86,48 +83,15 @@ Object {
   "engines": Object {
     "node": ">=14",
   },
-  "exports": "./dist/index.js",
   "files": Array [
     "dist",
   ],
   "funding": "https://github.com/sponsors/dword-design",
   "license": "MIT",
-  "main": "dist/index.js",
   "publishConfig": Object {
     "access": "public",
   },
   "repository": "dword-design/foo",
-  "scripts": Object {
-    "checkUnknownFiles": "base checkUnknownFiles",
-    "commit": "base commit",
-    "depcheck": "base depcheck",
-    "dev": "base dev",
-    "lint": "base lint",
-    "prepare": "base prepare",
-    "prepublishOnly": "base prepublishOnly",
-    "test": "base test",
-  },
-  "type": "module",
-  "version": "1.0.0",
-}
-`;
-
-exports[`index sub-folder 1`] = `
-Object {
-  "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
-  "engines": Object {
-    "node": ">=14",
-  },
-  "exports": "./dist/index.js",
-  "files": Array [
-    "dist",
-  ],
-  "funding": "https://github.com/sponsors/dword-design",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "publishConfig": Object {
-    "access": "public",
-  },
   "scripts": Object {
     "checkUnknownFiles": "base checkUnknownFiles",
     "commit": "base commit",
