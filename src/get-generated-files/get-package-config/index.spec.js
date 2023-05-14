@@ -18,10 +18,7 @@ export default tester(
         }).getPackageConfig().main,
       ).toEqual('dist/index.scss'),
     deploy: async () => {
-      await fs.outputFile(
-        'package.json',
-        JSON.stringify({ deploy: true }),
-      )
+      await fs.outputFile('package.json', JSON.stringify({ deploy: true }))
       expect(new Base().getPackageConfig().deploy).toBeTruthy()
     },
     empty() {
