@@ -88,7 +88,7 @@ class Base {
       git: getGitInfo(),
       gitignore: [],
       lint: identity,
-      nodeVersion: 16,
+      nodeVersion: 20,
       preDeploySteps: [],
       prepare: identity,
       readmeInstallString: endent`
@@ -103,7 +103,7 @@ class Base {
         \`\`\`
       `,
       seeAlso: [],
-      supportedNodeVersions: [14, 16, 18],
+      supportedNodeVersions: [16, 18, 20],
       syncKeywords: true,
       windows: true,
     }

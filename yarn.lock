@@ -8606,6 +8606,11 @@ node-sass@^8.0.0:
     stdout-stream "^1.4.0"
     "true-case-path" "^2.2.1"
 
+node-version@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/node-version/-/node-version-3.0.0.tgz#1ee8880d416469fbec6fa50e3e57db1bc98c9cc4"
+  integrity sha512-lOtS3Vaqo4GntMFYyH6BXbpiqgD5F+5ycBwDYaCjzBA9pKK9G1j6cKVtu3HU0HATDTikcWOTn8MxQmj/jo4iTQ==
+
 nopt@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/nopt/-/nopt-5.0.0.tgz#530942bb58a512fccafe53fe210f13a25355dc88"
