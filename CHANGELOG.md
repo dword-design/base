@@ -1,3 +1,15 @@
+# [10.0.0](https://github.com/dword-design/base/compare/v9.6.4...v10.0.0) (2023-05-18)
+
+
+### Bug Fixes
+
+* bump node version ([#697](https://github.com/dword-design/base/issues/697)) ([9368315](https://github.com/dword-design/base/commit/93683159e669aabbf039222f981ef1b37a765684))
+
+
+### BREAKING CHANGES
+
+* drop node 14 support
+
 ## [9.6.4](https://github.com/dword-design/base/compare/v9.6.3...v9.6.4) (2023-05-14)
 
 
