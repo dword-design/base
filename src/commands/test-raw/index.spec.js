@@ -11,6 +11,7 @@ import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import packageName from 'depcheck-package-name'
 import fs from 'fs-extra'
 import { globby } from 'globby'
+import nodeVersion from 'node-version'
 import outputFiles from 'output-files'
 import P from 'path'
 import unifyMochaOutput from 'unify-mocha-output'
@@ -143,7 +144,7 @@ export default tester(
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          'error  Unexpected token o',
+          `error  Unexpected token ${nodeVersion.major === '20' ? "'o'" : 'o'}`,
         )
       },
     },
