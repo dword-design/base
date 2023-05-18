@@ -29,7 +29,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v3",
           "with": Object {
-            "node-version": 16,
+            "node-version": 20,
           },
         },
         Object {
@@ -100,7 +100,7 @@ Object {
           },
         },
         Object {
-          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 16",
+          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 20",
           "uses": "codecov/codecov-action@v3",
           "with": Object {
             "token": "\${{ secrets.CODECOV_TOKEN }}",
@@ -111,10 +111,6 @@ Object {
         "matrix": Object {
           "include": Array [
             Object {
-              "node": 14,
-              "os": "ubuntu-latest",
-            },
-            Object {
               "node": 16,
               "os": "ubuntu-latest",
             },
@@ -123,11 +119,15 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
-              "node": 16,
+              "node": 20,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 20,
               "os": "macos-latest",
             },
             Object {
-              "node": 16,
+              "node": 20,
               "os": "windows-latest",
             },
           ],
@@ -176,7 +176,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v3",
           "with": Object {
-            "node-version": 16,
+            "node-version": 20,
           },
         },
         Object {
@@ -247,7 +247,7 @@ Object {
           },
         },
         Object {
-          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 16",
+          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 20",
           "uses": "codecov/codecov-action@v3",
           "with": Object {
             "token": "\${{ secrets.CODECOV_TOKEN }}",
@@ -258,10 +258,6 @@ Object {
         "matrix": Object {
           "include": Array [
             Object {
-              "node": 14,
-              "os": "ubuntu-latest",
-            },
-            Object {
               "node": 16,
               "os": "ubuntu-latest",
             },
@@ -270,7 +266,11 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
-              "node": 16,
+              "node": 20,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 20,
               "os": "macos-latest",
             },
           ],
@@ -314,7 +314,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v3",
           "with": Object {
-            "node-version": 16,
+            "node-version": 20,
           },
         },
         Object {
@@ -409,7 +409,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v3",
           "with": Object {
-            "node-version": 16,
+            "node-version": 20,
           },
         },
         Object {
@@ -481,7 +481,7 @@ Object {
           },
         },
         Object {
-          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 16",
+          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 20",
           "uses": "codecov/codecov-action@v3",
           "with": Object {
             "token": "\${{ secrets.CODECOV_TOKEN }}",
@@ -492,10 +492,6 @@ Object {
         "matrix": Object {
           "include": Array [
             Object {
-              "node": 14,
-              "os": "ubuntu-latest",
-            },
-            Object {
               "node": 16,
               "os": "ubuntu-latest",
             },
@@ -504,11 +500,15 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
-              "node": 16,
+              "node": 20,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 20,
               "os": "macos-latest",
             },
             Object {
-              "node": 16,
+              "node": 20,
               "os": "windows-latest",
             },
           ],
@@ -557,7 +557,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v3",
           "with": Object {
-            "node-version": 16,
+            "node-version": 20,
           },
         },
         Object {
@@ -630,7 +630,7 @@ Object {
           },
         },
         Object {
-          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 16",
+          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 20",
           "uses": "codecov/codecov-action@v3",
           "with": Object {
             "token": "\${{ secrets.CODECOV_TOKEN }}",
@@ -641,10 +641,6 @@ Object {
         "matrix": Object {
           "include": Array [
             Object {
-              "node": 14,
-              "os": "ubuntu-latest",
-            },
-            Object {
               "node": 16,
               "os": "ubuntu-latest",
             },
@@ -653,11 +649,15 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
-              "node": 16,
+              "node": 20,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 20,
               "os": "macos-latest",
             },
             Object {
-              "node": 16,
+              "node": 20,
               "os": "windows-latest",
             },
           ],
