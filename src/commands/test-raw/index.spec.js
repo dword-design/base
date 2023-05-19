@@ -1,5 +1,6 @@
 import {
   endent,
+  endent as javascript,
   identity,
   keyBy,
   mapValues,
@@ -24,7 +25,7 @@ export default tester(
       files: {
         src: {
           'index.js': 'export default 1',
-          'index.spec.js': endent`
+          'index.spec.js': javascript`
             export default {
               valid: () => expect(1).toEqual(2),
             }
@@ -78,7 +79,7 @@ export default tester(
       files: {
         src: {
           'index.js': 'export default 1',
-          'index.spec.js': endent`
+          'index.spec.js': javascript`
             export default {
               bar: () => console.log('run bar'),
               foo: () => console.log('run foo'),
@@ -95,7 +96,7 @@ export default tester(
     },
     'image snapshot': {
       files: {
-        'index.spec.js': endent`
+        'index.spec.js': javascript`
           import sharp from '${packageName`sharp`}'
 
           export default {
@@ -183,7 +184,7 @@ export default tester(
     },
     'multiple snapshots': {
       files: {
-        'index.spec.js': endent`
+        'index.spec.js': javascript`
           export default {
             works: function () {
               expect('foo').toMatchSnapshot(this)
@@ -202,7 +203,7 @@ export default tester(
             P.join('__snapshots__', 'index.spec.js.snap'),
             'utf8',
           ),
-        ).toEqual(endent`
+        ).toEqual(javascript`
           // Jest Snapshot v1, https://goo.gl/fbAQLP
 
           exports[\`index works 1\`] = \`"foo"\`;
@@ -268,7 +269,7 @@ export default tester(
           type: 'module',
         }),
         src: {
-          'index.spec.js': endent`
+          'index.spec.js': javascript`
             import { execa } from 'execa'
             import P from 'path'
 
@@ -276,7 +277,7 @@ export default tester(
               valid: () => execa(P.join('src', 'subprocess.js'), { stdio: 'inherit' }),
             }
           `,
-          'subprocess.js': endent`
+          'subprocess.js': javascript`
             #!/usr/bin/env node
 
             console.log(1 |> x => x * 2)
@@ -290,7 +291,7 @@ export default tester(
     },
     snapshot: {
       files: {
-        'index.spec.js': endent`
+        'index.spec.js': javascript`
           export default {
             works: function () {
               expect('foo').toMatchSnapshot(this)
@@ -307,13 +308,13 @@ export default tester(
     },
     'test in project root': {
       files: {
-        'index.spec.js': endent`
+        'index.spec.js': javascript`
           export default {
             valid: () => console.log('run test')
           }
 
         `,
-        'node_modules/base-config-foo/index.js': endent`
+        'node_modules/base-config-foo/index.js': javascript`
           module.exports = {
             allowedMatches: [
               'index.spec.js',
@@ -350,7 +351,7 @@ export default tester(
     },
     'update snapshot': {
       files: {
-        '__snapshots__/index.spec.js.snap': endent`
+        '__snapshots__/index.spec.js.snap': javascript`
           exports[\`index works 1\`] = \`"foo"\`;
       
         `,
@@ -429,11 +430,11 @@ export default tester(
           type: 'module',
         }),
         src: {
-          'index.js': endent`
+          'index.js': javascript`
             export default 1
 
           `,
-          'index.spec.js': endent`
+          'index.spec.js': javascript`
             import foo from './index.js'
 
             export default {
