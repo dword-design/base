@@ -2,7 +2,9 @@ import { endent, includes } from '@dword-design/functions'
 import Ajv from 'ajv'
 import packageName from 'depcheck-package-name'
 import { execa } from 'execa'
+import fs from 'fs-extra'
 import { createRequire } from 'module'
+import P from 'path'
 
 import isCI from './is-ci.js'
 import packageJsonSchema from './package-json-schema.js'
@@ -54,6 +56,9 @@ export default async function (options) {
       packageName`mocha-ui-exports-auto-describe`,
       '--require',
       packageName`@dword-design/pretest`,
+      ...((await fs.exists(P.join('global-test-hooks.js')))
+        ? ['--require', 'global-test-hooks.js']
+        : []),
       '--file',
       _require.resolve(packageName`@dword-design/setup-test`),
       ...(runDockerTests ? [] : ['--ignore', '**/*.usesdocker.spec.js']),

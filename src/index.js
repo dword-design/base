@@ -6,8 +6,8 @@ import depcheckDetectorExeca from 'depcheck-detector-execa'
 import depcheckDetectorPackageName from 'depcheck-detector-package-name'
 import packageName from 'depcheck-package-name'
 import depcheckParserBabel from 'depcheck-parser-babel'
+import fs from 'fs-extra'
 import jiti from 'jiti'
-import loadPkg from 'load-pkg'
 import { createRequire } from 'module'
 import P from 'path'
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name'
@@ -60,7 +60,9 @@ class Base {
     if (config.name) {
       config.name = pluginNameToPackageName(config.name, 'base-config')
     }
-    this.packageConfig = loadPkg.sync() || {}
+    this.packageConfig = fs.existsSync('package.json')
+      ? fs.readJsonSync('package.json')
+      : {}
 
     const defaultConfig = {
       allowedMatches: [],
@@ -86,7 +88,7 @@ class Base {
       git: getGitInfo(),
       gitignore: [],
       lint: identity,
-      nodeVersion: 16,
+      nodeVersion: 20,
       preDeploySteps: [],
       prepare: identity,
       readmeInstallString: endent`
@@ -101,7 +103,7 @@ class Base {
         \`\`\`
       `,
       seeAlso: [],
-      supportedNodeVersions: [14, 16, 18],
+      supportedNodeVersions: [16, 18, 20],
       syncKeywords: true,
       windows: true,
     }

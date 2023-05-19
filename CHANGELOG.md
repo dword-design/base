@@ -1,3 +1,65 @@
+# [10.0.0](https://github.com/dword-design/base/compare/v9.6.4...v10.0.0) (2023-05-18)
+
+
+### Bug Fixes
+
+* bump node version ([#697](https://github.com/dword-design/base/issues/697)) ([9368315](https://github.com/dword-design/base/commit/93683159e669aabbf039222f981ef1b37a765684))
+
+
+### BREAKING CHANGES
+
+* drop node 14 support
+
+## [9.6.4](https://github.com/dword-design/base/compare/v9.6.3...v9.6.4) (2023-05-14)
+
+
+### Bug Fixes
+
+* set type module as default ([#696](https://github.com/dword-design/base/issues/696)) ([ef9f6b0](https://github.com/dword-design/base/commit/ef9f6b0dd11082524dc16ac215e81ddf3f2c9028))
+
+## [9.6.3](https://github.com/dword-design/base/compare/v9.6.2...v9.6.3) (2023-05-02)
+
+
+### Bug Fixes
+
+* fix allowed matches ([5d15326](https://github.com/dword-design/base/commit/5d15326b9cc200fda98a928e013456c7420e98b0))
+
+## [9.6.2](https://github.com/dword-design/base/compare/v9.6.1...v9.6.2) (2023-05-02)
+
+
+### Bug Fixes
+
+* pass this to lint ([d30b4e0](https://github.com/dword-design/base/commit/d30b4e084e532051aa3d8f599b3a01a357a3bd90))
+
+## [9.6.1](https://github.com/dword-design/base/compare/v9.6.0...v9.6.1) (2023-05-01)
+
+
+### Bug Fixes
+
+* fix depcheck ([7f2a762](https://github.com/dword-design/base/commit/7f2a7621b8ffd45fb16f1335a7abc67ebe19e6b8))
+
+# [9.6.0](https://github.com/dword-design/base/compare/v9.5.23...v9.6.0) (2023-05-01)
+
+
+### Features
+
+* global test hooks ([#693](https://github.com/dword-design/base/issues/693)) ([c5743d9](https://github.com/dword-design/base/commit/c5743d954bf76e9072606087c6da0fdfa1c271ec))
+
+## [9.5.23](https://github.com/dword-design/base/compare/v9.5.22...v9.5.23) (2023-04-23)
+
+
+### Bug Fixes
+
+* add lfs image diff ([f565b24](https://github.com/dword-design/base/commit/f565b24bba981c0f4938a43c2872d03ea5d233dc))
+
+## [9.5.22](https://github.com/dword-design/base/compare/v9.5.21...v9.5.22) (2023-04-13)
+
+
+### Bug Fixes
+
+* fix babel transform ([ad7f301](https://github.com/dword-design/base/commit/ad7f301785eab532dff35f776ac37507c235e849))
+* foo ([52a19c3](https://github.com/dword-design/base/commit/52a19c3440e5f9197d2a84d6caa49a99d41dc0cd))
+
 ## [9.5.21](https://github.com/dword-design/base/compare/v9.5.20...v9.5.21) (2023-04-13)
 
 

@@ -18,7 +18,9 @@ export default function () {
         `,
         init: endent`
           git config --global user.name "${personalData.name}"
-          git lfs pull && yarn --frozen-lockfile
+          git config diff.lfs.textconv cat
+          git lfs pull
+          yarn --frozen-lockfile
         `,
       },
     ],

@@ -36,5 +36,5 @@ export default async function (options) {
   } catch (error) {
     throw new Error(error.all)
   }
-  await this.config.lint()
+  await this.config.lint.call(this)
 }
