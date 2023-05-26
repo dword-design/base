@@ -38,7 +38,7 @@
     "@dword-design/pretest": "^1.0.0",
     "@dword-design/setup-test": "^1.0.2",
     "@dword-design/suppress-babel-register-esm-warning": "^1.1.0",
-    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/git": "^9.0.0",
     "ajv": "^8.11.2",
     "babel-register-esm": "npm:@dword-design/babel-register-esm",
