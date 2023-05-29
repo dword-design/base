@@ -1,3 +1,10 @@
+## [10.0.3](https://github.com/dword-design/base/compare/v10.0.2...v10.0.3) (2023-05-29)
+
+
+### Bug Fixes
+
+* do not delete resolutions field ([6f250bb](https://github.com/dword-design/base/commit/6f250bb7169eab8cf1b6132b98a04c4df0b2205e))
+
 ## [10.0.2](https://github.com/dword-design/base/compare/v10.0.1...v10.0.2) (2023-05-26)
 
 
