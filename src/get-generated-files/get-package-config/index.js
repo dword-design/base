@@ -1,4 +1,4 @@
-import { mapValues, pick, stubTrue } from '@dword-design/functions'
+import { keys, mapValues, pick, stubTrue } from '@dword-design/functions'
 import packageName from 'depcheck-package-name'
 import fs from 'fs-extra'
 import sortKeys from 'sort-keys'
@@ -18,21 +18,24 @@ export default function () {
   return {
     type: 'module',
     ...(this.packageConfig
-      |> pick([
-        'name',
-        'private',
-        'deploy',
-        'description',
-        'baseConfig',
-        'bin',
-        'keywords',
-        'dependencies',
-        'devDependencies',
-        'peerDependencies',
-        'publishConfig',
-        'type',
-        'types',
-      ])),
+      |> pick(
+        {
+          baseConfig: true,
+          bin: true,
+          dependencies: true,
+          deploy: true,
+          description: true,
+          devDependencies: true,
+          keywords: true,
+          name: true,
+          peerDependencies: true,
+          private: true,
+          publishConfig: true,
+          resolutions: true,
+          type: true,
+          types: true,
+        } |> keys,
+      )),
     funding: 'https://github.com/sponsors/dword-design',
     publishConfig: {
       access: 'public',
