@@ -271,10 +271,6 @@ Object {
             },
             Object {
               "node": 20,
-              "os": "macos-latest",
-            },
-            Object {
-              "node": 20,
               "os": "windows-latest",
             },
           ],
