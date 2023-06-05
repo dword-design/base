@@ -21,6 +21,14 @@ export default tester(
         new Base({ useJobMatrix: true }).getGithubWorkflowConfig(),
       ).toMatchSnapshot(this)
     },
+    'job matrix no macos'() {
+      expect(
+        new Base({
+          macos: false,
+          useJobMatrix: true,
+        }).getGithubWorkflowConfig(),
+      ).toMatchSnapshot(this)
+    },
     'job matrix no windows'() {
       expect(
         new Base({

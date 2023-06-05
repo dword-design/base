@@ -10,6 +10,7 @@ Object {
   "editorIgnore": Array [],
   "git": undefined,
   "gitignore": Array [],
+  "macos": true,
   "name": "base-config-foo",
   "nodeVersion": 20,
   "preDeploySteps": Array [],
@@ -55,6 +56,7 @@ Object {
   "gitignore": Array [
     "foo",
   ],
+  "macos": true,
   "name": "base-config-foo",
   "nodeVersion": 10,
   "packageBaseConfig": Object {

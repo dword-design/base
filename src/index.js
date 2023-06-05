@@ -88,6 +88,7 @@ class Base {
       git: getGitInfo(),
       gitignore: [],
       lint: identity,
+      macos: true,
       nodeVersion: 20,
       preDeploySteps: [],
       prepare: identity,
