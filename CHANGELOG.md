@@ -1,3 +1,11 @@
+## [10.0.4](https://github.com/dword-design/base/compare/v10.0.3...v10.0.4) (2023-06-05)
+
+
+### Bug Fixes
+
+* allow to disable macos ([41b0e6f](https://github.com/dword-design/base/commit/41b0e6f7500b82395c3c4909bdaf61c03be3546a))
+* update dependency @dword-design/babel-config to v3 ([#701](https://github.com/dword-design/base/issues/701)) ([486e40b](https://github.com/dword-design/base/commit/486e40b9352ee367f844fd44ade2b8d2df305716))
+
 ## [10.0.3](https://github.com/dword-design/base/compare/v10.0.2...v10.0.3) (2023-05-29)
 
 
