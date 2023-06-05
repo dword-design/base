@@ -1,3 +1,10 @@
+## [10.0.5](https://github.com/dword-design/base/compare/v10.0.4...v10.0.5) (2023-06-05)
+
+
+### Bug Fixes
+
+* foo ([cfa00d4](https://github.com/dword-design/base/commit/cfa00d440f1406f1a5dc93426d8def8e1a4c9396))
+
 ## [10.0.4](https://github.com/dword-design/base/compare/v10.0.3...v10.0.4) (2023-06-05)
 
 
