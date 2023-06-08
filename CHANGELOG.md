@@ -1,3 +1,10 @@
+## [10.0.7](https://github.com/dword-design/base/compare/v10.0.6...v10.0.7) (2023-06-08)
+
+
+### Bug Fixes
+
+* trigger release ([d066378](https://github.com/dword-design/base/commit/d06637880617e35885fb7cf382d5f8c417b27896))
+
 ## [10.0.6](https://github.com/dword-design/base/compare/v10.0.5...v10.0.6) (2023-06-08)
 
 
