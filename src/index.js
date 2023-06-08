@@ -41,6 +41,26 @@ import getGitInfo from './get-git-info/index.js'
 const _require = createRequire(import.meta.url)
 
 const babelConfig = _require('@dword-design/babel-config')
+
+const mergeConfigs = (...configs) => {
+  const result = deepmerge.all(configs, {
+    customMerge: key => {
+      switch (key) {
+        case 'supportedNodeVersions':
+          return (a, b) => b
+        case 'import/no-unresolved':
+          return (a, b) => [
+            'error',
+            { ignore: [...a[1].ignore, ...b[1].ignore] },
+          ]
+        default:
+          return undefined
+      }
+    },
+  })
+
+  return result
+}
 class Base {
   constructor(config) {
     const jitiInstance = jiti(process.cwd(), {
@@ -109,11 +129,6 @@ class Base {
       windows: true,
     }
 
-    const mergeOptions = {
-      customMerge: key =>
-        key === 'supportedNodeVersions' ? (a, b) => b : undefined,
-    }
-
     const configsToMerge = [defaultConfig]
     if (config.name) {
       const inheritedConfigPath =
@@ -124,14 +139,12 @@ class Base {
         ? jitiInstance(inheritedConfigPath)
         : undefined
       if (typeof inheritedConfig === 'function') {
-        inheritedConfig = inheritedConfig(
-          deepmerge(defaultConfig, config, mergeOptions),
-        )
+        inheritedConfig = inheritedConfig(mergeConfigs(defaultConfig, config))
       }
       configsToMerge.push(inheritedConfig)
     }
     configsToMerge.push(config)
-    this.config = deepmerge.all(configsToMerge, mergeOptions)
+    this.config = mergeConfigs(...configsToMerge)
     this.config = {
       ...this.config,
       commands:

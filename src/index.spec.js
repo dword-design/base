@@ -113,6 +113,34 @@ export default tester(
         \`\`\`
       `)
     },
+    'ignore unresolved merge': async () => {
+      await fs.outputFile(
+        P.join('node_modules', '@dword-design', 'base-config-foo', 'index.js'),
+        endent`
+          module.exports = {
+            eslintConfig: {
+              rules: {
+                'import/no-unresolved': ['error', { ignore: ['foo'] }],
+              },
+            },
+          }
+        `,
+      )
+
+      const base = new Self({
+        allowedMatches: ['bar.txt'],
+        eslintConfig: {
+          rules: {
+            'import/no-unresolved': ['error', { ignore: ['bar'] }],
+          },
+        },
+        name: '@dword-design/foo',
+      })
+      expect(base.config.eslintConfig.rules['import/no-unresolved']).toEqual([
+        'error',
+        { ignore: ['foo', 'bar'] },
+      ])
+    },
     async inherited() {
       await fs.outputFile(
         P.join('node_modules', 'base-config-foo', 'index.js'),
