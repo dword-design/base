@@ -1,4 +1,10 @@
-import { endent, identity, mapValues } from '@dword-design/functions'
+import {
+  endent,
+  filter,
+  flatMap,
+  identity,
+  mapValues,
+} from '@dword-design/functions'
 import jitiBabelTransform from '@dword-design/jiti-babel-transform'
 import deepmerge from 'deepmerge'
 import depcheck from 'depcheck'
@@ -44,20 +50,20 @@ const babelConfig = _require('@dword-design/babel-config')
 
 const mergeConfigs = (...configs) => {
   const result = deepmerge.all(configs, {
-    customMerge: key => {
-      switch (key) {
-        case 'supportedNodeVersions':
-          return (a, b) => b
-        case 'import/no-unresolved':
-          return (a, b) => [
-            'error',
-            { ignore: [...a[1].ignore, ...b[1].ignore] },
-          ]
-        default:
-          return undefined
-      }
-    },
+    customMerge: key =>
+      key === 'supportedNodeVersions' ? (a, b) => b : undefined,
   })
+  if (result.eslintConfig?.rules?.['import/no-unresolved']?.length > 0) {
+    result.eslintConfig.rules['import/no-unresolved'] = [
+      'error',
+      {
+        ignore:
+          result.eslintConfig.rules['import/no-unresolved']
+          |> filter(setting => typeof setting === 'object')
+          |> flatMap(setting => setting.ignore),
+      },
+    ]
+  }
 
   return result
 }
