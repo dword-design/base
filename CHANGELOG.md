@@ -1,3 +1,10 @@
+## [10.0.6](https://github.com/dword-design/base/compare/v10.0.5...v10.0.6) (2023-06-08)
+
+
+### Bug Fixes
+
+* fix ignore unresolved merge ([ff5e40f](https://github.com/dword-design/base/commit/ff5e40f075933a29aa898f8ee4e2490d21be4e3b))
+
 ## [10.0.5](https://github.com/dword-design/base/compare/v10.0.4...v10.0.5) (2023-06-05)
 
 
