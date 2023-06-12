@@ -75,7 +75,7 @@
     "parse-packagejson-name": "^1.0.1",
     "plugin-name-to-package-name": "npm:@dword-design/plugin-name-to-package-name",
     "safe-readfile": "^1.0.2",
-    "semantic-release": "^17.0.3",
+    "semantic-release": "^19.0.0",
     "sort-keys": "^5.0.0",
     "sort-package-json": "^2.1.0",
     "spdx-expression-parse": "^3.0.0",
