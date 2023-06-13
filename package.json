@@ -42,7 +42,7 @@
     "@semantic-release/git": "^9.0.0",
     "ajv": "^8.11.2",
     "babel-register-esm": "npm:@dword-design/babel-register-esm",
-    "c8": "^7.12.0",
+    "c8": "^8.0.0",
     "commitizen": "^4.0.3",
     "constant-case": "^3.0.3",
     "cosmiconfig": "^8.0.0",
