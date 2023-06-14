@@ -91,7 +91,7 @@
     "@dword-design/tester-plugin-tmp-dir": "^2.0.0",
     "is-docker": "^3.0.0",
     "node-version": "^3.0.0",
-    "p-event": "^5.0.1",
+    "p-event": "^6.0.0",
     "rimraf": "^5.0.1",
     "sharp": "^0.32.1",
     "unify-mocha-output": "^2.0.0"
