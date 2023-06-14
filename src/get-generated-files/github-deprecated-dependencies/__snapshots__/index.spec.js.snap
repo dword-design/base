@@ -33,7 +33,7 @@ Object {
         },
         Object {
           "if": "\${{ !steps.check-deprecated-js-deps.outputs.deprecated && steps.create-deprecation-issue.outputs.number }}",
-          "uses": "peter-evans/close-issue@v2",
+          "uses": "peter-evans/close-issue@v3",
           "with": Object {
             "comment": "Auto-closing the issue",
             "issue-number": "\${{ steps.create-deprecation-issue.outputs.number }}",
