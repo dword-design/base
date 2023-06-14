@@ -10,6 +10,7 @@ export default Object.keys({
   '.husky/post-merge': true,
   '.husky/pre-push': true,
   'CHANGELOG.md': true,
+  PRCHECKLIST: true,
   __image_snapshots__: true,
   __snapshots__: true,
   doc: true,
