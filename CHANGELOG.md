@@ -1,3 +1,10 @@
+## [10.0.9](https://github.com/dword-design/base/compare/v10.0.8...v10.0.9) (2023-06-14)
+
+
+### Bug Fixes
+
+* upgrades ([#706](https://github.com/dword-design/base/issues/706)) ([3138643](https://github.com/dword-design/base/commit/3138643b62735b1fe5d527a12a73ceb621ea0b2f))
+
 ## [10.0.8](https://github.com/dword-design/base/compare/v10.0.7...v10.0.8) (2023-06-08)
 
 
