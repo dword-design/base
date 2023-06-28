@@ -1,3 +1,10 @@
+## [10.1.2](https://github.com/dword-design/base/compare/v10.1.1...v10.1.2) (2023-06-28)
+
+
+### Bug Fixes
+
+* upgrade mocha-exports ([#712](https://github.com/dword-design/base/issues/712)) ([ca898a8](https://github.com/dword-design/base/commit/ca898a82d6ffabcd0aca0b16815387f5d4d6bf72))
+
 ## [10.1.1](https://github.com/dword-design/base/compare/v10.1.0...v10.1.1) (2023-06-24)
 
 
