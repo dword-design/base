@@ -34,6 +34,76 @@ Object {
 }
 `;
 
+exports[`index custom config 1`] = `
+Object {
+  "extends": Array [
+    ":semanticCommits",
+    ":semanticPrefixFix",
+  ],
+  "foo": "bar",
+  "github-actions": Object {
+    "enabled": false,
+  },
+  "labels": Array [
+    "maintenance",
+  ],
+  "lockFileMaintenance": Object {
+    "automerge": true,
+    "enabled": true,
+    "semanticCommitType": "chore",
+  },
+  "rangeStrategy": "replace",
+  "regexManagers": Array [
+    Object {
+      "datasourceTemplate": "github-tags",
+      "fileMatch": Array [
+        "\\\\.js$",
+      ],
+      "matchStrings": Array [
+        "(^|\\\\s)gitHubAction\`(?<depName>.*?)@v(?<currentValue>.*?)\`",
+      ],
+      "versioningTemplate": "npm",
+    },
+  ],
+  "semanticCommitScope": null,
+}
+`;
+
+exports[`index custom config array 1`] = `
+Object {
+  "extends": Array [
+    ":semanticCommits",
+    ":semanticPrefixFix",
+  ],
+  "github-actions": Object {
+    "enabled": false,
+  },
+  "labels": Array [
+    "maintenance",
+    "foo",
+  ],
+  "lockFileMaintenance": Object {
+    "automerge": true,
+    "enabled": true,
+    "semanticCommitType": "chore",
+  },
+  "rangeStrategy": "replace",
+  "regexManagers": Array [
+    Object {
+      "datasourceTemplate": "github-tags",
+      "fileMatch": Array [
+        "\\\\.js$",
+      ],
+      "matchStrings": Array [
+        "(^|\\\\s)gitHubAction\`(?<depName>.*?)@v(?<currentValue>.*?)\`",
+      ],
+      "versioningTemplate": "npm",
+    },
+  ],
+  "semanticCommitScope": null,
+}
+`;
+
 exports[`index lock file commit type 1`] = `
 Object {
   "extends": Array [

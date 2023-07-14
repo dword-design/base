@@ -1,26 +1,29 @@
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import fs from 'fs-extra'
 
 import { Base } from '@/src/index.js'
 
 export default tester(
   {
-    async base() {
-      await fs.outputFile(
-        'package.json',
-        JSON.stringify({ name: '@dword-design/base' }),
-      )
+    base() {
       expect(new Base().getRenovateConfig()).toMatchSnapshot(this)
     },
-    async 'lock file fix commit type'() {
-      await fs.outputFile('package.json', JSON.stringify({ name: 'foo' }))
+    'custom config'() {
+      expect(
+        new Base({ renovateConfig: { foo: 'bar' } }).getRenovateConfig(),
+      ).toMatchSnapshot(this)
+    },
+    'custom config array'() {
+      expect(
+        new Base({ renovateConfig: { labels: ['foo'] } }).getRenovateConfig(),
+      ).toMatchSnapshot(this)
+    },
+    'lock file fix commit type'() {
       expect(
         new Base({ isLockFileFixCommitType: true }).getRenovateConfig(),
       ).toMatchSnapshot(this)
     },
-    async 'not base'() {
-      await fs.outputFile('package.json', JSON.stringify({ name: 'foo' }))
+    'not base'() {
       expect(new Base().getRenovateConfig()).toMatchSnapshot(this)
     },
   },
