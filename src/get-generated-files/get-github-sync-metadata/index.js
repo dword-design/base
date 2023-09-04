@@ -6,7 +6,7 @@ export default function () {
       build: {
         'runs-on': 'ubuntu-latest',
         steps: [
-          { uses: gitHubAction`actions/checkout@v3` },
+          { uses: gitHubAction`actions/checkout@v4` },
           {
             uses: gitHubAction`jaid/action-sync-node-meta@v2.0.0`,
             with: {

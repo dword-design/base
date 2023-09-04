@@ -5,7 +5,7 @@ export default {
     build: {
       'runs-on': 'ubuntu-latest',
       steps: [
-        { uses: gitHubAction`actions/checkout@v3` },
+        { uses: gitHubAction`actions/checkout@v4` },
         {
           env: {
             GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
