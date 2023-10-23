@@ -25,7 +25,7 @@ export default config => ({
         },
       },
       {
-        uses: gitHubAction`actions/setup-node@v3`,
+        uses: gitHubAction`actions/setup-node@v4`,
         with: {
           'node-version': config.nodeVersion,
         },
@@ -47,7 +47,7 @@ export default config => ({
         with: { 'fetch-depth': 0, lfs: true },
       },
       {
-        uses: gitHubAction`actions/setup-node@v3`,
+        uses: gitHubAction`actions/setup-node@v4`,
         with: {
           'node-version': '${{ matrix.node }}',
         },

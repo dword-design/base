@@ -21,7 +21,7 @@ export default config => ({
         },
       },
       {
-        uses: gitHubAction`actions/setup-node@v3`,
+        uses: gitHubAction`actions/setup-node@v4`,
         with: {
           'node-version': config.nodeVersion,
         },
