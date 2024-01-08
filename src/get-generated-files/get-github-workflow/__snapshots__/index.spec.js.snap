@@ -111,10 +111,6 @@ Object {
         "matrix": Object {
           "include": Array [
             Object {
-              "node": 16,
-              "os": "ubuntu-latest",
-            },
-            Object {
               "node": 18,
               "os": "ubuntu-latest",
             },
@@ -258,10 +254,6 @@ Object {
         "matrix": Object {
           "include": Array [
             Object {
-              "node": 16,
-              "os": "ubuntu-latest",
-            },
-            Object {
               "node": 18,
               "os": "ubuntu-latest",
             },
@@ -400,10 +392,6 @@ Object {
       "strategy": Object {
         "matrix": Object {
           "include": Array [
-            Object {
-              "node": 16,
-              "os": "ubuntu-latest",
-            },
             Object {
               "node": 18,
               "os": "ubuntu-latest",
@@ -635,10 +623,6 @@ Object {
         "matrix": Object {
           "include": Array [
             Object {
-              "node": 16,
-              "os": "ubuntu-latest",
-            },
-            Object {
               "node": 18,
               "os": "ubuntu-latest",
             },
@@ -783,10 +767,6 @@ Object {
       "strategy": Object {
         "matrix": Object {
           "include": Array [
-            Object {
-              "node": 16,
-              "os": "ubuntu-latest",
-            },
             Object {
               "node": 18,
               "os": "ubuntu-latest",

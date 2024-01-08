@@ -25,7 +25,6 @@ $ yarn add foo
 \`\`\`",
   "seeAlso": Array [],
   "supportedNodeVersions": Array [
-    16,
     18,
     20,
   ],
