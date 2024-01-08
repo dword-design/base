@@ -1,5 +1,5 @@
 import { fromPairs, keys, map } from '@dword-design/functions'
-import { constantCase } from 'constant-case'
+import { constantCase } from 'change-case'
 import { findUpStop, findUpSync } from 'find-up'
 import fs from 'fs-extra'
 import P from 'path'

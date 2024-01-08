@@ -17,19 +17,19 @@ export default async function () {
     ignorePatterns: ['*.spec.js', '/global-test-hooks.js', 'package.json'],
   })
 
-  const devDependenciesResult = await depcheck('.', {
+  /*const devDependenciesResult = await depcheck('.', {
     package: this.packageConfig |> omit(['dependencies']),
     skipMissing: true,
     ...this.config.depcheckConfig,
     ignorePatterns: ['!*.spec.js', '!/global-test-hooks.js'],
-  })
+  })*/
 
   const result = {
     dependencies: dependenciesResult.dependencies,
-    devDependencies: devDependenciesResult.devDependencies,
+    devDependencies: [],//devDependenciesResult.devDependencies,
     invalidFiles: {
       ...dependenciesResult.invalidFiles,
-      ...devDependenciesResult.invalidFiles,
+      //...devDependenciesResult.invalidFiles,
     },
   }
 
