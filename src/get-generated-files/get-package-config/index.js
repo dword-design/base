@@ -55,7 +55,7 @@ export default function () {
       commandNames
       |> mapValues((handler, name) =>
         this.packageConfig.name === '@dword-design/base'
-          ? `rimraf dist && babel --config-file ${packageName`@dword-design/babel-config`} --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
+          ? `${packageName`rimraf`} dist && babel --config-file ${packageName`@dword-design/babel-config`} --copy-files --no-copy-ignored --out-dir dist --ignore "**/*.spec.js" src && node dist/cli.js ${name}`
           : `base ${name}`,
       )
       |> sortKeys,
