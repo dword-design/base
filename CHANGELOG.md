@@ -1,3 +1,15 @@
+# [11.0.0](https://github.com/dword-design/base/compare/v10.1.4...v11.0.0) (2024-01-08)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#728](https://github.com/dword-design/base/issues/728)) ([6643ba1](https://github.com/dword-design/base/commit/6643ba1709481be6e6469b505c54659b56e9aa8a))
+
+
+### BREAKING CHANGES
+
+* require Node.js >= 18
+
 ## [10.1.4](https://github.com/dword-design/base/compare/v10.1.3...v10.1.4) (2023-07-14)
 
 
