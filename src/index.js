@@ -130,7 +130,7 @@ class Base {
         \`\`\`
       `,
       seeAlso: [],
-      supportedNodeVersions: [16, 18, 20],
+      supportedNodeVersions: [18, 20],
       syncKeywords: true,
       windows: true,
     }

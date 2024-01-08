@@ -6,7 +6,7 @@ import {
   map,
   replace,
 } from '@dword-design/functions'
-import { constantCase } from 'constant-case'
+import { constantCase } from 'change-case'
 import { execa } from 'execa'
 import { findUpSync } from 'find-up'
 import fs from 'fs-extra'

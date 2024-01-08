@@ -4,7 +4,7 @@ exports[`index empty 1`] = `
 Object {
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "engines": Object {
-    "node": ">=16",
+    "node": ">=18",
   },
   "files": Array [
     "dist",
@@ -43,7 +43,7 @@ Object {
     "base-config-bar": "^1.0.0",
   },
   "engines": Object {
-    "node": ">=16",
+    "node": ">=18",
   },
   "files": Array [
     "dist",
@@ -81,7 +81,7 @@ exports[`index git repo 1`] = `
 Object {
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "engines": Object {
-    "node": ">=16",
+    "node": ">=18",
   },
   "files": Array [
     "dist",
