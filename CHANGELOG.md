@@ -1,3 +1,10 @@
+## [11.0.1](https://github.com/dword-design/base/compare/v11.0.0...v11.0.1) (2024-01-09)
+
+
+### Bug Fixes
+
+* revert change ([2bb3bbc](https://github.com/dword-design/base/commit/2bb3bbc89cd36fdc641b9165d00dd3276c18a49a))
+
 # [11.0.0](https://github.com/dword-design/base/compare/v10.1.4...v11.0.0) (2024-01-08)
 
 
