@@ -1,7 +1,6 @@
 import { endent } from '@dword-design/functions'
 import tester from '@dword-design/tester'
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import fs from 'fs-extra'
 import outputFiles from 'output-files'
 import P from 'path'
 
