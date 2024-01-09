@@ -3893,9 +3893,9 @@ depcheck-parser-babel@^3.0.1:
     fs-extra "^10.0.0"
 
 "depcheck@npm:@dword-design/depcheck":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@dword-design/depcheck/-/depcheck-0.0.5.tgz#916720968ca196e23dee3c0fb866d87d00791fef"
-  integrity sha512-4y+EfYnMfNTZf+Q+3+4eaXAdOen1+emeT1+kEmJJ0Q/eN1dD572qYfk3FkByqZrljkhL8lvz/7N1Rtur7b2aYA==
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@dword-design/depcheck/-/depcheck-0.0.6.tgz#f4ac562be774eb9a38aab5385fda04645b6f6483"
+  integrity sha512-eRJFuT19Bks2KpZ5n/giPtscU2eCc6NU12LJDTe7NgeSEXOOIW/L0dsZzcPxX/vdbOw8Quk6fRZEjq0nhBuPdw==
   dependencies:
     "@babel/parser" "^7.23.0"
     "@babel/traverse" "^7.23.2"

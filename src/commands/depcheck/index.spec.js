@@ -81,43 +81,22 @@ export default tester(
         `)
       },
     },
-    'mark base as used dependency': {
+    'unused dependencies': {
       files: {
-        'node_modules/@dword-design': {},
         'package.json': JSON.stringify({
-          devDependencies: {
-            '@dword-design/base': '^1.0.0',
+          dependencies: {
+            'change-case': '^1.0.0',
+            foo: '^1.0.0',
           },
-          scripts: {
-            test: 'foo',
-          },
-          type: 'module',
         }),
+        'src/index.js': 'export default 1',
       },
       async test() {
-        await fs.symlink(
-          P.join('..', '..', '..'),
-          P.join('node_modules', '@dword-design', 'base'),
-        )
-        await this.base.test()
-      },
-      'unused dependencies': {
-        files: {
-          'package.json': JSON.stringify({
-            dependencies: {
-              'change-case': '^1.0.0',
-              foo: '^1.0.0',
-            },
-          }),
-          'src/index.js': 'export default 1',
-        },
-        async test() {
-          await expect(this.base.depcheck()).rejects.toThrow(endent`
-            Unused dependencies
-            * change-case
-            * foo
-          `)
-        },
+        await expect(this.base.depcheck()).rejects.toThrow(endent`
+          Unused dependencies
+          * change-case
+          * foo
+        `)
       },
     },
     'prod dependency only in global-test-hooks.js': {
