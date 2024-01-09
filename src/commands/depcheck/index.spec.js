@@ -80,24 +80,6 @@ export default tester(
         `)
       },
     },
-    'unused dependencies': {
-      files: {
-        'package.json': JSON.stringify({
-          dependencies: {
-            'change-case': '^1.0.0',
-            foo: '^1.0.0',
-          },
-        }),
-        'src/index.js': 'export default 1',
-      },
-      async test() {
-        await expect(this.base.depcheck()).rejects.toThrow(endent`
-          Unused dependencies
-          * change-case
-          * foo
-        `)
-      },
-    },
     'prod dependency only in global-test-hooks.js': {
       files: {
         'global-test-hooks.js': "import 'bar'",
@@ -130,6 +112,24 @@ export default tester(
         await expect(this.base.test()).rejects.toThrow(endent`
           Unused dependencies
           * bar
+        `)
+      },
+    },
+    'unused dependencies': {
+      files: {
+        'package.json': JSON.stringify({
+          dependencies: {
+            'change-case': '^1.0.0',
+            foo: '^1.0.0',
+          },
+        }),
+        'src/index.js': 'export default 1',
+      },
+      async test() {
+        await expect(this.base.depcheck()).rejects.toThrow(endent`
+          Unused dependencies
+          * change-case
+          * foo
         `)
       },
     },
