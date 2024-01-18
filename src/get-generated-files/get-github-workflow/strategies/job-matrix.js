@@ -18,7 +18,7 @@ export default config => ({
     'runs-on': 'ubuntu-latest',
     steps: [
       {
-        uses: gitHubAction`actions/checkout@v3`,
+        uses: gitHubAction`actions/checkout@v4`,
         with: {
           lfs: true,
           ref: "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
@@ -43,7 +43,7 @@ export default config => ({
     'runs-on': '${{ matrix.os }}',
     steps: [
       {
-        uses: gitHubAction`actions/checkout@v3`,
+        uses: gitHubAction`actions/checkout@v4`,
         with: { 'fetch-depth': 0, lfs: true },
       },
       {
