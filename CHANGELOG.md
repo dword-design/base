@@ -1,3 +1,10 @@
+## [11.0.2](https://github.com/dword-design/base/compare/v11.0.1...v11.0.2) (2024-01-18)
+
+
+### Bug Fixes
+
+* update dependency actions/setup-node to v4 ([#731](https://github.com/dword-design/base/issues/731)) ([6a48e11](https://github.com/dword-design/base/commit/6a48e11c516bfc278d83ca9ceb49c30c9be565b5))
+
 ## [11.0.1](https://github.com/dword-design/base/compare/v11.0.0...v11.0.1) (2024-01-09)
 
 
