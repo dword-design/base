@@ -2348,7 +2348,7 @@
     lodash.kebabcase "^4.1.1"
     svg-tags "^1.0.0"
 
-"@vue/babel-preset-jsx@github:dword-design/jsx#fork-babel-preset-jsx":
+"@vue/babel-preset-jsx@dword-design/jsx#fork-babel-preset-jsx":
   version "1.1.2"
   resolved "https://codeload.github.com/dword-design/jsx/tar.gz/a73cb9961541a60a66b1b99a69a32e00bc66d336"
   dependencies:
@@ -3165,7 +3165,7 @@ callsite@^1.0.0:
   resolved "https://registry.yarnpkg.com/callsite/-/callsite-1.0.0.tgz#280398e5d664bd74038b6f0905153e6e8af1bc20"
   integrity sha512-0vdNRFXn5q+dtOqjfFtmtlI9N2eVZ7LMyEV2iKC5mEEFvSg/69Ml6b/WU2qF8W1nLRa0wiSrDT3Y5jOHZCwKPQ==
 
-callsites@^3.0.0:
+callsites@^3.0.0, callsites@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
@@ -3896,14 +3896,14 @@ depcheck-parser-babel@^3.0.1:
     fs-extra "^10.0.0"
 
 "depcheck@npm:@dword-design/depcheck":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@dword-design/depcheck/-/depcheck-0.0.6.tgz#f4ac562be774eb9a38aab5385fda04645b6f6483"
-  integrity sha512-eRJFuT19Bks2KpZ5n/giPtscU2eCc6NU12LJDTe7NgeSEXOOIW/L0dsZzcPxX/vdbOw8Quk6fRZEjq0nhBuPdw==
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@dword-design/depcheck/-/depcheck-0.0.7.tgz#9655dbcede176991b5d4e11753bf85715bebbbfd"
+  integrity sha512-WoVDnuaohxINpx8g9ZdkhmxvU1etVzfNfpDNgi/LlS6Sk8ef8wciF1GQ3aDuX2+BlEUZJALKyqebqoOrxCUfOA==
   dependencies:
     "@babel/parser" "^7.23.0"
     "@babel/traverse" "^7.23.2"
     "@vue/compiler-sfc" "^3.3.4"
-    callsite "^1.0.0"
+    callsites "^3.1.0"
     camelcase "^6.3.0"
     cosmiconfig "^7.1.0"
     debug "^4.3.4"
@@ -3920,7 +3920,6 @@ depcheck-parser-babel@^3.0.1:
     readdirp "^3.6.0"
     require-package-name "^2.0.1"
     resolve "^1.22.3"
-    resolve-from "^5.0.0"
     semver "^7.5.4"
     yargs "^16.2.0"
 
@@ -7858,9 +7857,9 @@ mocha@^10.2.0:
     yargs-unparser "2.0.0"
 
 "module-root@npm:@dword-design/module-root":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@dword-design/module-root/-/module-root-0.2.3.tgz#d09e4d89468f1946963826d1353b307b8198defe"
-  integrity sha512-ApgbFWpiqI9g582IjUVmJW3Chpch6LCsMe7SK5A5ZZr6sZnR6BSsrqrwlaLvAQsa67NGyX0uauYqHHTfvPnESw==
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@dword-design/module-root/-/module-root-0.2.4.tgz#1429bdaa1d477897a90053837729adae4257b790"
+  integrity sha512-ns0t/Fxwsf3Egva6SNEStZ/3TKTIgCJW4fGGtQoeAz3PWQRWumrqxTa3tM6dzU4w8thSi8dcaEjP6RRQJtvLhg==
   dependencies:
     callsite "^1.0.0"
     findup-sync "^0.4.2"
