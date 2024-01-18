@@ -37,10 +37,10 @@ export default {
                     src="https://codecov.io/gh/${
                       this.packageConfig.repository
                     }/branch/master/graph/badge.svg${
-                this.config.codecovGraphToken
-                  ? `?token=${this.config.codecovGraphToken}`
-                  : ''
-              }"
+                      this.config.codecovGraphToken
+                        ? `?token=${this.config.codecovGraphToken}`
+                        : ''
+                    }"
                     alt="Coverage status"
                   >
                 </a>

@@ -13,7 +13,7 @@ export default config => ({
     steps: [
       ...cancelExistingSteps,
       {
-        uses: gitHubAction`actions/checkout@v3`,
+        uses: gitHubAction`actions/checkout@v4`,
         with: {
           'fetch-depth': 0,
           lfs: true,
@@ -21,7 +21,7 @@ export default config => ({
         },
       },
       {
-        uses: gitHubAction`actions/setup-node@v3`,
+        uses: gitHubAction`actions/setup-node@v4`,
         with: {
           'node-version': config.nodeVersion,
         },

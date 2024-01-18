@@ -18,14 +18,14 @@ export default config => ({
     'runs-on': 'ubuntu-latest',
     steps: [
       {
-        uses: gitHubAction`actions/checkout@v3`,
+        uses: gitHubAction`actions/checkout@v4`,
         with: {
           lfs: true,
           ref: "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
         },
       },
       {
-        uses: gitHubAction`actions/setup-node@v3`,
+        uses: gitHubAction`actions/setup-node@v4`,
         with: {
           'node-version': config.nodeVersion,
         },
@@ -43,11 +43,11 @@ export default config => ({
     'runs-on': '${{ matrix.os }}',
     steps: [
       {
-        uses: gitHubAction`actions/checkout@v3`,
+        uses: gitHubAction`actions/checkout@v4`,
         with: { 'fetch-depth': 0, lfs: true },
       },
       {
-        uses: gitHubAction`actions/setup-node@v3`,
+        uses: gitHubAction`actions/setup-node@v4`,
         with: {
           'node-version': '${{ matrix.node }}',
         },
