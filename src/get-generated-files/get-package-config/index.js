@@ -29,6 +29,7 @@ export default function () {
           keywords: true,
           name: true,
           peerDependencies: true,
+          optionalDependencies: true,
           private: true,
           publishConfig: true,
           resolutions: true,

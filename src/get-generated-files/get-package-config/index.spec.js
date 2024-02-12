@@ -48,6 +48,9 @@ export default tester(
           peerDependencies: {
             nuxt: '^1.0.0',
           },
+          optionalDependencies: {
+            typescript: '^1.0.0',
+          },
           publishConfig: {
             access: 'public',
           },
