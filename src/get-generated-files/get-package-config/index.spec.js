@@ -45,11 +45,11 @@ export default tester(
           license: 'ISC',
           main: 'dist/index.scss',
           name: 'foo',
-          peerDependencies: {
-            nuxt: '^1.0.0',
-          },
           optionalDependencies: {
             typescript: '^1.0.0',
+          },
+          peerDependencies: {
+            nuxt: '^1.0.0',
           },
           publishConfig: {
             access: 'public',

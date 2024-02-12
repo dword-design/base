@@ -55,11 +55,11 @@ Object {
   ],
   "license": "MIT",
   "name": "foo",
-  "peerDependencies": Object {
-    "nuxt": "^1.0.0",
-  },
   "optionalDependencies": Object {
     "typescript": "^1.0.0",
+  },
+  "peerDependencies": Object {
+    "nuxt": "^1.0.0",
   },
   "publishConfig": Object {
     "access": "public",
