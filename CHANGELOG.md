@@ -1,3 +1,11 @@
+## [11.0.3](https://github.com/dword-design/base/compare/v11.0.2...v11.0.3) (2024-02-12)
+
+
+### Bug Fixes
+
+* foo ([cd64f8b](https://github.com/dword-design/base/commit/cd64f8bf83ad171950fbdf0224e345c99219f5a0))
+* optionalDependencies ([5b7bdba](https://github.com/dword-design/base/commit/5b7bdbae31f672684130b54c0e7bb85477f0905d))
+
 ## [11.0.2](https://github.com/dword-design/base/compare/v11.0.1...v11.0.2) (2024-01-18)
 
 
