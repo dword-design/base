@@ -1,3 +1,10 @@
+## [11.0.4](https://github.com/dword-design/base/compare/v11.0.3...v11.0.4) (2024-02-13)
+
+
+### Bug Fixes
+
+* upgrade babel-register-esm ([#744](https://github.com/dword-design/base/issues/744)) ([ef973aa](https://github.com/dword-design/base/commit/ef973aa0edc28803a6de1ae5876dfed264463d47))
+
 ## [11.0.3](https://github.com/dword-design/base/compare/v11.0.2...v11.0.3) (2024-02-12)
 
 
