@@ -3,7 +3,7 @@ import { endent } from '@dword-design/functions'
 export default function () {
   return endent`
     # Need to add :latest, otherwise old versions (e.g. of node) are installed
-    FROM gitpod/workspace-full:latest
+    FROM gitpod/workspace-full-vnc:latest
 
     RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
     RUN sudo apt-get install git-lfs
@@ -11,8 +11,7 @@ export default function () {
 
     # https://www.gitpod.io/docs/languages/javascript
     # https://github.com/gitpod-io/gitpod/issues/945
-    RUN bash -c 'source $HOME/.nvm/nvm.sh && nvm install ${this.config.nodeVersion} \
-    && nvm use ${this.config.nodeVersion} && nvm alias default ${this.config.nodeVersion}'
+    RUN bash -c 'source $HOME/.nvm/nvm.sh && nvm install ${this.config.nodeVersion}'
     RUN echo "nvm use default &>/dev/null" >> ~/.bashrc.d/51-nvm-fix
     
     RUN echo "\\nexport PATH=$(yarn global bin):\\$PATH" >> /home/gitpod/.bashrc
