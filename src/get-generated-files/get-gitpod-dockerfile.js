@@ -10,10 +10,7 @@ export default function () {
     RUN git lfs install
 
     # https://www.gitpod.io/docs/languages/javascript
-    RUN bash -c 'VERSION="${this.config.nodeVersion}" \
-      && source $HOME/.nvm/nvm.sh && nvm install $VERSION \
-      && nvm use $VERSION && nvm alias default $VERSION'
-
+    RUN bash -c '. $HOME/.nvm/nvm.sh && nvm install ${this.config.nodeVersion}'
     RUN echo "\\nexport PATH=$(yarn global bin):\\$PATH" >> /home/gitpod/.bashrc
 
     RUN yarn global add gitpod-env-per-project @babel/node @babel/core
