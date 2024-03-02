@@ -1,3 +1,11 @@
+## [11.0.6](https://github.com/dword-design/base/compare/v11.0.5...v11.0.6) (2024-03-02)
+
+
+### Bug Fixes
+
+* demo ([#753](https://github.com/dword-design/base/issues/753)) ([d523498](https://github.com/dword-design/base/commit/d523498dccead561d902151bfbfd05e88b8b8d81))
+* upgrade babel config and functions ([#751](https://github.com/dword-design/base/issues/751)) ([adc0857](https://github.com/dword-design/base/commit/adc0857de9d7e98bd7cf375151a92c6c8adad685))
+
 ## [11.0.5](https://github.com/dword-design/base/compare/v11.0.4...v11.0.5) (2024-03-02)
 
 
