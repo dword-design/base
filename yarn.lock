@@ -1197,6 +1197,23 @@
     load-pkg "npm:@dword-design/load-pkg"
     param-case "^3.0.3"
 
+"@dword-design/babel-config@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-4.0.0.tgz#b32bf30164f882a8978cb1ca21fc96feb065d372"
+  integrity sha512-Db2XVUkmaV4nssMsmlZxvlUKpOhGPjdtOwRUnnJD3QRzYj71sAa9zVADQvWTNH4g8nGQNTayqZBl7tMAewhP3g==
+  dependencies:
+    "@babel/plugin-proposal-pipeline-operator" "^7.5.0"
+    "@babel/plugin-syntax-import-assertions" "^7.20.0"
+    "@babel/preset-env" "^7.6.3"
+    babel-plugin-add-module-exports "^1.0.4"
+    babel-plugin-macros "^3.0.1"
+    babel-plugin-module-resolver "^5.0.0"
+    babel-plugin-wildcard "npm:@dword-design/babel-plugin-wildcard"
+    depcheck-package-name "^3.0.0"
+    find-up "^7.0.0"
+    jiti "^1.18.2"
+    load-pkg "npm:@dword-design/load-pkg"
+
 "@dword-design/base-config-node@^2.0.0":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-2.0.1.tgz#dd23ab49704b4d7714a0f1ffa4e06deb7d8085cf"
@@ -1309,13 +1326,23 @@
     lodash "^4.17.15"
     tinycolor2 "^1.4.1"
 
-"@dword-design/functions@^5.0.0", "@dword-design/functions@^5.0.12", "@dword-design/functions@^5.0.20", "@dword-design/functions@^5.0.22", "@dword-design/functions@^5.0.23":
+"@dword-design/functions@^5.0.0", "@dword-design/functions@^5.0.12", "@dword-design/functions@^5.0.22", "@dword-design/functions@^5.0.23":
   version "5.0.27"
   resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-5.0.27.tgz#a609129207ec37abc0fae6aee26872166e409fc6"
   integrity sha512-16A97RKtn21xLWI7Y7VhFz4WCWui+TLit/J5/l77BDpWmPi2LzgjQzDbafDDw7OUeY6GEAi/M4jdbuQhsIbSEg==
   dependencies:
     "@dword-design/endent" "^1.0.0"
     delay "^5.0.0"
+    lodash "^4.17.15"
+    tinycolor2 "^1.4.1"
+
+"@dword-design/functions@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-6.0.0.tgz#e2bdbf4b813f4dad9fb17596314d6e7b8a039723"
+  integrity sha512-22X9eviXAbaz8xdYrp5Tj6KjDPiT+m3fppAP+wEqA3gecAlCyExABesA1bEZ57aXrXrbhNk88M8PvdAO/PLg3A==
+  dependencies:
+    "@dword-design/endent" "^1.0.0"
+    delay "^6.0.0"
     lodash "^4.17.15"
     tinycolor2 "^1.4.1"
 
@@ -3785,6 +3812,11 @@ delay@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/delay/-/delay-5.0.0.tgz#137045ef1b96e5071060dd5be60bf9334436bd1d"
   integrity sha512-ReEBKkIfe4ya47wlPYf/gu5ib6yUG0/Aez0JQZQz94kiWtRQvZIQbTiehsnwHvLSWJnQdhVeqYue7Id1dKr0qw==
+
+delay@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/delay/-/delay-6.0.0.tgz#43749aefdf6cabd9e17b0d00bd3904525137e607"
+  integrity sha512-2NJozoOHQ4NuZuVIr5CWd0iiLVIRSDepakaovIN+9eIDHEhdCAEvSy2cuf1DCrPPQLvHmbqTHODlhHg8UCy4zw==
 
 delete-empty@^3.0.0:
   version "3.0.0"
