@@ -13,6 +13,7 @@ export default Object.keys({
   PRCHECKLIST: true,
   __image_snapshots__: true,
   __snapshots__: true,
+  demo: true,
   doc: true,
   'global-test-hooks.js': true,
   'types.d.ts': true,
