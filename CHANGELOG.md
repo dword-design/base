@@ -1,3 +1,10 @@
+## [11.0.5](https://github.com/dword-design/base/compare/v11.0.4...v11.0.5) (2024-03-02)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#748](https://github.com/dword-design/base/issues/748)) ([57b3a18](https://github.com/dword-design/base/commit/57b3a18824d1d4fc62409db3151e939925dd92ce))
+
 ## [11.0.4](https://github.com/dword-design/base/compare/v11.0.3...v11.0.4) (2024-02-13)
 
 
