@@ -27,6 +27,7 @@ export default function () {
         },
       ],
       semanticCommitScope: null,
+      "gitIgnoredAuthors": ["actions@github.com"]
     },
     this.config.renovateConfig || {},
   )

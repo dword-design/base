@@ -6,6 +6,9 @@ Object {
     ":semanticCommits",
     ":semanticPrefixFix",
   ],
+  "gitIgnoredAuthors": Array [
+    "actions@github.com",
+  ],
   "github-actions": Object {
     "enabled": false,
   },
@@ -41,6 +44,9 @@ Object {
     ":semanticPrefixFix",
   ],
   "foo": "bar",
+  "gitIgnoredAuthors": Array [
+    "actions@github.com",
+  ],
   "github-actions": Object {
     "enabled": false,
   },
@@ -74,6 +80,9 @@ Object {
   "extends": Array [
     ":semanticCommits",
     ":semanticPrefixFix",
+  ],
+  "gitIgnoredAuthors": Array [
+    "actions@github.com",
   ],
   "github-actions": Object {
     "enabled": false,
@@ -139,6 +148,9 @@ Object {
     ":semanticCommits",
     ":semanticPrefixFix",
   ],
+  "gitIgnoredAuthors": Array [
+    "actions@github.com",
+  ],
   "github-actions": Object {
     "enabled": false,
   },
@@ -171,6 +183,9 @@ Object {
   "extends": Array [
     ":semanticCommits",
     ":semanticPrefixFix",
+  ],
+  "gitIgnoredAuthors": Array [
+    "actions@github.com",
   ],
   "github-actions": Object {
     "enabled": false,
