@@ -4,6 +4,7 @@ export default function () {
   return deepmerge(
     {
       extends: [':semanticCommits', ':semanticPrefixFix'],
+      gitIgnoredAuthors: ['actions@github.com'],
       'github-actions': {
         enabled: false,
       },
@@ -27,7 +28,6 @@ export default function () {
         },
       ],
       semanticCommitScope: null,
-      "gitIgnoredAuthors": ["actions@github.com"]
     },
     this.config.renovateConfig || {},
   )
