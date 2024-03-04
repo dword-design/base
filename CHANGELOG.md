@@ -1,3 +1,10 @@
+## [11.0.7](https://github.com/dword-design/base/compare/v11.0.6...v11.0.7) (2024-03-04)
+
+
+### Bug Fixes
+
+* ignore github actions pushes ([#755](https://github.com/dword-design/base/issues/755)) ([c95b46c](https://github.com/dword-design/base/commit/c95b46ccf9631f584fd59f5beb888a76e12ff437))
+
 ## [11.0.6](https://github.com/dword-design/base/compare/v11.0.5...v11.0.6) (2024-03-02)
 
 
