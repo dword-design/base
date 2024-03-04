@@ -2,7 +2,7 @@
 
 exports[`index valid 1`] = `
 Object {
-  ".babelrc.json": true,
+  "babel.config.json": true,
   ".commitlintrc.json": true,
   ".cz.json": true,
   ".devcontainer": true,

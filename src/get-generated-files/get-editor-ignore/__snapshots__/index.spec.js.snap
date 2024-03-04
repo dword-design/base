@@ -2,7 +2,7 @@
 
 exports[`index valid 1`] = `
 Array [
-  ".babelrc.json",
+  "babel.config.json",
   ".commitlintrc.json",
   ".cz.json",
   ".devcontainer",

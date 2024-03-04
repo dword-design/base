@@ -456,7 +456,7 @@ export default tester(
             |> keyBy(identity)
             |> mapValues(stubTrue),
         ).toEqual({
-          '.babelrc.json': true,
+          'babel.config.json': true,
           '.commitlintrc.json': true,
           '.cz.json': true,
           '.devcontainer': true,
