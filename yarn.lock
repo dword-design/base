@@ -1243,20 +1243,20 @@
     jiti "^1.18.2"
     load-pkg "npm:@dword-design/load-pkg"
 
-"@dword-design/base-config-node@^2.0.0":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-2.0.1.tgz#dd23ab49704b4d7714a0f1ffa4e06deb7d8085cf"
-  integrity sha512-KYwUIbBMlTXe25WOnr1sZrS0A8hqgMaZUxher4HNL4Hz0p7fpWi04Gd9y//yUpfLErybcbOsbciJaCiFoe9ZLw==
+"@dword-design/base-config-node@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-config-node/-/base-config-node-3.0.0.tgz#cf88753368b3c42a31aa62d20b5b1f69507aec66"
+  integrity sha512-xFAj86B+KzUZfK2ETpiTfG+tO0EJvZSYhBdzcnTmrPj6RXRtDpR0svhQ5u+9piuGjr6ffK+vuHsAOzlZnNvM1w==
   dependencies:
     "@babel/cli" "^7.7.5"
     "@babel/core" "^7.7.5"
     "@dword-design/depcheck-parser-sass" "^4.0.0"
-    "@dword-design/functions" "^4.0.0"
+    "@dword-design/functions" "^6.0.0"
     chokidar "^3.4.0"
-    debounce "^1.2.0"
+    debounce "^2.0.0"
     delete-empty "^3.0.0"
     eslint "^8.28.0"
-    execa "^7.0.0"
+    execa "^8.0.1"
     fs-extra "^11.0.0"
     micromatch "^4.0.2"
 
@@ -3699,10 +3699,10 @@ dargs@^7.0.0:
   resolved "https://registry.yarnpkg.com/dargs/-/dargs-7.0.0.tgz#04015c41de0bcb69ec84050f3d9be0caf8d6d5cc"
   integrity sha512-2iy1EkLdlBzQGvbweYRFxmFath8+K7+AKB0TlhHWkNuH+TmovaMH/Wp7V7R4u7f4SnX3OgLsU9t1NI9ioDnUpg==
 
-debounce@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.1.tgz#38881d8f4166a5c5848020c11827b834bcb3e0a5"
-  integrity sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==
+debounce@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/debounce/-/debounce-2.0.0.tgz#b2f914518a1481466f4edaee0b063e4d473ad549"
+  integrity sha512-xRetU6gL1VJbs85Mc4FoEGSjQxzpdxRyFhe3lmWFyy2EzydIcD4xzUvRJMD+NPDfMwKNhxa3PvsIOU32luIWeA==
 
 debug@4, debug@4.3.4, debug@^4.0.0, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"
@@ -4664,7 +4664,7 @@ execa@^5.0.0:
     signal-exit "^3.0.3"
     strip-final-newline "^2.0.0"
 
-execa@^7.0.0, execa@^7.1.1:
+execa@^7.1.1:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-7.2.0.tgz#657e75ba984f42a70f38928cedc87d6f2d4fe4e9"
   integrity sha512-UduyVP7TLB5IcAQl+OzLyLcS/l32W/GLg+AhHJ+ow40FOk2U3SAllPwR44v4vmdFwIWqpdwxxpQbF1n5ta9seA==
