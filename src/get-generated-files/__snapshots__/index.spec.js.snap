@@ -28,7 +28,6 @@ Array [
 
 exports[`index works 1`] = `
 Array [
-  "babel.config.json",
   ".commitlintrc.json",
   ".cz.json",
   ".devcontainer/devcontainer.json",
@@ -50,6 +49,7 @@ Array [
   ".vscode/settings.json",
   "LICENSE.md",
   "README.md",
+  "babel.config.json",
   "package.json",
 ]
 `;
