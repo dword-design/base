@@ -1,3 +1,10 @@
+## [11.0.8](https://github.com/dword-design/base/compare/v11.0.7...v11.0.8) (2024-03-05)
+
+
+### Bug Fixes
+
+* babel.config.json ([#757](https://github.com/dword-design/base/issues/757)) ([e25430b](https://github.com/dword-design/base/commit/e25430b1207700d3a87e2ef2b4ffde7c62676a32))
+
 ## [11.0.7](https://github.com/dword-design/base/compare/v11.0.6...v11.0.7) (2024-03-04)
 
 
