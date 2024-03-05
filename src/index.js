@@ -14,7 +14,6 @@ import packageName from 'depcheck-package-name'
 import depcheckParserBabel from 'depcheck-parser-babel'
 import fs from 'fs-extra'
 import jiti from 'jiti'
-import { createRequire } from 'module'
 import P from 'path'
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name'
 
@@ -44,10 +43,6 @@ import getVscodeConfig from './get-generated-files/get-vscode/index.js'
 import getGeneratedFiles from './get-generated-files/index.js'
 import getGitInfo from './get-git-info/index.js'
 
-const _require = createRequire(import.meta.url)
-
-const babelConfig = _require('@dword-design/babel-config')
-
 const mergeConfigs = (...configs) => {
   const result = deepmerge.all(configs, {
     customMerge: key =>
@@ -73,9 +68,6 @@ class Base {
       esmResolve: true,
       interopDefault: true,
       transform: jitiBabelTransform,
-      transformOptions: {
-        babel: babelConfig,
-      },
     })
     if (config === undefined) {
       config = { name: packageName`@dword-design/base-config-node` }

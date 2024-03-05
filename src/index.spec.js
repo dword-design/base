@@ -33,25 +33,6 @@ export default tester(
       self = new Self(config)
       expect(self.config.name).toEqual('base-config-foo')
     },
-    'config is actual project': async () => {
-      await outputFiles({
-        'node_modules/@dword-design/base-config-node': {
-          'dist/index.js': "export default { readmeInstallString: 'foo' }",
-          'package.json': JSON.stringify({
-            exports: './dist/index.js',
-            name: '@dword-design/base-config-node',
-          }),
-        },
-        'package.json': JSON.stringify({
-          exports: './dist/index.js',
-          name: '@dword-design/base-config-node',
-          type: 'module',
-        }),
-        'src/index.js':
-          'export default { readmeInstallString: 1 |> x => x * 2 }',
-      })
-      expect(new Self().config.readmeInstallString).toEqual(2)
-    },
     'do not recurse up to find package.json': async () => {
       await fs.outputFile(
         'package.json',
