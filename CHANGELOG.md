@@ -1,3 +1,10 @@
+## [11.0.9](https://github.com/dword-design/base/compare/v11.0.8...v11.0.9) (2024-03-05)
+
+
+### Bug Fixes
+
+* remove babel config direct usage for jiti ([0a5c1fa](https://github.com/dword-design/base/commit/0a5c1faf8466dfade146cf0d52a0b746656ec9c4))
+
 ## [11.0.8](https://github.com/dword-design/base/compare/v11.0.7...v11.0.8) (2024-03-05)
 
 
