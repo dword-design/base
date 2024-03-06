@@ -1,3 +1,10 @@
+## [11.0.10](https://github.com/dword-design/base/compare/v11.0.9...v11.0.10) (2024-03-06)
+
+
+### Bug Fixes
+
+* add depcheck detector bin name ([53ec24d](https://github.com/dword-design/base/commit/53ec24d3d478c06a3687437f3dc98726391559c4))
+
 ## [11.0.9](https://github.com/dword-design/base/compare/v11.0.8...v11.0.9) (2024-03-05)
 
 
