@@ -170,26 +170,12 @@ export default tester(
         ),
         'test.js': endent`
           import puppeteer from '@dword-design/puppeteer'
-          import Xvfb from 'xvfb'
 
-          const xvfb = new Xvfb()
-
-          const run = async () => {
-            try {
-              xvfb.startSync()
-              const browser = await puppeteer.launch({ headless: false })
-              await browser.close()
-              xvfb.stopSync()
-            } catch (error) {
-              console.error(error)
-              process.exit(1)
-            }
-          }
-
-          run()
+          const browser = await puppeteer.launch()
+          await browser.close()
         `,
       })
-      await execaCommand('yarn add @dword-design/puppeteer xvfb')
+      await execaCommand('yarn add @dword-design/puppeteer')
       await new Base().testDocker({ log: false })
     },
     'update snapshots': async () => {
