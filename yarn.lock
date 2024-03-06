@@ -3857,6 +3857,14 @@ delete-empty@^3.0.0:
     path-starts-with "^2.0.0"
     rimraf "^2.6.2"
 
+depcheck-detector-bin-name@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/depcheck-detector-bin-name/-/depcheck-detector-bin-name-1.0.0.tgz#7e892a473459ce6358d2e20b9400ad39ec8f03c8"
+  integrity sha512-bs0DLEeBM/iuERK/0KtuzDZDheXNM0rtDhEKlsEBZ6LX2i3he0rLss1nPS2WEkuOE2dYbMEpsME/PQfD6RQMYQ==
+  dependencies:
+    fs-extra "^11.2.0"
+    module-root "npm:@dword-design/module-root"
+
 depcheck-detector-execa@^3.0.4:
   version "3.0.29"
   resolved "https://registry.yarnpkg.com/depcheck-detector-execa/-/depcheck-detector-execa-3.0.29.tgz#eb087a55c97b621e7a73d67d4855b954ad10c155"
@@ -5201,7 +5209,7 @@ fs-extra@^10.0.0:
     jsonfile "^6.0.1"
     universalify "^2.0.0"
 
-fs-extra@^11.0.0, fs-extra@^11.1.0:
+fs-extra@^11.0.0, fs-extra@^11.1.0, fs-extra@^11.2.0:
   version "11.2.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.2.0.tgz#e70e17dfad64232287d01929399e0ea7c86b0e5b"
   integrity sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==

@@ -8,6 +8,7 @@ import {
 import jitiBabelTransform from '@dword-design/jiti-babel-transform'
 import deepmerge from 'deepmerge'
 import depcheck from 'depcheck'
+import depcheckDetectorBinName from 'depcheck-detector-bin-name'
 import depcheckDetectorExeca from 'depcheck-detector-execa'
 import depcheckDetectorPackageName from 'depcheck-detector-package-name'
 import packageName from 'depcheck-package-name'
@@ -92,6 +93,7 @@ class Base {
           depcheck.detector.requireResolveCallExpression,
           depcheckDetectorExeca,
           depcheckDetectorPackageName,
+          depcheckDetectorBinName,
         ],
         ignorePath: '.gitignore',
         parsers: {
