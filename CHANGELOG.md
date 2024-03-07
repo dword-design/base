@@ -1,3 +1,10 @@
+## [11.0.11](https://github.com/dword-design/base/compare/v11.0.10...v11.0.11) (2024-03-07)
+
+
+### Bug Fixes
+
+* fix release order ([e00a16e](https://github.com/dword-design/base/commit/e00a16ed306535f9773b96a9656d7b2c71a0c64c))
+
 ## [11.0.10](https://github.com/dword-design/base/compare/v11.0.9...v11.0.10) (2024-03-06)
 
 
