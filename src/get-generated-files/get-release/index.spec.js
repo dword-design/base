@@ -36,7 +36,6 @@ export default tester(
           '@semantic-release/release-notes-generator',
           '@semantic-release/changelog',
           ['@semantic-release/npm', { npmPublish: false }],
-          'semantic-release-foo',
           '@semantic-release/github',
           [
             '@semantic-release/git',
@@ -45,6 +44,7 @@ export default tester(
                 'chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
             },
           ],
+          'semantic-release-foo',
         ],
       },
     },
