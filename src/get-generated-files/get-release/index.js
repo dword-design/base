@@ -9,7 +9,6 @@ export default function () {
       this.config.npmPublish
         ? packageName`@semantic-release/npm`
         : [packageName`@semantic-release/npm`, { npmPublish: false }],
-      ...this.config.deployPlugins,
       this.config.deployAssets.length
         ? [
             packageName`@semantic-release/github`,
@@ -25,6 +24,7 @@ export default function () {
             'chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
         },
       ],
+      ...this.config.deployPlugins,
     ],
   }
 }
