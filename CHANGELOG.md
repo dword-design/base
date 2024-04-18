@@ -1,3 +1,16 @@
+# [11.1.0](https://github.com/dword-design/base/compare/v11.0.11...v11.1.0) (2024-04-18)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/base-config-node to v3 ([#758](https://github.com/dword-design/base/issues/758)) ([a6c7643](https://github.com/dword-design/base/commit/a6c7643c5476bcabb5f2993340725a09cfb42d72))
+* update dependency package-name-regex to v4 ([#756](https://github.com/dword-design/base/issues/756)) ([a779d2c](https://github.com/dword-design/base/commit/a779d2c375673841406b61c43f183491ad223bce))
+
+
+### Features
+
+* playwright cache ([e5d9425](https://github.com/dword-design/base/commit/e5d942512da886fc090bb10eab7a86f20df4c75f))
+
 ## [11.0.11](https://github.com/dword-design/base/compare/v11.0.10...v11.0.11) (2024-03-07)
 
 
