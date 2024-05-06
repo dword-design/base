@@ -1,3 +1,10 @@
+## [11.1.1](https://github.com/dword-design/base/compare/v11.1.0...v11.1.1) (2024-05-06)
+
+
+### Bug Fixes
+
+* upgrade docker image ([00eb903](https://github.com/dword-design/base/commit/00eb903c71eb8f4b7c64ac1e7df3c9d5101e2482))
+
 # [11.1.0](https://github.com/dword-design/base/compare/v11.0.11...v11.1.0) (2024-04-18)
 
 
