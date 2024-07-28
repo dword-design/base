@@ -27,13 +27,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 20,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "git config --global user.email \\"actions@github.com\\"",
@@ -80,13 +80,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": "\${{ matrix.node }}",
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "yarn --frozen-lockfile",
@@ -176,13 +176,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 20,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "git config --global user.email \\"actions@github.com\\"",
@@ -229,13 +229,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": "\${{ matrix.node }}",
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "yarn --frozen-lockfile",
@@ -321,13 +321,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 20,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "git config --global user.email \\"actions@github.com\\"",
@@ -374,13 +374,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": "\${{ matrix.node }}",
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "yarn --frozen-lockfile",
@@ -461,13 +461,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 20,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "git config --global user.email \\"actions@github.com\\"",
@@ -559,13 +559,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 20,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "git config --global user.email \\"actions@github.com\\"",
@@ -613,13 +613,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": "\${{ matrix.node }}",
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "yarn --frozen-lockfile",
@@ -709,13 +709,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 20,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "git config --global user.email \\"actions@github.com\\"",
@@ -763,13 +763,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": "\${{ matrix.node }}",
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "yarn --frozen-lockfile",
@@ -1002,13 +1002,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 14,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "git config --global user.email \\"actions@github.com\\"",
@@ -1097,13 +1097,13 @@ Object {
           },
         },
         Object {
-          "run": "corepack enable",
-        },
-        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 14,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "run": "git config --global user.email \\"actions@github.com\\"",

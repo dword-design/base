@@ -25,13 +25,13 @@ export default config => ({
         },
       },
       {
-        run: "corepack enable",
-      },
-      {
         uses: gitHubAction`actions/setup-node@v4`,
         with: {
           'node-version': config.nodeVersion,
         },
+      },
+      {
+        run: "corepack enable",
       },
       { run: 'git config --global user.email "actions@github.com"' },
       { run: 'git config --global user.name "GitHub Actions"' },
@@ -50,13 +50,13 @@ export default config => ({
         with: { 'fetch-depth': 0, lfs: true },
       },
       {
-        run: "corepack enable",
-      },
-      {
         uses: gitHubAction`actions/setup-node@v4`,
         with: {
           'node-version': '${{ matrix.node }}',
         },
+      },
+      {
+        run: "corepack enable",
       },
       { run: 'yarn --frozen-lockfile' },
       ...getTestSteps(),
