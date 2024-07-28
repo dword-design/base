@@ -17,6 +17,7 @@ Array [
   ".releaserc.json",
   ".renovaterc.json",
   ".vscode",
+  ".yarn",
   "CHANGELOG.md",
   "LICENSE.md",
   "babel.config.json",

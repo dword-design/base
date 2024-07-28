@@ -20,6 +20,7 @@ Object {
     ".releaserc.json": true,
     ".renovaterc.json": true,
     ".vscode": true,
+    ".yarn": true,
     "CHANGELOG.md": true,
     "LICENSE.md": true,
     "babel.config.json": true,
