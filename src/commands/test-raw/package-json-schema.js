@@ -30,6 +30,7 @@ export default {
       pattern: packageNameRegex.source,
       type: 'string',
     },
+    packageManager: { type: 'string' },
     version: { type: 'string' },
   },
   type: 'object',

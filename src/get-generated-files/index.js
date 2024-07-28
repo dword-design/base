@@ -33,6 +33,7 @@ export default function () {
     '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md':
       deprecatedDependenciesIssueTemplate,
     '.github/FUNDING.yml': githubFunding |> yaml.stringify,
+    '.yarnrc.yml': githubFunding |> yaml.stringify,
     '.github/labels.yml':
       sortKeys(githubLabelsConfig, { deep: true }) |> yaml.stringify,
     '.github/workflows/build.yml':

@@ -35,6 +35,7 @@ export default function () {
           resolutions: true,
           type: true,
           types: true,
+          packageManager: true,
         } |> keys,
       )),
     funding: 'https://github.com/sponsors/dword-design',
