@@ -9,9 +9,7 @@
   "type": "module",
   "exports": "./dist/index.js",
   "main": "dist/index.js",
-  "bin": {
-    "base": "./dist/cli.js"
-  },
+  "bin": "./dist/cli.js",
   "files": [
     "dist"
   ],
@@ -48,7 +46,7 @@
     "cosmiconfig": "^9.0.0",
     "cz-conventional-changelog": "^3.1.0",
     "deepmerge": "^4.2.2",
-    "depcheck": "npm:@dword-design/depcheck",
+    "depcheck": "npm:@dword-design/depcheck@^0",
     "depcheck-detector-bin-name": "^1.0.0",
     "depcheck-detector-execa": "^3.0.4",
     "depcheck-detector-package-name": "^3.0.0",
@@ -67,14 +65,14 @@
     "jiti": "^1.16.0",
     "make-cli": "^3.0.0",
     "mocha": "^10.2.0",
-    "mocha-spec-reporter-with-file-names": "npm:@dword-design/mocha-spec-reporter-with-file-names",
+    "mocha-spec-reporter-with-file-names": "npm:@dword-design/mocha-spec-reporter-with-file-names@^0",
     "mocha-ui-exports-auto-describe": "^3.0.0",
     "nyc": "^15.0.0",
     "output-files": "^2.0.0",
     "package-name-regex": "^4.0.0",
     "parse-git-config": "^3.0.0",
     "parse-packagejson-name": "^1.0.1",
-    "plugin-name-to-package-name": "npm:@dword-design/plugin-name-to-package-name",
+    "plugin-name-to-package-name": "npm:@dword-design/plugin-name-to-package-name@^0",
     "safe-readfile": "^1.0.2",
     "semantic-release": "^22.0.12",
     "sort-keys": "^5.0.0",
@@ -102,5 +100,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "packageManager": "yarn@4.3.1"
 }

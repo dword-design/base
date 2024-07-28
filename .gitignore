@@ -2,6 +2,7 @@
 /.env.json
 /.nyc_output
 /.test.env.json
+/.yarn
 /coverage
 /dist
 /node_modules
