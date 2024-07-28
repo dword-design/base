@@ -15,10 +15,10 @@ jobs:
           lfs: true
           ref: ${{ github.event.pull_request.head.repo.full_name == github.repository &&
             github.event.pull_request.head.ref || '' }}
-      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - run: corepack enable
       - run: git config --global user.email "actions@github.com"
       - run: git config --global user.name "GitHub Actions"
       - run: yarn --frozen-lockfile
@@ -43,10 +43,10 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+      - run: corepack enable
       - run: yarn --frozen-lockfile
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
