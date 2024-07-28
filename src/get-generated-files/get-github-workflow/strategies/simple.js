@@ -21,6 +21,9 @@ export default config => ({
         },
       },
       {
+        run: "corepack enable",
+      },
+      {
         uses: gitHubAction`actions/setup-node@v4`,
         with: {
           'node-version': config.nodeVersion,

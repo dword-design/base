@@ -27,6 +27,9 @@ Object {
           },
         },
         Object {
+          "run": "corepack enable",
+        },
+        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 20,
@@ -75,6 +78,9 @@ Object {
             "fetch-depth": 0,
             "lfs": true,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "uses": "actions/setup-node@v4",
@@ -170,6 +176,9 @@ Object {
           },
         },
         Object {
+          "run": "corepack enable",
+        },
+        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 20,
@@ -218,6 +227,9 @@ Object {
             "fetch-depth": 0,
             "lfs": true,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "uses": "actions/setup-node@v4",
@@ -309,6 +321,9 @@ Object {
           },
         },
         Object {
+          "run": "corepack enable",
+        },
+        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 20,
@@ -357,6 +372,9 @@ Object {
             "fetch-depth": 0,
             "lfs": true,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "uses": "actions/setup-node@v4",
@@ -441,6 +459,9 @@ Object {
             "lfs": true,
             "ref": "\${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "uses": "actions/setup-node@v4",
@@ -538,6 +559,9 @@ Object {
           },
         },
         Object {
+          "run": "corepack enable",
+        },
+        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 20,
@@ -587,6 +611,9 @@ Object {
             "fetch-depth": 0,
             "lfs": true,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "uses": "actions/setup-node@v4",
@@ -682,6 +709,9 @@ Object {
           },
         },
         Object {
+          "run": "corepack enable",
+        },
+        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 20,
@@ -731,6 +761,9 @@ Object {
             "fetch-depth": 0,
             "lfs": true,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "uses": "actions/setup-node@v4",
@@ -827,6 +860,9 @@ Object {
           },
         },
         Object {
+          "run": "corepack enable",
+        },
+        Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
             "node-version": 14,
@@ -876,6 +912,9 @@ Object {
             "fetch-depth": 0,
             "lfs": true,
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "uses": "actions/setup-node@v4",
@@ -961,6 +1000,9 @@ Object {
             "lfs": true,
             "ref": "\${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "uses": "actions/setup-node@v4",
@@ -1053,6 +1095,9 @@ Object {
             "lfs": true,
             "ref": "\${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
           },
+        },
+        Object {
+          "run": "corepack enable",
         },
         Object {
           "uses": "actions/setup-node@v4",
