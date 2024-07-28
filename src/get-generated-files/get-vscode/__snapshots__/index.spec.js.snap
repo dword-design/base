@@ -21,6 +21,7 @@ Object {
     ".renovaterc.json": true,
     ".vscode": true,
     ".yarn": true,
+    ".yarnrc.yml": true,
     "CHANGELOG.md": true,
     "LICENSE.md": true,
     "babel.config.json": true,

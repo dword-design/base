@@ -21,14 +21,14 @@ export default tester(
       await expect(base.lint()).rejects.toThrow('foobar');
     },
     fixable: async () => {
-      await fs.outputFile('src/index.js', "console.log('foo');");
+      await fs.outputFile('src/index.js', "console.log('foo')");
       const base = new Base();
       await base.prepare();
       await base.lint();
 
       expect(await fs.readFile(P.join('src', 'index.js'), 'utf8')).toEqual(
         endent`
-          console.log('foo')
+          console.log('foo');
 
         `,
       );

@@ -48,6 +48,7 @@ Array [
   ".releaserc.json",
   ".renovaterc.json",
   ".vscode/settings.json",
+  ".yarnrc.yml",
   "LICENSE.md",
   "README.md",
   "babel.config.json",

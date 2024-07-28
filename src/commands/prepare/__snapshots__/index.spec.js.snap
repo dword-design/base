@@ -20,6 +20,7 @@ Object {
   ".renovaterc.json": true,
   ".test.env.json": true,
   ".vscode": true,
+  ".yarnrc.yml": true,
   "CHANGELOG.md": true,
   "LICENSE.md": true,
   "README.md": true,
