@@ -38,10 +38,33 @@ export default tester(
         );
       },
     },
-    'bin outside dist': {
+    'bin: object': {
       files: {
         'package.json': JSON.stringify({
-          bin: { foo: './src/cli.js' },
+          bin: { foo: './dist/cli.js' },
+          type: 'module',
+        }),
+      },
+    },
+    'bin: string outside dist': {
+      files: {
+        'package.json': JSON.stringify({
+          bin: './src/cli.js',
+          type: 'module',
+        }),
+      },
+      test() {
+        return expect(this.base.test()).rejects.toThrow(
+          'package.json invalid\ndata/bin must match pattern "^\\.\\/dist\\/"',
+        );
+      },
+    },
+    'bin: object outside dist': {
+      files: {
+        'package.json': JSON.stringify({
+          bin: {
+            foo: './src/cli.js',
+          },
           type: 'module',
         }),
       },
@@ -49,6 +72,14 @@ export default tester(
         return expect(this.base.test()).rejects.toThrow(
           'package.json invalid\ndata/bin/foo must match pattern "^\\.\\/dist\\/"',
         );
+      },
+    },
+    'bin: string': {
+      files: {
+        'package.json': JSON.stringify({
+          bin: './dist/cli.js',
+          type: 'module',
+        }),
       },
     },
     'config file errors': {
