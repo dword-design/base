@@ -6,4 +6,4 @@ export default [
   '/.yarn',
   '/coverage',
   '/node_modules',
-]
+];

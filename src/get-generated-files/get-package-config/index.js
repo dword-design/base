@@ -1,7 +1,7 @@
-import { keys, mapValues, pick, stubTrue } from '@dword-design/functions'
-import packageName from 'depcheck-package-name'
-import fs from 'fs-extra'
-import sortKeys from 'sort-keys'
+import { keys, mapValues, pick, stubTrue } from '@dword-design/functions';
+import packageName from 'depcheck-package-name';
+import fs from 'fs-extra';
+import sortKeys from 'sort-keys';
 
 export default function () {
   const commandNames = {
@@ -13,7 +13,7 @@ export default function () {
     ...(this.config.testInContainer && { 'test:raw': true }),
     test: true,
     ...(this.config.commands |> mapValues(stubTrue)),
-  }
+  };
 
   return {
     type: 'module',
@@ -61,5 +61,5 @@ export default function () {
           : `base ${name}`,
       )
       |> sortKeys,
-  }
+  };
 }

@@ -1,4 +1,4 @@
-import packageName from 'depcheck-package-name'
+import packageName from 'depcheck-package-name';
 
 export default function () {
   return {
@@ -26,5 +26,5 @@ export default function () {
       ],
       ...this.config.deployPlugins,
     ],
-  }
+  };
 }

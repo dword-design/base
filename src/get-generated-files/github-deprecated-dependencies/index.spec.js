@@ -1,7 +1,7 @@
-import self from './index.js'
+import self from './index.js';
 
 export default {
   valid() {
-    expect(self).toMatchSnapshot(this)
+    expect(self).toMatchSnapshot(this);
   },
-}
+};

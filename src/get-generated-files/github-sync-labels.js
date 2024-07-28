@@ -1,4 +1,4 @@
-import gitHubAction from 'tagged-template-noop'
+import gitHubAction from 'tagged-template-noop';
 
 export default {
   jobs: {
@@ -22,4 +22,4 @@ export default {
       paths: ['.github/labels.yml', '.github/workflows/sync-labels.yml'],
     },
   },
-}
+};

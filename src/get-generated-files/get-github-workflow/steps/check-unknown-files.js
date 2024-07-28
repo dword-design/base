@@ -1,1 +1,1 @@
-export default [{ run: 'yarn checkUnknownFiles' }]
+export default [{ run: 'yarn checkUnknownFiles' }];

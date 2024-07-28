@@ -1,1 +1,1 @@
-export default { nodeLinker: 'node-modules' }
+export default { nodeLinker: 'node-modules' };

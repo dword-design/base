@@ -5,27 +5,28 @@ import {
   keys,
   map,
   replace,
-} from '@dword-design/functions'
-import { constantCase } from 'change-case'
-import { execa } from 'execa'
-import { findUpSync } from 'find-up'
-import fs from 'fs-extra'
-import os from 'os'
+} from '@dword-design/functions';
+import { constantCase } from 'change-case';
+import { execa } from 'execa';
+import { findUpSync } from 'find-up';
+import fs from 'fs-extra';
+import os from 'os';
 
 export default async function (options) {
-  options = { log: true, patterns: [], ...options }
+  options = { log: true, patterns: [], ...options };
 
   const volumeName =
-    this.packageConfig.name |> replace('@', '') |> replace('/', '-')
+    this.packageConfig.name |> replace('@', '') |> replace('/', '-');
 
-  const envSchemaPath = findUpSync('.env.schema.json')
+  const envSchemaPath = findUpSync('.env.schema.json');
 
   const envVariableNames =
     (envSchemaPath ? await fs.readJson(envSchemaPath) : {})
     |> keys
-    |> map(name => `TEST_${name |> constantCase}`)
+    |> map(name => `TEST_${name |> constantCase}`);
 
-  const userInfo = os.userInfo()
+  const userInfo = os.userInfo();
+
   try {
     return await execa(
       'docker',
@@ -53,7 +54,7 @@ export default async function (options) {
         ] |> join(' '),
       ],
       options.log ? { stdio: 'inherit' } : { all: true },
-    )
+    );
   } finally {
     await execa('docker', [
       'run',
@@ -67,6 +68,6 @@ export default async function (options) {
       'bash',
       '-c',
       `chown -R ${userInfo.uid}:${userInfo.gid} /app`,
-    ])
+    ]);
   }
 }

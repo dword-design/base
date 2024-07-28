@@ -1,10 +1,10 @@
-import { endent } from '@dword-design/functions'
-import tester from '@dword-design/tester'
-import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import outputFiles from 'output-files'
-import P from 'path'
+import { endent } from '@dword-design/functions';
+import tester from '@dword-design/tester';
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
+import outputFiles from 'output-files';
+import P from 'path';
 
-import { Base } from '@/src/index.js'
+import { Base } from '@/src/index.js';
 
 export default tester(
   {
@@ -33,7 +33,7 @@ export default tester(
         return expect(this.base.depcheck()).rejects.toThrow(endent`
           Unused dependencies
           * base-config-foo
-        `)
+        `);
       },
     },
     'depcheck ignoreMatches': {
@@ -56,7 +56,7 @@ export default tester(
           specials: [
             path => {
               if (path === P.resolve('foo')) {
-                throw new Error('foo')
+                throw new Error('foo');
               }
             },
           ],
@@ -77,7 +77,7 @@ export default tester(
 
           Invalid files
           * ${P.resolve('foo')}: Error: foo
-        `)
+        `);
       },
     },
     'prod dependency only in global-test-hooks.js': {
@@ -95,7 +95,7 @@ export default tester(
         await expect(this.base.test()).rejects.toThrow(endent`
           Unused dependencies
           * bar
-        `)
+        `);
       },
     },
     'prod dependency only in test': {
@@ -112,7 +112,7 @@ export default tester(
         await expect(this.base.test()).rejects.toThrow(endent`
           Unused dependencies
           * bar
-        `)
+        `);
       },
     },
     'unused dependencies': {
@@ -130,7 +130,7 @@ export default tester(
           Unused dependencies
           * change-case
           * foo
-        `)
+        `);
       },
     },
   },
@@ -143,13 +143,14 @@ export default tester(
             config: {},
             files: {},
             ...test,
-          }
-          await outputFiles(test.files)
-          this.base = new Base(test.config)
-          test.test = test.test || (() => this.base.depcheck())
-          await this.base.prepare()
-          await test.test.call(this)
+          };
+
+          await outputFiles(test.files);
+          this.base = new Base(test.config);
+          test.test = test.test || (() => this.base.depcheck());
+          await this.base.prepare();
+          await test.test.call(this);
         },
     },
   ],
-)
+);

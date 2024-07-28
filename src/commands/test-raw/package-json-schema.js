@@ -1,4 +1,4 @@
-import packageNameRegex from 'package-name-regex'
+import packageNameRegex from 'package-name-regex';
 
 export default {
   properties: {
@@ -34,4 +34,4 @@ export default {
     version: { type: 'string' },
   },
   type: 'object',
-}
+};

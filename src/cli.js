@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
-import { mapValues, values } from '@dword-design/functions'
-import makeCli from 'make-cli'
+import { mapValues, values } from '@dword-design/functions';
+import makeCli from 'make-cli';
 
-import { Base } from './index.js'
-import loadConfig from './load-config/index.js'
+import { Base } from './index.js';
+import loadConfig from './load-config/index.js';
 
 const run = async () => {
-  const base = new Base(await loadConfig())
+  const base = new Base(await loadConfig());
+
   try {
     await makeCli({
       commands:
@@ -69,10 +70,11 @@ const run = async () => {
         }
         |> mapValues((command, name) => ({ name, ...command }))
         |> values,
-    })
+    });
   } catch (error) {
-    console.log(error.message)
-    process.exit(1)
+    console.log(error.message);
+    process.exit(1);
   }
-}
-run()
+};
+
+run();

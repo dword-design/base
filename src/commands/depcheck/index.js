@@ -6,8 +6,8 @@ import {
   mapValues,
   omit,
   values,
-} from '@dword-design/functions'
-import depcheck from 'depcheck'
+} from '@dword-design/functions';
+import depcheck from 'depcheck';
 
 export default async function () {
   const dependenciesResult = await depcheck('.', {
@@ -15,14 +15,14 @@ export default async function () {
     skipMissing: true,
     ...this.config.depcheckConfig,
     ignorePatterns: ['*.spec.js', '/global-test-hooks.js', 'package.json'],
-  })
+  });
 
   const devDependenciesResult = await depcheck('.', {
     package: this.packageConfig |> omit(['dependencies']),
     skipMissing: true,
     ...this.config.depcheckConfig,
     ignorePatterns: ['!*.spec.js', '!/global-test-hooks.js'],
-  })
+  });
 
   const result = {
     dependencies: dependenciesResult.dependencies,
@@ -31,7 +31,7 @@ export default async function () {
       ...dependenciesResult.invalidFiles,
       ...devDependenciesResult.invalidFiles,
     },
-  }
+  };
 
   const errorMessage =
     [
@@ -64,8 +64,9 @@ export default async function () {
               }
             `,
           ]),
-    ] |> join('\n\n')
+    ] |> join('\n\n');
+
   if (errorMessage) {
-    throw new Error(errorMessage)
+    throw new Error(errorMessage);
   }
 }

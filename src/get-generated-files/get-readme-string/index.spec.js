@@ -1,18 +1,20 @@
-import { endent } from '@dword-design/functions'
-import tester from '@dword-design/tester'
-import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import { execaCommand } from 'execa'
-import outputFiles from 'output-files'
+import { endent } from '@dword-design/functions';
+import tester from '@dword-design/tester';
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
+import { execaCommand } from 'execa';
+import outputFiles from 'output-files';
 
-import { Base } from '@/src/index.js'
+import { Base } from '@/src/index.js';
 
 export default tester(
   {
     async badges() {
-      await execaCommand('git init')
+      await execaCommand('git init');
+
       await execaCommand(
         'git remote add origin git@github.com:dword-design/bar.git',
-      )
+      );
+
       await outputFiles({
         'README.md': endent`
           <!-- BADGES -->
@@ -22,14 +24,17 @@ export default tester(
           name: '@dword-design/foo',
           repository: 'dword-design/base',
         }),
-      })
-      expect(new Base().getReadmeString()).toMatchSnapshot(this)
+      });
+
+      expect(new Base().getReadmeString()).toMatchSnapshot(this);
     },
     async 'badges private'() {
-      await execaCommand('git init')
+      await execaCommand('git init');
+
       await execaCommand(
         'git remote add origin git@github.com:dword-design/bar.git',
-      )
+      );
+
       await outputFiles({
         'README.md': endent`
           <!-- BADGES -->
@@ -39,8 +44,9 @@ export default tester(
           name: '@dword-design/foo',
           private: true,
         }),
-      })
-      expect(new Base().getReadmeString()).toMatchSnapshot(this)
+      });
+
+      expect(new Base().getReadmeString()).toMatchSnapshot(this);
     },
     description: async () => {
       await outputFiles({
@@ -49,13 +55,14 @@ export default tester(
 
         `,
         'package.json': JSON.stringify({ description: 'foo bar baz' }),
-      })
+      });
+
       expect(new Base().getReadmeString()).toEqual(endent`
         <!-- DESCRIPTION/ -->
         foo bar baz
         <!-- /DESCRIPTION -->
 
-      `)
+      `);
     },
     async 'existing content'() {
       await outputFiles({
@@ -72,8 +79,9 @@ export default tester(
           description: 'foo bar baz',
           license: 'MIT',
         }),
-      })
-      expect(new Base().getReadmeString()).toMatchSnapshot(this)
+      });
+
+      expect(new Base().getReadmeString()).toMatchSnapshot(this);
     },
     install: async () => {
       await outputFiles({
@@ -82,7 +90,8 @@ export default tester(
 
         `,
         'package.json': JSON.stringify({ name: 'foo' }),
-      })
+      });
+
       expect(new Base().getReadmeString()).toEqual(endent`
         <!-- INSTALL/ -->
         ## Install
@@ -96,7 +105,7 @@ export default tester(
         \`\`\`
         <!-- /INSTALL -->
 
-      `)
+      `);
     },
     async license() {
       await outputFiles({
@@ -105,8 +114,9 @@ export default tester(
 
         `,
         'package.json': JSON.stringify({ license: 'MIT' }),
-      })
-      expect(new Base().getReadmeString()).toMatchSnapshot(this)
+      });
+
+      expect(new Base().getReadmeString()).toMatchSnapshot(this);
     },
     async seeAlso() {
       await outputFiles({
@@ -115,7 +125,8 @@ export default tester(
 
         `,
         'package.json': JSON.stringify({ license: 'MIT' }),
-      })
+      });
+
       expect(
         new Base({
           seeAlso: [
@@ -123,7 +134,7 @@ export default tester(
             { description: 'Bar baz', repository: 'foo/with-local-tmp-dir' },
           ],
         }).getReadmeString(),
-      ).toMatchSnapshot(this)
+      ).toMatchSnapshot(this);
     },
     title: async () => {
       await outputFiles({
@@ -132,14 +143,15 @@ export default tester(
 
         `,
         'package.json': JSON.stringify({ name: 'foo' }),
-      })
+      });
+
       expect(new Base().getReadmeString()).toEqual(endent`
         <!-- TITLE/ -->
         # foo
         <!-- /TITLE -->
 
-      `)
+      `);
     },
   },
   [testerPluginTmpDir()],
-)
+);

@@ -5,12 +5,12 @@ import {
   keys,
   map,
   sortBy,
-} from '@dword-design/functions'
-import fs from 'fs-extra'
+} from '@dword-design/functions';
+import fs from 'fs-extra';
 
 const packageConfig = fs.readJsonSync(
   new URL('../../../package.json', import.meta.url),
-)
+);
 
 export default class extends Error {
   constructor(files) {
@@ -26,6 +26,6 @@ export default class extends Error {
         |> sortBy(identity)
         |> join('\n')
       }
-    `)
+    `);
   }
 }

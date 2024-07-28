@@ -1,4 +1,4 @@
-import gitHubAction from 'tagged-template-noop'
+import gitHubAction from 'tagged-template-noop';
 
 export default [
   {
@@ -7,4 +7,4 @@ export default [
       token: '${{ secrets.CODECOV_TOKEN }}',
     },
   },
-]
+];

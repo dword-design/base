@@ -1,4 +1,4 @@
-import { endent } from '@dword-design/functions'
+import { endent } from '@dword-design/functions';
 
 export default endent`
   # Editor configuration, see http://editorconfig.org
@@ -14,4 +14,4 @@ export default endent`
   [*.md]
   max_line_length = off
   trim_trailing_whitespace = false
-`
+`;

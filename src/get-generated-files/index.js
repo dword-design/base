@@ -1,23 +1,22 @@
-import { join, jsonToString, map } from '@dword-design/functions'
-import sortKeys from 'sort-keys'
-import sortPackageJson from 'sort-package-json'
-import yaml from 'yaml'
+import { join, jsonToString, map } from '@dword-design/functions';
+import sortKeys from 'sort-keys';
+import sortPackageJson from 'sort-package-json';
+import yaml from 'yaml';
 
-import babelConfig from './babel.js'
-import commitizenConfig from './commitizen.js'
-import commitlintConfig from './commitlint.js'
-import editorconfigConfig from './editorconfig.js'
-import gitattributesConfig from './gitattributes.js'
-import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies/index.js'
-import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template.js'
-import githubFunding from './github-funding.js'
-import githubLabelsConfig from './github-labels.js'
-import githubSyncLabelsConfig from './github-sync-labels.js'
-import yarn from './yarn.js'
+import babelConfig from './babel.js';
+import commitizenConfig from './commitizen.js';
+import commitlintConfig from './commitlint.js';
+import editorconfigConfig from './editorconfig.js';
+import gitattributesConfig from './gitattributes.js';
+import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies/index.js';
+import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template.js';
+import githubFunding from './github-funding.js';
+import githubLabelsConfig from './github-labels.js';
+import githubSyncLabelsConfig from './github-sync-labels.js';
+import yarn from './yarn.js';
 
 export default function () {
-  const packageConfig = this.getPackageConfig()
-
+  const packageConfig = this.getPackageConfig();
   return {
     '.commitlintrc.json': `${
       commitlintConfig |> jsonToString({ indent: 2 })
@@ -68,5 +67,5 @@ export default function () {
     'package.json': `${
       packageConfig |> sortPackageJson |> jsonToString({ indent: 2 })
     }\n`,
-  }
+  };
 }

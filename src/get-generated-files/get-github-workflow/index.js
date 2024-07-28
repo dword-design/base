@@ -1,5 +1,5 @@
-import jobMatrixStrategy from './strategies/job-matrix.js'
-import simpleStrategy from './strategies/simple.js'
+import jobMatrixStrategy from './strategies/job-matrix.js';
+import simpleStrategy from './strategies/simple.js';
 
 export default function () {
   return {
@@ -13,5 +13,5 @@ export default function () {
         branches: ['master'],
       },
     },
-  }
+  };
 }

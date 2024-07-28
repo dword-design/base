@@ -5,5 +5,5 @@ export default function () {
     },
     image: `mcr.microsoft.com/devcontainers/javascript-node:1-${this.config.nodeVersion}`,
     updateContentCommand: 'yarn --frozen-lockfile',
-  }
+  };
 }

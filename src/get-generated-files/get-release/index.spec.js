@@ -1,6 +1,6 @@
-import tester from '@dword-design/tester'
+import tester from '@dword-design/tester';
 
-import { Base } from '@/src/index.js'
+import { Base } from '@/src/index.js';
 
 export default tester(
   {
@@ -89,11 +89,10 @@ export default tester(
   [
     {
       transform: test => {
-        test.config = { deployAssets: [], deployPlugins: [], ...test.config }
-
+        test.config = { deployAssets: [], deployPlugins: [], ...test.config };
         return () =>
-          expect(new Base(test.config).getReleaseConfig()).toEqual(test.result)
+          expect(new Base(test.config).getReleaseConfig()).toEqual(test.result);
       },
     },
   ],
-)
+);

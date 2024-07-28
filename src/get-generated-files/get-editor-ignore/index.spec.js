@@ -1,6 +1,6 @@
-import tester from '@dword-design/tester'
+import tester from '@dword-design/tester';
 
-import { Base } from '@/src/index.js'
+import { Base } from '@/src/index.js';
 
 export default tester(
   {
@@ -10,9 +10,9 @@ export default tester(
     {
       transform: test =>
         function () {
-          const base = new Base({ editorIgnore: test })
-          expect(base.getEditorIgnoreConfig()).toMatchSnapshot(this)
+          const base = new Base({ editorIgnore: test });
+          expect(base.getEditorIgnoreConfig()).toMatchSnapshot(this);
         },
     },
   ],
-)
+);

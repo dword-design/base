@@ -1,11 +1,11 @@
-import { isEmpty } from '@dword-design/functions'
-import tester from '@dword-design/tester'
-import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import outputFiles from 'output-files'
+import { isEmpty } from '@dword-design/functions';
+import tester from '@dword-design/tester';
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
+import outputFiles from 'output-files';
 
-import { Base } from '@/src/index.js'
+import { Base } from '@/src/index.js';
 
-import UnknownFilesError from './unknown-files-error.js'
+import UnknownFilesError from './unknown-files-error.js';
 
 export default tester(
   {
@@ -77,23 +77,24 @@ export default tester(
           gitignore: [],
           result: {},
           ...test,
-        }
+        };
 
         return async () => {
-          await outputFiles(test.files)
+          await outputFiles(test.files);
 
           const base = new Base({
             allowedMatches: test.allowedMatches,
-          })
+          });
+
           if (isEmpty(test.result)) {
-            await base.checkUnknownFiles()
+            await base.checkUnknownFiles();
           } else {
             await expect(base.checkUnknownFiles()).rejects.toThrow(
               new UnknownFilesError(test.result),
-            )
+            );
           }
-        }
+        };
       },
     },
   ],
-)
+);

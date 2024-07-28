@@ -1,6 +1,6 @@
-import { endent, fromPairs, map } from '@dword-design/functions'
+import { endent, fromPairs, map } from '@dword-design/functions';
 
-import self from './unknown-files-error.js'
+import self from './unknown-files-error.js';
 
 export default {
   works: () => {
@@ -12,6 +12,6 @@ export default {
 
       * bar.txt
       * foo.txt
-    `)
+    `);
   },
-}
+};

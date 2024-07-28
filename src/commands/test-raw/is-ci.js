@@ -1,11 +1,10 @@
-import { execaCommandSync } from 'execa'
+import { execaCommandSync } from 'execa';
 
 export default () => {
   try {
-    execaCommandSync('is-ci')
-
-    return true
+    execaCommandSync('is-ci');
+    return true;
   } catch {
-    return false
+    return false;
   }
-}
+};

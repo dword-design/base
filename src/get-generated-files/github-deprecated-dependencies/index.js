@@ -1,4 +1,4 @@
-import gitHubAction from 'tagged-template-noop'
+import gitHubAction from 'tagged-template-noop';
 
 export default {
   jobs: {
@@ -44,4 +44,4 @@ export default {
   on: {
     schedule: [{ cron: '0 5 * * MON' }],
   },
-}
+};

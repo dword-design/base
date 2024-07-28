@@ -1,4 +1,4 @@
-import deepmerge from 'deepmerge'
+import deepmerge from 'deepmerge';
 
 export default function () {
   return deepmerge(
@@ -30,5 +30,5 @@ export default function () {
       semanticCommitScope: null,
     },
     this.config.renovateConfig || {},
-  )
+  );
 }
