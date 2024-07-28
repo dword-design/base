@@ -8,11 +8,13 @@ tasks:
 
       echo "export PLAYWRIGHT_BROWSERS_PATH=0" >> /home/gitpod/.bashrc
 
-      gitpod-env-per-project >> /home/gitpod/.bashrc && source /home/gitpod/.bashrc
+      gitpod-env-per-project >> /home/gitpod/.bashrc && source
+      /home/gitpod/.bashrc
     init: |-
       git config --global user.name "Sebastian Landwehr"
       git config diff.lfs.textconv cat
       git lfs pull
+      corepack enable
       yarn --frozen-lockfile
 vscode:
   extensions:

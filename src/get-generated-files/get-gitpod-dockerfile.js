@@ -14,8 +14,6 @@ export default function () {
     RUN bash -c 'source $HOME/.nvm/nvm.sh && nvm install ${this.config.nodeVersion}'
     RUN echo "nvm use default &>/dev/null" >> ~/.bashrc.d/51-nvm-fix
 
-    RUN corepack enable
-
     RUN yarn global add gitpod-env-per-project @babel/node @babel/core
 
     RUN sudo apt-get install -y graphviz
