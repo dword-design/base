@@ -1,5 +1,3 @@
-import packageName from 'depcheck-package-name'
+import packageName from 'depcheck-package-name';
 
-export default {
-  extends: packageName`@dword-design/babel-config`,
-}
+export default { extends: packageName`@dword-design/babel-config` };

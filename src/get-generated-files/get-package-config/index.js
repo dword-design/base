@@ -1,7 +1,7 @@
-import { keys, mapValues, pick, stubTrue } from '@dword-design/functions'
-import packageName from 'depcheck-package-name'
-import fs from 'fs-extra'
-import sortKeys from 'sort-keys'
+import { keys, mapValues, pick, stubTrue } from '@dword-design/functions';
+import packageName from 'depcheck-package-name';
+import fs from 'fs-extra';
+import sortKeys from 'sort-keys';
 
 export default function () {
   const commandNames = {
@@ -13,7 +13,7 @@ export default function () {
     ...(this.config.testInContainer && { 'test:raw': true }),
     test: true,
     ...(this.config.commands |> mapValues(stubTrue)),
-  }
+  };
 
   return {
     type: 'module',
@@ -38,17 +38,13 @@ export default function () {
         } |> keys,
       )),
     funding: 'https://github.com/sponsors/dword-design',
-    publishConfig: {
-      access: 'public',
-    },
+    publishConfig: { access: 'public' },
     version: this.packageConfig.version || '1.0.0',
     ...(this.config.git && {
       repository: `dword-design/${this.config.git.project}`,
     }),
     author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
-    engines: {
-      node: `>=${this.config.supportedNodeVersions[0]}`,
-    },
+    engines: { node: `>=${this.config.supportedNodeVersions[0]}` },
     files: ['dist', ...(fs.existsSync('types.d.ts') ? ['types.d.ts'] : [])],
     license: 'MIT',
     ...this.config.packageConfig,
@@ -60,5 +56,5 @@ export default function () {
           : `base ${name}`,
       )
       |> sortKeys,
-  }
+  };
 }

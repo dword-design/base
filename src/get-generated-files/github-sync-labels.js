@@ -1,4 +1,4 @@
-import gitHubAction from 'tagged-template-noop'
+import gitHubAction from 'tagged-template-noop';
 
 export default {
   jobs: {
@@ -7,9 +7,7 @@ export default {
       steps: [
         { uses: gitHubAction`actions/checkout@v4` },
         {
-          env: {
-            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-          },
+          env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' },
           uses: gitHubAction`micnncim/action-label-syncer@v1`,
         },
       ],
@@ -22,4 +20,4 @@ export default {
       paths: ['.github/labels.yml', '.github/workflows/sync-labels.yml'],
     },
   },
-}
+};

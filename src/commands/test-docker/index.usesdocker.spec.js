@@ -1,15 +1,15 @@
-import { endent, property } from '@dword-design/functions'
-import tester from '@dword-design/tester'
-import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import { execaCommand } from 'execa'
-import fs from 'fs-extra'
-import { createRequire } from 'module'
-import outputFiles from 'output-files'
-import P from 'path'
+import { endent, property } from '@dword-design/functions';
+import tester from '@dword-design/tester';
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
+import { execaCommand } from 'execa';
+import fs from 'fs-extra';
+import { createRequire } from 'module';
+import outputFiles from 'output-files';
+import P from 'path';
 
-import { Base } from '@/src/index.js'
+import { Base } from '@/src/index.js';
 
-const require = createRequire(import.meta.url)
+const require = createRequire(import.meta.url);
 
 export default tester(
   {
@@ -26,9 +26,10 @@ export default tester(
           undefined,
           2,
         ),
-      )
-      await new Base().testDocker({ log: false })
-      await fs.remove('dist')
+      );
+
+      await new Base().testDocker({ log: false });
+      await fs.remove('dist');
     },
     'create folder and error': async () => {
       await fs.outputFile(
@@ -44,13 +45,10 @@ export default tester(
           undefined,
           2,
         ),
-      )
-      await expect(
-        new Base().testDocker({
-          log: false,
-        }),
-      ).rejects.toThrow()
-      await fs.remove('dist')
+      );
+
+      await expect(new Base().testDocker({ log: false })).rejects.toThrow();
+      await fs.remove('dist');
     },
     env: async () => {
       await outputFiles({
@@ -61,9 +59,7 @@ export default tester(
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
           },
           undefined,
           2,
@@ -77,14 +73,15 @@ export default tester(
           }
 
         `,
-      })
+      });
 
-      const previousEnv = process.env
-      process.env.TEST_FOO = 'foo'
+      const previousEnv = process.env;
+      process.env.TEST_FOO = 'foo';
+
       try {
-        await new Base().testDocker({ log: false })
+        await new Base().testDocker({ log: false });
       } finally {
-        process.env = previousEnv
+        process.env = previousEnv;
       }
     },
     git: async () => {
@@ -92,9 +89,7 @@ export default tester(
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
             type: 'module',
           },
           undefined,
@@ -105,17 +100,16 @@ export default tester(
 
           spawn('git', ['--help'])
         `,
-      })
-      await new Base().testDocker({ log: false })
+      });
+
+      await new Base().testDocker({ log: false });
     },
     grep: async () => {
       await outputFiles({
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
             type: 'module',
           },
           undefined,
@@ -126,18 +120,17 @@ export default tester(
 
           fs.writeFileSync('grep.txt', process.argv.slice(2).toString())
         `,
-      })
-      await new Base().testDocker({ grep: 'foo bar baz', log: false })
-      expect(await fs.readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz')
+      });
+
+      await new Base().testDocker({ grep: 'foo bar baz', log: false });
+      expect(await fs.readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz');
     },
     pattern: async () => {
       await outputFiles({
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
             type: 'module',
           },
           undefined,
@@ -148,21 +141,20 @@ export default tester(
 
           fs.writeFileSync('grep.txt', process.argv[2])
         `,
-      })
+      });
+
       expect(
         (await new Base().testDocker({ log: false, patterns: ['foo bar baz'] }))
           |> await
           |> property('all'),
-      ).toMatch('foo bar baz')
+      ).toMatch('foo bar baz');
     },
     puppeteer: async () => {
       await outputFiles({
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
             type: 'module',
           },
           undefined,
@@ -174,18 +166,17 @@ export default tester(
           const browser = await puppeteer.launch()
           await browser.close()
         `,
-      })
-      await execaCommand('yarn add @dword-design/puppeteer')
-      await new Base().testDocker({ log: false })
+      });
+
+      await execaCommand('yarn add @dword-design/puppeteer');
+      await new Base().testDocker({ log: false });
     },
     'update snapshots': async () => {
       await outputFiles({
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
           },
           undefined,
           2,
@@ -196,8 +187,9 @@ export default tester(
           }
 
         `,
-      })
-      await new Base().testDocker({ log: false, updateSnapshots: true })
+      });
+
+      await new Base().testDocker({ log: false, updateSnapshots: true });
     },
     works: async () => {
       await outputFiles({
@@ -205,9 +197,7 @@ export default tester(
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
             type: 'module',
           },
           undefined,
@@ -221,28 +211,30 @@ export default tester(
           }
 
         `,
-      })
-      await execaCommand('yarn')
+      });
 
-      const base = new Base()
+      await execaCommand('yarn');
+      const base = new Base();
+
       expect(
         base.testDocker({ log: false }) |> await |> property('all'),
-      ).not.toMatch('Already up-to-date.')
+      ).not.toMatch('Already up-to-date.');
+
       expect(
         base.testDocker({ log: false }) |> await |> property('all'),
-      ).toMatch('Already up-to-date.')
+      ).toMatch('Already up-to-date.');
     },
   },
   [
     {
       transform: test => async () => {
         try {
-          await test()
+          await test();
         } finally {
-          await execaCommand(`docker volume rm ${P.basename(process.cwd())}`)
+          await execaCommand(`docker volume rm ${P.basename(process.cwd())}`);
         }
       },
     },
     testerPluginTmpDir(),
   ],
-)
+);

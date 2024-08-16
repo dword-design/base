@@ -1,19 +1,14 @@
-import tester from '@dword-design/tester'
+import tester from '@dword-design/tester';
 
-import { Base } from '@/src/index.js'
+import { Base } from '@/src/index.js';
 
-export default tester(
+export default tester({ valid: ['bar', 'foo'] }, [
   {
-    valid: ['bar', 'foo'],
+    transform: test =>
+      function () {
+        expect(
+          new Base({ editorIgnore: test }).getVscodeConfig(),
+        ).toMatchSnapshot(this);
+      },
   },
-  [
-    {
-      transform: test =>
-        function () {
-          expect(
-            new Base({ editorIgnore: test }).getVscodeConfig(),
-          ).toMatchSnapshot(this)
-        },
-    },
-  ],
-)
+]);

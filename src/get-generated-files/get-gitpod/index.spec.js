@@ -1,8 +1,8 @@
-import tester from '@dword-design/tester'
-import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import fs from 'fs-extra'
+import tester from '@dword-design/tester';
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
+import fs from 'fs-extra';
 
-import { Base } from '@/src/index.js'
+import { Base } from '@/src/index.js';
 
 export default tester(
   {
@@ -10,9 +10,10 @@ export default tester(
       await fs.outputFile(
         'package.json',
         JSON.stringify({ name: '@dword-design/foo' }),
-      )
-      expect(new Base().getGitpodConfig()).toMatchSnapshot(this)
+      );
+
+      expect(new Base().getGitpodConfig()).toMatchSnapshot(this);
     },
   },
   [testerPluginTmpDir()],
-)
+);

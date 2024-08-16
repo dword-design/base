@@ -6,18 +6,18 @@ import {
   mapValues,
   property,
   stubTrue,
-} from '@dword-design/functions'
-import tester from '@dword-design/tester'
-import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import packageName from 'depcheck-package-name'
-import fs from 'fs-extra'
-import { globby } from 'globby'
-import nodeVersion from 'node-version'
-import outputFiles from 'output-files'
-import P from 'path'
-import unifyMochaOutput from 'unify-mocha-output'
+} from '@dword-design/functions';
+import tester from '@dword-design/tester';
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
+import packageName from 'depcheck-package-name';
+import fs from 'fs-extra';
+import { globby } from 'globby';
+import nodeVersion from 'node-version';
+import outputFiles from 'output-files';
+import P from 'path';
+import unifyMochaOutput from 'unify-mocha-output';
 
-import { Base } from '@/src/index.js'
+import { Base } from '@/src/index.js';
 
 export default tester(
   {
@@ -35,7 +35,7 @@ export default tester(
       test() {
         return expect(this.base.test()).rejects.toThrow(
           'Error: expect(received).toEqual(expected)',
-        )
+        );
       },
     },
     'bin outside dist': {
@@ -48,7 +48,7 @@ export default tester(
       test() {
         return expect(this.base.test()).rejects.toThrow(
           'package.json invalid\ndata/bin/foo must match pattern "^\\.\\/dist\\/"',
-        )
+        );
       },
     },
     'config file errors': {
@@ -56,7 +56,7 @@ export default tester(
         'package.json': JSON.stringify({ name: '_foo', type: 'module' }),
       },
       test() {
-        return expect(this.base.test()).rejects.toThrow('package.json invalid')
+        return expect(this.base.test()).rejects.toThrow('package.json invalid');
       },
     },
     empty: {},
@@ -71,8 +71,9 @@ export default tester(
       },
       async test() {
         const output =
-          this.base.test() |> await |> property('all') |> unifyMochaOutput
-        expect(output).toMatchSnapshot(this)
+          this.base.test() |> await |> property('all') |> unifyMochaOutput;
+
+        expect(output).toMatchSnapshot(this);
       },
     },
     grep: {
@@ -89,9 +90,10 @@ export default tester(
       },
       async test() {
         const output =
-          this.base.test({ grep: 'foo' }) |> await |> property('all')
-        expect(output).not.toMatch('run bar')
-        expect(output).toMatch('run foo')
+          this.base.test({ grep: 'foo' }) |> await |> property('all');
+
+        expect(output).not.toMatch('run bar');
+        expect(output).toMatch('run foo');
       },
     },
     'image snapshot': {
@@ -116,17 +118,16 @@ export default tester(
           }
         `,
         'package.json': JSON.stringify({
-          devDependencies: {
-            sharp: '^1.0.0',
-          },
+          devDependencies: { sharp: '^1.0.0' },
           type: 'module',
         }),
       },
       async test() {
-        await this.base.test()
+        await this.base.test();
+
         expect(await globby('*', { cwd: '__image_snapshots__' })).toEqual([
           'index-spec-js-index-works-1-snap.png',
-        ])
+        ]);
       },
     },
     'invalid name': {
@@ -136,34 +137,26 @@ export default tester(
       test() {
         return expect(this.base.test()).rejects.toThrow(
           'package.json invalid\ndata/name must match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"',
-        )
+        );
       },
     },
     'json errors': {
-      files: {
-        'src/test.json': 'foo bar',
-      },
+      files: { 'src/test.json': 'foo bar' },
       test() {
         return expect(this.base.test()).rejects.toThrow(
           `error  Unexpected token ${nodeVersion.major === '20' ? "'o'" : 'o'}`,
-        )
+        );
       },
     },
     'linting errors': {
-      files: {
-        'src/index.js': "var foo = 'bar'",
-      },
+      files: { 'src/index.js': "var foo = 'bar'" },
       test() {
         return expect(this.base.test()).rejects.toThrow(
           "error  'foo' is assigned a value but never used  no-unused-vars",
-        )
+        );
       },
     },
-    minimal: {
-      files: {
-        'src/index.js': 'export default 1',
-      },
-    },
+    minimal: { files: { 'src/index.js': 'export default 1' } },
     'multiple patterns': {
       files: {
         src: {
@@ -178,8 +171,9 @@ export default tester(
           })
           |> await
           |> property('all')
-          |> unifyMochaOutput
-        expect(output).toMatchSnapshot(this)
+          |> unifyMochaOutput;
+
+        expect(output).toMatchSnapshot(this);
       },
     },
     'multiple snapshots': {
@@ -194,10 +188,12 @@ export default tester(
         `,
       },
       async test() {
-        await this.base.test()
+        await this.base.test();
+
         expect(await globby('*', { cwd: '__snapshots__' })).toEqual([
           'index.spec.js.snap',
-        ])
+        ]);
+
         expect(
           await fs.readFile(
             P.join('__snapshots__', 'index.spec.js.snap'),
@@ -210,7 +206,7 @@ export default tester(
 
           exports[\`index works 2\`] = \`"bar"\`;
 
-        `)
+        `);
       },
     },
     'node_modules not transpiled': {
@@ -225,7 +221,7 @@ export default tester(
       test() {
         return expect(this.base.test()).rejects.toThrow(
           /SyntaxError: Unexpected token '?export'?/,
-        )
+        );
       },
     },
     'node_modules postfix transpiled': {
@@ -238,9 +234,7 @@ export default tester(
       files: {
         'README.md': '',
         'package.json': JSON.stringify({
-          dependencies: {
-            foo: '^1.0.0',
-          },
+          dependencies: { foo: '^1.0.0' },
           type: 'module',
         }),
         src: {
@@ -255,17 +249,16 @@ export default tester(
         const output =
           this.base.test({ patterns: ['src/index2.spec.js'] })
           |> await
-          |> property('all')
-        expect(output).not.toMatch('run index1')
-        expect(output).toMatch('run index2')
+          |> property('all');
+
+        expect(output).not.toMatch('run index1');
+        expect(output).toMatch('run index2');
       },
     },
     'pipeline operator and esm': {
       files: {
         'package.json': JSON.stringify({
-          devDependencies: {
-            execa: '^1',
-          },
+          devDependencies: { execa: '^1' },
           type: 'module',
         }),
         src: {
@@ -285,8 +278,8 @@ export default tester(
         },
       },
       async test() {
-        await fs.chmod(P.join('src', 'subprocess.js'), '755')
-        await this.base.test()
+        await fs.chmod(P.join('src', 'subprocess.js'), '755');
+        await this.base.test();
       },
     },
     snapshot: {
@@ -300,10 +293,11 @@ export default tester(
         `,
       },
       async test() {
-        await this.base.test()
+        await this.base.test();
+
         expect(await globby('*', { cwd: '__snapshots__' })).toEqual([
           'index.spec.js.snap',
-        ])
+        ]);
       },
     },
     'test in project root': {
@@ -321,22 +315,18 @@ export default tester(
             ],
           }
         `,
-        'package.json': JSON.stringify({
-          baseConfig: 'foo',
-          type: 'module',
-        }),
+        'package.json': JSON.stringify({ baseConfig: 'foo', type: 'module' }),
       },
       async test() {
-        expect(this.base.test() |> await |> property('all')).toMatch('run test')
+        expect(this.base.test() |> await |> property('all')).toMatch(
+          'run test',
+        );
       },
     },
     'unused dependencies': {
       files: {
         'package.json': JSON.stringify({
-          dependencies: {
-            'change-case': '^1.0.0',
-            foo: '^1.0.0',
-          },
+          dependencies: { 'change-case': '^1.0.0', foo: '^1.0.0' },
           type: 'module',
         }),
         'src/index.js': 'export default 1',
@@ -346,7 +336,7 @@ export default tester(
           Unused dependencies
           * change-case
           * foo
-        `)
+        `);
       },
     },
     'update snapshot': {
@@ -364,71 +354,63 @@ export default tester(
         `,
       },
       test() {
-        return this.base.test({ updateSnapshots: true })
+        return this.base.test({ updateSnapshots: true });
       },
     },
     'usesdocker macOS': {
-      files: {
-        'src/index.usesdocker.spec.js': 'throw new Error()',
-      },
+      files: { 'src/index.usesdocker.spec.js': 'throw new Error()' },
       async test() {
-        const previousPlatform = process.platform
+        const previousPlatform = process.platform;
+        const previousEnv = process.env;
+        process.env.CI = true;
+        Object.defineProperty(process, 'platform', { value: 'darwin' });
 
-        const previousEnv = process.env
-        process.env.CI = true
-        Object.defineProperty(process, 'platform', { value: 'darwin' })
         try {
-          await this.base.test()
+          await this.base.test();
         } finally {
           Object.defineProperty(process, 'platform', {
             value: previousPlatform,
-          })
-          process.env = previousEnv
+          });
+
+          process.env = previousEnv;
         }
       },
     },
     'usesdocker outside ci': {
-      files: {
-        'src/index.usesdocker.spec.js': "throw new Error('foobarbaz')",
-      },
+      files: { 'src/index.usesdocker.spec.js': "throw new Error('foobarbaz')" },
       async test() {
-        const previousPlatform = process.platform
-
-        const previousEnv = process.env
-        delete process.env.CI
-        delete process.env.GITHUB_ACTIONS
-        Object.defineProperty(process, 'platform', { value: 'darwin' })
-        await expect(this.base.test()).rejects.toThrow('foobarbaz')
-        Object.defineProperty(process, 'platform', { value: previousPlatform })
-        process.env = previousEnv
+        const previousPlatform = process.platform;
+        const previousEnv = process.env;
+        delete process.env.CI;
+        delete process.env.GITHUB_ACTIONS;
+        Object.defineProperty(process, 'platform', { value: 'darwin' });
+        await expect(this.base.test()).rejects.toThrow('foobarbaz');
+        Object.defineProperty(process, 'platform', { value: previousPlatform });
+        process.env = previousEnv;
       },
     },
     'usesdocker windows': {
-      files: {
-        'src/index.usesdocker.spec.js': 'throw new Error()',
-      },
+      files: { 'src/index.usesdocker.spec.js': 'throw new Error()' },
       async test() {
-        const previousPlatform = process.platform
+        const previousPlatform = process.platform;
+        const previousEnv = process.env;
+        process.env.CI = true;
+        Object.defineProperty(process, 'platform', { value: 'win32' });
 
-        const previousEnv = process.env
-        process.env.CI = true
-        Object.defineProperty(process, 'platform', { value: 'win32' })
         try {
-          await this.base.test()
+          await this.base.test();
         } finally {
           Object.defineProperty(process, 'platform', {
             value: previousPlatform,
-          })
-          process.env = previousEnv
+          });
+
+          process.env = previousEnv;
         }
       },
     },
     valid: {
       files: {
-        'package.json': JSON.stringify({
-          name: 'foo',
-          type: 'module',
-        }),
+        'package.json': JSON.stringify({ name: 'foo', type: 'module' }),
         src: {
           'index.js': javascript`
             export default 1
@@ -449,7 +431,10 @@ export default tester(
         },
       },
       async test() {
-        expect(this.base.test() |> await |> property('all')).toMatch('run test')
+        expect(this.base.test() |> await |> property('all')).toMatch(
+          'run test',
+        );
+
         expect(
           globby('*', { dot: true, onlyFiles: false })
             |> await
@@ -475,33 +460,27 @@ export default tester(
           coverage: true,
           'package.json': true,
           src: true,
-        })
+        });
       },
     },
     'wrong dependencies type': {
       files: {
-        'package.json': JSON.stringify({
-          dependencies: 1,
-          type: 'module',
-        }),
+        'package.json': JSON.stringify({ dependencies: 1, type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
           'package.json invalid\ndata/dependencies must be object',
-        )
+        );
       },
     },
     'wrong description type': {
       files: {
-        'package.json': JSON.stringify({
-          description: 1,
-          type: 'module',
-        }),
+        'package.json': JSON.stringify({ description: 1, type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
           'package.json invalid\ndata/description must be string',
-        )
+        );
       },
     },
     'wrong dev dependencies type': {
@@ -511,7 +490,7 @@ export default tester(
       test() {
         return expect(this.base.test()).rejects.toThrow(
           'package.json invalid\ndata/devDependencies must be object',
-        )
+        );
       },
     },
     'wrong keywords type': {
@@ -521,7 +500,7 @@ export default tester(
       test() {
         return expect(this.base.test()).rejects.toThrow(
           'package.json invalid\ndata/keywords must be array',
-        )
+        );
       },
     },
   },
@@ -530,20 +509,18 @@ export default tester(
     {
       transform: test =>
         async function () {
-          test = {
-            config: {},
-            files: {},
-            ...test,
-          }
+          test = { config: {}, files: {}, ...test };
+
           await outputFiles({
             'package.json': JSON.stringify({ type: 'module' }),
             ...test.files,
-          })
-          this.base = new Base(test.config)
-          test.test = test.test || (() => this.base.test())
-          await this.base.prepare()
-          await test.test.call(this)
+          });
+
+          this.base = new Base(test.config);
+          test.test = test.test || (() => this.base.test());
+          await this.base.prepare();
+          await test.test.call(this);
         },
     },
   ],
-)
+);

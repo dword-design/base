@@ -20,4 +20,4 @@ export default [
   'LICENSE.md',
   'node_modules',
   'yarn.lock',
-]
+];

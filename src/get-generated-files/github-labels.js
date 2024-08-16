@@ -4,7 +4,7 @@ import {
   mapValues,
   sortBy,
   values,
-} from '@dword-design/functions'
+} from '@dword-design/functions';
 
 export default {
   BFD4F2: ['blocking', 'breaking', 'important'],
@@ -14,4 +14,4 @@ export default {
   |> mapValues((names, color) => names |> map(name => ({ color, name })))
   |> values
   |> flatten
-  |> sortBy('name')
+  |> sortBy('name');

@@ -1,12 +1,10 @@
-import { endent } from '@dword-design/functions'
-import spdxParse from 'spdx-expression-parse'
-import spdxList from 'spdx-license-list/full.js'
+import { endent } from '@dword-design/functions';
+import spdxParse from 'spdx-expression-parse';
+import spdxList from 'spdx-license-list/full.js';
 
 export default function () {
-  const parsed = spdxParse(this.packageConfig.license)
-
-  const license = spdxList[parsed.license]
-
+  const parsed = spdxParse(this.packageConfig.license);
+  const license = spdxList[parsed.license];
   return endent`
     # License
 
@@ -21,5 +19,5 @@ export default function () {
     ## ${license.name}
 
     ${license.licenseText}
-  `
+  `;
 }

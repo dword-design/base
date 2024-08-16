@@ -1,4 +1,4 @@
-import gitHubAction from 'tagged-template-noop'
+import gitHubAction from 'tagged-template-noop';
 
 export default function () {
   return {
@@ -22,9 +22,6 @@ export default function () {
       },
     },
     name: 'sync-metadata',
-    on: {
-      schedule: [{ cron: '0 5 * * *' }],
-      workflow_dispatch: {},
-    },
-  }
+    on: { schedule: [{ cron: '0 5 * * *' }], workflow_dispatch: {} },
+  };
 }

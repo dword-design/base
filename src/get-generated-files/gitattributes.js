@@ -1,4 +1,4 @@
-import { endent } from '@dword-design/functions'
+import { endent } from '@dword-design/functions';
 
 export default endent`
   * text=auto eol=lf
@@ -7,4 +7,4 @@ export default endent`
   *.png filter=lfs diff=lfs merge=lfs -text
   *.vsix filter=lfs diff=lfs merge=lfs -text
 
-`
+`;

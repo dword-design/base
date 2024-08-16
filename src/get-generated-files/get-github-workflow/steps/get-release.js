@@ -1,8 +1,8 @@
-import { map } from '@dword-design/functions'
-import packageName from 'depcheck-package-name'
-import parsePackagejsonName from 'parse-packagejson-name'
+import { map } from '@dword-design/functions';
+import packageName from 'depcheck-package-name';
+import parsePackagejsonName from 'parse-packagejson-name';
 
-const ci = `dw-${parsePackagejsonName(packageName`@dword-design/ci`).fullName}`
+const ci = `dw-${parsePackagejsonName(packageName`@dword-design/ci`).fullName}`;
 
 export default config => [
   {
@@ -25,4 +25,4 @@ export default config => [
       run: 'yarn semantic-release',
     },
   ] |> map(step => ({ if: "github.ref == 'refs/heads/master'", ...step }))),
-]
+];

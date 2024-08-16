@@ -1,4 +1,4 @@
-import { fromPairs, map } from '@dword-design/functions'
+import { fromPairs, map } from '@dword-design/functions';
 
 export default function () {
   return {
@@ -7,5 +7,5 @@ export default function () {
     'files.exclude':
       this.getEditorIgnoreConfig() |> map(entry => [entry, true]) |> fromPairs,
     'workbench.editor.enablePreview': false,
-  }
+  };
 }

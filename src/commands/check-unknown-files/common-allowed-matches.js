@@ -18,4 +18,4 @@ export default Object.keys({
   'global-test-hooks.js': true,
   'types.d.ts': true,
   'yarn.lock': true,
-})
+});

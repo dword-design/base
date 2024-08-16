@@ -1,4 +1,4 @@
-import packageName from 'depcheck-package-name'
+import packageName from 'depcheck-package-name';
 
 export default function () {
   return {
@@ -12,9 +12,7 @@ export default function () {
       this.config.deployAssets.length
         ? [
             packageName`@semantic-release/github`,
-            {
-              assets: this.config.deployAssets,
-            },
+            { assets: this.config.deployAssets },
           ]
         : packageName`@semantic-release/github`,
       [
@@ -26,5 +24,5 @@ export default function () {
       ],
       ...this.config.deployPlugins,
     ],
-  }
+  };
 }

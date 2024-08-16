@@ -1,5 +1,5 @@
-import jobMatrixStrategy from './strategies/job-matrix.js'
-import simpleStrategy from './strategies/simple.js'
+import jobMatrixStrategy from './strategies/job-matrix.js';
+import simpleStrategy from './strategies/simple.js';
 
 export default function () {
   return {
@@ -7,11 +7,6 @@ export default function () {
       ? jobMatrixStrategy
       : simpleStrategy)(this.config),
     name: 'build',
-    on: {
-      pull_request: {},
-      push: {
-        branches: ['master'],
-      },
-    },
-  }
+    on: { pull_request: {}, push: { branches: ['master'] } },
+  };
 }

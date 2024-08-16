@@ -1,35 +1,28 @@
 #!/usr/bin/env node
 
-import { mapValues, values } from '@dword-design/functions'
-import makeCli from 'make-cli'
+import { mapValues, values } from '@dword-design/functions';
+import makeCli from 'make-cli';
 
-import { Base } from './index.js'
-import loadConfig from './load-config/index.js'
+import { Base } from './index.js';
+import loadConfig from './load-config/index.js';
 
 const run = async () => {
-  const base = new Base(await loadConfig())
+  const base = new Base(await loadConfig());
+
   try {
     await makeCli({
       commands:
         {
-          checkUnknownFiles: {
-            handler: () => base.checkUnknownFiles(),
-          },
+          checkUnknownFiles: { handler: () => base.checkUnknownFiles() },
           commit: {
             handler: () => base.commit(),
             options: [
               { description: 'Allow empty commits', name: '--allow-empty' },
             ],
           },
-          depcheck: {
-            handler: () => base.depcheck(),
-          },
-          lint: {
-            handler: () => base.lint(),
-          },
-          prepare: {
-            handler: () => base.prepare(),
-          },
+          depcheck: { handler: () => base.depcheck() },
+          lint: { handler: () => base.lint() },
+          prepare: { handler: () => base.prepare() },
           ...(base.config.testInContainer && {
             'test:raw': {
               arguments: '[patterns...]',
@@ -69,10 +62,11 @@ const run = async () => {
         }
         |> mapValues((command, name) => ({ name, ...command }))
         |> values,
-    })
+    });
   } catch (error) {
-    console.log(error.message)
-    process.exit(1)
+    console.log(error.message);
+    process.exit(1);
   }
-}
-run()
+};
+
+run();

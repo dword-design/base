@@ -1,6 +1,6 @@
-import { endent, join, last, map, split } from '@dword-design/functions'
-import spdxParse from 'spdx-expression-parse'
-import spdxList from 'spdx-license-list/full.js'
+import { endent, join, last, map, split } from '@dword-design/functions';
+import spdxParse from 'spdx-expression-parse';
+import spdxList from 'spdx-license-list/full.js';
 
 export default {
   badges() {
@@ -91,13 +91,13 @@ export default {
             ] |> join('')
           }
       </p>
-    `
+    `;
   },
   description() {
-    return this.packageConfig.description || ''
+    return this.packageConfig.description || '';
   },
   install() {
-    return this.config.readmeInstallString
+    return this.config.readmeInstallString;
   },
   license() {
     return (
@@ -145,13 +145,10 @@ export default {
                 ${
                   this.config.seeAlso
                   |> map(entry => {
-                    const parts = entry.repository |> split('/')
-
-                    const owner = parts.length >= 2 ? parts[0] : 'dword-design'
-
-                    const name = parts |> last
-
-                    return `* [${name}](https://github.com/${owner}/${name}): ${entry.description}`
+                    const parts = entry.repository |> split('/');
+                    const owner = parts.length >= 2 ? parts[0] : 'dword-design';
+                    const name = parts |> last;
+                    return `* [${name}](https://github.com/${owner}/${name}): ${entry.description}`;
                   })
                   |> join('\n')
                 }
@@ -161,22 +158,20 @@ export default {
         this.packageConfig.license
           ? [
               (() => {
-                const parsed = spdxParse(this.packageConfig.license)
-
-                const license = spdxList[parsed.license]
-
+                const parsed = spdxParse(this.packageConfig.license);
+                const license = spdxList[parsed.license];
                 return endent`
                   ## License
   
                   [${license.name}](${license.url}) © [Sebastian Landwehr](https://sebastianlandwehr.com)
-                `
+                `;
               })(),
             ]
           : [],
       ] |> join('\n\n')
-    )
+    );
   },
   title() {
-    return `# ${this.packageConfig.name}`
+    return `# ${this.packageConfig.name}`;
   },
-}
+};

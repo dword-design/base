@@ -1,13 +1,11 @@
-import deepmerge from 'deepmerge'
+import deepmerge from 'deepmerge';
 
 export default function () {
   return deepmerge(
     {
       extends: [':semanticCommits', ':semanticPrefixFix'],
       gitIgnoredAuthors: ['actions@github.com'],
-      'github-actions': {
-        enabled: false,
-      },
+      'github-actions': { enabled: false },
       labels: ['maintenance'],
       lockFileMaintenance: {
         automerge: true,
@@ -30,5 +28,5 @@ export default function () {
       semanticCommitScope: null,
     },
     this.config.renovateConfig || {},
-  )
+  );
 }

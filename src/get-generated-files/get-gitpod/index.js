@@ -1,10 +1,9 @@
-import { endent } from '@dword-design/functions'
-import * as personalData from '@dword-design/personal-data'
-import parsePackagejsonName from 'parse-packagejson-name'
+import { endent } from '@dword-design/functions';
+import * as personalData from '@dword-design/personal-data';
+import parsePackagejsonName from 'parse-packagejson-name';
 
 export default function () {
-  const packageName = parsePackagejsonName(this.packageConfig.name).fullName
-
+  const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
   return {
     image: { file: '.gitpod.Dockerfile' },
     tasks: [
@@ -34,5 +33,5 @@ export default function () {
         'zjcompt.es6-string-javascript',
       ],
     },
-  }
+  };
 }

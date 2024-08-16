@@ -1,4 +1,4 @@
-import packageNameRegex from 'package-name-regex'
+import packageNameRegex from 'package-name-regex';
 
 export default {
   properties: {
@@ -13,24 +13,15 @@ export default {
       additionalProperties: { pattern: /^\.\/dist\//.source, type: 'string' },
       type: 'object',
     },
-    dependencies: {
-      additionalProperties: { type: 'string' },
-      type: 'object',
-    },
+    dependencies: { additionalProperties: { type: 'string' }, type: 'object' },
     description: { type: 'string' },
     devDependencies: {
       additionalProperties: { type: 'string' },
       type: 'object',
     },
-    keywords: {
-      items: { type: 'string' },
-      type: 'array',
-    },
-    name: {
-      pattern: packageNameRegex.source,
-      type: 'string',
-    },
+    keywords: { items: { type: 'string' }, type: 'array' },
+    name: { pattern: packageNameRegex.source, type: 'string' },
     version: { type: 'string' },
   },
   type: 'object',
-}
+};

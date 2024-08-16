@@ -1,11 +1,11 @@
-import { map } from '@dword-design/functions'
-import gitHubAction from 'tagged-template-noop'
+import { map } from '@dword-design/functions';
+import gitHubAction from 'tagged-template-noop';
 
-import cancelExistingSteps from '@/src/get-generated-files/get-github-workflow/steps/cancel-existing.js'
-import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflow/steps/check-unknown-files.js'
-import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/coverage.js'
-import getReleaseSteps from '@/src/get-generated-files/get-github-workflow/steps/get-release.js'
-import getTestSteps from '@/src/get-generated-files/get-github-workflow/steps/get-test.js'
+import cancelExistingSteps from '@/src/get-generated-files/get-github-workflow/steps/cancel-existing.js';
+import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflow/steps/check-unknown-files.js';
+import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/coverage.js';
+import getReleaseSteps from '@/src/get-generated-files/get-github-workflow/steps/get-release.js';
+import getTestSteps from '@/src/get-generated-files/get-github-workflow/steps/get-test.js';
 
 export default config => ({
   'cancel-existing': {
@@ -26,9 +26,7 @@ export default config => ({
       },
       {
         uses: gitHubAction`actions/setup-node@v4`,
-        with: {
-          'node-version': config.nodeVersion,
-        },
+        with: { 'node-version': config.nodeVersion },
       },
       { run: 'git config --global user.email "actions@github.com"' },
       { run: 'git config --global user.name "GitHub Actions"' },
@@ -48,9 +46,7 @@ export default config => ({
       },
       {
         uses: gitHubAction`actions/setup-node@v4`,
-        with: {
-          'node-version': '${{ matrix.node }}',
-        },
+        with: { 'node-version': '${{ matrix.node }}' },
       },
       { run: 'yarn --frozen-lockfile' },
       ...getTestSteps(),
@@ -77,4 +73,4 @@ export default config => ({
       },
     },
   },
-})
+});

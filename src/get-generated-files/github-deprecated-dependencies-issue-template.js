@@ -1,4 +1,4 @@
-import { endent } from '@dword-design/functions'
+import { endent } from '@dword-design/functions';
 
 export default endent`
   ---
@@ -13,4 +13,4 @@ export default endent`
 
   Check out the [build]({{ env.RUN_URL }}) for details.
 
-`
+`;

@@ -5,4 +5,4 @@ export default [
   '/.nyc_output',
   '/coverage',
   '/node_modules',
-]
+];

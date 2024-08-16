@@ -1,8 +1,8 @@
-import { endent, reduce, replace } from '@dword-design/functions'
-import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex'
-import { readFileSync as safeReadFileSync } from 'safe-readfile'
+import { endent, reduce, replace } from '@dword-design/functions';
+import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex';
+import { readFileSync as safeReadFileSync } from 'safe-readfile';
 
-import replacements from './replacements.js'
+import replacements from './replacements.js';
 
 export default function () {
   const readme =
@@ -18,13 +18,12 @@ export default function () {
 
       <!-- LICENSE -->
 
-    `
+    `;
 
   return (
     replacements
     |> reduce((current, replacement, name) => {
-      const sectionName = name.toUpperCase()
-
+      const sectionName = name.toUpperCase();
       return (
         current
         |> replace(
@@ -35,7 +34,7 @@ export default function () {
             <!-- /${sectionName} -->
           `,
         )
-      )
+      );
     }, readme)
-  )
+  );
 }
