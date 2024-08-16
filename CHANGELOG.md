@@ -1,3 +1,14 @@
+## [11.1.2](https://github.com/dword-design/base/compare/v11.1.1...v11.1.2) (2024-08-16)
+
+
+### Bug Fixes
+
+* foo ([4a81ef5](https://github.com/dword-design/base/commit/4a81ef5d39e48da7569cf4033a3710cfbf0234ae))
+* foo ([0b80a2c](https://github.com/dword-design/base/commit/0b80a2cfb3668a945bdf6b35f743fb644132d780))
+* foo ([2999c9d](https://github.com/dword-design/base/commit/2999c9da2e6b2e8e5c90033481965359250b2094))
+* revert babel.config.json ([#757](https://github.com/dword-design/base/issues/757))" ([#763](https://github.com/dword-design/base/issues/763)) ([03b7cd0](https://github.com/dword-design/base/commit/03b7cd0b1fb8e13ff3b0707def7ca73b79eaa889))
+* trigger ([323a347](https://github.com/dword-design/base/commit/323a347aeabe31be1ac1730c8346fb600272d189))
+
 ## [11.1.1](https://github.com/dword-design/base/compare/v11.1.0...v11.1.1) (2024-05-06)
 
 
