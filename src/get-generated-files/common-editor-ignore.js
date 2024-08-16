@@ -1,5 +1,5 @@
 export default [
-  'babel.config.json',
+  '.babelrc.json',
   '.commitlintrc.json',
   '.cz.json',
   '.devcontainer',
