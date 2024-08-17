@@ -4,6 +4,8 @@ tasks:
   - before: >-
       echo "corepack enable" >> /home/gitpod/.bashrc
 
+      echo "export COREPACK_ENABLE_DOWNLOAD_PROMPT=0" >> /home/gitpod/.bashrc
+
       gitpod-env-per-project >> /home/gitpod/.bashrc
 
       echo "export

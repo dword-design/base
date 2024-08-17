@@ -13,6 +13,7 @@ export default function () {
         // https://www.gitpod.io/docs/configure/workspaces/workspace-lifecycle#workspace-stopped
         before: endent`
           echo "corepack enable" >> /home/gitpod/.bashrc
+          echo "export COREPACK_ENABLE_DOWNLOAD_PROMPT=0" >> /home/gitpod/.bashrc
           gitpod-env-per-project >> /home/gitpod/.bashrc
           echo "export PUPPETEER_CACHE_DIR=/workspace/${packageName}/node_modules/.cache/puppeteer" >> /home/gitpod/.bashrc
           echo "export PLAYWRIGHT_BROWSERS_PATH=0" >> /home/gitpod/.bashrc
