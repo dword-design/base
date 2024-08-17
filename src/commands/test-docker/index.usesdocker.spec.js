@@ -236,6 +236,7 @@ export default tester(
         try {
           await test();
         } finally {
+          console.log(process.cwd())
           await execaCommand(`docker volume rm ${P.basename(process.cwd())}`);
         }
       },
