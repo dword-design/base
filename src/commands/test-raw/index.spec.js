@@ -478,6 +478,7 @@ export default tester(
           '.gitignore': true,
           '.gitpod.Dockerfile': true,
           '.gitpod.yml': true,
+          '.npmrc': true,
           '.releaserc.json': true,
           '.renovaterc.json': true,
           '.vscode': true,

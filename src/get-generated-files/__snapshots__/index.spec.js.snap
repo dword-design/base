@@ -45,6 +45,7 @@ Array [
   ".gitignore",
   ".gitpod.Dockerfile",
   ".gitpod.yml",
+  ".npmrc",
   ".releaserc.json",
   ".renovaterc.json",
   ".vscode/settings.json",

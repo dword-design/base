@@ -17,6 +17,7 @@ Object {
   ".gitpod.Dockerfile": true,
   ".gitpod.yml": true,
   ".husky": true,
+  ".npmrc": true,
   ".releaserc.json": true,
   ".renovaterc.json": true,
   ".test.env.json": true,
