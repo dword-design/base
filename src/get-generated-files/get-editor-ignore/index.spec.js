@@ -2,17 +2,12 @@ import tester from '@dword-design/tester';
 
 import { Base } from '@/src/index.js';
 
-export default tester(
+export default tester({ valid: ['foo'] }, [
   {
-    valid: ['foo'],
+    transform: test =>
+      function () {
+        const base = new Base({ editorIgnore: test });
+        expect(base.getEditorIgnoreConfig()).toMatchSnapshot(this);
+      },
   },
-  [
-    {
-      transform: test =>
-        function () {
-          const base = new Base({ editorIgnore: test });
-          expect(base.getEditorIgnoreConfig()).toMatchSnapshot(this);
-        },
-    },
-  ],
-);
+]);

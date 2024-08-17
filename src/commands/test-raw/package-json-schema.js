@@ -16,10 +16,7 @@ export default {
       pattern: distPattern.source,
       type: ['object', 'string'],
     },
-    dependencies: {
-      additionalProperties: { type: 'string' },
-      type: 'object',
-    },
+    dependencies: { additionalProperties: { type: 'string' }, type: 'object' },
     description: { type: 'string' },
     devDependencies: {
       additionalProperties: { type: 'string' },

@@ -47,12 +47,7 @@ export default tester(
         ),
       );
 
-      await expect(
-        new Base().testDocker({
-          log: false,
-        }),
-      ).rejects.toThrow();
-
+      await expect(new Base().testDocker({ log: false })).rejects.toThrow();
       await fs.remove('dist');
     },
     env: async () => {
@@ -64,9 +59,7 @@ export default tester(
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
           },
           undefined,
           2,
@@ -96,9 +89,7 @@ export default tester(
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
             type: 'module',
           },
           undefined,
@@ -118,9 +109,7 @@ export default tester(
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
             type: 'module',
           },
           undefined,
@@ -141,9 +130,7 @@ export default tester(
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
             type: 'module',
           },
           undefined,
@@ -168,9 +155,7 @@ export default tester(
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
             type: 'module',
           },
           undefined,
@@ -194,9 +179,7 @@ export default tester(
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
           },
           undefined,
           2,
@@ -217,9 +200,7 @@ export default tester(
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'node test.js',
-            },
+            scripts: { 'test:raw': 'node test.js' },
             type: 'module',
           },
           undefined,

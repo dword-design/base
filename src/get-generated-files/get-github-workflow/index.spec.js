@@ -42,9 +42,7 @@ export default tester(
     },
     async 'package.json'() {
       await outputFiles({
-        '.env.schema.json': JSON.stringify({
-          foo: { type: 'string' },
-        }),
+        '.env.schema.json': JSON.stringify({ foo: { type: 'string' } }),
         'repos/foo/package.json': JSON.stringify({}),
       });
 
@@ -55,9 +53,7 @@ export default tester(
     async 'package.json same path as .env.schema.json'() {
       await outputFiles({
         'repos/foo': {
-          '.env.schema.json': JSON.stringify({
-            foo: { type: 'string' },
-          }),
+          '.env.schema.json': JSON.stringify({ foo: { type: 'string' } }),
           'package.json': JSON.stringify({}),
         },
       });

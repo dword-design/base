@@ -10,27 +10,17 @@ export default tester(
     'no config': async () => {
       const packageConfig = {};
       await fs.outputFile('package.json', JSON.stringify(packageConfig));
-
-      await depcheck('.', {
-        package: packageConfig,
-        specials: [self()],
-      });
+      await depcheck('.', { package: packageConfig, specials: [self()] });
     },
     valid: async () => {
       const packageConfig = {
-        devDependencies: {
-          'base-config-foo': '^1.0.0',
-        },
+        devDependencies: { 'base-config-foo': '^1.0.0' },
       };
 
       await fs.outputFile('package.json', JSON.stringify(packageConfig));
 
       const result = await depcheck('.', {
-        package: {
-          devDependencies: {
-            'base-config-foo': '^1.0.0',
-          },
-        },
+        package: { devDependencies: { 'base-config-foo': '^1.0.0' } },
         specials: [self('base-config-foo')],
       });
 

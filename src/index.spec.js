@@ -117,9 +117,7 @@ export default tester(
       const base = new Self({
         allowedMatches: ['bar.txt'],
         eslintConfig: {
-          rules: {
-            'import/no-unresolved': ['error', { ignore: ['bar'] }],
-          },
+          rules: { 'import/no-unresolved': ['error', { ignore: ['bar'] }] },
         },
         name: '@dword-design/foo',
       });

@@ -18,6 +18,7 @@ import yarn from './yarn.js';
 export default function () {
   const packageConfig = this.getPackageConfig();
   return {
+    '.babelrc.json': `${babelConfig |> jsonToString({ indent: 2 })}\n`,
     '.commitlintrc.json': `${
       commitlintConfig |> jsonToString({ indent: 2 })
     }\n`,
@@ -63,7 +64,6 @@ export default function () {
     '.yarnrc.yml': yarn |> yaml.stringify,
     'LICENSE.md': this.getLicenseString(),
     'README.md': this.getReadmeString(),
-    'babel.config.json': `${babelConfig |> jsonToString({ indent: 2 })}\n`,
     'package.json': `${
       packageConfig |> sortPackageJson |> jsonToString({ indent: 2 })
     }\n`,

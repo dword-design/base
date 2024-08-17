@@ -13,24 +13,16 @@ const run = async () => {
     await makeCli({
       commands:
         {
-          checkUnknownFiles: {
-            handler: () => base.checkUnknownFiles(),
-          },
+          checkUnknownFiles: { handler: () => base.checkUnknownFiles() },
           commit: {
             handler: () => base.commit(),
             options: [
               { description: 'Allow empty commits', name: '--allow-empty' },
             ],
           },
-          depcheck: {
-            handler: () => base.depcheck(),
-          },
-          lint: {
-            handler: () => base.lint(),
-          },
-          prepare: {
-            handler: () => base.prepare(),
-          },
+          depcheck: { handler: () => base.depcheck() },
+          lint: { handler: () => base.lint() },
+          prepare: { handler: () => base.prepare() },
           ...(base.config.testInContainer && {
             'test:raw': {
               arguments: '[patterns...]',

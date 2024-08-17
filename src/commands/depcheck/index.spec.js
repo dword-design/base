@@ -14,9 +14,7 @@ export default tester(
         files: {
           'node_modules/base-config-foo/index.js': 'module.exports = {}',
           'package.json': JSON.stringify({
-            devDependencies: {
-              'base-config-foo': '^1.0.0',
-            },
+            devDependencies: { 'base-config-foo': '^1.0.0' },
           }),
         },
       },
@@ -24,9 +22,7 @@ export default tester(
       files: {
         'node_modules/base-config-foo/index.js': 'module.exports = {}',
         'package.json': JSON.stringify({
-          dependencies: {
-            'base-config-foo': '^1.0.0',
-          },
+          dependencies: { 'base-config-foo': '^1.0.0' },
         }),
       },
       test() {
@@ -37,17 +33,9 @@ export default tester(
       },
     },
     'depcheck ignoreMatches': {
-      config: {
-        depcheckConfig: {
-          ignoreMatches: ['foo'],
-        },
-      },
+      config: { depcheckConfig: { ignoreMatches: ['foo'] } },
       files: {
-        'package.json': JSON.stringify({
-          dependencies: {
-            foo: '^1.0.0',
-          },
-        }),
+        'package.json': JSON.stringify({ dependencies: { foo: '^1.0.0' } }),
       },
     },
     'invalid file': {
@@ -65,9 +53,7 @@ export default tester(
       files: {
         foo: '',
         'package.json': JSON.stringify({
-          dependencies: {
-            'change-case': '^1.0.0',
-          },
+          dependencies: { 'change-case': '^1.0.0' },
         }),
       },
       test() {
@@ -85,9 +71,7 @@ export default tester(
         'global-test-hooks.js': "import 'bar'",
         'node_modules/bar/index.js': 'module.exports = 1',
         'package.json': JSON.stringify({
-          dependencies: {
-            bar: '^1.0.0',
-          },
+          dependencies: { bar: '^1.0.0' },
           type: 'module',
         }),
       },
@@ -101,11 +85,7 @@ export default tester(
     'prod dependency only in test': {
       files: {
         'node_modules/bar/index.js': 'module.exports = 1',
-        'package.json': JSON.stringify({
-          dependencies: {
-            bar: '^1.0.0',
-          },
-        }),
+        'package.json': JSON.stringify({ dependencies: { bar: '^1.0.0' } }),
         'src/index.spec.js': "import 'bar'",
       },
       async test() {
@@ -118,10 +98,7 @@ export default tester(
     'unused dependencies': {
       files: {
         'package.json': JSON.stringify({
-          dependencies: {
-            'change-case': '^1.0.0',
-            foo: '^1.0.0',
-          },
+          dependencies: { 'change-case': '^1.0.0', foo: '^1.0.0' },
         }),
         'src/index.js': 'export default 1',
       },
@@ -139,12 +116,7 @@ export default tester(
     {
       transform: test =>
         async function () {
-          test = {
-            config: {},
-            files: {},
-            ...test,
-          };
-
+          test = { config: {}, files: {}, ...test };
           await outputFiles(test.files);
           this.base = new Base(test.config);
           test.test = test.test || (() => this.base.depcheck());

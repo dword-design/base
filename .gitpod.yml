@@ -12,7 +12,12 @@ tasks:
 
       echo "export PLAYWRIGHT_BROWSERS_PATH=0" >> /home/gitpod/.bashrc
 
+<<<<<<< HEAD
       source /home/gitpod/.bashrc
+=======
+      gitpod-env-per-project >> /home/gitpod/.bashrc && source
+      /home/gitpod/.bashrc
+>>>>>>> origin/master
     init: |-
       git config --global user.name "Sebastian Landwehr"
       git config diff.lfs.textconv cat

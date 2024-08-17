@@ -7,9 +7,7 @@ export default {
       steps: [
         { uses: gitHubAction`actions/checkout@v4` },
         {
-          env: {
-            GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-          },
+          env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' },
           uses: gitHubAction`micnncim/action-label-syncer@v1`,
         },
       ],

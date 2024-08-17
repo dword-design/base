@@ -41,7 +41,5 @@ export default {
     },
   },
   name: 'deprecated-dependencies',
-  on: {
-    schedule: [{ cron: '0 5 * * MON' }],
-  },
+  on: { schedule: [{ cron: '0 5 * * MON' }] },
 };

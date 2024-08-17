@@ -5,9 +5,7 @@ export default function () {
     {
       extends: [':semanticCommits', ':semanticPrefixFix'],
       gitIgnoredAuthors: ['actions@github.com'],
-      'github-actions': {
-        enabled: false,
-      },
+      'github-actions': { enabled: false },
       labels: ['maintenance'],
       lockFileMaintenance: {
         automerge: true,

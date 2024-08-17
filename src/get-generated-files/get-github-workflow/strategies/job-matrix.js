@@ -26,9 +26,7 @@ export default config => ({
       },
       {
         uses: gitHubAction`actions/setup-node@v4`,
-        with: {
-          'node-version': config.nodeVersion,
-        },
+        with: { 'node-version': config.nodeVersion },
       },
       {
         run: 'corepack enable',
@@ -51,9 +49,7 @@ export default config => ({
       },
       {
         uses: gitHubAction`actions/setup-node@v4`,
-        with: {
-          'node-version': '${{ matrix.node }}',
-        },
+        with: { 'node-version': '${{ matrix.node }}' },
       },
       {
         run: 'corepack enable',

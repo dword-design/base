@@ -29,35 +29,20 @@ export default tester(
         'package.json',
         JSON.stringify({
           author: 'foo bar',
-          bin: {
-            foo: './dist/cli.js',
-          },
-          dependencies: {
-            foo: '^1.0.0',
-          },
+          bin: { foo: './dist/cli.js' },
+          dependencies: { foo: '^1.0.0' },
           description: 'foo bar',
-          devDependencies: {
-            'base-config-bar': '^1.0.0',
-          },
+          devDependencies: { 'base-config-bar': '^1.0.0' },
           extra: 'foo',
           files: 'foo',
           keywords: ['foo', 'bar'],
           license: 'ISC',
           main: 'dist/index.scss',
           name: 'foo',
-          optionalDependencies: {
-            typescript: '^1.0.0',
-          },
-          peerDependencies: {
-            nuxt: '^1.0.0',
-          },
-          publishConfig: {
-            access: 'public',
-          },
-          scripts: {
-            foo: 'echo \\"foo\\"',
-            test: 'echo \\"foo\\"',
-          },
+          optionalDependencies: { typescript: '^1.0.0' },
+          peerDependencies: { nuxt: '^1.0.0' },
+          publishConfig: { access: 'public' },
+          scripts: { foo: 'echo \\"foo\\"', test: 'echo \\"foo\\"' },
           type: 'module',
           types: 'types.d.ts',
           version: '1.1.0',

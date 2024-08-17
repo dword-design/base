@@ -12,9 +12,7 @@ export default function () {
       this.config.deployAssets.length
         ? [
             packageName`@semantic-release/github`,
-            {
-              assets: this.config.deployAssets,
-            },
+            { assets: this.config.deployAssets },
           ]
         : packageName`@semantic-release/github`,
       [

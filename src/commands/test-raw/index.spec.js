@@ -46,7 +46,7 @@ export default tester(
         }),
       },
     },
-    'bin: object outside dist': {
+    'bin: object: outside dist': {
       files: {
         'package.json': JSON.stringify({
           bin: {
@@ -69,7 +69,7 @@ export default tester(
         }),
       },
     },
-    'bin: string outside dist': {
+    'bin: string: outside dist': {
       files: {
         'package.json': JSON.stringify({
           bin: './src/cli.js',
@@ -149,9 +149,7 @@ export default tester(
           }
         `,
         'package.json': JSON.stringify({
-          devDependencies: {
-            sharp: '^1.0.0',
-          },
+          devDependencies: { sharp: '^1.0.0' },
           type: 'module',
         }),
       },
@@ -174,9 +172,7 @@ export default tester(
       },
     },
     'json errors': {
-      files: {
-        'src/test.json': 'foo bar',
-      },
+      files: { 'src/test.json': 'foo bar' },
       test() {
         return expect(this.base.test()).rejects.toThrow(
           `error  Unexpected token ${nodeVersion.major === '20' ? "'o'" : 'o'}`,
@@ -184,20 +180,14 @@ export default tester(
       },
     },
     'linting errors': {
-      files: {
-        'src/index.js': "var foo = 'bar'",
-      },
+      files: { 'src/index.js': "var foo = 'bar'" },
       test() {
         return expect(this.base.test()).rejects.toThrow(
           "error  'foo' is assigned a value but never used  no-unused-vars",
         );
       },
     },
-    minimal: {
-      files: {
-        'src/index.js': 'export default 1',
-      },
-    },
+    minimal: { files: { 'src/index.js': 'export default 1' } },
     'multiple patterns': {
       files: {
         src: {
@@ -275,9 +265,7 @@ export default tester(
       files: {
         'README.md': '',
         'package.json': JSON.stringify({
-          dependencies: {
-            foo: '^1.0.0',
-          },
+          dependencies: { foo: '^1.0.0' },
           type: 'module',
         }),
         src: {
@@ -301,9 +289,7 @@ export default tester(
     'pipeline operator and esm': {
       files: {
         'package.json': JSON.stringify({
-          devDependencies: {
-            execa: '^1',
-          },
+          devDependencies: { execa: '^1' },
           type: 'module',
         }),
         src: {
@@ -360,10 +346,7 @@ export default tester(
             ],
           }
         `,
-        'package.json': JSON.stringify({
-          baseConfig: 'foo',
-          type: 'module',
-        }),
+        'package.json': JSON.stringify({ baseConfig: 'foo', type: 'module' }),
       },
       async test() {
         expect(this.base.test() |> await |> property('all')).toMatch(
@@ -374,10 +357,7 @@ export default tester(
     'unused dependencies': {
       files: {
         'package.json': JSON.stringify({
-          dependencies: {
-            'change-case': '^1.0.0',
-            foo: '^1.0.0',
-          },
+          dependencies: { 'change-case': '^1.0.0', foo: '^1.0.0' },
           type: 'module',
         }),
         'src/index.js': 'export default 1',
@@ -409,9 +389,7 @@ export default tester(
       },
     },
     'usesdocker macOS': {
-      files: {
-        'src/index.usesdocker.spec.js': 'throw new Error()',
-      },
+      files: { 'src/index.usesdocker.spec.js': 'throw new Error()' },
       async test() {
         const previousPlatform = process.platform;
         const previousEnv = process.env;
@@ -430,9 +408,7 @@ export default tester(
       },
     },
     'usesdocker outside ci': {
-      files: {
-        'src/index.usesdocker.spec.js': "throw new Error('foobarbaz')",
-      },
+      files: { 'src/index.usesdocker.spec.js': "throw new Error('foobarbaz')" },
       async test() {
         const previousPlatform = process.platform;
         const previousEnv = process.env;
@@ -445,9 +421,7 @@ export default tester(
       },
     },
     'usesdocker windows': {
-      files: {
-        'src/index.usesdocker.spec.js': 'throw new Error()',
-      },
+      files: { 'src/index.usesdocker.spec.js': 'throw new Error()' },
       async test() {
         const previousPlatform = process.platform;
         const previousEnv = process.env;
@@ -467,10 +441,7 @@ export default tester(
     },
     valid: {
       files: {
-        'package.json': JSON.stringify({
-          name: 'foo',
-          type: 'module',
-        }),
+        'package.json': JSON.stringify({ name: 'foo', type: 'module' }),
         src: {
           'index.js': javascript`
             export default 1
@@ -501,6 +472,7 @@ export default tester(
             |> keyBy(identity)
             |> mapValues(stubTrue),
         ).toEqual({
+          '.babelrc.json': true,
           '.commitlintrc.json': true,
           '.cz.json': true,
           '.devcontainer': true,
@@ -517,7 +489,6 @@ export default tester(
           '.yarnrc.yml': true,
           'LICENSE.md': true,
           'README.md': true,
-          'babel.config.json': true,
           coverage: true,
           'package.json': true,
           src: true,
@@ -526,10 +497,7 @@ export default tester(
     },
     'wrong dependencies type': {
       files: {
-        'package.json': JSON.stringify({
-          dependencies: 1,
-          type: 'module',
-        }),
+        'package.json': JSON.stringify({ dependencies: 1, type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -539,10 +507,7 @@ export default tester(
     },
     'wrong description type': {
       files: {
-        'package.json': JSON.stringify({
-          description: 1,
-          type: 'module',
-        }),
+        'package.json': JSON.stringify({ description: 1, type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
@@ -576,11 +541,7 @@ export default tester(
     {
       transform: test =>
         async function () {
-          test = {
-            config: {},
-            files: {},
-            ...test,
-          };
+          test = { config: {}, files: {}, ...test };
 
           await outputFiles({
             'package.json': JSON.stringify({ type: 'module' }),

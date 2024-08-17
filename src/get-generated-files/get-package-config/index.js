@@ -39,17 +39,13 @@ export default function () {
         } |> keys,
       )),
     funding: 'https://github.com/sponsors/dword-design',
-    publishConfig: {
-      access: 'public',
-    },
+    publishConfig: { access: 'public' },
     version: this.packageConfig.version || '1.0.0',
     ...(this.config.git && {
       repository: `dword-design/${this.config.git.project}`,
     }),
     author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
-    engines: {
-      node: `>=${this.config.supportedNodeVersions[0]}`,
-    },
+    engines: { node: `>=${this.config.supportedNodeVersions[0]}` },
     files: ['dist', ...(fs.existsSync('types.d.ts') ? ['types.d.ts'] : [])],
     license: 'MIT',
     ...this.config.packageConfig,

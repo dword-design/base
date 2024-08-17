@@ -102,9 +102,7 @@ class Base {
           depcheckDetectorBinName,
         ],
         ignorePath: '.gitignore',
-        parsers: {
-          '**/*.js': depcheckParserBabel,
-        },
+        parsers: { '**/*.js': depcheckParserBabel },
         specials: [getDepcheckSpecialBase(config.name), depcheck.special.bin],
       },
       deployAssets: [],
