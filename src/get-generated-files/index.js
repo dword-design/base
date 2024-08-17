@@ -13,6 +13,7 @@ import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencie
 import githubFunding from './github-funding.js';
 import githubLabelsConfig from './github-labels.js';
 import githubSyncLabelsConfig from './github-sync-labels.js';
+import npmrc from './npmrc.js';
 
 export default function () {
   const packageConfig = this.getPackageConfig();
@@ -57,6 +58,7 @@ export default function () {
       sortKeys(this.getRenovateConfig(), { deep: true })
       |> jsonToString({ indent: 2 })
     }\n`,
+    '.npmrc': `${npmrc}\n`,
     '.vscode/settings.json': `${
       this.getVscodeConfig() |> jsonToString({ indent: 2 })
     }\n`,
