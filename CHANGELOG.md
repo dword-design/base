@@ -1,3 +1,10 @@
+## [11.2.1](https://github.com/dword-design/base/compare/v11.2.0...v11.2.1) (2024-08-17)
+
+
+### Bug Fixes
+
+* pnpm ([#767](https://github.com/dword-design/base/issues/767)) ([f8d5407](https://github.com/dword-design/base/commit/f8d54074fb4cc5b18dd3dcf4ac719d3de317ebcf))
+
 # [11.2.0](https://github.com/dword-design/base/compare/v11.1.2...v11.2.0) (2024-08-17)
 
 
