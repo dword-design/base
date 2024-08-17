@@ -1,4 +1,4 @@
-import { endent, property } from '@dword-design/functions';
+import { endent } from '@dword-design/functions';
 import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import { execaCommand } from 'execa';
@@ -138,7 +138,7 @@ export default tester(
         `,
       });
 
-      await new Base().testDocker({ log: false, patterns: ['foo bar baz'] })
+      await new Base().testDocker({ log: false, patterns: ['foo bar baz'] });
       expect(await fs.readFile('grep.txt', 'utf8')).toEqual('foo bar baz');
     },
     puppeteer: async () => {

@@ -51,6 +51,7 @@ export default function () {
       this.getGitignoreConfig() |> map(entry => `${entry}\n`) |> join(''),
     '.gitpod.Dockerfile': this.getGitpodDockerfile(),
     '.gitpod.yml': this.getGitpodConfig() |> yaml.stringify,
+    '.npmrc': `${npmrc}\n`,
     '.releaserc.json': `${
       this.getReleaseConfig() |> jsonToString({ indent: 2 })
     }\n`,
@@ -58,7 +59,6 @@ export default function () {
       sortKeys(this.getRenovateConfig(), { deep: true })
       |> jsonToString({ indent: 2 })
     }\n`,
-    '.npmrc': `${npmrc}\n`,
     '.vscode/settings.json': `${
       this.getVscodeConfig() |> jsonToString({ indent: 2 })
     }\n`,
