@@ -30,7 +30,7 @@ importers:
         specifier: ^6.0.0
         version: 6.0.1
       '@dword-design/jiti-babel-transform':
-        specifier: ^1.0.7
+        specifier: ^1.0.13
         version: 1.0.13
       '@dword-design/personal-data':
         specifier: ^2.0.3
