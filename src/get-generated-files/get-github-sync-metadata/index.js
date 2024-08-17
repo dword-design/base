@@ -22,9 +22,6 @@ export default function () {
       },
     },
     name: 'sync-metadata',
-    on: {
-      schedule: [{ cron: '0 5 * * *' }],
-      workflow_dispatch: {},
-    },
+    on: { schedule: [{ cron: '0 5 * * *' }], workflow_dispatch: {} },
   };
 }

@@ -22,14 +22,8 @@ export default {
       additionalProperties: { type: 'string' },
       type: 'object',
     },
-    keywords: {
-      items: { type: 'string' },
-      type: 'array',
-    },
-    name: {
-      pattern: packageNameRegex.source,
-      type: 'string',
-    },
+    keywords: { items: { type: 'string' }, type: 'array' },
+    name: { pattern: packageNameRegex.source, type: 'string' },
     packageManager: { type: 'string' },
     version: { type: 'string' },
   },

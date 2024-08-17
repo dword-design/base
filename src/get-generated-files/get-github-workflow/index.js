@@ -7,11 +7,6 @@ export default function () {
       ? jobMatrixStrategy
       : simpleStrategy)(this.config),
     name: 'build',
-    on: {
-      pull_request: {},
-      push: {
-        branches: ['master'],
-      },
-    },
+    on: { pull_request: {}, push: { branches: ['master'] } },
   };
 }

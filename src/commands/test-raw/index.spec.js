@@ -49,9 +49,7 @@ export default tester(
     'bin: object: outside dist': {
       files: {
         'package.json': JSON.stringify({
-          bin: {
-            foo: './src/cli.js',
-          },
+          bin: { foo: './src/cli.js' },
           type: 'module',
         }),
       },
@@ -71,10 +69,7 @@ export default tester(
     },
     'bin: string: outside dist': {
       files: {
-        'package.json': JSON.stringify({
-          bin: './src/cli.js',
-          type: 'module',
-        }),
+        'package.json': JSON.stringify({ bin: './src/cli.js', type: 'module' }),
       },
       test() {
         return expect(this.base.test()).rejects.toThrow(
