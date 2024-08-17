@@ -31,9 +31,9 @@ export default config => ({
       { run: 'corepack enable' },
       { run: 'git config --global user.email "actions@github.com"' },
       { run: 'git config --global user.name "GitHub Actions"' },
-      { run: 'yarn --frozen-lockfile' },
+      { run: 'pnpm install --frozen-lockfile' },
       ...checkUnknownFilesSteps,
-      { run: 'yarn lint' },
+      { run: 'pnpm lint' },
       ...getReleaseSteps(config),
     ],
   },
@@ -50,7 +50,7 @@ export default config => ({
         with: { 'node-version': '${{ matrix.node }}' },
       },
       { run: 'corepack enable' },
-      { run: 'yarn --frozen-lockfile' },
+      { run: 'pnpm install --frozen-lockfile' },
       ...getTestSteps(),
       ...(coverageSteps
         |> map(step => ({

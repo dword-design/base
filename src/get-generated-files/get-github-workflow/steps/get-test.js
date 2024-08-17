@@ -31,7 +31,7 @@ export default () => {
           |> fromPairs),
         GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
       },
-      run: 'yarn test',
+      run: 'pnpm test',
     },
     {
       if: 'failure()',

@@ -71,8 +71,8 @@ export default tester(
           license: 'MIT',
           name: 'foo',
         }),
+        'pnpm-lock.yaml': '',
         'src/index.js': 'export default 1',
-        'yarn.lock': '',
       });
 
       const base = new Base();

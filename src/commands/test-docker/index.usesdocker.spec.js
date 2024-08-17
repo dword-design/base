@@ -1,4 +1,4 @@
-import { endent, property } from '@dword-design/functions';
+import { endent } from '@dword-design/functions';
 import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import { execaCommand } from 'execa';
@@ -104,8 +104,8 @@ export default tester(
     },
     'is in docker': async () => {
       await outputFiles({
-        '.yarnrc.yml': 'nodeLinker: node-modules\n',
         'package.json': JSON.stringify({
+          dependencies: { 'is-docker': '*' },
           name: P.basename(process.cwd()),
           scripts: { 'test:raw': 'node test.js' },
           type: 'module',
@@ -118,11 +118,9 @@ export default tester(
           }
 
         `,
-        'yarn.lock': '',
       });
 
-      await execaCommand('yarn set version stable');
-      await execaCommand('yarn add is-docker');
+      await execaCommand('pnpm install');
       const base = new Base();
       await base.testDocker({ log: false });
     },
@@ -140,16 +138,13 @@ export default tester(
         `,
       });
 
-      expect(
-        (await new Base().testDocker({ log: false, patterns: ['foo bar baz'] }))
-          |> await
-          |> property('all'),
-      ).toMatch('foo bar baz');
+      await new Base().testDocker({ log: false, patterns: ['foo bar baz'] });
+      expect(await fs.readFile('grep.txt', 'utf8')).toEqual('foo bar baz');
     },
     puppeteer: async () => {
       await outputFiles({
-        '.yarnrc.yml': 'nodeLinker: node-modules\n',
         'package.json': JSON.stringify({
+          dependencies: { '@dword-design/puppeteer': '*' },
           name: P.basename(process.cwd()),
           scripts: { 'test:raw': 'node test.js' },
           type: 'module',
@@ -160,11 +155,9 @@ export default tester(
           const browser = await puppeteer.launch()
           await browser.close()
         `,
-        'yarn.lock': '',
       });
 
-      await execaCommand('yarn set version stable');
-      await execaCommand('yarn add @dword-design/puppeteer');
+      await execaCommand('pnpm install');
       await new Base().testDocker({ log: false });
     },
     'update snapshots': async () => {

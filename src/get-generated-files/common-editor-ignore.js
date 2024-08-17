@@ -15,11 +15,9 @@ export default [
   '.releaserc.json',
   '.renovaterc.json',
   '.vscode',
-  '.yarn',
-  '.yarnrc.yml',
   'CHANGELOG.md',
   'coverage',
   'LICENSE.md',
   'node_modules',
-  'yarn.lock',
+  'pnpm-lock.yaml',
 ];
