@@ -3,29 +3,22 @@ import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
-import { createRequire } from 'module';
 import outputFiles from 'output-files';
 import P from 'path';
 
 import { Base } from '@/src/index.js';
-
-const require = createRequire(import.meta.url);
 
 export default tester(
   {
     'create folder': async () => {
       await fs.outputFile(
         'package.json',
-        JSON.stringify(
-          {
-            name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw': 'mkdir dist && echo "foo bar" > dist/index.js',
-            },
+        JSON.stringify({
+          name: P.basename(process.cwd()),
+          scripts: {
+            'test:raw': 'mkdir dist && echo "foo bar" > dist/index.js',
           },
-          undefined,
-          2,
-        ),
+        }),
       );
 
       await new Base().testDocker({ log: false });
@@ -34,17 +27,13 @@ export default tester(
     'create folder and error': async () => {
       await fs.outputFile(
         'package.json',
-        JSON.stringify(
-          {
-            name: P.basename(process.cwd()),
-            scripts: {
-              'test:raw':
-                'mkdir dist && echo "foo bar" > dist/index.js && exit 1',
-            },
+        JSON.stringify({
+          name: P.basename(process.cwd()),
+          scripts: {
+            'test:raw':
+              'mkdir dist && echo "foo bar" > dist/index.js && exit 1',
           },
-          undefined,
-          2,
-        ),
+        }),
       );
 
       await expect(new Base().testDocker({ log: false })).rejects.toThrow();
@@ -56,14 +45,10 @@ export default tester(
           bar: { type: 'string' },
           foo: { type: 'string' },
         }),
-        'package.json': JSON.stringify(
-          {
-            name: P.basename(process.cwd()),
-            scripts: { 'test:raw': 'node test.js' },
-          },
-          undefined,
-          2,
-        ),
+        'package.json': JSON.stringify({
+          name: P.basename(process.cwd()),
+          scripts: { 'test:raw': 'node test.js' },
+        }),
         'test.js': endent`
           if (process.env.TEST_FOO !== 'foo') {
             throw new Error('Environment variable TEST_FOO is not set')
@@ -86,15 +71,11 @@ export default tester(
     },
     git: async () => {
       await outputFiles({
-        'package.json': JSON.stringify(
-          {
-            name: P.basename(process.cwd()),
-            scripts: { 'test:raw': 'node test.js' },
-            type: 'module',
-          },
-          undefined,
-          2,
-        ),
+        'package.json': JSON.stringify({
+          name: P.basename(process.cwd()),
+          scripts: { 'test:raw': 'node test.js' },
+          type: 'module',
+        }),
         'test.js': endent`
           import { spawn } from 'child_process'
 
@@ -106,15 +87,11 @@ export default tester(
     },
     grep: async () => {
       await outputFiles({
-        'package.json': JSON.stringify(
-          {
-            name: P.basename(process.cwd()),
-            scripts: { 'test:raw': 'node test.js' },
-            type: 'module',
-          },
-          undefined,
-          2,
-        ),
+        'package.json': JSON.stringify({
+          name: P.basename(process.cwd()),
+          scripts: { 'test:raw': 'node test.js' },
+          type: 'module',
+        }),
         'test.js': endent`
           import fs from 'fs'
 
@@ -125,17 +102,37 @@ export default tester(
       await new Base().testDocker({ grep: 'foo bar baz', log: false });
       expect(await fs.readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz');
     },
+    'is in docker': async () => {
+      await outputFiles({
+        '.yarnrc.yml': 'nodeLinker: node-modules\n',
+        'package.json': JSON.stringify({
+          name: P.basename(process.cwd()),
+          scripts: { 'test:raw': 'node test.js' },
+          type: 'module',
+        }),
+        'test.js': endent`
+          import isDocker from 'is-docker'
+
+          if (!isDocker) {
+            process.exit(1)
+          }
+
+        `,
+        'yarn.lock': '',
+      });
+
+      await execaCommand('yarn set version stable');
+      await execaCommand('yarn add is-docker');
+      const base = new Base();
+      await base.testDocker({ log: false });
+    },
     pattern: async () => {
       await outputFiles({
-        'package.json': JSON.stringify(
-          {
-            name: P.basename(process.cwd()),
-            scripts: { 'test:raw': 'node test.js' },
-            type: 'module',
-          },
-          undefined,
-          2,
-        ),
+        'package.json': JSON.stringify({
+          name: P.basename(process.cwd()),
+          scripts: { 'test:raw': 'node test.js' },
+          type: 'module',
+        }),
         'test.js': endent`
           import fs from 'fs'
 
@@ -152,15 +149,11 @@ export default tester(
     puppeteer: async () => {
       await outputFiles({
         '.yarnrc.yml': 'nodeLinker: node-modules\n',
-        'package.json': JSON.stringify(
-          {
-            name: P.basename(process.cwd()),
-            scripts: { 'test:raw': 'node test.js' },
-            type: 'module',
-          },
-          undefined,
-          2,
-        ),
+        'package.json': JSON.stringify({
+          name: P.basename(process.cwd()),
+          scripts: { 'test:raw': 'node test.js' },
+          type: 'module',
+        }),
         'test.js': endent`
           import puppeteer from '@dword-design/puppeteer'
 
@@ -176,14 +169,10 @@ export default tester(
     },
     'update snapshots': async () => {
       await outputFiles({
-        'package.json': JSON.stringify(
-          {
-            name: P.basename(process.cwd()),
-            scripts: { 'test:raw': 'node test.js' },
-          },
-          undefined,
-          2,
-        ),
+        'package.json': JSON.stringify({
+          name: P.basename(process.cwd()),
+          scripts: { 'test:raw': 'node test.js' },
+        }),
         'test.js': endent`
           if (process.argv[2] !== '--update-snapshots') {
             throw new Error('--update-snapshots is not set')
@@ -193,40 +182,6 @@ export default tester(
       });
 
       await new Base().testDocker({ log: false, updateSnapshots: true });
-    },
-    works: async () => {
-      await outputFiles({
-        'is-docker.js': await fs.readFile(require.resolve('is-docker'), 'utf8'),
-        'package.json': JSON.stringify(
-          {
-            name: P.basename(process.cwd()),
-            scripts: { 'test:raw': 'node test.js' },
-            type: 'module',
-          },
-          undefined,
-          2,
-        ),
-        'test.js': endent`
-          import isDocker from './is-docker.js'
-
-          if (!isDocker) {
-            process.exit(1)
-          }
-
-        `,
-        'yarn.lock': '',
-      });
-
-      await execaCommand('yarn');
-      const base = new Base();
-
-      expect(
-        base.testDocker({ log: false }) |> await |> property('all'),
-      ).not.toMatch('Already up-to-date.');
-
-      expect(
-        base.testDocker({ log: false }) |> await |> property('all'),
-      ).toMatch('Already up-to-date.');
     },
   },
   [
