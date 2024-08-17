@@ -230,6 +230,7 @@ export default tester(
     },
   },
   [
+    testerPluginTmpDir(),
     {
       transform: test => async () => {
         try {
@@ -239,6 +240,5 @@ export default tester(
         }
       },
     },
-    testerPluginTmpDir(),
   ],
 );
