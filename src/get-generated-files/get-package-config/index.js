@@ -29,6 +29,7 @@ export default function () {
           keywords: true,
           name: true,
           optionalDependencies: true,
+          packageManager: true,
           peerDependencies: true,
           private: true,
           publishConfig: true,

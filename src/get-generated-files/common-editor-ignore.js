@@ -15,6 +15,8 @@ export default [
   '.releaserc.json',
   '.renovaterc.json',
   '.vscode',
+  '.yarn',
+  '.yarnrc.yml',
   'CHANGELOG.md',
   'coverage',
   'LICENSE.md',

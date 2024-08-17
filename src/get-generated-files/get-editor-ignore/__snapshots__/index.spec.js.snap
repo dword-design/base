@@ -18,6 +18,8 @@ Array [
   ".releaserc.json",
   ".renovaterc.json",
   ".vscode",
+  ".yarn",
+  ".yarnrc.yml",
   "CHANGELOG.md",
   "LICENSE.md",
   "coverage",

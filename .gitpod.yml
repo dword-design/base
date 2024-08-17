@@ -2,14 +2,17 @@ image:
   file: .gitpod.Dockerfile
 tasks:
   - before: >-
+      echo "corepack enable" >> /home/gitpod/.bashrc
+
+      gitpod-env-per-project >> /home/gitpod/.bashrc
+
       echo "export
       PUPPETEER_CACHE_DIR=/workspace/base/node_modules/.cache/puppeteer" >>
       /home/gitpod/.bashrc
 
       echo "export PLAYWRIGHT_BROWSERS_PATH=0" >> /home/gitpod/.bashrc
 
-      gitpod-env-per-project >> /home/gitpod/.bashrc && source
-      /home/gitpod/.bashrc
+      source /home/gitpod/.bashrc
     init: |-
       git config --global user.name "Sebastian Landwehr"
       git config diff.lfs.textconv cat
