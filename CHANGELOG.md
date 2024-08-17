@@ -1,3 +1,16 @@
+# [11.2.0](https://github.com/dword-design/base/compare/v11.1.2...v11.2.0) (2024-08-17)
+
+
+### Bug Fixes
+
+* fix volume remove ([#766](https://github.com/dword-design/base/issues/766)) ([8a83bd8](https://github.com/dword-design/base/commit/8a83bd85d161fa35ff53645d37220cfc8ed2f6aa))
+* foo ([6fee1f1](https://github.com/dword-design/base/commit/6fee1f1614dcdcddae6c09f9ef33dcf74d47669c))
+
+
+### Features
+
+* yarn 4 ([#762](https://github.com/dword-design/base/issues/762)) ([7fd38e0](https://github.com/dword-design/base/commit/7fd38e071667dd9938c08ddeed1259868706b953))
+
 ## [11.1.2](https://github.com/dword-design/base/compare/v11.1.1...v11.1.2) (2024-08-16)
 
 
