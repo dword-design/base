@@ -2,7 +2,7 @@
 
 exports[`index no metadata sync 1`] = `
 Array [
-  ".babelrc.json",
+  "babel.config.json",
   ".commitlintrc.json",
   ".cz.json",
   ".editorconfig",
@@ -28,7 +28,7 @@ Array [
 
 exports[`index works 1`] = `
 Array [
-  ".babelrc.json",
+  "babel.config.json",
   ".commitlintrc.json",
   ".cz.json",
   ".devcontainer/devcontainer.json",

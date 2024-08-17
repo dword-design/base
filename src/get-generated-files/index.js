@@ -18,7 +18,7 @@ import npmrc from './npmrc.js';
 export default function () {
   const packageConfig = this.getPackageConfig();
   return {
-    '.babelrc.json': `${babelConfig |> jsonToString({ indent: 2 })}\n`,
+    'babel.config.json': `${babelConfig |> jsonToString({ indent: 2 })}\n`,
     '.commitlintrc.json': `${
       commitlintConfig |> jsonToString({ indent: 2 })
     }\n`,
