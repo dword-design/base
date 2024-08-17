@@ -164,6 +164,7 @@ export default tester(
     },
     puppeteer: async () => {
       await outputFiles({
+        '.yarnrc.yml': 'nodeLinker: node-modules\n',
         'package.json': JSON.stringify(
           {
             name: P.basename(process.cwd()),
@@ -181,8 +182,10 @@ export default tester(
           const browser = await puppeteer.launch()
           await browser.close()
         `,
+        'yarn.lock': '',
       });
 
+      await execaCommand('yarn set version stable');
       await execaCommand('yarn add @dword-design/puppeteer');
       await new Base().testDocker({ log: false });
     },
@@ -230,6 +233,7 @@ export default tester(
           }
 
         `,
+        'yarn.lock': '', // Needed so that Yarn knows that it's not a workspace package
       });
 
       await execaCommand('yarn');

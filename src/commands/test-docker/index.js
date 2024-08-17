@@ -33,7 +33,6 @@ export default async function (options) {
       [
         'run',
         '--rm',
-        '--tty',
         ...(envVariableNames
           |> filter(name => process.env[name] !== undefined)
           |> flatMap(name => ['--env', `${name}=${process.env[name]}`])),
@@ -45,7 +44,7 @@ export default async function (options) {
         'bash',
         '-c',
         [
-          'yarn --frozen-lockfile',
+          'yarn --immutable',
           '&&',
           'yarn test:raw',
           ...(options.updateSnapshots ? [' --update-snapshots'] : []),

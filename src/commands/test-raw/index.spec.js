@@ -46,19 +46,6 @@ export default tester(
         }),
       },
     },
-    'bin: string outside dist': {
-      files: {
-        'package.json': JSON.stringify({
-          bin: './src/cli.js',
-          type: 'module',
-        }),
-      },
-      test() {
-        return expect(this.base.test()).rejects.toThrow(
-          'package.json invalid\ndata/bin must match pattern "^\\.\\/dist\\/"',
-        );
-      },
-    },
     'bin: object outside dist': {
       files: {
         'package.json': JSON.stringify({
@@ -80,6 +67,19 @@ export default tester(
           bin: './dist/cli.js',
           type: 'module',
         }),
+      },
+    },
+    'bin: string outside dist': {
+      files: {
+        'package.json': JSON.stringify({
+          bin: './src/cli.js',
+          type: 'module',
+        }),
+      },
+      test() {
+        return expect(this.base.test()).rejects.toThrow(
+          'package.json invalid\ndata/bin must match pattern "^\\.\\/dist\\/"',
+        );
       },
     },
     'config file errors': {

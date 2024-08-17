@@ -31,7 +31,7 @@ export default config => ({
         },
       },
       {
-        run: "corepack enable",
+        run: 'corepack enable',
       },
       { run: 'git config --global user.email "actions@github.com"' },
       { run: 'git config --global user.name "GitHub Actions"' },
@@ -56,7 +56,7 @@ export default config => ({
         },
       },
       {
-        run: "corepack enable",
+        run: 'corepack enable',
       },
       { run: 'yarn --frozen-lockfile' },
       ...getTestSteps(),
