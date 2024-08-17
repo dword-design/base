@@ -21,13 +21,12 @@ Object {
   ".renovaterc.json": true,
   ".test.env.json": true,
   ".vscode": true,
-  ".yarnrc.yml": true,
   "CHANGELOG.md": true,
   "LICENSE.md": true,
   "README.md": true,
   "package.json": true,
+  "pnpm-lock.yaml": true,
   "src": true,
-  "yarn.lock": true,
 }
 `;
 

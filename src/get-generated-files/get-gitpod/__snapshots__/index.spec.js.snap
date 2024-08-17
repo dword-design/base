@@ -16,7 +16,7 @@ source /home/gitpod/.bashrc",
       "init": "git config --global user.name \\"Sebastian Landwehr\\"
 git config diff.lfs.textconv cat
 git lfs pull
-yarn --frozen-lockfile",
+pnpm install --frozen-lockfile",
     },
   ],
   "vscode": Object {

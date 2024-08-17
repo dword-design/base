@@ -6,7 +6,6 @@ Array [
   "/.env.json",
   "/.nyc_output",
   "/.test.env.json",
-  "/.yarn",
   "/coverage",
   "/node_modules",
   "foo",

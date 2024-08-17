@@ -27,7 +27,7 @@ export default config => ({
       { run: 'corepack enable' },
       { run: 'git config --global user.email "actions@github.com"' },
       { run: 'git config --global user.name "GitHub Actions"' },
-      { run: 'yarn --frozen-lockfile' },
+      { run: 'pnpm install --frozen-lockfile' },
       ...getTestSteps(),
       ...coverageSteps,
       ...checkUnknownFilesSteps,

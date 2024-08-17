@@ -11,7 +11,7 @@ export default config => [
       GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
     },
     name: 'Push changed files',
-    run: `yarn ${ci} push-changed-files`,
+    run: `pnpm ${ci} push-changed-files`,
   },
   ...([
     ...config.preDeploySteps,
@@ -22,7 +22,7 @@ export default config => [
         ...config.deployEnv,
       },
       name: 'Release',
-      run: 'yarn semantic-release',
+      run: 'pnpm semantic-release',
     },
   ] |> map(step => ({ if: "github.ref == 'refs/heads/master'", ...step }))),
 ];

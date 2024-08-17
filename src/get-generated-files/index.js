@@ -13,7 +13,6 @@ import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencie
 import githubFunding from './github-funding.js';
 import githubLabelsConfig from './github-labels.js';
 import githubSyncLabelsConfig from './github-sync-labels.js';
-import yarn from './yarn.js';
 
 export default function () {
   const packageConfig = this.getPackageConfig();
@@ -61,7 +60,6 @@ export default function () {
     '.vscode/settings.json': `${
       this.getVscodeConfig() |> jsonToString({ indent: 2 })
     }\n`,
-    '.yarnrc.yml': yarn |> yaml.stringify,
     'LICENSE.md': this.getLicenseString(),
     'README.md': this.getReadmeString(),
     'package.json': `${

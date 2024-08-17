@@ -23,7 +23,7 @@ export default function () {
           git config --global user.name "${personalData.name}"
           git config diff.lfs.textconv cat
           git lfs pull
-          yarn --frozen-lockfile
+          pnpm install --frozen-lockfile
         `,
       },
     ],

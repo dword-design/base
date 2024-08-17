@@ -16,6 +16,6 @@ export default Object.keys({
   demo: true,
   doc: true,
   'global-test-hooks.js': true,
+  'pnpm-lock.yaml': true,
   'types.d.ts': true,
-  'yarn.lock': true,
 });

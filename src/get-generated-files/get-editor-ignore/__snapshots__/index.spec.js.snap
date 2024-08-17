@@ -18,13 +18,11 @@ Array [
   ".releaserc.json",
   ".renovaterc.json",
   ".vscode",
-  ".yarn",
-  ".yarnrc.yml",
   "CHANGELOG.md",
   "LICENSE.md",
   "coverage",
   "foo",
   "node_modules",
-  "yarn.lock",
+  "pnpm-lock.yaml",
 ]
 `;

@@ -481,7 +481,6 @@ export default tester(
           '.releaserc.json': true,
           '.renovaterc.json': true,
           '.vscode': true,
-          '.yarnrc.yml': true,
           'LICENSE.md': true,
           'README.md': true,
           coverage: true,
