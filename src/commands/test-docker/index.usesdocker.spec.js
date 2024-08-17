@@ -214,7 +214,7 @@ export default tester(
           }
 
         `,
-        'yarn.lock': '', // Needed so that Yarn knows that it's not a workspace package
+        'yarn.lock': '',
       });
 
       await execaCommand('yarn');
