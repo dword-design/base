@@ -30,8 +30,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.1
       '@dword-design/jiti-babel-transform':
-        specifier: ^1.0.13
-        version: 1.0.13
+        specifier: ^2.0.0
+        version: 2.0.0
       '@dword-design/personal-data':
         specifier: ^2.0.3
         version: 2.0.3
@@ -1005,9 +1005,9 @@ packages:
     resolution: {integrity: sha512-iK2fRD2+9vD6ps8OHYeSJCKCMy9H8A2yjTmVuhxqaVKMYZI1pw0hdWWTfB27czmXn7Lgk/B4ftE5zSYvrYmXZg==}
     engines: {node: '>=18'}
 
-  '@dword-design/jiti-babel-transform@1.0.13':
-    resolution: {integrity: sha512-Azq7mrH0dQZNCoiDhMH4aKgJg5TnIX7/tJ/YGR41o7gUE65a6gcsPBQvfDiBKPPqWkuluYrG+2vjat5KSK4GdA==}
-    engines: {node: '>=14'}
+  '@dword-design/jiti-babel-transform@2.0.0':
+    resolution: {integrity: sha512-sT4TsdN6Id9k0ceZZjznmdIqdk94ZPHI21Pv0v6DeXqWRDxW0BoDVAqTbMjStSPV6n5i4AYRpwLBFN3hxYL2Lw==}
+    engines: {node: '>=18'}
 
   '@dword-design/load-pkg@4.0.0':
     resolution: {integrity: sha512-lZxKRusgIqSg2y4jLzZzMPWyhrGPGke3YYmAxj4SoJeUGV4CmvYyhJkJnfA7Yaov7GMXZi64nlhx8D809VDazg==}
@@ -2426,8 +2426,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  electron-to-chromium@1.5.10:
-    resolution: {integrity: sha512-C3RDERDjrNW262GCRvpoer3a0Ksd66CtgDLxMHhzShQ8fhL4kwnpVXsJPAKg9xJjIROXUbLBrvtOzVAjALMIWA==}
+  electron-to-chromium@1.5.11:
+    resolution: {integrity: sha512-R1CccCDYqndR25CaXFd6hp/u9RaaMcftMkphmvuepXr5b1vfLkRml6aWVeBhXJ7rbevHkKEMJtz8XqPf7ffmew==}
 
   emittery@0.8.1:
     resolution: {integrity: sha512-uDfvUjVrfGJJhymx/kz6prltenw1u7WrCg1oa94zYY8xxVpLLUu045LAT0dhDZdXG58/EpPL/5kA180fQ/qudg==}
@@ -7234,11 +7234,11 @@ snapshots:
       lodash: 4.17.21
       tinycolor2: 1.6.0
 
-  '@dword-design/jiti-babel-transform@1.0.13':
+  '@dword-design/jiti-babel-transform@2.0.0':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/preset-env': 7.25.3(@babel/core@7.25.2)
-      '@dword-design/functions': 5.0.27
+      '@dword-design/functions': 6.0.1
       babel-plugin-transform-import-meta: 2.2.1(@babel/core@7.25.2)
       depcheck-package-name: 3.0.1
     transitivePeerDependencies:
@@ -8381,7 +8381,7 @@ snapshots:
   browserslist@4.23.3:
     dependencies:
       caniuse-lite: 1.0.30001651
-      electron-to-chromium: 1.5.10
+      electron-to-chromium: 1.5.11
       node-releases: 2.0.18
       update-browserslist-db: 1.1.0(browserslist@4.23.3)
 
@@ -8988,7 +8988,7 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  electron-to-chromium@1.5.10: {}
+  electron-to-chromium@1.5.11: {}
 
   emittery@0.8.1: {}
 
