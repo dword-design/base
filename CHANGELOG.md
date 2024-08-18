@@ -1,3 +1,12 @@
+## [11.2.2](https://github.com/dword-design/base/compare/v11.2.1...v11.2.2) (2024-08-18)
+
+
+### Bug Fixes
+
+* babel.config.json ([50aca37](https://github.com/dword-design/base/commit/50aca375cc9da63649bb4382ce4d1ad339f9fd75))
+* foo ([04d9f6c](https://github.com/dword-design/base/commit/04d9f6cbae687e7bf0f98eede4857ee2ac326fc7))
+* upgrade jiti-babel-transform ([9457b22](https://github.com/dword-design/base/commit/9457b22caba6217312a5d86c3dee47313d25ad22))
+
 ## [11.2.1](https://github.com/dword-design/base/compare/v11.2.0...v11.2.1) (2024-08-17)
 
 
