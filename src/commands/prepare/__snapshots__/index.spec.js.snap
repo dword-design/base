@@ -2,7 +2,6 @@
 
 exports[`index valid 1`] = `
 Object {
-  "babel.config.json": true,
   ".commitlintrc.json": true,
   ".cz.json": true,
   ".devcontainer": true,
@@ -25,6 +24,7 @@ Object {
   "CHANGELOG.md": true,
   "LICENSE.md": true,
   "README.md": true,
+  "babel.config.json": true,
   "package.json": true,
   "pnpm-lock.yaml": true,
   "src": true,

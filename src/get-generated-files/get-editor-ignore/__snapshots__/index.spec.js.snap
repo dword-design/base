@@ -2,7 +2,6 @@
 
 exports[`index valid 1`] = `
 Array [
-  "babel.config.json",
   ".commitlintrc.json",
   ".cz.json",
   ".devcontainer",
@@ -20,6 +19,7 @@ Array [
   ".vscode",
   "CHANGELOG.md",
   "LICENSE.md",
+  "babel.config.json",
   "coverage",
   "foo",
   "node_modules",

@@ -5,7 +5,6 @@ Object {
   "editor.tabSize": 2,
   "files.autoSave": "off",
   "files.exclude": Object {
-    "babel.config.json": true,
     ".commitlintrc.json": true,
     ".cz.json": true,
     ".devcontainer": true,
@@ -23,6 +22,7 @@ Object {
     ".vscode": true,
     "CHANGELOG.md": true,
     "LICENSE.md": true,
+    "babel.config.json": true,
     "bar": true,
     "coverage": true,
     "foo": true,
