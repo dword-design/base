@@ -1,3 +1,10 @@
+## [11.2.5](https://github.com/dword-design/base/compare/v11.2.4...v11.2.5) (2024-10-04)
+
+
+### Bug Fixes
+
+* trigger release ([b203c1d](https://github.com/dword-design/base/commit/b203c1d26aabad914133652ed62767be016a223e))
+
 ## [11.2.4](https://github.com/dword-design/base/compare/v11.2.3...v11.2.4) (2024-10-04)
 
 
