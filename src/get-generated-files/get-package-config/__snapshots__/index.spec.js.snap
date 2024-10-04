@@ -61,6 +61,11 @@ Object {
   "peerDependencies": Object {
     "nuxt": "^1.0.0",
   },
+  "pnpm": Object {
+    "overrides": Object {
+      "bulma": "^1",
+    },
+  },
   "publishConfig": Object {
     "access": "public",
   },

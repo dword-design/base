@@ -41,16 +41,12 @@ export default tester(
           name: 'foo',
           optionalDependencies: { typescript: '^1.0.0' },
           peerDependencies: { nuxt: '^1.0.0' },
+          pnpm: { overrides: { bulma: '^1' } },
           publishConfig: { access: 'public' },
           scripts: { foo: 'echo \\"foo\\"', test: 'echo \\"foo\\"' },
           type: 'module',
           types: 'types.d.ts',
           version: '1.1.0',
-          pnpm: {
-            overrides: {
-              bulma: '^1',
-            }
-          },
         }),
       );
 
