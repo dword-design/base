@@ -1,3 +1,11 @@
+## [11.2.4](https://github.com/dword-design/base/compare/v11.2.3...v11.2.4) (2024-10-04)
+
+
+### Bug Fixes
+
+* fix snapshots ([cb2c461](https://github.com/dword-design/base/commit/cb2c46169157c64cab4b6861af9f5b8530526a42))
+* package overrides ([deab06c](https://github.com/dword-design/base/commit/deab06c7eb4e72b1c776a26b282cf77df51e291c))
+
 ## [11.2.3](https://github.com/dword-design/base/compare/v11.2.2...v11.2.3) (2024-08-18)
 
 
