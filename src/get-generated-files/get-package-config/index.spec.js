@@ -46,6 +46,11 @@ export default tester(
           type: 'module',
           types: 'types.d.ts',
           version: '1.1.0',
+          pnpm: {
+            overrides: {
+              bulma: '^1',
+            }
+          },
         }),
       );
 

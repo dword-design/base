@@ -256,6 +256,13 @@ export default tester(
         'src/index.spec.js': "import '@/node_modules-foo.js'",
       },
     },
+    'package overrides': {
+      files: {
+        'package.json': JSON.stringify({
+          pnpm: { overrides: { bulma: '^1' } },
+        }),
+      },
+    },
     pattern: {
       files: {
         'README.md': '',

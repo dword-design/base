@@ -25,6 +25,12 @@ export default {
     keywords: { items: { type: 'string' }, type: 'array' },
     name: { pattern: packageNameRegex.source, type: 'string' },
     packageManager: { type: 'string' },
+    pnpm: {
+      properties: {
+        overrides: { additionalProperties: { type: 'string' }, type: 'object' },
+      },
+      type: 'object',
+    },
     version: { type: 'string' },
   },
   type: 'object',
