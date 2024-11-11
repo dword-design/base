@@ -45,6 +45,7 @@ jobs:
           lfs: true
       - uses: actions/setup-node@v4
         with:
+          check-latest: true
           node-version: ${{ matrix.node }}
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
