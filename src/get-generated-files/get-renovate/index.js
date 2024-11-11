@@ -1,4 +1,5 @@
 import deepmerge from 'deepmerge';
+import getRegexManagerString from './get-regex-manager-string/index.js'
 
 export default function () {
   return deepmerge(
@@ -20,7 +21,7 @@ export default function () {
           datasourceTemplate: 'github-tags',
           fileMatch: ['\\.js$'],
           matchStrings: [
-            '(^|\\s)gitHubAction`(?<depName>.*?)@v(?<currentValue>.*?)`',
+            getRegexManagerString('githubAction', '(?<depName>.*?)@v(?<currentValue>.*?)'),
           ],
           versioningTemplate: 'npm',
         },
@@ -28,7 +29,7 @@ export default function () {
           datasourceTemplate: 'node-version',
           depNameTemplate: 'node',
           fileMatch: ['\\.js$'],
-          matchStrings: ['(^|\\s)nodejsVersion`(?<currentValue>.*?)`'],
+          matchStrings: getRegexManagerString('nodejsVersion', '(?<currentValue>.*?)'),
           versioningTemplate: 'node',
         },
       ],
