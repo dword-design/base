@@ -11,6 +11,7 @@ Object {
   "git": undefined,
   "gitignore": Array [],
   "macos": true,
+  "minNodeVersion": null,
   "name": "base-config-foo",
   "nodeVersion": 20,
   "preDeploySteps": Array [],
@@ -27,6 +28,7 @@ $ yarn add foo
   "supportedNodeVersions": Array [
     18,
     20,
+    22,
   ],
   "syncKeywords": true,
   "windows": true,
@@ -56,6 +58,7 @@ Object {
     "foo",
   ],
   "macos": true,
+  "minNodeVersion": null,
   "name": "base-config-foo",
   "nodeVersion": 10,
   "packageBaseConfig": Object {

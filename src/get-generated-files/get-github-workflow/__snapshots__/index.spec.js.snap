@@ -125,6 +125,10 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
+              "node": 22,
+              "os": "ubuntu-latest",
+            },
+            Object {
               "node": 20,
               "os": "macos-latest",
             },
@@ -274,6 +278,10 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
+              "node": 22,
+              "os": "ubuntu-latest",
+            },
+            Object {
               "node": 20,
               "os": "windows-latest",
             },
@@ -416,6 +424,10 @@ Object {
             },
             Object {
               "node": 20,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 22,
               "os": "ubuntu-latest",
             },
             Object {
@@ -658,6 +670,10 @@ Object {
               "os": "ubuntu-latest",
             },
             Object {
+              "node": 22,
+              "os": "ubuntu-latest",
+            },
+            Object {
               "node": 20,
               "os": "macos-latest",
             },
@@ -806,6 +822,10 @@ Object {
             },
             Object {
               "node": 20,
+              "os": "ubuntu-latest",
+            },
+            Object {
+              "node": 22,
               "os": "ubuntu-latest",
             },
             Object {

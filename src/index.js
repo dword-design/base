@@ -113,6 +113,7 @@ class Base {
       gitignore: [],
       lint: identity,
       macos: true,
+      minNodeVersion: null,
       nodeVersion: 20,
       preDeploySteps: [],
       prepare: identity,
@@ -129,7 +130,6 @@ class Base {
       `,
       seeAlso: [],
       supportedNodeVersions: [18, 20, 22],
-      minNodeVersion: null,
       syncKeywords: true,
       windows: true,
     };

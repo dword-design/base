@@ -46,7 +46,9 @@ export default function () {
       repository: `dword-design/${this.config.git.project}`,
     }),
     author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
-    engines: { node: `>=${this.config.minNodeVersion || this.config.supportedNodeVersions[0]}` },
+    engines: {
+      node: `>=${this.config.minNodeVersion || this.config.supportedNodeVersions[0]}`,
+    },
     files: ['dist', ...(fs.existsSync('types.d.ts') ? ['types.d.ts'] : [])],
     license: 'MIT',
     ...this.config.packageConfig,
