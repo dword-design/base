@@ -128,7 +128,8 @@ class Base {
         \`\`\`
       `,
       seeAlso: [],
-      supportedNodeVersions: [18, 20],
+      supportedNodeVersions: [18, 20, 22],
+      minNodeVersion: null,
       syncKeywords: true,
       windows: true,
     };

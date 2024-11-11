@@ -1,8 +1,8 @@
+import dotenv from '@dword-design/dotenv-json-extended';
 import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
-import dotenv from '@dword-design/dotenv-json-extended';
 
 import { Base } from '@/src/index.js';
 

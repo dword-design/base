@@ -4,5 +4,7 @@
     "ignoreMatches": [
       "husky"
     ]
-  }
+  },
+  "supportedNodeVersions": [20, 22],
+  "minNodeVersion": 18
 }
