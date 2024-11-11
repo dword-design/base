@@ -28,6 +28,17 @@
         "(^|\\s)gitHubAction`(?<depName>.*?)@v(?<currentValue>.*?)`"
       ],
       "versioningTemplate": "npm"
+    },
+    {
+      "datasourceTemplate": "node-version",
+      "depNameTemplate": "node",
+      "fileMatch": [
+        "\\.js$"
+      ],
+      "matchStrings": [
+        "(^|\\s)nodejsVersion`(?<currentValue>.*?)`"
+      ],
+      "versioningTemplate": "node"
     }
   ],
   "semanticCommitScope": null

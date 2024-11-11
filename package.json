@@ -90,11 +90,12 @@
     "@dword-design/tester-plugin-tmp-dir": "^2.0.0",
     "node-version": "^3.0.0",
     "p-event": "^6.0.0",
+    "renovate": "^39.9.5",
     "rimraf": "^5.0.1",
     "sharp": "^0.32.1",
     "unify-mocha-output": "^2.0.0"
   },
-  "packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247",
+  "packageManager": "pnpm@10.0.0-alpha.0+sha512.856941ef22665d2f3e41c04e8d86ed757ef057fb2bc35011698bfa988ef5817cc1cdd28bb883e7f23f0568c75de5544d4750211d4276b9ba6d55369eb207a549",
   "engines": {
     "node": ">=18"
   },
