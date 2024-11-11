@@ -21,7 +21,7 @@ export default function () {
           datasourceTemplate: 'github-tags',
           fileMatch: ['\\.js$'],
           matchStrings: [
-            getRegexManagerString('githubAction', '(?<depName>.*?)@v(?<currentValue>.*?)'),
+            getRegexManagerString('gitHubAction', '(?<depName>.*?)@v(?<currentValue>.*?)'),
           ],
           versioningTemplate: 'npm',
         },
