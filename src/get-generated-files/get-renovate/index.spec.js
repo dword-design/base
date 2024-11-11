@@ -16,29 +16,24 @@ export default tester(
         new Base({ renovateConfig: { labels: ['foo'] } }).getRenovateConfig()
           .labels,
       ).toEqual(['maintenance', 'foo']),
-    'lock file fix commit type': async () => {
+    'github action': async () => {
       await execaCommand('git init');
       await execaCommand('git config user.email "foo@bar.de"');
       await execaCommand('git config user.name "foo"');
-
-      await fs.outputFile(
-        'package.json',
-        JSON.stringify({ dependencies: { globby: '^13.0.0' } }),
-      );
-
-      await execaCommand('pnpm install');
-      const base = new Base({ isLockFileFixCommitType: true });
+      await fs.outputFile('index.js', 'gitHubAction`actions/checkout@v3`');
+      const base = new Base();
       await base.prepare();
       await execaCommand('git add .');
       await execa('git', ['commit', '-m', 'feat: init']);
 
       const output = (
-        await execaCommand('renovate --platform=local --dry-run', {
-          env: { LOG_LEVEL: 'debug' },
-        })
+        await execaCommand(
+          `renovate --platform=local --dry-run --host-rules=[{matchHost:'api.github.com',token:'not-empty',hostType:'github'}]`,
+          { env: { LOG_LEVEL: 'debug' } },
+        )
       ).stdout;
 
-      expect(output).toMatch('fix: lock file maintenance');
+      expect(output).toMatch(/renovate\/actions-checkout-\d+\.x/);
     },
     'lock file': async () => {
       await execaCommand('git init');
@@ -64,6 +59,48 @@ export default tester(
 
       expect(output).toMatch('chore: lock file maintenance');
     },
+    'lock file fix commit type': async () => {
+      await execaCommand('git init');
+      await execaCommand('git config user.email "foo@bar.de"');
+      await execaCommand('git config user.name "foo"');
+
+      await fs.outputFile(
+        'package.json',
+        JSON.stringify({ dependencies: { globby: '^13.0.0' } }),
+      );
+
+      await execaCommand('pnpm install');
+      const base = new Base({ isLockFileFixCommitType: true });
+      await base.prepare();
+      await execaCommand('git add .');
+      await execa('git', ['commit', '-m', 'feat: init']);
+
+      const output = (
+        await execaCommand('renovate --platform=local --dry-run', {
+          env: { LOG_LEVEL: 'debug' },
+        })
+      ).stdout;
+
+      expect(output).toMatch('fix: lock file maintenance');
+    },
+    'nodejs version': async () => {
+      await execaCommand('git init');
+      await execaCommand('git config user.email "foo@bar.de"');
+      await execaCommand('git config user.name "foo"');
+      await fs.outputFile('index.js', 'nodejsVersion`18`');
+      const base = new Base();
+      await base.prepare();
+      await execaCommand('git add .');
+      await execa('git', ['commit', '-m', 'feat: init']);
+
+      const output = (
+        await execaCommand('renovate --platform=local --dry-run', {
+          env: { LOG_LEVEL: 'debug' },
+        })
+      ).stdout;
+
+      expect(output).toMatch(/renovate\/node-\d+\.x/);
+    },
     'outdated version in package.json': async () => {
       await execaCommand('git init');
       await execaCommand('git config user.email "foo@bar.de"');
@@ -85,43 +122,7 @@ export default tester(
         })
       ).stdout;
 
-      expect(output).toMatch(/renovate\/globby\-\d+\.x/);
-    },
-    'github action': async () => {
-      await execaCommand('git init');
-      await execaCommand('git config user.email "foo@bar.de"');
-      await execaCommand('git config user.name "foo"');
-
-      await fs.outputFile('index.js', 'gitHubAction`actions/checkout@v3`');
-
-      const base = new Base();
-      await base.prepare();
-      await execaCommand('git add .');
-      await execa('git', ['commit', '-m', 'feat: init']);
-      const output = (
-        await execaCommand(`renovate --platform=local --dry-run --host-rules=[{matchHost:'api.github.com',token:'not-empty',hostType:'github'}]`, {
-          env: { LOG_LEVEL: 'debug' },
-        })
-      ).stdout;
-      expect(output).toMatch(/renovate\/actions\-checkout\-\d+\.x/);
-    },
-    'nodejs version': async () => {
-      await execaCommand('git init');
-      await execaCommand('git config user.email "foo@bar.de"');
-      await execaCommand('git config user.name "foo"');
-
-      await fs.outputFile('index.js', 'nodejsVersion`18`');
-
-      const base = new Base();
-      await base.prepare();
-      await execaCommand('git add .');
-      await execa('git', ['commit', '-m', 'feat: init']);
-      const output = (
-        await execaCommand('renovate --platform=local --dry-run', {
-          env: { LOG_LEVEL: 'debug' },
-        })
-      ).stdout;
-      expect(output).toMatch(/renovate\/node\-\d+\.x/);
+      expect(output).toMatch(/renovate\/globby-\d+\.x/);
     },
   },
   [testerPluginTmpDir()],
