@@ -1,3 +1,22 @@
+## [11.2.6](https://github.com/dword-design/base/compare/v11.2.5...v11.2.6) (2024-11-11)
+
+
+### Bug Fixes
+
+* better tests for renovate ([cbf73ae](https://github.com/dword-design/base/commit/cbf73aed5cb3c01211baeba13d19d9963c994a84))
+* fix test ([ab3e5b3](https://github.com/dword-design/base/commit/ab3e5b32357ea2d2b7677d76295d284f6a6dc05f))
+* foo ([794a707](https://github.com/dword-design/base/commit/794a70781bfedab7524160abd317e85884c2f25f))
+* foo ([684d36e](https://github.com/dword-design/base/commit/684d36e155c826ef6914533e37e2918b94c96131))
+* foo ([2c48db5](https://github.com/dword-design/base/commit/2c48db5104b9eb98d0ef7911a706cec515553808))
+* foo ([3aaffac](https://github.com/dword-design/base/commit/3aaffac6be7473f1247eedc342056b5c1471b568))
+* foo ([9d8e3c1](https://github.com/dword-design/base/commit/9d8e3c1b9454d8b6ebbd1a1907b815623b9cfbfc))
+* foo ([80ea2d4](https://github.com/dword-design/base/commit/80ea2d49ae4ceb9373220bad6cac0c72d42cd352))
+* foo ([17f8895](https://github.com/dword-design/base/commit/17f8895672f78cf971b67b03a31f85737e68189b))
+* foo ([b03f825](https://github.com/dword-design/base/commit/b03f825a66883b6ba0ed767898f161a18dad4d99))
+* foo ([d5d6df0](https://github.com/dword-design/base/commit/d5d6df0cee615e446ff80e68f1677032cd0974f0))
+* nodejsVersion template string ([245e565](https://github.com/dword-design/base/commit/245e565320108d9083c2cc230d1f5ed98a78874b))
+* refactoring ([c411241](https://github.com/dword-design/base/commit/c411241a9fc9f71381d05af138ea0f0c1ef74e2e))
+
 ## [11.2.5](https://github.com/dword-design/base/compare/v11.2.4...v11.2.5) (2024-10-04)
 
 
