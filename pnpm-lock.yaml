@@ -198,9 +198,6 @@ importers:
       '@dword-design/tester-plugin-tmp-dir':
         specifier: ^2.0.0
         version: 2.1.26
-      node-version:
-        specifier: ^3.0.0
-        version: 3.0.0
       p-event:
         specifier: ^6.0.0
         version: 6.0.1
@@ -5843,10 +5840,6 @@ packages:
 
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
-
-  node-version@3.0.0:
-    resolution: {integrity: sha512-lOtS3Vaqo4GntMFYyH6BXbpiqgD5F+5ycBwDYaCjzBA9pKK9G1j6cKVtu3HU0HATDTikcWOTn8MxQmj/jo4iTQ==}
-    engines: {node: '>=14.0.0'}
 
   nopt@7.2.1:
     resolution: {integrity: sha512-taM24ViiimT/XntxbPyJQzCG+p4EKOpgD3mxFwW38mGjVUrfERQOeY4EDHjdnptttfHuHQXFx+lTP08Q+mLa/w==}
@@ -15704,8 +15697,6 @@ snapshots:
       process-on-spawn: 1.0.0
 
   node-releases@2.0.18: {}
-
-  node-version@3.0.0: {}
 
   nopt@7.2.1:
     dependencies:
