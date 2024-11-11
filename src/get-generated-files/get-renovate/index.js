@@ -20,9 +20,19 @@ export default function () {
           datasourceTemplate: 'github-tags',
           fileMatch: ['\\.js$'],
           matchStrings: [
-            '(^|\\s)gitHubAction`(?<depName>.*?)@v(?<currentValue>.*?)`',
+            '(?<!\\w)gitHubAction`(?<depName>.*?)@v(?<currentValue>.*?)`',
           ],
           versioningTemplate: 'npm',
+        },
+        {
+          datasourceTemplate: 'node-version',
+          fileMatch: ['\\.js$'],
+          depNameTemplate: 'node',
+          datasourceTemplate: 'node-version',
+          versioningTemplate: 'node',
+          matchStrings: [
+            '(?<!\\w)nodejsVersion`(?<currentValue>.*?)`',
+          ],
         },
       ],
       semanticCommitScope: null,
