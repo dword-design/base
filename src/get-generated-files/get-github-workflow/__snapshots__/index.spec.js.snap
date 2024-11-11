@@ -82,6 +82,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
+            "check-latest": true,
             "node-version": "\${{ matrix.node }}",
           },
         },
@@ -235,6 +236,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
+            "check-latest": true,
             "node-version": "\${{ matrix.node }}",
           },
         },
@@ -384,6 +386,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
+            "check-latest": true,
             "node-version": "\${{ matrix.node }}",
           },
         },
@@ -475,6 +478,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
+            "check-latest": true,
             "node-version": 20,
           },
         },
@@ -627,6 +631,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
+            "check-latest": true,
             "node-version": "\${{ matrix.node }}",
           },
         },
@@ -781,6 +786,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
+            "check-latest": true,
             "node-version": "\${{ matrix.node }}",
           },
         },
@@ -1024,6 +1030,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
+            "check-latest": true,
             "node-version": 14,
           },
         },
@@ -1119,6 +1126,7 @@ Object {
         Object {
           "uses": "actions/setup-node@v4",
           "with": Object {
+            "check-latest": true,
             "node-version": 14,
           },
         },

@@ -22,7 +22,7 @@ export default config => ({
       },
       {
         uses: gitHubAction`actions/setup-node@v4`,
-        with: { 'node-version': config.nodeVersion, 'check-latest': true },
+        with: { 'check-latest': true, 'node-version': config.nodeVersion },
       },
       { run: 'corepack enable' },
       { run: 'git config --global user.email "actions@github.com"' },

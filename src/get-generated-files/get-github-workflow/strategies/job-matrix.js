@@ -47,7 +47,7 @@ export default config => ({
       },
       {
         uses: gitHubAction`actions/setup-node@v4`,
-        with: { 'node-version': '${{ matrix.node }}', 'check-latest': true },
+        with: { 'check-latest': true, 'node-version': '${{ matrix.node }}' },
       },
       { run: 'corepack enable' },
       { run: 'pnpm install --frozen-lockfile' },
