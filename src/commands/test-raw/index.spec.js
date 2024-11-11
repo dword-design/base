@@ -12,7 +12,6 @@ import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import packageName from 'depcheck-package-name';
 import fs from 'fs-extra';
 import { globby } from 'globby';
-import nodeVersion from 'node-version';
 import outputFiles from 'output-files';
 import P from 'path';
 import unifyMochaOutput from 'unify-mocha-output';
@@ -169,9 +168,7 @@ export default tester(
     'json errors': {
       files: { 'src/test.json': 'foo bar' },
       test() {
-        return expect(this.base.test()).rejects.toThrow(
-          `error  Unexpected token ${nodeVersion.major === '20' ? "'o'" : 'o'}`,
-        );
+        return expect(this.base.test()).rejects.toThrow("error  Unexpected token 'o'");
       },
     },
     'linting errors': {
@@ -235,7 +232,7 @@ export default tester(
         `);
       },
     },
-    'node_modules not transpiled': {
+    'esm in node_modules': {
       files: {
         'node_modules/foo/index.js': 'export default 1',
         'package.json': JSON.stringify({

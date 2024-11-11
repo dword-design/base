@@ -28,7 +28,6 @@ $ yarn add foo
   "supportedNodeVersions": Array [
     18,
     20,
-    22,
   ],
   "syncKeywords": true,
   "windows": true,

@@ -5,6 +5,6 @@
       "husky"
     ]
   },
-  "supportedNodeVersions": [20, 22],
+  "supportedNodeVersions": [20],
   "minNodeVersion": 18
 }
