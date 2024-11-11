@@ -189,6 +189,9 @@ importers:
       '@dword-design/chdir':
         specifier: ^3.0.0
         version: 3.0.2
+      '@dword-design/dotenv-json-extended':
+        specifier: ^2.0.25
+        version: 2.0.25
       '@dword-design/tester':
         specifier: ^2.0.0
         version: 2.0.19
@@ -1201,6 +1204,10 @@ packages:
     resolution: {integrity: sha512-WoVDnuaohxINpx8g9ZdkhmxvU1etVzfNfpDNgi/LlS6Sk8ef8wciF1GQ3aDuX2+BlEUZJALKyqebqoOrxCUfOA==}
     engines: {node: '>=10'}
     hasBin: true
+
+  '@dword-design/dotenv-json-extended@2.0.25':
+    resolution: {integrity: sha512-udcxvO5+IcJeMAyOYAMrPoNiAqRfurodU27gCn4+l86k3YyGBqMFLm68w1jGfovz9GUc1EcN8Hqwb9tMQTIGFA==}
+    engines: {node: '>=14'}
 
   '@dword-design/endent@1.4.1':
     resolution: {integrity: sha512-e2sCTzth5kyRdM0o+yEb5wBVzUdJL8Y6HblRGRV0Bif0knf1ZjRLhUjdCrqM+Muirb68X/xJzgdRDJVmLqgXGA==}
@@ -2998,6 +3005,9 @@ packages:
   confusing-browser-globals@1.0.11:
     resolution: {integrity: sha512-JsPKdmh8ZkmnHxDk55FZ1TqVLvEQTvoByJZRN9jzI0UjxK/QgAmsphz7PGtqgPieQZ/CQcHWXCR7ATDNhGe+YA==}
 
+  constant-case@3.0.4:
+    resolution: {integrity: sha512-I2hSBi7Vvs7BEuJDr5dDHfzb/Ruj3FyvFyh7KLilAjNQw3Be+xgqUBA2W6scVEcL0hL1dwPRtIqEPVUCKkSsyQ==}
+
   conventional-changelog-angular@7.0.0:
     resolution: {integrity: sha512-ROjNchA9LgfNMTTFSIWPzebCwOGFdgkEq45EnvvrmSLvCtAw0HSmrCs7/ty+wAeYUZyNay0YMUNYFTRL72PkBQ==}
     engines: {node: '>=16'}
@@ -3967,6 +3977,10 @@ packages:
   find-up@5.0.0:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
+
+  find-up@6.3.0:
+    resolution: {integrity: sha512-v2ZsoEuVHYy8ZIlYqwPe/39Cy+cFDzp4dXPaxNvkEuouymu+2Jbz0PxpKarJHYJTmv2HWT3O382qY8l4jMWthw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   find-up@7.0.0:
     resolution: {integrity: sha512-YyZM99iHrqLKjmt4LJDj58KI+fYyufRLBSYcqycxf//KpBk9FoewoGX0450m9nB44qrZnovzC2oeP5hUibxc/g==}
@@ -5429,6 +5443,9 @@ packages:
     resolution: {integrity: sha512-Ajzxb8CM6WAnFjgiloPsI3bF+WCxcvhdIG3KNA2KN962+tdBsHcuQ4k4qX/EcS/2CRkcc0iAkR956Nib6aXU/Q==}
     engines: {node: '>=0.10.0'}
 
+  lower-case@2.0.2:
+    resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
+
   lowercase-keys@2.0.0:
     resolution: {integrity: sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA==}
     engines: {node: '>=8'}
@@ -5785,6 +5802,9 @@ packages:
 
   nice-try@1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
+
+  no-case@3.0.4:
+    resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
 
   node-abi@3.65.0:
     resolution: {integrity: sha512-ThjYBfoDNr08AWx6hGaRbfPwxKV9kVzAzOzlLKbk2CuqXE2xnCh+cbAGnwM3t8Lq4v9rUB7VfondlkBckcJrVA==}
@@ -7542,6 +7562,9 @@ packages:
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
+
+  upper-case@2.0.2:
+    resolution: {integrity: sha512-KgdgDGJt2TpuwBUIjgG6lzw2GWFRCW9Qkfkiv0DxqHHLYJHmtmdUIKcZd8rHgFSjopVTlw6ggzCm1b8MFQwikg==}
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
@@ -9706,6 +9729,14 @@ snapshots:
       yargs: 16.2.0
     transitivePeerDependencies:
       - supports-color
+
+  '@dword-design/dotenv-json-extended@2.0.25':
+    dependencies:
+      '@dword-design/functions': 4.1.7
+      ajv: 8.17.1
+      constant-case: 3.0.4
+      find-up: 6.3.0
+      fs-extra: 10.1.0
 
   '@dword-design/endent@1.4.1':
     dependencies:
@@ -12124,6 +12155,12 @@ snapshots:
 
   confusing-browser-globals@1.0.11: {}
 
+  constant-case@3.0.4:
+    dependencies:
+      no-case: 3.0.4
+      tslib: 2.8.1
+      upper-case: 2.0.2
+
   conventional-changelog-angular@7.0.0:
     dependencies:
       compare-func: 2.0.0
@@ -13341,6 +13378,11 @@ snapshots:
     dependencies:
       locate-path: 6.0.0
       path-exists: 4.0.0
+
+  find-up@6.3.0:
+    dependencies:
+      locate-path: 7.2.0
+      path-exists: 5.0.0
 
   find-up@7.0.0:
     dependencies:
@@ -15173,6 +15215,10 @@ snapshots:
 
   longest@2.0.1: {}
 
+  lower-case@2.0.2:
+    dependencies:
+      tslib: 2.8.1
+
   lowercase-keys@2.0.0: {}
 
   lru-cache@10.4.3: {}
@@ -15605,6 +15651,11 @@ snapshots:
   nerf-dart@1.0.0: {}
 
   nice-try@1.0.5: {}
+
+  no-case@3.0.4:
+    dependencies:
+      lower-case: 2.0.2
+      tslib: 2.8.1
 
   node-abi@3.65.0:
     dependencies:
@@ -17184,7 +17235,7 @@ snapshots:
   synckit@0.9.1:
     dependencies:
       '@pkgr/core': 0.1.1
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   tagged-template-noop@2.1.1: {}
 
@@ -17544,6 +17595,10 @@ snapshots:
       browserslist: 4.23.3
       escalade: 3.1.2
       picocolors: 1.0.1
+
+  upper-case@2.0.2:
+    dependencies:
+      tslib: 2.8.1
 
   uri-js@4.4.1:
     dependencies:

@@ -2,8 +2,11 @@ import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
+import dotenv from '@dword-design/dotenv-json-extended';
 
 import { Base } from '@/src/index.js';
+
+dotenv.config();
 
 export default tester(
   {
@@ -28,7 +31,7 @@ export default tester(
 
       const output = (
         await execaCommand(
-          `renovate --platform=local --dry-run --host-rules=[{matchHost:'api.github.com',token:'not-empty',hostType:'github'}]`,
+          `renovate --platform=local --dry-run --host-rules=[{matchHost:'api.github.com',hostType:'github',token:'${process.env.RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN}'}] --cache-dir .`,
           { env: { LOG_LEVEL: 'debug' } },
         )
       ).stdout;

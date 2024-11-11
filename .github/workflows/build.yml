@@ -50,6 +50,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TEST_RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.TEST_RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN }}
         run: pnpm test
       - if: failure()
         uses: actions/upload-artifact@v3

@@ -86,6 +86,7 @@
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "@dword-design/chdir": "^3.0.0",
+    "@dword-design/dotenv-json-extended": "^2.0.25",
     "@dword-design/tester": "^2.0.0",
     "@dword-design/tester-plugin-tmp-dir": "^2.0.0",
     "node-version": "^3.0.0",

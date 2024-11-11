@@ -25,7 +25,7 @@
         "\\.js$"
       ],
       "matchStrings": [
-        "(^|\\s)gitHubAction`(?<depName>.*?)@v(?<currentValue>.*?)`"
+        "(^|[^\\w])gitHubAction`(?<depName>.*?)@v(?<currentValue>.*?)`"
       ],
       "versioningTemplate": "npm"
     },
@@ -36,7 +36,7 @@
         "\\.js$"
       ],
       "matchStrings": [
-        "(^|\\s)nodejsVersion`(?<currentValue>.*?)`"
+        "(^|[^\\w])nodejsVersion`(?<currentValue>.*?)`"
       ],
       "versioningTemplate": "node"
     }
