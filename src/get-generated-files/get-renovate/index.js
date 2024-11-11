@@ -29,7 +29,7 @@ export default function () {
           datasourceTemplate: 'node-version',
           depNameTemplate: 'node',
           fileMatch: ['\\.js$'],
-          matchStrings: getRegexManagerString('nodejsVersion', '(?<currentValue>.*?)'),
+          matchStrings: [getRegexManagerString('nodejsVersion', '(?<currentValue>.*?)')],
           versioningTemplate: 'node',
         },
       ],
