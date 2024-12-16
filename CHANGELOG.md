@@ -1,3 +1,10 @@
+## [11.2.7](https://github.com/dword-design/base/compare/v11.2.6...v11.2.7) (2024-12-16)
+
+
+### Bug Fixes
+
+* editor ignore npmrc ([#769](https://github.com/dword-design/base/issues/769)) ([56ddba4](https://github.com/dword-design/base/commit/56ddba4e55bedbd4199fdd62f49c142bb63b372d))
+
 ## [11.2.6](https://github.com/dword-design/base/compare/v11.2.5...v11.2.6) (2024-11-11)
 
 
