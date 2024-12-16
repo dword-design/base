@@ -11,6 +11,7 @@ export default [
   '.gitpod.Dockerfile',
   '.gitpod.yml',
   '.husky',
+  '.npmrc',
   '.nyc_output',
   '.releaserc.json',
   '.renovaterc.json',
