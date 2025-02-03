@@ -1,3 +1,10 @@
+## [11.2.8](https://github.com/dword-design/base/compare/v11.2.7...v11.2.8) (2025-02-03)
+
+
+### Bug Fixes
+
+* update dependency actions/upload-artifact to v4 ([#736](https://github.com/dword-design/base/issues/736)) ([00be5c6](https://github.com/dword-design/base/commit/00be5c63ac44a7de1e0683cb4bb47b4dc7050283))
+
 ## [11.2.7](https://github.com/dword-design/base/compare/v11.2.6...v11.2.7) (2024-12-16)
 
 
