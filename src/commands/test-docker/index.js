@@ -44,7 +44,7 @@ export default async function (options) {
         'bash',
         '-c',
         [
-          'pnpm install --frozen-lockfile',
+          'COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile',
           '&&',
           'pnpm test:raw',
           ...(options.updateSnapshots ? [' --update-snapshots'] : []),

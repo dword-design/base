@@ -21,7 +21,7 @@ jobs:
       - run: corepack enable
       - run: git config --global user.email "actions@github.com"
       - run: git config --global user.name "GitHub Actions"
-      - run: pnpm install --frozen-lockfile
+      - run: COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile
       - run: pnpm checkUnknownFiles
       - run: pnpm lint
       - env:
@@ -48,7 +48,7 @@ jobs:
           check-latest: true
           node-version: ${{ matrix.node }}
       - run: corepack enable
-      - run: pnpm install --frozen-lockfile
+      - run: COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TEST_RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.TEST_RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN }}
