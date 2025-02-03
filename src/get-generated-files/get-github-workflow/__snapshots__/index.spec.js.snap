@@ -42,7 +42,10 @@ Object {
           "run": "git config --global user.name \\"GitHub Actions\\"",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "run": "pnpm checkUnknownFiles",
@@ -90,7 +93,10 @@ Object {
           "run": "corepack enable",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "env": Object {
@@ -192,7 +198,10 @@ Object {
           "run": "git config --global user.name \\"GitHub Actions\\"",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "run": "pnpm checkUnknownFiles",
@@ -240,7 +249,10 @@ Object {
           "run": "corepack enable",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "env": Object {
@@ -338,7 +350,10 @@ Object {
           "run": "git config --global user.name \\"GitHub Actions\\"",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "run": "pnpm checkUnknownFiles",
@@ -386,7 +401,10 @@ Object {
           "run": "corepack enable",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "env": Object {
@@ -480,7 +498,10 @@ Object {
           "run": "git config --global user.name \\"GitHub Actions\\"",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "env": Object {
@@ -578,7 +599,10 @@ Object {
           "run": "git config --global user.name \\"GitHub Actions\\"",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "run": "pnpm checkUnknownFiles",
@@ -627,7 +651,10 @@ Object {
           "run": "corepack enable",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "env": Object {
@@ -729,7 +756,10 @@ Object {
           "run": "git config --global user.name \\"GitHub Actions\\"",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "run": "pnpm checkUnknownFiles",
@@ -778,7 +808,10 @@ Object {
           "run": "corepack enable",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "env": Object {
@@ -1024,7 +1057,10 @@ Object {
           "run": "git config --global user.name \\"GitHub Actions\\"",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "env": Object {
@@ -1120,7 +1156,10 @@ Object {
           "run": "git config --global user.name \\"GitHub Actions\\"",
         },
         Object {
-          "run": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
+          "env": Object {
+            "COREPACK_INTEGRITY_KEYS": 0,
+          },
+          "run": "pnpm install --frozen-lockfile",
         },
         Object {
           "env": Object {
