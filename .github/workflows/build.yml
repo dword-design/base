@@ -54,7 +54,7 @@ jobs:
           TEST_RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.TEST_RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN }}
         run: pnpm test
       - if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Image Snapshot Diffs
           path: "**/__image_snapshots__/__diff_output__"
