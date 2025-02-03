@@ -53,7 +53,7 @@ export default config => ({
         with: { 'check-latest': true, 'node-version': '${{ matrix.node }}' },
       },
       { run: 'corepack enable' },
-      { run: 'COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile' },
+      { run: 'pnpm install --frozen-lockfile', env: { COREPACK_INTEGRITY_KEYS: 0 } },
       ...getTestSteps(),
       ...(coverageSteps
         |> map(step => ({
