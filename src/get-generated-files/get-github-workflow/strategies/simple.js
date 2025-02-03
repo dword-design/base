@@ -27,7 +27,10 @@ export default config => ({
       { run: 'corepack enable' },
       { run: 'git config --global user.email "actions@github.com"' },
       { run: 'git config --global user.name "GitHub Actions"' },
-      { run: 'pnpm install --frozen-lockfile' },
+      {
+        env: { COREPACK_INTEGRITY_KEYS: 0 },
+        run: 'pnpm install --frozen-lockfile',
+      },
       ...getTestSteps(),
       ...coverageSteps,
       ...checkUnknownFilesSteps,

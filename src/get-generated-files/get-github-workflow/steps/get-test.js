@@ -35,7 +35,7 @@ export default () => {
     },
     {
       if: 'failure()',
-      uses: gitHubAction`actions/upload-artifact@v3`,
+      uses: gitHubAction`actions/upload-artifact@v4`,
       with: {
         name: 'Image Snapshot Diffs',
         path: '**/__image_snapshots__/__diff_output__',
