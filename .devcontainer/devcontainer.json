@@ -1,4 +1,8 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": 20
+    }
+  },
   "postCreateCommand": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile"
 }
