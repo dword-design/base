@@ -85,21 +85,6 @@ export default tester(
       },
     },
     empty: {},
-    'esm in node_modules': {
-      files: {
-        'node_modules/foo/index.js': 'export default 1',
-        'package.json': JSON.stringify({
-          devDependencies: { foo: '^1.0.0' },
-          type: 'module',
-        }),
-        'src/index.spec.js': "import 'foo'",
-      },
-      test() {
-        return expect(this.base.test()).rejects.toThrow(
-          /SyntaxError: Unexpected token '?export'?/,
-        );
-      },
-    },
     'global setup': {
       files: {
         'global-test-hooks.js':
@@ -247,6 +232,19 @@ export default tester(
           exports[\`index works 2\`] = \`"bar"\`;
 
         `);
+      },
+    },
+    'node_modules not transpiled': {
+      files: {
+        'node_modules/foo/index.js': 'export default 1 |> x => x * 2',
+        'package.json': JSON.stringify({
+          devDependencies: { foo: '^1.0.0' },
+          type: 'module',
+        }),
+        'src/index.spec.js': "import 'foo'",
+      },
+      test() {
+        return expect(this.base.test()).rejects.toThrow(/Unexpected token '>'/);
       },
     },
     'node_modules postfix transpiled': {
