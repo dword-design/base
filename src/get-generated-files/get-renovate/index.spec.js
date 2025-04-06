@@ -32,7 +32,7 @@ export default tester(
       const output = (
         await execaCommand(
           `renovate --platform=local --host-rules=[{matchHost:'api.github.com',hostType:'github',token:'${process.env.RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN}'}] --cache-dir .`,
-          { env: { LOG_LEVEL: 'debug', CODESPACES: 'false' } },
+          { env: { CODESPACES: 'false', LOG_LEVEL: 'debug' } },
         )
       ).stdout;
 
