@@ -1,3 +1,13 @@
+## [11.2.9](https://github.com/dword-design/base/compare/v11.2.8...v11.2.9) (2025-04-06)
+
+
+### Bug Fixes
+
+* fix test ([df21d7f](https://github.com/dword-design/base/commit/df21d7fe4c5970496764a036b2db2bddaa7e913c))
+* foo ([28e8132](https://github.com/dword-design/base/commit/28e81322e6aa6b7a9c056ab585eb9e0aab2e4f8b))
+* foo ([0b33c0c](https://github.com/dword-design/base/commit/0b33c0c83492f92533f29637420bd77d0575fcf0))
+* remove docker-in-docker extra feature ([dcd39e5](https://github.com/dword-design/base/commit/dcd39e5a8651f5765572fdedee47e81394c892e9))
+
 ## [11.2.8](https://github.com/dword-design/base/compare/v11.2.7...v11.2.8) (2025-02-03)
 
 
