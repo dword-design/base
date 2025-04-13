@@ -1,3 +1,10 @@
+## [11.2.10](https://github.com/dword-design/base/compare/v11.2.9...v11.2.10) (2025-04-13)
+
+
+### Bug Fixes
+
+* allow pnpm workspace ([9d6c837](https://github.com/dword-design/base/commit/9d6c837142f1b6265ce63c20378da283748a654c))
+
 ## [11.2.9](https://github.com/dword-design/base/compare/v11.2.8...v11.2.9) (2025-04-06)
 
 
