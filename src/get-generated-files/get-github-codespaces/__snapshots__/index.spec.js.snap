@@ -3,6 +3,7 @@
 exports[`index works 1`] = `
 Object {
   "features": Object {
+    "ghcr.io/devcontainers/features/desktop-lite:1": Object {},
     "ghcr.io/devcontainers/features/node:1": Object {
       "version": 18,
     },
