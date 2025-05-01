@@ -383,11 +383,11 @@ export default tester(
       },
       async test() {
         const output =
-          this.base.test({ pattern: ['src/index.spec.js'] })
+          this.base.test({ patterns: ['src/index.spec.js'] })
           |> await
           |> property('all');
 
-        expect(output).toMatch('src/index.spec.js:3:1 › valid');
+        expect(output).toMatch('src/index.spec.js:2:1 › valid');
         expect(output).toMatch('1 passed');
       },
     },
@@ -610,6 +610,7 @@ export default tester(
             |> keyBy(identity)
             |> mapValues(stubTrue),
         ).toEqual({
+          '.baserc.json': true,
           '.commitlintrc.json': true,
           '.cz.json': true,
           '.devcontainer': true,
