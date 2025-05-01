@@ -60,7 +60,6 @@ export default tester(
         })
       ).stdout;
 
-      await execaCommand('git branch -avv', { stdio: 'inherit' });
       expect(output).toMatch('chore: lock file maintenance');
     },
     'lock file fix commit type': async () => {
