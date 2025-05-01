@@ -312,6 +312,145 @@ export default tester(
         await this.base.test();
       },
     },
+    'playwright: babel': {
+      config: { testRunner: 'playwright' },
+      files: {
+        'package.json': JSON.stringify({
+          devDependencies: { '@playwright/test': '*' },
+          name: 'foo',
+          type: 'module',
+        }),
+        src: {
+          'index.js': 'export default 1 |> x => x * 2;\n',
+          'index.spec.js': javascript`
+            import { test, expect } from '${packageName`@playwright/test`}';
+
+            import foo from './index.js';
+
+            test('valid', () => expect(foo).toEqual(2));\n
+          `,
+        },
+      },
+      async test() {
+        await this.base.test();
+      },
+    },
+    'playwright: grep': {
+      config: { testRunner: 'playwright' },
+      files: {
+        'package.json': JSON.stringify({
+          devDependencies: { '@playwright/test': '*' },
+          name: 'foo',
+          type: 'module',
+        }),
+        src: {
+          'index.spec.js': javascript`
+            import { test } from '${packageName`@playwright/test`}';
+
+            test('test1', () => {});\n
+            test('test2', () => {});\n
+          `,
+        },
+      },
+      async test() {
+        const output =
+          this.base.test({ grep: 'test1' }) |> await |> property('all');
+
+        expect(output).toMatch('src/index.spec.js:2:1 › test1');
+        expect(output).toMatch('1 passed');
+      },
+    },
+    'playwright: pattern': {
+      config: { testRunner: 'playwright' },
+      files: {
+        'package.json': JSON.stringify({
+          devDependencies: { '@playwright/test': '*' },
+          name: 'foo',
+          type: 'module',
+        }),
+        src: {
+          'index.spec.js': javascript`
+            import { test } from '${packageName`@playwright/test`}';
+
+            test('valid', () => {});\n
+          `,
+          'index2.spec.js': javascript`
+            import { test } from '${packageName`@playwright/test`}';
+
+            test('valid', () => {});\n
+          `,
+        },
+      },
+      async test() {
+        const output =
+          this.base.test({ patterns: ['src/index.spec.js'] })
+          |> await
+          |> property('all');
+
+        expect(output).toMatch('src/index.spec.js:2:1 › valid');
+        expect(output).toMatch('1 passed');
+      },
+    },
+    'playwright: update snapshots': {
+      config: { testRunner: 'playwright' },
+      files: {
+        'package.json': JSON.stringify({
+          devDependencies: { '@playwright/test': '*' },
+          name: 'foo',
+          type: 'module',
+        }),
+        'playwright.config.js': endent`
+          import { defineConfig } from '@playwright/test';
+
+          export default defineConfig({
+            expect: {
+              toMatchSnapshot: {
+                pathTemplate: '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
+              },
+            },
+          });
+        `,
+        src: {
+          'index.spec.js': javascript`
+            import { test, expect } from '${packageName`@playwright/test`}';
+
+            test('valid', () => expect('foo').toMatchSnapshot());\n
+          `,
+        },
+      },
+      async test() {
+        await this.base.test({ updateSnapshots: true });
+
+        expect(
+          await fs.readFile('src/index.spec.js-snapshots/valid-1.txt', 'utf8'),
+        ).toEqual('foo');
+      },
+    },
+    'playwright: valid': {
+      config: { testRunner: 'playwright' },
+      files: {
+        'package.json': JSON.stringify({
+          devDependencies: { '@playwright/test': '*' },
+          name: 'foo',
+          type: 'module',
+        }),
+        src: {
+          'index.js': 'export default 1\n',
+          'index.spec.js': javascript`
+            import { test, expect } from '${packageName`@playwright/test`}';
+
+            import foo from './index.js'
+
+            test('valid', () => expect(foo).toEqual(1));\n
+          `,
+        },
+      },
+      async test() {
+        expect(this.base.test() |> await |> property('all')).toMatch(
+          '1 src/index.spec.js:3:1 › valid',
+        );
+      },
+    },
     snapshot: {
       files: {
         'index.spec.js': javascript`
@@ -471,6 +610,7 @@ export default tester(
             |> keyBy(identity)
             |> mapValues(stubTrue),
         ).toEqual({
+          '.baserc.json': true,
           '.commitlintrc.json': true,
           '.cz.json': true,
           '.devcontainer': true,
@@ -543,6 +683,7 @@ export default tester(
           test = { config: {}, files: {}, ...test };
 
           await outputFiles({
+            '.baserc.json': JSON.stringify(test.config),
             'package.json': JSON.stringify({ type: 'module' }),
             ...test.files,
           });
