@@ -372,8 +372,6 @@ export default tester(
           'index.spec.js': javascript`
             import { test } from '${packageName`@playwright/test`}';
 
-            import foo from './index.js';
-
             test('valid', () => {});\n
           `,
           'index2.spec.js': javascript`
