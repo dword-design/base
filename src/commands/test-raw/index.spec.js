@@ -356,7 +356,10 @@ export default tester(
         const output =
           this.base.test({ grep: 'test1' }) |> await |> property('all');
 
-        expect(output).toMatch(`${pathLib.join('src', 'index.spec.js')}:2:1 › test1`);
+        expect(output).toMatch(
+          `${pathLib.join('src', 'index.spec.js')}:2:1 › test1`,
+        );
+
         expect(output).toMatch('1 passed');
       },
     },
@@ -387,7 +390,10 @@ export default tester(
           |> await
           |> property('all');
 
-        expect(output).toMatch(`${pathLib.join('src', 'index.spec.js')}:2:1 › valid`);
+        expect(output).toMatch(
+          `${pathLib.join('src', 'index.spec.js')}:2:1 › valid`,
+        );
+
         expect(output).toMatch('1 passed');
       },
     },
