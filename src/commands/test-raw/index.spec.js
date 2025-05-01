@@ -13,7 +13,7 @@ import packageName from 'depcheck-package-name';
 import fs from 'fs-extra';
 import { globby } from 'globby';
 import outputFiles from 'output-files';
-import P from 'path';
+import pathLib from 'path';
 import unifyMochaOutput from 'unify-mocha-output';
 
 import { Base } from '@/src/index.js';
@@ -221,7 +221,7 @@ export default tester(
 
         expect(
           await fs.readFile(
-            P.join('__snapshots__', 'index.spec.js.snap'),
+            pathLib.join('__snapshots__', 'index.spec.js.snap'),
             'utf8',
           ),
         ).toEqual(javascript`
@@ -297,7 +297,7 @@ export default tester(
             import P from 'path'
 
             export default {
-              valid: () => execa(P.join('src', 'subprocess.js'), { stdio: 'inherit' }),
+              valid: () => execa(pathLib.join('src', 'subprocess.js'), { stdio: 'inherit' }),
             }
           `,
           'subprocess.js': javascript`
@@ -308,7 +308,7 @@ export default tester(
         },
       },
       async test() {
-        await fs.chmod(P.join('src', 'subprocess.js'), '755');
+        await fs.chmod(pathLib.join('src', 'subprocess.js'), '755');
         await this.base.test();
       },
     },
@@ -356,7 +356,7 @@ export default tester(
         const output =
           this.base.test({ grep: 'test1' }) |> await |> property('all');
 
-        expect(output).toMatch('src/index.spec.js:2:1 › test1');
+        expect(output).toMatch(`${pathLib.join('src', 'index.spec.js')}:2:1 › test1`);
         expect(output).toMatch('1 passed');
       },
     },
@@ -387,7 +387,7 @@ export default tester(
           |> await
           |> property('all');
 
-        expect(output).toMatch('src/index.spec.js:2:1 › valid');
+        expect(output).toMatch(`${pathLib.join('src', 'index.spec.js')}:2:1 › valid`);
         expect(output).toMatch('1 passed');
       },
     },
@@ -447,7 +447,7 @@ export default tester(
       },
       async test() {
         expect(this.base.test() |> await |> property('all')).toMatch(
-          '1 src/index.spec.js:3:1 › valid',
+          `1 ${pathLib.join('src', 'index.spec.js')}:3:1 › valid`,
         );
       },
     },
