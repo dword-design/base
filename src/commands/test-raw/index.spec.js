@@ -335,6 +335,28 @@ export default tester(
         await this.base.test();
       },
     },
+    'playwright: error': {
+      config: { testRunner: 'playwright' },
+      files: {
+        'package.json': JSON.stringify({
+          devDependencies: { '@playwright/test': '*' },
+          name: 'foo',
+          type: 'module',
+        }),
+        'src/index.spec.js': javascript`
+          import { test, expect } from '${packageName`@playwright/test`}';
+
+          test('valid', () => expect(1).toEqual(2));\n
+        `,
+      },
+      async test() {
+        await expect(this.base.test()).rejects.toThrow();
+
+        expect(await fs.exists('test-results/src-index-valid/trace.zip')).toBe(
+          true,
+        );
+      },
+    },
     'playwright: grep': {
       config: { testRunner: 'playwright' },
       files: {
@@ -457,7 +479,7 @@ export default tester(
         );
 
         expect(await fs.exists('test-results/src-index-valid/trace.zip')).toBe(
-          true,
+          false,
         );
       },
     },
