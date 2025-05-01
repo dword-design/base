@@ -131,6 +131,7 @@ class Base {
       seeAlso: [],
       supportedNodeVersions: [18, 20],
       syncKeywords: true,
+      testRunner: 'mocha',
       windows: true,
     };
 
