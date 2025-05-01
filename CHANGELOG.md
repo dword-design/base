@@ -1,3 +1,16 @@
+# [11.3.0](https://github.com/dword-design/base/compare/v11.2.11...v11.3.0) (2025-05-01)
+
+
+### Bug Fixes
+
+* foo ([4d60b3f](https://github.com/dword-design/base/commit/4d60b3fff42e5fb779f3842f010b5e4521e84a65))
+* foo ([f224706](https://github.com/dword-design/base/commit/f224706496c5ee5e723898fabab573aa61272cef))
+
+
+### Features
+
+* playwright ([#779](https://github.com/dword-design/base/issues/779)) ([f9fec21](https://github.com/dword-design/base/commit/f9fec2134c773bb3bad3f35071e863e836ea56f5))
+
 ## [11.2.11](https://github.com/dword-design/base/compare/v11.2.10...v11.2.11) (2025-05-01)
 
 
