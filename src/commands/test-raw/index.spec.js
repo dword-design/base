@@ -455,6 +455,10 @@ export default tester(
         expect(this.base.test() |> await |> property('all')).toMatch(
           `1 ${pathLib.join('src', 'index.spec.js')}:3:1 › valid`,
         );
+
+        expect(await fs.exists('test-results/src-index-valid/trace.zip')).toBe(
+          true,
+        );
       },
     },
     snapshot: {

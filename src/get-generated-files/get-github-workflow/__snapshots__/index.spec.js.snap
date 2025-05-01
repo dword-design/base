@@ -109,7 +109,8 @@ Object {
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Image Snapshot Diffs",
-            "path": "**/__image_snapshots__/__diff_output__",
+            "path": "**/__image_snapshots__/__diff_output__
+test-results",
           },
         },
         Object {
@@ -265,7 +266,8 @@ Object {
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Image Snapshot Diffs",
-            "path": "**/__image_snapshots__/__diff_output__",
+            "path": "**/__image_snapshots__/__diff_output__
+test-results",
           },
         },
         Object {
@@ -417,7 +419,8 @@ Object {
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Image Snapshot Diffs",
-            "path": "**/__image_snapshots__/__diff_output__",
+            "path": "**/__image_snapshots__/__diff_output__
+test-results",
           },
         },
         Object {
@@ -514,7 +517,8 @@ Object {
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Image Snapshot Diffs",
-            "path": "**/__image_snapshots__/__diff_output__",
+            "path": "**/__image_snapshots__/__diff_output__
+test-results",
           },
         },
         Object {
@@ -667,7 +671,8 @@ Object {
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Image Snapshot Diffs",
-            "path": "**/__image_snapshots__/__diff_output__",
+            "path": "**/__image_snapshots__/__diff_output__
+test-results",
           },
         },
         Object {
@@ -825,7 +830,8 @@ Object {
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Image Snapshot Diffs",
-            "path": "**/__image_snapshots__/__diff_output__",
+            "path": "**/__image_snapshots__/__diff_output__
+test-results",
           },
         },
         Object {
@@ -1075,7 +1081,8 @@ Object {
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Image Snapshot Diffs",
-            "path": "**/__image_snapshots__/__diff_output__",
+            "path": "**/__image_snapshots__/__diff_output__
+test-results",
           },
         },
         Object {
@@ -1172,7 +1179,8 @@ Object {
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Image Snapshot Diffs",
-            "path": "**/__image_snapshots__/__diff_output__",
+            "path": "**/__image_snapshots__/__diff_output__
+test-results",
           },
         },
         Object {
