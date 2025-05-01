@@ -40,7 +40,7 @@ Object {
           },
         },
         Object {
-          "uses": "gautamkrishnar/keepalive-workflow@v1",
+          "uses": "liskin/gh-workflow-keepalive@v1",
         },
       ],
     },
