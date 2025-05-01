@@ -1,3 +1,10 @@
+## [11.3.1](https://github.com/dword-design/base/compare/v11.3.0...v11.3.1) (2025-05-01)
+
+
+### Bug Fixes
+
+* add trace for playwright ([6d625e0](https://github.com/dword-design/base/commit/6d625e09336f8a9b6778031d19bfec41c6e7d4b4))
+
 # [11.3.0](https://github.com/dword-design/base/compare/v11.2.11...v11.3.0) (2025-05-01)
 
 
