@@ -31,36 +31,12 @@ export default tester(
 
       const output = (
         await execaCommand(
-          `renovate --platform=local --host-rules=[{matchHost:'api.github.com',hostType:'github',token:'${process.env.RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN}'}]`,
+          `renovate --platform=local --dry-run --host-rules=[{matchHost:'api.github.com',hostType:'github',token:'${process.env.RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN}'}]`,
           { env: { CODESPACES: false, LOG_LEVEL: 'debug' } },
         )
       ).stdout;
 
       expect(output).toMatch(/renovate\/actions-checkout-\d+\.x/);
-    },
-    'lock file': async () => {
-      await execaCommand('git init');
-      await execaCommand('git config user.email "foo@bar.de"');
-      await execaCommand('git config user.name "foo"');
-
-      await fs.outputFile(
-        'package.json',
-        JSON.stringify({ dependencies: { globby: '^13.0.0' } }),
-      );
-
-      await execaCommand('pnpm install');
-      const base = new Base();
-      await base.prepare();
-      await execaCommand('git add .');
-      await execa('git', ['commit', '-m', 'feat: init']);
-
-      const output = (
-        await execaCommand('renovate --platform=local', {
-          env: { CODESPACES: false, LOG_LEVEL: 'debug' },
-        })
-      ).stdout;
-
-      expect(output).toMatch('chore: lock file maintenance');
     },
     'lock file fix commit type': async () => {
       await execaCommand('git init');
@@ -79,12 +55,37 @@ export default tester(
       await execa('git', ['commit', '-m', 'feat: init']);
 
       const output = (
-        await execaCommand('renovate --platform=local', {
+        await execaCommand('renovate --platform=local --dry-run', {
           env: { CODESPACES: false, LOG_LEVEL: 'debug' },
         })
       ).stdout;
 
       expect(output).toMatch('fix: lock file maintenance');
+    },
+    'lock file': async () => {
+      await execaCommand('git init');
+      await execaCommand('git config user.email "foo@bar.de"');
+      await execaCommand('git config user.name "foo"');
+
+      await fs.outputFile(
+        'package.json',
+        JSON.stringify({ dependencies: { globby: '14.0.0' } }),
+      );
+
+      await execaCommand('npm install');
+      const base = new Base();
+      await base.prepare();
+      await execaCommand('git add .');
+      await execa('git', ['commit', '-m', 'feat: init']);
+
+      const output = (
+        await execaCommand('renovate --platform=local --dry-run', {
+          env: { CODESPACES: false, LOG_LEVEL: 'debug' },
+        })
+      ).stdout;
+
+      await execaCommand('git branch -avv', { stdio: 'inherit' });
+      expect(output).toMatch('chore: lock file maintenance');
     },
     'nodejs version': async () => {
       await execaCommand('git init');
@@ -120,7 +121,7 @@ export default tester(
       await execa('git', ['commit', '-m', 'feat: init']);
 
       const output = (
-        await execaCommand('renovate --platform=local', {
+        await execaCommand('renovate --platform=local --dry-run', {
           env: { CODESPACES: false, LOG_LEVEL: 'debug' },
         })
       ).stdout;
