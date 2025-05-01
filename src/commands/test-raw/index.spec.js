@@ -294,7 +294,7 @@ export default tester(
         src: {
           'index.spec.js': javascript`
             import { execa } from 'execa'
-            import P from 'path'
+            import pathLib from 'path'
 
             export default {
               valid: () => execa(pathLib.join('src', 'subprocess.js'), { stdio: 'inherit' }),
