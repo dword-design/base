@@ -391,6 +391,41 @@ export default tester(
         expect(output).toMatch('1 passed');
       },
     },
+    'playwright: update snapshots': {
+      config: { testRunner: 'playwright' },
+      files: {
+        'package.json': JSON.stringify({
+          devDependencies: { '@playwright/test': '*' },
+          name: 'foo',
+          type: 'module',
+        }),
+        'playwright.config.js': endent`
+          import { defineConfig } from '@playwright/test';
+
+          export default defineConfig({
+            expect: {
+              toMatchSnapshot: {
+                pathTemplate: '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
+              },
+            },
+          });
+        `,
+        src: {
+          'index.spec.js': javascript`
+            import { test, expect } from '${packageName`@playwright/test`}';
+
+            test('valid', () => expect('foo').toMatchSnapshot());\n
+          `,
+        },
+      },
+      async test() {
+        await this.base.test({ updateSnapshots: true });
+
+        expect(
+          await fs.readFile('src/index.spec.js-snapshots/valid-1.txt', 'utf8'),
+        ).toEqual('foo');
+      },
+    },
     'playwright: valid': {
       config: { testRunner: 'playwright' },
       files: {
@@ -647,6 +682,7 @@ export default tester(
           test = { config: {}, files: {}, ...test };
 
           await outputFiles({
+            '.baserc.json': JSON.stringify(test.config),
             'package.json': JSON.stringify({ type: 'module' }),
             ...test.files,
           });

@@ -24,8 +24,8 @@ importers:
         specifier: ^4.0.6
         version: 4.0.6
       '@dword-design/eslint-config':
-        specifier: ^5.0.19
-        version: 5.0.19(@babel/core@7.27.1)(@typescript-eslint/parser@8.31.1(eslint@8.57.1)(typescript@5.5.4))(babel-plugin-module-resolver@5.0.2)(eslint@8.57.1)(typescript@5.5.4)
+        specifier: ^5.0.20
+        version: 5.0.20(@babel/core@7.27.1)(@typescript-eslint/parser@8.31.1(eslint@8.57.1)(typescript@5.5.4))(babel-plugin-module-resolver@5.0.2)(eslint@8.57.1)(typescript@5.5.4)
       '@dword-design/functions':
         specifier: ^6.0.2
         version: 6.0.2
@@ -1182,8 +1182,8 @@ packages:
   '@dword-design/endent@1.4.1':
     resolution: {integrity: sha512-e2sCTzth5kyRdM0o+yEb5wBVzUdJL8Y6HblRGRV0Bif0knf1ZjRLhUjdCrqM+Muirb68X/xJzgdRDJVmLqgXGA==}
 
-  '@dword-design/eslint-config@5.0.19':
-    resolution: {integrity: sha512-ST40+5qeDeofEzOybDRCINtQf/67BC14QcfOpGJOTpmjrU1c7buOvGWjWjcPoyDf2ljFJY5reOrUOCwEFBsF1g==}
+  '@dword-design/eslint-config@5.0.20':
+    resolution: {integrity: sha512-BSKcGNRMMEPYSaedDdEUayLrke4xYyfSkm8qSzeNs79pG+ontXNVVjgoCf12CYoChLAzuGYqZp74eiAbIq3w6Q==}
     engines: {node: '>=18'}
 
   '@dword-design/eslint-plugin-import-alias@5.1.2':
@@ -9889,7 +9889,7 @@ snapshots:
       fast-json-parse: 1.0.3
       objectorarray: 1.0.5
 
-  '@dword-design/eslint-config@5.0.19(@babel/core@7.27.1)(@typescript-eslint/parser@8.31.1(eslint@8.57.1)(typescript@5.5.4))(babel-plugin-module-resolver@5.0.2)(eslint@8.57.1)(typescript@5.5.4)':
+  '@dword-design/eslint-config@5.0.20(@babel/core@7.27.1)(@typescript-eslint/parser@8.31.1(eslint@8.57.1)(typescript@5.5.4))(babel-plugin-module-resolver@5.0.2)(eslint@8.57.1)(typescript@5.5.4)':
     dependencies:
       '@babel/eslint-parser': 7.27.1(@babel/core@7.27.1)(eslint@8.57.1)
       '@dword-design/eslint-plugin-import-alias': 5.1.2
@@ -9910,6 +9910,7 @@ snapshots:
       eslint-plugin-sort-keys-fix: 1.1.2
       eslint-plugin-unicorn: 56.0.1(eslint@8.57.1)
       eslint-plugin-vue: 9.33.0(eslint@8.57.1)
+      fs-extra: 11.3.0
       jiti: 1.21.7
       load-pkg: 4.0.0
       lodash-es: 4.17.21
