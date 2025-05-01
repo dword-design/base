@@ -1,3 +1,11 @@
+## [11.2.11](https://github.com/dword-design/base/compare/v11.2.10...v11.2.11) (2025-05-01)
+
+
+### Bug Fixes
+
+* replace keepalive-workflow ([#775](https://github.com/dword-design/base/issues/775)) ([239912f](https://github.com/dword-design/base/commit/239912f591805a9da05bb348df8b58c921a6a743))
+* update dependency sharp to ^0.34.0 ([#735](https://github.com/dword-design/base/issues/735)) ([f97fa22](https://github.com/dword-design/base/commit/f97fa2248bff4f8574fba156032a18ea69202627))
+
 ## [11.2.10](https://github.com/dword-design/base/compare/v11.2.9...v11.2.10) (2025-04-13)
 
 
