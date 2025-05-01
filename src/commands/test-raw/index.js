@@ -43,6 +43,8 @@ export default async function (options) {
           ...(options.grep ? ['--grep', options.grep] : []),
           '--timeout',
           130000,
+          '--reporter',
+          'line',
           ...options.patterns,
         ]
       : [
