@@ -29,7 +29,9 @@ export default async function () {
       'pnpm-workspace.yaml': true,
       'types.d.ts': true,
     }),
-    ...this.config.testRunner === 'playwright' ? ['playwright.config.js'] : [],
+    ...(this.config.testRunner === 'playwright'
+      ? ['playwright.config.js']
+      : []),
     ...this.config.allowedMatches,
   ];
 
