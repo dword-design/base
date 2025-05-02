@@ -44,7 +44,7 @@ export default async function (options) {
           '--timeout',
           130000,
           '--trace',
-          'on-first-retry',
+          'retain-on-failure',
           /**
            * Reporter set to dot in CI environments by default.
            * See https://github.com/microsoft/playwright/blob/42ade54975f6990c41cddc7b6e11c46a36648d0d/packages/playwright/src/common/config.ts#L301.
