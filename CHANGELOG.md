@@ -1,3 +1,10 @@
+## [11.3.3](https://github.com/dword-design/base/compare/v11.3.2...v11.3.3) (2025-05-02)
+
+
+### Bug Fixes
+
+* clean up artifacts ([96f0a66](https://github.com/dword-design/base/commit/96f0a6651faeddcc045a1cf4e07efebb99b73aa0))
+
 ## [11.3.2](https://github.com/dword-design/base/compare/v11.3.1...v11.3.2) (2025-05-02)
 
 
