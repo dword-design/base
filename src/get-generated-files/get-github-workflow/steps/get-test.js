@@ -34,13 +34,12 @@ export default () => {
       run: 'pnpm test',
     },
     {
-      if: 'failure()',
       uses: gitHubAction`actions/upload-artifact@v4`,
       with: {
-        name: 'Image Snapshot Diffs',
+        name: 'Images from tests',
         path: endent`
           **/__image_snapshots__/__diff_output__
-          test-results
+          test-results/*/trace.zip
         `,
       },
     },

@@ -105,12 +105,11 @@ Object {
           "run": "pnpm test",
         },
         Object {
-          "if": "failure()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
-            "name": "Image Snapshot Diffs",
+            "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results",
+test-results/*/trace.zip",
           },
         },
         Object {
@@ -262,12 +261,11 @@ Object {
           "run": "pnpm test",
         },
         Object {
-          "if": "failure()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
-            "name": "Image Snapshot Diffs",
+            "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results",
+test-results/*/trace.zip",
           },
         },
         Object {
@@ -415,12 +413,11 @@ Object {
           "run": "pnpm test",
         },
         Object {
-          "if": "failure()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
-            "name": "Image Snapshot Diffs",
+            "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results",
+test-results/*/trace.zip",
           },
         },
         Object {
@@ -513,12 +510,11 @@ Object {
           "run": "pnpm test",
         },
         Object {
-          "if": "failure()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
-            "name": "Image Snapshot Diffs",
+            "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results",
+test-results/*/trace.zip",
           },
         },
         Object {
@@ -667,12 +663,11 @@ Object {
           "run": "pnpm test",
         },
         Object {
-          "if": "failure()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
-            "name": "Image Snapshot Diffs",
+            "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results",
+test-results/*/trace.zip",
           },
         },
         Object {
@@ -826,12 +821,11 @@ Object {
           "run": "pnpm test",
         },
         Object {
-          "if": "failure()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
-            "name": "Image Snapshot Diffs",
+            "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results",
+test-results/*/trace.zip",
           },
         },
         Object {
@@ -974,10 +968,9 @@ Object {
           "run": "yarn test",
         },
         Object {
-          "if": "failure()",
           "uses": "actions/upload-artifact@v3",
           "with": Object {
-            "name": "Image Snapshot Diffs",
+            "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__",
           },
         },
@@ -1077,12 +1070,11 @@ Object {
           "run": "pnpm test",
         },
         Object {
-          "if": "failure()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
-            "name": "Image Snapshot Diffs",
+            "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results",
+test-results/*/trace.zip",
           },
         },
         Object {
@@ -1175,12 +1167,11 @@ Object {
           "run": "pnpm test",
         },
         Object {
-          "if": "failure()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
-            "name": "Image Snapshot Diffs",
+            "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results",
+test-results/*/trace.zip",
           },
         },
         Object {
