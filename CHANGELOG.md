@@ -1,3 +1,11 @@
+## [11.3.2](https://github.com/dword-design/base/compare/v11.3.1...v11.3.2) (2025-05-02)
+
+
+### Bug Fixes
+
+* linting ([f862383](https://github.com/dword-design/base/commit/f8623833ad8e4fd5e34e5b7a09fcf110f41960af))
+* playwright.config.js allowed match ([450826c](https://github.com/dword-design/base/commit/450826cc55ea2040e4b6ae4ab8a780a7dd619745))
+
 ## [11.3.1](https://github.com/dword-design/base/compare/v11.3.0...v11.3.1) (2025-05-01)
 
 
