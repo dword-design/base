@@ -1,3 +1,10 @@
+## [11.3.4](https://github.com/dword-design/base/compare/v11.3.3...v11.3.4) (2025-05-04)
+
+
+### Bug Fixes
+
+* forbid only ([cccdf81](https://github.com/dword-design/base/commit/cccdf817f088a393d2e27d8a214df9e9f9b49938))
+
 ## [11.3.3](https://github.com/dword-design/base/compare/v11.3.2...v11.3.3) (2025-05-02)
 
 
