@@ -37,6 +37,7 @@ export default () => {
       if: 'always()',
       uses: gitHubAction`actions/upload-artifact@v4`,
       with: {
+        'if-no-files-found': 'ignore',
         name: 'Images from tests',
         path: endent`
           **/__image_snapshots__/__diff_output__

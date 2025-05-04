@@ -108,6 +108,7 @@ Object {
           "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
+            "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
 test-results/*/trace.zip",
@@ -265,6 +266,7 @@ Object {
           "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
+            "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
 test-results/*/trace.zip",
@@ -418,6 +420,7 @@ Object {
           "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
+            "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
 test-results/*/trace.zip",
@@ -516,6 +519,7 @@ Object {
           "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
+            "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
 test-results/*/trace.zip",
@@ -670,6 +674,7 @@ Object {
           "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
+            "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
 test-results/*/trace.zip",
@@ -829,6 +834,7 @@ Object {
           "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
+            "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
 test-results/*/trace.zip",
@@ -1079,6 +1085,7 @@ Object {
           "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
+            "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
 test-results/*/trace.zip",
@@ -1177,6 +1184,7 @@ Object {
           "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
+            "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
 test-results/*/trace.zip",
