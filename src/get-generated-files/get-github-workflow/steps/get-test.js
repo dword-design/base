@@ -34,8 +34,8 @@ export default () => {
       run: 'pnpm test',
     },
     {
-      uses: gitHubAction`actions/upload-artifact@v4`,
       if: 'always()',
+      uses: gitHubAction`actions/upload-artifact@v4`,
       with: {
         name: 'Images from tests',
         path: endent`
