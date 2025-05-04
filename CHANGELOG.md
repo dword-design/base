@@ -1,3 +1,10 @@
+## [11.3.6](https://github.com/dword-design/base/compare/v11.3.5...v11.3.6) (2025-05-04)
+
+
+### Bug Fixes
+
+* do not warn if there are no artifacts to upload ([8f874da](https://github.com/dword-design/base/commit/8f874da11374124851a21e46787c3f50f4c6d5e8))
+
 ## [11.3.5](https://github.com/dword-design/base/compare/v11.3.4...v11.3.5) (2025-05-04)
 
 
