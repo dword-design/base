@@ -105,6 +105,7 @@ Object {
           "run": "pnpm test",
         },
         Object {
+          "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Images from tests",
@@ -261,6 +262,7 @@ Object {
           "run": "pnpm test",
         },
         Object {
+          "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Images from tests",
@@ -413,6 +415,7 @@ Object {
           "run": "pnpm test",
         },
         Object {
+          "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Images from tests",
@@ -510,6 +513,7 @@ Object {
           "run": "pnpm test",
         },
         Object {
+          "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Images from tests",
@@ -663,6 +667,7 @@ Object {
           "run": "pnpm test",
         },
         Object {
+          "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Images from tests",
@@ -821,6 +826,7 @@ Object {
           "run": "pnpm test",
         },
         Object {
+          "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Images from tests",
@@ -1070,6 +1076,7 @@ Object {
           "run": "pnpm test",
         },
         Object {
+          "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Images from tests",
@@ -1167,6 +1174,7 @@ Object {
           "run": "pnpm test",
         },
         Object {
+          "if": "always()",
           "uses": "actions/upload-artifact@v4",
           "with": Object {
             "name": "Images from tests",

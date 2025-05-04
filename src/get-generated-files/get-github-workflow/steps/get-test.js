@@ -35,6 +35,7 @@ export default () => {
     },
     {
       uses: gitHubAction`actions/upload-artifact@v4`,
+      if: 'always()',
       with: {
         name: 'Images from tests',
         path: endent`

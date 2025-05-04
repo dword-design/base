@@ -57,7 +57,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TEST_RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.TEST_RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN }}
         run: pnpm test
-      - uses: actions/upload-artifact@v4
+      - if: success()
+        uses: actions/upload-artifact@v4
         with:
           name: Images from tests
           path: |-
