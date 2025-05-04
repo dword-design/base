@@ -45,7 +45,7 @@ export default async function (options) {
           130000,
           '--trace',
           'retain-on-failure',
-          ...isCI() ? ['--forbid-only'] : [],
+          ...(isCI() ? ['--forbid-only'] : []),
           /**
            * Reporter set to dot in CI environments by default.
            * See https://github.com/microsoft/playwright/blob/42ade54975f6990c41cddc7b6e11c46a36648d0d/packages/playwright/src/common/config.ts#L301.
