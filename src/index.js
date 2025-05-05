@@ -29,7 +29,6 @@ import testRaw from './commands/test-raw/index.js';
 import getDepcheckSpecialBase from './get-depcheck-special-base/index.js';
 import getEditorIgnoreConfig from './get-generated-files/get-editor-ignore/index.js';
 import getEslintConfig from './get-generated-files/get-eslint/index.js';
-import githubCodespacesConfig from './get-generated-files/github-codespaces.js';
 import getGithubSyncMetadataConfig from './get-generated-files/get-github-sync-metadata/index.js';
 import getGithubWorkflowConfig from './get-generated-files/get-github-workflow/index.js';
 import getGitignoreConfig from './get-generated-files/get-gitignore/index.js';
@@ -41,6 +40,7 @@ import getReadmeString from './get-generated-files/get-readme-string/index.js';
 import getReleaseConfig from './get-generated-files/get-release/index.js';
 import getRenovateConfig from './get-generated-files/get-renovate/index.js';
 import getVscodeConfig from './get-generated-files/get-vscode/index.js';
+import githubCodespacesConfig from './get-generated-files/github-codespaces.js';
 import getGeneratedFiles from './get-generated-files/index.js';
 import getGitInfo from './get-git-info/index.js';
 
@@ -182,7 +182,6 @@ Object.assign(Base.prototype, {
   getEditorIgnoreConfig,
   getEslintConfig,
   getGeneratedFiles,
-  githubCodespacesConfig,
   getGithubSyncMetadataConfig,
   getGithubWorkflowConfig,
   getGitignoreConfig,
@@ -194,6 +193,7 @@ Object.assign(Base.prototype, {
   getReleaseConfig,
   getRenovateConfig,
   getVscodeConfig,
+  githubCodespacesConfig,
   lint,
   prepare,
   test,
