@@ -1,11 +1,6 @@
 export default function () {
   return {
-    features: {
-      'ghcr.io/devcontainers/features/node:1': {
-        version: this.config.nodeVersion,
-      },
-    },
     postCreateCommand:
-      'COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile',
+      `echo 'nvm install ${this.config.nodeVersion}' >> ~/.bashrc && COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile`,
   };
 }
