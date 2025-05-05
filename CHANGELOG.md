@@ -1,3 +1,10 @@
+## [11.3.7](https://github.com/dword-design/base/compare/v11.3.6...v11.3.7) (2025-05-05)
+
+
+### Bug Fixes
+
+* devcontainer performance ([#781](https://github.com/dword-design/base/issues/781)) ([134d973](https://github.com/dword-design/base/commit/134d9737cec2639a8fc9f795eb5cdccb97a6b0b1))
+
 ## [11.3.6](https://github.com/dword-design/base/compare/v11.3.5...v11.3.6) (2025-05-04)
 
 
