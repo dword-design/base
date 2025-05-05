@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`index works 1`] = `
-Object {
-  "postCreateCommand": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile",
-}
-`;
