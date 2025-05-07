@@ -31,8 +31,8 @@ export default tester(
 
       const output = (
         await execaCommand(
-          `renovate --platform=local --dry-run --host-rules=[{matchHost:'api.github.com',hostType:'github',token:'${process.env.RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN}'}] --cache-dir .`,
-          { env: { LOG_LEVEL: 'debug' } },
+          `renovate --platform=local --dry-run --host-rules=[{matchHost:'api.github.com',hostType:'github',token:'${process.env.RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN}'}]`,
+          { env: { CODESPACES: false, LOG_LEVEL: 'debug' } },
         )
       ).stdout;
 
@@ -56,7 +56,7 @@ export default tester(
 
       const output = (
         await execaCommand('renovate --platform=local --dry-run', {
-          env: { LOG_LEVEL: 'debug' },
+          env: { CODESPACES: false, LOG_LEVEL: 'debug' },
         })
       ).stdout;
 
@@ -80,7 +80,7 @@ export default tester(
 
       const output = (
         await execaCommand('renovate --platform=local --dry-run', {
-          env: { LOG_LEVEL: 'debug' },
+          env: { CODESPACES: false, LOG_LEVEL: 'debug' },
         })
       ).stdout;
 
@@ -98,7 +98,7 @@ export default tester(
 
       const output = (
         await execaCommand('renovate --platform=local --dry-run', {
-          env: { LOG_LEVEL: 'debug' },
+          env: { CODESPACES: false, LOG_LEVEL: 'debug' },
         })
       ).stdout;
 
@@ -120,8 +120,8 @@ export default tester(
       await execa('git', ['commit', '-m', 'feat: init']);
 
       const output = (
-        await execaCommand('renovate --platform=local', {
-          env: { LOG_LEVEL: 'debug' },
+        await execaCommand('renovate --platform=local --dry-run', {
+          env: { CODESPACES: false, LOG_LEVEL: 'debug' },
         })
       ).stdout;
 

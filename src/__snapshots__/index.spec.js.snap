@@ -30,6 +30,7 @@ $ yarn add foo
     20,
   ],
   "syncKeywords": true,
+  "testRunner": "mocha",
   "windows": true,
 }
 `;
@@ -75,6 +76,7 @@ Object {
     2,
   ],
   "syncKeywords": true,
+  "testRunner": "mocha",
   "windows": true,
 }
 `;

@@ -1,7 +1,16 @@
 import { identity, sortBy } from '@dword-design/functions';
 
-import commonGitignore from '@/src/get-generated-files/common-gitignore.js';
-
 export default function () {
-  return [...commonGitignore, ...this.config.gitignore] |> sortBy(identity);
+  return (
+    [
+      '.DS_Store',
+      '/.env.json',
+      '/.test.env.json',
+      '/.nyc_output',
+      '/coverage',
+      '/node_modules',
+      ...(this.config.testRunner === 'playwright' ? ['/test-results'] : []),
+      ...this.config.gitignore,
+    ] |> sortBy(identity)
+  );
 }

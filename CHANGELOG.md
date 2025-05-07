@@ -1,3 +1,105 @@
+## [11.3.9](https://github.com/dword-design/base/compare/v11.3.8...v11.3.9) (2025-05-07)
+
+
+### Bug Fixes
+
+* remove timeout ([4bed0c6](https://github.com/dword-design/base/commit/4bed0c6a500b0a099660c80ef965c00ca5daaec8))
+
+## [11.3.8](https://github.com/dword-design/base/compare/v11.3.7...v11.3.8) (2025-05-07)
+
+
+### Bug Fixes
+
+* add ui mode to cli ([47145f3](https://github.com/dword-design/base/commit/47145f385a2dfd25adec25b575b3018ee6dd1065))
+
+## [11.3.7](https://github.com/dword-design/base/compare/v11.3.6...v11.3.7) (2025-05-05)
+
+
+### Bug Fixes
+
+* devcontainer performance ([#781](https://github.com/dword-design/base/issues/781)) ([134d973](https://github.com/dword-design/base/commit/134d9737cec2639a8fc9f795eb5cdccb97a6b0b1))
+
+## [11.3.6](https://github.com/dword-design/base/compare/v11.3.5...v11.3.6) (2025-05-04)
+
+
+### Bug Fixes
+
+* do not warn if there are no artifacts to upload ([8f874da](https://github.com/dword-design/base/commit/8f874da11374124851a21e46787c3f50f4c6d5e8))
+
+## [11.3.5](https://github.com/dword-design/base/compare/v11.3.4...v11.3.5) (2025-05-04)
+
+
+### Bug Fixes
+
+* foo ([9160f65](https://github.com/dword-design/base/commit/9160f656925692f238ff59f7de53c19b5c49b5a6))
+
+## [11.3.4](https://github.com/dword-design/base/compare/v11.3.3...v11.3.4) (2025-05-04)
+
+
+### Bug Fixes
+
+* forbid only ([cccdf81](https://github.com/dword-design/base/commit/cccdf817f088a393d2e27d8a214df9e9f9b49938))
+
+## [11.3.3](https://github.com/dword-design/base/compare/v11.3.2...v11.3.3) (2025-05-02)
+
+
+### Bug Fixes
+
+* clean up artifacts ([96f0a66](https://github.com/dword-design/base/commit/96f0a6651faeddcc045a1cf4e07efebb99b73aa0))
+
+## [11.3.2](https://github.com/dword-design/base/compare/v11.3.1...v11.3.2) (2025-05-02)
+
+
+### Bug Fixes
+
+* linting ([f862383](https://github.com/dword-design/base/commit/f8623833ad8e4fd5e34e5b7a09fcf110f41960af))
+* playwright.config.js allowed match ([450826c](https://github.com/dword-design/base/commit/450826cc55ea2040e4b6ae4ab8a780a7dd619745))
+
+## [11.3.1](https://github.com/dword-design/base/compare/v11.3.0...v11.3.1) (2025-05-01)
+
+
+### Bug Fixes
+
+* add trace for playwright ([6d625e0](https://github.com/dword-design/base/commit/6d625e09336f8a9b6778031d19bfec41c6e7d4b4))
+
+# [11.3.0](https://github.com/dword-design/base/compare/v11.2.11...v11.3.0) (2025-05-01)
+
+
+### Bug Fixes
+
+* foo ([4d60b3f](https://github.com/dword-design/base/commit/4d60b3fff42e5fb779f3842f010b5e4521e84a65))
+* foo ([f224706](https://github.com/dword-design/base/commit/f224706496c5ee5e723898fabab573aa61272cef))
+
+
+### Features
+
+* playwright ([#779](https://github.com/dword-design/base/issues/779)) ([f9fec21](https://github.com/dword-design/base/commit/f9fec2134c773bb3bad3f35071e863e836ea56f5))
+
+## [11.2.11](https://github.com/dword-design/base/compare/v11.2.10...v11.2.11) (2025-05-01)
+
+
+### Bug Fixes
+
+* replace keepalive-workflow ([#775](https://github.com/dword-design/base/issues/775)) ([239912f](https://github.com/dword-design/base/commit/239912f591805a9da05bb348df8b58c921a6a743))
+* update dependency sharp to ^0.34.0 ([#735](https://github.com/dword-design/base/issues/735)) ([f97fa22](https://github.com/dword-design/base/commit/f97fa2248bff4f8574fba156032a18ea69202627))
+
+## [11.2.10](https://github.com/dword-design/base/compare/v11.2.9...v11.2.10) (2025-04-13)
+
+
+### Bug Fixes
+
+* allow pnpm workspace ([9d6c837](https://github.com/dword-design/base/commit/9d6c837142f1b6265ce63c20378da283748a654c))
+
+## [11.2.9](https://github.com/dword-design/base/compare/v11.2.8...v11.2.9) (2025-04-06)
+
+
+### Bug Fixes
+
+* fix test ([df21d7f](https://github.com/dword-design/base/commit/df21d7fe4c5970496764a036b2db2bddaa7e913c))
+* foo ([28e8132](https://github.com/dword-design/base/commit/28e81322e6aa6b7a9c056ab585eb9e0aab2e4f8b))
+* foo ([0b33c0c](https://github.com/dword-design/base/commit/0b33c0c83492f92533f29637420bd77d0575fcf0))
+* remove docker-in-docker extra feature ([dcd39e5](https://github.com/dword-design/base/commit/dcd39e5a8651f5765572fdedee47e81394c892e9))
+
 ## [11.2.8](https://github.com/dword-design/base/compare/v11.2.7...v11.2.8) (2025-02-03)
 
 
