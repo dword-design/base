@@ -57,9 +57,10 @@ const run = async () => {
                 name: '--ui-host <host>',
               },
               {
-                description: 'Host to serve UI on; specifying this option opens UI in a browser tab',
+                description:
+                  'Host to serve UI on; specifying this option opens UI in a browser tab',
                 name: '--ui',
-              }
+              },
             ],
           },
           ...(base.config.commands
