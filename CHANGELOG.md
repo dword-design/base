@@ -1,3 +1,10 @@
+## [11.3.9](https://github.com/dword-design/base/compare/v11.3.8...v11.3.9) (2025-05-07)
+
+
+### Bug Fixes
+
+* remove timeout ([4bed0c6](https://github.com/dword-design/base/commit/4bed0c6a500b0a099660c80ef965c00ca5daaec8))
+
 ## [11.3.8](https://github.com/dword-design/base/compare/v11.3.7...v11.3.8) (2025-05-07)
 
 
