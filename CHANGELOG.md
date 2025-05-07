@@ -1,3 +1,10 @@
+## [11.3.8](https://github.com/dword-design/base/compare/v11.3.7...v11.3.8) (2025-05-07)
+
+
+### Bug Fixes
+
+* add ui mode to cli ([47145f3](https://github.com/dword-design/base/commit/47145f385a2dfd25adec25b575b3018ee6dd1065))
+
 ## [11.3.7](https://github.com/dword-design/base/compare/v11.3.6...v11.3.7) (2025-05-05)
 
 
