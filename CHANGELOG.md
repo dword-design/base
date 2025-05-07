@@ -1,3 +1,10 @@
+## [11.3.10](https://github.com/dword-design/base/compare/v11.3.9...v11.3.10) (2025-05-07)
+
+
+### Bug Fixes
+
+* enable corepack integrity checks ([#773](https://github.com/dword-design/base/issues/773)) ([b73f5b1](https://github.com/dword-design/base/commit/b73f5b19ffc2ef0bbb83d0066f9f6bd94817a331))
+
 ## [11.3.9](https://github.com/dword-design/base/compare/v11.3.8...v11.3.9) (2025-05-07)
 
 
