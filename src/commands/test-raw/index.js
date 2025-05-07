@@ -41,8 +41,6 @@ export default async function (options) {
           ...(options.ui ? ['--ui'] : []),
           ...(options.uiHost ? ['--ui-host', options.uiHost] : []),
           ...(options.grep ? ['--grep', options.grep] : []),
-          '--timeout',
-          130000,
           '--trace',
           'retain-on-failure',
           ...(isCI() ? ['--forbid-only'] : []),
