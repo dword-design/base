@@ -52,6 +52,14 @@ const run = async () => {
                 description: 'Update snapshots',
                 name: '-u, --update-snapshots',
               },
+              {
+                description: 'Run tests in interactive UI mode',
+                name: '--ui-host <host>',
+              },
+              {
+                description: 'Host to serve UI on; specifying this option opens UI in a browser tab',
+                name: '--ui',
+              }
             ],
           },
           ...(base.config.commands
