@@ -1,3 +1,3 @@
 export default {
-  postCreateCommand: 'COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile',
+  postCreateCommand: 'pnpm install --frozen-lockfile',
 };
