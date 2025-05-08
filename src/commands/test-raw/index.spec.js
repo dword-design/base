@@ -599,7 +599,7 @@ export default tester(
         'src/index.spec.js': endent`
           import { test, expect } from '@playwright/test';
 
-          test('@usesdocker valid', () => expect(1).toEqual(2));
+          test('valid @usesdocker', () => expect(1).toEqual(2));
         `,
       },
       async test() {
@@ -609,7 +609,7 @@ export default tester(
         Object.defineProperty(process, 'platform', { value: 'win32' });
 
         try {
-          await this.base.test({ log: true });
+          await this.base.test();
         } finally {
           Object.defineProperty(process, 'platform', {
             value: previousPlatform,
