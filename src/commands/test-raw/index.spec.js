@@ -590,6 +590,35 @@ export default tester(
         process.env = previousEnv;
       },
     },
+    'usesdocker playwright': {
+      config: { testRunner: 'playwright' },
+      files: {
+        'package.json': JSON.stringify({
+          devDependencies: { '@playwright/test': '*' },
+        }),
+        'src/index.spec.js': endent`
+          import { test, expect } from '@playwright/test';
+
+          test('@usesdocker valid', () => expect(1).toEqual(2));
+        `,
+      },
+      async test() {
+        const previousPlatform = process.platform;
+        const previousEnv = process.env;
+        process.env.CI = true;
+        Object.defineProperty(process, 'platform', { value: 'win32' });
+
+        try {
+          await this.base.test({ log: true });
+        } finally {
+          Object.defineProperty(process, 'platform', {
+            value: previousPlatform,
+          });
+
+          process.env = previousEnv;
+        }
+      },
+    },
     'usesdocker windows': {
       files: { 'src/index.usesdocker.spec.js': 'throw new Error()' },
       async test() {

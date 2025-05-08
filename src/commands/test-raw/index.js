@@ -37,6 +37,8 @@ export default async function (options) {
       ? [
           'playwright',
           'test',
+          '--pass-with-no-tests',
+          ...(runDockerTests ? [] : ['--grep-invert', '@usesdocker']),
           ...(options.updateSnapshots ? ['--update-snapshots'] : []),
           ...(options.ui ? ['--ui'] : []),
           ...(options.uiHost ? ['--ui-host', options.uiHost] : []),
