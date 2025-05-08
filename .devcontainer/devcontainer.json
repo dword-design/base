@@ -1,9 +1,4 @@
 {
-  "features": {
-    "ghcr.io/devcontainers/features/desktop-lite:1": {},
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": 20
-    }
-  },
-  "postCreateCommand": "COREPACK_INTEGRITY_KEYS=0 pnpm install --frozen-lockfile"
+  "image": "ghcr.io/dword-design/devcontainer",
+  "postCreateCommand": "pnpm install --frozen-lockfile"
 }

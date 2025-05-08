@@ -23,7 +23,7 @@ export default function () {
     }\n`,
     '.cz.json': `${commitizenConfig |> jsonToString({ indent: 2 })}\n`,
     '.devcontainer/devcontainer.json': `${
-      this.getGithubCodespacesConfig() |> jsonToString({ indent: 2 })
+      this.githubCodespacesConfig |> jsonToString({ indent: 2 })
     }\n`,
     '.editorconfig': editorconfigConfig,
     '.eslintrc.json': `${

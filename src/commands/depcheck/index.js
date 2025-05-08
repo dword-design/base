@@ -14,14 +14,25 @@ export default async function () {
     package: this.packageConfig |> omit(['devDependencies']),
     skipMissing: true,
     ...this.config.depcheckConfig,
-    ignorePatterns: ['*.spec.js', '/global-test-hooks.js', 'package.json'],
+    ignorePatterns: [
+      '*.spec.js',
+      ...(this.config.testRunner === 'playwright'
+        ? ['/fixtures', '/playwright.config.js']
+        : ['/global-test-hooks.js']),
+      'package.json',
+    ],
   });
 
   const devDependenciesResult = await depcheck('.', {
     package: this.packageConfig |> omit(['dependencies']),
     skipMissing: true,
     ...this.config.depcheckConfig,
-    ignorePatterns: ['!*.spec.js', '!/global-test-hooks.js'],
+    ignorePatterns: [
+      '!*.spec.js',
+      this.config.testRunner === 'playwright'
+        ? ['!/fixtures', '!/playwright.config.js']
+        : ['!/global-test-hooks.js'],
+    ],
   });
 
   const result = {

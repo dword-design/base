@@ -1,3 +1,87 @@
+## [11.3.10](https://github.com/dword-design/base/compare/v11.3.9...v11.3.10) (2025-05-07)
+
+
+### Bug Fixes
+
+* enable corepack integrity checks ([#773](https://github.com/dword-design/base/issues/773)) ([b73f5b1](https://github.com/dword-design/base/commit/b73f5b19ffc2ef0bbb83d0066f9f6bd94817a331))
+
+## [11.3.9](https://github.com/dword-design/base/compare/v11.3.8...v11.3.9) (2025-05-07)
+
+
+### Bug Fixes
+
+* remove timeout ([4bed0c6](https://github.com/dword-design/base/commit/4bed0c6a500b0a099660c80ef965c00ca5daaec8))
+
+## [11.3.8](https://github.com/dword-design/base/compare/v11.3.7...v11.3.8) (2025-05-07)
+
+
+### Bug Fixes
+
+* add ui mode to cli ([47145f3](https://github.com/dword-design/base/commit/47145f385a2dfd25adec25b575b3018ee6dd1065))
+
+## [11.3.7](https://github.com/dword-design/base/compare/v11.3.6...v11.3.7) (2025-05-05)
+
+
+### Bug Fixes
+
+* devcontainer performance ([#781](https://github.com/dword-design/base/issues/781)) ([134d973](https://github.com/dword-design/base/commit/134d9737cec2639a8fc9f795eb5cdccb97a6b0b1))
+
+## [11.3.6](https://github.com/dword-design/base/compare/v11.3.5...v11.3.6) (2025-05-04)
+
+
+### Bug Fixes
+
+* do not warn if there are no artifacts to upload ([8f874da](https://github.com/dword-design/base/commit/8f874da11374124851a21e46787c3f50f4c6d5e8))
+
+## [11.3.5](https://github.com/dword-design/base/compare/v11.3.4...v11.3.5) (2025-05-04)
+
+
+### Bug Fixes
+
+* foo ([9160f65](https://github.com/dword-design/base/commit/9160f656925692f238ff59f7de53c19b5c49b5a6))
+
+## [11.3.4](https://github.com/dword-design/base/compare/v11.3.3...v11.3.4) (2025-05-04)
+
+
+### Bug Fixes
+
+* forbid only ([cccdf81](https://github.com/dword-design/base/commit/cccdf817f088a393d2e27d8a214df9e9f9b49938))
+
+## [11.3.3](https://github.com/dword-design/base/compare/v11.3.2...v11.3.3) (2025-05-02)
+
+
+### Bug Fixes
+
+* clean up artifacts ([96f0a66](https://github.com/dword-design/base/commit/96f0a6651faeddcc045a1cf4e07efebb99b73aa0))
+
+## [11.3.2](https://github.com/dword-design/base/compare/v11.3.1...v11.3.2) (2025-05-02)
+
+
+### Bug Fixes
+
+* linting ([f862383](https://github.com/dword-design/base/commit/f8623833ad8e4fd5e34e5b7a09fcf110f41960af))
+* playwright.config.js allowed match ([450826c](https://github.com/dword-design/base/commit/450826cc55ea2040e4b6ae4ab8a780a7dd619745))
+
+## [11.3.1](https://github.com/dword-design/base/compare/v11.3.0...v11.3.1) (2025-05-01)
+
+
+### Bug Fixes
+
+* add trace for playwright ([6d625e0](https://github.com/dword-design/base/commit/6d625e09336f8a9b6778031d19bfec41c6e7d4b4))
+
+# [11.3.0](https://github.com/dword-design/base/compare/v11.2.11...v11.3.0) (2025-05-01)
+
+
+### Bug Fixes
+
+* foo ([4d60b3f](https://github.com/dword-design/base/commit/4d60b3fff42e5fb779f3842f010b5e4521e84a65))
+* foo ([f224706](https://github.com/dword-design/base/commit/f224706496c5ee5e723898fabab573aa61272cef))
+
+
+### Features
+
+* playwright ([#779](https://github.com/dword-design/base/issues/779)) ([f9fec21](https://github.com/dword-design/base/commit/f9fec2134c773bb3bad3f35071e863e836ea56f5))
+
 ## [11.2.11](https://github.com/dword-design/base/compare/v11.2.10...v11.2.11) (2025-05-01)
 
 
