@@ -1,3 +1,10 @@
+## [11.3.11](https://github.com/dword-design/base/compare/v11.3.10...v11.3.11) (2025-05-08)
+
+
+### Bug Fixes
+
+* usesdocker tag for playwright ([92504e2](https://github.com/dword-design/base/commit/92504e24bf1f6b958e32559d669a1031a7cd033d))
+
 ## [11.3.10](https://github.com/dword-design/base/compare/v11.3.9...v11.3.10) (2025-05-07)
 
 
