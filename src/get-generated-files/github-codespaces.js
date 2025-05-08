@@ -1,1 +1,6 @@
-export default { postCreateCommand: 'pnpm install --frozen-lockfile' };
+export default {
+  forwardPorts: [6080],
+  image: 'ghcr.io/dword-design/devcontainer',
+  portsAttributes: { 6080: { label: 'desktop' } },
+  postCreateCommand: 'pnpm install --frozen-lockfile',
+};
