@@ -27,9 +27,9 @@
     "@commitlint/cli": "^18.6.1",
     "@commitlint/config-conventional": "^18.6.3",
     "@dword-design/babel-config": "^4.2.1",
-    "@dword-design/base-config-node": "^3.0.0",
+    "@dword-design/base-config-node": "^3.0.2",
     "@dword-design/ci": "^4.0.6",
-    "@dword-design/eslint-config": "^5.0.20",
+    "@dword-design/eslint-config": "^5.0.25",
     "@dword-design/functions": "^6.0.2",
     "@dword-design/jiti-babel-transform": "^2.0.0",
     "@dword-design/personal-data": "^2.0.3",
@@ -84,7 +84,7 @@
     "yaml": "^2.7.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.27.1",
+    "@babel/cli": "^7.27.2",
     "@dword-design/chdir": "^3.0.2",
     "@dword-design/dotenv-json-extended": "^2.0.25",
     "@dword-design/tester": "^2.0.19",
