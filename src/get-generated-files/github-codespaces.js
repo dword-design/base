@@ -1,6 +1,8 @@
 export default {
   forwardPorts: [6080],
-  image: 'ghcr.io/dword-design/devcontainer:latest',
+  features: {
+    'ghcr.io/devcontainers/features/desktop-lite:1': {}
+  },
   portsAttributes: { 6080: { label: 'desktop' } },
   postCreateCommand: 'pnpm install --frozen-lockfile',
 };
