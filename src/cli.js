@@ -8,16 +8,13 @@ import loadConfig from './load-config/index.js';
 
 const run = async () => {
   const base = new Base(await loadConfig());
-  
+
   const testOptions = [
     {
       description: 'Only run tests matching this string or regexp',
       name: '-g, --grep <grep>',
     },
-    {
-      description: 'Update snapshots',
-      name: '-u, --update-snapshots',
-    },
+    { description: 'Update snapshots', name: '-u, --update-snapshots' },
     {
       description: 'Run tests in interactive UI mode',
       name: '--ui-host <host>',
@@ -28,7 +25,7 @@ const run = async () => {
       name: '--ui',
     },
   ];
-  
+
   try {
     await makeCli({
       commands:
