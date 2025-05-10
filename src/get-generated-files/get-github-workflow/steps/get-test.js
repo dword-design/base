@@ -41,7 +41,7 @@ export default () => {
         name: 'Images from tests',
         path: endent`
           **/__image_snapshots__/__diff_output__
-          test-results/*/trace.zip
+          test-results/*/**
         `,
       },
     },

@@ -105,7 +105,7 @@ Object {
             "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results/*/trace.zip",
+test-results/*/**",
           },
         },
         Object {
@@ -257,7 +257,7 @@ Object {
             "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results/*/trace.zip",
+test-results/*/**",
           },
         },
         Object {
@@ -405,7 +405,7 @@ Object {
             "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results/*/trace.zip",
+test-results/*/**",
           },
         },
         Object {
@@ -501,7 +501,7 @@ Object {
             "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results/*/trace.zip",
+test-results/*/**",
           },
         },
         Object {
@@ -650,7 +650,7 @@ Object {
             "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results/*/trace.zip",
+test-results/*/**",
           },
         },
         Object {
@@ -804,7 +804,7 @@ Object {
             "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results/*/trace.zip",
+test-results/*/**",
           },
         },
         Object {
@@ -1052,7 +1052,7 @@ Object {
             "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results/*/trace.zip",
+test-results/*/**",
           },
         },
         Object {
@@ -1148,7 +1148,7 @@ Object {
             "if-no-files-found": "ignore",
             "name": "Images from tests",
             "path": "**/__image_snapshots__/__diff_output__
-test-results/*/trace.zip",
+test-results/*/**",
           },
         },
         Object {
