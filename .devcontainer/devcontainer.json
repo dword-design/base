@@ -1,4 +1,4 @@
 {
   "postCreateCommand": "pnpm install --frozen-lockfile",
-  "initializeCommand": "docker image ls -a"
+  "image": "ghcr.io/cs50/codespace"
 }

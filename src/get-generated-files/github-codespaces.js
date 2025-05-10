@@ -1,1 +1,1 @@
-export default { postCreateCommand: 'pnpm install --frozen-lockfile', initializeCommand: 'docker image ls -a' };
+export default { postCreateCommand: 'pnpm install --frozen-lockfile', image: 'ghcr.io/cs50/codespace' };
