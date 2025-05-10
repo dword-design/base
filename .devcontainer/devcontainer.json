@@ -1,3 +1,4 @@
 {
-  "postCreateCommand": "pnpm install --frozen-lockfile"
+  "postCreateCommand": "pnpm install --frozen-lockfile",
+  "initializeCommand": "docker image ls -a"
 }
