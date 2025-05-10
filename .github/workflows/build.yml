@@ -60,7 +60,7 @@ jobs:
           name: Images from tests
           path: |-
             **/__image_snapshots__/__diff_output__
-            test-results/*/trace.zip
+            test-results/*/**
       - if: matrix.os == 'ubuntu-latest' && matrix.node == 20
         uses: codecov/codecov-action@v3
         with:
