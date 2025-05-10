@@ -8,7 +8,27 @@ import loadConfig from './load-config/index.js';
 
 const run = async () => {
   const base = new Base(await loadConfig());
-
+  
+  const testOptions = [
+    {
+      description: 'Only run tests matching this string or regexp',
+      name: '-g, --grep <grep>',
+    },
+    {
+      description: 'Update snapshots',
+      name: '-u, --update-snapshots',
+    },
+    {
+      description: 'Run tests in interactive UI mode',
+      name: '--ui-host <host>',
+    },
+    {
+      description:
+        'Host to serve UI on; specifying this option opens UI in a browser tab',
+      name: '--ui',
+    },
+  ];
+  
   try {
     await makeCli({
       commands:
@@ -28,40 +48,13 @@ const run = async () => {
               arguments: '[patterns...]',
               handler: (patterns, options) =>
                 base.testRaw({ patterns, ...options }),
-              options: [
-                {
-                  description: 'Only run tests matching this string or regexp',
-                  name: '-g, --grep <grep>',
-                },
-                {
-                  description: 'Update snapshots',
-                  name: '-u, --update-snapshots',
-                },
-              ],
+              options: testOptions,
             },
           }),
           test: {
             arguments: '[patterns...]',
             handler: (patterns, options) => base.test({ patterns, ...options }),
-            options: [
-              {
-                description: 'Only run tests matching this string or regexp',
-                name: '-g, --grep <grep>',
-              },
-              {
-                description: 'Update snapshots',
-                name: '-u, --update-snapshots',
-              },
-              {
-                description: 'Run tests in interactive UI mode',
-                name: '--ui-host <host>',
-              },
-              {
-                description:
-                  'Host to serve UI on; specifying this option opens UI in a browser tab',
-                name: '--ui',
-              },
-            ],
+            options: testOptions,
           },
           ...(base.config.commands
             |> mapValues((command, name) => ({
