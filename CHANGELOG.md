@@ -1,3 +1,10 @@
+## [11.3.12](https://github.com/dword-design/base/compare/v11.3.11...v11.3.12) (2025-05-10)
+
+
+### Bug Fixes
+
+* test options ([c2deb31](https://github.com/dword-design/base/commit/c2deb316e5dac2a73c0153a3df3f6989c23e4402))
+
 ## [11.3.11](https://github.com/dword-design/base/compare/v11.3.10...v11.3.11) (2025-05-08)
 
 
