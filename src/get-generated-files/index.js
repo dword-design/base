@@ -28,8 +28,7 @@ export default function () {
     '.editorconfig': editorconfigConfig,
     'eslint.config.js': endent`
       import { defineConfig } from 'eslint/config';
-
-      import config from './src/index.js';
+      import config from '@dword-design/eslint-config';
 
       export default defineConfig([config]);\n
     `,
