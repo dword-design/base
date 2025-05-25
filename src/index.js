@@ -51,18 +51,6 @@ const mergeConfigs = (...configs) => {
       key === 'supportedNodeVersions' ? (a, b) => b : undefined,
   });
 
-  if (result.eslintConfig?.rules?.['import/no-unresolved']?.length > 0) {
-    result.eslintConfig.rules['import/no-unresolved'] = [
-      'error',
-      {
-        ignore:
-          result.eslintConfig.rules['import/no-unresolved']
-          |> filter(setting => typeof setting === 'object')
-          |> flatMap(setting => setting.ignore),
-      },
-    ];
-  }
-
   return result;
 };
 
