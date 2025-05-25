@@ -39,6 +39,30 @@ export default tester(
         'package.json': JSON.stringify({ dependencies: { foo: '^1.0.0' } }),
       },
     },
+    'eslint config > dev dependency': {
+      files: {
+        'package.json': JSON.stringify({ devDependencies: { eslint: '*' } }),
+        'src/index.js': 'export default 1',
+      },
+      async test() {
+        await expect(this.base.depcheck()).rejects.toThrow(endent`
+          Unused devDependencies
+          * eslint
+        `);
+      },
+    },
+    'eslint config > prod dependency': {
+      files: {
+        'package.json': JSON.stringify({ dependencies: { eslint: '*' } }),
+        'src/index.js': 'export default 1',
+      },
+      async test() {
+        await expect(this.base.depcheck()).rejects.toThrow(endent`
+          Unused dependencies
+          * eslint
+        `);
+      },
+    },
     'invalid file': {
       config: {
         depcheckConfig: {
@@ -108,34 +132,6 @@ export default tester(
           Unused dependencies
           * change-case
           * foo
-        `);
-      },
-    },
-    'eslint config > prod dependency': {
-      files: {
-        'package.json': JSON.stringify({
-          dependencies: { 'eslint': '*' },
-        }),
-        'src/index.js': 'export default 1',
-      },
-      async test() {
-        await expect(this.base.depcheck()).rejects.toThrow(endent`
-          Unused dependencies
-          * eslint
-        `);
-      },
-    },
-    'eslint config > dev dependency': {
-      files: {
-        'package.json': JSON.stringify({
-          devDependencies: { 'eslint': '*' },
-        }),
-        'src/index.js': 'export default 1',
-      },
-      async test() {
-        await expect(this.base.depcheck()).rejects.toThrow(endent`
-          Unused devDependencies
-          * eslint
         `);
       },
     },
