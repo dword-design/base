@@ -1,3 +1,20 @@
+# [12.0.0](https://github.com/dword-design/base/compare/v11.3.14...v12.0.0) (2025-05-25)
+
+
+### Bug Fixes
+
+* foo ([097f7a8](https://github.com/dword-design/base/commit/097f7a86032d4fbf2182a93c4fe7a17d33eedc26))
+* foo ([cd0b1d3](https://github.com/dword-design/base/commit/cd0b1d3b5f51e22bc9e0acc91fbf5215948f4793))
+* foo ([2a9e58d](https://github.com/dword-design/base/commit/2a9e58d21bbe79ff967d8cdea9d1ac757570ccbe))
+* foo ([e054e91](https://github.com/dword-design/base/commit/e054e914853daa512aa777e2800b5017df4a8260))
+* update dependency eslint to v9 ([a0bdab0](https://github.com/dword-design/base/commit/a0bdab038a76a57603433a1fcbddc6694fc3b2bb))
+* update dependency eslint to v9 ([#759](https://github.com/dword-design/base/issues/759)) ([9e33ee1](https://github.com/dword-design/base/commit/9e33ee1dfc8e2a532f6eb3926fe9a789f9d45981))
+
+
+### BREAKING CHANGES
+
+* eslint 9 flat config
+
 ## [11.3.14](https://github.com/dword-design/base/compare/v11.3.13...v11.3.14) (2025-05-25)
 
 
