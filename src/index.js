@@ -2,8 +2,6 @@ import P from 'node:path';
 
 import {
   endent,
-  filter,
-  flatMap,
   identity,
   mapValues,
 } from '@dword-design/functions';
