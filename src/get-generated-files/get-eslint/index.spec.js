@@ -12,7 +12,7 @@ export default {
 
     expect(base.getEslintConfig()).toEqual(endent`
       import { defineConfig } from 'eslint/config';
-      
+
       import config from '@dword-design/eslint-config';
 
       export default defineConfig([
