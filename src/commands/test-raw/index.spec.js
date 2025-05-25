@@ -170,7 +170,7 @@ export default tester(
       files: { 'src/test.json': 'foo bar' },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          "error  Unexpected identifier 'foo'",
+          "Parsing error: Unexpected identifier 'foo'",
         );
       },
     },
