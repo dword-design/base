@@ -5,6 +5,7 @@ import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import outputFiles from 'output-files';
 import P from 'path';
+import yaml from 'yaml';
 
 import { Base } from '@/src/index.js';
 
@@ -148,6 +149,9 @@ export default tester(
           name: P.basename(process.cwd()),
           scripts: { 'test:raw': 'node test.js' },
           type: 'module',
+        }),
+        'pnpm-workspace.yaml': yaml.stringify({
+          onlyBuiltDependencies: ['puppeteer'],
         }),
         'test.js': endent`
           import puppeteer from '@dword-design/puppeteer'
