@@ -8,6 +8,7 @@ Object {
   ".editorconfig": true,
   ".env.json": true,
   ".env.schema.json": true,
+  ".eslintignore": true,
   ".eslintrc.json": true,
   ".git": true,
   ".gitattributes": true,

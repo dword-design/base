@@ -1,4 +1,4 @@
-import { fromPairs, keys, map } from '@dword-design/functions';
+import { endent, fromPairs, keys, map } from '@dword-design/functions';
 import { constantCase } from 'change-case';
 import { findUpStop, findUpSync } from 'find-up';
 import fs from 'fs-extra';
@@ -34,11 +34,15 @@ export default () => {
       run: 'pnpm test',
     },
     {
-      if: 'failure()',
+      if: 'always()',
       uses: gitHubAction`actions/upload-artifact@v4`,
       with: {
-        name: 'Image Snapshot Diffs',
-        path: '**/__image_snapshots__/__diff_output__',
+        'if-no-files-found': 'ignore',
+        name: 'Images from tests',
+        path: endent`
+          **/__image_snapshots__/__diff_output__
+          test-results/*/**
+        `,
       },
     },
   ];

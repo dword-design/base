@@ -16,9 +16,9 @@ export default async function () {
     ...this.config.depcheckConfig,
     ignorePatterns: [
       '*.spec.js',
-      this.config.testRunner === 'playwright'
-        ? '/playwright.config.js'
-        : '/global-test-hooks.js',
+      ...(this.config.testRunner === 'playwright'
+        ? ['/fixtures', '/playwright.config.js']
+        : ['/global-test-hooks.js']),
       'package.json',
     ],
   });
@@ -30,8 +30,8 @@ export default async function () {
     ignorePatterns: [
       '!*.spec.js',
       this.config.testRunner === 'playwright'
-        ? '!/playwright.config.js'
-        : '!/global-test-hooks.js',
+        ? ['!/fixtures', '!/playwright.config.js']
+        : ['!/global-test-hooks.js'],
     ],
   });
 

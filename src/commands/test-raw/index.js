@@ -37,12 +37,21 @@ export default async function (options) {
       ? [
           'playwright',
           'test',
+          '--pass-with-no-tests',
+          ...(runDockerTests ? [] : ['--grep-invert', '@usesdocker']),
           ...(options.updateSnapshots ? ['--update-snapshots'] : []),
           ...(options.ui ? ['--ui'] : []),
           ...(options.uiHost ? ['--ui-host', options.uiHost] : []),
           ...(options.grep ? ['--grep', options.grep] : []),
-          '--timeout',
-          130000,
+          '--trace',
+          'retain-on-failure',
+          ...(isCI() ? ['--forbid-only'] : []),
+          /**
+           * Reporter set to dot in CI environments by default.
+           * See https://github.com/microsoft/playwright/blob/42ade54975f6990c41cddc7b6e11c46a36648d0d/packages/playwright/src/common/config.ts#L301.
+           */
+          '--reporter',
+          'list',
           ...options.patterns,
         ]
       : [

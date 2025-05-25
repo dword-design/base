@@ -13,7 +13,7 @@ import packageName from 'depcheck-package-name';
 import fs from 'fs-extra';
 import { globby } from 'globby';
 import outputFiles from 'output-files';
-import P from 'path';
+import pathLib from 'path';
 import unifyMochaOutput from 'unify-mocha-output';
 
 import { Base } from '@/src/index.js';
@@ -221,7 +221,7 @@ export default tester(
 
         expect(
           await fs.readFile(
-            P.join('__snapshots__', 'index.spec.js.snap'),
+            pathLib.join('__snapshots__', 'index.spec.js.snap'),
             'utf8',
           ),
         ).toEqual(javascript`
@@ -294,10 +294,10 @@ export default tester(
         src: {
           'index.spec.js': javascript`
             import { execa } from 'execa'
-            import P from 'path'
+            import pathLib from 'path'
 
             export default {
-              valid: () => execa(P.join('src', 'subprocess.js'), { stdio: 'inherit' }),
+              valid: () => execa(pathLib.join('src', 'subprocess.js'), { stdio: 'inherit' }),
             }
           `,
           'subprocess.js': javascript`
@@ -308,7 +308,7 @@ export default tester(
         },
       },
       async test() {
-        await fs.chmod(P.join('src', 'subprocess.js'), '755');
+        await fs.chmod(pathLib.join('src', 'subprocess.js'), '755');
         await this.base.test();
       },
     },
@@ -335,6 +335,28 @@ export default tester(
         await this.base.test();
       },
     },
+    'playwright: error': {
+      config: { testRunner: 'playwright' },
+      files: {
+        'package.json': JSON.stringify({
+          devDependencies: { '@playwright/test': '*' },
+          name: 'foo',
+          type: 'module',
+        }),
+        'src/index.spec.js': javascript`
+          import { test, expect } from '${packageName`@playwright/test`}';
+
+          test('valid', () => expect(1).toEqual(2));\n
+        `,
+      },
+      async test() {
+        await expect(this.base.test()).rejects.toThrow();
+
+        expect(await fs.exists('test-results/src-index-valid/trace.zip')).toBe(
+          true,
+        );
+      },
+    },
     'playwright: grep': {
       config: { testRunner: 'playwright' },
       files: {
@@ -356,7 +378,10 @@ export default tester(
         const output =
           this.base.test({ grep: 'test1' }) |> await |> property('all');
 
-        expect(output).toMatch('src/index.spec.js:2:1 › test1');
+        expect(output).toMatch(
+          `${pathLib.join('src', 'index.spec.js')}:2:1 › test1`,
+        );
+
         expect(output).toMatch('1 passed');
       },
     },
@@ -387,7 +412,10 @@ export default tester(
           |> await
           |> property('all');
 
-        expect(output).toMatch('src/index.spec.js:2:1 › valid');
+        expect(output).toMatch(
+          `${pathLib.join('src', 'index.spec.js')}:2:1 › valid`,
+        );
+
         expect(output).toMatch('1 passed');
       },
     },
@@ -447,7 +475,11 @@ export default tester(
       },
       async test() {
         expect(this.base.test() |> await |> property('all')).toMatch(
-          '1 src/index.spec.js:3:1 › valid',
+          `1 ${pathLib.join('src', 'index.spec.js')}:3:1 › valid`,
+        );
+
+        expect(await fs.exists('test-results/src-index-valid/trace.zip')).toBe(
+          false,
         );
       },
     },
@@ -558,6 +590,35 @@ export default tester(
         process.env = previousEnv;
       },
     },
+    'usesdocker playwright': {
+      config: { testRunner: 'playwright' },
+      files: {
+        'package.json': JSON.stringify({
+          devDependencies: { '@playwright/test': '*' },
+        }),
+        'src/index.spec.js': endent`
+          import { test, expect } from '@playwright/test';
+
+          test('valid @usesdocker', () => expect(1).toEqual(2));
+        `,
+      },
+      async test() {
+        const previousPlatform = process.platform;
+        const previousEnv = process.env;
+        process.env.CI = true;
+        Object.defineProperty(process, 'platform', { value: 'win32' });
+
+        try {
+          await this.base.test();
+        } finally {
+          Object.defineProperty(process, 'platform', {
+            value: previousPlatform,
+          });
+
+          process.env = previousEnv;
+        }
+      },
+    },
     'usesdocker windows': {
       files: { 'src/index.usesdocker.spec.js': 'throw new Error()' },
       async test() {
@@ -615,6 +676,7 @@ export default tester(
           '.cz.json': true,
           '.devcontainer': true,
           '.editorconfig': true,
+          '.eslintignore': true,
           '.eslintrc.json': true,
           '.gitattributes': true,
           '.github': true,

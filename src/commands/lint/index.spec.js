@@ -3,7 +3,6 @@ import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
-import outputFiles from 'output-files';
 import P from 'path';
 
 import { Base } from '@/src/index.js';
@@ -72,33 +71,6 @@ export default tester(
       const base = new Base();
       await base.prepare();
       await base.lint();
-    },
-    'plugin next to config': async () => {
-      await outputFiles({
-        node_modules: {
-          '@dword-design/eslint-config': {
-            'index.js': endent`
-              module.exports = {
-                plugins: ['foo'],
-              }
-            `,
-            'node_modules/eslint-plugin-foo/index.js': '',
-          },
-          'eslint-plugin-foo/index.js': 'foo bar',
-        },
-        'src/index.js': '',
-      });
-
-      const base = new Base();
-      await base.prepare();
-
-      await base.lint({
-        resolvePluginsRelativeTo: P.join(
-          'node_modules',
-          '@dword-design',
-          'eslint-config',
-        ),
-      });
     },
   },
   [testerPluginTmpDir()],

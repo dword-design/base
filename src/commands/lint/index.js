@@ -1,10 +1,7 @@
 import { execa } from 'execa';
-import { createRequire } from 'module';
 import parsePackagejsonName from 'parse-packagejson-name';
 
-const _require = createRequire(import.meta.url);
-
-export default async function (options) {
+export default async function () {
   const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
 
   if (
@@ -16,26 +13,10 @@ export default async function (options) {
     );
   }
 
-  options = {
-    resolvePluginsRelativeTo: _require.resolve('@dword-design/eslint-config'),
-    ...options,
-  };
-
   try {
-    await execa(
-      'eslint',
-      [
-        '--fix',
-        '--ext',
-        '.js,.json,.vue',
-        '--ignore-path',
-        '.gitignore',
-        '--resolve-plugins-relative-to',
-        options.resolvePluginsRelativeTo,
-        '.',
-      ],
-      { all: true },
-    );
+    await execa('eslint', ['--fix', '--ext', '.js,.json,.vue', '.'], {
+      all: true,
+    });
   } catch (error) {
     throw new Error(error.all);
   }
