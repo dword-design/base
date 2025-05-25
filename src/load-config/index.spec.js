@@ -1,7 +1,8 @@
+import os from 'node:os';
+
 import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import fs from 'fs-extra';
-import os from 'os';
 
 import self from './index.js';
 

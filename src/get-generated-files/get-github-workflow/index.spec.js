@@ -1,3 +1,5 @@
+import P from 'node:path';
+
 import chdir from '@dword-design/chdir';
 import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
@@ -5,7 +7,6 @@ import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import isCI from 'is-ci';
 import outputFiles from 'output-files';
-import P from 'path';
 
 import { Base } from '@/src/index.js';
 

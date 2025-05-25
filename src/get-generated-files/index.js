@@ -26,11 +26,6 @@ export default function () {
       this.githubCodespacesConfig |> jsonToString({ indent: 2 })
     }\n`,
     '.editorconfig': editorconfigConfig,
-    '.eslintignore':
-      this.getGitignoreConfig() |> map(entry => `${entry}\n`) |> join(''),
-    '.eslintrc.json': `${
-      this.getEslintConfig() |> jsonToString({ indent: 2 })
-    }\n`,
     '.gitattributes': gitattributesConfig,
     '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md':
       deprecatedDependenciesIssueTemplate,
@@ -66,6 +61,7 @@ export default function () {
     'LICENSE.md': this.getLicenseString(),
     'README.md': this.getReadmeString(),
     'babel.config.json': `${babelConfig |> jsonToString({ indent: 2 })}\n`,
+    'eslint.config.js': this.getEslintConfig(),
     'package.json': `${
       packageConfig |> sortPackageJson |> jsonToString({ indent: 2 })
     }\n`,

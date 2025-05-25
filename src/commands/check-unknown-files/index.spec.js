@@ -53,13 +53,11 @@ export default tester(
           await outputFiles(test.files);
           const base = new Base({ allowedMatches: test.allowedMatches });
 
-          if (isEmpty(test.result)) {
-            await base.checkUnknownFiles();
-          } else {
-            await expect(base.checkUnknownFiles()).rejects.toThrow(
-              new UnknownFilesError(test.result),
-            );
-          }
+          await (isEmpty(test.result)
+            ? base.checkUnknownFiles()
+            : expect(base.checkUnknownFiles()).rejects.toThrow(
+                new UnknownFilesError(test.result),
+              ));
         };
       },
     },

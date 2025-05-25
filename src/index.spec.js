@@ -1,10 +1,11 @@
+import P from 'node:path';
+
 import chdir from '@dword-design/chdir';
 import { endent, identity, keys, omit, sortBy } from '@dword-design/functions';
 import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import fs from 'fs-extra';
 import outputFiles from 'output-files';
-import P from 'path';
 
 import { Base as Self } from './index.js';
 

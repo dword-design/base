@@ -10,7 +10,6 @@ export default async function () {
     ...Object.keys({
       '.baserc.json': true,
       '.env.schema.json': true,
-      '.eslintrc.json': true,
       '.git': true,
       '.husky/_': true,
       '.husky/commit-msg': true,
@@ -24,6 +23,7 @@ export default async function () {
       __snapshots__: true,
       demo: true,
       doc: true,
+      'eslint.config.js': true,
       'global-test-hooks.js': true,
       'pnpm-lock.yaml': true,
       'pnpm-workspace.yaml': true,

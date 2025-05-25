@@ -9,7 +9,6 @@ export default function () {
       '/.nyc_output',
       '/coverage',
       '/node_modules',
-      '/.eslintignore',
       ...(this.config.testRunner === 'playwright' ? ['/test-results'] : []),
       ...this.config.gitignore,
     ] |> sortBy(identity)

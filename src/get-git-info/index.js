@@ -4,13 +4,13 @@ import parseGitConfig from 'parse-git-config';
 
 export default () => {
   if (!fs.existsSync('.git')) {
-    return undefined;
+    return;
   }
 
   const gitUrl = parseGitConfig.sync()['remote "origin"']?.url;
 
   if (gitUrl === undefined) {
-    return undefined;
+    return;
   }
 
   const gitInfo = hostedGitInfo.fromUrl(gitUrl) || {};

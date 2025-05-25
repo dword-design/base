@@ -43,7 +43,10 @@ export default tester(
           peerDependencies: { nuxt: '^1.0.0' },
           pnpm: { overrides: { bulma: '^1' } },
           publishConfig: { access: 'public' },
-          scripts: { foo: 'echo \\"foo\\"', test: 'echo \\"foo\\"' },
+          scripts: {
+            foo: String.raw`echo \"foo\"`,
+            test: String.raw`echo \"foo\"`,
+          },
           type: 'module',
           types: 'types.d.ts',
           version: '1.1.0',

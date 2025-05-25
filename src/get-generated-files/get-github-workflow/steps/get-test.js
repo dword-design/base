@@ -1,8 +1,9 @@
+import P from 'node:path';
+
 import { endent, fromPairs, keys, map } from '@dword-design/functions';
 import { constantCase } from 'change-case';
 import { findUpStop, findUpSync } from 'find-up';
 import fs from 'fs-extra';
-import P from 'path';
 import gitHubAction from 'tagged-template-noop';
 
 export default () => {
@@ -14,8 +15,6 @@ export default () => {
     if (fs.existsSync(P.join(path, 'package.json'))) {
       return findUpStop;
     }
-
-    return undefined;
   });
 
   const envVariableNames =
