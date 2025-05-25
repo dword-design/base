@@ -6,15 +6,14 @@ export default function () {
     this.config.eslintConfig ||
     endent`
       import { defineConfig } from '${packageName`eslint`}/config';
+      
       import config from '${this.packageConfig.name === '@dword-design/eslint-config' ? './src/index.js' : packageName`@dword-design/eslint-config`}';
 
       export default defineConfig([
         config,
         {
           files: ['eslint.config.js'],
-          rules: {
-            'import/no-extraneous-dependencies': 'off',
-          },
+          rules: { 'import/no-extraneous-dependencies': 'off' },
         },
       ]);\n
     `
