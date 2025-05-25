@@ -6,7 +6,7 @@ export default function () {
     this.config.eslintConfig ||
     endent`
       import { defineConfig } from '${packageName`eslint`}/config';
-      import config from '${packageName`@dword-design/eslint-config`}';
+      import config from '${this.packageConfig.name === '@dword-design/eslint-config' ? './src/index.js' : packageName`@dword-design/eslint-config`}';
 
       export default defineConfig([
         config,

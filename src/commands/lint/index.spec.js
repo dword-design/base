@@ -5,6 +5,7 @@ import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
+import outputFiles from 'output-files';
 
 import { Base } from '@/src/index.js';
 
@@ -32,6 +33,20 @@ export default tester(
 
         `,
       );
+    },
+    'lint eslint config': async () => {
+      await outputFiles({
+        'package.json': JSON.stringify({ name: '@dword-design/eslint-config' }),
+        'src/index.js': endent`
+          import { defineConfig } from 'eslint/config';
+
+          export default defineConfig([]);
+        `,
+      });
+
+      const base = new Base();
+      await base.prepare();
+      await base.lint();
     },
     'linting errors': async () => {
       await fs.outputFile('src/index.js', "const foo = 'bar'");

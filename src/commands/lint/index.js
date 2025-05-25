@@ -14,9 +14,7 @@ export default async function () {
   }
 
   try {
-    await execa('eslint', ['--fix', '--ext', '.js,.json,.vue', '.'], {
-      all: true,
-    });
+    await execa('eslint', ['--fix', '.'], { all: true });
   } catch (error) {
     throw new Error(error.all);
   }
