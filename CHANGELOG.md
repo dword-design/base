@@ -1,3 +1,10 @@
+## [12.0.1](https://github.com/dword-design/base/compare/v12.0.0...v12.0.1) (2025-05-25)
+
+
+### Bug Fixes
+
+* fix eslint config self lint ([1519b6e](https://github.com/dword-design/base/commit/1519b6e9a4ca67d67f83b0047635b312658f42ab))
+
 # [12.0.0](https://github.com/dword-design/base/compare/v11.3.14...v12.0.0) (2025-05-25)
 
 
