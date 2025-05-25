@@ -1,8 +1,9 @@
+import P from 'node:path';
+
 import { endent } from '@dword-design/functions';
 import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import outputFiles from 'output-files';
-import P from 'path';
 
 import { Base } from '@/src/index.js';
 

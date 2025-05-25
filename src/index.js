@@ -1,3 +1,5 @@
+import P from 'node:path';
+
 import {
   endent,
   filter,
@@ -15,7 +17,6 @@ import packageName from 'depcheck-package-name';
 import depcheckParserBabel from 'depcheck-parser-babel';
 import fs from 'fs-extra';
 import jiti from 'jiti';
-import P from 'path';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
 
 import checkUnknownFiles from './commands/check-unknown-files/index.js';

@@ -1,10 +1,11 @@
+import P from 'node:path';
+
 import { endent } from '@dword-design/functions';
 import tester from '@dword-design/tester';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import outputFiles from 'output-files';
-import P from 'path';
 import yaml from 'yaml';
 
 import { Base } from '@/src/index.js';

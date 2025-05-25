@@ -1,10 +1,10 @@
 {
-  "name": "@dword-design/node",
   "depcheckConfig": {
     "ignoreMatches": [
       "husky"
     ]
   },
-  "supportedNodeVersions": [20],
-  "minNodeVersion": 18
+  "minNodeVersion": 18,
+  "name": "@dword-design/node",
+  "supportedNodeVersions": [20]
 }

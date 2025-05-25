@@ -9,7 +9,7 @@ export default function () {
       this.config.npmPublish
         ? packageName`@semantic-release/npm`
         : [packageName`@semantic-release/npm`, { npmPublish: false }],
-      this.config.deployAssets.length
+      this.config.deployAssets.length > 0
         ? [
             packageName`@semantic-release/github`,
             { assets: this.config.deployAssets },

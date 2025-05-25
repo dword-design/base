@@ -1,8 +1,9 @@
+import { createRequire } from 'node:module';
+
 import { first, keys } from '@dword-design/functions';
 import packageName from 'depcheck-package-name';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
-import { createRequire } from 'module';
 import outputFiles from 'output-files';
 
 const _require = createRequire(import.meta.url);

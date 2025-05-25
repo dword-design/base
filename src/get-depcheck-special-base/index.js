@@ -1,4 +1,4 @@
-import P from 'path';
+import P from 'node:path';
 
 export default name => filePath =>
   (filePath |> P.basename) === 'package.json' &&

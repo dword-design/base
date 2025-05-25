@@ -29,7 +29,7 @@
     "@dword-design/babel-config": "^4.2.1",
     "@dword-design/base-config-node": "^3.0.3",
     "@dword-design/ci": "^4.0.6",
-    "@dword-design/eslint-config": "^6.0.0",
+    "@dword-design/eslint-config": "^6.0.1",
     "@dword-design/functions": "^6.0.2",
     "@dword-design/jiti-babel-transform": "^2.0.0",
     "@dword-design/personal-data": "^2.0.3",

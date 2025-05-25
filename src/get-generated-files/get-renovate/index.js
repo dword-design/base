@@ -20,7 +20,7 @@ export default function () {
       regexManagers: [
         {
           datasourceTemplate: 'github-tags',
-          fileMatch: ['\\.js$'],
+          fileMatch: [String.raw`\.js$`],
           matchStrings: [
             getRegexManagerString(
               'gitHubAction',
@@ -32,7 +32,7 @@ export default function () {
         {
           datasourceTemplate: 'node-version',
           depNameTemplate: 'node',
-          fileMatch: ['\\.js$'],
+          fileMatch: [String.raw`\.js$`],
           matchStrings: [
             getRegexManagerString('nodejsVersion', '(?<currentValue>.*?)'),
           ],

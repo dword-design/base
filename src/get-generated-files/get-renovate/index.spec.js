@@ -29,14 +29,12 @@ export default tester(
       await execaCommand('git add .');
       await execa('git', ['commit', '-m', 'feat: init']);
 
-      const output = (
-        await execaCommand(
-          `renovate --platform=local --dry-run --host-rules=[{matchHost:'api.github.com',hostType:'github',token:'${process.env.RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN}'}]`,
-          { env: { CODESPACES: false, LOG_LEVEL: 'debug' } },
-        )
-      ).stdout;
+      const { stdout } = await execaCommand(
+        `renovate --platform=local --dry-run --host-rules=[{matchHost:'api.github.com',hostType:'github',token:'${process.env.RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN}'}]`,
+        { env: { CODESPACES: false, LOG_LEVEL: 'debug' } },
+      );
 
-      expect(output).toMatch(/renovate\/actions-checkout-\d+\.x/);
+      expect(stdout).toMatch(/renovate\/actions-checkout-\d+\.x/);
     },
     'lock file': async () => {
       await execaCommand('git init');
@@ -54,13 +52,12 @@ export default tester(
       await execaCommand('git add .');
       await execa('git', ['commit', '-m', 'feat: init']);
 
-      const output = (
-        await execaCommand('renovate --platform=local --dry-run', {
-          env: { CODESPACES: false, LOG_LEVEL: 'debug' },
-        })
-      ).stdout;
+      const { stdout } = await execaCommand(
+        'renovate --platform=local --dry-run',
+        { env: { CODESPACES: false, LOG_LEVEL: 'debug' } },
+      );
 
-      expect(output).toMatch('chore: lock file maintenance');
+      expect(stdout).toMatch('chore: lock file maintenance');
     },
     'lock file fix commit type': async () => {
       await execaCommand('git init');
@@ -78,13 +75,12 @@ export default tester(
       await execaCommand('git add .');
       await execa('git', ['commit', '-m', 'feat: init']);
 
-      const output = (
-        await execaCommand('renovate --platform=local --dry-run', {
-          env: { CODESPACES: false, LOG_LEVEL: 'debug' },
-        })
-      ).stdout;
+      const { stdout } = await execaCommand(
+        'renovate --platform=local --dry-run',
+        { env: { CODESPACES: false, LOG_LEVEL: 'debug' } },
+      );
 
-      expect(output).toMatch('fix: lock file maintenance');
+      expect(stdout).toMatch('fix: lock file maintenance');
     },
     'nodejs version': async () => {
       await execaCommand('git init');
@@ -96,13 +92,12 @@ export default tester(
       await execaCommand('git add .');
       await execa('git', ['commit', '-m', 'feat: init']);
 
-      const output = (
-        await execaCommand('renovate --platform=local --dry-run', {
-          env: { CODESPACES: false, LOG_LEVEL: 'debug' },
-        })
-      ).stdout;
+      const { stdout } = await execaCommand(
+        'renovate --platform=local --dry-run',
+        { env: { CODESPACES: false, LOG_LEVEL: 'debug' } },
+      );
 
-      expect(output).toMatch(/renovate\/node-\d+\.x/);
+      expect(stdout).toMatch(/renovate\/node-\d+\.x/);
     },
     'outdated version in package.json': async () => {
       await execaCommand('git init');
@@ -119,13 +114,12 @@ export default tester(
       await execaCommand('git add .');
       await execa('git', ['commit', '-m', 'feat: init']);
 
-      const output = (
-        await execaCommand('renovate --platform=local --dry-run', {
-          env: { CODESPACES: false, LOG_LEVEL: 'debug' },
-        })
-      ).stdout;
+      const { stdout } = await execaCommand(
+        'renovate --platform=local --dry-run',
+        { env: { CODESPACES: false, LOG_LEVEL: 'debug' } },
+      );
 
-      expect(output).toMatch(/renovate\/globby-\d+\.x/);
+      expect(stdout).toMatch(/renovate\/globby-\d+\.x/);
     },
   },
   [testerPluginTmpDir()],

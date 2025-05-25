@@ -1,3 +1,5 @@
+import os from 'node:os';
+
 import {
   filter,
   flatMap,
@@ -10,7 +12,6 @@ import { constantCase } from 'change-case';
 import { execa } from 'execa';
 import { findUpSync } from 'find-up';
 import fs from 'fs-extra';
-import os from 'os';
 
 export default async function (options) {
   options = { log: true, patterns: [], ...options };

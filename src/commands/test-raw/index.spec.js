@@ -1,3 +1,5 @@
+import pathLib from 'node:path';
+
 import {
   endent,
   endent as javascript,
@@ -13,7 +15,6 @@ import packageName from 'depcheck-package-name';
 import fs from 'fs-extra';
 import { globby } from 'globby';
 import outputFiles from 'output-files';
-import pathLib from 'path';
 import unifyMochaOutput from 'unify-mocha-output';
 
 import { Base } from '@/src/index.js';
@@ -169,7 +170,7 @@ export default tester(
       files: { 'src/test.json': 'foo bar' },
       test() {
         return expect(this.base.test()).rejects.toThrow(
-          "error  Unexpected token 'o'",
+          "error  Unexpected identifier 'foo'",
         );
       },
     },
@@ -247,10 +248,15 @@ export default tester(
         return expect(this.base.test()).rejects.toThrow(/Unexpected token '>'/);
       },
     },
-    'node_modules postfix transpiled': {
+    'node_modules postfix casing error': {
       files: {
         'node_modules-foo.js': 'export default 1',
         'src/index.spec.js': "import '@/node_modules-foo.js'",
+      },
+      test() {
+        return expect(this.base.test()).rejects.toThrow(
+          'Filename is not in kebab case.',
+        );
       },
     },
     'package overrides': {
@@ -559,7 +565,7 @@ export default tester(
       },
     },
     'usesdocker macOS': {
-      files: { 'src/index.usesdocker.spec.js': 'throw new Error()' },
+      files: { 'src/index.usesdocker.spec.js': "throw new Error('error')" },
       async test() {
         const previousPlatform = process.platform;
         const previousEnv = process.env;
@@ -620,7 +626,7 @@ export default tester(
       },
     },
     'usesdocker windows': {
-      files: { 'src/index.usesdocker.spec.js': 'throw new Error()' },
+      files: { 'src/index.usesdocker.spec.js': "throw new Error('error')" },
       async test() {
         const previousPlatform = process.platform;
         const previousEnv = process.env;
@@ -676,7 +682,6 @@ export default tester(
           '.cz.json': true,
           '.devcontainer': true,
           '.editorconfig': true,
-          'eslint.config.js': true,
           '.gitattributes': true,
           '.github': true,
           '.gitignore': true,
@@ -690,6 +695,7 @@ export default tester(
           'README.md': true,
           'babel.config.json': true,
           coverage: true,
+          'eslint.config.js': true,
           'package.json': true,
           src: true,
         });
