@@ -26,6 +26,8 @@ export default function () {
       this.githubCodespacesConfig |> jsonToString({ indent: 2 })
     }\n`,
     '.editorconfig': editorconfigConfig,
+    '.eslintignore':
+      this.getGitignoreConfig() |> map(entry => `${entry}\n`) |> join(''),
     '.eslintrc.json': `${
       this.getEslintConfig() |> jsonToString({ indent: 2 })
     }\n`,

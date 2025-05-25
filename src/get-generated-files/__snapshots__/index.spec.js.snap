@@ -32,6 +32,7 @@ Array [
   ".cz.json",
   ".devcontainer/devcontainer.json",
   ".editorconfig",
+  ".eslintignore",
   ".eslintrc.json",
   ".gitattributes",
   ".github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md",
