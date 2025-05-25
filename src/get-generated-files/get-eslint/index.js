@@ -5,9 +5,18 @@ export default function () {
   return (
     this.config.eslintConfig ||
     endent`
-      import { defineConfig } from '${packageName`eslint`}/config';
+      ${
+        this.packageConfig.name === '@dword-design/eslint-config'
+          ? endent`
+            import { defineConfig } from '${packageName`eslint`}/config';
 
-      import config from '${this.packageConfig.name === '@dword-design/eslint-config' ? './src/index.js' : packageName`@dword-design/eslint-config`}';
+            import config from './src/index.js';
+          `
+          : endent`
+            import config from '${packageName`@dword-design/eslint-config`}';
+            import { defineConfig } from '${packageName`eslint`}/config';
+          `
+      }
 
       export default defineConfig([
         config,

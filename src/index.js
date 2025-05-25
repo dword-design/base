@@ -1,10 +1,6 @@
 import P from 'node:path';
 
-import {
-  endent,
-  identity,
-  mapValues,
-} from '@dword-design/functions';
+import { endent, identity, mapValues } from '@dword-design/functions';
 import jitiBabelTransform from '@dword-design/jiti-babel-transform';
 import deepmerge from 'deepmerge';
 import depcheck from 'depcheck';
