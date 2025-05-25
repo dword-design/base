@@ -11,9 +11,8 @@ export default {
     const base = new Base();
 
     expect(base.getEslintConfig()).toEqual(endent`
-      import { defineConfig } from 'eslint/config';
-
       import config from '@dword-design/eslint-config';
+      import { defineConfig } from 'eslint/config';
 
       export default defineConfig([
         config,
