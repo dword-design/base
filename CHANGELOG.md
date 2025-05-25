@@ -1,3 +1,10 @@
+## [11.3.14](https://github.com/dword-design/base/compare/v11.3.13...v11.3.14) (2025-05-25)
+
+
+### Bug Fixes
+
+* prep for eslint 9 ([206ea5d](https://github.com/dword-design/base/commit/206ea5d3bc3829c197d5aff82f925538b91cd75c))
+
 ## [11.3.13](https://github.com/dword-design/base/compare/v11.3.12...v11.3.13) (2025-05-10)
 
 
