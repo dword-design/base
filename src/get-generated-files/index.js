@@ -1,4 +1,4 @@
-import { join, jsonToString, map } from '@dword-design/functions';
+import { join, jsonToString, map, endent } from '@dword-design/functions';
 import sortKeys from 'sort-keys';
 import sortPackageJson from 'sort-package-json';
 import yaml from 'yaml';
@@ -26,11 +26,13 @@ export default function () {
       this.githubCodespacesConfig |> jsonToString({ indent: 2 })
     }\n`,
     '.editorconfig': editorconfigConfig,
-    '.eslintignore':
-      this.getGitignoreConfig() |> map(entry => `${entry}\n`) |> join(''),
-    '.eslintrc.json': `${
-      this.getEslintConfig() |> jsonToString({ indent: 2 })
-    }\n`,
+    'eslint.config.js': endent`
+      import { defineConfig } from 'eslint/config';
+
+      import config from './src/index.js';
+
+      export default defineConfig([config]);\n
+    `,
     '.gitattributes': gitattributesConfig,
     '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md':
       deprecatedDependenciesIssueTemplate,

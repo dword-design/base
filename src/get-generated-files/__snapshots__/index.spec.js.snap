@@ -6,7 +6,6 @@ Array [
   ".commitlintrc.json",
   ".cz.json",
   ".editorconfig",
-  ".eslintrc.json",
   ".gitattributes",
   ".github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md",
   ".github/labels.yml",
@@ -22,6 +21,7 @@ Array [
   ".vscode/settings.json",
   "LICENSE.md",
   "README.md",
+  "eslint.config.js",
   "package.json",
 ]
 `;
@@ -32,8 +32,6 @@ Array [
   ".cz.json",
   ".devcontainer/devcontainer.json",
   ".editorconfig",
-  ".eslintignore",
-  ".eslintrc.json",
   ".gitattributes",
   ".github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md",
   ".github/FUNDING.yml",
@@ -52,6 +50,7 @@ Array [
   "LICENSE.md",
   "README.md",
   "babel.config.json",
+  "eslint.config.js",
   "package.json",
 ]
 `;

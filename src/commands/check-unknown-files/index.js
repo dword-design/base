@@ -10,7 +10,7 @@ export default async function () {
     ...Object.keys({
       '.baserc.json': true,
       '.env.schema.json': true,
-      '.eslintrc.json': true,
+      'eslint.config.js': true,
       '.git': true,
       '.husky/_': true,
       '.husky/commit-msg': true,
