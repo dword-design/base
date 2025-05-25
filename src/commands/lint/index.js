@@ -13,11 +13,5 @@ export default async function () {
     );
   }
 
-  try {
-    await execa('eslint', ['--fix', '.'], { all: true });
-  } catch (error) {
-    throw new Error(error.all);
-  }
-
   await this.config.lint.call(this);
 }
