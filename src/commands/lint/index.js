@@ -12,6 +12,10 @@ export default async function () {
       `Package name '${packageName}' has to be equal to repository name '${this.config.git.project}'`,
     );
   }
-
   await this.config.lint.call(this);
+  try {
+    await execa('eslint', ['--fix', '.'], { all: true });
+  } catch (error) {
+    throw new Error(error.all);
+  }
 }
