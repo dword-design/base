@@ -20,6 +20,7 @@ export default async function () {
         ? ['/fixtures', '/playwright.config.js']
         : ['/global-test-hooks.js']),
       'package.json',
+      'eslint.config.js',
     ],
   });
 
@@ -29,9 +30,10 @@ export default async function () {
     ...this.config.depcheckConfig,
     ignorePatterns: [
       '!*.spec.js',
-      this.config.testRunner === 'playwright'
+      ...this.config.testRunner === 'playwright'
         ? ['!/fixtures', '!/playwright.config.js']
         : ['!/global-test-hooks.js'],
+      'eslint.config.js',
     ],
   });
 
