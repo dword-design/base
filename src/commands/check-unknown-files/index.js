@@ -21,6 +21,7 @@ export default async function () {
       PRCHECKLIST: true,
       __image_snapshots__: true,
       __snapshots__: true,
+      'base.config.js': true,
       demo: true,
       doc: true,
       'eslint.config.js': true,
