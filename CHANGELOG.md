@@ -1,3 +1,11 @@
+## [12.0.5](https://github.com/dword-design/base/compare/v12.0.4...v12.0.5) (2025-05-26)
+
+
+### Bug Fixes
+
+* export loadConfig and loadConfigSync ([1751b95](https://github.com/dword-design/base/commit/1751b95e34d5748014172ddb4811b371ca3da16d))
+* foo ([f10b659](https://github.com/dword-design/base/commit/f10b65903c33ee007ec6da5f5975b2f7ad519661))
+
 ## [12.0.4](https://github.com/dword-design/base/compare/v12.0.3...v12.0.4) (2025-05-25)
 
 
