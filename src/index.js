@@ -38,8 +38,6 @@ import getVscodeConfig from './get-generated-files/get-vscode/index.js';
 import githubCodespacesConfig from './get-generated-files/github-codespaces.js';
 import getGeneratedFiles from './get-generated-files/index.js';
 import getGitInfo from './get-git-info/index.js';
-import loadConfig from './load-config/index.js';
-import loadConfigSync from './load-config-sync/index.js';
 
 const mergeConfigs = (...configs) => {
   const result = deepmerge.all(configs, {
@@ -186,4 +184,8 @@ Object.assign(Base.prototype, {
   testRaw,
 });
 
-export { Base, loadConfig, loadConfigSync };
+export { Base };
+
+export { default as loadConfig } from './load-config/index.js';
+
+export { default as loadConfigSync } from './load-config-sync/index.js';

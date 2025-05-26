@@ -12,7 +12,7 @@ export default tester(
       await fs.outputFile('.baserc.json', JSON.stringify({ foo: 'bar' }));
       expect(self()).toEqual({ foo: 'bar' });
     },
-    none: async () => expect(self()).toBeNull(),
+    none: () => expect(self()).toBeNull(),
     'package.json': async () => {
       await fs.outputFile(
         'package.json',

@@ -1,4 +1,3 @@
-import { property } from '@dword-design/functions';
 import { cosmiconfigSync } from 'cosmiconfig';
 
 export default () => {
