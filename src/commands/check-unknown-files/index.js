@@ -33,10 +33,7 @@ export default async function () {
             '**/*-snapshots/**': true, // For some reason without the trailing ** didn't work
             'playwright.config.js': true,
           }
-        : {
-            '**/__image_snapshots__': true,
-            '**/__snapshots__': true,
-          },
+        : { '**/__image_snapshots__': true, '**/__snapshots__': true },
     ),
     ...this.config.allowedMatches,
   ];
