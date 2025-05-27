@@ -8,9 +8,6 @@ export default async function () {
   const allowedMatches = [
     ...(this.generatedFiles |> keys),
     ...Object.keys({
-      : true,
-      '**/__image_snapshots__': true,
-      '**/__snapshots__': true,
       '.baserc.json': true,
       '.env.schema.json': true,
       '.git': true,
