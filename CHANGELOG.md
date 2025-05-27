@@ -1,3 +1,12 @@
+## [12.0.11](https://github.com/dword-design/base/compare/v12.0.10...v12.0.11) (2025-05-27)
+
+
+### Bug Fixes
+
+* foo ([ddf7ed9](https://github.com/dword-design/base/commit/ddf7ed91ffb043df6b6569db1968476c80125b69))
+* foo ([9855559](https://github.com/dword-design/base/commit/985555932ee1a960bede7067cb8c14284a9b4787))
+* foo ([fb59783](https://github.com/dword-design/base/commit/fb5978383afa0f0edabfe9728320612122c8efa6))
+
 ## [12.0.10](https://github.com/dword-design/base/compare/v12.0.9...v12.0.10) (2025-05-27)
 
 
