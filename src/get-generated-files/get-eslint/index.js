@@ -21,10 +21,6 @@ export default function () {
       export default defineConfig([
         globalIgnores(['eslint.config.js']),
         config,
-        {
-          files: ['eslint.config.js'],
-          rules: { 'import/no-extraneous-dependencies': 'off' },
-        },
       ]);\n
     `
   );
