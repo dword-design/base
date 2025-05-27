@@ -8,7 +8,7 @@ export default async function () {
   const allowedMatches = [
     ...(this.generatedFiles |> keys),
     ...Object.keys({
-      '**/*-snapshots': true,
+      : true,
       '**/__image_snapshots__': true,
       '**/__snapshots__': true,
       '.baserc.json': true,
@@ -30,9 +30,9 @@ export default async function () {
       'pnpm-workspace.yaml': true,
       'types.d.ts': true,
     }),
-    ...(this.config.testRunner === 'playwright'
-      ? ['playwright.config.js']
-      : []),
+    ...Object.keys(this.config.testRunner === 'playwright'
+      ? { '**/__image_snapshots__': true, '**/__snapshots__': true, 'playwright.config.js': true }
+      : { '**/*-snapshots': true }),
     ...this.config.allowedMatches,
   ];
 
