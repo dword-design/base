@@ -27,11 +27,17 @@ export default async function () {
       'pnpm-workspace.yaml': true,
       'types.d.ts': true,
     }),
-    ...Object.keys(this.config.testRunner === 'playwright'
-      ? { '**/__image_snapshots__': true, '**/__snapshots__': true, 'playwright.config.js': true }
-      : {
-        '**/*-snapshots/**': true // For some reason without the trailing ** didn't work
-      }),
+    ...Object.keys(
+      this.config.testRunner === 'playwright'
+        ? {
+            '**/__image_snapshots__': true,
+            '**/__snapshots__': true,
+            'playwright.config.js': true,
+          }
+        : {
+            '**/*-snapshots/**': true, // For some reason without the trailing ** didn't work
+          },
+    ),
     ...this.config.allowedMatches,
   ];
 
