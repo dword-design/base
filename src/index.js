@@ -49,14 +49,14 @@ const mergeConfigs = (...configs) => {
 };
 
 class Base {
-  constructor(config) {
+  constructor(config = null) {
     const jitiInstance = jiti(process.cwd(), {
       esmResolve: true,
       interopDefault: true,
       transform: jitiBabelTransform,
     });
 
-    if (config === undefined) {
+    if (config === null) {
       config = { name: packageName`@dword-design/base-config-node` };
     }
 
