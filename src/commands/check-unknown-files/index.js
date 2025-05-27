@@ -8,6 +8,9 @@ export default async function () {
   const allowedMatches = [
     ...(this.generatedFiles |> keys),
     ...Object.keys({
+      '**/*-snapshots': true,
+      '**/__image_snapshots__': true,
+      '**/__snapshots__': true,
       '.baserc.json': true,
       '.env.schema.json': true,
       '.git': true,
@@ -19,9 +22,6 @@ export default async function () {
       '.husky/pre-push': true,
       'CHANGELOG.md': true,
       PRCHECKLIST: true,
-      '**/__image_snapshots__': true,
-      '**/__snapshots__': true,
-      '**/*-snapshots': true,
       demo: true,
       doc: true,
       'eslint.config.js': true,
