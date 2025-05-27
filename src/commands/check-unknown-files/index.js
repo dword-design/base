@@ -30,12 +30,12 @@ export default async function () {
     ...Object.keys(
       this.config.testRunner === 'playwright'
         ? {
-            '**/__image_snapshots__': true,
-            '**/__snapshots__': true,
+            '**/*-snapshots/**': true, // For some reason without the trailing ** didn't work
             'playwright.config.js': true,
           }
         : {
-            '**/*-snapshots/**': true, // For some reason without the trailing ** didn't work
+            '**/__image_snapshots__': true,
+            '**/__snapshots__': true,
           },
     ),
     ...this.config.allowedMatches,
