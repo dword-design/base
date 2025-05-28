@@ -1,3 +1,10 @@
+## [12.0.15](https://github.com/dword-design/base/compare/v12.0.14...v12.0.15) (2025-05-28)
+
+
+### Reverts
+
+* Revert "fix: upgrade jiti (#785)" ([7e22cce](https://github.com/dword-design/base/commit/7e22cce7c1d5a8af7161b0762b2c515d470cf6e0)), closes [#785](https://github.com/dword-design/base/issues/785)
+
 ## [12.0.14](https://github.com/dword-design/base/compare/v12.0.13...v12.0.14) (2025-05-28)
 
 
