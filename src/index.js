@@ -11,7 +11,7 @@ import depcheckDetectorTinyexec from 'depcheck-detector-tinyexec';
 import packageName from 'depcheck-package-name';
 import depcheckParserBabel from 'depcheck-parser-babel';
 import fs from 'fs-extra';
-import jiti from 'jiti';
+import { createJiti } from 'jiti';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
 
 import checkUnknownFiles from './commands/check-unknown-files/index.js';
@@ -51,9 +51,8 @@ const mergeConfigs = (...configs) => {
 
 class Base {
   constructor(config = null) {
-    const jitiInstance = jiti(process.cwd(), {
-      esmResolve: true,
-      interopDefault: true,
+    const jitiInstance = createJiti(process.cwd(), {
+      moduleCache: false,
       transform: jitiBabelTransform,
     });
 
@@ -129,7 +128,7 @@ class Base {
           : config.name;
 
       let inheritedConfig = inheritedConfigPath
-        ? jitiInstance(inheritedConfigPath)
+        ? jitiInstance(inheritedConfigPath).default
         : undefined;
 
       if (typeof inheritedConfig === 'function') {
