@@ -11,7 +11,7 @@ import depcheckDetectorTinyexec from 'depcheck-detector-tinyexec';
 import packageName from 'depcheck-package-name';
 import depcheckParserBabel from 'depcheck-parser-babel';
 import fs from 'fs-extra';
-import { createJiti } from 'jiti';
+import jiti from 'jiti';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
 
 import checkUnknownFiles from './commands/check-unknown-files/index.js';
@@ -51,8 +51,9 @@ const mergeConfigs = (...configs) => {
 
 class Base {
   constructor(config = null) {
-    const jitiInstance = createJiti(process.cwd(), {
-      moduleCache: false,
+    const jitiInstance = jiti(process.cwd(), {
+      esmResolve: true,
+      interopDefault: true,
       transform: jitiBabelTransform,
     });
 
@@ -130,11 +131,6 @@ class Base {
       let inheritedConfig = inheritedConfigPath
         ? jitiInstance(inheritedConfigPath)
         : undefined;
-
-      // I don't know why Jiti doesn't interopDefault here
-      if (inheritedConfig?.default) {
-        inheritedConfig = inheritedConfig.default;
-      }
 
       if (typeof inheritedConfig === 'function') {
         inheritedConfig = inheritedConfig(mergeConfigs(defaultConfig, config));

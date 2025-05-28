@@ -9,19 +9,19 @@ import { Base } from '@/src/index.js';
 
 export default tester(
   {
-    'base config in dev dependencies': {
-      config: { name: 'foo' },
-      files: {
-        'node_modules/base-config-foo/index.js': 'export default {}',
-        'package.json': JSON.stringify({
-          devDependencies: { 'base-config-foo': '^1.0.0' },
-        }),
-      },
-    },
     'base config in prod dependencies': {
+      'base config in dev dependencies': {
+        config: { name: 'foo' },
+        files: {
+          'node_modules/base-config-foo/index.js': 'module.exports = {}',
+          'package.json': JSON.stringify({
+            devDependencies: { 'base-config-foo': '^1.0.0' },
+          }),
+        },
+      },
       config: { name: 'foo' },
       files: {
-        'node_modules/base-config-foo/index.js': 'export default {}',
+        'node_modules/base-config-foo/index.js': 'module.exports = {}',
         'package.json': JSON.stringify({
           dependencies: { 'base-config-foo': '^1.0.0' },
         }),
@@ -94,7 +94,7 @@ export default tester(
     'prod dependency only in global-test-hooks.js': {
       files: {
         'global-test-hooks.js': "import 'bar'",
-        'node_modules/bar/index.js': 'export default 1',
+        'node_modules/bar/index.js': 'module.exports = 1',
         'package.json': JSON.stringify({
           dependencies: { bar: '^1.0.0' },
           type: 'module',
@@ -109,7 +109,7 @@ export default tester(
     },
     'prod dependency only in test': {
       files: {
-        'node_modules/bar/index.js': 'export default 1',
+        'node_modules/bar/index.js': 'module.exports = 1',
         'package.json': JSON.stringify({ dependencies: { bar: '^1.0.0' } }),
         'src/index.spec.js': "import 'bar'",
       },
