@@ -128,8 +128,13 @@ class Base {
           : config.name;
 
       let inheritedConfig = inheritedConfigPath
-        ? jitiInstance(inheritedConfigPath).default
+        ? jitiInstance(inheritedConfigPath)
         : undefined;
+
+      // I don't know why Jiti doesn't interopDefault here
+      if (inheritedConfig?.default) {
+        inheritedConfig = inheritedConfig.default;
+      }
 
       if (typeof inheritedConfig === 'function') {
         inheritedConfig = inheritedConfig(mergeConfigs(defaultConfig, config));

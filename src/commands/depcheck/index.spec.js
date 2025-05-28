@@ -9,19 +9,19 @@ import { Base } from '@/src/index.js';
 
 export default tester(
   {
-    'base config in prod dependencies': {
-      'base config in dev dependencies': {
-        config: { name: 'foo' },
-        files: {
-          'node_modules/base-config-foo/index.js': 'module.exports = {}',
-          'package.json': JSON.stringify({
-            devDependencies: { 'base-config-foo': '^1.0.0' },
-          }),
-        },
-      },
+    'base config in dev dependencies': {
       config: { name: 'foo' },
       files: {
         'node_modules/base-config-foo/index.js': 'module.exports = {}',
+        'package.json': JSON.stringify({
+          devDependencies: { 'base-config-foo': '^1.0.0' },
+        }),
+      },
+    },
+    'base config in prod dependencies': {
+      config: { name: 'foo' },
+      files: {
+        'node_modules/base-config-foo/index.js': 'export default {}',
         'package.json': JSON.stringify({
           dependencies: { 'base-config-foo': '^1.0.0' },
         }),
