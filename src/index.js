@@ -6,6 +6,7 @@ import deepmerge from 'deepmerge';
 import depcheck from 'depcheck';
 import depcheckDetectorBinName from 'depcheck-detector-bin-name';
 import depcheckDetectorExeca from 'depcheck-detector-execa';
+import depcheckDetectorTinyexec from 'depcheck-detector-tinyexec';
 import depcheckDetectorPackageName from 'depcheck-detector-package-name';
 import packageName from 'depcheck-package-name';
 import depcheckParserBabel from 'depcheck-parser-babel';
