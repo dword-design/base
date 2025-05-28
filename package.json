@@ -50,6 +50,7 @@
     "depcheck-detector-bin-name": "^1.0.2",
     "depcheck-detector-execa": "^4.0.0",
     "depcheck-detector-package-name": "^3.0.4",
+    "depcheck-detector-tinyexec": "^1.0.0",
     "depcheck-package-name": "^3.0.1",
     "depcheck-parser-babel": "^3.0.57",
     "eslint": "^9.27.0",

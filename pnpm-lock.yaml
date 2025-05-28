@@ -86,6 +86,9 @@ importers:
       depcheck-detector-package-name:
         specifier: ^3.0.4
         version: 3.0.4
+      depcheck-detector-tinyexec:
+        specifier: ^1.0.0
+        version: 1.0.0
       depcheck-package-name:
         specifier: ^3.0.1
         version: 3.0.1
@@ -3409,6 +3412,10 @@ packages:
   depcheck-detector-package-name@3.0.4:
     resolution: {integrity: sha512-NJpk3gOZ+UhAs3O2nebM7tWQCiXG95/d+ZovyoD5dObbGxqvGr1NSFyz4NXgmV7BP/42z5Mr6L3GRbcJ1hU+3w==}
     engines: {node: '>=14'}
+
+  depcheck-detector-tinyexec@1.0.0:
+    resolution: {integrity: sha512-Ojyl7ozy7lMdfXXzvES/8D9zi2S86hHL3luWFl5lYCYuLOQs+ADCFp/U7pwNDE+JjhLgXe5cP1QjI4oFkQdiNA==}
+    engines: {node: '>=18'}
 
   depcheck-package-name@3.0.1:
     resolution: {integrity: sha512-7rR+VPs0wZCOgAyNe4klyXc+93cXl62pQ4akwHcnQQypdqDC18cy3LNLXmgu8geb3on8pgcxOhfbQ66+yLaNoQ==}
@@ -10429,7 +10436,7 @@ snapshots:
 
   '@npmcli/fs@3.1.1':
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
     optional: true
 
   '@npmcli/fs@4.0.0':
@@ -11982,7 +11989,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
 
   bunyan@1.8.15:
     optionalDependencies:
@@ -12605,6 +12612,12 @@ snapshots:
       module-root: '@dword-design/module-root@0.2.4'
 
   depcheck-detector-package-name@3.0.4: {}
+
+  depcheck-detector-tinyexec@1.0.0:
+    dependencies:
+      '@dword-design/functions': 6.0.2
+      fs-extra: 11.3.0
+      module-root: '@dword-design/module-root@0.2.4'
 
   depcheck-package-name@3.0.1:
     dependencies:
@@ -15717,7 +15730,7 @@ snapshots:
 
   node-abi@3.75.0:
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
     optional: true
 
   node-emoji@2.2.0:

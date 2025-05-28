@@ -81,6 +81,7 @@ class Base {
           depcheck.detector.requireCallExpression,
           depcheck.detector.requireResolveCallExpression,
           depcheckDetectorExeca,
+          depcheckDetectorTinyexec,
           depcheckDetectorPackageName,
           depcheckDetectorBinName,
         ],
