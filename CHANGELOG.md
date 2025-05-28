@@ -1,3 +1,10 @@
+## [12.0.14](https://github.com/dword-design/base/compare/v12.0.13...v12.0.14) (2025-05-28)
+
+
+### Bug Fixes
+
+* upgrade jiti ([#785](https://github.com/dword-design/base/issues/785)) ([cab77f7](https://github.com/dword-design/base/commit/cab77f70114564b56dafdbff1a7dff233a83a8a7))
+
 ## [12.0.13](https://github.com/dword-design/base/compare/v12.0.12...v12.0.13) (2025-05-28)
 
 
