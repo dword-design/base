@@ -17,7 +17,7 @@ export default async function (options) {
   await this.config.lint.call(this, options);
 
   await execa('eslint', ['--fix', '.'], {
-    [options.log ? 'stdio' : 'stderr']: 'inherit',
+    ...options.log && { stdio: 'inherit' },
     cwd: this.cwd,
     stderr: options.stderr,
   });

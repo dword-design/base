@@ -53,7 +53,7 @@ export default async function (options) {
           ...(options.grep ? [`-g "${options.grep}"`] : []),
         ] |> join(' '),
       ],
-      { cwd: this.cwd, [options.log ? 'stdio' : 'stderr']: 'inherit', stderr: options.stderr },
+      { cwd: this.cwd, ...options.log && { stdio: 'inherit' }, stderr: options.stderr },
     );
   } finally {
     await execa(

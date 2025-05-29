@@ -116,7 +116,7 @@ export default async function (options) {
             ? { SNAPSHOT_UPDATE: 1 }
             : {}),
       },
-      [options.log ? 'stdio' : 'stderr']: 'inherit',
+      ...options.log && { stdio: 'inherit' },
       stderr: options.stderr,
     },
   );

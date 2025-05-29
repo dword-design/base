@@ -20,7 +20,7 @@ export default async function (options) {
   if (await fs.exists(pathLib.join(this.cwd, '.git'))) {
     await execaCommand('husky install', {
       cwd: this.cwd,
-      [options.log ? 'stdio' : 'stderr']: 'inherit',
+      ...options.log && { stdio: 'inherit' },
       stderr: options.stderr,
     });
 
@@ -31,7 +31,7 @@ export default async function (options) {
         '.husky/commit-msg',
         `npx ${commitlintPackageConfig.bin |> keys |> first} --edit "$1"`,
       ],
-      { cwd: this.cwd, [options.log ? 'stdio' : 'stderr']: 'inherit', stderr: options.stderr },
+      { cwd: this.cwd, ...options.log && { stdio: 'inherit' }, stderr: options.stderr },
     );
   }
 
