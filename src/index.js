@@ -133,7 +133,10 @@ class Base {
         : undefined;
 
       if (typeof inheritedConfig === 'function') {
-        inheritedConfig = inheritedConfig.call(this, mergeConfigs(defaultConfig, config));
+        inheritedConfig = inheritedConfig.call(
+          this,
+          mergeConfigs(defaultConfig, config),
+        );
       }
 
       configsToMerge.push(inheritedConfig);
