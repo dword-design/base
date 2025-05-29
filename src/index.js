@@ -7,7 +7,6 @@ import depcheck from 'depcheck';
 import depcheckDetectorBinName from 'depcheck-detector-bin-name';
 import depcheckDetectorExeca from 'depcheck-detector-execa';
 import depcheckDetectorPackageName from 'depcheck-detector-package-name';
-import depcheckDetectorTinyexec from 'depcheck-detector-tinyexec';
 import packageName from 'depcheck-package-name';
 import depcheckParserBabel from 'depcheck-parser-babel';
 import fs from 'fs-extra';
@@ -84,7 +83,6 @@ class Base {
           depcheck.detector.requireCallExpression,
           depcheck.detector.requireResolveCallExpression,
           depcheckDetectorExeca,
-          depcheckDetectorTinyexec,
           depcheckDetectorPackageName,
           depcheckDetectorBinName,
         ],

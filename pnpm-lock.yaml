@@ -86,9 +86,6 @@ importers:
       depcheck-detector-package-name:
         specifier: ^3.0.4
         version: 3.0.4
-      depcheck-detector-tinyexec:
-        specifier: ^1.0.0
-        version: 1.0.0
       depcheck-package-name:
         specifier: ^3.0.1
         version: 3.0.1
@@ -1212,14 +1209,17 @@ packages:
   '@dword-design/functions@4.1.7':
     resolution: {integrity: sha512-kc7bzBKZasf0icxKldgB7dkpd1mcEQkPz8c0BP5Wuxy63bMYs+kNWbywFT+xNBWDT6N9cdTczHwBuVBgc8ZU0A==}
     engines: {node: '>=14'}
+    deprecated: Use lodash and dedent
 
   '@dword-design/functions@5.0.27':
     resolution: {integrity: sha512-16A97RKtn21xLWI7Y7VhFz4WCWui+TLit/J5/l77BDpWmPi2LzgjQzDbafDDw7OUeY6GEAi/M4jdbuQhsIbSEg==}
     engines: {node: '>=14'}
+    deprecated: Use lodash and dedent
 
   '@dword-design/functions@6.0.2':
     resolution: {integrity: sha512-bX8MqBkzGaYEIlGAdc3hLiHO3Gia1L/sguymbQkp07yB611ZZW4Y0lTGJxWAemJEggEVM5jr1IL4vvAUmQX8VA==}
     engines: {node: '>=18'}
+    deprecated: Use lodash and dedent
 
   '@dword-design/jiti-babel-transform@2.0.0':
     resolution: {integrity: sha512-sT4TsdN6Id9k0ceZZjznmdIqdk94ZPHI21Pv0v6DeXqWRDxW0BoDVAqTbMjStSPV6n5i4AYRpwLBFN3hxYL2Lw==}
@@ -3412,10 +3412,6 @@ packages:
   depcheck-detector-package-name@3.0.4:
     resolution: {integrity: sha512-NJpk3gOZ+UhAs3O2nebM7tWQCiXG95/d+ZovyoD5dObbGxqvGr1NSFyz4NXgmV7BP/42z5Mr6L3GRbcJ1hU+3w==}
     engines: {node: '>=14'}
-
-  depcheck-detector-tinyexec@1.0.0:
-    resolution: {integrity: sha512-Ojyl7ozy7lMdfXXzvES/8D9zi2S86hHL3luWFl5lYCYuLOQs+ADCFp/U7pwNDE+JjhLgXe5cP1QjI4oFkQdiNA==}
-    engines: {node: '>=18'}
 
   depcheck-package-name@3.0.1:
     resolution: {integrity: sha512-7rR+VPs0wZCOgAyNe4klyXc+93cXl62pQ4akwHcnQQypdqDC18cy3LNLXmgu8geb3on8pgcxOhfbQ66+yLaNoQ==}
@@ -12612,12 +12608,6 @@ snapshots:
       module-root: '@dword-design/module-root@0.2.4'
 
   depcheck-detector-package-name@3.0.4: {}
-
-  depcheck-detector-tinyexec@1.0.0:
-    dependencies:
-      '@dword-design/functions': 6.0.2
-      fs-extra: 11.3.0
-      module-root: '@dword-design/module-root@0.2.4'
 
   depcheck-package-name@3.0.1:
     dependencies:

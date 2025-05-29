@@ -17,12 +17,14 @@ export default tester(
         await execaCommand('gh repo list');
       }
     },
-    'job matrix'() {
+    async 'job matrix'() {
+      await fs.outputFile('package.json', JSON.stringify({}));
       expect(
         new Base({ useJobMatrix: true }).getGithubWorkflowConfig(),
       ).toMatchSnapshot(this);
     },
-    'job matrix no macos'() {
+    async 'job matrix no macos'() {
+      await fs.outputFile('package.json', JSON.stringify({}));
       expect(
         new Base({
           macos: false,
@@ -30,7 +32,8 @@ export default tester(
         }).getGithubWorkflowConfig(),
       ).toMatchSnapshot(this);
     },
-    'job matrix no windows'() {
+    async 'job matrix no windows'() {
+      await fs.outputFile('package.json', JSON.stringify({}));
       expect(
         new Base({
           useJobMatrix: true,
@@ -38,7 +41,8 @@ export default tester(
         }).getGithubWorkflowConfig(),
       ).toMatchSnapshot(this);
     },
-    'no job matrix'() {
+    async 'no job matrix'() {
+      await fs.outputFile('package.json', JSON.stringify({}));
       expect(new Base({}).getGithubWorkflowConfig()).toMatchSnapshot(this);
     },
     async 'package.json'() {
@@ -64,10 +68,10 @@ export default tester(
       );
     },
     async 'test environment variables'() {
-      await fs.outputFile(
-        '.env.schema.json',
-        { bar: {}, foo: {} } |> JSON.stringify,
-      );
+      await outputFiles({
+        '.env.schema.json': JSON.stringify({ bar: {}, foo: {} }),
+        'package.json': JSON.stringify({}),
+      });
 
       expect(
         new Base({
@@ -76,7 +80,8 @@ export default tester(
         }).getGithubWorkflowConfig(),
       ).toMatchSnapshot(this);
     },
-    testInContainer() {
+    async testInContainer() {
+      await fs.outputFile('package.json', JSON.stringify({}));
       expect(
         new Base({
           nodeVersion: 14,
