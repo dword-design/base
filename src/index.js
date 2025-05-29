@@ -63,7 +63,7 @@ class Base {
     }
 
     if (typeof config === 'function') {
-      config = config();
+      config = config.call(this);
     }
 
     if (config.name) {
@@ -133,7 +133,7 @@ class Base {
         : undefined;
 
       if (typeof inheritedConfig === 'function') {
-        inheritedConfig = inheritedConfig(mergeConfigs(defaultConfig, config));
+        inheritedConfig = inheritedConfig.call(this, mergeConfigs(defaultConfig, config));
       }
 
       configsToMerge.push(inheritedConfig);
