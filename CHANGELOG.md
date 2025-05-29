@@ -1,3 +1,16 @@
+## [12.0.16](https://github.com/dword-design/base/compare/v12.0.15...v12.0.16) (2025-05-29)
+
+
+### Bug Fixes
+
+* add cwd options ([5968210](https://github.com/dword-design/base/commit/59682104ffba843b2af4c57088259ff6d57dce22))
+* add cwd options ([2dc9ec1](https://github.com/dword-design/base/commit/2dc9ec18c6f554c6eb37108a6b8e604e601922fa))
+* foo ([eb89927](https://github.com/dword-design/base/commit/eb8992793e545c4c18a620730f74c0e8c28c7cb3))
+* foo ([a981b09](https://github.com/dword-design/base/commit/a981b09696f8a866c189fc588c5ca9f38f94c3a0))
+* foo ([bb58bb9](https://github.com/dword-design/base/commit/bb58bb9e397849c84055f5f332dd9bd6b7f2600a))
+* foo ([35a6c19](https://github.com/dword-design/base/commit/35a6c199ab72955677fef28957753c6bb12b4c18))
+* foo ([cc7fb5b](https://github.com/dword-design/base/commit/cc7fb5b3043b9e85e92eda744fe42d6767cb9846))
+
 ## [12.0.15](https://github.com/dword-design/base/compare/v12.0.14...v12.0.15) (2025-05-28)
 
 
