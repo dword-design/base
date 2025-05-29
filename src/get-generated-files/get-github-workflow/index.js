@@ -5,7 +5,8 @@ export default function () {
   return {
     jobs: (this.config.useJobMatrix && !this.config.testInContainer
       ? jobMatrixStrategy
-      : simpleStrategy)(this.config),
+      : simpleStrategy
+    ).call(this),
     name: 'build',
     on: { pull_request: {}, push: { branches: ['master'] } },
   };

@@ -9,9 +9,8 @@ import {
 } from '@dword-design/functions';
 import depcheck from 'depcheck';
 
-export default async function (options) {
-  options = { cwd: '.', ...options };
-  const dependenciesResult = await depcheck(options.cwd, {
+export default async function () {
+  const dependenciesResult = await depcheck(this.cwd, {
     package: this.packageConfig |> omit(['devDependencies']),
     skipMissing: true,
     ...this.config.depcheckConfig,
@@ -25,7 +24,7 @@ export default async function (options) {
     ],
   });
 
-  const devDependenciesResult = await depcheck(options.cwd, {
+  const devDependenciesResult = await depcheck(this.cwd, {
     package: this.packageConfig |> omit(['dependencies']),
     skipMissing: true,
     ...this.config.depcheckConfig,

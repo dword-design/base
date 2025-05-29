@@ -2,7 +2,7 @@ import { execa } from 'execa';
 import parsePackagejsonName from 'parse-packagejson-name';
 
 export default async function (options) {
-  options = { cwd: '.', log: NODE_ENV !== 'test', ...options };
+  options = { log: process.env.NODE_ENV !== 'test', ...options };
   const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
 
   if (
@@ -15,5 +15,9 @@ export default async function (options) {
   }
 
   await this.config.lint.call(this, options);
-  await execa('eslint', ['--fix', '.'], { [options.log ? 'stdio' : 'stderr']: 'inherit', cwd: options.cwd });
+
+  await execa('eslint', ['--fix', '.'], {
+    [options.log ? 'stdio' : 'stderr']: 'inherit',
+    cwd: this.cwd,
+  });
 }

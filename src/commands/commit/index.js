@@ -1,10 +1,9 @@
 import { execa } from 'execa';
 
-export default (options) => {
-  options = { cwd: '.', log: NODE_ENV !== 'test', ...options };
-
+export default options => {
+  options = { log: process.env.NODE_ENV !== 'test', ...options };
   return execa('git-cz', [...(options.allowEmpty ? ['--allow-empty'] : [])], {
-    cwd: options.cwd,
+    cwd: this.cwd,
     [options.log ? 'stdio' : 'stderr']: 'inherit',
   });
-}
+};

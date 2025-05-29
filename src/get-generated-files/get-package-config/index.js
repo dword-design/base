@@ -1,3 +1,5 @@
+import pathLib from 'node:path';
+
 import { keys, mapValues, pick, stubTrue } from '@dword-design/functions';
 import packageName from 'depcheck-package-name';
 import fs from 'fs-extra';
@@ -49,7 +51,12 @@ export default function () {
     engines: {
       node: `>=${this.config.minNodeVersion || this.config.supportedNodeVersions[0]}`,
     },
-    files: ['dist', ...(fs.existsSync('types.d.ts') ? ['types.d.ts'] : [])],
+    files: [
+      'dist',
+      ...(fs.existsSync(pathLib.join(this.cwd, 'types.d.ts'))
+        ? ['types.d.ts']
+        : []),
+    ],
     license: 'MIT',
     ...this.config.packageConfig,
     scripts:

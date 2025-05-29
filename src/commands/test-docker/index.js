@@ -14,12 +14,12 @@ import { findUpSync } from 'find-up';
 import fs from 'fs-extra';
 
 export default async function (options) {
-  options = { cwd: '.', log: process.NODE_ENV !== 'test', patterns: [], ...options };
+  options = { log: process.env.NODE_ENV !== 'test', patterns: [], ...options };
 
   const volumeName =
     this.packageConfig.name |> replace('@', '') |> replace('/', '-');
 
-  const envSchemaPath = findUpSync('.env.schema.json', { cwd: options.cwd });
+  const envSchemaPath = findUpSync('.env.schema.json', { cwd: this.cwd });
 
   const envVariableNames =
     (envSchemaPath ? await fs.readJson(envSchemaPath) : {})
@@ -38,7 +38,7 @@ export default async function (options) {
           |> filter(name => process.env[name] !== undefined)
           |> flatMap(name => ['--env', `${name}=${process.env[name]}`])),
         '-v',
-        `${options.cwd}:/app`,
+        `${this.cwd}:/app`,
         '-v',
         `${volumeName}:/app/node_modules`,
         'dworddesign/testing:latest',
@@ -53,21 +53,25 @@ export default async function (options) {
           ...(options.grep ? [`-g "${options.grep}"`] : []),
         ] |> join(' '),
       ],
-      { cwd: options.cwd, [options.log ? 'stdio' : 'stderr']: 'inherit' },
+      { cwd: this.cwd, [options.log ? 'stdio' : 'stderr']: 'inherit' },
     );
   } finally {
-    await execa('docker', [
-      'run',
-      '--rm',
-      '--tty',
-      '-v',
-      `${options.cwd}:/app`,
-      '-v',
-      `${volumeName}:/app/node_modules`,
-      'dworddesign/testing:latest',
-      'bash',
-      '-c',
-      `chown -R ${userInfo.uid}:${userInfo.gid} /app`,
-    ], { cwd: options.cwd });
+    await execa(
+      'docker',
+      [
+        'run',
+        '--rm',
+        '--tty',
+        '-v',
+        `${this.cwd}:/app`,
+        '-v',
+        `${volumeName}:/app/node_modules`,
+        'dworddesign/testing:latest',
+        'bash',
+        '-c',
+        `chown -R ${userInfo.uid}:${userInfo.gid} /app`,
+      ],
+      { cwd: this.cwd },
+    );
   }
 }

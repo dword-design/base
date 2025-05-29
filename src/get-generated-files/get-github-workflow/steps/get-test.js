@@ -6,16 +6,19 @@ import { findUpStop, findUpSync } from 'find-up';
 import fs from 'fs-extra';
 import gitHubAction from 'tagged-template-noop';
 
-export default () => {
-  const envSchemaPath = findUpSync(path => {
-    if (fs.existsSync('.env.schema.json')) {
-      return '.env.schema.json';
-    }
+export default function () {
+  const envSchemaPath = findUpSync(
+    path => {
+      if (fs.existsSync(P.join(path, '.env.schema.json'))) {
+        return '.env.schema.json';
+      }
 
-    if (fs.existsSync(P.join(path, 'package.json'))) {
-      return findUpStop;
-    }
-  });
+      if (fs.existsSync(P.join(path, 'package.json'))) {
+        return findUpStop;
+      }
+    },
+    { cwd: this.cwd },
+  );
 
   const envVariableNames =
     (envSchemaPath ? fs.readJsonSync(envSchemaPath) : {})
@@ -45,4 +48,4 @@ export default () => {
       },
     },
   ];
-};
+}

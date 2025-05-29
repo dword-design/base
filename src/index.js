@@ -1,4 +1,4 @@
-import P from 'node:path';
+import pathLib from 'node:path';
 
 import { endent, identity, mapValues } from '@dword-design/functions';
 import jitiBabelTransform from '@dword-design/jiti-babel-transform';
@@ -51,7 +51,9 @@ const mergeConfigs = (...configs) => {
 
 class Base {
   constructor(config = null, { cwd = '.' } = {}) {
-    const jitiInstance = jiti(cwd, {
+    this.cwd = cwd;
+
+    const jitiInstance = jiti(pathLib.resolve(this.cwd), {
       esmResolve: true,
       interopDefault: true,
       transform: jitiBabelTransform,
@@ -69,8 +71,8 @@ class Base {
       config.name = pluginNameToPackageName(config.name, 'base-config');
     }
 
-    this.packageConfig = fs.existsSync('package.json')
-      ? fs.readJsonSync('package.json')
+    this.packageConfig = fs.existsSync(pathLib.join(this.cwd, 'package.json'))
+      ? fs.readJsonSync(pathLib.join(this.cwd, 'package.json'))
       : {};
 
     const defaultConfig = {
@@ -94,7 +96,7 @@ class Base {
       deployEnv: {},
       deployPlugins: [],
       editorIgnore: [],
-      git: getGitInfo(),
+      git: getGitInfo({ cwd: this.cwd }),
       gitignore: [],
       lint: identity,
       macos: true,
@@ -125,7 +127,7 @@ class Base {
     if (config.name) {
       const inheritedConfigPath =
         config.name === this.packageConfig.name
-          ? P.resolve('src', 'index.js')
+          ? pathLib.resolve(this.cwd, 'src', 'index.js')
           : config.name;
 
       let inheritedConfig = inheritedConfigPath

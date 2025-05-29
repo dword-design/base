@@ -4,7 +4,7 @@ import ignore from 'ignore';
 
 import UnknownFilesError from './unknown-files-error.js';
 
-export default async function ({ cwd = '.' } = {}) {
+export default async function () {
   const allowedMatches = [
     ...(this.generatedFiles |> keys),
     ...Object.keys({
@@ -39,7 +39,12 @@ export default async function ({ cwd = '.' } = {}) {
   ];
 
   const unknownFiles =
-    globby('**', { cwd, dot: true, gitignore: true, ignore: allowedMatches })
+    globby('**', {
+      cwd: this.cwd,
+      dot: true,
+      gitignore: true,
+      ignore: allowedMatches,
+    })
     |> await
     |> filter(ignore().add(this.getGitignoreConfig()).createFilter());
 

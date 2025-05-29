@@ -15,7 +15,7 @@ const ajv = new Ajv({ allowUnionTypes: true });
 const validatePackageJson = ajv.compile(packageJsonSchema);
 
 export default async function (options) {
-  options = { cwd: '.', log: process.env.NODE_ENV !== 'test', patterns: [], ...options };
+  options = { log: process.env.NODE_ENV !== 'test', patterns: [], ...options };
 
   if (options.patterns.length === 0) {
     if (!validatePackageJson(this.packageConfig)) {
@@ -30,7 +30,8 @@ export default async function (options) {
   }
 
   const runDockerTests =
-    !isCI({ cwd: options.cwd }) || !(['win32', 'darwin'] |> includes(process.platform));
+    !isCI({ cwd: this.cwd }) ||
+    !(['win32', 'darwin'] |> includes(process.platform));
 
   return execa(
     this.packageConfig.type === 'module' ? packageName`c8` : packageName`nyc`,
@@ -50,7 +51,7 @@ export default async function (options) {
             ...(options.grep ? ['--grep', options.grep] : []),
             '--trace',
             'retain-on-failure',
-            ...(isCI({ cwd: options.cwd }) ? ['--forbid-only'] : []),
+            ...(isCI({ cwd: this.cwd }) ? ['--forbid-only'] : []),
             /**
              * Reporter set to dot in CI environments by default.
              * See https://github.com/microsoft/playwright/blob/42ade54975f6990c41cddc7b6e11c46a36648d0d/packages/playwright/src/common/config.ts#L301.
@@ -65,7 +66,7 @@ export default async function (options) {
             '--reporter',
             'text',
             '--cwd',
-            options.cwd,
+            this.cwd,
             '--all',
             '--exclude',
             '**/*.spec.js',
@@ -82,7 +83,7 @@ export default async function (options) {
             packageName`mocha-ui-exports-auto-describe`,
             '--require',
             packageName`@dword-design/pretest`,
-            ...((await fs.exists(P.join('global-test-hooks.js')))
+            ...((await fs.exists(P.join(this.cwd, 'global-test-hooks.js')))
               ? ['--require', 'global-test-hooks.js']
               : []),
             '--file',
@@ -98,6 +99,7 @@ export default async function (options) {
           ]),
     ],
     {
+      cwd: this.cwd,
       env: {
         NODE_ENV: 'test',
         ...(this.packageConfig.type === 'module' && {
@@ -109,7 +111,6 @@ export default async function (options) {
             ? { SNAPSHOT_UPDATE: 1 }
             : {}),
       },
-      cwd: options.cwd,
       [options.log ? 'stdio' : 'stderr']: 'inherit',
     },
   );
