@@ -14,7 +14,12 @@ import { findUpSync } from 'find-up';
 import fs from 'fs-extra';
 
 export default async function (options) {
-  options = { stderr: 'inherit', log: process.env.NODE_ENV !== 'test', patterns: [], ...options };
+  options = {
+    log: process.env.NODE_ENV !== 'test',
+    patterns: [],
+    stderr: 'inherit',
+    ...options,
+  };
 
   const volumeName =
     this.packageConfig.name |> replace('@', '') |> replace('/', '-');
@@ -53,7 +58,11 @@ export default async function (options) {
           ...(options.grep ? [`-g "${options.grep}"`] : []),
         ] |> join(' '),
       ],
-      { cwd: this.cwd, ...options.log && { stdio: 'inherit' }, stderr: options.stderr },
+      {
+        cwd: this.cwd,
+        ...(options.log && { stdout: 'inherit' }),
+        stderr: options.stderr,
+      },
     );
   } finally {
     await execa(

@@ -14,13 +14,18 @@ const commitlintPackageConfig = _require(
 );
 
 export default async function (options) {
-  options = { stderr: 'inherit', log: process.env.NODE_ENV !== 'test', ...options };
+  options = {
+    log: process.env.NODE_ENV !== 'test',
+    stderr: 'inherit',
+    ...options,
+  };
+
   await outputFiles(this.cwd, this.generatedFiles);
 
   if (await fs.exists(pathLib.join(this.cwd, '.git'))) {
     await execaCommand('husky install', {
       cwd: this.cwd,
-      ...options.log && { stdio: 'inherit' },
+      ...(options.log && { stdout: 'inherit' }),
       stderr: options.stderr,
     });
 
@@ -31,7 +36,11 @@ export default async function (options) {
         '.husky/commit-msg',
         `npx ${commitlintPackageConfig.bin |> keys |> first} --edit "$1"`,
       ],
-      { cwd: this.cwd, ...options.log && { stdio: 'inherit' }, stderr: options.stderr },
+      {
+        cwd: this.cwd,
+        ...(options.log && { stdout: 'inherit' }),
+        stderr: options.stderr,
+      },
     );
   }
 
