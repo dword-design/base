@@ -2,7 +2,7 @@ import { execa } from 'execa';
 import parsePackagejsonName from 'parse-packagejson-name';
 
 export default async function (options) {
-  options = { cwd = '.', log: NODE_ENV !== 'test', ...options };
+  options = { cwd: '.', log: NODE_ENV !== 'test', ...options };
   const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
 
   if (

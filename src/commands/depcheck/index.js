@@ -10,7 +10,7 @@ import {
 import depcheck from 'depcheck';
 
 export default async function (options) {
-  options = { cwd = '.', ...options };
+  options = { cwd: '.', ...options };
   const dependenciesResult = await depcheck(options.cwd, {
     package: this.packageConfig |> omit(['devDependencies']),
     skipMissing: true,

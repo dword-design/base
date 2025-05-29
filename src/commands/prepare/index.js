@@ -14,7 +14,7 @@ const commitlintPackageConfig = _require(
 );
 
 export default async function (options) {
-  options = { cwd = '.', log: NODE_ENV !== 'test', ...options };
+  options = { cwd: '.', log: NODE_ENV !== 'test', ...options };
   await outputFiles(options.cwd, this.generatedFiles);
 
   if (await fs.exists(pathLib.join(options.cwd, '.git'))) {
