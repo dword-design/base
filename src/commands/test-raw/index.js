@@ -15,7 +15,7 @@ const ajv = new Ajv({ allowUnionTypes: true });
 const validatePackageJson = ajv.compile(packageJsonSchema);
 
 export default async function (options) {
-  options = { log: process.env.NODE_ENV !== 'test', patterns: [], ...options };
+  options = { cwd: '.', log: process.env.NODE_ENV !== 'test', patterns: [], ...options };
 
   if (options.patterns.length === 0) {
     if (!validatePackageJson(this.packageConfig)) {
@@ -25,12 +25,12 @@ export default async function (options) {
       `);
     }
 
-    await this.lint();
-    await this.depcheck();
+    await this.lint(options);
+    await this.depcheck(options);
   }
 
   const runDockerTests =
-    !isCI() || !(['win32', 'darwin'] |> includes(process.platform));
+    !isCI({ cwd: options.cwd }) || !(['win32', 'darwin'] |> includes(process.platform));
 
   return execa(
     this.packageConfig.type === 'module' ? packageName`c8` : packageName`nyc`,
@@ -50,7 +50,7 @@ export default async function (options) {
             ...(options.grep ? ['--grep', options.grep] : []),
             '--trace',
             'retain-on-failure',
-            ...(isCI() ? ['--forbid-only'] : []),
+            ...(isCI({ cwd: options.cwd }) ? ['--forbid-only'] : []),
             /**
              * Reporter set to dot in CI environments by default.
              * See https://github.com/microsoft/playwright/blob/42ade54975f6990c41cddc7b6e11c46a36648d0d/packages/playwright/src/common/config.ts#L301.
@@ -65,7 +65,7 @@ export default async function (options) {
             '--reporter',
             'text',
             '--cwd',
-            process.cwd(),
+            options.cwd,
             '--all',
             '--exclude',
             '**/*.spec.js',
@@ -109,7 +109,8 @@ export default async function (options) {
             ? { SNAPSHOT_UPDATE: 1 }
             : {}),
       },
-      ...(options.log ? { stdio: 'inherit' } : { all: true }),
+      cwd: options.cwd,
+      [options.log ? 'stdio' : 'stderr']: 'inherit',
     },
   );
 }

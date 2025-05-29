@@ -50,8 +50,8 @@ const mergeConfigs = (...configs) => {
 };
 
 class Base {
-  constructor(config = null) {
-    const jitiInstance = jiti(process.cwd(), {
+  constructor(config = null, { cwd = '.' } = {}) {
+    const jitiInstance = jiti(cwd, {
       esmResolve: true,
       interopDefault: true,
       transform: jitiBabelTransform,

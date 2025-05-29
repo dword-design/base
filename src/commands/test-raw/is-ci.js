@@ -1,8 +1,8 @@
 import { execaCommandSync } from 'execa';
 
-export default () => {
+export default ({ cwd = '.' } = {}) => {
   try {
-    execaCommandSync('is-ci');
+    execaCommandSync('is-ci', { cwd });
     return true;
   } catch {
     return false;
