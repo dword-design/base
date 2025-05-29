@@ -19,12 +19,14 @@ export default tester(
     },
     async 'job matrix'() {
       await fs.outputFile('package.json', JSON.stringify({}));
+
       expect(
         new Base({ useJobMatrix: true }).getGithubWorkflowConfig(),
       ).toMatchSnapshot(this);
     },
     async 'job matrix no macos'() {
       await fs.outputFile('package.json', JSON.stringify({}));
+
       expect(
         new Base({
           macos: false,
@@ -34,6 +36,7 @@ export default tester(
     },
     async 'job matrix no windows'() {
       await fs.outputFile('package.json', JSON.stringify({}));
+
       expect(
         new Base({
           useJobMatrix: true,
@@ -82,6 +85,7 @@ export default tester(
     },
     async testInContainer() {
       await fs.outputFile('package.json', JSON.stringify({}));
+
       expect(
         new Base({
           nodeVersion: 14,
