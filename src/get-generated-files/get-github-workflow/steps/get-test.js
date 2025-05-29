@@ -1,4 +1,4 @@
-import P from 'node:path';
+import pathLib from 'node:path';
 
 import { endent, fromPairs, keys, map } from '@dword-design/functions';
 import { constantCase } from 'change-case';
@@ -9,11 +9,11 @@ import gitHubAction from 'tagged-template-noop';
 export default function () {
   const envSchemaPath = findUpSync(
     path => {
-      if (fs.existsSync(P.join(path, '.env.schema.json'))) {
+      if (fs.existsSync(pathLib.join(path, '.env.schema.json'))) {
         return '.env.schema.json';
       }
 
-      if (fs.existsSync(P.join(path, 'package.json'))) {
+      if (fs.existsSync(pathLib.join(path, 'package.json'))) {
         return findUpStop;
       }
     },
@@ -21,7 +21,7 @@ export default function () {
   );
 
   const envVariableNames =
-    (envSchemaPath ? fs.readJsonSync(envSchemaPath) : {})
+    (envSchemaPath ? fs.readJsonSync(pathLib.join(this.cwd, envSchemaPath)) : {})
     |> keys
     |> map(name => `TEST_${name |> constantCase}`);
 

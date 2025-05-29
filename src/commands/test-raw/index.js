@@ -15,7 +15,13 @@ const ajv = new Ajv({ allowUnionTypes: true });
 const validatePackageJson = ajv.compile(packageJsonSchema);
 
 export default async function (options) {
-  options = { log: process.env.NODE_ENV !== 'test', patterns: [], ...options };
+  options = {
+    all: false,
+    log: process.env.NODE_ENV !== 'test',
+    patterns: [],
+    stderr: null,
+    ...options,
+  };
 
   if (options.patterns.length === 0) {
     if (!validatePackageJson(this.packageConfig)) {
@@ -112,6 +118,7 @@ export default async function (options) {
             : {}),
       },
       [options.log ? 'stdio' : 'stderr']: 'inherit',
+      ...(options.stderr && { stderr: options.stderr }),
     },
   );
 }

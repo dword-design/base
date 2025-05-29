@@ -6,4 +6,4 @@ export default function (options) {
     cwd: this.cwd,
     [options.log ? 'stdio' : 'stderr']: 'inherit',
   });
-};
+}

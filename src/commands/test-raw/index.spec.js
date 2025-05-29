@@ -6,7 +6,6 @@ import {
   identity,
   keyBy,
   mapValues,
-  property,
   stubTrue,
 } from '@dword-design/functions';
 import tester from '@dword-design/tester';
@@ -96,9 +95,8 @@ export default tester(
         },
       },
       async test() {
-        const output =
-          this.base.test() |> await |> property('all') |> unifyMochaOutput;
-
+        let { stdout: output } = await this.base.test();
+        output = unifyMochaOutput(output);
         expect(output).toMatchSnapshot(this);
       },
     },
@@ -115,9 +113,7 @@ export default tester(
         },
       },
       async test() {
-        const output =
-          this.base.test({ grep: 'foo' }) |> await |> property('all');
-
+        const { stdout: output } = await this.base.test({ grep: 'foo' });
         expect(output).not.toMatch('run bar');
         expect(output).toMatch('run foo');
       },
@@ -191,14 +187,11 @@ export default tester(
         },
       },
       async test() {
-        const output =
-          this.base.test({
-            patterns: ['src/index1.spec.js', 'src/index2.spec.js'],
-          })
-          |> await
-          |> property('all')
-          |> unifyMochaOutput;
+        let { stdout: output } = await this.base.test({
+          patterns: ['src/index1.spec.js', 'src/index2.spec.js'],
+        });
 
+        output = unifyMochaOutput(output);
         expect(output).toMatchSnapshot(this);
       },
     },
@@ -245,7 +238,9 @@ export default tester(
         'src/index.spec.js': "import 'foo'",
       },
       test() {
-        return expect(this.base.test()).rejects.toThrow(/Unexpected token '>'/);
+        return expect(this.base.test({ stderr: 'pipe' })).rejects.toThrow(
+          /Unexpected token '>'/,
+        );
       },
     },
     'node_modules postfix casing error': {
@@ -282,10 +277,9 @@ export default tester(
         },
       },
       async test() {
-        const output =
-          this.base.test({ patterns: ['src/index2.spec.js'] })
-          |> await
-          |> property('all');
+        const { stdout: output } = await this.base.test({
+          patterns: ['src/index2.spec.js'],
+        });
 
         expect(output).not.toMatch('run index1');
         expect(output).toMatch('run index2');
@@ -381,8 +375,7 @@ export default tester(
         },
       },
       async test() {
-        const output =
-          this.base.test({ grep: 'test1' }) |> await |> property('all');
+        const { stdout: output } = await this.base.test({ grep: 'test1' });
 
         expect(output).toMatch(
           `${pathLib.join('src', 'index.spec.js')}:2:1 › test1`,
@@ -413,10 +406,9 @@ export default tester(
         },
       },
       async test() {
-        const output =
-          this.base.test({ patterns: ['src/index.spec.js'] })
-          |> await
-          |> property('all');
+        const { stdout: output } = await this.base.test({
+          patterns: ['src/index.spec.js'],
+        });
 
         expect(output).toMatch(
           `${pathLib.join('src', 'index.spec.js')}:2:1 › valid`,
@@ -480,7 +472,9 @@ export default tester(
         },
       },
       async test() {
-        expect(this.base.test() |> await |> property('all')).toMatch(
+        const { stdout: output } = await this.base.test();
+
+        expect(output).toMatch(
           `1 ${pathLib.join('src', 'index.spec.js')}:3:1 › valid`,
         );
 
@@ -525,9 +519,8 @@ export default tester(
         'package.json': JSON.stringify({ baseConfig: 'foo', type: 'module' }),
       },
       async test() {
-        expect(this.base.test() |> await |> property('all')).toMatch(
-          'run test',
-        );
+        const { stdout: output } = await this.base.test();
+        expect(output).toMatch('run test');
       },
     },
     'unused dependencies': {
@@ -591,7 +584,11 @@ export default tester(
         delete process.env.CI;
         delete process.env.GITHUB_ACTIONS;
         Object.defineProperty(process, 'platform', { value: 'darwin' });
-        await expect(this.base.test()).rejects.toThrow('foobarbaz');
+
+        await expect(this.base.test({ stderr: 'pipe' })).rejects.toThrow(
+          'foobarbaz',
+        );
+
         Object.defineProperty(process, 'platform', { value: previousPlatform });
         process.env = previousEnv;
       },
@@ -667,9 +664,8 @@ export default tester(
         },
       },
       async test() {
-        expect(this.base.test() |> await |> property('all')).toMatch(
-          'run test',
-        );
+        const { stdout: output } = await this.base.test();
+        expect(output).toMatch('run test');
 
         expect(
           globby('*', { dot: true, onlyFiles: false })
