@@ -23,7 +23,7 @@ export default tester(
         }),
       );
 
-      await new Base().testDocker({ log: false });
+      await new Base().testDocker();
       await fs.remove('dist');
     },
     'create folder and error': async () => {
@@ -38,7 +38,7 @@ export default tester(
         }),
       );
 
-      await expect(new Base().testDocker({ log: false })).rejects.toThrow();
+      await expect(new Base().testDocker()).rejects.toThrow();
       await fs.remove('dist');
     },
     env: async () => {
@@ -66,7 +66,7 @@ export default tester(
       process.env.TEST_FOO = 'foo';
 
       try {
-        await new Base().testDocker({ log: false });
+        await new Base().testDocker();
       } finally {
         process.env = previousEnv;
       }
@@ -85,7 +85,7 @@ export default tester(
         `,
       });
 
-      await new Base().testDocker({ log: false });
+      await new Base().testDocker();
     },
     grep: async () => {
       await outputFiles({
@@ -101,7 +101,7 @@ export default tester(
         `,
       });
 
-      await new Base().testDocker({ grep: 'foo bar baz', log: false });
+      await new Base().testDocker({ grep: 'foo bar baz' });
       expect(await fs.readFile('grep.txt', 'utf8')).toEqual('-g,foo bar baz');
     },
     'is in docker': async () => {
@@ -124,7 +124,7 @@ export default tester(
 
       await execaCommand('pnpm install');
       const base = new Base();
-      await base.testDocker({ log: false });
+      await base.testDocker();
     },
     pattern: async () => {
       await outputFiles({
@@ -140,7 +140,7 @@ export default tester(
         `,
       });
 
-      await new Base().testDocker({ log: false, patterns: ['foo bar baz'] });
+      await new Base().testDocker({ patterns: ['foo bar baz'] });
       expect(await fs.readFile('grep.txt', 'utf8')).toEqual('foo bar baz');
     },
     puppeteer: async () => {
@@ -163,7 +163,7 @@ export default tester(
       });
 
       await execaCommand('pnpm install');
-      await new Base().testDocker({ log: false });
+      await new Base().testDocker();
     },
     'update snapshots': async () => {
       await outputFiles({
@@ -179,7 +179,7 @@ export default tester(
         `,
       });
 
-      await new Base().testDocker({ log: false, updateSnapshots: true });
+      await new Base().testDocker({ updateSnapshots: true });
     },
   },
   [

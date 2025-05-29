@@ -16,7 +16,7 @@ export default tester({ 'allow-empty': { allowEmpty: true }, valid: {} }, [
       await execaCommand('git config user.name "foo"');
       await execaCommand('git add .');
       const base = new Base();
-      const childProcess = base.commit({ ...test, log: false });
+      const childProcess = base.commit(test);
 
       await pEvent(childProcess.stdout, 'data', data =>
         data.toString().includes('Select the type of change'),
