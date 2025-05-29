@@ -16,10 +16,9 @@ const validatePackageJson = ajv.compile(packageJsonSchema);
 
 export default async function (options) {
   options = {
-    all: false,
     log: process.env.NODE_ENV !== 'test',
     patterns: [],
-    stderr: null,
+    stderr: 'inherit',
     ...options,
   };
 
@@ -118,7 +117,7 @@ export default async function (options) {
             : {}),
       },
       [options.log ? 'stdio' : 'stderr']: 'inherit',
-      ...(options.stderr && { stderr: options.stderr }),
+      stderr: options.stderr,
     },
   );
 }
