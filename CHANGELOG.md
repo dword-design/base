@@ -1,3 +1,10 @@
+## [12.0.19](https://github.com/dword-design/base/compare/v12.0.18...v12.0.19) (2025-05-30)
+
+
+### Bug Fixes
+
+* foo ([e8022ef](https://github.com/dword-design/base/commit/e8022ef492f1ff43838881bccaa76997072eadf6))
+
 ## [12.0.18](https://github.com/dword-design/base/compare/v12.0.17...v12.0.18) (2025-05-29)
 
 
