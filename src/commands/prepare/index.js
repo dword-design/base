@@ -44,5 +44,5 @@ export default async function (options) {
     );
   }
 
-  await this.config.prepare(options);
+  await this.config.prepare.call(this, options);
 }
