@@ -3,6 +3,10 @@ import simpleStrategy from './strategies/simple.js';
 
 export default function () {
   return {
+    concurrency: {
+      'cancel-in-progress': true,
+      group: '${{ github.workflow }}-${{ github.ref }}',
+    },
     jobs: (this.config.useJobMatrix && !this.config.testInContainer
       ? jobMatrixStrategy
       : simpleStrategy

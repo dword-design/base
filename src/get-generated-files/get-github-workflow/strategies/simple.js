@@ -1,6 +1,5 @@
 import gitHubAction from 'tagged-template-noop';
 
-import cancelExistingSteps from '@/src/get-generated-files/get-github-workflow/steps/cancel-existing.js';
 import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflow/steps/check-unknown-files.js';
 import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/coverage.js';
 import getReleaseSteps from '@/src/get-generated-files/get-github-workflow/steps/get-release.js';
@@ -12,7 +11,6 @@ export default function () {
       if: "!contains(github.event.head_commit.message, '[skip ci]')",
       'runs-on': 'ubuntu-latest',
       steps: [
-        ...cancelExistingSteps,
         {
           uses: gitHubAction`actions/checkout@v4`,
           with: {
