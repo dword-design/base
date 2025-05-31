@@ -44,7 +44,10 @@ export default function () {
       steps: [
         {
           uses: gitHubAction`actions/checkout@v4`,
-          with: { ...this.config.fetchGitHistory && { 'fetch-depth': 0 }, lfs: true },
+          with: {
+            ...(this.config.fetchGitHistory && { 'fetch-depth': 0 }),
+            lfs: true,
+          },
         },
         {
           uses: gitHubAction`actions/setup-node@v4`,

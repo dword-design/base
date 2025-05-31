@@ -75,7 +75,6 @@ Object {
         Object {
           "uses": "actions/checkout@v4",
           "with": Object {
-            "fetch-depth": 0,
             "lfs": true,
           },
         },
@@ -227,7 +226,6 @@ Object {
         Object {
           "uses": "actions/checkout@v4",
           "with": Object {
-            "fetch-depth": 0,
             "lfs": true,
           },
         },
@@ -375,7 +373,6 @@ Object {
         Object {
           "uses": "actions/checkout@v4",
           "with": Object {
-            "fetch-depth": 0,
             "lfs": true,
           },
         },
@@ -464,7 +461,6 @@ Object {
         Object {
           "uses": "actions/checkout@v4",
           "with": Object {
-            "fetch-depth": 0,
             "lfs": true,
             "ref": "\${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
           },
@@ -620,7 +616,6 @@ Object {
         Object {
           "uses": "actions/checkout@v4",
           "with": Object {
-            "fetch-depth": 0,
             "lfs": true,
           },
         },
@@ -773,7 +768,6 @@ Object {
         Object {
           "uses": "actions/checkout@v4",
           "with": Object {
-            "fetch-depth": 0,
             "lfs": true,
           },
         },
@@ -1013,7 +1007,6 @@ Object {
         Object {
           "uses": "actions/checkout@v4",
           "with": Object {
-            "fetch-depth": 0,
             "lfs": true,
             "ref": "\${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
           },
@@ -1111,7 +1104,6 @@ Object {
         Object {
           "uses": "actions/checkout@v4",
           "with": Object {
-            "fetch-depth": 0,
             "lfs": true,
             "ref": "\${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
           },

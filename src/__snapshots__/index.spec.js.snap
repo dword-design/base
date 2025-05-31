@@ -8,6 +8,7 @@ Object {
   "deployEnv": Object {},
   "deployPlugins": Array [],
   "editorIgnore": Array [],
+  "fetchGitHistory": false,
   "git": undefined,
   "gitignore": Array [],
   "macos": true,
@@ -53,6 +54,7 @@ Object {
   "editorIgnore": Array [
     "foo",
   ],
+  "fetchGitHistory": false,
   "git": undefined,
   "gitignore": Array [
     "foo",
