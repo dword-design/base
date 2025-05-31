@@ -1,3 +1,15 @@
+# [12.1.0](https://github.com/dword-design/base/compare/v12.0.19...v12.1.0) (2025-05-31)
+
+
+### Bug Fixes
+
+* replace workflow-run-cleanup-action ([#786](https://github.com/dword-design/base/issues/786)) ([7e269fa](https://github.com/dword-design/base/commit/7e269fa4d31471f7ccefbe8e7e25f865c7999dbe))
+
+
+### Features
+
+* fetch git history config ([#787](https://github.com/dword-design/base/issues/787)) ([e69faaa](https://github.com/dword-design/base/commit/e69faaabfc1bbc897af3a3c57b79f547890531e8))
+
 ## [12.0.19](https://github.com/dword-design/base/compare/v12.0.18...v12.0.19) (2025-05-30)
 
 
