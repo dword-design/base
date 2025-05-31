@@ -1,7 +1,6 @@
 import { map } from '@dword-design/functions';
 import gitHubAction from 'tagged-template-noop';
 
-import cancelExistingSteps from '@/src/get-generated-files/get-github-workflow/steps/cancel-existing.js';
 import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflow/steps/check-unknown-files.js';
 import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/coverage.js';
 import getReleaseSteps from '@/src/get-generated-files/get-github-workflow/steps/get-release.js';
@@ -9,11 +8,6 @@ import getTestSteps from '@/src/get-generated-files/get-github-workflow/steps/ge
 
 export default function () {
   return {
-    'cancel-existing': {
-      if: "!contains(github.event.head_commit.message, '[skip ci]')",
-      'runs-on': 'ubuntu-latest',
-      steps: cancelExistingSteps,
-    },
     release: {
       needs: 'test',
       'runs-on': 'ubuntu-latest',
@@ -39,7 +33,6 @@ export default function () {
       ],
     },
     test: {
-      needs: 'cancel-existing',
       'runs-on': '${{ matrix.os }}',
       steps: [
         {
