@@ -101,6 +101,7 @@ class Base {
       minNodeVersion: null,
       nodeVersion: 20,
       preDeploySteps: [],
+      fetchGitHistory: false,
       prepare: identity,
       readmeInstallString: endent`
         ## Install
