@@ -94,6 +94,7 @@ class Base {
       deployEnv: {},
       deployPlugins: [],
       editorIgnore: [],
+      fetchGitHistory: false,
       git: getGitInfo({ cwd: this.cwd }),
       gitignore: [],
       lint: identity,

@@ -14,7 +14,7 @@ export default function () {
         {
           uses: gitHubAction`actions/checkout@v4`,
           with: {
-            'fetch-depth': 0,
+            ...(this.config.fetchGitHistory && { 'fetch-depth': 0 }),
             lfs: true,
             ref: "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
           },
