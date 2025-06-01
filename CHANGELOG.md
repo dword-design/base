@@ -1,3 +1,10 @@
+## [12.1.1](https://github.com/dword-design/base/compare/v12.1.0...v12.1.1) (2025-06-01)
+
+
+### Bug Fixes
+
+* deactivate success comment in release config ([c6f467b](https://github.com/dword-design/base/commit/c6f467b38cfdfede64cb4e89f993b71cb483db10))
+
 # [12.1.0](https://github.com/dword-design/base/compare/v12.0.19...v12.1.0) (2025-05-31)
 
 
