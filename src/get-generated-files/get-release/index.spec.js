@@ -14,7 +14,10 @@ export default tester(
           ['@semantic-release/npm', { npmPublish: false }],
           [
             '@semantic-release/github',
-            { assets: [{ label: 'Foo', path: 'foo.js' }], successComment: false },
+            {
+              assets: [{ label: 'Foo', path: 'foo.js' }],
+              successComment: false,
+            },
           ],
           [
             '@semantic-release/git',
