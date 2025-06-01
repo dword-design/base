@@ -14,7 +14,7 @@ export default tester(
           ['@semantic-release/npm', { npmPublish: false }],
           [
             '@semantic-release/github',
-            { assets: [{ label: 'Foo', path: 'foo.js' }] },
+            { assets: [{ label: 'Foo', path: 'foo.js' }], successComment: false },
           ],
           [
             '@semantic-release/git',
@@ -34,7 +34,7 @@ export default tester(
           '@semantic-release/release-notes-generator',
           '@semantic-release/changelog',
           ['@semantic-release/npm', { npmPublish: false }],
-          '@semantic-release/github',
+          ['@semantic-release/github', { successComment: false }],
           [
             '@semantic-release/git',
             {
@@ -54,7 +54,7 @@ export default tester(
           '@semantic-release/release-notes-generator',
           '@semantic-release/changelog',
           '@semantic-release/npm',
-          '@semantic-release/github',
+          ['@semantic-release/github', { successComment: false }],
           [
             '@semantic-release/git',
             {
@@ -72,7 +72,7 @@ export default tester(
           '@semantic-release/release-notes-generator',
           '@semantic-release/changelog',
           ['@semantic-release/npm', { npmPublish: false }],
-          '@semantic-release/github',
+          ['@semantic-release/github', { successComment: false }],
           [
             '@semantic-release/git',
             {
