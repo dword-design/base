@@ -28,6 +28,7 @@ Object {
   "package.json": true,
   "pnpm-lock.yaml": true,
   "src": true,
+  "tsconfig.json": true,
 }
 `;
 

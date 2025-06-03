@@ -1,3 +1,1 @@
-export default {
-  "exclude": ["**/*.test.ts", "**/*.spec.ts", "tests"]
-};
+export default { exclude: ['**/*.test.ts', '**/*.spec.ts', 'tests'] };
