@@ -1,3 +1,10 @@
+# [12.2.0](https://github.com/dword-design/base/compare/v12.1.1...v12.2.0) (2025-06-03)
+
+
+### Features
+
+* typescript config ([#788](https://github.com/dword-design/base/issues/788)) ([7c66b48](https://github.com/dword-design/base/commit/7c66b4820cfc405322037cae559b2610113fa1ad))
+
 ## [12.1.1](https://github.com/dword-design/base/compare/v12.1.0...v12.1.1) (2025-06-01)
 
 
