@@ -14,7 +14,7 @@ import githubFunding from './github-funding.js';
 import githubLabelsConfig from './github-labels.js';
 import githubSyncLabelsConfig from './github-sync-labels.js';
 import npmrc from './npmrc.js';
-import typescriptConfig from './typescript.js';
+import typescriptConfig from './typescript/index.js';
 
 export default function () {
   const packageConfig = this.getPackageConfig();
