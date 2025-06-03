@@ -1,3 +1,10 @@
+## [12.2.1](https://github.com/dword-design/base/compare/v12.2.0...v12.2.1) (2025-06-03)
+
+
+### Bug Fixes
+
+* esm for typescript ([90fa49e](https://github.com/dword-design/base/commit/90fa49ee541fce88a7b7c93ef680872cb032c845))
+
 # [12.2.0](https://github.com/dword-design/base/compare/v12.1.1...v12.2.0) (2025-06-03)
 
 
