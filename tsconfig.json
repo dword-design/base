@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "moduleResolution": "bundler",
     "paths": {
       "@": [
         "."
@@ -8,12 +9,10 @@
         "./*"
       ]
     },
-    "target": "ESNext",
-    "moduleResolution": "bundler"
+    "target": "ESNext"
   },
   "exclude": [
     "**/*.test.ts",
-    "**/*.spec.ts",
-    "./tests"
+    "**/*.spec.ts"
   ]
 }
