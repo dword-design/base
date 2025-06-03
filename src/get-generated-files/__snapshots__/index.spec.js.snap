@@ -52,5 +52,6 @@ Array [
   "babel.config.json",
   "eslint.config.js",
   "package.json",
+  "tsconfig.json",
 ]
 `;

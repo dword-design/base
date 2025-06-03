@@ -694,6 +694,7 @@ export default tester(
           'eslint.config.js': true,
           'package.json': true,
           src: true,
+          'tsconfig.json': true,
         });
       },
     },
