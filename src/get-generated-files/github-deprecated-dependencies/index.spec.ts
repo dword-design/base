@@ -1,7 +1,5 @@
-import self from './index.js';
+import { expect, test } from '@playwright/test';
 
-export default {
-  valid() {
-    expect(self).toMatchSnapshot(this);
-  },
-};
+import self from '.';
+
+test('valid', () => expect(self).toMatchSnapshot());

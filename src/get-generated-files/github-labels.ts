@@ -1,4 +1,4 @@
-import { map, mapValues, sortBy, values } from 'lodash-es';
+import { mapValues, sortBy } from 'lodash-es';
 
 export default sortBy(
   Object.values(

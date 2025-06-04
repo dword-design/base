@@ -1,4 +1,4 @@
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 import { expect, test } from '@playwright/test';
 import dedent from 'dedent';
@@ -6,7 +6,7 @@ import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import outputFiles from 'output-files';
 
-import { Base } from '@/src/index.js';
+import { Base } from '@/src';
 
 test('custom linter', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();

@@ -2,14 +2,15 @@ import dedent from 'dedent';
 import { last } from 'lodash-es';
 import spdxParse from 'spdx-expression-parse';
 import spdxList from 'spdx-license-list/full.js';
+
 export default {
-    badges() {
-        return dedent `
+  badges() {
+    return dedent`
         <p>
           ${[
             ...(this.config.npmPublish && !this.packageConfig.private
-                ? [
-                    dedent `
+              ? [
+                  dedent`
                     <a href="https://npmjs.org/package/${this.packageConfig.name}">
                       <img
                         src="https://img.shields.io/npm/v/${this.packageConfig.name}.svg"
@@ -18,9 +19,9 @@ export default {
                     </a>
                   `,
                 ]
-                : []),
+              : []),
             '<img src="https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue" alt="Linux macOS Windows compatible">',
-            dedent `
+            dedent`
               <a href="https://github.com/${this.packageConfig.repository}/actions">
                 <img
                   src="https://github.com/${this.packageConfig.repository}/workflows/build/badge.svg"
@@ -28,24 +29,22 @@ export default {
                 >
               </a>
             `,
-            dedent `
+            dedent`
               <a href="https://codecov.io/gh/${this.packageConfig.repository}">
                 <img
-                  src="https://codecov.io/gh/${this.packageConfig.repository}/branch/master/graph/badge.svg${this.config.codecovGraphToken
-                ? `?token=${this.config.codecovGraphToken}`
-                : ''}"
+                  src="https://codecov.io/gh/${this.packageConfig.repository}/branch/master/graph/badge.svg${this.config.codecovGraphToken ? `?token=${this.config.codecovGraphToken}` : ''}"
                   alt="Coverage status"
                 >
               </a>
             `,
-            dedent `
+            dedent`
               <a href="https://david-dm.org/${this.packageConfig.repository}">
                 <img src="https://img.shields.io/david/${this.packageConfig.repository}" alt="Dependency status">
               </a>
             `,
             '<img src="https://img.shields.io/badge/renovate-enabled-brightgreen" alt="Renovate enabled">',
             '<br/>',
-            dedent `
+            dedent`
               <a href="https://gitpod.io/#https://github.com/${this.packageConfig.repository}">
                 <img
                   src="https://gitpod.io/button/open-in-gitpod.svg"
@@ -54,7 +53,7 @@ export default {
                 >
               </a>
             `,
-            dedent `
+            dedent`
               <a href="https://www.buymeacoffee.com/dword">
                 <img
                   src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg"
@@ -63,7 +62,7 @@ export default {
                 >
               </a>
             `,
-            dedent `
+            dedent`
               <a href="https://paypal.me/SebastianLandwehr">
                 <img
                   src="https://sebastianlandwehr.com/images/paypal.svg"
@@ -72,7 +71,7 @@ export default {
                 >
               </a>
             `,
-            dedent `
+            dedent`
               <a href="https://www.patreon.com/dworddesign">
                 <img
                   src="https://sebastianlandwehr.com/images/patreon.svg"
@@ -81,19 +80,19 @@ export default {
                 >
               </a>
             `,
-        ].join('')}
+          ].join('')}
       </p>
     `;
-    },
-    description() {
-        return this.packageConfig.description || '';
-    },
-    install() {
-        return this.config.readmeInstallString;
-    },
-    license() {
-        return [
-            dedent `
+  },
+  description() {
+    return this.packageConfig.description || '';
+  },
+  install() {
+    return this.config.readmeInstallString;
+  },
+  license() {
+    return [
+      dedent`
         ## Contribute
 
         Are you missing something or want to contribute? Feel free to file an [issue](https://github.com/${this.packageConfig.repository}/issues) or a [pull request](https://github.com/${this.packageConfig.repository}/pulls)! ⚙️
@@ -128,38 +127,38 @@ export default {
 
         Thanks a lot for your support! ❤️
       `,
-            ...(this.config.seeAlso.length > 0
-                ? [
-                    dedent `
+      ...(this.config.seeAlso.length > 0
+        ? [
+            dedent`
               ## See also
 
               ${this.config.seeAlso
-                        .map(entry => {
-                        const parts = entry.repository.split('/');
-                        const owner = parts.length >= 2 ? parts[0] : 'dword-design';
-                        const name = last(parts);
-                        return `* [${name}](https://github.com/${owner}/${name}): ${entry.description}`;
-                    })
-                        .join('\n')}
+                .map(entry => {
+                  const parts = entry.repository.split('/');
+                  const owner = parts.length >= 2 ? parts[0] : 'dword-design';
+                  const name = last(parts);
+                  return `* [${name}](https://github.com/${owner}/${name}): ${entry.description}`;
+                })
+                .join('\n')}
             `,
-                ]
-                : []),
-            this.packageConfig.license
-                ? [
-                    (() => {
-                        const parsed = spdxParse(this.packageConfig.license);
-                        const license = spdxList[parsed.license];
-                        return dedent `
+          ]
+        : []),
+      this.packageConfig.license
+        ? [
+            (() => {
+              const parsed = spdxParse(this.packageConfig.license);
+              const license = spdxList[parsed.license];
+              return dedent`
                 ## License
   
                 [${license.name}](${license.url}) © [Sebastian Landwehr](https://sebastianlandwehr.com)
               `;
-                    })(),
-                ]
-                : [],
-        ].join('\n\n');
-    },
-    title() {
-        return `# ${this.packageConfig.name}`;
-    },
+            })(),
+          ]
+        : [],
+    ].join('\n\n');
+  },
+  title() {
+    return `# ${this.packageConfig.name}`;
+  },
 };

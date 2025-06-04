@@ -1,6 +1,7 @@
 import dedent from 'dedent';
+
 export default function () {
-    return dedent `
+  return dedent`
     # Need to add :latest, otherwise old versions (e.g. of node) are installed
     FROM gitpod/workspace-full-vnc:latest
 

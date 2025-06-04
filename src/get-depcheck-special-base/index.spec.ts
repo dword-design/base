@@ -1,10 +1,10 @@
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 import { expect, test } from '@playwright/test';
 import depcheck from 'depcheck';
 import fs from 'fs-extra';
 
-import self from './index.js';
+import self from '.';
 
 test('no config', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -15,7 +15,10 @@ test('no config', async ({}, testInfo) => {
     JSON.stringify(packageConfig),
   );
 
-  await depcheck(cwd, { package: packageConfig, specials: [self('base-config-foo')] });
+  await depcheck(cwd, {
+    package: packageConfig,
+    specials: [self('base-config-foo')],
+  });
 });
 
 test('valid', async ({}, testInfo) => {

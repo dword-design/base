@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
-import { Base } from '@/src/index.js';
+import { Base } from '@/src';
 
 const tests = {
   'deploy assets': {
@@ -13,10 +13,7 @@ const tests = {
         ['@semantic-release/npm', { npmPublish: false }],
         [
           '@semantic-release/github',
-          {
-            assets: [{ label: 'Foo', path: 'foo.js' }],
-            successComment: false,
-          },
+          { assets: [{ label: 'Foo', path: 'foo.js' }], successComment: false },
         ],
         [
           '@semantic-release/git',
@@ -88,6 +85,15 @@ const tests = {
 };
 
 for (const [name, testConfig] of Object.entries(tests)) {
-  testConfig.config = { deployAssets: [], deployPlugins: [], ...testConfig.config };
-  test(name, () => expect(new Base(testConfig.config).getReleaseConfig()).toEqual(testConfig.result));
+  testConfig.config = {
+    deployAssets: [],
+    deployPlugins: [],
+    ...testConfig.config,
+  };
+
+  test(name, () =>
+    expect(new Base(testConfig.config).getReleaseConfig()).toEqual(
+      testConfig.result,
+    ),
+  );
 }

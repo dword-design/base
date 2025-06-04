@@ -2,26 +2,20 @@ import sortKeys from 'sort-keys';
 import sortPackageJson from 'sort-package-json';
 import { stringify as yamlStringify } from 'yaml';
 
-import commitizenConfig from './commitizen.js';
-import commitlintConfig from './commitlint.js';
-import editorconfigConfig from './editorconfig.js';
-import gitattributesConfig from './gitattributes.js';
-import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies/index.js';
-import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template.js';
-import githubFunding from './github-funding.js';
-import githubLabelsConfig from './github-labels.js';
-import githubSyncLabelsConfig from './github-sync-labels.js';
-import npmrc from './npmrc.js';
-import typescriptConfig from './typescript/index.js';
-import { Base } from '@/src';
+import babelConfig from './babel';
+import commitizenConfig from './commitizen';
+import commitlintConfig from './commitlint';
+import editorconfigConfig from './editorconfig';
+import gitattributesConfig from './gitattributes';
+import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies';
+import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template';
+import githubFunding from './github-funding';
+import githubLabelsConfig from './github-labels';
+import githubSyncLabelsConfig from './github-sync-labels';
+import npmrc from './npmrc';
+import typescriptConfig from './typescript';
 
-declare module '@/src' {
-  interface Base {
-    getGeneratedFiles(): any;
-  }
-}
-
-Base.prototype.getGeneratedFiles = function () {
+export default function () {
   const packageConfig = this.getPackageConfig();
   return {
     '.commitlintrc.json': `${JSON.stringify(commitlintConfig, undefined, 2)}\n`,
@@ -74,6 +68,7 @@ Base.prototype.getGeneratedFiles = function () {
     )}\n`,
     'LICENSE.md': this.getLicenseString(),
     'README.md': this.getReadmeString(),
+    'babel.config.json': `${JSON.stringify(babelConfig, undefined, 2)}\n`,
     'eslint.config.js': this.getEslintConfig(),
     'package.json': `${JSON.stringify(
       sortPackageJson(packageConfig),

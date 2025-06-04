@@ -1,14 +1,8 @@
-import tester from '@dword-design/tester';
+import { expect, test } from '@playwright/test';
 
-import { Base } from '@/src/index.js';
+import { Base } from '@/src';
 
-export default tester({ valid: ['bar', 'foo'] }, [
-  {
-    transform: test =>
-      function () {
-        expect(
-          new Base({ editorIgnore: test }).getVscodeConfig(),
-        ).toMatchSnapshot(this);
-      },
-  },
-]);
+test('valid', () =>
+  expect(
+    new Base({ editorIgnore: ['bar', 'foo'] }).getVscodeConfig(),
+  ).toMatchSnapshot());

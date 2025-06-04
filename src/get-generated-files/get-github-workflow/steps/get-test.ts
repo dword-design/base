@@ -1,4 +1,4 @@
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 import { constantCase } from 'change-case';
 import dedent from 'dedent';

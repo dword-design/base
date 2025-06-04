@@ -1,5 +1,3 @@
-import { fromPairs, map } from 'lodash-es';
-
 export default function () {
   return {
     'editor.tabSize': 2,

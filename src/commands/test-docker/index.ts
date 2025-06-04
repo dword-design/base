@@ -5,15 +5,7 @@ import { execa } from 'execa';
 import { findUpSync } from 'find-up';
 import fs from 'fs-extra';
 
-import { Base } from '@/src';
-
-declare module '@/src' {
-  interface Base {
-    testDocker(options?): void;
-  }
-}
-
-Base.prototype.testDocker = async function (options) {
+export default async function (options) {
   options = {
     log: process.env.NODE_ENV !== 'test',
     patterns: [],
@@ -21,7 +13,10 @@ Base.prototype.testDocker = async function (options) {
     ...options,
   };
 
-  const volumeName = this.packageConfig.name.replace('@', '').replace('/', '-');
+  const volumeName = this.packageConfig.name
+    .replace('@/src', '')
+    .replace('/', '-');
+
   const envSchemaPath = findUpSync('.env.schema.json', { cwd: this.cwd });
 
   const envVariableNames = Object.keys(

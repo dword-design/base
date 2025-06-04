@@ -1,5 +1,5 @@
 import { createRequire } from 'node:module';
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 import Ajv from 'ajv';
 import dedent from 'dedent';
@@ -7,22 +7,14 @@ import packageName from 'depcheck-package-name';
 import { execa } from 'execa';
 import fs from 'fs-extra';
 
-import isCI from './is-ci.js';
-import packageJsonSchema from './package-json-schema.js';
-
-import { Base } from '@/src';
-
-declare module '@/src' {
-  interface Base {
-    testRaw(options?): void;
-  }
-}
+import isCI from './is-ci';
+import packageJsonSchema from './package-json-schema';
 
 const _require = createRequire(import.meta.url);
 const ajv = new Ajv({ allowUnionTypes: true });
 const validatePackageJson = ajv.compile(packageJsonSchema);
 
-Base.prototype.testRaw = async function (options) {
+export default async function (options) {
   options = {
     log: process.env.NODE_ENV !== 'test',
     patterns: [],
@@ -95,7 +87,9 @@ Base.prototype.testRaw = async function (options) {
             packageName`mocha-ui-exports-auto-describe`,
             '--require',
             packageName`@dword-design/pretest`,
-            ...((await fs.exists(pathLib.join(this.cwd, 'global-test-hooks.js')))
+            ...((await fs.exists(
+              pathLib.join(this.cwd, 'global-test-hooks.js'),
+            ))
               ? ['--require', 'global-test-hooks.js']
               : []),
             '--file',

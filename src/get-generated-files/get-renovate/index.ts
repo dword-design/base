@@ -1,6 +1,6 @@
 import deepmerge from 'deepmerge';
 
-import getRegexManagerString from './get-regex-manager-string/index.js';
+import getRegexManagerString from './get-regex-manager-string';
 
 export default function () {
   return deepmerge(

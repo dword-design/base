@@ -1,11 +1,11 @@
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 import { expect, test } from '@playwright/test';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import { pEvent } from 'p-event';
 
-import { Base } from '@/src/index.js';
+import { Base } from '@/src';
 
 const tests = { 'allow-empty': { allowEmpty: true }, valid: {} };
 

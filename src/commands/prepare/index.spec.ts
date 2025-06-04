@@ -1,14 +1,13 @@
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 import { expect, test } from '@playwright/test';
 import dedent from 'dedent';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
 import { globby } from 'globby';
-import { identity, mapValues } from 'lodash-es';
 import outputFiles from 'output-files';
 
-import { Base } from '@/src/index.js';
+import { Base } from '@/src';
 
 test('additional allowed match', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();

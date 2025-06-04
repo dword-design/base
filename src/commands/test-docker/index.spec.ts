@@ -1,4 +1,4 @@
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 import { expect, test as base } from '@playwright/test';
 import dedent from 'dedent';
@@ -9,7 +9,7 @@ import parsePackagejsonName from 'parse-packagejson-name';
 import { stringify as yamlStringify } from 'yaml';
 
 import packageJson from '@/package.json' with { type: 'json' };
-import { Base } from '@/src/index.js';
+import { Base } from '@/src';
 
 const { scope: projectScope, fullName: projectName } = parsePackagejsonName(
   packageJson.name,

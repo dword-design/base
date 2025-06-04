@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import dedent from 'dedent';
 
-import self from './unknown-files-error.js';
+import self from './unknown-files-error';
 
 test('works', () => {
   expect(

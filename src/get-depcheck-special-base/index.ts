@@ -1,4 +1,4 @@
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 export default name => filePath =>
   pathLib.basename(filePath) === 'package.json' &&

@@ -1,8 +1,8 @@
 import { cosmiconfigSync } from 'cosmiconfig';
 
-export default () => {
+export default ({ cwd = '.' } = {}) => {
   const explorer = cosmiconfigSync('base', { packageProp: 'baseConfig' });
-  let config = explorer.search()?.config ?? null;
+  let config = explorer.search(cwd)?.config ?? null;
 
   if (typeof config === 'string') {
     config = { name: config };

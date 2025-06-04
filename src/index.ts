@@ -1,4 +1,4 @@
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 import dedent from 'dedent';
 import deepmerge from 'deepmerge';
@@ -7,37 +7,36 @@ import depcheckDetectorBinName from 'depcheck-detector-bin-name';
 import depcheckDetectorExeca from 'depcheck-detector-execa';
 import depcheckDetectorPackageName from 'depcheck-detector-package-name';
 import packageName from 'depcheck-package-name';
-import depcheckParserBabel from 'depcheck-parser-babel';
 import fs from 'fs-extra';
 import { createJiti } from 'jiti';
 import { identity, mapValues } from 'lodash-es';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
 
-import './commands/check-unknown-files/index.js';
-import './commands/commit/index.js';
-import './commands/depcheck/index.js';
-import './commands/lint/index.js';
-import './commands/prepare/index.js';
-import './commands/test/index.js';
-import './commands/test-docker/index.js';
-import './commands/test-raw/index.js';
-import getDepcheckSpecialBase from './get-depcheck-special-base/index.js';
-import getEditorIgnoreConfig from './get-generated-files/get-editor-ignore/index.js';
-import getEslintConfig from './get-generated-files/get-eslint/index.js';
-import getGithubSyncMetadataConfig from './get-generated-files/get-github-sync-metadata/index.js';
-import getGithubWorkflowConfig from './get-generated-files/get-github-workflow/index.js';
-import getGitignoreConfig from './get-generated-files/get-gitignore/index.js';
-import getGitpodConfig from './get-generated-files/get-gitpod/index.js';
-import getGitpodDockerfile from './get-generated-files/get-gitpod-dockerfile.js';
-import getLicenseString from './get-generated-files/get-license-string.js';
-import './get-generated-files/get-package-config/index.js';
-import getReadmeString from './get-generated-files/get-readme-string/index.js';
-import getReleaseConfig from './get-generated-files/get-release/index.js';
-import getRenovateConfig from './get-generated-files/get-renovate/index.js';
-import getVscodeConfig from './get-generated-files/get-vscode/index.js';
-import githubCodespacesConfig from './get-generated-files/github-codespaces.js';
-import './get-generated-files/index.js';
-import getGitInfo from './get-git-info/index.js';
+import checkUnknownFiles from './commands/check-unknown-files';
+import commit from './commands/commit';
+import depcheckMethod from './commands/depcheck';
+import lint from './commands/lint';
+import prepare from './commands/prepare';
+import test from './commands/test';
+import testDocker from './commands/test-docker';
+import testRaw from './commands/test-raw';
+import getDepcheckSpecialBase from './get-depcheck-special-base';
+import getGeneratedFiles from './get-generated-files';
+import getEditorIgnoreConfig from './get-generated-files/get-editor-ignore';
+import getEslintConfig from './get-generated-files/get-eslint';
+import getGithubSyncMetadataConfig from './get-generated-files/get-github-sync-metadata';
+import getGithubWorkflowConfig from './get-generated-files/get-github-workflow';
+import getGitignoreConfig from './get-generated-files/get-gitignore';
+import getGitpodConfig from './get-generated-files/get-gitpod';
+import getGitpodDockerfile from './get-generated-files/get-gitpod-dockerfile';
+import getLicenseString from './get-generated-files/get-license-string';
+import getPackageConfig from './get-generated-files/get-package-config';
+import getReadmeString from './get-generated-files/get-readme-string';
+import getReleaseConfig from './get-generated-files/get-release';
+import getRenovateConfig from './get-generated-files/get-renovate';
+import getVscodeConfig from './get-generated-files/get-vscode';
+import githubCodespacesConfig from './get-generated-files/github-codespaces';
+import getGitInfo from './get-git-info';
 
 const mergeConfigs = (...configs) => {
   const result = deepmerge.all(configs, {
@@ -53,6 +52,95 @@ class Base {
   packageConfig: any;
   cwd: string;
   generatedFiles: any;
+  githubCodespacesConfig: any = githubCodespacesConfig;
+
+  commit(...args): any {
+    return commit.call(this, ...args);
+  }
+
+  lint(...args): any {
+    return lint.call(this, ...args);
+  }
+
+  prepare(...args): any {
+    return prepare.call(this, ...args);
+  }
+
+  test(...args): any {
+    return test.call(this, ...args);
+  }
+
+  testRaw(...args): any {
+    return testRaw.call(this, ...args);
+  }
+
+  testDocker(...args): any {
+    return testDocker.call(this, ...args);
+  }
+
+  getPackageConfig(...args): any {
+    return getPackageConfig.call(this, ...args);
+  }
+
+  getGeneratedFiles(...args): any {
+    return getGeneratedFiles.call(this, ...args);
+  }
+
+  checkUnknownFiles(...args): void {
+    return checkUnknownFiles.call(this, ...args);
+  }
+
+  depcheck(...args): void {
+    return depcheckMethod.call(this, ...args);
+  }
+
+  getEditorIgnoreConfig(...args): void {
+    return getEditorIgnoreConfig.call(this, ...args);
+  }
+
+  getEslintConfig(...args): void {
+    return getEslintConfig.call(this, ...args);
+  }
+
+  getGithubSyncMetadataConfig(...args): void {
+    return getGithubSyncMetadataConfig.call(this, ...args);
+  }
+
+  getGithubWorkflowConfig(...args): void {
+    return getGithubWorkflowConfig.call(this, ...args);
+  }
+
+  getGitignoreConfig(...args): void {
+    return getGitignoreConfig.call(this, ...args);
+  }
+
+  getGitpodConfig(...args): void {
+    return getGitpodConfig.call(this, ...args);
+  }
+
+  getGitpodDockerfile(...args): void {
+    return getGitpodDockerfile.call(this, ...args);
+  }
+
+  getLicenseString(...args): void {
+    return getLicenseString.call(this, ...args);
+  }
+
+  getReadmeString(...args): void {
+    return getReadmeString.call(this, ...args);
+  }
+
+  getReleaseConfig(...args): void {
+    return getReleaseConfig.call(this, ...args);
+  }
+
+  getRenovateConfig(...args): void {
+    return getRenovateConfig.call(this, ...args);
+  }
+
+  getVscodeConfig(...args): void {
+    return getVscodeConfig.call(this, ...args);
+  }
 
   constructor(config = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
@@ -90,7 +178,7 @@ class Base {
           depcheckDetectorBinName,
         ],
         ignorePath: '.gitignore',
-        parsers: { '**/*.js': depcheckParserBabel },
+        parsers: { '**/*.ts': depcheck.parser.typescript },
         specials: [getDepcheckSpecialBase(config.name), depcheck.special.bin],
       },
       deployAssets: [],
@@ -165,24 +253,8 @@ class Base {
   }
 }
 
-Object.assign(Base.prototype, {
-  getEditorIgnoreConfig,
-  getEslintConfig,
-  getGithubSyncMetadataConfig,
-  getGithubWorkflowConfig,
-  getGitignoreConfig,
-  getGitpodConfig,
-  getGitpodDockerfile,
-  getLicenseString,
-  getReadmeString,
-  getReleaseConfig,
-  getRenovateConfig,
-  getVscodeConfig,
-  githubCodespacesConfig,
-});
+export { default as loadConfig } from './load-config';
+
+export { default as loadConfigSync } from './load-config-sync';
 
 export { Base };
-
-export { default as loadConfig } from './load-config/index.js';
-
-export { default as loadConfigSync } from './load-config-sync/index.js';

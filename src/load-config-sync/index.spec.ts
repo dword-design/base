@@ -1,26 +1,26 @@
-import { tmpdir } from 'node:os';
-
-import tester from '@dword-design/tester';
-import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
+import { expect } from '@playwright/test';
 import fs from 'fs-extra';
 
-import self from './index.js';
+import { test } from '@/fixtures/tmpdir';
 
-export default tester(
-  {
-    '.baserc.json': async () => {
-      await fs.outputFile('.baserc.json', JSON.stringify({ foo: 'bar' }));
-      expect(self()).toEqual({ foo: 'bar' });
-    },
-    none: () => expect(self()).toBeNull(),
-    'package.json': async () => {
-      await fs.outputFile(
-        'package.json',
-        JSON.stringify({ baseConfig: { foo: 'bar' } }),
-      );
+import self from '.';
 
-      expect(self()).toEqual({ foo: 'bar' });
-    },
-  },
-  [testerPluginTmpDir({ dir: tmpdir(), tmpdir: tmpdir() })],
-);
+test('.baserc.json', async ({ tmpdir: cwd }) => {
+  await fs.outputFile(
+    pathLib.join(cwd, '.baserc.json'),
+    JSON.stringify({ foo: 'bar' }),
+  );
+
+  expect(self({ cwd })).toEqual({ foo: 'bar' });
+});
+
+test('none', ({ tmpdir: cwd }) => expect(self({ cwd })).toBeNull());
+
+test('package.json', async ({ tmpdir: cwd }) => {
+  await fs.outputFile(
+    pathLib.join(cwd, 'package.json'),
+    JSON.stringify({ baseConfig: { foo: 'bar' } }),
+  );
+
+  expect(self({ cwd })).toEqual({ foo: 'bar' });
+});

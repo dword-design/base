@@ -3,8 +3,8 @@
 import { mapValues } from 'lodash-es';
 import makeCli from 'make-cli';
 
-import { Base } from './index.js';
-import loadConfig from './load-config/index.js';
+import { Base } from '.';
+import loadConfig from './load-config';
 
 const base = new Base(await loadConfig());
 

@@ -1,22 +1,12 @@
 export default {
-  "compilerOptions": {
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "moduleResolution": "bundler",
-    "paths": {
-      "@": [
-        "."
-      ],
-      "@/*": [
-        "./*"
-      ]
-    },
-    "target": "ESNext",
-    "module": "ESNext"
+  compilerOptions: {
+    baseUrl: '.',
+    esModuleInterop: true,
+    module: 'ESNext',
+    moduleResolution: 'bundler',
+    outDir: 'dist',
+    paths: { '@': ['.'], '@/*': ['*'] },
+    target: 'ESNext',
   },
-  "include": ["**/src/*.ts"],
-  "exclude": [
-    "**/*.test.ts",
-    "**/*.spec.ts"
-  ]
+  exclude: ['**/*.test.ts', '**/*.spec.ts'],
 };

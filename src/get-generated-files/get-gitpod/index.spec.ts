@@ -1,11 +1,13 @@
-import { test, expect } from '@playwright/test';
-import fs from 'fs-extra';
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
-import { Base } from '@/src/index.js';
+import { expect, test } from '@playwright/test';
+import fs from 'fs-extra';
+
+import { Base } from '@/src';
 
 test('works', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await fs.outputFile(
     pathLib.join(cwd, 'package.json'),
     JSON.stringify({ name: '@dword-design/foo' }),

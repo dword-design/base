@@ -1,6 +1,6 @@
 import dedent from 'dedent';
 import spdxParse from 'spdx-expression-parse';
-import * as spdxList from 'spdx-license-list/full.js';
+import spdxList from 'spdx-license-list/full.js';
 
 export default function () {
   const parsed = spdxParse(this.packageConfig.license);

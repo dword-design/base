@@ -1,14 +1,7 @@
 import { execa } from 'execa';
 import parsePackagejsonName from 'parse-packagejson-name';
-import { Base } from '@/src';
 
-declare module '@/src' {
-  interface Base {
-    lint(options?): void;
-  }
-}
-
-Base.prototype.lint = async function (options) {
+export default async function (options) {
   options = {
     log: process.env.NODE_ENV !== 'test',
     stderr: 'inherit',

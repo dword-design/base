@@ -1,17 +1,10 @@
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 import fs from 'fs-extra';
 import { mapValues, pick, stubTrue } from 'lodash-es';
 import sortKeys from 'sort-keys';
-import { Base } from '@/src';
 
-declare module '@/src' {
-  interface Base {
-    getPackageConfig(): any;
-  }
-}
-
-Base.prototype.getPackageConfig = function () {
+export default function () {
   const commandNames = {
     checkUnknownFiles: true,
     commit: true,
@@ -68,7 +61,7 @@ Base.prototype.getPackageConfig = function () {
     scripts: sortKeys(
       mapValues(commandNames, (handler, name) =>
         this.packageConfig.name === '@dword-design/base'
-          ? `rimraf dist && tsc && tsc-alias --resolve-full-paths && node dist/cli.js ${name}`
+          ? `rimraf dist && tsc && babel dist --out-dir dist && node dist/cli.js ${name}`
           : `base ${name}`,
       ),
     ),

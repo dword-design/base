@@ -6,6 +6,6 @@ export default {
       packageName`babel-plugin-module-resolver`,
       { alias: { '@/src': './dist' } },
     ],
-    packageName`add-import-extension`,
+    packageName`babel-plugin-add-import-extension`,
   ],
 };

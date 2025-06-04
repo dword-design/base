@@ -1,17 +1,9 @@
 import { globby } from 'globby';
 import ignore from 'ignore';
 
-import UnknownFilesError from './unknown-files-error.js';
+import UnknownFilesError from './unknown-files-error';
 
-import { Base } from '@/src';
-
-declare module '@/src' {
-  interface Base {
-    checkUnknownFiles(): void;
-  }
-}
-
-Base.prototype.checkUnknownFiles = async function () {
+export default async function () {
   const allowedMatches = [
     ...Object.keys(this.generatedFiles),
     ...Object.keys({
@@ -61,4 +53,4 @@ Base.prototype.checkUnknownFiles = async function () {
       Object.fromEntries(unknownFiles.map(file => [file, true])),
     );
   }
-};
+}

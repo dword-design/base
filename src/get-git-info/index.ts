@@ -1,4 +1,4 @@
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 import fs from 'fs-extra';
 import hostedGitInfo from 'hosted-git-info';

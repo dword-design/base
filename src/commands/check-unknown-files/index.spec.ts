@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 import { isEmpty } from 'lodash-es';
 import outputFiles from 'output-files';
 
-import { Base } from '@/src/index.js';
+import { Base } from '@/src';
 
-import UnknownFilesError from './unknown-files-error.js';
+import UnknownFilesError from './unknown-files-error';
 
 const tests = {
   'config allowed matches': {

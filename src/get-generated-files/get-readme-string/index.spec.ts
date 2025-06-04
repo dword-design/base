@@ -1,16 +1,17 @@
+import { expect, test } from '@playwright/test';
 import dedent from 'dedent';
-import { test, expect } from '@playwright/test';
 import { execaCommand } from 'execa';
 import outputFiles from 'output-files';
 
-import { Base } from '@/src/index.js';
+import { Base } from '@/src';
 
 test('badges', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await execaCommand('git init', { cwd });
 
   await execaCommand(
-    'git remote add origin git@github.com:dword-design/bar.git', { cwd }
+    'git remote add origin git@github.com:dword-design/bar.git',
+    { cwd },
   );
 
   await outputFiles(cwd, {
@@ -24,12 +25,13 @@ test('badges', async ({}, testInfo) => {
   expect(new Base(null, { cwd }).getReadmeString()).toMatchSnapshot();
 });
 
-test('badges private', async ({}, test) => {
+test('badges private', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await execaCommand('git init', { cwd });
 
   await execaCommand(
-    'git remote add origin git@github.com:dword-design/bar.git', { cwd }
+    'git remote add origin git@github.com:dword-design/bar.git',
+    { cwd },
   );
 
   await outputFiles(cwd, {
@@ -48,6 +50,7 @@ test('badges private', async ({}, test) => {
 
 test('description', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await outputFiles(cwd, {
     'README.md': '<!-- DESCRIPTION -->\n',
     'package.json': JSON.stringify({ description: 'foo bar baz' }),
@@ -62,6 +65,7 @@ test('description', async ({}, testInfo) => {
 
 test('existing content', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await outputFiles(cwd, {
     'README.md': dedent`
       <!-- DESCRIPTION -->
@@ -83,6 +87,7 @@ test('existing content', async ({}, testInfo) => {
 
 test('install', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await outputFiles(cwd, {
     'README.md': '<!-- INSTALL -->\n',
     'package.json': JSON.stringify({ name: 'foo' }),
@@ -106,6 +111,7 @@ test('install', async ({}, testInfo) => {
 
 test('license', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await outputFiles(cwd, {
     'README.md': '<!-- LICENSE -->\n',
     'package.json': JSON.stringify({ license: 'MIT' }),
@@ -116,23 +122,28 @@ test('license', async ({}, testInfo) => {
 
 test('seeAlso', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await outputFiles(cwd, {
     'README.md': '<!-- LICENSE -->\n',
     'package.json': JSON.stringify({ license: 'MIT' }),
   });
 
   expect(
-    new Base({
-      seeAlso: [
-        { description: 'Foo bar', repository: 'output-files' },
-        { description: 'Bar baz', repository: 'foo/with-local-tmp-dir' },
-      ],
-    }, { cwd }).getReadmeString(),
+    new Base(
+      {
+        seeAlso: [
+          { description: 'Foo bar', repository: 'output-files' },
+          { description: 'Bar baz', repository: 'foo/with-local-tmp-dir' },
+        ],
+      },
+      { cwd },
+    ).getReadmeString(),
   ).toMatchSnapshot();
 });
 
 test('title', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await outputFiles(cwd, {
     'README.md': '<!-- TITLE -->\n',
     'package.json': JSON.stringify({ name: 'foo' }),

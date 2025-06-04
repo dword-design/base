@@ -1,26 +1,19 @@
 import dedent from 'dedent';
 import depcheck from 'depcheck';
 import { isEmpty, mapValues, omit } from 'lodash-es';
-import { Base } from '@/src';
 
-declare module '@/src' {
-  interface Base {
-    depcheck(): void;
-  }
-}
-
-Base.prototype.depcheck = async function () {
+export default async function () {
   const dependenciesResult = await depcheck(this.cwd, {
     package: omit(this.packageConfig, ['devDependencies']),
     skipMissing: true,
     ...this.config.depcheckConfig,
     ignorePatterns: [
-      '*.spec.js',
+      '*.spec.ts',
       ...(this.config.testRunner === 'playwright'
-        ? ['/fixtures', '/playwright.config.js']
-        : ['/global-test-hooks.js']),
+        ? ['/fixtures', '/playwright.config.ts']
+        : ['/global-test-hooks.ts']),
       'package.json',
-      'eslint.config.js',
+      'eslint.config.ts',
     ],
   });
 
@@ -29,11 +22,11 @@ Base.prototype.depcheck = async function () {
     skipMissing: true,
     ...this.config.depcheckConfig,
     ignorePatterns: [
-      '!*.spec.js',
+      '!*.spec.ts',
       ...(this.config.testRunner === 'playwright'
-        ? ['!/fixtures', '!/playwright.config.js']
-        : ['!/global-test-hooks.js']),
-      'eslint.config.js',
+        ? ['!/fixtures', '!/playwright.config.ts']
+        : ['!/global-test-hooks.ts']),
+      'eslint.config.ts',
     ],
   });
 
@@ -50,31 +43,31 @@ Base.prototype.depcheck = async function () {
     ...(result.dependencies.length > 0
       ? [
           dedent`
-              Unused dependencies
-              ${result.dependencies.map(dep => `* ${dep}`).join('\n')}
-            `,
+            Unused dependencies
+            ${result.dependencies.map(dep => `* ${dep}`).join('\n')}
+          `,
         ]
       : []),
     ...(result.devDependencies.length > 0
       ? [
           dedent`
-              Unused devDependencies
-              ${result.devDependencies.map(dep => `* ${dep}`).join('\n')}
-            `,
+            Unused devDependencies
+            ${result.devDependencies.map(dep => `* ${dep}`).join('\n')}
+          `,
         ]
       : []),
     ...(isEmpty(result.invalidFiles)
       ? []
       : [
           dedent`
-              Invalid files
-              ${Object.values(
-                mapValues(
-                  result.invalidFiles,
-                  (error, name) => `* ${name}: ${error}`,
-                ),
-              ).join('\n')}
-            `,
+            Invalid files
+            ${Object.values(
+              mapValues(
+                result.invalidFiles,
+                (error, name) => `* ${name}: ${error}`,
+              ),
+            ).join('\n')}
+          `,
         ]),
   ].join('\n\n');
 

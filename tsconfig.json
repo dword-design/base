@@ -1,20 +1,20 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "baseUrl": ".",
     "esModuleInterop": true,
+    "module": "ESNext",
     "moduleResolution": "bundler",
+    "outDir": "dist",
     "paths": {
       "@": [
         "."
       ],
       "@/*": [
-        "./*"
+        "*"
       ]
     },
-    "target": "ESNext",
-    "module": "ESNext"
+    "target": "ESNext"
   },
-  "include": ["**/src/*.ts"],
   "exclude": [
     "**/*.test.ts",
     "**/*.spec.ts"

@@ -1,5 +1,6 @@
 import dedent from 'dedent';
-export default dedent `
+
+export default dedent`
   * text=auto eol=lf
   *.glb filter=lfs diff=lfs merge=lfs -text
   *.jpg filter=lfs diff=lfs merge=lfs -text

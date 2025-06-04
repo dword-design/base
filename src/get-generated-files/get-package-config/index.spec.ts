@@ -1,22 +1,30 @@
-import { test, expect } from '@playwright/test';
+import pathLib from 'node:path';
+
+import { expect, test } from '@playwright/test';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
-import * as pathLib from 'node:path';
 
-import { Base } from '@/src/index.js';
+import { Base } from '@/src';
 
-test('custom config', async ({}, testInfo) => {
+test('custom config', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   expect(
-    new Base({
-      packageConfig: { main: 'dist/index.scss' },
-    }, { cwd }).getPackageConfig().main,
-  ).toEqual('dist/index.scss')
+    new Base(
+      { packageConfig: { main: 'dist/index.scss' } },
+      { cwd },
+    ).getPackageConfig().main,
+  ).toEqual('dist/index.scss');
 });
 
 test('deploy', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
-  await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({ deploy: true }));
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'package.json'),
+    JSON.stringify({ deploy: true }),
+  );
+
   expect(new Base(null, { cwd }).getPackageConfig().deploy).toBeTruthy();
 });
 
@@ -27,6 +35,7 @@ test('empty', ({}, testInfo) => {
 
 test('existing package', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await fs.outputFile(
     pathLib.join(cwd, 'package.json'),
     JSON.stringify({
@@ -58,17 +67,24 @@ test('existing package', async ({}, testInfo) => {
   expect(new Base(null, { cwd }).getPackageConfig()).toMatchSnapshot();
 });
 
-test('git repo', ({}, testInfo) => {
+test('git repo', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await execaCommand('git init', { cwd });
-  await execaCommand('git remote add origin git@github.com:bar/foo.git', { cwd });
+
+  await execaCommand('git remote add origin git@github.com:bar/foo.git', {
+    cwd,
+  });
+
   expect(new Base(null, { cwd }).getPackageConfig()).toMatchSnapshot();
 });
 
 test('non-github repo', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await execaCommand('git init', { cwd });
-  await execaCommand('git remote add origin git@special.com:bar/foo.git', { cwd });
+
+  await execaCommand('git remote add origin git@special.com:bar/foo.git', {
+    cwd,
+  });
 
   expect(() => new Base(null, { cwd }).getPackageConfig()).toThrow(
     'Only GitHub repositories are supported.',
@@ -77,7 +93,12 @@ test('non-github repo', async ({}, testInfo) => {
 
 test('private', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
-  await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({ private: true }));
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'package.json'),
+    JSON.stringify({ private: true }),
+  );
+
   expect(new Base(null, { cwd }).getPackageConfig().private).toBeTruthy();
 });
 

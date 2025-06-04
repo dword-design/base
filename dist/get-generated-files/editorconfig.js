@@ -1,5 +1,6 @@
 import dedent from 'dedent';
-export default dedent `
+
+export default dedent`
   # Editor configuration, see http://editorconfig.org
   root = true
 

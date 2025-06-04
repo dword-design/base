@@ -1,17 +1,10 @@
 import { createRequire } from 'node:module';
-import * as pathLib from 'node:path';
+import pathLib from 'node:path';
 
 import packageName from 'depcheck-package-name';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
 import outputFiles from 'output-files';
-import { Base } from '@/src';
-
-declare module '@/src' {
-  interface Base {
-    prepare(options?): void;
-  }
-}
 
 const resolver = createRequire(import.meta.url);
 
@@ -19,7 +12,7 @@ const commitlintPackageConfig = resolver(
   packageName`@commitlint/cli/package.json`,
 );
 
-Base.prototype.prepare = async function (options) {
+export default async function (options) {
   options = {
     log: process.env.NODE_ENV !== 'test',
     stderr: 'inherit',
