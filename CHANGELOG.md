@@ -1,3 +1,10 @@
+## [13.0.1](https://github.com/dword-design/base/compare/v13.0.0...v13.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* skipLibCheck ([4be984f](https://github.com/dword-design/base/commit/4be984f020b8b57f27281fc25cffba8709dc9694))
+
 # [13.0.0](https://github.com/dword-design/base/compare/v12.2.1...v13.0.0) (2025-06-04)
 
 
