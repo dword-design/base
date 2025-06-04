@@ -63,7 +63,7 @@ test('empty parent',async  ({}, testInfo) => {
   const base = new Base({ name: 'foo' }, { cwd });
 
   expect(
-    omit(base.config, ['depcheckConfig', 'prepare', 'lint']),
+    JSON.stringify(omit(base.config, ['depcheckConfig', 'prepare', 'lint']), undefined, 2),
   ).toMatchSnapshot();
 
   expect(typeof base.config.depcheckConfig).toEqual('object');
@@ -104,9 +104,11 @@ test('global', async ({}, testInfo) => {
 
   expect(base.config.readmeInstallString).toEqual(dedent`
     ## Install
+
     \`\`\`bash
     # npm
     $ npm install -g foo
+
     # Yarn
     $ yarn global add foo
     \`\`\`
@@ -146,7 +148,7 @@ test('inherited', async ({}, testInfo) => {
   const base = new Base({ name: 'foo' }, { cwd });
 
   expect(
-    omit(base.config, ['commands', 'depcheckConfig', 'prepare', 'lint']),
+    JSON.stringify(omit(base.config, ['commands', 'depcheckConfig', 'prepare', 'lint']), undefined, 2),
   ).toMatchSnapshot();
 
   expect(sortBy(Object.keys(base.config.commands), identity)).toEqual([

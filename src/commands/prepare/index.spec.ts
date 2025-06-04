@@ -89,11 +89,11 @@ test('valid', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await base.prepare();
-  const paths = sortBy(await globby('*', { cwd, dot: true, onlyFiles: false }), identity);
+  const paths = await globby('*', { cwd, dot: true, onlyFiles: false });
 
   expect(
     JSON.stringify(
-      Object.fromEntries(paths.map(path => [path, true])),
+      Object.fromEntries(sortBy(paths, identity).map(path => [path, true])),
       undefined,
       2,
     ),
