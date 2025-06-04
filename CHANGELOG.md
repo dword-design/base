@@ -1,3 +1,16 @@
+# [13.0.0](https://github.com/dword-design/base/compare/v12.2.1...v13.0.0) (2025-06-04)
+
+
+### Bug Fixes
+
+* typescript ([#789](https://github.com/dword-design/base/issues/789)) ([cda6e57](https://github.com/dword-design/base/commit/cda6e575c75f4ba7aa9513c4f23b947d28088411))
+
+
+### BREAKING CHANGES
+
+* Typescript
+* Drop Mocha
+
 ## [12.2.1](https://github.com/dword-design/base/compare/v12.2.0...v12.2.1) (2025-06-03)
 
 
