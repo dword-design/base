@@ -18,21 +18,30 @@ test('job matrix', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
   const base = new Base({ useJobMatrix: true }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+
+  expect(
+    JSON.stringify(base.getGithubWorkflowConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 test('job matrix no macos', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
   const base = new Base({ macos: false, useJobMatrix: true }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+
+  expect(
+    JSON.stringify(base.getGithubWorkflowConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 test('job matrix no windows', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
   const base = new Base({ useJobMatrix: true, windows: false }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+
+  expect(
+    JSON.stringify(base.getGithubWorkflowConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 test('no job matrix', async ({}, testInfo) => {

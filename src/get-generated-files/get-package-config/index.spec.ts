@@ -30,7 +30,10 @@ test('deploy', async ({}, testInfo) => {
 
 test('empty', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
-  expect(new Base(null, { cwd }).getPackageConfig()).toMatchSnapshot();
+
+  expect(
+    JSON.stringify(new Base(null, { cwd }).getPackageConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 test('existing package', async ({}, testInfo) => {
@@ -64,7 +67,9 @@ test('existing package', async ({}, testInfo) => {
     }),
   );
 
-  expect(new Base(null, { cwd }).getPackageConfig()).toMatchSnapshot();
+  expect(
+    JSON.stringify(new Base(null, { cwd }).getPackageConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 test('git repo', async ({}, testInfo) => {
@@ -75,7 +80,9 @@ test('git repo', async ({}, testInfo) => {
     cwd,
   });
 
-  expect(new Base(null, { cwd }).getPackageConfig()).toMatchSnapshot();
+  expect(
+    JSON.stringify(new Base(null, { cwd }).getPackageConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 test('non-github repo', async ({}, testInfo) => {

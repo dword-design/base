@@ -4,5 +4,9 @@ import { Base } from '@/src';
 
 test('valid', () =>
   expect(
-    new Base({ gitignore: ['foo'] }).getGitignoreConfig(),
+    JSON.stringify(
+      new Base({ gitignore: ['foo'] }).getGitignoreConfig(),
+      undefined,
+      2,
+    ),
   ).toMatchSnapshot());

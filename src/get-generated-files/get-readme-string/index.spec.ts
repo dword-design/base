@@ -104,8 +104,7 @@ test('install', async ({}, testInfo) => {
     # Yarn
     $ yarn add foo
     \`\`\`
-    <!-- /INSTALL -->
-
+    <!-- /INSTALL -->\n
   `);
 });
 

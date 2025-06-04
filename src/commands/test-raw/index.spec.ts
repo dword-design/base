@@ -380,7 +380,7 @@ test('multiple patterns', async ({}, testInfo) => {
   await base.prepare();
 
   const { stdout } = await base.test({
-    patterns: ['src/index.spec.ts', 'src/index2.spec.js'],
+    patterns: ['src/index.spec.ts', 'src/index2.spec.ts'],
   });
 
   expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:3:1 › valid`);

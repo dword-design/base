@@ -13,5 +13,7 @@ test('works', async ({}, testInfo) => {
     JSON.stringify({ name: '@dword-design/foo' }),
   );
 
-  expect(new Base(null, { cwd }).getGitpodConfig()).toMatchSnapshot();
+  expect(
+    JSON.stringify(new Base(null, { cwd }).getGitpodConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
