@@ -19,7 +19,7 @@
     "depcheck": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js depcheck",
     "dev": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js dev",
     "lint": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js lint",
-    "prepare": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js prepare",
+    "prepare": "rimraf dist && tsc && tsc-alias --outDir dist --resolve-full-paths && node dist/cli.js",
     "prepublishOnly": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js prepublishOnly",
     "test": "rimraf dist && babel --config-file @dword-design/babel-config --copy-files --no-copy-ignored --out-dir dist --ignore \"**/*.spec.js\" src && node dist/cli.js test"
   },
@@ -45,6 +45,7 @@
     "commitizen": "^4.3.1",
     "cosmiconfig": "^9.0.0",
     "cz-conventional-changelog": "^3.3.0",
+    "dedent": "^1.6.0",
     "deepmerge": "^4.3.1",
     "depcheck": "npm:@dword-design/depcheck@^0.0.7",
     "depcheck-detector-bin-name": "^1.0.2",
@@ -63,6 +64,7 @@
     "ignore": "^5.3.2",
     "is-ci": "^3.0.1",
     "jiti": "^1.21.7",
+    "lodash-es": "^4.17.21",
     "make-cli": "^4.0.0",
     "mocha": "^10.8.2",
     "mocha-spec-reporter-with-file-names": "npm:@dword-design/mocha-spec-reporter-with-file-names@^0.0.1",
@@ -94,6 +96,7 @@
     "renovate": "^39.264.0",
     "rimraf": "^5.0.10",
     "sharp": "^0.34.2",
+    "strip-ansi": "^7.1.0",
     "tsc-alias": "^1.8.16",
     "unify-mocha-output": "^2.0.22"
   },

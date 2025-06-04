@@ -1,4 +1,4 @@
-{
+export default {
   "compilerOptions": {
     "outDir": "dist",
     "esModuleInterop": true,
@@ -19,4 +19,4 @@
     "**/*.test.ts",
     "**/*.spec.ts"
   ]
-}
+};
