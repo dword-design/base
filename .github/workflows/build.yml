@@ -52,9 +52,7 @@ jobs:
         with:
           if-no-files-found: ignore
           name: Images from tests
-          path: |-
-            **/__image_snapshots__/__diff_output__
-            test-results/*/**
+          path: test-results/*/**
       - if: matrix.os == 'ubuntu-latest' && matrix.node == 20
         uses: codecov/codecov-action@v3
         with:

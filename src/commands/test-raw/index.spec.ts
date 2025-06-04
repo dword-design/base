@@ -117,14 +117,6 @@ test('image snapshot', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'playwright.config.ts': dedent`
-      import { defineConfig } from '@playwright/test';
-      
-      export default defineConfig({
-        snapshotPathTemplate:
-          '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
-      });
-    `,
     'index.spec.ts': javascript`
       import { test, expect } from '@playwright/test';
 
@@ -145,6 +137,14 @@ test('image snapshot', async ({}, testInfo) => {
       });
     `,
     'package.json': JSON.stringify({ devDependencies: { sharp: '^1.0.0' } }),
+    'playwright.config.ts': dedent`
+      import { defineConfig } from '@playwright/test';
+
+      export default defineConfig({
+        snapshotPathTemplate:
+          '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
+      });
+    `,
   });
 
   const base = new Base(null, { cwd });
@@ -206,14 +206,6 @@ test('multiple snapshots', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'playwright.config.ts': dedent`
-      import { defineConfig } from '@playwright/test';
-      
-      export default defineConfig({
-        snapshotPathTemplate:
-          '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
-      });
-    `,
     'index.spec.ts': javascript`
       import { test, expect } from '@playwright/test';
 
@@ -221,6 +213,14 @@ test('multiple snapshots', async ({}, testInfo) => {
         expect('foo').toMatchSnapshot()
         expect('bar').toMatchSnapshot()
       });\n
+    `,
+    'playwright.config.ts': dedent`
+      import { defineConfig } from '@playwright/test';
+
+      export default defineConfig({
+        snapshotPathTemplate:
+          '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
+      });
     `,
   });
 
@@ -378,7 +378,11 @@ test('multiple patterns', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await base.prepare();
-  const { stdout } = await base.test({ patterns: ['src/index.spec.ts', 'src/index2.spec.js'] });
+
+  const { stdout } = await base.test({
+    patterns: ['src/index.spec.ts', 'src/index2.spec.js'],
+  });
+
   expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:3:1 › valid`);
 
   expect(stdout).toMatch(
@@ -392,18 +396,18 @@ test('existing snapshot', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
+    'package.json': JSON.stringify({
+      devDependencies: { '@playwright/test': '*' },
+      name: 'foo',
+    }),
     'playwright.config.ts': dedent`
       import { defineConfig } from '@playwright/test';
-      
+
       export default defineConfig({
         snapshotPathTemplate:
           '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
       });
     `,
-    'package.json': JSON.stringify({
-      devDependencies: { '@playwright/test': '*' },
-      name: 'foo',
-    }),
     src: {
       'index.spec.ts': javascript`
         import { test, expect } from '${packageName`@playwright/test`}';
@@ -429,7 +433,7 @@ test('update existing snapshot', async ({}, testInfo) => {
     }),
     'playwright.config.ts': dedent`
       import { defineConfig } from '@playwright/test';
-      
+
       export default defineConfig({
         snapshotPathTemplate:
           '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
@@ -522,7 +526,7 @@ test('snapshot', async ({}, testInfo) => {
     `,
     'playwright.config.ts': dedent`
       import { defineConfig } from '@playwright/test';
-      
+
       export default defineConfig({
         snapshotPathTemplate:
           '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
@@ -534,7 +538,12 @@ test('snapshot', async ({}, testInfo) => {
   await base.prepare();
   await base.test({ updateSnapshots: true });
 
-  expect(await fs.readFile(pathLib.join(cwd, 'index.spec.ts-snapshots/works-1.txt'), 'utf8')).toEqual('foo');
+  expect(
+    await fs.readFile(
+      pathLib.join(cwd, 'index.spec.ts-snapshots/works-1.txt'),
+      'utf8',
+    ),
+  ).toEqual('foo');
 });
 
 test('in project root', async ({}, testInfo) => {

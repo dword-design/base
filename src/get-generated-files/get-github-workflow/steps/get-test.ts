@@ -1,7 +1,6 @@
 import pathLib from 'node:path';
 
 import { constantCase } from 'change-case';
-import dedent from 'dedent';
 import { findUpStop, findUpSync } from 'find-up';
 import fs from 'fs-extra';
 import gitHubAction from 'tagged-template-noop';
