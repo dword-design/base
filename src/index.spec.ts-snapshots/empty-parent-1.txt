@@ -1,0 +1,23 @@
+{
+  "allowedMatches": [],
+  "commands": {},
+  "deployAssets": [],
+  "deployEnv": {},
+  "deployPlugins": [],
+  "editorIgnore": [],
+  "fetchGitHistory": false,
+  "gitignore": [],
+  "macos": true,
+  "minNodeVersion": null,
+  "nodeVersion": 20,
+  "preDeploySteps": [],
+  "readmeInstallString": "## Install\n\n```bash\n# npm\n$ npm install foo\n\n# Yarn\n$ yarn add foo\n```",
+  "seeAlso": [],
+  "supportedNodeVersions": [
+    18,
+    20
+  ],
+  "syncKeywords": true,
+  "windows": true,
+  "name": "base-config-foo"
+}

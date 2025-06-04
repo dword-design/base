@@ -5,8 +5,8 @@ import dedent from 'dedent';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
 import { globby } from 'globby';
+import { identity, sortBy } from 'lodash-es';
 import outputFiles from 'output-files';
-import { sortBy, identity } from 'lodash-es';
 
 import { Base } from '@/src';
 

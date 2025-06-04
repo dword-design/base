@@ -1,30 +1,38 @@
 import pathLib from 'node:path';
 
-import { identity, omit, sortBy } from 'lodash-es';
-import { test, expect } from '@playwright/test';
-import fs from 'fs-extra';
-import outputFiles from 'output-files';
+import { expect, test } from '@playwright/test';
 import dedent from 'dedent';
+import fs from 'fs-extra';
+import { identity, omit, sortBy } from 'lodash-es';
+import outputFiles from 'output-files';
 
 import { Base } from './index.js';
 
 test('array merge', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await fs.outputFile(
-    pathLib.join(cwd, 'node_modules', '@dword-design', 'base-config-foo', 'index.js'),
+    pathLib.join(
+      cwd,
+      'node_modules',
+      '@dword-design',
+      'base-config-foo',
+      'index.js',
+    ),
     "export default { allowedMatches: ['foo.txt'] }",
   );
 
-  const base = new Base({
-    allowedMatches: ['bar.txt'],
-    name: '@dword-design/foo',
-  }, { cwd });
+  const base = new Base(
+    { allowedMatches: ['bar.txt'], name: '@dword-design/foo' },
+    { cwd },
+  );
 
   expect(base.config.allowedMatches).toEqual(['foo.txt', 'bar.txt']);
 });
 
 test('call multiple times', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await fs.outputFile(
     pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
     'export default {}',
@@ -38,6 +46,7 @@ test('call multiple times', async ({}, testInfo) => {
 
 test('do not recurse up to find package.json', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await fs.outputFile(
     pathLib.join(cwd, 'package.json'),
     JSON.stringify({ description: 'foo' }),
@@ -45,16 +54,22 @@ test('do not recurse up to find package.json', async ({}, testInfo) => {
 
   await fs.ensureDir(pathLib.join(cwd, 'sub'));
 
-  expect(new Base(null, { cwd: pathLib.join(cwd, 'sub') }).packageConfig.description).toBeUndefined();
+  expect(
+    new Base(null, { cwd: pathLib.join(cwd, 'sub') }).packageConfig.description,
+  ).toBeUndefined();
 });
 
 test('empty', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
-  expect(new Base(null, { cwd }).config.name).toEqual('@dword-design/base-config-node');
+
+  expect(new Base(null, { cwd }).config.name).toEqual(
+    '@dword-design/base-config-node',
+  );
 });
 
-test('empty parent',async  ({}, testInfo) => {
+test('empty parent', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await outputFiles(cwd, {
     'node_modules/base-config-foo/index.js': 'export default {}',
     'package.json': JSON.stringify({ name: 'foo' }),
@@ -63,7 +78,11 @@ test('empty parent',async  ({}, testInfo) => {
   const base = new Base({ name: 'foo' }, { cwd });
 
   expect(
-    JSON.stringify(omit(base.config, ['depcheckConfig', 'prepare', 'lint']), undefined, 2),
+    JSON.stringify(
+      omit(base.config, ['depcheckConfig', 'prepare', 'lint']),
+      undefined,
+      2,
+    ),
   ).toMatchSnapshot();
 
   expect(typeof base.config.depcheckConfig).toEqual('object');
@@ -72,12 +91,15 @@ test('empty parent',async  ({}, testInfo) => {
 
 test('esm', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await fs.outputFile(
     pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
     'export default {}',
   );
 
-  expect(new Base({ name: 'foo' }, { cwd }).config.name).toEqual('base-config-foo');
+  expect(new Base({ name: 'foo' }, { cwd }).config.name).toEqual(
+    'base-config-foo',
+  );
 });
 
 test('function', ({}, testInfo) => {
@@ -88,6 +110,7 @@ test('function', ({}, testInfo) => {
 
 test('function inherited', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await fs.outputFile(
     pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
     'export default config => ({ readmeInstallString: config.bar })',
@@ -99,7 +122,12 @@ test('function inherited', async ({}, testInfo) => {
 
 test('global', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
-  await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({ name: 'foo' }));
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'package.json'),
+    JSON.stringify({ name: 'foo' }),
+  );
+
   const base = new Base({ global: true }, { cwd });
 
   expect(base.config.readmeInstallString).toEqual(dedent`
@@ -117,6 +145,7 @@ test('global', async ({}, testInfo) => {
 
 test('inherited', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await fs.outputFile(
     pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
     dedent`
@@ -148,7 +177,11 @@ test('inherited', async ({}, testInfo) => {
   const base = new Base({ name: 'foo' }, { cwd });
 
   expect(
-    JSON.stringify(omit(base.config, ['commands', 'depcheckConfig', 'prepare', 'lint']), undefined, 2),
+    JSON.stringify(
+      omit(base.config, ['commands', 'depcheckConfig', 'prepare', 'lint']),
+      undefined,
+      2,
+    ),
   ).toMatchSnapshot();
 
   expect(sortBy(Object.keys(base.config.commands), identity)).toEqual([
@@ -165,8 +198,15 @@ test('inherited', async ({}, testInfo) => {
 
 test('name scoped', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await fs.outputFile(
-    pathLib.join(cwd, 'node_modules', '@dword-design', 'base-config-foo', 'index.js'),
+    pathLib.join(
+      cwd,
+      'node_modules',
+      '@dword-design',
+      'base-config-foo',
+      'index.js',
+    ),
     'export default {}',
   );
 
@@ -177,29 +217,36 @@ test('name scoped', async ({}, testInfo) => {
 
 test('name shortcut', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await fs.outputFile(
     pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
     'export default {}',
   );
 
-  expect(new Base({ name: 'foo' }, { cwd }).config.name).toEqual('base-config-foo');
+  expect(new Base({ name: 'foo' }, { cwd }).config.name).toEqual(
+    'base-config-foo',
+  );
 });
 
 test('run', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
+
   await fs.outputFile(
     pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
     'export default {}',
   );
 
   expect(
-    new Base({
-      commands: {
-        foo() {
-          return this.config.foo;
+    new Base(
+      {
+        commands: {
+          foo() {
+            return this.config.foo;
+          },
         },
+        foo: 'bar',
       },
-      foo: 'bar',
-    }, { cwd }).run('foo'),
+      { cwd },
+    ).run('foo'),
   ).toEqual('bar');
 });
