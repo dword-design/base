@@ -6,6 +6,7 @@ import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
 import { globby } from 'globby';
 import outputFiles from 'output-files';
+import { sortBy, identity } from 'lodash-es';
 
 import { Base } from '@/src';
 
@@ -88,7 +89,7 @@ test('valid', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await base.prepare();
-  const paths = await globby('*', { cwd, dot: true, onlyFiles: false });
+  const paths = sortBy(await globby('*', { cwd, dot: true, onlyFiles: false }), identity);
 
   expect(
     JSON.stringify(
