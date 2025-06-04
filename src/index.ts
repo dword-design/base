@@ -1,12 +1,12 @@
 import pathLib from 'node:path';
 
-import dedent from 'dedent';
 import deepmerge from 'deepmerge';
 import depcheck from 'depcheck';
 import depcheckDetectorBinName from 'depcheck-detector-bin-name';
 import depcheckDetectorExeca from 'depcheck-detector-execa';
 import depcheckDetectorPackageName from 'depcheck-detector-package-name';
 import packageName from 'depcheck-package-name';
+import endent from 'endent';
 import fs from 'fs-extra';
 import { createJiti } from 'jiti';
 import { identity, mapValues } from 'lodash-es';
@@ -191,7 +191,7 @@ class Base {
       nodeVersion: 20,
       preDeploySteps: [],
       prepare: identity,
-      readmeInstallString: dedent`
+      readmeInstallString: endent`
         ## Install
 
         \`\`\`bash

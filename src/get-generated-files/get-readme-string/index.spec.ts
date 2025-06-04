@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import dedent from 'dedent';
+import endent from 'endent';
 import { execaCommand } from 'execa';
 import outputFiles from 'output-files';
 
@@ -35,7 +35,7 @@ test('badges private', async ({}, testInfo) => {
   );
 
   await outputFiles(cwd, {
-    'README.md': dedent`
+    'README.md': endent`
       <!-- BADGES -->
 
     `,
@@ -56,7 +56,7 @@ test('description', async ({}, testInfo) => {
     'package.json': JSON.stringify({ description: 'foo bar baz' }),
   });
 
-  expect(new Base(null, { cwd }).getReadmeString()).toEqual(dedent`
+  expect(new Base(null, { cwd }).getReadmeString()).toEqual(endent`
     <!-- DESCRIPTION/ -->
     foo bar baz
     <!-- /DESCRIPTION -->\n
@@ -67,7 +67,7 @@ test('existing content', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'README.md': dedent`
+    'README.md': endent`
       <!-- DESCRIPTION -->
 
       This is a more detailed description
@@ -93,7 +93,7 @@ test('install', async ({}, testInfo) => {
     'package.json': JSON.stringify({ name: 'foo' }),
   });
 
-  expect(new Base(null, { cwd }).getReadmeString()).toEqual(dedent`
+  expect(new Base(null, { cwd }).getReadmeString()).toEqual(endent`
     <!-- INSTALL/ -->
     ## Install
 
@@ -148,7 +148,7 @@ test('title', async ({}, testInfo) => {
     'package.json': JSON.stringify({ name: 'foo' }),
   });
 
-  expect(new Base(null, { cwd }).getReadmeString()).toEqual(dedent`
+  expect(new Base(null, { cwd }).getReadmeString()).toEqual(endent`
     <!-- TITLE/ -->
     # foo
     <!-- /TITLE -->\n

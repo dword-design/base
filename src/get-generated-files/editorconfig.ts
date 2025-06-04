@@ -1,6 +1,6 @@
-import dedent from 'dedent';
+import endent from 'endent';
 
-export default dedent`
+export default endent`
   # Editor configuration, see http://editorconfig.org
   root = true
 

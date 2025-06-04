@@ -1,6 +1,6 @@
 import Ajv from 'ajv';
-import dedent from 'dedent';
 import packageName from 'depcheck-package-name';
+import endent from 'endent';
 import { execa } from 'execa';
 
 import isCI from './is-ci';
@@ -19,7 +19,7 @@ export default async function (options) {
 
   if (options.patterns.length === 0) {
     if (!validatePackageJson(this.packageConfig)) {
-      throw new Error(dedent`
+      throw new Error(endent`
         package.json invalid
         ${ajv.errorsText(validatePackageJson.errors)}
       `);

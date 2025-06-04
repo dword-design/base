@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import dedent from 'dedent';
+import endent from 'endent';
 
 import { Base } from '@/src';
 
@@ -11,7 +11,7 @@ test('custom config', () => {
 test('valid', () => {
   const base = new Base();
 
-  expect(base.getEslintConfig()).toEqual(dedent`
+  expect(base.getEslintConfig()).toEqual(endent`
     import config from '@dword-design/eslint-config';
     import { defineConfig, globalIgnores } from 'eslint/config';
 

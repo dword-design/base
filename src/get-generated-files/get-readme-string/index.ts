@@ -1,6 +1,6 @@
 import pathLib from 'node:path';
 
-import dedent from 'dedent';
+import endent from 'endent';
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex';
 import { readFileSync as safeReadFileSync } from 'safe-readfile';
 
@@ -9,7 +9,7 @@ import replacements from './replacements';
 export default function () {
   const readme =
     safeReadFileSync(pathLib.join(this.cwd, 'README.md'), 'utf8') ||
-    dedent`
+    endent`
       <!-- TITLE -->
 
       <!-- BADGES -->
@@ -28,7 +28,7 @@ export default function () {
 
     result = result.replace(
       getProjectzReadmeSectionRegex(sectionName),
-      dedent`
+      endent`
         <!-- ${sectionName}/ -->
         ${replacement.call(this)}
         <!-- /${sectionName} -->

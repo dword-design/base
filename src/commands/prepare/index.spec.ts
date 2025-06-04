@@ -1,7 +1,7 @@
 import pathLib from 'node:path';
 
 import { expect, test } from '@playwright/test';
-import dedent from 'dedent';
+import endent from 'endent';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
 import { globby } from 'globby';
@@ -71,7 +71,7 @@ test('valid', async ({}, testInfo) => {
 
   await outputFiles(cwd, {
     '.env.json': '',
-    '.env.schema.json': dedent`
+    '.env.schema.json': endent`
       {
         "foo": "bar"
       }

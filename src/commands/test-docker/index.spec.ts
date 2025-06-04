@@ -1,7 +1,7 @@
 import pathLib from 'node:path';
 
 import { expect, test as base } from '@playwright/test';
-import dedent from 'dedent';
+import endent from 'endent';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import outputFiles from 'output-files';
@@ -71,7 +71,7 @@ test('env @usesdocker', async ({ packageName }, testInfo) => {
       bar: { type: 'string' },
       foo: { type: 'string' },
     }),
-    'cli.js': dedent`
+    'cli.js': endent`
       import { Base } from '../../dist/index.js';
 
       new Base().testDocker();
@@ -82,7 +82,7 @@ test('env @usesdocker', async ({ packageName }, testInfo) => {
       scripts: { 'test:raw': 'node test.js' },
       type: 'module',
     }),
-    'test.js': dedent`
+    'test.js': endent`
       import { expect } from '@playwright/test';
 
       expect(process.env.TEST_FOO).toEqual('foo');
@@ -103,7 +103,7 @@ test('git @usesdocker', async ({ packageName }, testInfo) => {
       scripts: { 'test:raw': 'node test.js' },
       type: 'module',
     }),
-    'test.js': dedent`
+    'test.js': endent`
       import { spawn } from 'child_process'
 
       spawn('git', ['--help'])
@@ -122,7 +122,7 @@ test('grep @usesdocker', async ({ packageName }, testInfo) => {
       scripts: { 'test:raw': 'node test.js' },
       type: 'module',
     }),
-    'test.js': dedent`
+    'test.js': endent`
       import fs from 'fs'
 
       fs.writeFileSync('grep.txt', process.argv.slice(2).toString());
@@ -146,7 +146,7 @@ test('is in docker @usesdocker', async ({ packageName }, testInfo) => {
       scripts: { 'test:raw': 'node test.js' },
       type: 'module',
     }),
-    'test.js': dedent`
+    'test.js': endent`
       import isDocker from 'is-docker'
 
       if (!isDocker) {
@@ -169,7 +169,7 @@ test('pattern @usesdocker', async ({ packageName }, testInfo) => {
       scripts: { 'test:raw': 'node test.js' },
       type: 'module',
     }),
-    'test.js': dedent`
+    'test.js': endent`
       import fs from 'fs'
 
       fs.writeFileSync('grep.txt', process.argv[2])
@@ -197,7 +197,7 @@ test('puppeteer @usesdocker', async ({ packageName }, testInfo) => {
     'pnpm-workspace.yaml': yamlStringify({
       onlyBuiltDependencies: ['puppeteer'],
     }),
-    'test.js': dedent`
+    'test.js': endent`
       import puppeteer from '@dword-design/puppeteer';
 
       const browser = await puppeteer.launch();
@@ -217,7 +217,7 @@ test('update snapshots @usesdocker', async ({ packageName }, testInfo) => {
       name: packageName,
       scripts: { 'test:raw': 'node test.js' },
     }),
-    'test.js': dedent`
+    'test.js': endent`
       if (process.argv[2] !== '--update-snapshots') {
         throw new Error('--update-snapshots is not set')
       }\n

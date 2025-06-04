@@ -1,7 +1,7 @@
 import pathLib from 'node:path';
 
 import { expect, test } from '@playwright/test';
-import dedent from 'dedent';
+import endent from 'endent';
 import fs from 'fs-extra';
 import { identity, omit, sortBy } from 'lodash-es';
 import outputFiles from 'output-files';
@@ -130,7 +130,7 @@ test('global', async ({}, testInfo) => {
 
   const base = new Base({ global: true }, { cwd });
 
-  expect(base.config.readmeInstallString).toEqual(dedent`
+  expect(base.config.readmeInstallString).toEqual(endent`
     ## Install
 
     \`\`\`bash
@@ -148,7 +148,7 @@ test('inherited', async ({}, testInfo) => {
 
   await fs.outputFile(
     pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
-    dedent`
+    endent`
       export default {
         commands: {
           prepublishOnly: x => x + 1,

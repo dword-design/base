@@ -1,8 +1,8 @@
 import pathLib from 'node:path';
 
 import { expect, test } from '@playwright/test';
-import dedent from 'dedent';
 import packageName from 'depcheck-package-name';
+import endent from 'endent';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import { globby } from 'globby';
@@ -11,7 +11,7 @@ import stripAnsi from 'strip-ansi';
 
 import { Base } from '@/src';
 
-const javascript = dedent;
+const javascript = endent;
 
 test('assertion', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -137,7 +137,7 @@ test('image snapshot', async ({}, testInfo) => {
       });
     `,
     'package.json': JSON.stringify({ devDependencies: { sharp: '^1.0.0' } }),
-    'playwright.config.ts': dedent`
+    'playwright.config.ts': endent`
       import { defineConfig } from '@playwright/test';
 
       export default defineConfig({
@@ -214,7 +214,7 @@ test('multiple snapshots', async ({}, testInfo) => {
         expect('bar').toMatchSnapshot()
       });\n
     `,
-    'playwright.config.ts': dedent`
+    'playwright.config.ts': endent`
       import { defineConfig } from '@playwright/test';
 
       export default defineConfig({
@@ -400,7 +400,7 @@ test('existing snapshot', async ({}, testInfo) => {
       devDependencies: { '@playwright/test': '*' },
       name: 'foo',
     }),
-    'playwright.config.ts': dedent`
+    'playwright.config.ts': endent`
       import { defineConfig } from '@playwright/test';
 
       export default defineConfig({
@@ -431,7 +431,7 @@ test('update existing snapshot', async ({}, testInfo) => {
       devDependencies: { '@playwright/test': '*' },
       name: 'foo',
     }),
-    'playwright.config.ts': dedent`
+    'playwright.config.ts': endent`
       import { defineConfig } from '@playwright/test';
 
       export default defineConfig({
@@ -524,7 +524,7 @@ test('snapshot', async ({}, testInfo) => {
 
       test('works', () => expect('foo').toMatchSnapshot());\n
     `,
-    'playwright.config.ts': dedent`
+    'playwright.config.ts': endent`
       import { defineConfig } from '@playwright/test';
 
       export default defineConfig({
@@ -584,7 +584,7 @@ test('unused dependencies', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
 
-  await expect(base.test()).rejects.toThrow(dedent`
+  await expect(base.test()).rejects.toThrow(endent`
     Unused dependencies
     * change-case
     * foo
@@ -595,7 +595,7 @@ test('usesdocker macOS', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'cli.js': dedent`
+    'cli.js': endent`
       import { Base } from '../../dist/index.js';
 
       Object.defineProperty(process, 'platform', { value: 'darwin' });
@@ -604,7 +604,7 @@ test('usesdocker macOS', async ({}, testInfo) => {
       await base.prepare();
       await base.test();
     `,
-    'src/index.spec.ts': dedent`
+    'src/index.spec.ts': endent`
       import { test } from '@playwright/test';
 
       test('valid @usesdocker', () => { throw new Error('foobarbaz') });
@@ -618,7 +618,7 @@ test('usesdocker outside ci', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'cli.js': dedent`
+    'cli.js': endent`
       import { Base } from '../../dist/index.js';
 
       delete process.env.CI;
@@ -629,7 +629,7 @@ test('usesdocker outside ci', async ({}, testInfo) => {
       await base.prepare();
       await base.test();
     `,
-    'src/index.spec.ts': dedent`
+    'src/index.spec.ts': endent`
       import { test } from '@playwright/test';
 
       test('valid @usesdocker', () => { throw new Error('foobarbaz') });
@@ -645,7 +645,7 @@ test('usesdocker windows', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'cli.js': dedent`
+    'cli.js': endent`
       import { Base } from '../../dist/index.js';
 
       Object.defineProperty(process, 'platform', { value: 'win32' });
@@ -657,7 +657,7 @@ test('usesdocker windows', async ({}, testInfo) => {
     'package.json': JSON.stringify({
       devDependencies: { '@playwright/test': '*' },
     }),
-    'src/index.spec.ts': dedent`
+    'src/index.spec.ts': endent`
       import { test, expect } from '@playwright/test';
 
       test('valid @usesdocker', () => expect(1).toEqual(2));

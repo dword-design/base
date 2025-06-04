@@ -1,7 +1,7 @@
 import pathLib from 'node:path';
 
 import { expect, test } from '@playwright/test';
-import dedent from 'dedent';
+import endent from 'endent';
 import fs from 'fs-extra';
 import outputFiles from 'output-files';
 
@@ -35,7 +35,7 @@ test('base config in prod dependencies', async ({}, testInfo) => {
   const base = new Base({ name: 'foo' }, { cwd });
   await base.prepare();
 
-  await expect(base.depcheck()).rejects.toThrow(dedent`
+  await expect(base.depcheck()).rejects.toThrow(endent`
     Unused dependencies
     * base-config-foo
   `);
@@ -85,7 +85,7 @@ test('invalid file', async ({}, testInfo) => {
 
   await base.prepare();
 
-  await expect(base.depcheck()).rejects.toThrow(dedent`
+  await expect(base.depcheck()).rejects.toThrow(endent`
     Unused dependencies
     * change-case
 
@@ -109,7 +109,7 @@ test('prod dependency only in global-test-hooks.js', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
 
-  await expect(base.depcheck()).rejects.toThrow(dedent`
+  await expect(base.depcheck()).rejects.toThrow(endent`
     Unused dependencies
     * bar
   `);
@@ -127,7 +127,7 @@ test('prod dependency only in test', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
 
-  await expect(base.depcheck()).rejects.toThrow(dedent`
+  await expect(base.depcheck()).rejects.toThrow(endent`
     Unused dependencies
     * bar
   `);
@@ -146,7 +146,7 @@ test('unused dependencies', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
 
-  await expect(base.depcheck()).rejects.toThrow(dedent`
+  await expect(base.depcheck()).rejects.toThrow(endent`
     Unused dependencies
     * change-case
     * foo

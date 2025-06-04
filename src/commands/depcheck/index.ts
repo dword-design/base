@@ -1,5 +1,5 @@
-import dedent from 'dedent';
 import depcheck from 'depcheck';
+import endent from 'endent';
 import { isEmpty, mapValues, omit } from 'lodash-es';
 
 export default async function () {
@@ -40,7 +40,7 @@ export default async function () {
   const errorMessage = [
     ...(result.dependencies.length > 0
       ? [
-          dedent`
+          endent`
             Unused dependencies
             ${result.dependencies.map(dep => `* ${dep}`).join('\n')}
           `,
@@ -48,7 +48,7 @@ export default async function () {
       : []),
     ...(result.devDependencies.length > 0
       ? [
-          dedent`
+          endent`
             Unused devDependencies
             ${result.devDependencies.map(dep => `* ${dep}`).join('\n')}
           `,
@@ -57,7 +57,7 @@ export default async function () {
     ...(isEmpty(result.invalidFiles)
       ? []
       : [
-          dedent`
+          endent`
             Invalid files
             ${Object.values(
               mapValues(

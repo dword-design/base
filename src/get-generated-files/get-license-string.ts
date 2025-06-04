@@ -1,11 +1,11 @@
-import dedent from 'dedent';
+import endent from 'endent';
 import spdxParse from 'spdx-expression-parse';
 import spdxList from 'spdx-license-list/full.js';
 
 export default function () {
   const parsed = spdxParse(this.packageConfig.license);
   const license = spdxList[parsed.license];
-  return dedent`
+  return endent`
     # License
 
     Unless stated otherwise all works are:

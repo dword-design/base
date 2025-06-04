@@ -1,18 +1,18 @@
-import dedent from 'dedent';
 import packageName from 'depcheck-package-name';
+import endent from 'endent';
 
 export default function () {
   return (
     this.config.eslintConfig ||
-    dedent`
+    endent`
       ${
         this.packageConfig.name === '@dword-design/eslint-config'
-          ? dedent`
+          ? endent`
             import { defineConfig, globalIgnores } from '${packageName`eslint`}/config';
 
             import config from './src';
           `
-          : dedent`
+          : endent`
             import config from '${packageName`@dword-design/eslint-config`}';
             import { defineConfig, globalIgnores } from '${packageName`eslint`}/config';
           `

@@ -1,7 +1,7 @@
 import pathLib from 'node:path';
 
 import { expect, test } from '@playwright/test';
-import dedent from 'dedent';
+import endent from 'endent';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import outputFiles from 'output-files';
@@ -47,7 +47,7 @@ test('lint eslint config', async ({}, testInfo) => {
 
   await outputFiles(cwd, {
     'package.json': JSON.stringify({ name: '@dword-design/eslint-config' }),
-    'src/index.js': dedent`
+    'src/index.js': endent`
       import { defineConfig } from 'eslint/config';
 
       export default defineConfig([]);
