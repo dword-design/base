@@ -40,10 +40,7 @@ export default function () {
       with: {
         'if-no-files-found': 'ignore',
         name: 'Images from tests',
-        path: dedent`
-          **/__image_snapshots__/__diff_output__
-          test-results/*/**
-        `,
+        path: 'test-results/*/**',
       },
     },
   ];

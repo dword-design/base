@@ -39,7 +39,10 @@ test('no job matrix', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
   const base = new Base(null, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+
+  expect(
+    JSON.stringify(base.getGithubWorkflowConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 test('package.json', async ({}, testInfo) => {
@@ -51,7 +54,10 @@ test('package.json', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd: pathLib.join(cwd, 'repos', 'foo') });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+
+  expect(
+    JSON.stringify(base.getGithubWorkflowConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 test('package.json same path as .env.schema.json', async ({}, testInfo) => {
@@ -65,7 +71,10 @@ test('package.json same path as .env.schema.json', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd: pathLib.join(cwd, 'repos', 'foo') });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+
+  expect(
+    JSON.stringify(base.getGithubWorkflowConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 test('environment variables', async ({}, testInfo) => {
@@ -77,17 +86,22 @@ test('environment variables', async ({}, testInfo) => {
   });
 
   const base = new Base({ nodeVersion: 14, useJobMatrix: false }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+
+  expect(
+    JSON.stringify(base.getGithubWorkflowConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 test('testInContainer', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
 
+  const base = new Base(
+    { nodeVersion: 14, testInContainer: true, useJobMatrix: true },
+    { cwd },
+  );
+
   expect(
-    new Base(
-      { nodeVersion: 14, testInContainer: true, useJobMatrix: true },
-      { cwd },
-    ).getGithubWorkflowConfig(),
+    JSON.stringify(base.getGithubWorkflowConfig(), undefined, 2),
   ).toMatchSnapshot();
 });

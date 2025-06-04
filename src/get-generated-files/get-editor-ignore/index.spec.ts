@@ -4,5 +4,8 @@ import { Base } from '@/src';
 
 test('valid', () => {
   const base = new Base({ editorIgnore: ['foo'] });
-  expect(base.getEditorIgnoreConfig()).toMatchSnapshot();
+
+  expect(
+    JSON.stringify(base.getEditorIgnoreConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });

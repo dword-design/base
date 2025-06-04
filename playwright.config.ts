@@ -5,5 +5,4 @@ export default defineConfig({
   preserveOutput: 'failures-only',
   snapshotPathTemplate:
     '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
-  workers: 1,
 });

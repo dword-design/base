@@ -1,27 +1,27 @@
 <!-- TITLE/ -->
-# @dword-design/base
+# foo
 <!-- /TITLE -->
 
 <!-- BADGES/ -->
-          <p>
-      <a href="https://npmjs.org/package/@dword-design/base">
+      <p>
+      <a href="https://npmjs.org/package/foo">
 <img
-src="https://img.shields.io/npm/v/@dword-design/base.svg"
+src="https://img.shields.io/npm/v/foo.svg"
 alt="npm version"
 >
-</a><img src="https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue" alt="Linux macOS Windows compatible"><a href="https://github.com/dword-design/base/actions">
+</a><img src="https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue" alt="Linux macOS Windows compatible"><a href="https://github.com/dword-design/bar/actions">
 <img
-src="https://github.com/dword-design/base/workflows/build/badge.svg"
+src="https://github.com/dword-design/bar/workflows/build/badge.svg"
 alt="Build status"
 >
-</a><a href="https://codecov.io/gh/dword-design/base">
+</a><a href="https://codecov.io/gh/dword-design/bar">
 <img
-src="https://codecov.io/gh/dword-design/base/branch/master/graph/badge.svg"
+src="https://codecov.io/gh/dword-design/bar/branch/master/graph/badge.svg"
 alt="Coverage status"
 >
-</a><a href="https://david-dm.org/dword-design/base">
-<img src="https://img.shields.io/david/dword-design/base" alt="Dependency status">
-</a><img src="https://img.shields.io/badge/renovate-enabled-brightgreen" alt="Renovate enabled"><br/><a href="https://gitpod.io/#https://github.com/dword-design/base">
+</a><a href="https://david-dm.org/dword-design/bar">
+<img src="https://img.shields.io/david/dword-design/bar" alt="Dependency status">
+</a><img src="https://img.shields.io/badge/renovate-enabled-brightgreen" alt="Renovate enabled"><br/><a href="https://gitpod.io/#https://github.com/dword-design/bar">
 <img
 src="https://gitpod.io/button/open-in-gitpod.svg"
 alt="Open in Gitpod"
@@ -47,10 +47,10 @@ width="163"
 >
 </a>
   </p>
-          <!-- /BADGES -->
+      <!-- /BADGES -->
 
 <!-- DESCRIPTION/ -->
-Base package for projects.
+
 <!-- /DESCRIPTION -->
 
 <!-- INSTALL/ -->
@@ -58,17 +58,17 @@ Base package for projects.
 
 ```bash
 # npm
-$ npm install @dword-design/base
+$ npm install foo
 
 # Yarn
-$ yarn add @dword-design/base
+$ yarn add foo
 ```
 <!-- /INSTALL -->
 
 <!-- LICENSE/ -->
-          ## Contribute
+      ## Contribute
 
-Are you missing something or want to contribute? Feel free to file an [issue](https://github.com/dword-design/base/issues) or a [pull request](https://github.com/dword-design/base/pulls)! ⚙️
+Are you missing something or want to contribute? Feel free to file an [issue](https://github.com/dword-design/bar/issues) or a [pull request](https://github.com/dword-design/bar/pulls)! ⚙️
 
 ## Support
 
@@ -103,5 +103,4 @@ Thanks a lot for your support! ❤️
 ## License
 
 [MIT License](https://opensource.org/license/mit/) © [Sebastian Landwehr](https://sebastianlandwehr.com)
-          <!-- /LICENSE -->
-
+      <!-- /LICENSE -->

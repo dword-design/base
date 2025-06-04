@@ -117,6 +117,14 @@ test('image snapshot', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
+    'playwright.config.ts': dedent`
+      import { defineConfig } from '@playwright/test';
+      
+      export default defineConfig({
+        snapshotPathTemplate:
+          '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
+      });
+    `,
     'index.spec.ts': javascript`
       import { test, expect } from '@playwright/test';
 
@@ -141,7 +149,7 @@ test('image snapshot', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await base.prepare();
-  await base.test();
+  await base.test({ updateSnapshots: true });
 
   expect(
     await globby('*', { cwd: pathLib.join(cwd, 'index.spec.ts-snapshots') }),
@@ -182,7 +190,7 @@ test('linting errors', async ({}, testInfo) => {
   await base.prepare();
 
   await expect(base.test({ stderr: 'pipe' })).rejects.toThrow(
-    "error  'foo' is assigned a value but never used  no-unused-vars",
+    "error  'foo' is assigned a value but never used  @typescript-eslint/no-unused-vars",
   );
 });
 
@@ -198,6 +206,14 @@ test('multiple snapshots', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
+    'playwright.config.ts': dedent`
+      import { defineConfig } from '@playwright/test';
+      
+      export default defineConfig({
+        snapshotPathTemplate:
+          '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
+      });
+    `,
     'index.spec.ts': javascript`
       import { test, expect } from '@playwright/test';
 
@@ -210,7 +226,7 @@ test('multiple snapshots', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await base.prepare();
-  await base.test();
+  await base.test({ updateSnapshots: true });
 
   expect(
     await fs.readFile(
@@ -300,7 +316,7 @@ test('grep', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
   const { stdout } = await base.test({ grep: 'test1' });
-  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:2:1 › test1`);
+  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:3:1 › test1`);
   expect(stdout).toMatch('1 passed');
 });
 
@@ -329,7 +345,7 @@ test('pattern', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
   const { stdout } = await base.test({ patterns: ['src/index.spec.ts'] });
-  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:2:1 › valid`);
+  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:3:1 › valid`);
   expect(stdout).toMatch('1 passed');
 });
 
@@ -362,17 +378,48 @@ test('multiple patterns', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await base.prepare();
-  const { stdout } = await base.test({ patterns: ['src/index.spec.ts'] });
-  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:2:1 › valid`);
+  const { stdout } = await base.test({ patterns: ['src/index.spec.ts', 'src/index2.spec.js'] });
+  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:3:1 › valid`);
 
   expect(stdout).toMatch(
-    `${pathLib.join('src', 'index2.spec.ts')}:2:1 › valid`,
+    `${pathLib.join('src', 'index2.spec.ts')}:3:1 › valid`,
   );
 
   expect(stdout).toMatch('2 passed');
 });
 
-test('update snapshots', async ({}, testInfo) => {
+test('existing snapshot', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await outputFiles(cwd, {
+    'playwright.config.ts': dedent`
+      import { defineConfig } from '@playwright/test';
+      
+      export default defineConfig({
+        snapshotPathTemplate:
+          '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
+      });
+    `,
+    'package.json': JSON.stringify({
+      devDependencies: { '@playwright/test': '*' },
+      name: 'foo',
+    }),
+    src: {
+      'index.spec.ts': javascript`
+        import { test, expect } from '${packageName`@playwright/test`}';
+
+        test('valid', () => expect('foo').toMatchSnapshot());\n
+      `,
+      'index.spec.ts-snapshots/valid-1.txt': 'foo',
+    },
+  });
+
+  const base = new Base(null, { cwd });
+  await base.prepare();
+  await base.test();
+});
+
+test('update existing snapshot', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
@@ -382,13 +429,10 @@ test('update snapshots', async ({}, testInfo) => {
     }),
     'playwright.config.ts': dedent`
       import { defineConfig } from '@playwright/test';
-
+      
       export default defineConfig({
-        expect: {
-          toMatchSnapshot: {
-            pathTemplate: '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
-          },
-        },
+        snapshotPathTemplate:
+          '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
       });
     `,
     src: {
@@ -397,6 +441,7 @@ test('update snapshots', async ({}, testInfo) => {
 
         test('valid', () => expect('foo').toMatchSnapshot());\n
       `,
+      'index.spec.ts-snapshots/valid-1.txt': 'foo',
     },
   });
 
@@ -410,6 +455,24 @@ test('update snapshots', async ({}, testInfo) => {
       'utf8',
     ),
   ).toEqual('foo');
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'src', 'index.spec.ts'),
+    javascript`
+      import { test, expect } from '${packageName`@playwright/test`}';
+
+      test('valid', () => expect('bar').toMatchSnapshot());\n
+    `,
+  );
+
+  await base.test({ updateSnapshots: true });
+
+  expect(
+    await fs.readFile(
+      pathLib.join(cwd, 'src', 'index.spec.ts-snapshots', 'valid-1.txt'),
+      'utf8',
+    ),
+  ).toEqual('bar');
 });
 
 test('valid', async ({}, testInfo) => {
@@ -438,7 +501,7 @@ test('valid', async ({}, testInfo) => {
   stdout = stripAnsi(stdout);
 
   expect(stdout).toMatch(
-    `1 ${pathLib.join('src', 'index.spec.ts')}:3:1 › valid`,
+    `1 ${pathLib.join('src', 'index.spec.ts')}:5:1 › valid`,
   );
 
   expect(
@@ -451,22 +514,27 @@ test('valid', async ({}, testInfo) => {
 test('snapshot', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
-  await fs.outputFile(
-    pathLib.join(cwd, 'index.spec.ts'),
-    javascript`
+  await outputFiles(cwd, {
+    'index.spec.ts': javascript`
       import { test, expect } from '@playwright/test';
 
       test('works', () => expect('foo').toMatchSnapshot());\n
     `,
-  );
+    'playwright.config.ts': dedent`
+      import { defineConfig } from '@playwright/test';
+      
+      export default defineConfig({
+        snapshotPathTemplate:
+          '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
+      });
+    `,
+  });
 
   const base = new Base(null, { cwd });
   await base.prepare();
-  await base.test();
+  await base.test({ updateSnapshots: true });
 
-  expect(await globby('*', { cwd: pathLib.join(cwd) })).toEqual([
-    'index.spec.ts-snapshots',
-  ]);
+  expect(await fs.readFile(pathLib.join(cwd, 'index.spec.ts-snapshots/works-1.txt'), 'utf8')).toEqual('foo');
 });
 
 test('in project root', async ({}, testInfo) => {
@@ -512,28 +580,6 @@ test('unused dependencies', async ({}, testInfo) => {
     * change-case
     * foo
   `);
-});
-
-test('update snapshot', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await outputFiles(cwd, {
-    '__snapshots__/index.spec.ts.snap': javascript`
-      exports[\`index works 1\`] = \`"foo"\`;
-  
-    `,
-    'index.spec.ts': dedent`
-      export default {
-        works: function () {
-          expect('bar').toMatchSnapshot(this)
-        },
-      }
-    `,
-  });
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.test({ updateSnapshots: true });
 });
 
 test('usesdocker macOS', async ({}, testInfo) => {

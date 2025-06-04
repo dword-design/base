@@ -4,12 +4,18 @@ import { Base } from '@/src';
 
 test('do not sync keywords', () => {
   const base = new Base({ syncKeywords: false });
-  expect(base.getGithubSyncMetadataConfig()).toMatchSnapshot();
+
+  expect(
+    JSON.stringify(base.getGithubSyncMetadataConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 test('valid', () => {
   const base = new Base();
-  expect(base.getGithubSyncMetadataConfig()).toMatchSnapshot();
+
+  expect(
+    JSON.stringify(base.getGithubSyncMetadataConfig(), undefined, 2),
+  ).toMatchSnapshot();
 });
 
 /**
