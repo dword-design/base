@@ -1,0 +1,42 @@
+{
+  "allowedMatches": [],
+  "deployAssets": [
+    {
+      "label": "Foo",
+      "path": "foo.js"
+    }
+  ],
+  "deployEnv": {
+    "FOO": "${{ secrets.FOO }}"
+  },
+  "deployPlugins": [
+    "semantic-release-foo"
+  ],
+  "editorIgnore": [
+    "foo"
+  ],
+  "fetchGitHistory": false,
+  "gitignore": [
+    "foo"
+  ],
+  "macos": true,
+  "minNodeVersion": null,
+  "nodeVersion": 10,
+  "preDeploySteps": [
+    {
+      "run": "foo"
+    }
+  ],
+  "readmeInstallString": "foo",
+  "seeAlso": [],
+  "supportedNodeVersions": [
+    1,
+    2
+  ],
+  "syncKeywords": true,
+  "windows": true,
+  "packageBaseConfig": {
+    "main": "dist/index.scss"
+  },
+  "name": "base-config-foo"
+}

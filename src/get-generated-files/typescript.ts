@@ -1,0 +1,12 @@
+export default {
+  compilerOptions: {
+    esModuleInterop: true,
+    module: 'ESNext',
+    moduleResolution: 'bundler',
+    outDir: 'dist',
+    paths: { '@/*': ['./*'] },
+    target: 'ESNext',
+  },
+  exclude: ['**/*.spec.ts'],
+  include: ['src'],
+};

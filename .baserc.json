@@ -1,10 +1,12 @@
 {
   "depcheckConfig": {
     "ignoreMatches": [
-      "husky"
+      "husky",
+      "playwright"
     ]
   },
   "minNodeVersion": 18,
   "name": "@dword-design/node",
-  "supportedNodeVersions": [20]
+  "supportedNodeVersions": [20],
+  "testRunner": "playwright"
 }

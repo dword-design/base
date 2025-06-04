@@ -1,8 +1,0 @@
-export default {
-  compilerOptions: {
-    moduleResolution: 'bundler',
-    paths: { '@': ['.'], '@/*': ['./*'] },
-    target: 'ESNext',
-  },
-  exclude: ['**/*.test.ts', '**/*.spec.ts'],
-};
