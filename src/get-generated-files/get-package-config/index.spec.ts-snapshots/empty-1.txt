@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "funding": "https://github.com/sponsors/dword-design",
+  "version": "1.0.0",
+  "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "checkUnknownFiles": "base checkUnknownFiles",
+    "commit": "base commit",
+    "depcheck": "base depcheck",
+    "dev": "base dev",
+    "lint": "base lint",
+    "prepare": "base prepare",
+    "prepublishOnly": "base prepublishOnly",
+    "test": "base test"
+  }
+}

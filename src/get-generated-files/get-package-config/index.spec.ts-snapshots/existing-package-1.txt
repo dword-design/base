@@ -1,0 +1,53 @@
+{
+  "type": "module",
+  "bin": {
+    "foo": "./dist/cli.js"
+  },
+  "dependencies": {
+    "foo": "^1.0.0"
+  },
+  "description": "foo bar",
+  "devDependencies": {
+    "base-config-bar": "^1.0.0"
+  },
+  "keywords": [
+    "foo",
+    "bar"
+  ],
+  "name": "foo",
+  "optionalDependencies": {
+    "typescript": "^1.0.0"
+  },
+  "peerDependencies": {
+    "nuxt": "^1.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "bulma": "^1"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "types": "types.d.ts",
+  "funding": "https://github.com/sponsors/dword-design",
+  "version": "1.1.0",
+  "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "checkUnknownFiles": "base checkUnknownFiles",
+    "commit": "base commit",
+    "depcheck": "base depcheck",
+    "dev": "base dev",
+    "lint": "base lint",
+    "prepare": "base prepare",
+    "prepublishOnly": "base prepublishOnly",
+    "test": "base test"
+  }
+}

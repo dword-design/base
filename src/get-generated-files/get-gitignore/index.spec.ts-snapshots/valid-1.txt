@@ -1,0 +1,10 @@
+[
+  ".DS_Store",
+  "/.env.json",
+  "/.nyc_output",
+  "/.test.env.json",
+  "/coverage",
+  "/node_modules",
+  "/test-results",
+  "foo"
+]
