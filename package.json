@@ -7,6 +7,8 @@
   "license": "MIT",
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "type": "module",
+  "exports": "./dist/index.js",
+  "main": "dist/index.js",
   "bin": "./dist/cli.js",
   "files": [
     "dist"
@@ -15,8 +17,10 @@
     "checkUnknownFiles": "rimraf dist && tsc && babel dist --out-dir dist && node dist/cli.js checkUnknownFiles",
     "commit": "rimraf dist && tsc && babel dist --out-dir dist && node dist/cli.js commit",
     "depcheck": "rimraf dist && tsc && babel dist --out-dir dist && node dist/cli.js depcheck",
+    "dev": "rimraf dist && tsc && babel dist --out-dir dist && node dist/cli.js dev",
     "lint": "rimraf dist && tsc && babel dist --out-dir dist && node dist/cli.js lint",
     "prepare": "rimraf dist && tsc && babel dist --out-dir dist && node dist/cli.js prepare",
+    "prepublishOnly": "rimraf dist && tsc && babel dist --out-dir dist && node dist/cli.js prepublishOnly",
     "test": "rimraf dist && tsc && babel dist --out-dir dist && node dist/cli.js test"
   },
   "dependencies": {

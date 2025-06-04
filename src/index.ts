@@ -145,9 +145,7 @@ class Base {
   constructor(config = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
 
-    const jitiInstance = createJiti(pathLib.resolve(this.cwd), {
-      interopDefault: true,
-    });
+    const jitiInstance = createJiti(pathLib.resolve(this.cwd));
 
     if (config === null) {
       config = { name: packageName`@dword-design/base-config-node` };
@@ -223,7 +221,9 @@ class Base {
       let inheritedConfig = inheritedConfigPath
         ? jitiInstance(inheritedConfigPath)
         : undefined;
-
+      if (inheritedConfig?.default) {
+        inheritedConfig = inheritedConfig.default
+      }
       if (typeof inheritedConfig === 'function') {
         inheritedConfig = inheritedConfig.call(
           this,
