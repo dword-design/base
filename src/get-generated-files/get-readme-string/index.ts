@@ -4,7 +4,7 @@ import dedent from 'dedent';
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex';
 import { readFileSync as safeReadFileSync } from 'safe-readfile';
 
-import replacements from '.';
+import replacements from './replacements';
 
 export default function () {
   const readme =
