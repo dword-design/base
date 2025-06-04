@@ -41,7 +41,7 @@ export default async function (options) {
     this.packageConfig.type === 'module' ? packageName`c8` : packageName`nyc`,
     [
       ...(this.packageConfig.type === 'module'
-        ? ['--exclude', 'eslint.config.js']
+        ? ['--exclude', 'eslint.config.ts']
         : []),
       ...(this.config.testRunner === 'playwright'
         ? [

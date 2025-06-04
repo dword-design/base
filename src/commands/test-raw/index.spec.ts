@@ -724,7 +724,7 @@ test('valid', async ({}, testInfo) => {
     'README.md': true,
     'babel.config.json': true,
     coverage: true,
-    'eslint.config.js': true,
+    'eslint.config.ts': true,
     'package.json': true,
     src: true,
     'tsconfig.json': true,

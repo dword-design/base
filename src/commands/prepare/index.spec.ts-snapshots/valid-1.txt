@@ -21,7 +21,7 @@
   "LICENSE.md": true,
   "README.md": true,
   "babel.config.json": true,
-  "eslint.config.js": true,
+  "eslint.config.ts": true,
   "package.json": true,
   "pnpm-lock.yaml": true,
   "src": true,

@@ -1,3 +1,5 @@
+import pathLib from 'node:path';
+
 import { expect, test } from '@playwright/test';
 import dedent from 'dedent';
 import { execaCommand } from 'execa';

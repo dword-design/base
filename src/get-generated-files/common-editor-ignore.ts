@@ -4,7 +4,7 @@ export default [
   '.cz.json',
   '.devcontainer',
   '.editorconfig',
-  'eslint.config.js',
+  'eslint.config.ts',
   '.gitattributes',
   '.github',
   '.gitignore',

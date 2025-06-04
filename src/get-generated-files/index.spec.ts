@@ -6,6 +6,10 @@ test('works', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   expect(
-    Object.keys(new Base(null, { cwd }).getGeneratedFiles()),
+    JSON.stringify(
+      Object.keys(new Base(null, { cwd }).getGeneratedFiles()),
+      undefined,
+      2,
+    ),
   ).toMatchSnapshot();
 });

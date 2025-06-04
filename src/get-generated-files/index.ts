@@ -69,7 +69,7 @@ export default function () {
     'LICENSE.md': this.getLicenseString(),
     'README.md': this.getReadmeString(),
     'babel.config.json': `${JSON.stringify(babelConfig, undefined, 2)}\n`,
-    'eslint.config.js': this.getEslintConfig(),
+    'eslint.config.ts': this.getEslintConfig(),
     'package.json': `${JSON.stringify(
       sortPackageJson(packageConfig),
       undefined,

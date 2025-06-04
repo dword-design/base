@@ -20,8 +20,8 @@ export default async function () {
       PRCHECKLIST: true,
       demo: true,
       doc: true,
-      'eslint.config.js': true,
-      'global-test-hooks.js': true,
+      'eslint.config.ts': true,
+      'global-test-hooks.ts': true,
       'pnpm-lock.yaml': true,
       'pnpm-workspace.yaml': true,
       'types.d.ts': true,
@@ -30,7 +30,7 @@ export default async function () {
       this.config.testRunner === 'playwright'
         ? {
             '**/*-snapshots/**': true, // For some reason without the trailing ** didn't work
-            'playwright.config.js': true,
+            'playwright.config.ts': true,
           }
         : { '**/__image_snapshots__': true, '**/__snapshots__': true },
     ),

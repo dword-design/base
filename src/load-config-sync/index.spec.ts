@@ -1,3 +1,5 @@
+import pathLib from 'node:path';
+
 import { expect } from '@playwright/test';
 import fs from 'fs-extra';
 
