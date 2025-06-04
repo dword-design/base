@@ -5,6 +5,7 @@ export default {
     moduleResolution: 'bundler',
     outDir: 'dist',
     paths: { '@/*': ['./*'] },
+    skipLibCheck: true,
     target: 'ESNext',
   },
   exclude: ['**/*.spec.ts'],
