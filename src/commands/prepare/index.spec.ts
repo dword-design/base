@@ -83,7 +83,7 @@ test('valid', async ({}, testInfo) => {
       name: 'foo',
     }),
     'pnpm-lock.yaml': '',
-    'src/index.js': 'export default 1',
+    'src/index.ts': 'export default 1',
   });
 
   const base = new Base(null, { cwd });

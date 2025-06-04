@@ -9,9 +9,8 @@ export default async function () {
     ...this.config.depcheckConfig,
     ignorePatterns: [
       '*.spec.ts',
-      ...(this.config.testRunner === 'playwright'
-        ? ['/fixtures', '/playwright.config.ts']
-        : ['/global-test-hooks.ts']),
+      '/fixtures',
+      '/playwright.config.ts',
       'package.json',
       'eslint.config.ts',
     ],
@@ -23,9 +22,8 @@ export default async function () {
     ...this.config.depcheckConfig,
     ignorePatterns: [
       '!*.spec.ts',
-      ...(this.config.testRunner === 'playwright'
-        ? ['!/fixtures', '!/playwright.config.ts']
-        : ['!/global-test-hooks.ts']),
+      '!/fixtures',
+      '!/playwright.config.ts',
       'eslint.config.ts',
     ],
   });

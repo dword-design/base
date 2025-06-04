@@ -205,7 +205,6 @@ class Base {
       seeAlso: [],
       supportedNodeVersions: [18, 20],
       syncKeywords: true,
-      testRunner: 'mocha',
       windows: true,
     };
 
@@ -214,7 +213,7 @@ class Base {
     if (config.name) {
       const inheritedConfigPath =
         config.name === this.packageConfig.name
-          ? pathLib.resolve(this.cwd, 'src', 'index.js')
+          ? pathLib.resolve(this.cwd, 'src', 'index.ts')
           : config.name;
 
       let inheritedConfig = inheritedConfigPath

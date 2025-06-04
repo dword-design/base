@@ -8,7 +8,6 @@ import fs from 'fs-extra';
 import { globby } from 'globby';
 import outputFiles from 'output-files';
 import stripAnsi from 'strip-ansi';
-import unifyMochaOutput from 'unify-mocha-output';
 
 import { Base } from '@/src';
 
@@ -19,12 +18,12 @@ test('assertion', async ({}, testInfo) => {
 
   await outputFiles(cwd, {
     src: {
-      'index.js': 'export default 1',
-      'index.spec.js': javascript`
-        export default {
-          valid: () => expect(1).toEqual(2),
-        }
+      'index.spec.ts': javascript`
+        import { test, expect } from '@playwright/test';
+
+        test('valid', () => expect(1).toEqual(2));
       `,
+      'index.ts': 'export default 1',
     },
   });
 
@@ -114,69 +113,28 @@ test('empty', async ({}, testInfo) => {
   await base.test();
 });
 
-test('global setup', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await outputFiles(cwd, {
-    'global-test-hooks.js':
-      'export const mochaGlobalSetup = () => console.log(1)',
-    src: {
-      'index1.spec.js': 'export default { valid: () => {} }',
-      'index2.spec.js': 'export default { valid: () => {} }',
-    },
-  });
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-  let { stdout } = await base.test();
-  stdout = unifyMochaOutput(stdout);
-  expect(stdout).toMatchSnapshot();
-});
-
-test('grep', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await outputFiles(cwd, {
-    src: {
-      'index.js': 'export default 1',
-      'index.spec.js': javascript`
-        export default {
-          bar: () => console.log('run bar'),
-          foo: () => console.log('run foo'),
-        }
-      `,
-    },
-  });
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-  const { stdout } = await base.test({ grep: 'foo' });
-  expect(stdout).not.toMatch('run bar');
-  expect(stdout).toMatch('run foo');
-});
-
 test('image snapshot', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'index.spec.js': javascript`
+    'index.spec.ts': javascript`
+      import { test, expect } from '@playwright/test';
+
       import sharp from '${packageName`sharp`}'
 
-      export default {
-        works: async function () {
-          const img = await sharp({
-            create: {
-              background: { b: 0, g: 255, r: 0 },
-              channels: 3,
-              height: 48,
-              width: 48,
-            },
-          })
-            .png()
-            .toBuffer()
-          expect(img).toMatchImageSnapshot(this)
-        },
-      }
+      test('works', async () => {
+        const img = await sharp({
+          create: {
+            background: { b: 0, g: 255, r: 0 },
+            channels: 3,
+            height: 48,
+            width: 48,
+          },
+        })
+          .png()
+          .toBuffer()
+        expect(img).toMatchSnapshot()
+      });
     `,
     'package.json': JSON.stringify({ devDependencies: { sharp: '^1.0.0' } }),
   });
@@ -186,8 +144,8 @@ test('image snapshot', async ({}, testInfo) => {
   await base.test();
 
   expect(
-    await globby('*', { cwd: pathLib.join(cwd, '__image_snapshots__') }),
-  ).toEqual(['index-spec-js-index-works-1-snap.png']);
+    await globby('*', { cwd: pathLib.join(cwd, 'index.spec.ts-snapshots') }),
+  ).toEqual(['works-1.png']);
 });
 
 test('invalid name', async ({}, testInfo) => {
@@ -219,7 +177,7 @@ test('json errors', async ({}, testInfo) => {
 
 test('linting errors', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
-  await fs.outputFile(pathLib.join(cwd, 'src', 'index.js'), "var foo = 'bar'");
+  await fs.outputFile(pathLib.join(cwd, 'src', 'index.ts'), "var foo = 'bar'");
   const base = new Base(null, { cwd });
   await base.prepare();
 
@@ -230,44 +188,23 @@ test('linting errors', async ({}, testInfo) => {
 
 test('minimal', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
-  await fs.outputFile(pathLib.join(cwd, 'src', 'index.js'), 'export default 1');
+  await fs.outputFile(pathLib.join(cwd, 'src', 'index.ts'), 'export default 1');
   const base = new Base(null, { cwd });
   await base.prepare();
   await base.test();
-});
-
-test('multiple patterns', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await outputFiles(cwd, {
-    src: {
-      'index1.spec.js': 'export default { valid: () => {} }',
-      'index2.spec.js': 'export default { valid: () => {} }',
-    },
-  });
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  let { stdout } = await base.test({
-    patterns: ['src/index1.spec.js', 'src/index2.spec.js'],
-  });
-
-  stdout = unifyMochaOutput(stdout);
-  expect(stdout).toMatchSnapshot();
 });
 
 test('multiple snapshots', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'index.spec.js': javascript`
-      export default {
-        works: function () {
-          expect('foo').toMatchSnapshot(this)
-          expect('bar').toMatchSnapshot(this)
-        },
-      }
+    'index.spec.ts': javascript`
+      import { test, expect } from '@playwright/test';
+
+      test('works', () => {
+        expect('foo').toMatchSnapshot()
+        expect('bar').toMatchSnapshot()
+      });\n
     `,
   });
 
@@ -276,30 +213,26 @@ test('multiple snapshots', async ({}, testInfo) => {
   await base.test();
 
   expect(
-    await globby('*', { cwd: pathLib.join(cwd, '__snapshots__') }),
-  ).toEqual(['index.spec.js.snap']);
+    await fs.readFile(
+      pathLib.join(cwd, 'index.spec.ts-snapshots', 'works-1.txt'),
+      'utf8',
+    ),
+  ).toEqual('foo');
 
   expect(
     await fs.readFile(
-      pathLib.join(cwd, '__snapshots__', 'index.spec.js.snap'),
+      pathLib.join(cwd, 'index.spec.ts-snapshots', 'works-2.txt'),
       'utf8',
     ),
-  ).toEqual(javascript`
-    // Jest Snapshot v1, https://goo.gl/fbAQLP
-
-    exports[\`index works 1\`] = \`"foo"\`;
-
-    exports[\`index works 2\`] = \`"bar"\`;
-
-  `);
+  ).toEqual('bar');
 });
 
 test('node_modules postfix casing error', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'node_modules-foo.js': 'export default 1',
-    'src/index.spec.js': "import '@/node_modules-foo.js'",
+    'node_modules-foo.ts': 'export default 1',
+    'src/index.spec.ts': "import '@/node_modules-foo.ts'",
   });
 
   const base = new Base(null, { cwd });
@@ -320,29 +253,7 @@ test('package overrides', async ({}, testInfo) => {
   await base.test();
 });
 
-test('pattern', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await outputFiles(cwd, {
-    'README.md': '',
-    'package.json': JSON.stringify({ dependencies: { foo: '^1.0.0' } }),
-    src: {
-      'index.js': 'export default 1',
-      'index1.spec.js':
-        "export default { valid: () => console.log('run index1') }",
-      'index2.spec.js':
-        "export default { valid: () => console.log('run index2') }",
-    },
-  });
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-  const { stdout } = await base.test({ patterns: ['src/index2.spec.js'] });
-  expect(stdout).not.toMatch('run index1');
-  expect(stdout).toMatch('run index2');
-});
-
-test('playwright: error', async ({}, testInfo) => {
+test('error', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
@@ -350,14 +261,14 @@ test('playwright: error', async ({}, testInfo) => {
       devDependencies: { '@playwright/test': '*' },
       name: 'foo',
     }),
-    'src/index.spec.js': javascript`
+    'src/index.spec.ts': javascript`
       import { test, expect } from '${packageName`@playwright/test`}';
 
       test('valid', () => expect(1).toEqual(2));\n
     `,
   });
 
-  const base = new Base({ testRunner: 'playwright' }, { cwd });
+  const base = new Base(null, { cwd });
   await base.prepare();
   await expect(base.test()).rejects.toThrow();
 
@@ -368,7 +279,7 @@ test('playwright: error', async ({}, testInfo) => {
   ).toBe(true);
 });
 
-test('playwright: grep', async ({}, testInfo) => {
+test('grep', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
@@ -377,7 +288,7 @@ test('playwright: grep', async ({}, testInfo) => {
       name: 'foo',
     }),
     src: {
-      'index.spec.js': javascript`
+      'index.spec.ts': javascript`
         import { test } from '${packageName`@playwright/test`}';
 
         test('test1', () => {});\n
@@ -386,14 +297,14 @@ test('playwright: grep', async ({}, testInfo) => {
     },
   });
 
-  const base = new Base({ testRunner: 'playwright' }, { cwd });
+  const base = new Base(null, { cwd });
   await base.prepare();
   const { stdout } = await base.test({ grep: 'test1' });
-  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.js')}:2:1 › test1`);
+  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:2:1 › test1`);
   expect(stdout).toMatch('1 passed');
 });
 
-test('playwright: pattern', async ({}, testInfo) => {
+test('pattern', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
@@ -402,12 +313,12 @@ test('playwright: pattern', async ({}, testInfo) => {
       name: 'foo',
     }),
     src: {
-      'index.spec.js': javascript`
+      'index.spec.ts': javascript`
         import { test } from '${packageName`@playwright/test`}';
 
         test('valid', () => {});\n
       `,
-      'index2.spec.js': javascript`
+      'index2.spec.ts': javascript`
         import { test } from '${packageName`@playwright/test`}';
 
         test('valid', () => {});\n
@@ -415,23 +326,61 @@ test('playwright: pattern', async ({}, testInfo) => {
     },
   });
 
-  const base = new Base({ testRunner: 'playwright' }, { cwd });
+  const base = new Base(null, { cwd });
   await base.prepare();
-  const { stdout } = await base.test({ patterns: ['src/index.spec.js'] });
-  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.js')}:2:1 › valid`);
+  const { stdout } = await base.test({ patterns: ['src/index.spec.ts'] });
+  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:2:1 › valid`);
   expect(stdout).toMatch('1 passed');
 });
 
-test('playwright: update snapshots', async ({}, testInfo) => {
+test('multiple patterns', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    '.baserc.json': JSON.stringify({ testRunner: 'playwright' }),
     'package.json': JSON.stringify({
       devDependencies: { '@playwright/test': '*' },
       name: 'foo',
     }),
-    'playwright.config.js': dedent`
+    src: {
+      'index.spec.ts': javascript`
+        import { test } from '${packageName`@playwright/test`}';
+
+        test('valid', () => {});\n
+      `,
+      'index2.spec.ts': javascript`
+        import { test } from '${packageName`@playwright/test`}';
+
+        test('valid', () => {});\n
+      `,
+      'index3.spec.ts': javascript`
+        import { test } from '${packageName`@playwright/test`}';
+
+        test('valid', () => {});\n
+      `,
+    },
+  });
+
+  const base = new Base(null, { cwd });
+  await base.prepare();
+  const { stdout } = await base.test({ patterns: ['src/index.spec.ts'] });
+  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:2:1 › valid`);
+
+  expect(stdout).toMatch(
+    `${pathLib.join('src', 'index2.spec.ts')}:2:1 › valid`,
+  );
+
+  expect(stdout).toMatch('2 passed');
+});
+
+test('update snapshots', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await outputFiles(cwd, {
+    'package.json': JSON.stringify({
+      devDependencies: { '@playwright/test': '*' },
+      name: 'foo',
+    }),
+    'playwright.config.ts': dedent`
       import { defineConfig } from '@playwright/test';
 
       export default defineConfig({
@@ -443,7 +392,7 @@ test('playwright: update snapshots', async ({}, testInfo) => {
       });
     `,
     src: {
-      'index.spec.js': javascript`
+      'index.spec.ts': javascript`
         import { test, expect } from '${packageName`@playwright/test`}';
 
         test('valid', () => expect('foo').toMatchSnapshot());\n
@@ -453,17 +402,17 @@ test('playwright: update snapshots', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await base.prepare();
-  await execaCommand('base test --update-snapshots');
+  await base.test({ updateSnapshots: true });
 
   expect(
     await fs.readFile(
-      pathLib.join(cwd, 'src', 'index.spec.js-snapshots', 'valid-1.txt'),
+      pathLib.join(cwd, 'src', 'index.spec.ts-snapshots', 'valid-1.txt'),
       'utf8',
     ),
   ).toEqual('foo');
 });
 
-test('playwright: valid', async ({}, testInfo) => {
+test('valid', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
@@ -472,24 +421,24 @@ test('playwright: valid', async ({}, testInfo) => {
       name: 'foo',
     }),
     src: {
-      'index.js': 'export default 1\n',
-      'index.spec.js': javascript`
+      'index.spec.ts': javascript`
         import { test, expect } from '${packageName`@playwright/test`}';
 
-        import foo from './index.js'
+        import foo from './index.ts'
 
         test('valid', () => expect(foo).toEqual(1));\n
       `,
+      'index.ts': 'export default 1\n',
     },
   });
 
-  const base = new Base({ testRunner: 'playwright' }, { cwd });
+  const base = new Base(null, { cwd });
   await base.prepare();
   let { stdout } = await base.test();
   stdout = stripAnsi(stdout);
 
   expect(stdout).toMatch(
-    `1 ${pathLib.join('src', 'index.spec.js')}:3:1 › valid`,
+    `1 ${pathLib.join('src', 'index.spec.ts')}:3:1 › valid`,
   );
 
   expect(
@@ -503,13 +452,11 @@ test('snapshot', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await fs.outputFile(
-    pathLib.join(cwd, 'index.spec.js'),
+    pathLib.join(cwd, 'index.spec.ts'),
     javascript`
-      export default {
-        works: function () {
-          expect('foo').toMatchSnapshot(this)
-        },
-      }
+      import { test, expect } from '@playwright/test';
+
+      test('works', () => expect('foo').toMatchSnapshot());\n
     `,
   );
 
@@ -517,25 +464,24 @@ test('snapshot', async ({}, testInfo) => {
   await base.prepare();
   await base.test();
 
-  expect(
-    await globby('*', { cwd: pathLib.join(cwd, '__snapshots__') }),
-  ).toEqual(['index.spec.js.snap']);
+  expect(await globby('*', { cwd: pathLib.join(cwd) })).toEqual([
+    'index.spec.ts-snapshots',
+  ]);
 });
 
 test('in project root', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'index.spec.js': javascript`
-      export default {
-        valid: () => console.log('run test')
-      }
+    'index.spec.ts': javascript`
+      import { test } from '@playwright/test';
 
+      test('valid', () => console.log('run test'));\n
     `,
     'node_modules/base-config-foo/index.js': javascript`
-      module.exports = {
+      export default {
         allowedMatches: [
-          'index.spec.js',
+          'index.spec.ts',
         ],
       }
     `,
@@ -555,7 +501,7 @@ test('unused dependencies', async ({}, testInfo) => {
     'package.json': JSON.stringify({
       dependencies: { 'change-case': '^1.0.0', foo: '^1.0.0' },
     }),
-    'src/index.js': 'export default 1',
+    'src/index.ts': 'export default 1',
   });
 
   const base = new Base(null, { cwd });
@@ -572,11 +518,11 @@ test('update snapshot', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    '__snapshots__/index.spec.js.snap': javascript`
+    '__snapshots__/index.spec.ts.snap': javascript`
       exports[\`index works 1\`] = \`"foo"\`;
   
     `,
-    'index.spec.js': dedent`
+    'index.spec.ts': dedent`
       export default {
         works: function () {
           expect('bar').toMatchSnapshot(this)
@@ -595,14 +541,19 @@ test('usesdocker macOS', async ({}, testInfo) => {
 
   await outputFiles(cwd, {
     'cli.js': dedent`
-      import { Base } from '../../src/index.js';
+      import { Base } from '../../dist/index.js';
 
       Object.defineProperty(process, 'platform', { value: 'darwin' });
 
       const base = new Base();
+      await base.prepare();
       await base.test();
     `,
-    'src/index.usesdocker.spec.js': "throw new Error('error')",
+    'src/index.spec.ts': dedent`
+      import { test } from '@playwright/test';
+
+      test('valid @usesdocker', () => { throw new Error('foobarbaz') });
+    `,
   });
 
   await execaCommand('node cli.js', { cwd, env: { CI: true } });
@@ -613,50 +564,26 @@ test('usesdocker outside ci', async ({}, testInfo) => {
 
   await outputFiles(cwd, {
     'cli.js': dedent`
-      import { expect } from '@playwright/test';
-
-      import { Base } from '../../src/index.js';
+      import { Base } from '../../dist/index.js';
 
       delete process.env.CI;
       delete process.env.GITHUB_ACTIONS;
       Object.defineProperty(process, 'platform', { value: 'darwin' });
 
       const base = new Base();
-      await expect(base.test({ stderr: 'pipe' })).rejects.toThrow(
-        'foobarbaz',
-      );
-    `,
-    'src/index.usesdocker.spec.js': "throw new Error('foobarbaz')",
-  });
-
-  await execaCommand('node cli.js', { cwd });
-});
-
-test('usesdocker playwright', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await outputFiles(cwd, {
-    'cli.js': dedent`
-      import { expect } from '@playwright/test';
-
-      import { Base } from '../../src/index.js';
-
-      Object.defineProperty(process, 'platform', { value: 'win32' });
-
-      const base = new Base({ testRunner: 'playwright' });
+      await base.prepare();
       await base.test();
     `,
-    'package.json': JSON.stringify({
-      devDependencies: { '@playwright/test': '*' },
-    }),
-    'src/index.spec.js': dedent`
-      import { test, expect } from '@playwright/test';
+    'src/index.spec.ts': dedent`
+      import { test } from '@playwright/test';
 
-      test('valid @usesdocker', () => expect(1).toEqual(2));
+      test('valid @usesdocker', () => { throw new Error('foobarbaz') });
     `,
   });
 
-  await execaCommand('node cli.js', { cwd, env: { CI: true } });
+  await expect(execaCommand('node cli.js', { cwd })).rejects.toThrow(
+    'foobarbaz',
+  );
 });
 
 test('usesdocker windows', async ({}, testInfo) => {
@@ -664,71 +591,25 @@ test('usesdocker windows', async ({}, testInfo) => {
 
   await outputFiles(cwd, {
     'cli.js': dedent`
-      import { expect } from '@playwright/test';
-
-      import { Base } from '../../src/index.js';
+      import { Base } from '../../dist/index.js';
 
       Object.defineProperty(process, 'platform', { value: 'win32' });
 
       const base = new Base();
+      await base.prepare();
       await base.test();
     `,
-    'src/index.usesdocker.spec.js': "throw new Error('error')",
+    'package.json': JSON.stringify({
+      devDependencies: { '@playwright/test': '*' },
+    }),
+    'src/index.spec.ts': dedent`
+      import { test, expect } from '@playwright/test';
+
+      test('valid @usesdocker', () => expect(1).toEqual(2));
+    `,
   });
 
   await execaCommand('node cli.js', { cwd, env: { CI: true } });
-});
-
-test('valid', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await outputFiles(cwd, {
-    'package.json': JSON.stringify({ name: 'foo' }),
-    src: {
-      'index.js': 'export default 1\n',
-      'index.spec.js': javascript`
-        import foo from './index.js';
-
-        export default {
-          valid: () => {
-            expect(process.env.NODE_ENV).toEqual('test')
-            expect(foo).toEqual(1)
-            console.log('run test')
-          },
-        };\n
-      `,
-    },
-  });
-
-  const base = new Base(null, { cwd });
-  const { stdout } = await base.test();
-  expect(stdout).toMatch('run test');
-  const paths = await globby('*', { cwd, dot: true, onlyFiles: false });
-
-  expect(Object.fromEntries(paths.map(path => [path, true]))).toEqual({
-    '.baserc.json': true,
-    '.commitlintrc.json': true,
-    '.cz.json': true,
-    '.devcontainer': true,
-    '.editorconfig': true,
-    '.gitattributes': true,
-    '.github': true,
-    '.gitignore': true,
-    '.gitpod.Dockerfile': true,
-    '.gitpod.yml': true,
-    '.npmrc': true,
-    '.releaserc.json': true,
-    '.renovaterc.json': true,
-    '.vscode': true,
-    'LICENSE.md': true,
-    'README.md': true,
-    'babel.config.json': true,
-    coverage: true,
-    'eslint.config.ts': true,
-    'package.json': true,
-    src: true,
-    'tsconfig.json': true,
-  });
 });
 
 test('wrong dependencies type', async ({}, testInfo) => {

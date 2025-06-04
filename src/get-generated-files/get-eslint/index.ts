@@ -10,7 +10,7 @@ export default function () {
           ? dedent`
             import { defineConfig, globalIgnores } from '${packageName`eslint`}/config';
 
-            import config from './src/index.js';
+            import config from './src';
           `
           : dedent`
             import config from '${packageName`@dword-design/eslint-config`}';

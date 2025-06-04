@@ -72,9 +72,9 @@ test('env @usesdocker', async ({ packageName }, testInfo) => {
       foo: { type: 'string' },
     }),
     'cli.js': dedent`
-      import { Base } from '../../src/index.js';
+      import { Base } from '../../dist/index.js';
 
-      new Base().testDocker();\n
+      new Base().testDocker();
     `,
     'package.json': JSON.stringify({
       devDependencies: { '@playwright/test': '*' },

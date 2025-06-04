@@ -25,6 +25,7 @@ test('custom linter', async ({}, testInfo) => {
 });
 
 test('fixable', async ({}, testInfo) => {
+  // TODO: Replace index.js -> index.ts
   const cwd = testInfo.outputPath();
 
   await fs.outputFile(

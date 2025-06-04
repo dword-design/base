@@ -121,7 +121,7 @@ test('prod dependency only in test', async ({}, testInfo) => {
   await outputFiles(cwd, {
     'node_modules/bar/index.js': 'export default 1',
     'package.json': JSON.stringify({ dependencies: { bar: '^1.0.0' } }),
-    'src/index.spec.js': "import 'bar'",
+    'src/index.spec.ts': "import 'bar'",
   });
 
   const base = new Base(null, { cwd });
@@ -140,7 +140,7 @@ test('unused dependencies', async ({}, testInfo) => {
     'package.json': JSON.stringify({
       dependencies: { 'change-case': '^1.0.0', foo: '^1.0.0' },
     }),
-    'src/index.js': 'export default 1',
+    'src/index.ts': 'export default 1',
   });
 
   const base = new Base(null, { cwd });

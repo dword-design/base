@@ -21,19 +21,15 @@ export default async function () {
       demo: true,
       doc: true,
       'eslint.config.ts': true,
-      'global-test-hooks.ts': true,
+      'global-test-hooks.js': true,
       'pnpm-lock.yaml': true,
       'pnpm-workspace.yaml': true,
       'types.d.ts': true,
     }),
-    ...Object.keys(
-      this.config.testRunner === 'playwright'
-        ? {
-            '**/*-snapshots/**': true, // For some reason without the trailing ** didn't work
-            'playwright.config.ts': true,
-          }
-        : { '**/__image_snapshots__': true, '**/__snapshots__': true },
-    ),
+    ...Object.keys({
+      '**/*-snapshots/**': true, // For some reason without the trailing ** didn't work
+      'playwright.config.ts': true,
+    }),
     ...this.config.allowedMatches,
   ];
 
