@@ -17,6 +17,9 @@ test('assertion', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
+    'package.json': JSON.stringify({
+      devDependencies: { '@playwright/test': '*' },
+    }),
     src: {
       'index.spec.ts': javascript`
         import { test, expect } from '@playwright/test';
@@ -25,7 +28,6 @@ test('assertion', async ({}, testInfo) => {
       `,
       'index.ts': 'export default 1;',
     },
-    'package.json': JSON.stringify({ devDependencies: { '@playwright/test': '*' } }),
   });
 
   const base = new Base(null, { cwd });
@@ -137,7 +139,9 @@ test('image snapshot', async ({}, testInfo) => {
         expect(img).toMatchSnapshot()
       });
     `,
-    'package.json': JSON.stringify({ devDependencies: { sharp: '*', '@playwright/test': '*' } }),
+    'package.json': JSON.stringify({
+      devDependencies: { '@playwright/test': '*', sharp: '*' },
+    }),
     'playwright.config.ts': endent`
       import { defineConfig } from '@playwright/test';
 
@@ -215,6 +219,9 @@ test('multiple snapshots', async ({}, testInfo) => {
         expect('bar').toMatchSnapshot()
       });\n
     `,
+    'package.json': JSON.stringify({
+      devDependencies: { '@playwright/test': '*' },
+    }),
     'playwright.config.ts': endent`
       import { defineConfig } from '@playwright/test';
 
@@ -223,7 +230,6 @@ test('multiple snapshots', async ({}, testInfo) => {
           '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
       });
     `,
-    'package.json': JSON.stringify({ devDependencies: { '@playwright/test': '*' } }),
   });
 
   const base = new Base(null, { cwd });
@@ -526,6 +532,9 @@ test('snapshot', async ({}, testInfo) => {
 
       test('works', () => expect('foo').toMatchSnapshot());\n
     `,
+    'package.json': JSON.stringify({
+      devDependencies: { '@playwright/test': '*' },
+    }),
     'playwright.config.ts': endent`
       import { defineConfig } from '@playwright/test';
 
@@ -534,7 +543,6 @@ test('snapshot', async ({}, testInfo) => {
           '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
       });
     `,
-    'package.json': JSON.stringify({ devDependencies: { '@playwright/test': '*' } }),
   });
 
   const base = new Base(null, { cwd });
@@ -565,7 +573,10 @@ test('in project root', async ({}, testInfo) => {
         ],
       }
     `,
-    'package.json': JSON.stringify({ baseConfig: 'foo', devDependencies: { '@playwright/test': '*' } }),
+    'package.json': JSON.stringify({
+      baseConfig: 'foo',
+      devDependencies: { '@playwright/test': '*' },
+    }),
   });
 
   const base = new Base(null, { cwd });
@@ -598,8 +609,8 @@ test('usesdocker macOS', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'cli.js': endent`
-      import { Base } from '../../dist/index.js';
+    'node_modules/.cache/cli.js': endent`
+      import { Base } from '../../../../dist/index.js';
 
       Object.defineProperty(process, 'platform', { value: 'darwin' });
 
@@ -607,23 +618,25 @@ test('usesdocker macOS', async ({}, testInfo) => {
       await base.prepare();
       await base.test();
     `,
+    'package.json': JSON.stringify({
+      devDependencies: { '@playwright/test': '*' },
+    }),
     'src/index.spec.ts': endent`
       import { test } from '@playwright/test';
 
       test('valid @usesdocker', () => { throw new Error('foobarbaz') });
     `,
-    'package.json': JSON.stringify({ devDependencies: { '@playwright/test': '*' } }),
   });
 
-  await execaCommand('node cli.js', { cwd, env: { CI: true } });
+  await execaCommand('node node_modules/.cache/cli.js', { cwd, env: { CI: true } });
 });
 
 test('usesdocker outside ci', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'cli.js': endent`
-      import { Base } from '../../dist/index.js';
+    'node_modules/.cache/cli.js': endent`
+      import { Base } from '../../../../dist/index.js';
 
       delete process.env.CI;
       delete process.env.GITHUB_ACTIONS;
@@ -633,15 +646,17 @@ test('usesdocker outside ci', async ({}, testInfo) => {
       await base.prepare();
       await base.test();
     `,
+    'package.json': JSON.stringify({
+      devDependencies: { '@playwright/test': '*' },
+    }),
     'src/index.spec.ts': endent`
       import { test } from '@playwright/test';
 
       test('valid @usesdocker', () => { throw new Error('foobarbaz') });
     `,
-    'package.json': JSON.stringify({ devDependencies: { '@playwright/test': '*' } }),
   });
 
-  await expect(execaCommand('node cli.js', { cwd })).rejects.toThrow(
+  await expect(execaCommand('node node_modules/.cache/cli.js', { cwd })).rejects.toThrow(
     'foobarbaz',
   );
 });
@@ -650,8 +665,8 @@ test('usesdocker windows', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'cli.js': endent`
-      import { Base } from '../../dist/index.js';
+    'node_modules/.cache/cli.js': endent`
+      import { Base } from '../../../../dist/index.js';
 
       Object.defineProperty(process, 'platform', { value: 'win32' });
 
@@ -669,7 +684,10 @@ test('usesdocker windows', async ({}, testInfo) => {
     `,
   });
 
-  await execaCommand('node cli.js', { cwd, env: { CI: true } });
+  await execaCommand('node node_modules/.cache/cli.js', {
+    cwd,
+    env: { CI: true },
+  });
 });
 
 test('wrong dependencies type', async ({}, testInfo) => {
