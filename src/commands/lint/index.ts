@@ -1,4 +1,4 @@
-import { execa } from 'execa';
+import { execaCommand } from 'execa';
 import parsePackagejsonName from 'parse-packagejson-name';
 
 export default async function (options) {
@@ -20,8 +20,7 @@ export default async function (options) {
   }
 
   await this.config.lint.call(this, options);
-
-  await execa('eslint', ['--fix', '.'], {
+  return execaCommand('eslint --fix --no-error-on-unmatched-pattern .', {
     ...(options.log && { stdout: 'inherit' }),
     cwd: this.cwd,
     stderr: options.stderr,

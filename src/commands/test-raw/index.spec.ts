@@ -23,8 +23,9 @@ test('assertion', async ({}, testInfo) => {
 
         test('valid', () => expect(1).toEqual(2));
       `,
-      'index.ts': 'export default 1',
+      'index.ts': 'export default 1;',
     },
+    'package.json': JSON.stringify({ devDependencies: { '@playwright/test': '*' } }),
   });
 
   const base = new Base(null, { cwd });
@@ -136,7 +137,7 @@ test('image snapshot', async ({}, testInfo) => {
         expect(img).toMatchSnapshot()
       });
     `,
-    'package.json': JSON.stringify({ devDependencies: { sharp: '^1.0.0' } }),
+    'package.json': JSON.stringify({ devDependencies: { sharp: '*', '@playwright/test': '*' } }),
     'playwright.config.ts': endent`
       import { defineConfig } from '@playwright/test';
 
@@ -222,6 +223,7 @@ test('multiple snapshots', async ({}, testInfo) => {
           '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
       });
     `,
+    'package.json': JSON.stringify({ devDependencies: { '@playwright/test': '*' } }),
   });
 
   const base = new Base(null, { cwd });
@@ -491,7 +493,7 @@ test('valid', async ({}, testInfo) => {
       'index.spec.ts': javascript`
         import { test, expect } from '${packageName`@playwright/test`}';
 
-        import foo from './index.ts'
+        import foo from '.';
 
         test('valid', () => expect(foo).toEqual(1));\n
       `,
@@ -532,6 +534,7 @@ test('snapshot', async ({}, testInfo) => {
           '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
       });
     `,
+    'package.json': JSON.stringify({ devDependencies: { '@playwright/test': '*' } }),
   });
 
   const base = new Base(null, { cwd });
@@ -562,7 +565,7 @@ test('in project root', async ({}, testInfo) => {
         ],
       }
     `,
-    'package.json': JSON.stringify({ baseConfig: 'foo' }),
+    'package.json': JSON.stringify({ baseConfig: 'foo', devDependencies: { '@playwright/test': '*' } }),
   });
 
   const base = new Base(null, { cwd });
@@ -609,6 +612,7 @@ test('usesdocker macOS', async ({}, testInfo) => {
 
       test('valid @usesdocker', () => { throw new Error('foobarbaz') });
     `,
+    'package.json': JSON.stringify({ devDependencies: { '@playwright/test': '*' } }),
   });
 
   await execaCommand('node cli.js', { cwd, env: { CI: true } });
@@ -634,6 +638,7 @@ test('usesdocker outside ci', async ({}, testInfo) => {
 
       test('valid @usesdocker', () => { throw new Error('foobarbaz') });
     `,
+    'package.json': JSON.stringify({ devDependencies: { '@playwright/test': '*' } }),
   });
 
   await expect(execaCommand('node cli.js', { cwd })).rejects.toThrow(

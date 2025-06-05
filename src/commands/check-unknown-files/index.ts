@@ -22,7 +22,6 @@ export default async function () {
       doc: true,
       'eslint.config.ts': true,
       fixtures: true,
-      'global-test-hooks.js': true,
       'pnpm-lock.yaml': true,
       'pnpm-workspace.yaml': true,
       'types.d.ts': true,

@@ -25,11 +25,10 @@ test('custom linter', async ({}, testInfo) => {
 });
 
 test('fixable', async ({}, testInfo) => {
-  // TODO: Replace index.js -> index.ts
   const cwd = testInfo.outputPath();
 
   await fs.outputFile(
-    pathLib.join(cwd, 'src', 'index.js'),
+    pathLib.join(cwd, 'src', 'index.ts'),
     "console.log('foo')",
   );
 
@@ -38,7 +37,7 @@ test('fixable', async ({}, testInfo) => {
   await base.lint();
 
   expect(
-    await fs.readFile(pathLib.join(cwd, 'src', 'index.js'), 'utf8'),
+    await fs.readFile(pathLib.join(cwd, 'src', 'index.ts'), 'utf8'),
   ).toEqual("console.log('foo');\n");
 });
 
@@ -47,7 +46,7 @@ test('lint eslint config', async ({}, testInfo) => {
 
   await outputFiles(cwd, {
     'package.json': JSON.stringify({ name: '@dword-design/eslint-config' }),
-    'src/index.js': endent`
+    'src/index.ts': endent`
       import { defineConfig } from 'eslint/config';
 
       export default defineConfig([]);
@@ -63,7 +62,7 @@ test('linting errors', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await fs.outputFile(
-    pathLib.join(cwd, 'src', 'index.js'),
+    pathLib.join(cwd, 'src', 'index.ts'),
     "const foo = 'bar'",
   );
 

@@ -94,27 +94,6 @@ test('invalid file', async ({}, testInfo) => {
   `);
 });
 
-test('prod dependency only in global-test-hooks.js', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await outputFiles(cwd, {
-    'global-test-hooks.js': "import 'bar'",
-    'node_modules/bar/index.js': 'export default 1',
-    'package.json': JSON.stringify({
-      dependencies: { bar: '^1.0.0' },
-      type: 'module',
-    }),
-  });
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  await expect(base.depcheck()).rejects.toThrow(endent`
-    Unused dependencies
-    * bar
-  `);
-});
-
 test('prod dependency only in test', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
