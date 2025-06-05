@@ -34,7 +34,7 @@ test('fixable', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await base.prepare();
-  await base.lint();
+  await base.lint({ log: true });
 
   expect(
     await fs.readFile(pathLib.join(cwd, 'src', 'index.ts'), 'utf8'),

@@ -20,7 +20,6 @@
   ".vscode/settings.json",
   "LICENSE.md",
   "README.md",
-  "babel.config.json",
   "eslint.config.ts",
   "package.json",
   "tsconfig.json"

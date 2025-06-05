@@ -1,5 +1,6 @@
 import pathLib from 'node:path';
 
+import packageName from 'depcheck-package-name';
 import fs from 'fs-extra';
 import { mapValues, pick, stubTrue } from 'lodash-es';
 import sortKeys from 'sort-keys';
@@ -61,7 +62,7 @@ export default function () {
     scripts: sortKeys(
       mapValues(commandNames, (handler, name) =>
         this.packageConfig.name === '@dword-design/base'
-          ? `rimraf dist && tsc && babel dist --out-dir dist && node dist/cli.js ${name}`
+          ? `${packageName`tsx`} src/cli.ts ${name}`
           : `base ${name}`,
       ),
     ),

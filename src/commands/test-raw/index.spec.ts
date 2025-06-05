@@ -609,14 +609,11 @@ test('usesdocker macOS', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'node_modules/.cache/cli.js': endent`
-      import { Base } from '../../../../dist/index.js';
+    'cli.ts': endent`
+      import { Base } from '../../src';
 
       Object.defineProperty(process, 'platform', { value: 'darwin' });
-
-      const base = new Base();
-      await base.prepare();
-      await base.test();
+      await new Base().test();
     `,
     'package.json': JSON.stringify({
       devDependencies: { '@playwright/test': '*' },
@@ -628,23 +625,26 @@ test('usesdocker macOS', async ({}, testInfo) => {
     `,
   });
 
-  await execaCommand('node node_modules/.cache/cli.js', { cwd, env: { CI: true } });
+  const base = new Base(null, { cwd });
+  await base.prepare();
+
+  await execaCommand('tsx --tsconfig ../../tsconfig.json cli.ts', {
+    cwd,
+    env: { CI: true },
+  });
 });
 
 test('usesdocker outside ci', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'node_modules/.cache/cli.js': endent`
-      import { Base } from '../../../../dist/index.js';
+    'cli.ts': endent`
+      import { Base } from '../../src';
 
       delete process.env.CI;
       delete process.env.GITHUB_ACTIONS;
       Object.defineProperty(process, 'platform', { value: 'darwin' });
-
-      const base = new Base();
-      await base.prepare();
-      await base.test();
+      await new Base().test();
     `,
     'package.json': JSON.stringify({
       devDependencies: { '@playwright/test': '*' },
@@ -656,23 +656,23 @@ test('usesdocker outside ci', async ({}, testInfo) => {
     `,
   });
 
-  await expect(execaCommand('node node_modules/.cache/cli.js', { cwd })).rejects.toThrow(
-    'foobarbaz',
-  );
+  const base = new Base(null, { cwd });
+  await base.prepare();
+
+  await expect(
+    execaCommand('tsx --tsconfig ../../tsconfig.json cli.ts', { cwd }),
+  ).rejects.toThrow('foobarbaz');
 });
 
 test('usesdocker windows', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'node_modules/.cache/cli.js': endent`
-      import { Base } from '../../../../dist/index.js';
+    'cli.ts': endent`
+      import { Base } from '../../src';
 
       Object.defineProperty(process, 'platform', { value: 'win32' });
-
-      const base = new Base();
-      await base.prepare();
-      await base.test();
+      await new Base().test();
     `,
     'package.json': JSON.stringify({
       devDependencies: { '@playwright/test': '*' },
@@ -684,7 +684,10 @@ test('usesdocker windows', async ({}, testInfo) => {
     `,
   });
 
-  await execaCommand('node node_modules/.cache/cli.js', {
+  const base = new Base(null, { cwd });
+  await base.prepare();
+
+  await execaCommand('tsx --tsconfig ../../tsconfig.json cli.ts', {
     cwd,
     env: { CI: true },
   });

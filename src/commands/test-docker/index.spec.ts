@@ -71,8 +71,8 @@ test('env @usesdocker', async ({ packageName }, testInfo) => {
       bar: { type: 'string' },
       foo: { type: 'string' },
     }),
-    'cli.js': endent`
-      import { Base } from '../../dist/index.js';
+    'cli.ts': endent`
+      import { Base } from '../../src';
 
       new Base().testDocker();
     `,
@@ -91,7 +91,7 @@ test('env @usesdocker', async ({ packageName }, testInfo) => {
   });
 
   await execaCommand('pnpm install', { cwd });
-  await execaCommand('node cli.js', { cwd, env: { TEST_FOO: 'foo' } });
+  await execaCommand('tsx cli.ts', { cwd, env: { TEST_FOO: 'foo' } });
 });
 
 test('git @usesdocker', async ({ packageName }, testInfo) => {
