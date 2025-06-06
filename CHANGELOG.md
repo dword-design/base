@@ -1,3 +1,10 @@
+## [13.0.4](https://github.com/dword-design/base/compare/v13.0.3...v13.0.4) (2025-06-06)
+
+
+### Bug Fixes
+
+* remove typings ([2d6625a](https://github.com/dword-design/base/commit/2d6625a24cd5211789c750fbaf0c01f3c29ee0a4))
+
 ## [13.0.3](https://github.com/dword-design/base/compare/v13.0.2...v13.0.3) (2025-06-06)
 
 
