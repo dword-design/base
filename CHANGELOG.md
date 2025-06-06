@@ -1,3 +1,11 @@
+## [13.0.3](https://github.com/dword-design/base/compare/v13.0.2...v13.0.3) (2025-06-06)
+
+
+### Bug Fixes
+
+* emit declarations ([f7dd4a5](https://github.com/dword-design/base/commit/f7dd4a56b0bbc229609320b124d321128d4c58ee))
+* fix ([d036bde](https://github.com/dword-design/base/commit/d036bde86dcd5413bf144e1c7414ac8d67b318c3))
+
 ## [13.0.2](https://github.com/dword-design/base/compare/v13.0.1...v13.0.2) (2025-06-06)
 
 
