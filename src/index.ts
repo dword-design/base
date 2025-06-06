@@ -7,6 +7,7 @@ import depcheckDetectorExeca from 'depcheck-detector-execa';
 import depcheckDetectorPackageName from 'depcheck-detector-package-name';
 import packageName from 'depcheck-package-name';
 import endent from 'endent';
+import { type ResultPromise } from 'execa';
 import fs from 'fs-extra';
 import { createJiti } from 'jiti';
 import { identity, mapValues } from 'lodash-es';
@@ -48,41 +49,41 @@ const mergeConfigs = (...configs) => {
 };
 
 class Base {
-  config: any;
-  packageConfig: any;
+  config;
+  packageConfig;
   cwd: string;
-  generatedFiles: any;
-  githubCodespacesConfig: any = githubCodespacesConfig;
+  generatedFiles;
+  githubCodespacesConfig = githubCodespacesConfig;
 
-  commit(...args): any {
+  commit(...args): ResultPromise {
     return commit.call(this, ...args);
   }
 
-  lint(...args): any {
+  lint(...args): ResultPromise {
     return lint.call(this, ...args);
   }
 
-  prepare(...args): any {
+  prepare(...args): void {
     return prepare.call(this, ...args);
   }
 
-  test(...args): any {
+  test(...args): ResultPromise {
     return test.call(this, ...args);
   }
 
-  testRaw(...args): any {
+  testRaw(...args): ResultPromise {
     return testRaw.call(this, ...args);
   }
 
-  testDocker(...args): any {
+  testDocker(...args): ResultPromise {
     return testDocker.call(this, ...args);
   }
 
-  getPackageConfig(...args): any {
+  getPackageConfig(...args) {
     return getPackageConfig.call(this, ...args);
   }
 
-  getGeneratedFiles(...args): any {
+  getGeneratedFiles(...args) {
     return getGeneratedFiles.call(this, ...args);
   }
 

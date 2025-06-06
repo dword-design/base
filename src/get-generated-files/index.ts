@@ -2,7 +2,6 @@ import sortKeys from 'sort-keys';
 import sortPackageJson from 'sort-package-json';
 import { stringify as yamlStringify } from 'yaml';
 
-import babelConfig from './babel';
 import commitizenConfig from './commitizen';
 import commitlintConfig from './commitlint';
 import editorconfigConfig from './editorconfig';
@@ -68,7 +67,6 @@ export default function () {
     )}\n`,
     'LICENSE.md': this.getLicenseString(),
     'README.md': this.getReadmeString(),
-    'babel.config.json': `${JSON.stringify(babelConfig, undefined, 2)}\n`,
     'eslint.config.ts': this.getEslintConfig(),
     'package.json': `${JSON.stringify(
       sortPackageJson(packageConfig),

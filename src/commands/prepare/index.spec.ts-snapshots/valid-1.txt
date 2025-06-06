@@ -20,7 +20,6 @@
   "CHANGELOG.md": true,
   "LICENSE.md": true,
   "README.md": true,
-  "babel.config.json": true,
   "eslint.config.ts": true,
   "package.json": true,
   "pnpm-lock.yaml": true,

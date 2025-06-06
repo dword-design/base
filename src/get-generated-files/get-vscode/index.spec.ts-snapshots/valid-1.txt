@@ -19,7 +19,6 @@
     ".vscode": true,
     "CHANGELOG.md": true,
     "LICENSE.md": true,
-    "babel.config.json": true,
     "bar": true,
     "coverage": true,
     "eslint.config.ts": true,

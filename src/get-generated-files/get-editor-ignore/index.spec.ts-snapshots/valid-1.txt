@@ -16,7 +16,6 @@
   ".vscode",
   "CHANGELOG.md",
   "LICENSE.md",
-  "babel.config.json",
   "coverage",
   "eslint.config.ts",
   "foo",

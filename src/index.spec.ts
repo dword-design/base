@@ -6,7 +6,7 @@ import fs from 'fs-extra';
 import { identity, omit, sortBy } from 'lodash-es';
 import outputFiles from 'output-files';
 
-import { Base } from './index.js';
+import { Base } from '.';
 
 test('array merge', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -19,7 +19,7 @@ test('array merge', async ({}, testInfo) => {
       'base-config-foo',
       'index.js',
     ),
-    "export default { allowedMatches: ['foo.txt'] }",
+    "export default { allowedMatches: ['foo.txt'] };",
   );
 
   const base = new Base(
