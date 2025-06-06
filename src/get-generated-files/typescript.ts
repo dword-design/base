@@ -1,5 +1,6 @@
 export default {
   compilerOptions: {
+    declaration: true,
     esModuleInterop: true,
     module: 'ESNext',
     moduleResolution: 'bundler',
