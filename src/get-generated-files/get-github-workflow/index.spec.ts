@@ -10,7 +10,7 @@ import { Base } from '@/src';
 
 test('GitHub CLI exists', async () => {
   if (isCI) {
-    await execaCommand('gh repo list');
+    await execaCommand('gh version');
   }
 });
 
