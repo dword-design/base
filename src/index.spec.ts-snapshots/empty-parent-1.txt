@@ -18,6 +18,7 @@
     20
   ],
   "syncKeywords": true,
+  "typescriptConfig": {},
   "windows": true,
   "name": "base-config-foo"
 }
