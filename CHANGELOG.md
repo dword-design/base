@@ -1,3 +1,11 @@
+## [13.0.5](https://github.com/dword-design/base/compare/v13.0.4...v13.0.5) (2025-06-06)
+
+
+### Bug Fixes
+
+* extend typescript config ([4540471](https://github.com/dword-design/base/commit/4540471e3367e3b51a7bb3269ddcdd522345f428))
+* make type module mandatory ([8775b19](https://github.com/dword-design/base/commit/8775b19f69e93cbed3af161ef6b0ebd2346e7b93))
+
 ## [13.0.4](https://github.com/dword-design/base/compare/v13.0.3...v13.0.4) (2025-06-06)
 
 
