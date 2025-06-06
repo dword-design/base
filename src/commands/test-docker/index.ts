@@ -13,10 +13,7 @@ export default async function (options) {
     ...options,
   };
 
-  const volumeName = this.packageConfig.name
-    .replace('@', '')
-    .replace('/', '-');
-
+  const volumeName = this.packageConfig.name.replace('@', '').replace('/', '-');
   const envSchemaPath = findUpSync('.env.schema.json', { cwd: this.cwd });
 
   const envVariableNames = Object.keys(
