@@ -1,9 +1,9 @@
 {
-  "type": "module",
   "publishConfig": {
     "access": "public"
   },
   "funding": "https://github.com/sponsors/dword-design",
+  "type": "module",
   "version": "1.0.0",
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "engines": {

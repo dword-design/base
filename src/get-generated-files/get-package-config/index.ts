@@ -15,7 +15,6 @@ export default function () {
   };
 
   return {
-    type: 'module',
     ...pick(
       this.packageConfig,
       Object.keys({
@@ -34,12 +33,11 @@ export default function () {
         private: true,
         publishConfig: true,
         resolutions: true,
-        type: true,
-        types: true,
       }),
     ),
     funding: 'https://github.com/sponsors/dword-design',
     publishConfig: { access: 'public' },
+    type: 'module',
     version: this.packageConfig.version || '1.0.0',
     ...(this.config.git && {
       repository: `dword-design/${this.config.git.project}`,
