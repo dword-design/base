@@ -1,3 +1,10 @@
+## [13.0.2](https://github.com/dword-design/base/compare/v13.0.1...v13.0.2) (2025-06-06)
+
+
+### Bug Fixes
+
+* upgrades ([#791](https://github.com/dword-design/base/issues/791)) ([f618115](https://github.com/dword-design/base/commit/f6181151800101c989f70b2d2eb7d74ad0aaeefd))
+
 ## [13.0.1](https://github.com/dword-design/base/compare/v13.0.0...v13.0.1) (2025-06-04)
 
 
