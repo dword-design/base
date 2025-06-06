@@ -24,7 +24,6 @@ export default async function () {
       fixtures: true,
       'pnpm-lock.yaml': true,
       'pnpm-workspace.yaml': true,
-      'types.d.ts': true,
     }),
     ...Object.keys({
       '**/*-snapshots/**': true, // For some reason without the trailing ** didn't work

@@ -29,7 +29,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "types": "types.d.ts",
   "funding": "https://github.com/sponsors/dword-design",
   "version": "1.1.0",
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",

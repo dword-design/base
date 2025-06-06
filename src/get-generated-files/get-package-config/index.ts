@@ -1,7 +1,4 @@
-import pathLib from 'node:path';
-
 import packageName from 'depcheck-package-name';
-import fs from 'fs-extra';
 import { mapValues, pick, stubTrue } from 'lodash-es';
 import sortKeys from 'sort-keys';
 
@@ -51,12 +48,7 @@ export default function () {
     engines: {
       node: `>=${this.config.minNodeVersion || this.config.supportedNodeVersions[0]}`,
     },
-    files: [
-      'dist',
-      ...(fs.existsSync(pathLib.join(this.cwd, 'types.d.ts'))
-        ? ['types.d.ts']
-        : []),
-    ],
+    files: ['dist'],
     license: 'MIT',
     ...this.config.packageConfig,
     scripts: sortKeys(

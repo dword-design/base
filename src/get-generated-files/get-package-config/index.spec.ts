@@ -62,7 +62,6 @@ test('existing package', async ({}, testInfo) => {
         test: String.raw`echo \"foo\"`,
       },
       type: 'module',
-      types: 'types.d.ts',
       version: '1.1.0',
     }),
   );
@@ -107,14 +106,4 @@ test('private', async ({}, testInfo) => {
   );
 
   expect(new Base(null, { cwd }).getPackageConfig().private).toBeTruthy();
-});
-
-test('types.d.ts', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-  await fs.outputFile(pathLib.join(cwd, 'types.d.ts'), '');
-
-  expect(new Base(null, { cwd }).getPackageConfig().files).toEqual([
-    'dist',
-    'types.d.ts',
-  ]);
 });
