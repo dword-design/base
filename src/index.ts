@@ -35,6 +35,7 @@ import getPackageConfig from './get-generated-files/get-package-config';
 import getReadmeString from './get-generated-files/get-readme-string';
 import getReleaseConfig from './get-generated-files/get-release';
 import getRenovateConfig from './get-generated-files/get-renovate';
+import getTypescriptConfig from './get-generated-files/get-typescript';
 import getVscodeConfig from './get-generated-files/get-vscode';
 import githubCodespacesConfig from './get-generated-files/github-codespaces';
 import getGitInfo from './get-git-info';
@@ -143,6 +144,10 @@ class Base {
     return getVscodeConfig.call(this, ...args);
   }
 
+  getTypescriptConfig(...args): void {
+    return getTypescriptConfig.call(this, ...args);
+  }
+
   constructor(config = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
@@ -206,6 +211,7 @@ class Base {
       seeAlso: [],
       supportedNodeVersions: [18, 20],
       syncKeywords: true,
+      typescriptConfig: {},
       windows: true,
     };
 

@@ -28,6 +28,7 @@
     "@commitlint/config-conventional": "^18.6.3",
     "@dword-design/base-config-node": "^3.0.7",
     "@dword-design/ci": "^4.0.6",
+    "@dword-design/defu": "^1.0.0",
     "@dword-design/eslint-config": "^7.0.3",
     "@dword-design/personal-data": "^2.0.3",
     "@semantic-release/changelog": "^6.0.3",

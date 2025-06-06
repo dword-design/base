@@ -12,7 +12,6 @@ import githubFunding from './github-funding';
 import githubLabelsConfig from './github-labels';
 import githubSyncLabelsConfig from './github-sync-labels';
 import npmrc from './npmrc';
-import typescriptConfig from './typescript';
 
 export default function () {
   const packageConfig = this.getPackageConfig();
@@ -73,6 +72,6 @@ export default function () {
       undefined,
       2,
     )}\n`,
-    'tsconfig.json': `${JSON.stringify(typescriptConfig, undefined, 2)}\n`,
+    'tsconfig.json': `${JSON.stringify(this.getTypescriptConfig(), undefined, 2)}\n`,
   };
 }
