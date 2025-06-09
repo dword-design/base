@@ -191,6 +191,7 @@ class Base {
       fetchGitHistory: false,
       git: getGitInfo({ cwd: this.cwd }),
       gitignore: [],
+      hasTypescriptConfigRootAlias: true,
       lint: identity,
       macos: true,
       minNodeVersion: null,

@@ -8,7 +8,9 @@ export default function () {
       module: 'ESNext',
       moduleResolution: 'bundler',
       outDir: 'dist',
-      paths: { '@/*': ['./*'] },
+      ...(this.config.hasTypescriptConfigRootAlias && {
+        paths: { '@/*': ['./*'] },
+      }),
       skipLibCheck: true,
       target: 'ESNext',
     },
