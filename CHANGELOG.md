@@ -1,3 +1,10 @@
+## [13.0.6](https://github.com/dword-design/base/compare/v13.0.5...v13.0.6) (2025-06-09)
+
+
+### Bug Fixes
+
+* hasTypescriptConfigRootAlias ([40214df](https://github.com/dword-design/base/commit/40214df14d3df2affcbdc2807cbede5d85c6a988))
+
 ## [13.0.5](https://github.com/dword-design/base/compare/v13.0.4...v13.0.5) (2025-06-06)
 
 
