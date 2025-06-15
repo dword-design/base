@@ -63,6 +63,7 @@
     "package-name-regex": "^4.0.1",
     "parse-git-config": "npm:@dword-design/parse-git-config@^0.0.1",
     "parse-packagejson-name": "^1.0.1",
+    "playwright": "^1.53.0",
     "plugin-name-to-package-name": "npm:@dword-design/plugin-name-to-package-name@^0.1.2",
     "safe-readfile": "^1.0.2",
     "semantic-release": "^22.0.12",
