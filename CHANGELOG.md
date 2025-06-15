@@ -1,3 +1,10 @@
+## [13.0.7](https://github.com/dword-design/base/compare/v13.0.6...v13.0.7) (2025-06-15)
+
+
+### Bug Fixes
+
+* revert success comment ([#792](https://github.com/dword-design/base/issues/792)) ([df4712d](https://github.com/dword-design/base/commit/df4712db67dba3bb1815a024496230f2f2242950))
+
 ## [13.0.6](https://github.com/dword-design/base/compare/v13.0.5...v13.0.6) (2025-06-09)
 
 
