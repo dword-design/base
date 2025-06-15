@@ -13,7 +13,7 @@ const tests = {
         ['@semantic-release/npm', { npmPublish: false }],
         [
           '@semantic-release/github',
-          { assets: [{ label: 'Foo', path: 'foo.js' }], successComment: false },
+          { assets: [{ label: 'Foo', path: 'foo.js' }] },
         ],
         [
           '@semantic-release/git',
@@ -33,7 +33,7 @@ const tests = {
         '@semantic-release/release-notes-generator',
         '@semantic-release/changelog',
         ['@semantic-release/npm', { npmPublish: false }],
-        ['@semantic-release/github', { successComment: false }],
+        '@semantic-release/github',
         [
           '@semantic-release/git',
           {
@@ -53,7 +53,7 @@ const tests = {
         '@semantic-release/release-notes-generator',
         '@semantic-release/changelog',
         '@semantic-release/npm',
-        ['@semantic-release/github', { successComment: false }],
+        '@semantic-release/github',
         [
           '@semantic-release/git',
           {
@@ -71,7 +71,7 @@ const tests = {
         '@semantic-release/release-notes-generator',
         '@semantic-release/changelog',
         ['@semantic-release/npm', { npmPublish: false }],
-        ['@semantic-release/github', { successComment: false }],
+        '@semantic-release/github',
         [
           '@semantic-release/git',
           {
