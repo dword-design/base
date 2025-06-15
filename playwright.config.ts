@@ -1,10 +1,10 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  preserveOutput: 'failures-only',
+  fullyParallel: true,
 
+  preserveOutput: 'failures-only',
   snapshotPathTemplate:
     '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
-  //fullyParallel: true,
-  workers: 1,
+  timeout: 100_000,
 });
