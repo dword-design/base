@@ -75,7 +75,7 @@
     "yaml": "^2.8.0"
   },
   "devDependencies": {
-    "@dword-design/dotenv-json-extended": "^2.0.25",
+    "@dword-design/dotenv-json-extended": "^3.0.0",
     "@playwright/test": "^1.52.0",
     "p-event": "^6.0.1",
     "renovate": "^39.264.1",
