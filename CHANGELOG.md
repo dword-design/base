@@ -1,3 +1,10 @@
+## [13.0.9](https://github.com/dword-design/base/compare/v13.0.8...v13.0.9) (2025-06-19)
+
+
+### Bug Fixes
+
+* sort tsconfig keys ([71ed543](https://github.com/dword-design/base/commit/71ed5438ca613d1802ffeb58339219d8b2224b8a))
+
 ## [13.0.8](https://github.com/dword-design/base/compare/v13.0.7...v13.0.8) (2025-06-19)
 
 
