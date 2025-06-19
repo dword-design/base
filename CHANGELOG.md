@@ -1,3 +1,10 @@
+## [13.0.8](https://github.com/dword-design/base/compare/v13.0.7...v13.0.8) (2025-06-19)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/dotenv-json-extended to v3 ([#790](https://github.com/dword-design/base/issues/790)) ([b2c8d85](https://github.com/dword-design/base/commit/b2c8d85189707f8bbb0fcfdbea7e2a9822628c42))
+
 ## [13.0.7](https://github.com/dword-design/base/compare/v13.0.6...v13.0.7) (2025-06-15)
 
 
