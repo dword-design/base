@@ -72,6 +72,6 @@ export default function () {
       undefined,
       2,
     )}\n`,
-    'tsconfig.json': `${JSON.stringify(this.getTypescriptConfig(), undefined, 2)}\n`,
+    'tsconfig.json': `${JSON.stringify(sortKeys(this.getTypescriptConfig(), { deep: true }), undefined, 2)}\n`,
   };
 }
