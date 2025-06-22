@@ -96,6 +96,25 @@ test('package name != repository name', async ({}, testInfo) => {
   );
 });
 
+test('wrong types', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await outputFiles(cwd, {
+    'package.json': JSON.stringify({ name: 'foo' }),
+    'src/index.ts': endent`
+      const foo = (x: string) => console.log(x);
+      foo(5);
+    `,
+  });
+
+  const base = new Base(null, { cwd });
+  await base.prepare();
+
+  await expect(base.lint({ stderr: 'pipe' })).rejects.toThrow(
+    "src/index.ts(2,5): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
+  );
+});
+
 test('package name with dot', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 

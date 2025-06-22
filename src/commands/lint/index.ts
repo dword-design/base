@@ -20,9 +20,21 @@ export default async function (options) {
   }
 
   await this.config.lint.call(this, options);
-  return execaCommand('eslint --fix --no-error-on-unmatched-pattern .', {
+
+  const result = execaCommand(
+    'eslint --fix --no-error-on-unmatched-pattern .',
+    {
+      ...(options.log && { stdout: 'inherit' }),
+      cwd: this.cwd,
+      stderr: options.stderr,
+    },
+  );
+
+  await execaCommand('tsc --noEmit', {
     ...(options.log && { stdout: 'inherit' }),
     cwd: this.cwd,
     stderr: options.stderr,
   });
+
+  return result;
 }
