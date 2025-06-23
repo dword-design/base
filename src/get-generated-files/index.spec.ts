@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { Base } from '@/src';
+import { Base } from './..';
 
 test('works', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
