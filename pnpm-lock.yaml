@@ -152,6 +152,9 @@ importers:
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
       yaml:
         specifier: ^2.8.0
         version: 2.8.0
@@ -609,23 +612,24 @@ packages:
   '@dword-design/eslint-plugin-unicorn@0.0.1':
     resolution: {integrity: sha512-YAEdFSYh1208t4BSHgL5MtaNnkUgCNp9pPKISDJw1xISLvcK8w3X1EAxUnkM3ChnL/xphPYRubzucNi/p4aW3A==}
     engines: {node: ^18.20.0 || ^20.10.0 || >=21.0.0}
+    deprecated: Issues solved
     peerDependencies:
       eslint: '>=9.26.0'
 
   '@dword-design/functions@4.1.7':
     resolution: {integrity: sha512-kc7bzBKZasf0icxKldgB7dkpd1mcEQkPz8c0BP5Wuxy63bMYs+kNWbywFT+xNBWDT6N9cdTczHwBuVBgc8ZU0A==}
     engines: {node: '>=14'}
-    deprecated: Use lodash and dedent
+    deprecated: Use lodash and endent
 
   '@dword-design/functions@5.0.27':
     resolution: {integrity: sha512-16A97RKtn21xLWI7Y7VhFz4WCWui+TLit/J5/l77BDpWmPi2LzgjQzDbafDDw7OUeY6GEAi/M4jdbuQhsIbSEg==}
     engines: {node: '>=14'}
-    deprecated: Use lodash and dedent
+    deprecated: Use lodash and endent
 
   '@dword-design/functions@6.0.2':
     resolution: {integrity: sha512-bX8MqBkzGaYEIlGAdc3hLiHO3Gia1L/sguymbQkp07yB611ZZW4Y0lTGJxWAemJEggEVM5jr1IL4vvAUmQX8VA==}
     engines: {node: '>=18'}
-    deprecated: Use lodash and dedent
+    deprecated: Use lodash and endent
 
   '@dword-design/module-root@0.2.4':
     resolution: {integrity: sha512-ns0t/Fxwsf3Egva6SNEStZ/3TKTIgCJW4fGGtQoeAz3PWQRWumrqxTa3tM6dzU4w8thSi8dcaEjP6RRQJtvLhg==}

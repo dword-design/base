@@ -1,5 +1,8 @@
+import pathLib from 'node:path';
+
 import { execaCommand } from 'execa';
 import parsePackagejsonName from 'parse-packagejson-name';
+import ts from 'typescript';
 
 export default async function (options) {
   options = {
@@ -30,11 +33,20 @@ export default async function (options) {
     },
   );
 
-  await execaCommand('tsc --noEmit', {
-    ...(options.log && { stdout: 'inherit' }),
-    cwd: this.cwd,
-    stderr: options.stderr,
-  });
+  const { config } = ts.readConfigFile(
+    pathLib.join(this.cwd, 'tsconfig.json'),
+    ts.sys.readFile,
+  );
+
+  const { fileNames } = ts.parseJsonConfigFileContent(config, ts.sys, this.cwd);
+
+  if (fileNames.length > 0) {
+    await execaCommand('tsc --noEmit', {
+      ...(options.log && { stdout: 'inherit' }),
+      cwd: this.cwd,
+      stderr: options.stderr,
+    });
+  }
 
   return result;
 }
