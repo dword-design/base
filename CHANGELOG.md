@@ -1,3 +1,18 @@
+# [13.1.0](https://github.com/dword-design/base/compare/v13.0.9...v13.1.0) (2025-06-23)
+
+
+### Bug Fixes
+
+* foo ([e7c839a](https://github.com/dword-design/base/commit/e7c839a5f9721c7f9680018fba9e5b5d6aafa846))
+* foo ([9742ff6](https://github.com/dword-design/base/commit/9742ff61d444ef262608dbb336060be6e1afd20f))
+* foo ([d42bb87](https://github.com/dword-design/base/commit/d42bb8765a01885337bb35466c58e1748eb76899))
+* foo ([9311429](https://github.com/dword-design/base/commit/93114291553f945af38c6faa5fca0fe57443d1e7))
+
+
+### Features
+
+* type check after lint ([902b59b](https://github.com/dword-design/base/commit/902b59bb664a322e24b71d997ae2cdaa676bee0e))
+
 ## [13.0.9](https://github.com/dword-design/base/compare/v13.0.8...v13.0.9) (2025-06-19)
 
 
