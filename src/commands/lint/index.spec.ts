@@ -96,7 +96,7 @@ test('package name != repository name', async ({}, testInfo) => {
   );
 });
 
-test('wrong types', async ({}, testInfo) => {
+test('type error: ts', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
@@ -112,6 +112,31 @@ test('wrong types', async ({}, testInfo) => {
 
   await expect(base.lint({ stderr: 'pipe' })).rejects.toThrow(
     "src/index.ts(2,5): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
+  );
+});
+
+test('type erorr: vue', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await outputFiles(cwd, {
+    'package.json': JSON.stringify({ name: 'foo' }),
+    'src/index.vue': endent`
+      <template>
+        <div />
+      </template>
+
+      <script setup lang="ts">
+      const foo = (x: string) => console.log(x);
+      foo(5);
+      </script>
+    `,
+  });
+
+  const base = new Base(null, { cwd });
+  await base.prepare();
+
+  await expect(base.lint({ stderr: 'pipe' })).rejects.toThrow(
+    "src/index.vue(7,5): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
   );
 });
 

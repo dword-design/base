@@ -1,6 +1,7 @@
 import pathLib from 'node:path';
 
 import { execaCommand } from 'execa';
+import { globby } from 'globby';
 import parsePackagejsonName from 'parse-packagejson-name';
 import ts from 'typescript';
 
@@ -40,8 +41,16 @@ export default async function (options) {
 
   const { fileNames } = ts.parseJsonConfigFileContent(config, ts.sys, this.cwd);
 
-  if (fileNames.length > 0) {
-    await execaCommand('tsc --noEmit', {
+  const vueFiles = await globby('**/*.vue', {
+    cwd: this.cwd,
+    dot: true,
+    ignore: ['**/node_modules/**'],
+  });
+
+  const allFileNames = [...fileNames, ...vueFiles];
+
+  if (allFileNames.length > 0) {
+    await execaCommand('vue-tsc --noEmit', {
       ...(options.log && { stdout: 'inherit' }),
       cwd: this.cwd,
       stderr: options.stderr,
