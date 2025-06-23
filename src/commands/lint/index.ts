@@ -25,7 +25,7 @@ export default async function (options) {
 
   await this.config.lint.call(this, options);
 
-  const result = execaCommand(
+  const result = await execaCommand(
     'eslint --fix --no-error-on-unmatched-pattern .',
     {
       ...(options.log && { stdout: 'inherit' }),
