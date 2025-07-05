@@ -657,9 +657,9 @@ test('usesdocker outside ci', async ({}, testInfo) => {
   await base.prepare();
   await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
 
-  await expect(
-    execaCommand('tsx cli.ts', { cwd }),
-  ).rejects.toThrow('foobarbaz');
+  await expect(execaCommand('tsx cli.ts', { cwd })).rejects.toThrow(
+    'foobarbaz',
+  );
 });
 
 test('usesdocker windows', async ({}, testInfo) => {
@@ -685,11 +685,7 @@ test('usesdocker windows', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
   await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
-
-  await execaCommand('tsx cli.ts', {
-    cwd,
-    env: { CI: true },
-  });
+  await execaCommand('tsx cli.ts', { cwd, env: { CI: true } });
 });
 
 test('wrong dependencies type', async ({}, testInfo) => {
