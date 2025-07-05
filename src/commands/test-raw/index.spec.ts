@@ -627,11 +627,8 @@ test('usesdocker macOS', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await base.prepare();
-
-  await execaCommand('tsx --tsconfig ../../tsconfig.json cli.ts', {
-    cwd,
-    env: { CI: true },
-  });
+  await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
+  await execaCommand('tsx cli.ts', { cwd, env: { CI: true } });
 });
 
 test('usesdocker outside ci', async ({}, testInfo) => {
@@ -658,9 +655,10 @@ test('usesdocker outside ci', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await base.prepare();
+  await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
 
   await expect(
-    execaCommand('tsx --tsconfig ../../tsconfig.json cli.ts', { cwd }),
+    execaCommand('tsx cli.ts', { cwd }),
   ).rejects.toThrow('foobarbaz');
 });
 
@@ -686,8 +684,9 @@ test('usesdocker windows', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await base.prepare();
+  await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
 
-  await execaCommand('tsx --tsconfig ../../tsconfig.json cli.ts', {
+  await execaCommand('tsx cli.ts', {
     cwd,
     env: { CI: true },
   });
