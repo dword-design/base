@@ -15,6 +15,5 @@ export default function () {
       target: 'ESNext',
     },
     exclude: ['**/*.spec.ts'],
-    include: ['src'],
   });
 }
