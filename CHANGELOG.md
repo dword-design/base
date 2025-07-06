@@ -1,3 +1,10 @@
+## [13.1.1](https://github.com/dword-design/base/compare/v13.1.0...v13.1.1) (2025-07-06)
+
+
+### Bug Fixes
+
+* remove typescript include src ([#794](https://github.com/dword-design/base/issues/794)) ([0933b06](https://github.com/dword-design/base/commit/0933b06488cfa2f69af24bc0b44d180c015971c9))
+
 # [13.1.0](https://github.com/dword-design/base/compare/v13.0.9...v13.1.0) (2025-06-23)
 
 
