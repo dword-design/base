@@ -1,3 +1,11 @@
+## [13.1.3](https://github.com/dword-design/base/compare/v13.1.2...v13.1.3) (2025-07-12)
+
+
+### Bug Fixes
+
+* fix typings ([0412c2c](https://github.com/dword-design/base/commit/0412c2c942bf409dd08a92c555e00132a3c80f24))
+* remove exclude from typescript config ([1eda98a](https://github.com/dword-design/base/commit/1eda98a832322001be506e5092b08f95d23b39eb))
+
 ## [13.1.2](https://github.com/dword-design/base/compare/v13.1.1...v13.1.2) (2025-07-12)
 
 
