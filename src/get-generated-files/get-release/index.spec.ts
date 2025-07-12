@@ -2,7 +2,16 @@ import { expect, test } from '@playwright/test';
 
 import { Base } from '@/src';
 
-const tests = {
+interface TestConfig {
+  config?: {
+    deployAssets?: Array<{ label: string; path: string }>;
+    deployPlugins?: string[];
+    npmPublish?: boolean;
+  };
+  result: { plugins: Array<string | [string, unknown]> };
+}
+
+const tests: Record<string, TestConfig> = {
   'deploy assets': {
     config: { deployAssets: [{ label: 'Foo', path: 'foo.js' }] },
     result: {
@@ -85,15 +94,9 @@ const tests = {
 };
 
 for (const [name, testConfig] of Object.entries(tests)) {
-  testConfig.config = {
-    deployAssets: [],
-    deployPlugins: [],
-    ...testConfig.config,
-  };
+  const config = { deployAssets: [], deployPlugins: [], ...testConfig.config };
 
   test(name, () =>
-    expect(new Base(testConfig.config).getReleaseConfig()).toEqual(
-      testConfig.result,
-    ),
+    expect(new Base(config).getReleaseConfig()).toEqual(testConfig.result),
   );
 }
