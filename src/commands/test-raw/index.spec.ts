@@ -510,6 +510,7 @@ test('valid', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
   let { stdout } = await base.test();
+  stdout = typeof stdout === 'string' ? stdout : stdout.toString();
   stdout = stripAnsi(stdout);
 
   expect(stdout).toMatch(
@@ -628,7 +629,7 @@ test('usesdocker macOS', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
   await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
-  await execaCommand('tsx cli.ts', { cwd, env: { CI: true } });
+  await execaCommand('tsx cli.ts', { cwd, env: { CI: true.toString() } });
 });
 
 test('usesdocker outside ci', async ({}, testInfo) => {
@@ -685,7 +686,7 @@ test('usesdocker windows', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
   await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
-  await execaCommand('tsx cli.ts', { cwd, env: { CI: true } });
+  await execaCommand('tsx cli.ts', { cwd, env: { CI: true.toString() } });
 });
 
 test('wrong dependencies type', async ({}, testInfo) => {
