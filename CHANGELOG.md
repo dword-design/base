@@ -1,3 +1,11 @@
+## [13.1.2](https://github.com/dword-design/base/compare/v13.1.1...v13.1.2) (2025-07-12)
+
+
+### Bug Fixes
+
+* doc formatting ([16c6ef0](https://github.com/dword-design/base/commit/16c6ef0f888e6b1de0af6e50904be0e2584731e5))
+* formatting ([c2e1102](https://github.com/dword-design/base/commit/c2e110208453f49589ece5d1e8e0396d1676e18f))
+
 ## [13.1.1](https://github.com/dword-design/base/compare/v13.1.0...v13.1.1) (2025-07-06)
 
 
