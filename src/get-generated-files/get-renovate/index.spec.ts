@@ -47,7 +47,7 @@ test('github action', async ({}, testInfo) => {
 
   const { stdout } = await execaCommand(
     `renovate --platform=local --dry-run --host-rules=[{matchHost:'api.github.com',hostType:'github',token:'${process.env.RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN}'}]`,
-    { cwd, env: { CODESPACES: false, LOG_LEVEL: 'debug' } },
+    { cwd, env: { CODESPACES: false.toString(), LOG_LEVEL: 'debug' } },
   );
 
   expect(stdout).toMatch(/renovate\/actions-checkout-\d+\.x/);
@@ -72,7 +72,7 @@ test('lock file', async ({}, testInfo) => {
 
   const { stdout } = await execaCommand('renovate --platform=local --dry-run', {
     cwd,
-    env: { CODESPACES: false, LOG_LEVEL: 'debug' },
+    env: { CODESPACES: false.toString(), LOG_LEVEL: 'debug' },
   });
 
   expect(stdout).toMatch('chore: lock file maintenance');
@@ -97,7 +97,7 @@ test('lock file fix commit type', async ({}, testInfo) => {
 
   const { stdout } = await execaCommand('renovate --platform=local --dry-run', {
     cwd,
-    env: { CODESPACES: false, LOG_LEVEL: 'debug' },
+    env: { CODESPACES: false.toString(), LOG_LEVEL: 'debug' },
   });
 
   expect(stdout).toMatch('fix: lock file maintenance');
@@ -116,7 +116,7 @@ test('nodejs version', async ({}, testInfo) => {
 
   const { stdout } = await execaCommand('renovate --platform=local --dry-run', {
     cwd,
-    env: { CODESPACES: false, LOG_LEVEL: 'debug' },
+    env: { CODESPACES: false.toString(), LOG_LEVEL: 'debug' },
   });
 
   expect(stdout).toMatch(/renovate\/node-\d+\.x/);
@@ -140,7 +140,7 @@ test('outdated version in package.json', async ({}, testInfo) => {
 
   const { stdout } = await execaCommand('renovate --platform=local --dry-run', {
     cwd,
-    env: { CODESPACES: false, LOG_LEVEL: 'debug' },
+    env: { CODESPACES: false.toString(), LOG_LEVEL: 'debug' },
   });
 
   expect(stdout).toMatch(/renovate\/globby-\d+\.x/);

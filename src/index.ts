@@ -96,55 +96,55 @@ class Base {
     return depcheckMethod.call(this, ...args);
   }
 
-  getEditorIgnoreConfig(...args): void {
+  getEditorIgnoreConfig(...args) {
     return getEditorIgnoreConfig.call(this, ...args);
   }
 
-  getEslintConfig(...args): void {
+  getEslintConfig(...args) {
     return getEslintConfig.call(this, ...args);
   }
 
-  getGithubSyncMetadataConfig(...args): void {
+  getGithubSyncMetadataConfig(...args) {
     return getGithubSyncMetadataConfig.call(this, ...args);
   }
 
-  getGithubWorkflowConfig(...args): void {
+  getGithubWorkflowConfig(...args) {
     return getGithubWorkflowConfig.call(this, ...args);
   }
 
-  getGitignoreConfig(...args): void {
+  getGitignoreConfig(...args) {
     return getGitignoreConfig.call(this, ...args);
   }
 
-  getGitpodConfig(...args): void {
+  getGitpodConfig(...args) {
     return getGitpodConfig.call(this, ...args);
   }
 
-  getGitpodDockerfile(...args): void {
+  getGitpodDockerfile(...args) {
     return getGitpodDockerfile.call(this, ...args);
   }
 
-  getLicenseString(...args): void {
+  getLicenseString(...args) {
     return getLicenseString.call(this, ...args);
   }
 
-  getReadmeString(...args): void {
+  getReadmeString(...args) {
     return getReadmeString.call(this, ...args);
   }
 
-  getReleaseConfig(...args): void {
+  getReleaseConfig(...args) {
     return getReleaseConfig.call(this, ...args);
   }
 
-  getRenovateConfig(...args): void {
+  getRenovateConfig(...args) {
     return getRenovateConfig.call(this, ...args);
   }
 
-  getVscodeConfig(...args): void {
+  getVscodeConfig(...args) {
     return getVscodeConfig.call(this, ...args);
   }
 
-  getTypescriptConfig(...args): void {
+  getTypescriptConfig(...args) {
     return getTypescriptConfig.call(this, ...args);
   }
 
