@@ -17,7 +17,7 @@ const { scope: projectScope, fullName: projectName } = parsePackagejsonName(
 
 const projectPrefix = `${projectScope.slice(1)}-${projectName}-`;
 
-const test = base.extend({
+const test = base.extend<{ packageName: string }>({
   packageName: async ({}, use, testInfo) => {
     const packageName = `${projectPrefix}${pathLib.basename(testInfo.outputDir)}`;
 
