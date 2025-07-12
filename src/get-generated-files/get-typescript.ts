@@ -14,6 +14,5 @@ export default function () {
       skipLibCheck: true,
       target: 'ESNext',
     },
-    exclude: ['**/*.spec.ts'],
   });
 }
