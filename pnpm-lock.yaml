@@ -59,6 +59,9 @@ importers:
       deepmerge:
         specifier: ^4.3.1
         version: 4.3.1
+      defu:
+        specifier: ^6.1.4
+        version: 6.1.4
       depcheck:
         specifier: npm:@dword-design/depcheck@^0.0.7
         version: '@dword-design/depcheck@0.0.7'

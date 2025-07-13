@@ -1,6 +1,6 @@
 import pathLib from 'node:path';
 
-import deepmerge from 'deepmerge';
+import { createDefu } from 'defu';
 import type { Options as DepcheckOptions } from 'depcheck';
 import depcheck from 'depcheck';
 import depcheckDetectorBinName from 'depcheck-detector-bin-name';
@@ -79,18 +79,21 @@ type Config = {
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
 };
-type ConfigInputObject = Partial<Config>;
+type ConfigObjectInput = Partial<Config>;
+type ConfigObjectOrFunctionInput = ConfigObjectInput | ((this: Base) => ConfigObjectInput)
 type ConfigInput =
-  | ConfigInputObject
-  | ((this: Base) => ConfigInputObject)
+  ConfigObjectOrFunctionInput
   | string
   | null;
 
-const mergeConfigs = (...configs: Partial<Config>[]): Partial<Config> =>
-  deepmerge.all(configs, {
-    customMerge: key =>
-      key === 'supportedNodeVersions' ? (a, b) => b : undefined,
-  });
+const mergeConfigs = createDefu((obj, key, value) => {
+  if (key === 'supportedNodeVersions') {
+    obj[key] = value;
+    return true;
+  }
+
+  return false;
+});
 
 class Base {
   config: Config;
@@ -195,7 +198,7 @@ class Base {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
 
-    const config = (() => {
+    const config: Partial<Config> & Pick<Config, 'name'> = (() => {
       if (configInput === null) {
         return { name: packageName`@dword-design/base-config-node` };
       } else if (typeof configInput === 'string') {
@@ -237,12 +240,14 @@ class Base {
       fetchGitHistory: false,
       git: getGitInfo({ cwd: this.cwd }),
       gitignore: [],
+      global: false,
       hasTypescriptConfigRootAlias: true,
       isLockFileFixCommitType: false,
       lint: () => {},
       macos: true,
       minNodeVersion: null,
       nodeVersion: 20,
+      packageConfig: {},
       preDeploySteps: [],
       prepare: identity,
       readmeInstallString: endent`
@@ -256,6 +261,7 @@ class Base {
         $ yarn ${config.global ? 'global ' : ''}add ${this.packageConfig.name}
         \`\`\`
       `,
+      renovateConfig: {},
       seeAlso: [],
       supportedNodeVersions: [18, 20],
       syncKeywords: true,
@@ -265,14 +271,12 @@ class Base {
       windows: true,
     };
 
-    const configsToMerge = [defaultConfig];
-
     const inheritedConfigPath =
       config.name === this.packageConfig.name
         ? pathLib.resolve(this.cwd, 'src', 'index.ts')
         : config.name;
 
-    let inheritedConfig = inheritedConfigPath
+    let inheritedConfig: ConfigObjectOrFunctionInput | { default: ConfigObjectOrFunctionInput } = inheritedConfigPath
       ? jitiInstance(inheritedConfigPath)
       : undefined;
 
@@ -287,8 +291,7 @@ class Base {
       );
     }
 
-    configsToMerge.push(inheritedConfig, config);
-    this.config = mergeConfigs(...configsToMerge);
+    this.config = mergeConfigs<typeof config, [typeof defaultConfig, typeof inheritedConfig]>(config, inheritedConfig, defaultConfig);
 
     this.config = {
       ...this.config,

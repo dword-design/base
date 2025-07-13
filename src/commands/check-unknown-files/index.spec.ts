@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { isEmpty } from 'lodash-es';
-import outputFiles from 'output-files';
 import type { Files } from 'output-files';
+import outputFiles from 'output-files';
 
 import { Base } from '@/src';
 
