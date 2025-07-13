@@ -14,5 +14,6 @@ export default function () {
       skipLibCheck: true,
       target: 'ESNext',
     },
+    exclude: ['test-results'],
   });
 }

@@ -30,6 +30,7 @@ import prepare from './commands/prepare';
 import test from './commands/test';
 import testDocker from './commands/test-docker';
 import testRaw from './commands/test-raw';
+import typecheck from './commands/typecheck';
 import getDepcheckSpecialBase from './get-depcheck-special-base';
 import getGeneratedFiles from './get-generated-files';
 import getEditorIgnoreConfig from './get-generated-files/get-editor-ignore';
@@ -112,6 +113,10 @@ class Base {
 
   lint(...args): ResultPromise {
     return lint.call(this, ...args);
+  }
+
+  typecheck(...args): ResultPromise {
+    return typecheck.call(this, ...args);
   }
 
   prepare(...args): void {
