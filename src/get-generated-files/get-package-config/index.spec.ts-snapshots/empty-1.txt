@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "files": [
     "dist"

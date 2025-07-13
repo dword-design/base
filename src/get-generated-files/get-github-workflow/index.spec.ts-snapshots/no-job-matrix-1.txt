@@ -107,11 +107,15 @@
         "matrix": {
           "include": [
             {
-              "node": 18,
+              "node": 20,
               "os": "ubuntu-latest"
             },
             {
-              "node": 20,
+              "node": 22,
+              "os": "ubuntu-latest"
+            },
+            {
+              "node": 24,
               "os": "ubuntu-latest"
             },
             {
