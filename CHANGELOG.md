@@ -1,3 +1,30 @@
+# [14.0.0](https://github.com/dword-design/base/compare/v13.1.3...v14.0.0) (2025-07-13)
+
+
+### Bug Fixes
+
+* fix typechecking ([2080f41](https://github.com/dword-design/base/commit/2080f41a14af82343fed4ebb90df956dadb6a4e4))
+* foo ([57cb01a](https://github.com/dword-design/base/commit/57cb01a36c1f0ebb543fe0607877f195c98d3f93))
+* foo ([c9f56de](https://github.com/dword-design/base/commit/c9f56de3af56ccfcf9f9984aab109474baadaf68))
+* foo ([160c981](https://github.com/dword-design/base/commit/160c981feaae24a0d8281849d73b30fbe5d08327))
+* foo ([157043d](https://github.com/dword-design/base/commit/157043d880ea6a1c1751755b058b666f4b91c9df))
+* foo ([633fd9e](https://github.com/dword-design/base/commit/633fd9e5e937a14ab965aa86a733371113ecdd78))
+* foo ([4a35912](https://github.com/dword-design/base/commit/4a359123717413d831f7c8b5704088df46295119))
+* foo ([e4b22c3](https://github.com/dword-design/base/commit/e4b22c38f999c0b348542a130b964848b41e5386))
+* foo ([5cd16fa](https://github.com/dword-design/base/commit/5cd16fa49daa4bd240a93c573bbfb1fb5110840a))
+* foo ([77ec322](https://github.com/dword-design/base/commit/77ec322d7734b457de652632b54ed53b1424a40f))
+* foo ([d6cbf8a](https://github.com/dword-design/base/commit/d6cbf8a086bb0bf79e53a94ad6381b2fc74a7159))
+* foo ([ed5dab9](https://github.com/dword-design/base/commit/ed5dab9b1307e0a5789f3dd159fbb3969746496f))
+* foo ([e7d5f72](https://github.com/dword-design/base/commit/e7d5f722bc87816d6603097dacf0bee68557871d))
+* rename test data artifacts ([2e381fb](https://github.com/dword-design/base/commit/2e381fb6d2527d412f1553c4832f5e9281492a46))
+* reset change ([feab6d5](https://github.com/dword-design/base/commit/feab6d5437cef83936a8767fe06403a309ee8b58))
+* trigger release ([da544b0](https://github.com/dword-design/base/commit/da544b06dc05d03b41d58ae6d88062ef5864af87))
+
+
+### BREAKING CHANGES
+
+* node.js >= 20
+
 ## [13.1.3](https://github.com/dword-design/base/compare/v13.1.2...v13.1.3) (2025-07-12)
 
 
