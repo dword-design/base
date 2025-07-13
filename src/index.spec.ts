@@ -67,12 +67,15 @@ test('empty', ({}, testInfo) => {
   );
 });
 
-test('string', ({}, testInfo) => {
+test('string', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
-  expect(new Base('@dword-design/component', { cwd }).config.name).toEqual(
-    '@dword-design/base-config-component',
+  await fs.outputFile(
+    pathLib.join('node_modules', 'base-config-foo', 'index.js'),
+    'export default {}',
   );
+
+  expect(new Base('foo', { cwd }).config.name).toEqual('base-config-foo');
 });
 
 test('empty parent', async ({}, testInfo) => {
@@ -125,7 +128,7 @@ test('function inherited', async ({}, testInfo) => {
   );
 
   const base = new Base({ name: 'foo' }, { cwd });
-  expect(base.config.readmeInstallString).toEqual('foo');
+  expect(base.config.readmeInstallString).toEqual('base-config-foo');
 });
 
 test('global', async ({}, testInfo) => {
@@ -151,13 +154,14 @@ test('global', async ({}, testInfo) => {
   `);
 });
 
-test('inherited', async ({}, testInfo) => {
+test.only('inherited', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await fs.outputFile(
     pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
     endent`
       import fs from 'fs-extra';
+      import pathLib from 'node:path';
 
       export default {
         commands: {
@@ -177,7 +181,7 @@ test('inherited', async ({}, testInfo) => {
           main: 'dist/index.scss',
         },
         preDeploySteps: [{ run: 'foo' }],
-        lint: () => fs.outputFile(pathLib.join('${cwd}', 'prepare.txt'), ''),
+        prepare: () => fs.outputFile(pathLib.join('${cwd}', 'prepare.txt'), ''),
         readmeInstallString: 'foo',
         supportedNodeVersions: [1, 2],
       }
@@ -245,7 +249,7 @@ test('run', async ({}, testInfo) => {
 
   await fs.outputFile(
     pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ name: 'foo ' }),
+    JSON.stringify({ name: 'bar' }),
   );
 
   expect(

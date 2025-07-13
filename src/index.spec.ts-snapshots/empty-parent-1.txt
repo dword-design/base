@@ -5,21 +5,28 @@
   "deployEnv": {},
   "deployPlugins": [],
   "editorIgnore": [],
+  "eslintConfig": "",
   "fetchGitHistory": false,
   "gitignore": [],
+  "global": false,
   "hasTypescriptConfigRootAlias": true,
+  "isLockFileFixCommitType": false,
   "macos": true,
   "minNodeVersion": null,
   "nodeVersion": 20,
+  "packageConfig": {},
   "preDeploySteps": [],
   "readmeInstallString": "## Install\n\n```bash\n# npm\n$ npm install foo\n\n# Yarn\n$ yarn add foo\n```",
+  "renovateConfig": {},
   "seeAlso": [],
   "supportedNodeVersions": [
     18,
     20
   ],
   "syncKeywords": true,
+  "testInContainer": false,
   "typescriptConfig": {},
+  "useJobMatrix": true,
   "windows": true,
   "name": "base-config-foo"
 }

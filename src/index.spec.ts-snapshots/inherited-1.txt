@@ -15,27 +15,34 @@
   "editorIgnore": [
     "foo"
   ],
+  "eslintConfig": "",
   "fetchGitHistory": false,
   "gitignore": [
     "foo"
   ],
+  "global": false,
   "hasTypescriptConfigRootAlias": true,
+  "isLockFileFixCommitType": false,
   "macos": true,
   "minNodeVersion": null,
   "nodeVersion": 10,
+  "packageConfig": {},
   "preDeploySteps": [
     {
       "run": "foo"
     }
   ],
   "readmeInstallString": "foo",
+  "renovateConfig": {},
   "seeAlso": [],
   "supportedNodeVersions": [
     1,
     2
   ],
   "syncKeywords": true,
+  "testInContainer": false,
   "typescriptConfig": {},
+  "useJobMatrix": true,
   "windows": true,
   "packageBaseConfig": {
     "main": "dist/index.scss"
