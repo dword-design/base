@@ -5,6 +5,5 @@
     ]
   },
   "minNodeVersion": 18,
-  "name": "@dword-design/node",
-  "supportedNodeVersions": [20]
+  "name": "@dword-design/node"
 }
