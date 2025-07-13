@@ -4,6 +4,5 @@
       "husky"
     ]
   },
-  "minNodeVersion": 18,
   "name": "@dword-design/node"
 }

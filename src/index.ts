@@ -274,7 +274,7 @@ class Base {
       `,
       renovateConfig: {},
       seeAlso: [],
-      supportedNodeVersions: [18, 20],
+      supportedNodeVersions: [20, 22, 24],
       syncKeywords: true,
       testInContainer: false,
       typescriptConfig: {},
