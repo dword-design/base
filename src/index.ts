@@ -1,6 +1,7 @@
 import pathLib from 'node:path';
 
 import deepmerge from 'deepmerge';
+import type { Config as DepcheckConfig } from 'depcheck';
 import depcheck from 'depcheck';
 import depcheckDetectorBinName from 'depcheck-detector-bin-name';
 import depcheckDetectorExeca from 'depcheck-detector-execa';
@@ -11,6 +12,7 @@ import { type ResultPromise } from 'execa';
 import fs from 'fs-extra';
 import { createJiti } from 'jiti';
 import { identity, mapValues } from 'lodash-es';
+import type { CommandInObjectInput } from 'make-cli';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
 
 import checkUnknownFiles from './commands/check-unknown-files';
@@ -49,6 +51,37 @@ const mergeConfigs = (...configs) => {
   return result;
 };
 
+type BaseConfig = {
+  name: string;
+  global: boolean;
+  allowedMatches: string[];
+  commands: Record<string, CommandInObjectInput>;
+  depcheckConfig: DepcheckConfig;
+  deployAssets: string[];
+  deployEnv: Record<string, any>;
+  deployPlugins: string[];
+  editorIgnore: string[];
+  fetchGitHistory: boolean;
+  git: any;
+  gitignore: string[];
+  hasTypescriptConfigRootAlias: boolean;
+  lint: (config: any) => void;
+  macos: boolean;
+  minNodeVersion: number;
+  nodeVersion: number;
+  preDeploySteps: string[];
+  prepare: (config: any) => void;
+  readmeInstallString?: string;
+  seeAlso?: string[];
+  supportedNodeVersions?: number[];
+  syncKeywords?: boolean;
+  typescriptConfig?: Record<string, any>;
+  windows?: boolean;
+};
+type ConfigInput =
+  | Partial<BaseConfig>
+  | ((this: Base) => Partial<BaseConfig>)
+  | null;
 class Base {
   config;
   packageConfig;
@@ -148,16 +181,17 @@ class Base {
     return getTypescriptConfig.call(this, ...args);
   }
 
-  constructor(config = null, { cwd = '.' } = {}) {
+  constructor(configInput: ConfigInput = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
+    let config: Partial<BaseConfig>;
 
-    if (config === null) {
+    if (configInput === null) {
       config = { name: packageName`@dword-design/base-config-node` };
-    }
-
-    if (typeof config === 'function') {
-      config = config.call(this);
+    } else if (typeof configInput === 'function') {
+      config = configInput.call(this);
+    } else {
+      config = configInput;
     }
 
     if (config.name) {
@@ -182,7 +216,10 @@ class Base {
         ],
         ignorePath: '.gitignore',
         parsers: { '**/*.ts': depcheck.parser.typescript },
-        specials: [getDepcheckSpecialBase(config.name), depcheck.special.bin],
+        specials: [
+          getDepcheckSpecialBase(configInput.name),
+          depcheck.special.bin,
+        ],
       },
       deployAssets: [],
       deployEnv: {},
@@ -239,10 +276,10 @@ class Base {
         );
       }
 
-      configsToMerge.push(inheritedConfig);
+      configsToMerge.push(inheritedConfig as any);
     }
 
-    configsToMerge.push(config);
+    configsToMerge.push(config as any);
     this.config = mergeConfigs(...configsToMerge);
 
     this.config = {
@@ -266,3 +303,5 @@ export { default as loadConfig } from './load-config';
 export { default as loadConfigSync } from './load-config-sync';
 
 export { Base };
+
+export type { BaseConfig, ConfigInput };

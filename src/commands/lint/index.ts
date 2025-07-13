@@ -5,11 +5,13 @@ import { globby } from 'globby';
 import parsePackagejsonName from 'parse-packagejson-name';
 import ts from 'typescript';
 
-export default async function (options) {
-  options = {
+import type { CommandOptionsInput } from '@/src/commands/command-options-input';
+
+export default async function (optionsInput: CommandOptionsInput) {
+  const options = {
     log: process.env.NODE_ENV !== 'test',
     stderr: 'inherit',
-    ...options,
+    ...optionsInput,
   };
 
   const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
