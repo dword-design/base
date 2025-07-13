@@ -175,13 +175,13 @@ test('inherited', async ({}, testInfo) => {
         deployPlugins: ['semantic-release-foo'],
         editorIgnore: ['foo'],
         gitignore: ['foo'],
-        lint: () => fs.outputFile(pathLib.join('${cwd}', 'lint.txt'), ''),
+        lint: () => fs.outputFile(pathLib.join('${cwd.split(pathLib.sep).join('/')}', 'lint.txt'), ''),
         nodeVersion: 10,
         packageBaseConfig: {
           main: 'dist/index.scss',
         },
         preDeploySteps: [{ run: 'foo' }],
-        prepare: () => fs.outputFile(pathLib.join('${cwd}', 'prepare.txt'), ''),
+        prepare: () => fs.outputFile(pathLib.join('${cwd.split(pathLib.sep).join('/')}', 'prepare.txt'), ''),
         readmeInstallString: 'foo',
         supportedNodeVersions: [1, 2],
       }
