@@ -154,7 +154,7 @@ test('global', async ({}, testInfo) => {
   `);
 });
 
-test.only('inherited', async ({}, testInfo) => {
+test('inherited', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await fs.outputFile(
