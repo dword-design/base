@@ -22,9 +22,16 @@ const testOptions = [
   },
 ];
 
+type TestOptions = {
+  grep: string;
+  updateSnapshots: boolean;
+  uiHost: string;
+  ui: string;
+};
+
 try {
   await makeCli({
-    commands: Object.entries({
+    commands: {
       checkUnknownFiles: { handler: () => base.checkUnknownFiles() },
       commit: {
         handler: () => base.commit(),
@@ -38,21 +45,22 @@ try {
       ...(base.config.testInContainer && {
         'test:raw': {
           arguments: '[patterns...]',
-          handler: (patterns, options) =>
+          handler: (patterns, options: TestOptions) =>
             base.testRaw({ patterns, ...options }),
           options: testOptions,
         },
       }),
       test: {
         arguments: '[patterns...]',
-        handler: (patterns, options) => base.test({ patterns, ...options }),
+        handler: (patterns, options: TestOptions) =>
+          base.test({ patterns, ...options }),
         options: testOptions,
       },
       ...mapValues(base.config.commands, (command, name) => ({
         ...command,
         handler: (...args) => base.run(name, ...args),
       })),
-    }).map(([name, command]) => ({ name, ...command })),
+    },
   });
 } catch (error) {
   console.error(error);

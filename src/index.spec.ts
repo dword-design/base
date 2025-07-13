@@ -244,8 +244,8 @@ test('run', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await fs.outputFile(
-    pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
-    'export default {}',
+    pathLib.join(cwd, 'package.json'),
+    JSON.stringify({ name: 'foo ' }),
   );
 
   expect(
@@ -253,10 +253,9 @@ test('run', async ({}, testInfo) => {
       {
         commands: {
           foo() {
-            return this.config.foo;
+            return this.packageConfig.name;
           },
         },
-        foo: 'bar',
       },
       { cwd },
     ).run('foo'),

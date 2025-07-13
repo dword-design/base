@@ -13,7 +13,10 @@ import fs from 'fs-extra';
 import type GitHost from 'hosted-git-info';
 import { createJiti } from 'jiti';
 import { identity, mapValues } from 'lodash-es';
-import type { CommandInObjectInput } from 'make-cli';
+import type {
+  CommandInObjectInput,
+  CommandObjectInObjectInput,
+} from 'make-cli';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
 import type { RenovateConfig } from 'renovate/dist/config/types';
 import type { PackageJson, TsConfigJson } from 'type-fest';
@@ -50,7 +53,7 @@ type Config = {
   name: string;
   global: boolean;
   allowedMatches: string[];
-  commands: Record<string, CommandInObjectInput>;
+  commands: Record<string, CommandObjectInObjectInput>;
   depcheckConfig: Omit<DepcheckOptions, 'package'>;
   deployAssets: Array<{ label: string; path: string }>;
   deployEnv: Record<string, string>;
@@ -79,12 +82,13 @@ type Config = {
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
 };
-type ConfigObjectInput = Partial<Config>;
-type ConfigObjectOrFunctionInput = ConfigObjectInput | ((this: Base) => ConfigObjectInput)
-type ConfigInput =
-  ConfigObjectOrFunctionInput
-  | string
-  | null;
+type ConfigObjectInput = Omit<Partial<Config>, 'commands'> & {
+  commands?: Record<string, CommandInObjectInput>;
+};
+type ConfigObjectOrFunctionInput =
+  | ConfigObjectInput
+  | ((this: Base) => ConfigObjectInput);
+type ConfigInput = ConfigObjectOrFunctionInput | string | null;
 
 const mergeConfigs = createDefu((obj, key, value) => {
   if (key === 'supportedNodeVersions') {
@@ -276,11 +280,13 @@ class Base {
         ? pathLib.resolve(this.cwd, 'src', 'index.ts')
         : config.name;
 
-    let inheritedConfig: ConfigObjectOrFunctionInput | { default: ConfigObjectOrFunctionInput } = inheritedConfigPath
+    let inheritedConfig:
+      | ConfigObjectOrFunctionInput
+      | { default: ConfigObjectOrFunctionInput } = inheritedConfigPath
       ? jitiInstance(inheritedConfigPath)
       : undefined;
 
-    if (inheritedConfig?.default) {
+    if (inheritedConfig && 'default' in inheritedConfig) {
       inheritedConfig = inheritedConfig.default;
     }
 
@@ -291,7 +297,7 @@ class Base {
       );
     }
 
-    this.config = mergeConfigs<typeof config, [typeof defaultConfig, typeof inheritedConfig]>(config, inheritedConfig, defaultConfig);
+    this.config = mergeConfigs(config, inheritedConfig, defaultConfig);
 
     this.config = {
       ...this.config,
