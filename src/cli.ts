@@ -24,40 +24,35 @@ const testOptions = [
 
 try {
   await makeCli({
-    commands: Object.values(
-      mapValues(
-        {
-          checkUnknownFiles: { handler: () => base.checkUnknownFiles() },
-          commit: {
-            handler: () => base.commit(),
-            options: [
-              { description: 'Allow empty commits', name: '--allow-empty' },
-            ],
-          },
-          depcheck: { handler: () => base.depcheck() },
-          lint: { handler: () => base.lint() },
-          prepare: { handler: () => base.prepare() },
-          ...(base.config.testInContainer && {
-            'test:raw': {
-              arguments: '[patterns...]',
-              handler: (patterns, options) =>
-                base.testRaw({ patterns, ...options }),
-              options: testOptions,
-            },
-          }),
-          test: {
-            arguments: '[patterns...]',
-            handler: (patterns, options) => base.test({ patterns, ...options }),
-            options: testOptions,
-          },
-          ...mapValues(base.config.commands, (command, name) => ({
-            ...command,
-            handler: (...args) => base.run(name, ...args),
-          })),
+    commands: Object.entries({
+      checkUnknownFiles: { handler: () => base.checkUnknownFiles() },
+      commit: {
+        handler: () => base.commit(),
+        options: [
+          { description: 'Allow empty commits', name: '--allow-empty' },
+        ],
+      },
+      depcheck: { handler: () => base.depcheck() },
+      lint: { handler: () => base.lint() },
+      prepare: { handler: () => base.prepare() },
+      ...(base.config.testInContainer && {
+        'test:raw': {
+          arguments: '[patterns...]',
+          handler: (patterns, options) =>
+            base.testRaw({ patterns, ...options }),
+          options: testOptions,
         },
-        (command, name) => ({ name, ...command }),
-      ),
-    ),
+      }),
+      test: {
+        arguments: '[patterns...]',
+        handler: (patterns, options) => base.test({ patterns, ...options }),
+        options: testOptions,
+      },
+      ...mapValues(base.config.commands, (command, name) => ({
+        ...command,
+        handler: (...args) => base.run(name, ...args),
+      })),
+    }).map(([name, command]) => ({ name, ...command })),
   });
 } catch (error) {
   console.error(error);

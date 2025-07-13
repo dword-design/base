@@ -76,6 +76,7 @@ test('invalid file', async ({}, testInfo) => {
             if (path === pathLib.resolve(cwd, 'foo')) {
               throw new Error('foo');
             }
+            return [];
           },
         ],
       },

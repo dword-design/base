@@ -1,7 +1,7 @@
 import pathLib from 'node:path';
 
 import deepmerge from 'deepmerge';
-import type { Config as DepcheckConfig } from 'depcheck';
+import type { Options as DepcheckOptions } from 'depcheck';
 import depcheck from 'depcheck';
 import depcheckDetectorBinName from 'depcheck-detector-bin-name';
 import depcheckDetectorExeca from 'depcheck-detector-execa';
@@ -10,12 +10,15 @@ import packageName from 'depcheck-package-name';
 import endent from 'endent';
 import { type ResultPromise } from 'execa';
 import fs from 'fs-extra';
+import type GitHost from 'hosted-git-info';
 import { createJiti } from 'jiti';
 import { identity, mapValues } from 'lodash-es';
-import type { CommandInObjectInput } from 'make-cli';
+import type { CommandObjectInObjectInput } from 'make-cli';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
+import type { TsConfigJson } from 'type-fest';
 
 import checkUnknownFiles from './commands/check-unknown-files';
+import type { CommandOptionsInput } from './commands/command-options-input';
 import commit from './commands/commit';
 import depcheckMethod from './commands/depcheck';
 import lint from './commands/lint';
@@ -51,39 +54,39 @@ const mergeConfigs = (...configs) => {
   return result;
 };
 
-type BaseConfig = {
+type Config = {
   name: string;
   global: boolean;
   allowedMatches: string[];
-  commands: Record<string, CommandInObjectInput>;
-  depcheckConfig: DepcheckConfig;
+  commands: Record<string, CommandObjectInObjectInput>;
+  depcheckConfig: Omit<DepcheckOptions, 'package'>;
   deployAssets: string[];
-  deployEnv: Record<string, any>;
+  deployEnv: Record<string, string>;
   deployPlugins: string[];
   editorIgnore: string[];
   fetchGitHistory: boolean;
-  git: any;
+  git: GitHost;
   gitignore: string[];
   hasTypescriptConfigRootAlias: boolean;
-  lint: (config: any) => void;
+  lint: (optionsInput: CommandOptionsInput) => void;
   macos: boolean;
   minNodeVersion: number;
   nodeVersion: number;
   preDeploySteps: string[];
-  prepare: (config: any) => void;
-  readmeInstallString?: string;
-  seeAlso?: string[];
-  supportedNodeVersions?: number[];
-  syncKeywords?: boolean;
-  typescriptConfig?: Record<string, any>;
-  windows?: boolean;
+  prepare: (optionsInput: CommandOptionsInput) => void;
+  readmeInstallString: string;
+  seeAlso: string[];
+  supportedNodeVersions: number[];
+  syncKeywords: boolean;
+  typescriptConfig: TsConfigJson;
+  windows: boolean;
+  testInContainer: boolean;
+  eslintConfig: string;
+  useJobMatrix: true;
 };
-type ConfigInput =
-  | Partial<BaseConfig>
-  | ((this: Base) => Partial<BaseConfig>)
-  | null;
+type ConfigInput = Partial<Config> | ((this: Base) => Partial<Config>) | null;
 class Base {
-  config;
+  config: Config;
   packageConfig;
   cwd: string;
   generatedFiles;
@@ -184,7 +187,7 @@ class Base {
   constructor(configInput: ConfigInput = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
-    let config: Partial<BaseConfig>;
+    let config: Partial<Config>;
 
     if (configInput === null) {
       config = { name: packageName`@dword-design/base-config-node` };
@@ -249,11 +252,14 @@ class Base {
       seeAlso: [],
       supportedNodeVersions: [18, 20],
       syncKeywords: true,
+      testInContainer: false,
       typescriptConfig: {},
       windows: true,
+      eslintConfig: '',
+      useJobMatrix: true,
     };
 
-    const configsToMerge = [defaultConfig];
+    const configsToMerge: ConfigInput[] = [defaultConfig];
 
     if (config.name) {
       const inheritedConfigPath =
@@ -276,10 +282,10 @@ class Base {
         );
       }
 
-      configsToMerge.push(inheritedConfig as any);
+      configsToMerge.push(inheritedConfig);
     }
 
-    configsToMerge.push(config as any);
+    configsToMerge.push(config);
     this.config = mergeConfigs(...configsToMerge);
 
     this.config = {
@@ -304,4 +310,4 @@ export { default as loadConfigSync } from './load-config-sync';
 
 export { Base };
 
-export type { BaseConfig, ConfigInput };
+export type { Config, ConfigInput };
