@@ -15,7 +15,8 @@ import { createJiti } from 'jiti';
 import { identity, mapValues } from 'lodash-es';
 import type { CommandObjectInObjectInput } from 'make-cli';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
-import type { TsConfigJson } from 'type-fest';
+import type { RenovateConfig } from 'renovate/dist/config/types';
+import type { PackageJson, TsConfigJson } from 'type-fest';
 
 import checkUnknownFiles from './commands/check-unknown-files';
 import type { CommandOptionsInput } from './commands/command-options-input';
@@ -60,7 +61,7 @@ type Config = {
   allowedMatches: string[];
   commands: Record<string, CommandObjectInObjectInput>;
   depcheckConfig: Omit<DepcheckOptions, 'package'>;
-  deployAssets: string[];
+  deployAssets: Array<{ label: string; path: string }>;
   deployEnv: Record<string, string>;
   deployPlugins: string[];
   editorIgnore: string[];
@@ -75,19 +76,22 @@ type Config = {
   preDeploySteps: string[];
   prepare: (optionsInput: CommandOptionsInput) => void;
   readmeInstallString: string;
-  seeAlso: string[];
+  seeAlso: Array<{ description: string; repository: string }>;
   supportedNodeVersions: number[];
   syncKeywords: boolean;
   typescriptConfig: TsConfigJson;
   windows: boolean;
   testInContainer: boolean;
   eslintConfig: string;
-  useJobMatrix: true;
+  useJobMatrix: boolean;
+  packageConfig: PackageJson;
+  renovateConfig: RenovateConfig;
+  isLockFileFixCommitType: boolean;
 };
 type ConfigInput = Partial<Config> | ((this: Base) => Partial<Config>) | null;
 class Base {
   config: Config;
-  packageConfig;
+  packageConfig: PackageJson;
   cwd: string;
   generatedFiles;
   githubCodespacesConfig = githubCodespacesConfig;
@@ -228,11 +232,13 @@ class Base {
       deployEnv: {},
       deployPlugins: [],
       editorIgnore: [],
+      eslintConfig: '',
       fetchGitHistory: false,
       git: getGitInfo({ cwd: this.cwd }),
       gitignore: [],
       hasTypescriptConfigRootAlias: true,
-      lint: identity,
+      isLockFileFixCommitType: false,
+      lint: () => {},
       macos: true,
       minNodeVersion: null,
       nodeVersion: 20,
@@ -254,9 +260,8 @@ class Base {
       syncKeywords: true,
       testInContainer: false,
       typescriptConfig: {},
-      windows: true,
-      eslintConfig: '',
       useJobMatrix: true,
+      windows: true,
     };
 
     const configsToMerge: ConfigInput[] = [defaultConfig];

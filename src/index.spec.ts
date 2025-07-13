@@ -86,7 +86,7 @@ test('empty parent', async ({}, testInfo) => {
   ).toMatchSnapshot();
 
   expect(typeof base.config.depcheckConfig).toEqual('object');
-  expect(base.config.lint(1)).toEqual(1);
+  expect(typeof base.config.lint).toEqual('function');
 });
 
 test('esm', async ({}, testInfo) => {
