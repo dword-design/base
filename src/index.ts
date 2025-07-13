@@ -1,6 +1,6 @@
 import pathLib from 'node:path';
 
-import { createDefu } from 'defu';
+import { createDefu } from '@dword-design/defu';
 import type { Options as DepcheckOptions } from 'depcheck';
 import depcheck from 'depcheck';
 import depcheckDetectorBinName from 'depcheck-detector-bin-name';

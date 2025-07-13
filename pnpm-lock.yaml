@@ -21,8 +21,8 @@ importers:
         specifier: ^4.0.6
         version: 4.0.6
       '@dword-design/defu':
-        specifier: ^1.0.0
-        version: 1.0.2
+        specifier: ^1.0.3
+        version: 1.0.3
       '@dword-design/eslint-config':
         specifier: ^7.0.7
         version: 7.0.7(@typescript-eslint/utils@8.34.1(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(jiti@2.4.2)(typescript@5.8.3)(vue-eslint-parser@10.1.3(eslint@9.31.0(jiti@2.4.2)))
@@ -56,9 +56,6 @@ importers:
       cz-conventional-changelog:
         specifier: ^3.3.0
         version: 3.3.0(@types/node@24.0.3)(typescript@5.8.3)
-      defu:
-        specifier: ^6.1.4
-        version: 6.1.4
       depcheck:
         specifier: npm:@dword-design/depcheck@^0.0.7
         version: '@dword-design/depcheck@0.0.7'
@@ -583,8 +580,8 @@ packages:
   '@dword-design/dedent@0.7.0':
     resolution: {integrity: sha512-OFmAmzKiDUh9m7WRMYcoEOPI7b5tS5hdqQmtKDwF+ZssVJv8a+GHo9VOtFsmlw3h8Roh/9QzFWIsjSFZyQUMdg==}
 
-  '@dword-design/defu@1.0.2':
-    resolution: {integrity: sha512-TBH9HwfKNImzH+2l7XwWXYyp9cz+cA54W6zDotFbgiG0nhlO3ao/7dJ1LDj2MK5g+MucZ2hXBZdUVlu/U9iUpA==}
+  '@dword-design/defu@1.0.3':
+    resolution: {integrity: sha512-QEM8a6CPIrMvudnuNDwr3IxWJ0dcMKG9tgxt3zuPk/NmXV0ejk4qxQJ1PfquJwRzu59UsqNpUAACMG485VMIUA==}
     engines: {node: '>=18'}
 
   '@dword-design/depcheck-parser-sass@4.0.4':
@@ -7565,7 +7562,7 @@ snapshots:
     dependencies:
       babel-plugin-add-module-exports: 1.0.4
 
-  '@dword-design/defu@1.0.2':
+  '@dword-design/defu@1.0.3':
     dependencies:
       defu: 6.1.4
 
@@ -7657,7 +7654,7 @@ snapshots:
   '@dword-design/eslint-plugin-import-alias@6.0.3':
     dependencies:
       '@babel/core': 7.27.4
-      '@dword-design/defu': 1.0.2
+      '@dword-design/defu': 1.0.3
       babel-plugin-module-resolver: 5.0.2
     transitivePeerDependencies:
       - supports-color
@@ -11733,7 +11730,7 @@ snapshots:
 
   make-cli@4.0.6:
     dependencies:
-      '@dword-design/defu': 1.0.2
+      '@dword-design/defu': 1.0.3
       commander: 12.1.0
       lodash-es: 4.17.21
       p-is-promise: 4.0.0
@@ -12483,7 +12480,7 @@ snapshots:
 
   postcss-colormin@7.0.3(postcss@8.5.6):
     dependencies:
-      browserslist: 4.25.1
+      browserslist: 4.25.0
       caniuse-api: 3.0.0
       colord: 2.9.3
       postcss: 8.5.6
@@ -12491,7 +12488,7 @@ snapshots:
 
   postcss-convert-values@7.0.5(postcss@8.5.6):
     dependencies:
-      browserslist: 4.25.1
+      browserslist: 4.25.0
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
@@ -12520,7 +12517,7 @@ snapshots:
 
   postcss-merge-rules@7.0.5(postcss@8.5.6):
     dependencies:
-      browserslist: 4.25.1
+      browserslist: 4.25.0
       caniuse-api: 3.0.0
       cssnano-utils: 5.0.1(postcss@8.5.6)
       postcss: 8.5.6
@@ -12540,7 +12537,7 @@ snapshots:
 
   postcss-minify-params@7.0.3(postcss@8.5.6):
     dependencies:
-      browserslist: 4.25.1
+      browserslist: 4.25.0
       cssnano-utils: 5.0.1(postcss@8.5.6)
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
@@ -12587,7 +12584,7 @@ snapshots:
 
   postcss-normalize-unicode@7.0.3(postcss@8.5.6):
     dependencies:
-      browserslist: 4.25.1
+      browserslist: 4.25.0
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
@@ -12609,7 +12606,7 @@ snapshots:
 
   postcss-reduce-initial@7.0.3(postcss@8.5.6):
     dependencies:
-      browserslist: 4.25.1
+      browserslist: 4.25.0
       caniuse-api: 3.0.0
       postcss: 8.5.6
 
