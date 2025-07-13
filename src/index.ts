@@ -13,7 +13,7 @@ import fs from 'fs-extra';
 import type GitHost from 'hosted-git-info';
 import { createJiti } from 'jiti';
 import { identity, mapValues } from 'lodash-es';
-import type { CommandObjectInObjectInput } from 'make-cli';
+import type { CommandInObjectInput } from 'make-cli';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
 import type { RenovateConfig } from 'renovate/dist/config/types';
 import type { PackageJson, TsConfigJson } from 'type-fest';
@@ -46,35 +46,26 @@ import getVscodeConfig from './get-generated-files/get-vscode';
 import githubCodespacesConfig from './get-generated-files/github-codespaces';
 import getGitInfo from './get-git-info';
 
-const mergeConfigs = (...configs) => {
-  const result = deepmerge.all(configs, {
-    customMerge: key =>
-      key === 'supportedNodeVersions' ? (a, b) => b : undefined,
-  });
-
-  return result;
-};
-
 type Config = {
   name: string;
   global: boolean;
   allowedMatches: string[];
-  commands: Record<string, CommandObjectInObjectInput>;
+  commands: Record<string, CommandInObjectInput>;
   depcheckConfig: Omit<DepcheckOptions, 'package'>;
   deployAssets: Array<{ label: string; path: string }>;
   deployEnv: Record<string, string>;
   deployPlugins: string[];
   editorIgnore: string[];
   fetchGitHistory: boolean;
-  git: GitHost;
+  git?: GitHost;
   gitignore: string[];
   hasTypescriptConfigRootAlias: boolean;
-  lint: (optionsInput: CommandOptionsInput) => void;
+  lint: (optionsInput?: CommandOptionsInput) => void;
   macos: boolean;
   minNodeVersion: number;
   nodeVersion: number;
   preDeploySteps: string[];
-  prepare: (optionsInput: CommandOptionsInput) => void;
+  prepare: (optionsInput?: CommandOptionsInput) => void;
   readmeInstallString: string;
   seeAlso: Array<{ description: string; repository: string }>;
   supportedNodeVersions: number[];
@@ -88,7 +79,19 @@ type Config = {
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
 };
-type ConfigInput = Partial<Config> | ((this: Base) => Partial<Config>) | null;
+type ConfigInputObject = Partial<Config>;
+type ConfigInput =
+  | ConfigInputObject
+  | ((this: Base) => ConfigInputObject)
+  | string
+  | null;
+
+const mergeConfigs = (...configs: Partial<Config>[]): Partial<Config> =>
+  deepmerge.all(configs, {
+    customMerge: key =>
+      key === 'supportedNodeVersions' ? (a, b) => b : undefined,
+  });
+
 class Base {
   config: Config;
   packageConfig: PackageJson;
@@ -191,19 +194,20 @@ class Base {
   constructor(configInput: ConfigInput = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
-    let config: Partial<Config>;
 
-    if (configInput === null) {
-      config = { name: packageName`@dword-design/base-config-node` };
-    } else if (typeof configInput === 'function') {
-      config = configInput.call(this);
-    } else {
-      config = configInput;
-    }
+    const config = (() => {
+      if (configInput === null) {
+        return { name: packageName`@dword-design/base-config-node` };
+      } else if (typeof configInput === 'string') {
+        return { name: configInput };
+      } else if (typeof configInput === 'function') {
+        return configInput.call(this);
+      }
 
-    if (config.name) {
-      config.name = pluginNameToPackageName(config.name, 'base-config');
-    }
+      return configInput;
+    })();
+
+    config.name = pluginNameToPackageName(config.name, 'base-config');
 
     this.packageConfig = fs.existsSync(pathLib.join(this.cwd, 'package.json'))
       ? fs.readJsonSync(pathLib.join(this.cwd, 'package.json'))
@@ -223,10 +227,7 @@ class Base {
         ],
         ignorePath: '.gitignore',
         parsers: { '**/*.ts': depcheck.parser.typescript },
-        specials: [
-          getDepcheckSpecialBase(configInput.name),
-          depcheck.special.bin,
-        ],
+        specials: [getDepcheckSpecialBase(config.name), depcheck.special.bin],
       },
       deployAssets: [],
       deployEnv: {},
@@ -264,33 +265,29 @@ class Base {
       windows: true,
     };
 
-    const configsToMerge: ConfigInput[] = [defaultConfig];
+    const configsToMerge = [defaultConfig];
 
-    if (config.name) {
-      const inheritedConfigPath =
-        config.name === this.packageConfig.name
-          ? pathLib.resolve(this.cwd, 'src', 'index.ts')
-          : config.name;
+    const inheritedConfigPath =
+      config.name === this.packageConfig.name
+        ? pathLib.resolve(this.cwd, 'src', 'index.ts')
+        : config.name;
 
-      let inheritedConfig = inheritedConfigPath
-        ? jitiInstance(inheritedConfigPath)
-        : undefined;
+    let inheritedConfig = inheritedConfigPath
+      ? jitiInstance(inheritedConfigPath)
+      : undefined;
 
-      if (inheritedConfig?.default) {
-        inheritedConfig = inheritedConfig.default;
-      }
-
-      if (typeof inheritedConfig === 'function') {
-        inheritedConfig = inheritedConfig.call(
-          this,
-          mergeConfigs(defaultConfig, config),
-        );
-      }
-
-      configsToMerge.push(inheritedConfig);
+    if (inheritedConfig?.default) {
+      inheritedConfig = inheritedConfig.default;
     }
 
-    configsToMerge.push(config);
+    if (typeof inheritedConfig === 'function') {
+      inheritedConfig = inheritedConfig.call(
+        this,
+        mergeConfigs(defaultConfig, config),
+      );
+    }
+
+    configsToMerge.push(inheritedConfig, config);
     this.config = mergeConfigs(...configsToMerge);
 
     this.config = {

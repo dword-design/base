@@ -67,6 +67,14 @@ test('empty', ({}, testInfo) => {
   );
 });
 
+test('string', ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  expect(new Base('@dword-design/component', { cwd }).config.name).toEqual(
+    '@dword-design/base-config-component',
+  );
+});
+
 test('empty parent', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
@@ -113,11 +121,11 @@ test('function inherited', async ({}, testInfo) => {
 
   await fs.outputFile(
     pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
-    'export default config => ({ readmeInstallString: config.bar })',
+    'export default config => ({ readmeInstallString: config.name })',
   );
 
-  const base = new Base({ bar: 'baz', name: 'foo' }, { cwd });
-  expect(base.config.readmeInstallString).toEqual('baz');
+  const base = new Base({ name: 'foo' }, { cwd });
+  expect(base.config.readmeInstallString).toEqual('foo');
 });
 
 test('global', async ({}, testInfo) => {
@@ -149,6 +157,8 @@ test('inherited', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
     endent`
+      import fs from 'fs-extra';
+
       export default {
         commands: {
           prepublishOnly: x => x + 1,
@@ -161,13 +171,13 @@ test('inherited', async ({}, testInfo) => {
         deployPlugins: ['semantic-release-foo'],
         editorIgnore: ['foo'],
         gitignore: ['foo'],
-        lint: x => x + 3,
+        lint: () => fs.outputFile(pathLib.join('${cwd}', 'lint.txt'), ''),
         nodeVersion: 10,
         packageBaseConfig: {
           main: 'dist/index.scss',
         },
         preDeploySteps: [{ run: 'foo' }],
-        prepare: x => x + 2,
+        lint: () => fs.outputFile(pathLib.join('${cwd}', 'prepare.txt'), ''),
         readmeInstallString: 'foo',
         supportedNodeVersions: [1, 2],
       }
@@ -191,8 +201,10 @@ test('inherited', async ({}, testInfo) => {
 
   expect(base.run('prepublishOnly', 1)).toEqual(2);
   expect(base.run('start', 1)).toEqual(4);
-  expect(base.config.prepare(1)).toEqual(3);
-  expect(base.config.lint(1)).toEqual(4);
+  await base.config.prepare();
+  expect(await fs.exists(pathLib.join(cwd, 'prepare.txt'))).toBe(true);
+  await base.config.lint();
+  expect(await fs.exists(pathLib.join(cwd, 'lint.txt'))).toBe(true);
   expect(typeof base.config.depcheckConfig).toEqual('object');
 });
 

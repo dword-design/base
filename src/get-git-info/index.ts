@@ -15,9 +15,9 @@ export default ({ cwd = '.' } = {}) => {
     return;
   }
 
-  const gitInfo = hostedGitInfo.fromUrl(gitUrl) ?? { type: undefined };
+  const gitInfo = hostedGitInfo.fromUrl(gitUrl);
 
-  if (gitInfo.type !== 'github') {
+  if (gitInfo && gitInfo.type !== 'github') {
     throw new Error('Only GitHub repositories are supported.');
   }
 

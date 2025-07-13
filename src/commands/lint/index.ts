@@ -7,7 +7,7 @@ import ts from 'typescript';
 
 import type { CommandOptionsInput } from '@/src/commands/command-options-input';
 
-export default async function (optionsInput: CommandOptionsInput) {
+export default async function (optionsInput?: CommandOptionsInput) {
   const options = {
     log: process.env.NODE_ENV !== 'test',
     stderr: 'inherit',

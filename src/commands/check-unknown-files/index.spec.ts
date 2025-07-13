@@ -1,12 +1,19 @@
 import { expect, test } from '@playwright/test';
 import { isEmpty } from 'lodash-es';
 import outputFiles from 'output-files';
+import type { Files } from 'output-files';
 
 import { Base } from '@/src';
 
 import UnknownFilesError from './unknown-files-error';
 
-const tests = {
+type TestConfig = {
+  allowedMatches?: string[];
+  files?: Files;
+  result?: Record<string, true>;
+};
+
+const tests: Record<string, TestConfig> = {
   'config allowed matches': {
     allowedMatches: ['bar.txt'],
     files: { 'bar.txt': '', 'foo.txt': '' },
