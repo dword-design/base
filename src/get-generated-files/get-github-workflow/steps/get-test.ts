@@ -38,7 +38,7 @@ export default function () {
       uses: gitHubAction`actions/upload-artifact@v4`,
       with: {
         'if-no-files-found': 'ignore',
-        name: 'Images from tests',
+        name: 'Data from tests',
         path: 'test-results/*/**',
       },
     },
