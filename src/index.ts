@@ -50,7 +50,7 @@ import githubCodespacesConfig from './get-generated-files/github-codespaces';
 import getGitInfo from './get-git-info';
 
 type Config = {
-  name: string;
+  name?: string;
   global: boolean;
   allowedMatches: string[];
   commands: Record<string, CommandObjectInObjectInput>;
@@ -202,7 +202,7 @@ class Base {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
 
-    const config: Partial<Config> & Pick<Config, 'name'> = (() => {
+    const config = (() => {
       if (configInput === null) {
         return { name: packageName`@dword-design/base-config-node` };
       } else if (typeof configInput === 'string') {
@@ -214,7 +214,9 @@ class Base {
       return configInput;
     })();
 
-    config.name = pluginNameToPackageName(config.name, 'base-config');
+    if (config.name) {
+      config.name = pluginNameToPackageName(config.name, 'base-config');
+    }
 
     this.packageConfig = fs.existsSync(pathLib.join(this.cwd, 'package.json'))
       ? fs.readJsonSync(pathLib.join(this.cwd, 'package.json'))
@@ -276,7 +278,7 @@ class Base {
     };
 
     const inheritedConfigPath =
-      config.name === this.packageConfig.name
+      config.name && config.name === this.packageConfig.name
         ? pathLib.resolve(this.cwd, 'src', 'index.ts')
         : config.name;
 
