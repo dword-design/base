@@ -17,7 +17,7 @@ test('invalid github url', async ({}, testInfo) => {
   );
 });
 
-test.only('invalid url', async ({}, testInfo) => {
+test('invalid url', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await execaCommand('git init', { cwd });
   await execaCommand('git remote add origin foo', { cwd });
