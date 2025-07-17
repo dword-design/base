@@ -237,6 +237,7 @@ class Base {
       commands: {},
       depcheckConfig: {
         detectors: [
+          depcheck.detector.exportDeclaration,
           depcheck.detector.importDeclaration,
           depcheck.detector.requireCallExpression,
           depcheck.detector.requireResolveCallExpression,
