@@ -22,6 +22,8 @@
     "lint": "base lint",
     "prepare": "base prepare",
     "prepublishOnly": "base prepublishOnly",
-    "test": "base test"
+    "test": "base test",
+    "typecheck": "base typecheck",
+    "verify": "base verify"
   }
 }
