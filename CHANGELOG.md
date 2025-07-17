@@ -1,3 +1,11 @@
+## [14.0.1](https://github.com/dword-design/base/compare/v14.0.0...v14.0.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* doc ([2368b3d](https://github.com/dword-design/base/commit/2368b3d396ce357cc0c87e7ea310426370e2e0b9))
+* make types dev dep ([c5bb3f6](https://github.com/dword-design/base/commit/c5bb3f6db35bd1695c2fb4de648a330a21058724))
+
 # [14.0.0](https://github.com/dword-design/base/compare/v13.1.3...v14.0.0) (2025-07-13)
 
 
