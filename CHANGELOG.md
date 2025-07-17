@@ -1,3 +1,10 @@
+## [14.0.6](https://github.com/dword-design/base/compare/v14.0.5...v14.0.6) (2025-07-17)
+
+
+### Bug Fixes
+
+* add env to CommandOptionsInput ([19f2bc3](https://github.com/dword-design/base/commit/19f2bc3f3ecb26565b23ec98043bc223475ef1dc))
+
 ## [14.0.5](https://github.com/dword-design/base/compare/v14.0.4...v14.0.5) (2025-07-17)
 
 
