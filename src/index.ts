@@ -88,7 +88,7 @@ type ConfigObjectInput = Omit<Partial<Config>, 'commands'> & {
 };
 type ConfigObjectOrFunctionInput =
   | ConfigObjectInput
-  | ((this: Base) => ConfigObjectInput);
+  | ((this: Base, Config) => ConfigObjectInput);
 type ConfigInput = ConfigObjectOrFunctionInput | string | null;
 
 const mergeConfigs = createDefu((obj, key, value) => {
