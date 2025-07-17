@@ -1,3 +1,10 @@
+# [14.1.0](https://github.com/dword-design/base/compare/v14.0.7...v14.1.0) (2025-07-17)
+
+
+### Features
+
+* defineBaseConfig ([64f088e](https://github.com/dword-design/base/commit/64f088e044c5183b817e0177a10efbb3772dbeeb))
+
 ## [14.0.7](https://github.com/dword-design/base/compare/v14.0.6...v14.0.7) (2025-07-17)
 
 
