@@ -90,7 +90,7 @@ type ConfigObjectInput = Omit<Partial<Config>, 'commands'> & {
 };
 type ConfigObjectOrFunctionInput =
   | ConfigObjectInput
-  | ((this: Base, Config) => ConfigObjectInput);
+  | ((this: Base, config: Config) => ConfigObjectInput);
 type ConfigInput = ConfigObjectOrFunctionInput | string | null;
 
 export const defineBaseConfig = (configInput: ConfigInput) => configInput;
