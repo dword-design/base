@@ -11,7 +11,6 @@ export default async function (optionsInput?: CommandOptionsInput) {
   };
 
   this.lintPackagejson();
-
   const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
 
   if (

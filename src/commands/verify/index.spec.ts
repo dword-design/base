@@ -1,9 +1,11 @@
-import { test, expect } from '@playwright/test';
-import outputFiles from 'output-files';
-import { Base } from '@/src';
+import pathLib from 'node:path';
+
+import { expect, test } from '@playwright/test';
 import endent from 'endent';
 import fs from 'fs-extra';
-import pathLib from 'node:path';
+import outputFiles from 'output-files';
+
+import { Base } from '@/src';
 
 test('unused dependencies', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();

@@ -1,7 +1,9 @@
-import { test, expect } from '@playwright/test';
 import pathLib from 'node:path';
-import fs from 'fs-extra';
+
+import { expect, test } from '@playwright/test';
 import { execaCommand } from 'execa';
+import fs from 'fs-extra';
+
 import { Base } from '@/src';
 
 test('bin: object', async ({}, testInfo) => {

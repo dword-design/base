@@ -17,9 +17,12 @@ export default function (options) {
   return execa(
     packageName`c8`,
     [
-      '--exclude', 'fixtures',
-      '--exclude', 'test-results',
-      '--exclude', 'playwright.config.ts',
+      '--exclude',
+      'fixtures',
+      '--exclude',
+      'test-results',
+      '--exclude',
+      'playwright.config.ts',
       'playwright',
       'test',
       '--pass-with-no-tests',
