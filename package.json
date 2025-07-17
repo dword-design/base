@@ -28,7 +28,9 @@
     "lint": "tsx src/cli.ts lint",
     "prepare": "tsx src/cli.ts prepare",
     "prepublishOnly": "tsx src/cli.ts prepublishOnly",
-    "test": "tsx src/cli.ts test"
+    "test": "tsx src/cli.ts test",
+    "typecheck": "tsx src/cli.ts typecheck",
+    "verify": "tsx src/cli.ts verify"
   },
   "dependencies": {
     "@commitlint/cli": "^18.6.1",

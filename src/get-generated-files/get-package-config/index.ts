@@ -9,6 +9,8 @@ export default function () {
     depcheck: true,
     lint: true,
     prepare: true,
+    typecheck: true,
+    verify: true,
     ...(this.config.testInContainer && { 'test:raw': true }),
     test: true,
     ...mapValues(this.config.commands, stubTrue),

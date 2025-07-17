@@ -31,7 +31,7 @@ export default function () {
         ),
         GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
       },
-      run: 'pnpm test',
+      run: 'pnpm verify',
     },
     {
       if: 'always()',

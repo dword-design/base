@@ -42,6 +42,8 @@ try {
       depcheck: { handler: () => base.depcheck() },
       lint: { handler: () => base.lint() },
       prepare: { handler: () => base.prepare() },
+      typecheck: { handler: () => base.typecheck() },
+      verify: { handler: () => base.verify() },
       ...(base.config.testInContainer && {
         'test:raw': {
           arguments: '[patterns...]',
