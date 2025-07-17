@@ -1,3 +1,10 @@
+## [14.0.4](https://github.com/dword-design/base/compare/v14.0.3...v14.0.4) (2025-07-17)
+
+
+### Bug Fixes
+
+* export CommandOptionsInput ([d35efb9](https://github.com/dword-design/base/commit/d35efb919c0d269c29202f8da8b70871852489f6))
+
 ## [14.0.3](https://github.com/dword-design/base/compare/v14.0.2...v14.0.3) (2025-07-17)
 
 
