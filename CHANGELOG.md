@@ -1,3 +1,10 @@
+## [14.0.2](https://github.com/dword-design/base/compare/v14.0.1...v14.0.2) (2025-07-17)
+
+
+### Bug Fixes
+
+* fix config signature ([2c87031](https://github.com/dword-design/base/commit/2c87031c17f54cf551f811ad604b001ccc2bd228))
+
 ## [14.0.1](https://github.com/dword-design/base/compare/v14.0.0...v14.0.1) (2025-07-17)
 
 
