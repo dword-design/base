@@ -66,12 +66,12 @@ type Config = {
   git?: GitHost;
   gitignore: string[];
   hasTypescriptConfigRootAlias: boolean;
-  lint: (optionsInput?: CommandOptionsInput) => void;
+  lint: (optionsInput?: CommandOptionsInput) => unknown;
   macos: boolean;
   minNodeVersion: number;
   nodeVersion: number;
   preDeploySteps: string[];
-  prepare: (optionsInput?: CommandOptionsInput) => void;
+  prepare: (optionsInput?: CommandOptionsInput) => unknown;
   readmeInstallString: string;
   seeAlso: Array<{ description: string; repository: string }>;
   supportedNodeVersions: number[];
@@ -92,6 +92,8 @@ type ConfigObjectOrFunctionInput =
   | ConfigObjectInput
   | ((this: Base, Config) => ConfigObjectInput);
 type ConfigInput = ConfigObjectOrFunctionInput | string | null;
+
+export const defineBaseConfig = (configInput: ConfigInput) => configInput;
 
 const mergeConfigs = createDefu((obj, key, value) => {
   if (key === 'supportedNodeVersions') {
