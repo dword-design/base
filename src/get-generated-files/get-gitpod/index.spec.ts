@@ -5,7 +5,7 @@ import fs from 'fs-extra';
 
 import { Base } from '@/src';
 
-test.only('works', async ({}, testInfo) => {
+test('works', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await fs.outputFile(
