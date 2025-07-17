@@ -3,7 +3,7 @@ import { execa } from 'execa';
 
 import isCI from './is-ci';
 
-export default async function (options) {
+export default function (options) {
   options = {
     log: process.env.NODE_ENV !== 'test',
     patterns: [],
@@ -17,6 +17,9 @@ export default async function (options) {
   return execa(
     packageName`c8`,
     [
+      '--exclude', 'fixtures',
+      '--exclude', 'test-results',
+      '--exclude', 'playwright.config.ts',
       'playwright',
       'test',
       '--pass-with-no-tests',

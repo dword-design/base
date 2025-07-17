@@ -1,6 +1,5 @@
 import { execaCommand } from 'execa';
 import parsePackagejsonName from 'parse-packagejson-name';
-import lintPackagejson from './lint-packagejson';
 
 import type { CommandOptionsInput } from '@/src/commands/command-options-input';
 
