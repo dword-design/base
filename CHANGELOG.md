@@ -1,3 +1,10 @@
+## [14.0.5](https://github.com/dword-design/base/compare/v14.0.4...v14.0.5) (2025-07-17)
+
+
+### Bug Fixes
+
+* add exportDeclaration for depcheck ([f8126a5](https://github.com/dword-design/base/commit/f8126a5abd5f6238a7190a2a18d51f1133fc1e85))
+
 ## [14.0.4](https://github.com/dword-design/base/compare/v14.0.3...v14.0.4) (2025-07-17)
 
 
