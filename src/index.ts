@@ -334,3 +334,5 @@ export { default as loadConfigSync } from './load-config-sync';
 export { Base };
 
 export type { Config, ConfigInput };
+
+export { type CommandOptionsInput } from './commands/command-options-input';
