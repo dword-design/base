@@ -1,5 +1,6 @@
 import { execaCommand } from 'execa';
 import parsePackagejsonName from 'parse-packagejson-name';
+import lintPackagejson from './lint-packagejson';
 
 import type { CommandOptionsInput } from '@/src/commands/command-options-input';
 
@@ -9,6 +10,8 @@ export default async function (optionsInput?: CommandOptionsInput) {
     stderr: 'inherit',
     ...optionsInput,
   };
+
+  this.lintPackagejson();
 
   const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
 

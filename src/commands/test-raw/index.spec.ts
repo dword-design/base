@@ -38,77 +38,6 @@ test('assertion', async ({}, testInfo) => {
   );
 });
 
-test('bin: object', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ bin: { foo: './dist/cli.js' } }),
-  );
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.test();
-});
-
-test('bin: object: outside dist', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ bin: { foo: './src/cli.js' } }),
-  );
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  await expect(base.test()).rejects.toThrow(
-    'package.json invalid\ndata/bin/foo must match pattern "^\\.\\/dist\\/"',
-  );
-});
-
-test('bin: string', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ bin: './dist/cli.js' }),
-  );
-
-  const base = await new Base(null, { cwd });
-  await base.prepare();
-  await base.test();
-});
-
-test('bin: string: outside dist', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ bin: './src/cli.js' }),
-  );
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  await expect(base.test()).rejects.toThrow(
-    'package.json invalid\ndata/bin must match pattern "^\\.\\/dist\\/"',
-  );
-});
-
-test('config file errors', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ name: '_foo' }),
-  );
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-  await expect(base.test()).rejects.toThrow('package.json invalid');
-});
-
 test('empty', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   const base = new Base(null, { cwd });
@@ -161,44 +90,6 @@ test('image snapshot', async ({}, testInfo) => {
   ).toEqual(['works-1.png']);
 });
 
-test('invalid name', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ name: '_foo' }),
-  );
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  await expect(base.test()).rejects.toThrow(
-    'package.json invalid\ndata/name must match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"',
-  );
-});
-
-test('json errors', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-  await fs.outputFile(pathLib.join(cwd, 'src', 'test.json'), 'foo bar');
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  await expect(base.test()).rejects.toThrow(
-    "Parsing error: Unexpected identifier 'foo'",
-  );
-});
-
-test('linting errors', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-  await fs.outputFile(pathLib.join(cwd, 'src', 'index.ts'), "var foo = 'bar'");
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  await expect(base.test({ stderr: 'pipe' })).rejects.toThrow(
-    "error  'foo' is assigned a value but never used  @typescript-eslint/no-unused-vars",
-  );
-});
-
 test('minimal', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'src', 'index.ts'), 'export default 1');
@@ -249,32 +140,6 @@ test('multiple snapshots', async ({}, testInfo) => {
       'utf8',
     ),
   ).toEqual('bar');
-});
-
-test('node_modules postfix casing error', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await outputFiles(cwd, {
-    'node_modules-foo.ts': 'export default 1',
-    'src/index.spec.ts': "import '@/node_modules-foo.ts'",
-  });
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-  await expect(base.test()).rejects.toThrow('Filename is not in kebab case.');
-});
-
-test('package overrides', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ pnpm: { overrides: { bulma: '^1' } } }),
-  );
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.test();
 });
 
 test('error', async ({}, testInfo) => {
@@ -586,26 +451,6 @@ test('in project root', async ({}, testInfo) => {
   expect(stdout).toMatch('run test');
 });
 
-test('unused dependencies', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await outputFiles(cwd, {
-    'package.json': JSON.stringify({
-      dependencies: { 'change-case': '^1.0.0', foo: '^1.0.0' },
-    }),
-    'src/index.ts': 'export default 1',
-  });
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  await expect(base.test()).rejects.toThrow(endent`
-    Unused dependencies
-    * change-case
-    * foo
-  `);
-});
-
 test('usesdocker macOS', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
@@ -687,68 +532,4 @@ test('usesdocker windows', async ({}, testInfo) => {
   await base.prepare();
   await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
   await execaCommand('tsx cli.ts', { cwd, env: { CI: true.toString() } });
-});
-
-test('wrong dependencies type', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ dependencies: 1 }),
-  );
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  await expect(base.test()).rejects.toThrow(
-    'package.json invalid\ndata/dependencies must be object',
-  );
-});
-
-test('wrong description type', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ description: 1 }),
-  );
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  await expect(base.test()).rejects.toThrow(
-    'package.json invalid\ndata/description must be string',
-  );
-});
-
-test('wrong dev dependencies type', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ devDependencies: 1 }),
-  );
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  await expect(base.test()).rejects.toThrow(
-    'package.json invalid\ndata/devDependencies must be object',
-  );
-});
-
-test('wrong keywords type', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ keywords: 1 }),
-  );
-
-  const base = new Base(null, { cwd });
-  await base.prepare();
-
-  await expect(base.test()).rejects.toThrow(
-    'package.json invalid\ndata/keywords must be array',
-  );
 });

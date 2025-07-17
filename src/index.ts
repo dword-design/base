@@ -26,6 +26,7 @@ import type { CommandOptionsInput } from './commands/command-options-input';
 import commit from './commands/commit';
 import depcheckMethod from './commands/depcheck';
 import lint from './commands/lint';
+import lintPackagejson from './commands/lint/lint-packagejson';
 import prepare from './commands/prepare';
 import test from './commands/test';
 import testDocker from './commands/test-docker';
@@ -114,6 +115,10 @@ class Base {
 
   lint(...args): ResultPromise {
     return lint.call(this, ...args);
+  }
+
+  lintPackagejson(...args): void {
+    return lintPackagejson.call(this, ...args);
   }
 
   typecheck(...args): ResultPromise {

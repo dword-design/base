@@ -115,7 +115,7 @@ test('type error: ts', async ({}, testInfo) => {
   );
 });
 
-test('type erorr: vue', async ({}, testInfo) => {
+test('type error: vue', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
@@ -140,22 +140,26 @@ test('type erorr: vue', async ({}, testInfo) => {
   );
 });
 
-test('package name with dot', async ({}, testInfo) => {
+test('json error', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+  await fs.outputFile(pathLib.join(cwd, 'src', 'test.json'), 'foo bar');
+  const base = new Base(null, { cwd });
+  await base.prepare();
+
+  await expect(base.lint()).rejects.toThrow(
+    "Parsing error: Unexpected identifier 'foo'",
+  );
+});
+
+test('node_modules postfix casing error', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ name: 'foo.de' }),
-  );
-
-  await execaCommand('git init', { cwd });
-
-  await execaCommand(
-    'git remote add origin https://github.com/xyz/foo.de.git',
-    { cwd },
-  );
+  await outputFiles(cwd, {
+    'node_modules-foo.ts': 'export default 1',
+    'src/index.spec.ts': "import '@/node_modules-foo.ts'",
+  });
 
   const base = new Base(null, { cwd });
   await base.prepare();
-  await base.lint();
+  await expect(base.lint()).rejects.toThrow('Filename is not in kebab case.');
 });

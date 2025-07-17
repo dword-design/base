@@ -1,13 +1,7 @@
-import Ajv from 'ajv';
 import packageName from 'depcheck-package-name';
-import endent from 'endent';
 import { execa } from 'execa';
 
 import isCI from './is-ci';
-import packageJsonSchema from './package-json-schema';
-
-const ajv = new Ajv({ allowUnionTypes: true });
-const validatePackageJson = ajv.compile(packageJsonSchema);
 
 export default async function (options) {
   options = {
@@ -16,18 +10,6 @@ export default async function (options) {
     stderr: 'inherit',
     ...options,
   };
-
-  if (options.patterns.length === 0) {
-    if (!validatePackageJson(this.packageConfig)) {
-      throw new Error(endent`
-        package.json invalid
-        ${ajv.errorsText(validatePackageJson.errors)}
-      `);
-    }
-
-    await this.lint(options);
-    await this.depcheck(options);
-  }
 
   const runDockerTests =
     !isCI({ cwd: this.cwd }) || !['win32', 'darwin'].includes(process.platform);
