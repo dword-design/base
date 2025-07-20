@@ -7,6 +7,6 @@ export default defineConfig({
     '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{ext}',
 
   timeout: 100_000,
-  //fullyParallel: true,
+  // fullyParallel: true,
   workers: 1,
 });

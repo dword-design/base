@@ -50,13 +50,16 @@ import githubCodespacesConfig from './get-generated-files/github-codespaces';
 import getGitInfo from './get-git-info';
 
 type HandlerWithBase = (this: Base, ...args: unknown[]) => unknown;
+
 type PartialCommandObjectInObjectWithBase = Omit<
   PartialCommandObjectInObject,
   'handler'
 > & { handler: (this: Base, ...args: unknown[]) => unknown };
+
 type PartialCommandInObjectWithBase =
   | PartialCommandObjectInObjectWithBase
   | HandlerWithBase;
+
 type Config = {
   name?: string;
   global: boolean;
@@ -90,12 +93,15 @@ type Config = {
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
 };
+
 type PartialConfigObject = Omit<Partial<Config>, 'commands'> & {
   commands?: Record<string, PartialCommandInObjectWithBase>;
 };
+
 type PartialConfigOrFunction =
   | PartialConfigObject
   | ((this: Base, config: Config) => PartialConfigObject);
+
 type PartialConfig = PartialConfigOrFunction | string | null;
 
 export const defineBaseConfig = (configInput: PartialConfig) => configInput;
