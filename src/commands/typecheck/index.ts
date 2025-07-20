@@ -4,13 +4,13 @@ import { execaCommand } from 'execa';
 import { globby } from 'globby';
 import ts from 'typescript';
 
-import type { CommandOptionsInput } from '@/src/commands/command-options-input';
+import type { PartialCommandOptions } from '@/src/commands/command-options-input';
 
-export default async function (optionsInput?: CommandOptionsInput) {
+export default async function (partialOptions?: PartialCommandOptions) {
   const options = {
     log: process.env.NODE_ENV !== 'test',
     stderr: 'inherit',
-    ...optionsInput,
+    ...partialOptions,
   };
 
   const { config } = ts.readConfigFile(

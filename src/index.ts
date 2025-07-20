@@ -13,16 +13,13 @@ import fs from 'fs-extra';
 import type GitHost from 'hosted-git-info';
 import { createJiti } from 'jiti';
 import { identity, mapValues } from 'lodash-es';
-import type {
-  CommandInObjectInput,
-  CommandObjectInObjectInput,
-} from 'make-cli';
+import type { PartialCommandObjectInObject } from 'make-cli';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
 import type { RenovateConfig } from 'renovate/dist/config/types';
 import type { PackageJson, TsConfigJson } from 'type-fest';
 
 import checkUnknownFiles from './commands/check-unknown-files';
-import type { CommandOptionsInput } from './commands/command-options-input';
+import type { PartialCommandOptions } from './commands/command-options-input';
 import commit from './commands/commit';
 import depcheckMethod from './commands/depcheck';
 import lint from './commands/lint';
@@ -52,11 +49,19 @@ import getVscodeConfig from './get-generated-files/get-vscode';
 import githubCodespacesConfig from './get-generated-files/github-codespaces';
 import getGitInfo from './get-git-info';
 
+type HandlerWithBase = (this: Base, ...args: unknown[]) => unknown;
+type PartialCommandObjectInObjectWithBase = Omit<
+  PartialCommandObjectInObject,
+  'handler'
+> & { handler: (this: Base, ...args: unknown[]) => unknown };
+type PartialCommandInObjectWithBase =
+  | PartialCommandObjectInObjectWithBase
+  | HandlerWithBase;
 type Config = {
   name?: string;
   global: boolean;
   allowedMatches: string[];
-  commands: Record<string, CommandObjectInObjectInput>;
+  commands: Record<string, PartialCommandObjectInObjectWithBase>;
   depcheckConfig: Omit<DepcheckOptions, 'package'>;
   deployAssets: Array<{ label: string; path: string }>;
   deployEnv: Record<string, string>;
@@ -66,12 +71,12 @@ type Config = {
   git?: GitHost;
   gitignore: string[];
   hasTypescriptConfigRootAlias: boolean;
-  lint: (optionsInput?: CommandOptionsInput) => unknown;
+  lint: (partialOptions?: PartialCommandOptions) => unknown;
   macos: boolean;
   minNodeVersion: number;
   nodeVersion: number;
   preDeploySteps: string[];
-  prepare: (optionsInput?: CommandOptionsInput) => unknown;
+  prepare: (partialOptions?: PartialCommandOptions) => unknown;
   readmeInstallString: string;
   seeAlso: Array<{ description: string; repository: string }>;
   supportedNodeVersions: number[];
@@ -85,15 +90,15 @@ type Config = {
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
 };
-type ConfigObjectInput = Omit<Partial<Config>, 'commands'> & {
-  commands?: Record<string, CommandInObjectInput>;
+type PartialConfigObject = Omit<Partial<Config>, 'commands'> & {
+  commands?: Record<string, PartialCommandInObjectWithBase>;
 };
-type ConfigObjectOrFunctionInput =
-  | ConfigObjectInput
-  | ((this: Base, config: Config) => ConfigObjectInput);
-type ConfigInput = ConfigObjectOrFunctionInput | string | null;
+type PartialConfigOrFunction =
+  | PartialConfigObject
+  | ((this: Base, config: Config) => PartialConfigObject);
+type PartialConfig = PartialConfigOrFunction | string | null;
 
-export const defineBaseConfig = (configInput: ConfigInput) => configInput;
+export const defineBaseConfig = (configInput: PartialConfig) => configInput;
 
 const mergeConfigs = createDefu((obj, key, value) => {
   if (key === 'supportedNodeVersions') {
@@ -215,7 +220,7 @@ class Base {
     return getTypescriptConfig.call(this, ...args);
   }
 
-  constructor(configInput: ConfigInput = null, { cwd = '.' } = {}) {
+  constructor(configInput: PartialConfig = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
 
@@ -301,8 +306,8 @@ class Base {
         : config.name;
 
     let inheritedConfig:
-      | ConfigObjectOrFunctionInput
-      | { default: ConfigObjectOrFunctionInput } = inheritedConfigPath
+      | PartialConfigOrFunction
+      | { default: PartialConfigOrFunction } = inheritedConfigPath
       ? jitiInstance(inheritedConfigPath)
       : undefined;
 
@@ -341,6 +346,6 @@ export { default as loadConfigSync } from './load-config-sync';
 
 export { Base };
 
-export type { Config, ConfigInput };
+export type { Config, PartialConfig as ConfigInput };
 
-export { type CommandOptionsInput } from './commands/command-options-input';
+export { type PartialCommandOptions as CommandOptionsInput } from './commands/command-options-input';

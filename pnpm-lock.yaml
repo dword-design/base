@@ -70,7 +70,7 @@ importers:
         version: 3.0.1
       endent:
         specifier: npm:@dword-design/endent@^1.4.1
-        version: '@dword-design/endent@1.4.1'
+        version: '@dword-design/endent@1.4.7'
       eslint:
         specifier: ^9.31.0
         version: 9.31.0(jiti@2.4.2)
@@ -108,8 +108,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       make-cli:
-        specifier: ^4.0.6
-        version: 4.0.6
+        specifier: ^4.0.8
+        version: 4.0.8
       output-files:
         specifier: ^3.0.0
         version: 3.0.0
@@ -606,6 +606,9 @@ packages:
 
   '@dword-design/endent@1.4.1':
     resolution: {integrity: sha512-e2sCTzth5kyRdM0o+yEb5wBVzUdJL8Y6HblRGRV0Bif0knf1ZjRLhUjdCrqM+Muirb68X/xJzgdRDJVmLqgXGA==}
+
+  '@dword-design/endent@1.4.7':
+    resolution: {integrity: sha512-yK1ivALMq9Eys6O9SgO+jBpRbQBLruFL2FvWMWPcoqiY1hPDHleY02Vir6jN6j7tDiMog3tjVtqKb4eWXdKo1w==}
 
   '@dword-design/eslint-config@7.0.7':
     resolution: {integrity: sha512-Se1OTd/dxnVJf/gK/4mestD9uGBOMaIvvHNFeCP3dWqrKEIV+ruDLJEWXFvNwM8S/5gCe2Uk8O+gU3t1og79kQ==}
@@ -4358,8 +4361,8 @@ packages:
     resolution: {integrity: sha512-pDjaLs54bftlqyCT7KRC9FfbAURfKVcQFnNNe5qp4RLEOpNGiGjdNTUgMsYKFqZd75WhI0tYxQMIbgnpDptPCw==}
     engines: {node: '>=14'}
 
-  make-cli@4.0.6:
-    resolution: {integrity: sha512-PF/bFDfDrVfJSpSfg/JYYKl8WRaqJ5T16uZZ1a7hX14BW74JiKInGPLd/ihmLIgHkjb2fu5YTL1gwOIaWh828g==}
+  make-cli@4.0.8:
+    resolution: {integrity: sha512-h+kzzkOlv7hFf9c4c6MhrFRix+ii1NNFaTyQJbR4aol84hFeepgicTlJLEfkFKGAIjlFbfNM1pL3iWK1aIRtRQ==}
     engines: {node: '>=18'}
 
   make-dir@4.0.0:
@@ -7606,6 +7609,12 @@ snapshots:
   '@dword-design/endent@1.4.1':
     dependencies:
       '@dword-design/dedent': 0.7.0
+      fast-json-parse: 1.0.3
+      objectorarray: 1.0.5
+
+  '@dword-design/endent@1.4.7':
+    dependencies:
+      dedent: '@dword-design/dedent@0.7.0'
       fast-json-parse: 1.0.3
       objectorarray: 1.0.5
 
@@ -11709,7 +11718,7 @@ snapshots:
       '@dword-design/functions': 4.1.7
       commander: 9.5.0
 
-  make-cli@4.0.6:
+  make-cli@4.0.8:
     dependencies:
       '@dword-design/defu': 1.0.3
       commander: 12.1.0
