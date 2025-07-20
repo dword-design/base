@@ -1,3 +1,11 @@
+## [14.1.3](https://github.com/dword-design/base/compare/v14.1.2...v14.1.3) (2025-07-20)
+
+
+### Bug Fixes
+
+* remove typecheck from lint ([e36f191](https://github.com/dword-design/base/commit/e36f191f4aa9412708ff05fda2b30e379c237045))
+* upgrade eslint ([6f33b8e](https://github.com/dword-design/base/commit/6f33b8e01d5672447fbec720b764171357033a4e))
+
 ## [14.1.2](https://github.com/dword-design/base/compare/v14.1.1...v14.1.2) (2025-07-20)
 
 
