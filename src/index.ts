@@ -346,6 +346,6 @@ export { default as loadConfigSync } from './load-config-sync';
 
 export { Base };
 
-export type { Config, PartialConfig as ConfigInput };
+export type { Config, PartialConfig };
 
-export { type PartialCommandOptions as CommandOptionsInput } from './commands/command-options-input';
+export { type PartialCommandOptions } from './commands/command-options-input';
