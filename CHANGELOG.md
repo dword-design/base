@@ -1,3 +1,11 @@
+## [14.1.2](https://github.com/dword-design/base/compare/v14.1.1...v14.1.2) (2025-07-20)
+
+
+### Bug Fixes
+
+* rename function params ([e04f540](https://github.com/dword-design/base/commit/e04f5404f32dff4ce202d64a50e25d69ef7e6598))
+* rename type ([b40ae96](https://github.com/dword-design/base/commit/b40ae967350dd50634bd786eebe17febfa84292a))
+
 ## [14.1.1](https://github.com/dword-design/base/compare/v14.1.0...v14.1.1) (2025-07-20)
 
 
