@@ -33,6 +33,5 @@ export default async function (options: PartialCommandOptions = {}) {
     },
   );
 
-  await this.typecheck(options);
   return result;
 }
