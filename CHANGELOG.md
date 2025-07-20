@@ -1,3 +1,11 @@
+## [14.1.1](https://github.com/dword-design/base/compare/v14.1.0...v14.1.1) (2025-07-20)
+
+
+### Bug Fixes
+
+* fix type ([ee0b96f](https://github.com/dword-design/base/commit/ee0b96f3f2e4140931165c2170bde7230af6874b))
+* rename types ([e2b9316](https://github.com/dword-design/base/commit/e2b93167a8e570fcc4ecd91ca92405750dcc9201))
+
 # [14.1.0](https://github.com/dword-design/base/compare/v14.0.7...v14.1.0) (2025-07-17)
 
 
