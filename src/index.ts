@@ -71,12 +71,12 @@ type Config = {
   git?: GitHost;
   gitignore: string[];
   hasTypescriptConfigRootAlias: boolean;
-  lint: (partialOptions?: PartialCommandOptions) => unknown;
+  lint: (options?: PartialCommandOptions) => unknown;
   macos: boolean;
   minNodeVersion: number;
   nodeVersion: number;
   preDeploySteps: string[];
-  prepare: (partialOptions?: PartialCommandOptions) => unknown;
+  prepare: (options?: PartialCommandOptions) => unknown;
   readmeInstallString: string;
   seeAlso: Array<{ description: string; repository: string }>;
   supportedNodeVersions: number[];

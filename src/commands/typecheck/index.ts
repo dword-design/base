@@ -6,11 +6,11 @@ import ts from 'typescript';
 
 import type { PartialCommandOptions } from '@/src/commands/command-options-input';
 
-export default async function (partialOptions?: PartialCommandOptions) {
-  const options = {
+export default async function (options: PartialCommandOptions = {}) {
+  options = {
     log: process.env.NODE_ENV !== 'test',
     stderr: 'inherit',
-    ...partialOptions,
+    ...options,
   };
 
   const { config } = ts.readConfigFile(
