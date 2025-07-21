@@ -18,8 +18,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(@vue/compiler-core@3.5.17)(esbuild@0.25.6)
       '@dword-design/ci':
-        specifier: ^4.0.6
-        version: 4.0.6
+        specifier: ^5.0.0
+        version: 5.0.0
       '@dword-design/defu':
         specifier: ^1.0.3
         version: 1.0.3
@@ -27,8 +27,8 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(@typescript-eslint/parser@8.37.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@typescript-eslint/utils@8.37.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(jiti@2.4.2)(typescript@5.8.3)(vue-eslint-parser@10.1.3(eslint@9.31.0(jiti@2.4.2)))
       '@dword-design/personal-data':
-        specifier: ^2.0.3
-        version: 2.0.3
+        specifier: ^3.0.0
+        version: 3.0.0
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@22.0.12(typescript@5.8.3))
@@ -84,8 +84,8 @@ importers:
         specifier: ^11.3.0
         version: 11.3.0
       get-projectz-readme-section-regex:
-        specifier: ^3.0.10
-        version: 3.0.10
+        specifier: ^4.0.0
+        version: 4.0.0
       globby:
         specifier: ^14.1.0
         version: 14.1.0
@@ -580,9 +580,9 @@ packages:
     resolution: {integrity: sha512-LQ3tETmNv9cGP0YfJQ0R65/+UxtxcFfojx7Sj5Umn9g6nqHQmaSLvKDP8yngF5TCAmthBu71KUQlQJVnsyo8yQ==}
     engines: {node: '>=20'}
 
-  '@dword-design/ci@4.0.6':
-    resolution: {integrity: sha512-7yIQ2z1PcsOuCnWU9TteY9tabWM74bea6JlG3tbQN2iXMd1xMB/hFGH6j7ykdDSNvtwhiPzJQWV0wZ8OyvAcJw==}
-    engines: {node: '>=14'}
+  '@dword-design/ci@5.0.0':
+    resolution: {integrity: sha512-iU2ZNChtdYL51LJp016VCBmWzgRQAwdUKuJfDewfOJMQ4e2oHlzRW8tP2FB5Nh3VcgVMpbDMG70ZKgo2i4/E+A==}
+    engines: {node: '>=20'}
     hasBin: true
 
   '@dword-design/dedent@0.7.0':
@@ -626,11 +626,6 @@ packages:
     peerDependencies:
       eslint: '>=9.26.0'
 
-  '@dword-design/functions@4.1.7':
-    resolution: {integrity: sha512-kc7bzBKZasf0icxKldgB7dkpd1mcEQkPz8c0BP5Wuxy63bMYs+kNWbywFT+xNBWDT6N9cdTczHwBuVBgc8ZU0A==}
-    engines: {node: '>=14'}
-    deprecated: Use lodash and endent
-
   '@dword-design/functions@5.0.27':
     resolution: {integrity: sha512-16A97RKtn21xLWI7Y7VhFz4WCWui+TLit/J5/l77BDpWmPi2LzgjQzDbafDDw7OUeY6GEAi/M4jdbuQhsIbSEg==}
     engines: {node: '>=14'}
@@ -649,9 +644,9 @@ packages:
     resolution: {integrity: sha512-PHqxFhY1TaiiSJtcg0GM3hQDtRRWeFhEz8qjV91sZ9GGSrmrBpn3SqNfgQe5CzaDpf7pDFPbQvy1UmlZT8z4QQ==}
     engines: {node: '>=8'}
 
-  '@dword-design/personal-data@2.0.3':
-    resolution: {integrity: sha512-ufLKbxChE+oKnyDziyMvyiSfdTTaExXuq5u++/opEOgbN5CY+sw9BvAtqR5EbAhfNQhxbwo4jPfWhUkeEwDbwQ==}
-    engines: {node: '>=14'}
+  '@dword-design/personal-data@3.0.0':
+    resolution: {integrity: sha512-ZC0Wb4O5hQB0016zjut7OMIa/x4ZU40caQHymCQNZIPOE9R54yfWMKfmsU337KPJaXBBWo0d15UhcOzRTJkG6w==}
+    engines: {node: '>=20'}
 
   '@dword-design/plugin-name-to-package-name@0.1.2':
     resolution: {integrity: sha512-kATg/RzRkq/Yv0qNJziPqwAzKstBTzuXnowH4MvAMyqW6C7o5HlgZtik3GzO0kBKCBZBoRswBSvo9AHclOTxfg==}
@@ -869,6 +864,10 @@ packages:
 
   '@eslint/plugin-kit@0.3.3':
     resolution: {integrity: sha512-1+WqvgNMhmlAambTvT3KPtCl/Ibr68VldY2XY40SL1CE0ZXiakFR/cbTspaF5HsnpDMvcYYoJHfl4980NBjGag==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/plugin-kit@0.3.4':
+    resolution: {integrity: sha512-Ul5l+lHEcw3L5+k8POx6r74mxEYKG5kOb6Xpy2gCRW6zweT6TEhAf8vhxGgjhqrd/VO/Dirhsb+1hNpD1ue9hw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@gwhitney/detect-indent@7.0.1':
@@ -2544,10 +2543,6 @@ packages:
     resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
     engines: {node: '>= 10'}
 
-  commander@9.5.0:
-    resolution: {integrity: sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==}
-    engines: {node: ^12.20.0 || >=14}
-
   comment-parser@1.4.1:
     resolution: {integrity: sha512-buhp5kePrmda3vhc5B9t7pUQXAb2Tnd0qgpkIhPhkHXxJpiPJ11H0ZEU0oBpJ2QztSbzG/ZxMj/CHsYJqRHmyg==}
     engines: {node: '>= 12.0.0'}
@@ -3206,10 +3201,6 @@ packages:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
     engines: {node: '>=10'}
 
-  execa@7.2.0:
-    resolution: {integrity: sha512-UduyVP7TLB5IcAQl+OzLyLcS/l32W/GLg+AhHJ+ow40FOk2U3SAllPwR44v4vmdFwIWqpdwxxpQbF1n5ta9seA==}
-    engines: {node: ^14.18.0 || ^16.14.0 || >=18.0.0}
-
   execa@8.0.1:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
     engines: {node: '>=16.17'}
@@ -3491,9 +3482,9 @@ packages:
     resolution: {integrity: sha512-LmCKVxioe63Fy6KDAQ/mmCSOSSRUE/x4zdrMD+7dU8quF3bGpzvP8mOmq4Dgce3nzU9AgkVDotucNOOg7c27BQ==}
     engines: {node: '>= 12.0.0'}
 
-  get-projectz-readme-section-regex@3.0.10:
-    resolution: {integrity: sha512-Om3mBcQdRQGXAR8WPYBDSFw9GMLGRnnaHpyQPsuTCBzqhO5xAa92HwT7qodY8CYnhpcdd/OtAvj3vyoJYw+2sg==}
-    engines: {node: '>=14'}
+  get-projectz-readme-section-regex@4.0.0:
+    resolution: {integrity: sha512-jr6rJSoA40gyc/qT1P1IREo7pzB0QtIJ0X0nAEwGeCts9aLlw5aJOuNpTBB/6/SlHcw5JmOP+OSQ/EWxXow6qg==}
+    engines: {node: '>=20'}
 
   get-proto@1.0.1:
     resolution: {integrity: sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g==}
@@ -3759,10 +3750,6 @@ packages:
   human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
-
-  human-signals@4.3.1:
-    resolution: {integrity: sha512-nZXjEF2nbo7lIw3mgYjItAfgQXog3OjJogSbKa2CQIIvSGWcKgeJnQlNXip6NglNzYH45nSRiEVimMvYL8DDqQ==}
-    engines: {node: '>=14.18.0'}
 
   human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
@@ -4376,10 +4363,6 @@ packages:
 
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
-
-  make-cli@3.0.5:
-    resolution: {integrity: sha512-pDjaLs54bftlqyCT7KRC9FfbAURfKVcQFnNNe5qp4RLEOpNGiGjdNTUgMsYKFqZd75WhI0tYxQMIbgnpDptPCw==}
-    engines: {node: '>=14'}
 
   make-cli@4.0.8:
     resolution: {integrity: sha512-h+kzzkOlv7hFf9c4c6MhrFRix+ii1NNFaTyQJbR4aol84hFeepgicTlJLEfkFKGAIjlFbfNM1pL3iWK1aIRtRQ==}
@@ -7574,11 +7557,11 @@ snapshots:
       - sass
       - supports-color
 
-  '@dword-design/ci@4.0.6':
+  '@dword-design/ci@5.0.0':
     dependencies:
-      '@dword-design/functions': 4.1.7
-      execa: 7.2.0
-      make-cli: 3.0.5
+      execa: 9.6.0
+      lodash-es: 4.17.21
+      make-cli: 4.0.8
 
   '@dword-design/dedent@0.7.0':
     dependencies:
@@ -7693,7 +7676,7 @@ snapshots:
     dependencies:
       '@babel/helper-validator-identifier': 7.27.1
       '@eslint-community/eslint-utils': 4.7.0(eslint@9.31.0(jiti@2.4.2))
-      '@eslint/plugin-kit': 0.3.3
+      '@eslint/plugin-kit': 0.3.4
       change-case: 5.4.4
       ci-info: 4.3.0
       clean-regexp: 1.0.0
@@ -7710,13 +7693,6 @@ snapshots:
       regjsparser: 0.12.0
       semver: 7.7.2
       strip-indent: 4.0.0
-
-  '@dword-design/functions@4.1.7':
-    dependencies:
-      '@dword-design/endent': 1.4.1
-      delay: 5.0.0
-      lodash: 4.17.21
-      tinycolor2: 1.6.0
 
   '@dword-design/functions@5.0.27':
     dependencies:
@@ -7743,9 +7719,9 @@ snapshots:
       git-config-path: 2.0.0
       ini: 1.3.8
 
-  '@dword-design/personal-data@2.0.3':
+  '@dword-design/personal-data@3.0.0':
     dependencies:
-      '@dword-design/functions': 4.1.7
+      endent: '@dword-design/endent@1.4.7'
 
   '@dword-design/plugin-name-to-package-name@0.1.2':
     dependencies:
@@ -7894,6 +7870,11 @@ snapshots:
   '@eslint/object-schema@2.1.6': {}
 
   '@eslint/plugin-kit@0.3.3':
+    dependencies:
+      '@eslint/core': 0.15.1
+      levn: 0.4.1
+
+  '@eslint/plugin-kit@0.3.4':
     dependencies:
       '@eslint/core': 0.15.1
       levn: 0.4.1
@@ -9832,8 +9813,6 @@ snapshots:
 
   commander@7.2.0: {}
 
-  commander@9.5.0: {}
-
   comment-parser@1.4.1: {}
 
   commitizen@4.3.1(@types/node@24.0.13)(typescript@5.8.3):
@@ -10557,18 +10536,6 @@ snapshots:
       signal-exit: 3.0.7
       strip-final-newline: 2.0.0
 
-  execa@7.2.0:
-    dependencies:
-      cross-spawn: 7.0.6
-      get-stream: 6.0.1
-      human-signals: 4.3.1
-      is-stream: 3.0.0
-      merge-stream: 2.0.0
-      npm-run-path: 5.3.0
-      onetime: 6.0.0
-      signal-exit: 3.0.7
-      strip-final-newline: 3.0.0
-
   execa@8.0.1:
     dependencies:
       cross-spawn: 7.0.6
@@ -10897,9 +10864,7 @@ snapshots:
 
   get-package-name@2.2.0: {}
 
-  get-projectz-readme-section-regex@3.0.10:
-    dependencies:
-      '@dword-design/functions': 4.1.7
+  get-projectz-readme-section-regex@4.0.0: {}
 
   get-proto@1.0.1:
     dependencies:
@@ -11220,8 +11185,6 @@ snapshots:
       - supports-color
 
   human-signals@2.1.0: {}
-
-  human-signals@4.3.1: {}
 
   human-signals@5.0.0: {}
 
@@ -11759,11 +11722,6 @@ snapshots:
   magic-string@0.30.17:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.4
-
-  make-cli@3.0.5:
-    dependencies:
-      '@dword-design/functions': 4.1.7
-      commander: 9.5.0
 
   make-cli@4.0.8:
     dependencies:
