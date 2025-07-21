@@ -37,7 +37,7 @@ test('github action', async ({}, testInfo) => {
 
   await fs.outputFile(
     pathLib.join(cwd, 'index.ts'),
-    'gitHubAction`actions/checkout@v3`',
+    'gitHubAction`actions/checkout@v4`',
   );
 
   const base = new Base(null, { cwd });
