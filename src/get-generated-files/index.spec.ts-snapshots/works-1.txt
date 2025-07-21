@@ -1,7 +1,7 @@
 [
   ".commitlintrc.json",
   ".cz.json",
-  ".devcontainer/devcontainer.json",
+  ".devcontainer",
   ".editorconfig",
   ".gitattributes",
   ".github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md",
