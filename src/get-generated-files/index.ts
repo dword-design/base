@@ -12,17 +12,21 @@ import githubFunding from './github-funding';
 import githubLabelsConfig from './github-labels';
 import githubSyncLabelsConfig from './github-sync-labels';
 import npmrc from './npmrc';
+import githubCodespacesPostcreate from './github-codespaces-postcreate';
 
 export default function () {
   const packageConfig = this.getPackageConfig();
   return {
     '.commitlintrc.json': `${JSON.stringify(commitlintConfig, undefined, 2)}\n`,
     '.cz.json': `${JSON.stringify(commitizenConfig, undefined, 2)}\n`,
-    '.devcontainer/devcontainer.json': `${JSON.stringify(
-      this.githubCodespacesConfig,
-      undefined,
-      2,
-    )}\n`,
+    '.devcontainer': {
+      'devcontainer.json': `${JSON.stringify(
+        this.githubCodespacesConfig,
+        undefined,
+        2,
+      )}\n`,
+      'postcreate.sh': githubCodespacesPostcreate,
+    },
     '.editorconfig': editorconfigConfig,
     '.gitattributes': gitattributesConfig,
     '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md':
