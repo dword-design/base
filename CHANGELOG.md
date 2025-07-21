@@ -1,3 +1,11 @@
+## [15.0.2](https://github.com/dword-design/base/compare/v15.0.1...v15.0.2) (2025-07-21)
+
+
+### Bug Fixes
+
+* update dependency hosted-git-info to v8 ([#776](https://github.com/dword-design/base/issues/776)) ([11fdbb9](https://github.com/dword-design/base/commit/11fdbb953bc987ca6fd443caa34b29a73fe8e2d0))
+* update pnpm to v10.13.1 ([#784](https://github.com/dword-design/base/issues/784)) ([6d46e07](https://github.com/dword-design/base/commit/6d46e079a3a235ca7127d7458535ccb05ef5d879))
+
 ## [15.0.1](https://github.com/dword-design/base/compare/v15.0.0...v15.0.1) (2025-07-21)
 
 
