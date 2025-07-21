@@ -62,7 +62,7 @@
     "globby": "^14.1.0",
     "hosted-git-info": "^8.0.0",
     "husky": "^8.0.3",
-    "ignore": "^5.3.2",
+    "ignore": "^7.0.0",
     "is-ci": "^4.0.0",
     "jiti": "^2.4.2",
     "lodash-es": "^4.17.21",
