@@ -1,3 +1,10 @@
+# [15.1.0](https://github.com/dword-design/base/compare/v15.0.3...v15.1.0) (2025-07-21)
+
+
+### Features
+
+* custom typecheck ([14cb6c4](https://github.com/dword-design/base/commit/14cb6c46dc31bda51630d88c3d66a6250c6e11c2))
+
 ## [15.0.3](https://github.com/dword-design/base/compare/v15.0.2...v15.0.3) (2025-07-21)
 
 
