@@ -52,7 +52,7 @@
     "depcheck-detector-bin-name": "^1.0.2",
     "depcheck-detector-execa": "^4.0.3",
     "depcheck-detector-package-name": "^3.0.4",
-    "depcheck-package-name": "^3.0.1",
+    "depcheck-package-name": "^4.0.0",
     "endent": "npm:@dword-design/endent@^1.4.1",
     "eslint": "^9.31.0",
     "execa": "^9.6.0",
