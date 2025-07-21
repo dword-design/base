@@ -1,3 +1,15 @@
+# [15.0.0](https://github.com/dword-design/base/compare/v14.1.3...v15.0.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* Doppler GitHub codespaces ([#795](https://github.com/dword-design/base/issues/795)) ([d6cbc4f](https://github.com/dword-design/base/commit/d6cbc4fe9f0d052352afd41e5d3fe5b324dd32e2))
+
+
+### BREAKING CHANGES
+
+* drop TEST_ prefix for environment variables
+
 ## [14.1.3](https://github.com/dword-design/base/compare/v14.1.2...v14.1.3) (2025-07-20)
 
 
