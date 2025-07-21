@@ -1,3 +1,10 @@
+## [15.0.1](https://github.com/dword-design/base/compare/v15.0.0...v15.0.1) (2025-07-21)
+
+
+### Bug Fixes
+
+* fix defineBaseConfig type ([4d56f07](https://github.com/dword-design/base/commit/4d56f07efd8bb23ff758f81a90ed097f7669ed52))
+
 # [15.0.0](https://github.com/dword-design/base/compare/v14.1.3...v15.0.0) (2025-07-21)
 
 
