@@ -85,13 +85,13 @@ test('env @usesdocker', async ({ packageName }, testInfo) => {
     'test.js': endent`
       import { expect } from '@playwright/test';
 
-      expect(process.env.TEST_FOO).toEqual('foo');
-      expect(process.env.TEST_BAR).toBeUndefined();
+      expect(process.env.FOO).toEqual('foo');
+      expect(process.env.BAR).toBeUndefined();
     `,
   });
 
   await execaCommand('pnpm install', { cwd });
-  await execaCommand('tsx cli.ts', { cwd, env: { TEST_FOO: 'foo' } });
+  await execaCommand('tsx cli.ts', { cwd, env: { FOO: 'foo' } });
 });
 
 test('git @usesdocker', async ({ packageName }, testInfo) => {

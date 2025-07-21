@@ -82,7 +82,7 @@
         },
         {
           "env": {
-            "TEST_FOO": "${{ secrets.TEST_FOO }}",
+            "FOO": "${{ secrets.FOO }}",
             "GH_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
           },
           "run": "pnpm verify"

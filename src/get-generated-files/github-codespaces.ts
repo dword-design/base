@@ -1,3 +1,1 @@
-export default {
-  postCreateCommand: 'bash .devcontainer/postcreate.sh',
-};
+export default { postCreateCommand: 'bash .devcontainer/postcreate.sh' };

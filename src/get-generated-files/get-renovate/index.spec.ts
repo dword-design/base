@@ -29,7 +29,7 @@ test('custom config array', ({}, testInfo) => {
   ).toEqual(['maintenance', 'foo']);
 });
 
-test('github action', async ({}, testInfo) => {
+test.only('github action', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await execaCommand('git init', { cwd });
   await execaCommand('git config user.email "foo@bar.de"', { cwd });

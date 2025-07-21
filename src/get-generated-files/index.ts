@@ -6,13 +6,13 @@ import commitizenConfig from './commitizen';
 import commitlintConfig from './commitlint';
 import editorconfigConfig from './editorconfig';
 import gitattributesConfig from './gitattributes';
+import githubCodespacesPostcreate from './github-codespaces-postcreate';
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies';
 import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template';
 import githubFunding from './github-funding';
 import githubLabelsConfig from './github-labels';
 import githubSyncLabelsConfig from './github-sync-labels';
 import npmrc from './npmrc';
-import githubCodespacesPostcreate from './github-codespaces-postcreate';
 
 export default function () {
   const packageConfig = this.getPackageConfig();
