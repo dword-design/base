@@ -1,3 +1,11 @@
+## [15.1.1](https://github.com/dword-design/base/compare/v15.1.0...v15.1.1) (2025-07-21)
+
+
+### Bug Fixes
+
+* update dependency c8 to v10 ([#764](https://github.com/dword-design/base/issues/764)) ([fdcf222](https://github.com/dword-design/base/commit/fdcf2222cfb5a8d7ab4b79398ce5a6170ec2bba0))
+* update dependency ignore to v7 ([#777](https://github.com/dword-design/base/issues/777)) ([b703b86](https://github.com/dword-design/base/commit/b703b86a1bf9fdd0e1466b0f058119bf35f530f2))
+
 # [15.1.0](https://github.com/dword-design/base/compare/v15.0.3...v15.1.0) (2025-07-21)
 
 
