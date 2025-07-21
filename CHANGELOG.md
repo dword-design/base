@@ -1,3 +1,10 @@
+## [15.1.3](https://github.com/dword-design/base/compare/v15.1.2...v15.1.3) (2025-07-21)
+
+
+### Bug Fixes
+
+* upgrades ([ba55017](https://github.com/dword-design/base/commit/ba55017aaf33aa629fc80e1ebc235bb71ce6d256))
+
 ## [15.1.2](https://github.com/dword-design/base/compare/v15.1.1...v15.1.2) (2025-07-21)
 
 
