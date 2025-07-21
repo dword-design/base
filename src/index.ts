@@ -104,7 +104,7 @@ type PartialConfigOrFunction =
 
 type PartialConfig = PartialConfigOrFunction | string | null;
 
-export const defineBaseConfig = (configInput: PartialConfig) => configInput;
+export const defineBaseConfig = <T>(configInput: T): T => configInput;
 
 const mergeConfigs = createDefu((obj, key, value) => {
   if (key === 'supportedNodeVersions') {
