@@ -75,6 +75,7 @@ type Config = {
   gitignore: string[];
   hasTypescriptConfigRootAlias: boolean;
   lint: (options?: PartialCommandOptions) => unknown;
+  typecheck: (options?: PartialCommandOptions) => unknown;
   macos: boolean;
   minNodeVersion: number;
   nodeVersion: number;
@@ -301,6 +302,7 @@ class Base {
       supportedNodeVersions: [20, 22],
       syncKeywords: true,
       testInContainer: false,
+      typecheck: () => {},
       typescriptConfig: {},
       useJobMatrix: true,
       windows: true,

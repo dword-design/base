@@ -47,3 +47,19 @@ test('type error: vue', async ({}, testInfo) => {
     "src/index.vue(7,5): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
   );
 });
+
+test('custom typecheck', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  const base = new Base(
+    {
+      typecheck: () => {
+        throw new Error('foobar');
+      },
+    },
+    { cwd },
+  );
+
+  await base.prepare();
+  await expect(base.typecheck()).rejects.toThrow('foobar');
+});
