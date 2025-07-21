@@ -6,6 +6,7 @@ import commitizenConfig from './commitizen';
 import commitlintConfig from './commitlint';
 import editorconfigConfig from './editorconfig';
 import gitattributesConfig from './gitattributes';
+import githubCodespacesPostcreate from './github-codespaces-postcreate';
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies';
 import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template';
 import githubFunding from './github-funding';
@@ -18,11 +19,14 @@ export default function () {
   return {
     '.commitlintrc.json': `${JSON.stringify(commitlintConfig, undefined, 2)}\n`,
     '.cz.json': `${JSON.stringify(commitizenConfig, undefined, 2)}\n`,
-    '.devcontainer/devcontainer.json': `${JSON.stringify(
-      this.githubCodespacesConfig,
-      undefined,
-      2,
-    )}\n`,
+    '.devcontainer': {
+      'devcontainer.json': `${JSON.stringify(
+        this.githubCodespacesConfig,
+        undefined,
+        2,
+      )}\n`,
+      'postcreate.sh': githubCodespacesPostcreate,
+    },
     '.editorconfig': editorconfigConfig,
     '.gitattributes': gitattributesConfig,
     '.github/DEPRECATED_DEPENDENCIES_ISSUE_TEMPLATE.md':

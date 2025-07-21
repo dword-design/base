@@ -163,8 +163,8 @@ importers:
         version: 2.8.0
     devDependencies:
       '@dword-design/dotenv-json-extended':
-        specifier: ^3.0.3
-        version: 3.0.3
+        specifier: ^4.0.1
+        version: 4.0.1
       '@playwright/test':
         specifier: ^1.54.1
         version: 1.54.1
@@ -600,9 +600,9 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  '@dword-design/dotenv-json-extended@3.0.3':
-    resolution: {integrity: sha512-keHWYK0zhx6q7MoHdNe8c6vvMs95fZoHP7iAahdAYVLQYLha02Za67GzTQxBs4HJ5LUW7ls7cTczSBLbHbPjqw==}
-    engines: {node: '>=18'}
+  '@dword-design/dotenv-json-extended@4.0.1':
+    resolution: {integrity: sha512-JB2DbRsdB/iJFD6mpvgeNk2Nz2gbqdA6w228pldHejqoEWgF8pS62W+/kahXP+WJY84F0+Mzi6FFjK+cSjIHYw==}
+    engines: {node: '>=20'}
 
   '@dword-design/endent@1.4.1':
     resolution: {integrity: sha512-e2sCTzth5kyRdM0o+yEb5wBVzUdJL8Y6HblRGRV0Bif0knf1ZjRLhUjdCrqM+Muirb68X/xJzgdRDJVmLqgXGA==}
@@ -1577,6 +1577,7 @@ packages:
   '@smithy/middleware-endpoint@4.1.14':
     resolution: {integrity: sha512-+BGLpK5D93gCcSEceaaYhUD/+OCGXM1IDaq/jKUQ+ujB0PTWlWN85noodKw/IPFZhIKFCNEe19PGd/reUMeLSQ==}
     engines: {node: '>=18.0.0'}
+    deprecated: Please upgrade to @smithy/middleware-endpoint@4.1.15 or higher to fix a bug preventing the resolution of ENV and config file custom endpoints https://github.com/smithy-lang/smithy-typescript/issues/1645
 
   '@smithy/middleware-retry@4.1.15':
     resolution: {integrity: sha512-iKYUJpiyTQ33U2KlOZeUb0GwtzWR3C0soYcKuCnTmJrvt6XwTPQZhMfsjJZNw7PpQ3TU4Ati1qLSrkSJxnnSMQ==}
@@ -7615,7 +7616,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@dword-design/dotenv-json-extended@3.0.3':
+  '@dword-design/dotenv-json-extended@4.0.1':
     dependencies:
       ajv: 8.17.1
       change-case: 5.4.4
@@ -8067,7 +8068,7 @@ snapshots:
 
   '@npmcli/fs@3.1.1':
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.1
     optional: true
 
   '@npmcli/fs@4.0.0':
@@ -9571,7 +9572,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.1
 
   bunyan@1.8.15:
     optionalDependencies:
@@ -12169,7 +12170,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.7.2
+      semver: 7.7.1
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@6.0.2:

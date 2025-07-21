@@ -21,7 +21,7 @@ export default function () {
 
   const envVariableNames = Object.keys(
     envSchemaPath ? fs.readJsonSync(envSchemaPath) : {},
-  ).map(name => `TEST_${constantCase(name)}`);
+  ).map(name => constantCase(name));
 
   return [
     {

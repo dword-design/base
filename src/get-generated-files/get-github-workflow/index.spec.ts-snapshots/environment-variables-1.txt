@@ -36,8 +36,8 @@
         },
         {
           "env": {
-            "TEST_BAR": "${{ secrets.TEST_BAR }}",
-            "TEST_FOO": "${{ secrets.TEST_FOO }}",
+            "BAR": "${{ secrets.BAR }}",
+            "FOO": "${{ secrets.FOO }}",
             "GH_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
           },
           "run": "pnpm verify"

@@ -1,1 +1,1 @@
-export default { postCreateCommand: 'pnpm install --frozen-lockfile' };
+export default { postCreateCommand: 'bash .devcontainer/postcreate.sh' };

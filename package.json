@@ -86,7 +86,7 @@
     "yaml": "^2.8.0"
   },
   "devDependencies": {
-    "@dword-design/dotenv-json-extended": "^3.0.3",
+    "@dword-design/dotenv-json-extended": "^4.0.1",
     "@playwright/test": "^1.54.1",
     "@types/hosted-git-info": "^3.0.5",
     "@types/parse-git-config": "^3.0.4",

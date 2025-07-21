@@ -18,7 +18,7 @@ export default async function (options) {
 
   const envVariableNames = Object.keys(
     envSchemaPath ? await fs.readJson(envSchemaPath) : {},
-  ).map(name => `TEST_${constantCase(name)}`);
+  ).map(name => constantCase(name));
 
   const userInfo = getUserInfo();
 
