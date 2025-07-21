@@ -1,3 +1,13 @@
+## [15.0.3](https://github.com/dword-design/base/compare/v15.0.2...v15.0.3) (2025-07-21)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/base-config-node to v4 ([#796](https://github.com/dword-design/base/issues/796)) ([caab700](https://github.com/dword-design/base/commit/caab700a7bb7608b08a0d4baf3a66552c3197fa6))
+* update dependency codecov/codecov-action to v5 ([#772](https://github.com/dword-design/base/issues/772)) ([4b6baae](https://github.com/dword-design/base/commit/4b6baae5f67d30439ef2027b1422c97fa312dcdf))
+* update dependency depcheck-package-name to v4 ([#797](https://github.com/dword-design/base/issues/797)) ([ca517bf](https://github.com/dword-design/base/commit/ca517bf260fa2327afe97542da4b1cece142af10))
+* update dependency is-ci to v4 ([#793](https://github.com/dword-design/base/issues/793)) ([70112d7](https://github.com/dword-design/base/commit/70112d7e18c2ce2cc24f328a09d453dc435b2ace))
+
 ## [15.0.2](https://github.com/dword-design/base/compare/v15.0.1...v15.0.2) (2025-07-21)
 
 
