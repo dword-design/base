@@ -15,8 +15,8 @@ importers:
         specifier: ^18.6.3
         version: 18.6.3
       '@dword-design/base-config-node':
-        specifier: ^3.0.17
-        version: 3.0.17(@vue/compiler-core@3.5.17)(esbuild@0.25.6)
+        specifier: ^4.0.0
+        version: 4.0.0(@vue/compiler-core@3.5.17)(esbuild@0.25.6)
       '@dword-design/ci':
         specifier: ^4.0.6
         version: 4.0.6
@@ -575,9 +575,9 @@ packages:
     resolution: {integrity: sha512-/yCrWGCoA1SVKOks25EGadP9Pnj0oAIHGpl2wH2M2Y46dPM2ueb8wyCVOD7O3WCTkaJ0IkKvzhl1JY7+uCT2Dw==}
     engines: {node: '>=v18'}
 
-  '@dword-design/base-config-node@3.0.17':
-    resolution: {integrity: sha512-xHQRK7/3ARa+Xs8n4M8EW/8buDUclvm8+05JN6cOorkONAj7QgPbn452TY6xhuT8d8R9OUivzNgUHGabgEfwUA==}
-    engines: {node: '>=18'}
+  '@dword-design/base-config-node@4.0.0':
+    resolution: {integrity: sha512-LQ3tETmNv9cGP0YfJQ0R65/+UxtxcFfojx7Sj5Umn9g6nqHQmaSLvKDP8yngF5TCAmthBu71KUQlQJVnsyo8yQ==}
+    engines: {node: '>=20'}
 
   '@dword-design/ci@4.0.6':
     resolution: {integrity: sha512-7yIQ2z1PcsOuCnWU9TteY9tabWM74bea6JlG3tbQN2iXMd1xMB/hFGH6j7ykdDSNvtwhiPzJQWV0wZ8OyvAcJw==}
@@ -7549,7 +7549,7 @@ snapshots:
       chalk: 5.4.1
     optional: true
 
-  '@dword-design/base-config-node@3.0.17(@vue/compiler-core@3.5.17)(esbuild@0.25.6)':
+  '@dword-design/base-config-node@4.0.0(@vue/compiler-core@3.5.17)(esbuild@0.25.6)':
     dependencies:
       '@babel/core': 7.28.0
       '@dword-design/depcheck-parser-sass': 4.0.4
@@ -7718,7 +7718,7 @@ snapshots:
 
   '@dword-design/functions@5.0.27':
     dependencies:
-      '@dword-design/endent': 1.4.1
+      '@dword-design/endent': 1.4.7
       delay: 5.0.0
       lodash: 4.17.21
       tinycolor2: 1.6.0
@@ -8072,7 +8072,7 @@ snapshots:
 
   '@npmcli/fs@3.1.1':
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
     optional: true
 
   '@npmcli/fs@4.0.0':
@@ -9576,7 +9576,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
 
   bunyan@1.8.15:
     optionalDependencies:
@@ -12178,7 +12178,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.7.1
+      semver: 7.7.2
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@6.0.2:
