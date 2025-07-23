@@ -234,7 +234,7 @@ class Base<TConfig extends Config = Config> {
     return getTypescriptConfig.call(this, ...args);
   }
 
-  constructor(configInput: PartialConfig = null, { cwd = '.' } = {}) {
+  constructor(configInput: PartialConfig<TConfig> = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
 
