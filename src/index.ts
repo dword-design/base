@@ -321,8 +321,8 @@ class Base<TConfig extends Config = Config> {
         : config.name;
 
     let inheritedConfig:
-      | PartialConfigOrFunction
-      | { default: PartialConfigOrFunction } = inheritedConfigPath
+      | PartialConfigOrFunction<TConfig>
+      | { default: PartialConfigOrFunction<TConfig> } = inheritedConfigPath
       ? jitiInstance(inheritedConfigPath)
       : undefined;
 
