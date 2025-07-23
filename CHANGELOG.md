@@ -1,3 +1,10 @@
+## [15.1.4](https://github.com/dword-design/base/compare/v15.1.3...v15.1.4) (2025-07-23)
+
+
+### Bug Fixes
+
+* generics for config ([dd3b25e](https://github.com/dword-design/base/commit/dd3b25e2db09342cb7d4649ad2577a563628b9d8))
+
 ## [15.1.3](https://github.com/dword-design/base/compare/v15.1.2...v15.1.3) (2025-07-21)
 
 
