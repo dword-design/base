@@ -104,7 +104,7 @@ type PartialConfigObject<TConfig extends Config = Config> = Omit<
 > & { commands?: Record<string, PartialCommandInObjectWithBase<TConfig>> };
 
 type PartialConfigOrFunction<TConfig extends Config = Config> =
-  | PartialConfigObject
+  | PartialConfigObject<TConfig>
   | ((this: Base<TConfig>, config: TConfig) => PartialConfigObject<TConfig>);
 
 type PartialConfig<TConfig extends Config = Config> =
