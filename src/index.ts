@@ -49,12 +49,15 @@ import getVscodeConfig from './get-generated-files/get-vscode';
 import githubCodespacesConfig from './get-generated-files/github-codespaces';
 import getGitInfo from './get-git-info';
 
-type HandlerWithBase<TConfig extends Config = Config> = (this: Base<TConfig>, ...args: unknown[]) => unknown;
+type HandlerWithBase<TConfig extends Config = Config> = (
+  this: Base<TConfig>,
+  ...args: unknown[]
+) => unknown;
 
-type PartialCommandObjectInObjectWithBase<TConfig extends Config = Config> = Omit<
-  PartialCommandObjectInObject,
-  'handler'
-> & { handler: (this: Base<TConfig>, ...args: unknown[]) => unknown };
+type PartialCommandObjectInObjectWithBase<TConfig extends Config = Config> =
+  Omit<PartialCommandObjectInObject, 'handler'> & {
+    handler: (this: Base<TConfig>, ...args: unknown[]) => unknown;
+  };
 
 type PartialCommandInObjectWithBase<TConfig extends Config = Config> =
   | PartialCommandObjectInObjectWithBase<TConfig>
@@ -95,15 +98,19 @@ type Config = {
   isLockFileFixCommitType: boolean;
 };
 
-type PartialConfigObject<TConfig extends Config = Config> = Omit<Partial<TConfig>, 'commands'> & {
-  commands?: Record<string, PartialCommandInObjectWithBase<TConfig>>;
-};
+type PartialConfigObject<TConfig extends Config = Config> = Omit<
+  Partial<TConfig>,
+  'commands'
+> & { commands?: Record<string, PartialCommandInObjectWithBase<TConfig>> };
 
 type PartialConfigOrFunction<TConfig extends Config = Config> =
   | PartialConfigObject
   | ((this: Base<TConfig>, config: TConfig) => PartialConfigObject<TConfig>);
 
-type PartialConfig<TConfig extends Config = Config> = PartialConfigOrFunction<TConfig> | string | null;
+type PartialConfig<TConfig extends Config = Config> =
+  | PartialConfigOrFunction<TConfig>
+  | string
+  | null;
 
 export const defineBaseConfig = <T>(configInput: T): T => configInput;
 
