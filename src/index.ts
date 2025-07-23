@@ -49,16 +49,16 @@ import getVscodeConfig from './get-generated-files/get-vscode';
 import githubCodespacesConfig from './get-generated-files/github-codespaces';
 import getGitInfo from './get-git-info';
 
-type HandlerWithBase = (this: Base, ...args: unknown[]) => unknown;
+type HandlerWithBase<TConfig extends Config = Config> = (this: Base<TConfig>, ...args: unknown[]) => unknown;
 
-type PartialCommandObjectInObjectWithBase = Omit<
+type PartialCommandObjectInObjectWithBase<TConfig extends Config = Config> = Omit<
   PartialCommandObjectInObject,
   'handler'
-> & { handler: (this: Base, ...args: unknown[]) => unknown };
+> & { handler: (this: Base<TConfig>, ...args: unknown[]) => unknown };
 
-type PartialCommandInObjectWithBase =
-  | PartialCommandObjectInObjectWithBase
-  | HandlerWithBase;
+type PartialCommandInObjectWithBase<TConfig extends Config = Config> =
+  | PartialCommandObjectInObjectWithBase<TConfig>
+  | HandlerWithBase<TConfig>;
 
 type Config = {
   name?: string;
@@ -95,15 +95,15 @@ type Config = {
   isLockFileFixCommitType: boolean;
 };
 
-type PartialConfigObject = Omit<Partial<Config>, 'commands'> & {
-  commands?: Record<string, PartialCommandInObjectWithBase>;
+type PartialConfigObject<TConfig extends Config = Config> = Omit<Partial<TConfig>, 'commands'> & {
+  commands?: Record<string, PartialCommandInObjectWithBase<TConfig>>;
 };
 
-type PartialConfigOrFunction =
+type PartialConfigOrFunction<TConfig extends Config = Config> =
   | PartialConfigObject
-  | ((this: Base, config: Config) => PartialConfigObject);
+  | ((this: Base<TConfig>, config: TConfig) => PartialConfigObject<TConfig>);
 
-type PartialConfig = PartialConfigOrFunction | string | null;
+type PartialConfig<TConfig extends Config = Config> = PartialConfigOrFunction<TConfig> | string | null;
 
 export const defineBaseConfig = <T>(configInput: T): T => configInput;
 
@@ -116,8 +116,8 @@ const mergeConfigs = createDefu((obj, key, value) => {
   return false;
 });
 
-class Base {
-  config: Config;
+class Base<TConfig extends Config = Config> {
+  config: TConfig;
   packageConfig: PackageJson;
   cwd: string;
   generatedFiles;
