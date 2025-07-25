@@ -12,6 +12,7 @@
   "deployPlugins": [
     "semantic-release-foo"
   ],
+  "doppler": false,
   "editorIgnore": [
     "foo"
   ],

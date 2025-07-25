@@ -4,6 +4,7 @@
   "deployAssets": [],
   "deployEnv": {},
   "deployPlugins": [],
+  "doppler": false,
   "editorIgnore": [],
   "eslintConfig": "",
   "fetchGitHistory": false,

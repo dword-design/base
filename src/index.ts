@@ -96,6 +96,7 @@ type Config = {
   packageConfig: PackageJson;
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
+  doppler: boolean;
 };
 
 type PartialConfigObject<TConfig extends Config = Config> = Omit<
@@ -278,6 +279,7 @@ class Base<TConfig extends Config = Config> {
       deployAssets: [],
       deployEnv: {},
       deployPlugins: [],
+      doppler: false,
       editorIgnore: [],
       eslintConfig: '',
       fetchGitHistory: false,

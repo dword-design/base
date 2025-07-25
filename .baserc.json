@@ -4,5 +4,6 @@
       "husky"
     ]
   },
+  "doppler": true,
   "name": "@dword-design/node"
 }
