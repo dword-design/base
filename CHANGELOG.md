@@ -1,3 +1,10 @@
+# [15.2.0](https://github.com/dword-design/base/compare/v15.1.6...v15.2.0) (2025-07-25)
+
+
+### Features
+
+* doppler ([#805](https://github.com/dword-design/base/issues/805)) ([c730f97](https://github.com/dword-design/base/commit/c730f97c4dc907fdf67f31f954114e3a3901c7b2))
+
 ## [15.1.6](https://github.com/dword-design/base/compare/v15.1.5...v15.1.6) (2025-07-23)
 
 
