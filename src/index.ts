@@ -279,6 +279,7 @@ class Base<TConfig extends Config = Config> {
       deployAssets: [],
       deployEnv: {},
       deployPlugins: [],
+      doppler: false,
       editorIgnore: [],
       eslintConfig: '',
       fetchGitHistory: false,
@@ -314,7 +315,6 @@ class Base<TConfig extends Config = Config> {
       typescriptConfig: {},
       useJobMatrix: true,
       windows: true,
-      doppler: false,
     };
 
     const inheritedConfigPath =
