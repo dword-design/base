@@ -4,6 +4,7 @@ import { constantCase } from 'change-case';
 import { findUpStop, findUpSync } from 'find-up';
 import fs from 'fs-extra';
 import gitHubAction from 'tagged-template-noop';
+import parsePackagejsonName from 'parse-packagejson-name';
 
 export default function () {
   const envSchemaPath = findUpSync(
@@ -23,15 +24,21 @@ export default function () {
     envSchemaPath ? fs.readJsonSync(envSchemaPath) : {},
   ).map(name => constantCase(name));
 
+  const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
+
   return [
+    ...this.config.doppler ? [
+      { name: 'Install Doppler CLI',
+        uses: gitHubAction`dopplerhq/cli-action@v3`,
+      }] : [],
     {
       env: {
-        ...Object.fromEntries(
+        ...this.config.doppler ? { DOPPLER_TOKEN: '${{ secrets.DOPPLER_TOKEN }}' } : Object.fromEntries(
           envVariableNames.map(name => [name, `\${{ secrets.${name} }}`]),
         ),
         GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
       },
-      run: 'pnpm verify',
+      run: `${this.config.doppler ? `doppler run -p ${packageName} -c test -- ` : ''}pnpm verify`,
     },
     {
       if: 'always()',

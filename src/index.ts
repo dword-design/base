@@ -96,6 +96,7 @@ type Config = {
   packageConfig: PackageJson;
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
+  doppler: boolean;
 };
 
 type PartialConfigObject<TConfig extends Config = Config> = Omit<
@@ -313,6 +314,7 @@ class Base<TConfig extends Config = Config> {
       typescriptConfig: {},
       useJobMatrix: true,
       windows: true,
+      doppler: false,
     };
 
     const inheritedConfigPath =
