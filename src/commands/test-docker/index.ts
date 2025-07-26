@@ -17,7 +17,10 @@ export default async function (options) {
   const envSchemaPath = findUpSync('.env.schema.json', { cwd: this.cwd });
 
   const envVariableNames = Object.keys(
-    envSchemaPath ? await fs.readJson(envSchemaPath) : {},
+    {
+      CI: true,
+      ...envSchemaPath ? await fs.readJson(envSchemaPath) : {},
+    },
   ).map(name => constantCase(name));
 
   const userInfo = getUserInfo();

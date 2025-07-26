@@ -226,3 +226,27 @@ test('update snapshots @usesdocker', async ({ packageName }, testInfo) => {
 
   await new Base(null, { cwd }).testDocker({ updateSnapshots: true });
 });
+
+test('test.only', async ({ packageName }, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await outputFiles(cwd, {
+    'package.json': JSON.stringify({
+      name: packageName,
+      scripts: { 'test:raw': 'node test.js' },
+      type: 'module',
+    }),
+    'test.js': endent`
+      if (process.env.CI !== 'true') {
+        throw new Error('process.env.CI is not set correctly.')
+      }\n
+    `,
+    'cli.ts': endent`
+      import { Base } from '../../src';
+
+      new Base().testDocker();
+    `,
+  });
+
+  await execaCommand('tsx cli.ts', { cwd, env: { CI: true.toString() } });
+});
