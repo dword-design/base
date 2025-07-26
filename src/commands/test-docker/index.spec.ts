@@ -231,6 +231,11 @@ test('test.only @usesdocker', async ({ packageName }, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
+    'cli.ts': endent`
+      import { Base } from '../../src';
+
+      new Base().testDocker();
+    `,
     'package.json': JSON.stringify({
       name: packageName,
       scripts: { 'test:raw': 'node test.js' },
@@ -240,11 +245,6 @@ test('test.only @usesdocker', async ({ packageName }, testInfo) => {
       if (process.env.CI !== 'true') {
         throw new Error('process.env.CI is not set correctly.')
       }\n
-    `,
-    'cli.ts': endent`
-      import { Base } from '../../src';
-
-      new Base().testDocker();
     `,
   });
 
