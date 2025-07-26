@@ -1,9 +1,8 @@
 import gitHubAction from 'tagged-template-noop';
 
-import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflow/steps/check-unknown-files';
 import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/coverage';
 import getReleaseSteps from '@/src/get-generated-files/get-github-workflow/steps/get-release';
-import getTestSteps from '@/src/get-generated-files/get-github-workflow/steps/get-test';
+import getVerifySteps from '@/src/get-generated-files/get-github-workflow/steps/get-verify';
 
 export default function () {
   return {
@@ -26,7 +25,6 @@ export default function () {
         { run: 'git config --global user.email "actions@github.com"' },
         { run: 'git config --global user.name "GitHub Actions"' },
         { run: 'pnpm install --frozen-lockfile' },
-        ...checkUnknownFilesSteps,
         { run: 'pnpm lint' },
         ...getReleaseSteps.call(this),
       ],
@@ -47,7 +45,7 @@ export default function () {
         },
         { run: 'corepack enable' },
         { run: 'pnpm install --frozen-lockfile' },
-        ...getTestSteps.call(this),
+        ...getVerifySteps.call(this),
         ...coverageSteps.map(step => ({
           if: `matrix.os == 'ubuntu-latest' && matrix.node == ${this.config.nodeVersion}`,
           ...step,
