@@ -227,7 +227,7 @@ test('update snapshots @usesdocker', async ({ packageName }, testInfo) => {
   await new Base(null, { cwd }).testDocker({ updateSnapshots: true });
 });
 
-test('test.only', async ({ packageName }, testInfo) => {
+test.only('test.only @usesdocker', async ({ packageName }, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
