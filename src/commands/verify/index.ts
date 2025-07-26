@@ -10,4 +10,5 @@ export default async function (options) {
   await this.typecheck(options);
   await this.depcheck();
   await this.test(options);
+  await this.checkUnknownFiles();
 }

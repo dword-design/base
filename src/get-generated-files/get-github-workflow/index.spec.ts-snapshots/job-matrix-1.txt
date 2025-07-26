@@ -34,9 +34,6 @@
           "run": "pnpm install --frozen-lockfile"
         },
         {
-          "run": "pnpm checkUnknownFiles"
-        },
-        {
           "run": "pnpm lint"
         },
         {
