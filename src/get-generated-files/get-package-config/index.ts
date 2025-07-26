@@ -1,6 +1,13 @@
 import packageName from 'depcheck-package-name';
 import { mapValues, pick, stubTrue } from 'lodash-es';
 import sortKeys from 'sort-keys';
+import pathLib from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+
+const __dirname = pathLib.dirname(fileURLToPath(import.meta.url));
+const isInNodeModules = __dirname.split(pathLib.sep).includes('node_modules');
+const resolver = createRequire(import.meta.url);
 
 export default function () {
   const commandNames = {
@@ -53,9 +60,15 @@ export default function () {
     ...this.config.packageConfig,
     scripts: sortKeys(
       mapValues(commandNames, (handler, name) =>
-        this.packageConfig.name === '@dword-design/base'
-          ? `${packageName`tsx`} src/cli.ts ${name}`
-          : `base ${name}`,
+        isInNodeModules
+          ? `base ${name}`
+          : `${packageName`tsx`} ${pathLib
+            .relative(
+              this.cwd,
+              resolver.resolve('../../cli.ts'),
+            )
+            .split(pathLib.sep)
+            .join('/')} ${name}`
       ),
     ),
   };
