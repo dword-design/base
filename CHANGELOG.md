@@ -1,3 +1,10 @@
+## [15.2.1](https://github.com/dword-design/base/compare/v15.2.0...v15.2.1) (2025-07-26)
+
+
+### Bug Fixes
+
+* catch test.only inside docker ([5c2f173](https://github.com/dword-design/base/commit/5c2f173948ad83d93c272e90acbd5c446ce1dc9b))
+
 # [15.2.0](https://github.com/dword-design/base/compare/v15.1.6...v15.2.0) (2025-07-25)
 
 
