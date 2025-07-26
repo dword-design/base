@@ -16,12 +16,10 @@ export default async function (options) {
   const volumeName = this.packageConfig.name.replace('@', '').replace('/', '-');
   const envSchemaPath = findUpSync('.env.schema.json', { cwd: this.cwd });
 
-  const envVariableNames = Object.keys(
-    {
-      CI: true,
-      ...envSchemaPath ? await fs.readJson(envSchemaPath) : {},
-    },
-  ).map(name => constantCase(name));
+  const envVariableNames = Object.keys({
+    CI: true,
+    ...(envSchemaPath ? await fs.readJson(envSchemaPath) : {}),
+  }).map(name => constantCase(name));
 
   const userInfo = getUserInfo();
 
