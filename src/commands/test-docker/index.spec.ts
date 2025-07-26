@@ -248,5 +248,5 @@ test.only('test.only @usesdocker', async ({ packageName }, testInfo) => {
     `,
   });
 
-  await execaCommand('tsx cli.ts', { cwd, env: { CI: true.toString() } });
+  await execaCommand('tsx cli.ts', { cwd, env: { CI: String(true) } });
 });
