@@ -233,20 +233,22 @@ test.only('test.only @usesdocker', async ({ packageName }, testInfo) => {
   await outputFiles(cwd, {
     'package.json': JSON.stringify({
       name: packageName,
-      scripts: { 'test:raw': 'node test.js' },
-      type: 'module',
     }),
-    'test.js': endent`
-      if (process.env.CI !== 'true') {
-        throw new Error('process.env.CI is not set correctly.')
-      }\n
+    'src/index.spec.ts': endent`
+      import { test } from '@playwright/test';
+
+      test.only('works', () => {});\n
     `,
     'cli.ts': endent`
       import { Base } from '../../src';
 
-      new Base().testDocker();
+      new Base({ testInContainer: true }).testDocker();
     `,
   });
+  await fs.symlink('../../node_modules', pathLib.join(cwd, 'node_modules'));
 
+  const base = new Base({ testInContainer: true }, { cwd });
+  await base.prepare();
+  await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
   await execaCommand('tsx cli.ts', { cwd, env: { CI: String(true) } });
 });
