@@ -44,7 +44,7 @@ jobs:
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - name: Install Doppler CLI
-        uses: dopplerhq/cli-action@v3
+        uses: dword-design/doppler-cli-action-fork@fork
       - env:
           DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

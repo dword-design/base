@@ -30,7 +30,7 @@ export default function () {
       ? [
           {
             name: 'Install Doppler CLI',
-            uses: gitHubAction`dopplerhq/cli-action@v3`,
+            uses: gitHubAction`dword-design/doppler-cli-action-fork@fork`,
           },
         ]
       : []),
