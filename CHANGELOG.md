@@ -1,3 +1,10 @@
+## [15.2.2](https://github.com/dword-design/base/compare/v15.2.1...v15.2.2) (2025-07-27)
+
+
+### Bug Fixes
+
+* use doppler github action fork ([431a864](https://github.com/dword-design/base/commit/431a864baddc6245ac4bcc542c5f463da20045b7))
+
 ## [15.2.1](https://github.com/dword-design/base/compare/v15.2.0...v15.2.1) (2025-07-26)
 
 
