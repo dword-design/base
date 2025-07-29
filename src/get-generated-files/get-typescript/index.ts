@@ -12,13 +12,15 @@ export default function () {
         paths: { '@/*': ['./*'] },
       }),
       skipLibCheck: true,
-      target: 'ESNext',
       strict: true,
+      target: 'ESNext',
     },
     exclude: ['test-results'],
   });
+
   if (!result.compilerOptions.strict) {
     delete result.compilerOptions.strict;
   }
+
   return result;
 }
