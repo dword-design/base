@@ -14,6 +14,7 @@
   ".gitignore",
   ".gitpod.Dockerfile",
   ".gitpod.yml",
+  ".lintstagedrc.json",
   ".npmrc",
   ".releaserc.json",
   ".renovaterc.json",
@@ -21,6 +22,7 @@
   "LICENSE.md",
   "README.md",
   "eslint.config.ts",
+  "eslint.lint-staged.config.ts",
   "package.json",
   "tsconfig.json"
 ]

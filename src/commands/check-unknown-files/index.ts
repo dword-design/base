@@ -20,7 +20,6 @@ export default async function () {
       PRCHECKLIST: true,
       demo: true,
       doc: true,
-      'eslint.config.ts': true,
       fixtures: true,
       'pnpm-lock.yaml': true,
       'pnpm-workspace.yaml': true,
