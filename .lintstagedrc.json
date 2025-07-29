@@ -1,0 +1,3 @@
+{
+  "*.{json,ts,vue}": "eslint --fix"
+}

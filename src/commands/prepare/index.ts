@@ -41,6 +41,16 @@ export default async function (options) {
         stderr: options.stderr,
       },
     );
+
+    await execa(
+      'husky',
+      ['set', '.husky/pre-commit', `npx ${packageName`lint-staged`}`],
+      {
+        cwd: this.cwd,
+        ...(options.log && { stdout: 'inherit' }),
+        stderr: options.stderr,
+      },
+    );
   }
 
   await this.config.prepare.call(this, options);
