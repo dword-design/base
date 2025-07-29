@@ -1,3 +1,11 @@
+## [15.2.3](https://github.com/dword-design/base/compare/v15.2.2...v15.2.3) (2025-07-29)
+
+
+### Bug Fixes
+
+* fix renovate test ([4a17ae1](https://github.com/dword-design/base/commit/4a17ae12a996ad90400ca5bfc2b4f3888c84153e))
+* ts strict mode by default ([673b2a7](https://github.com/dword-design/base/commit/673b2a76ced40a16dfb3e92627d91bde34e35713))
+
 ## [15.2.2](https://github.com/dword-design/base/compare/v15.2.1...v15.2.2) (2025-07-27)
 
 
