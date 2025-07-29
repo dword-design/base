@@ -64,7 +64,7 @@ test('lock file', async ({}, testInfo) => {
     JSON.stringify({ dependencies: { globby: '^13.0.0' } }),
   );
 
-  await execaCommand('pnpm install', { cwd });
+  await execaCommand('pnpm install --ignore-workspace', { cwd });
   const base = new Base(null, { cwd });
   await base.prepare();
   await execaCommand('git add .', { cwd });
@@ -89,7 +89,7 @@ test('lock file fix commit type', async ({}, testInfo) => {
     JSON.stringify({ dependencies: { globby: '^13.0.0' } }),
   );
 
-  await execaCommand('pnpm install', { cwd });
+  await execaCommand('pnpm install --ignore-workspace', { cwd });
   const base = new Base({ isLockFileFixCommitType: true }, { cwd });
   await base.prepare();
   await execaCommand('git add .', { cwd });
