@@ -90,7 +90,7 @@ test('env @usesdocker', async ({ packageName }, testInfo) => {
     `,
   });
 
-  await execaCommand('pnpm install', { cwd });
+  await execaCommand('pnpm install --ignore-workspace', { cwd });
   await execaCommand('tsx cli.ts', { cwd, env: { FOO: 'foo' } });
 });
 
@@ -155,7 +155,7 @@ test('is in docker @usesdocker', async ({ packageName }, testInfo) => {
     `,
   });
 
-  await execaCommand('pnpm install', { cwd });
+  await execaCommand('pnpm install --ignore-workspace', { cwd });
   const base = new Base(null, { cwd });
   await base.testDocker();
 });
@@ -205,7 +205,7 @@ test('puppeteer @usesdocker', async ({ packageName }, testInfo) => {
     `,
   });
 
-  await execaCommand('pnpm install', { cwd });
+  await execaCommand('pnpm install --ignore-workspace', { cwd });
   await new Base(null, { cwd }).testDocker();
 });
 
