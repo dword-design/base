@@ -5,5 +5,10 @@
     ]
   },
   "doppler": true,
-  "name": "@dword-design/node"
+  "name": "@dword-design/node",
+  "typescriptConfig": {
+    "compilerOptions": {
+      "strict": false
+    }
+  }
 }
