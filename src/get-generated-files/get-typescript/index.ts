@@ -7,7 +7,6 @@ export default function () {
       esModuleInterop: true,
       module: 'ESNext',
       moduleResolution: 'bundler',
-      outDir: 'dist',
       ...(this.config.hasTypescriptConfigRootAlias && {
         paths: { '@/*': ['./*'] },
       }),
