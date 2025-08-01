@@ -1,4 +1,4 @@
-import type { Config as LintStagedConfig } from 'lint-staged';
+import type { Configuration as LintStagedConfig } from 'lint-staged';
 
 export default function (): LintStagedConfig {
   return {

@@ -12,7 +12,7 @@ import { type ResultPromise } from 'execa';
 import fs from 'fs-extra';
 import type GitHost from 'hosted-git-info';
 import { createJiti } from 'jiti';
-import type { Config as LintStagedConfig } from 'lint-staged';
+import type { Configuration as LintStagedConfig } from 'lint-staged';
 import { identity, mapValues } from 'lodash-es';
 import type { PartialCommandObjectInObject } from 'make-cli';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
