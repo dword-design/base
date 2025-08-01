@@ -19,7 +19,7 @@ export default function () {
       }
 
       export default defineConfig([
-        globalIgnores(['eslint.config.ts']),
+        globalIgnores(['eslint.config.ts', 'eslint.lint-staged.config.ts']),
         config,
       ]);\n
     `

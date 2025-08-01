@@ -90,6 +90,7 @@
     "@playwright/test": "^1.54.1",
     "@types/hosted-git-info": "^3.0.5",
     "@types/parse-git-config": "^3.0.4",
+    "lint-staged": "^16.1.2",
     "p-event": "^6.0.1",
     "renovate": "^39.264.1",
     "sharp": "^0.34.3",

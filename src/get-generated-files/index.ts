@@ -5,6 +5,7 @@ import { stringify as yamlStringify } from 'yaml';
 import commitizenConfig from './commitizen';
 import commitlintConfig from './commitlint';
 import editorconfigConfig from './editorconfig';
+import eslintLintStaged from './eslint-lint-staged';
 import gitattributesConfig from './gitattributes';
 import githubCodespacesPostcreate from './github-codespaces-postcreate';
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies';
@@ -52,7 +53,8 @@ export default function () {
       .join(''),
     '.gitpod.Dockerfile': this.getGitpodDockerfile(),
     '.gitpod.yml': yamlStringify(this.getGitpodConfig()),
-    '.npmrc': `${npmrc}\n`,
+    '.lintstagedrc.json': `${JSON.stringify(this.getLintStaged(), undefined, 2)}\n`,
+    '.npmrc': npmrc,
     '.releaserc.json': `${JSON.stringify(
       this.getReleaseConfig(),
       undefined,
@@ -71,6 +73,7 @@ export default function () {
     'LICENSE.md': this.getLicenseString(),
     'README.md': this.getReadmeString(),
     'eslint.config.ts': this.getEslintConfig(),
+    'eslint.lint-staged.config.ts': eslintLintStaged,
     'package.json': `${JSON.stringify(
       sortPackageJson(packageConfig),
       undefined,

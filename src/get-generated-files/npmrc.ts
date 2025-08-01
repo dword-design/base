@@ -1,1 +1,1 @@
-export default 'node-linker=hoisted';
+export default 'node-linker=hoisted\n';

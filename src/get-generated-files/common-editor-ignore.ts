@@ -4,6 +4,7 @@ export default [
   '.devcontainer',
   '.editorconfig',
   'eslint.config.ts',
+  'eslint.lint-staged.config.ts',
   '.gitattributes',
   '.github',
   '.gitignore',

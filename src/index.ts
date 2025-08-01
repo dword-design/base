@@ -12,6 +12,7 @@ import { type ResultPromise } from 'execa';
 import fs from 'fs-extra';
 import type GitHost from 'hosted-git-info';
 import { createJiti } from 'jiti';
+import type { Configuration as LintStagedConfig } from 'lint-staged';
 import { identity, mapValues } from 'lodash-es';
 import type { PartialCommandObjectInObject } from 'make-cli';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
@@ -40,6 +41,7 @@ import getGitignoreConfig from './get-generated-files/get-gitignore';
 import getGitpodConfig from './get-generated-files/get-gitpod';
 import getGitpodDockerfile from './get-generated-files/get-gitpod-dockerfile';
 import getLicenseString from './get-generated-files/get-license-string';
+import getLintStaged from './get-generated-files/get-lint-staged';
 import getPackageConfig from './get-generated-files/get-package-config';
 import getReadmeString from './get-generated-files/get-readme-string';
 import getReleaseConfig from './get-generated-files/get-release';
@@ -77,6 +79,7 @@ type Config = {
   git?: GitHost;
   gitignore: string[];
   hasTypescriptConfigRootAlias: boolean;
+  lintStagedConfig: LintStagedConfig;
   lint: (options?: PartialCommandOptions) => unknown;
   typecheck: (options?: PartialCommandOptions) => unknown;
   macos: boolean;
@@ -235,6 +238,10 @@ class Base<TConfig extends Config = Config> {
     return getTypescriptConfig.call(this, ...args);
   }
 
+  getLintStaged() {
+    return getLintStaged.call(this);
+  }
+
   constructor(configInput: PartialConfig<TConfig> = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
@@ -289,6 +296,7 @@ class Base<TConfig extends Config = Config> {
       hasTypescriptConfigRootAlias: true,
       isLockFileFixCommitType: false,
       lint: () => {},
+      lintStagedConfig: {},
       macos: true,
       minNodeVersion: null,
       nodeVersion: 20,

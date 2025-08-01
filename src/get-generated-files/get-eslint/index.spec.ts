@@ -16,7 +16,7 @@ test('valid', () => {
     import { defineConfig, globalIgnores } from 'eslint/config';
 
     export default defineConfig([
-      globalIgnores(['eslint.config.ts']),
+      globalIgnores(['eslint.config.ts', 'eslint.lint-staged.config.ts']),
       config,
     ]);\n
   `);

@@ -21,6 +21,7 @@
   "codecov.SHA256SUM.sig",
   "coverage",
   "eslint.config.ts",
+  "eslint.lint-staged.config.ts",
   "foo",
   "node_modules",
   "pnpm-lock.yaml"
