@@ -13,7 +13,6 @@ import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencie
 import githubFunding from './github-funding';
 import githubLabelsConfig from './github-labels';
 import githubSyncLabelsConfig from './github-sync-labels';
-import lintStaged from './lint-staged';
 import npmrc from './npmrc';
 
 export default function () {
@@ -54,7 +53,7 @@ export default function () {
       .join(''),
     '.gitpod.Dockerfile': this.getGitpodDockerfile(),
     '.gitpod.yml': yamlStringify(this.getGitpodConfig()),
-    '.lintstagedrc.json': `${JSON.stringify(lintStaged, undefined, 2)}\n`,
+    '.lintstagedrc.json': `${JSON.stringify(this.getLintStaged(), undefined, 2)}\n`,
     '.npmrc': npmrc,
     '.releaserc.json': `${JSON.stringify(
       this.getReleaseConfig(),

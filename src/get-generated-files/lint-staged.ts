@@ -1,3 +1,0 @@
-export default {
-  '*.{json,ts,vue}': 'eslint --fix --config eslint.lint-staged.config.ts',
-};
