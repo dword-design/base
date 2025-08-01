@@ -108,7 +108,7 @@ test('nodejs version', async ({}, testInfo) => {
   await execaCommand('git init', { cwd });
   await execaCommand('git config user.email "foo@bar.de"', { cwd });
   await execaCommand('git config user.name "foo"', { cwd });
-  await fs.outputFile(pathLib.join(cwd, 'index.ts'), 'nodejsVersion`18`');
+  await fs.outputFile(pathLib.join(cwd, 'index.ts'), 'nodejsVersion`22`');
   const base = new Base(null, { cwd });
   await base.prepare();
   await execaCommand('git add .', { cwd });
