@@ -24,6 +24,7 @@
   "global": false,
   "hasTypescriptConfigRootAlias": true,
   "isLockFileFixCommitType": false,
+  "lintStagedConfig": {},
   "macos": true,
   "minNodeVersion": null,
   "nodeVersion": 10,
