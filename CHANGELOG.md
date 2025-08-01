@@ -1,3 +1,10 @@
+## [15.2.4](https://github.com/dword-design/base/compare/v15.2.3...v15.2.4) (2025-08-01)
+
+
+### Bug Fixes
+
+* remove outDir from ts config ([07e693f](https://github.com/dword-design/base/commit/07e693f18bda127d286394b6691ac9c1f00fad4c))
+
 ## [15.2.3](https://github.com/dword-design/base/compare/v15.2.2...v15.2.3) (2025-07-29)
 
 
