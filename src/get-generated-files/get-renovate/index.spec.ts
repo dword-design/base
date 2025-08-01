@@ -2,8 +2,11 @@ import pathLib from 'node:path';
 
 import dotenv from '@dword-design/dotenv-json-extended';
 import { expect, test } from '@playwright/test';
+import packageName from 'depcheck-package-name';
+import endent from 'endent';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
+import outputFiles from 'output-files';
 
 import { Base } from '@/src';
 
@@ -35,10 +38,16 @@ test('github action', async ({}, testInfo) => {
   await execaCommand('git config user.email "foo@bar.de"', { cwd });
   await execaCommand('git config user.name "foo"', { cwd });
 
-  await fs.outputFile(
-    pathLib.join(cwd, 'index.ts'),
-    'gitHubAction`actions/checkout@v3`',
-  );
+  await outputFiles(cwd, {
+    'index.ts': endent`
+      import gitHubAction from '${packageName`tagged-template-noop`}';
+
+      export default gitHubAction\`actions/checkout@v3\`;
+    `,
+    'package.json': JSON.stringify({
+      dependencies: { [packageName`tagged-template-noop`]: '*' },
+    }),
+  });
 
   const base = new Base(null, { cwd });
   await base.prepare();
@@ -108,7 +117,18 @@ test('nodejs version', async ({}, testInfo) => {
   await execaCommand('git init', { cwd });
   await execaCommand('git config user.email "foo@bar.de"', { cwd });
   await execaCommand('git config user.name "foo"', { cwd });
-  await fs.outputFile(pathLib.join(cwd, 'index.ts'), 'nodejsVersion`18`');
+
+  await outputFiles(cwd, {
+    'index.ts': endent`
+      import nodejsVersion from '${packageName`tagged-template-noop`}';
+
+      export default nodejsVersion\`18\`;
+    `,
+    'package.json': JSON.stringify({
+      dependencies: { [packageName`tagged-template-noop`]: '*' },
+    }),
+  });
+
   const base = new Base(null, { cwd });
   await base.prepare();
   await execaCommand('git add .', { cwd });
