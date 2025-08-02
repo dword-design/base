@@ -1,3 +1,10 @@
+## [15.3.2](https://github.com/dword-design/base/compare/v15.3.1...v15.3.2) (2025-08-02)
+
+
+### Bug Fixes
+
+* upgrade depcheck ([cd77211](https://github.com/dword-design/base/commit/cd77211152a226841ceeab154018e3e48bffd42e))
+
 ## [15.3.1](https://github.com/dword-design/base/compare/v15.3.0...v15.3.1) (2025-08-02)
 
 
