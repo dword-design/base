@@ -1,3 +1,16 @@
+# [15.3.0](https://github.com/dword-design/base/compare/v15.2.4...v15.3.0) (2025-08-02)
+
+
+### Bug Fixes
+
+* foo ([31ea670](https://github.com/dword-design/base/commit/31ea670bc73d17acaea25835449f4be675a48ad5))
+* set auto-install-peers to false ([74ff3eb](https://github.com/dword-design/base/commit/74ff3eb21c8a87bf984f2d62c570b9b64ce06d90))
+
+
+### Features
+
+* lint-staged ([#808](https://github.com/dword-design/base/issues/808)) ([e52b1d2](https://github.com/dword-design/base/commit/e52b1d2e69482e36d173835ce9bf40802883c5db))
+
 ## [15.2.4](https://github.com/dword-design/base/compare/v15.2.3...v15.2.4) (2025-08-01)
 
 
