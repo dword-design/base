@@ -1,1 +1,1 @@
-export default 'node-linker=hoisted\n';
+export default { 'auto-install-peers': false, 'node-linker': 'hoisted' };

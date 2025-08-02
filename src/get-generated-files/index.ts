@@ -1,3 +1,4 @@
+import { stringify as stringifyIni } from 'ini';
 import sortKeys from 'sort-keys';
 import sortPackageJson from 'sort-package-json';
 import { stringify as yamlStringify } from 'yaml';
@@ -54,7 +55,7 @@ export default function () {
     '.gitpod.Dockerfile': this.getGitpodDockerfile(),
     '.gitpod.yml': yamlStringify(this.getGitpodConfig()),
     '.lintstagedrc.json': `${JSON.stringify(this.getLintStaged(), undefined, 2)}\n`,
-    '.npmrc': npmrc,
+    '.npmrc': stringifyIni(npmrc),
     '.releaserc.json': `${JSON.stringify(
       this.getReleaseConfig(),
       undefined,
