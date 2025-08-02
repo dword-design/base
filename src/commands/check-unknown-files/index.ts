@@ -15,6 +15,7 @@ export default async function () {
       '.husky/post-checkout': true,
       '.husky/post-commit': true,
       '.husky/post-merge': true,
+      '.husky/pre-commit': true,
       '.husky/pre-push': true,
       'CHANGELOG.md': true,
       PRCHECKLIST: true,
