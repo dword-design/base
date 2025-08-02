@@ -48,7 +48,7 @@
     "commitizen": "^4.3.1",
     "cosmiconfig": "^9.0.0",
     "cz-conventional-changelog": "^3.3.0",
-    "depcheck": "npm:@dword-design/depcheck@^0.0.7",
+    "depcheck": "npm:@dword-design/depcheck@^0.0.9",
     "depcheck-detector-bin-name": "^1.0.2",
     "depcheck-detector-execa": "^4.0.3",
     "depcheck-detector-package-name": "^3.0.4",

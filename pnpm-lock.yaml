@@ -54,8 +54,8 @@ importers:
         specifier: ^3.3.0
         version: 3.3.0(@types/node@24.0.13)(typescript@5.8.3)
       depcheck:
-        specifier: npm:@dword-design/depcheck@^0.0.7
-        version: '@dword-design/depcheck@0.0.7'
+        specifier: npm:@dword-design/depcheck@^0.0.9
+        version: '@dword-design/depcheck@0.0.9'
       depcheck-detector-bin-name:
         specifier: ^1.0.2
         version: 1.0.2
@@ -602,8 +602,8 @@ packages:
     resolution: {integrity: sha512-liMT6tgQ/YfhNgW6rigOaY0XqfNMMFb+DCwEeLtfBdTJhMUEHwBb8UsChw8uwrxMSQW/YsabfnDsT897pBmBlg==}
     engines: {node: '>=16'}
 
-  '@dword-design/depcheck@0.0.7':
-    resolution: {integrity: sha512-WoVDnuaohxINpx8g9ZdkhmxvU1etVzfNfpDNgi/LlS6Sk8ef8wciF1GQ3aDuX2+BlEUZJALKyqebqoOrxCUfOA==}
+  '@dword-design/depcheck@0.0.9':
+    resolution: {integrity: sha512-gUsIXzLg+UTyOT3IaS0g4om4AnAhjoBvrgnb8tWAW6M5aDMPuQ2/M/RAGIWoM/yM+ijAklbb1G/DGNkrNoLrBQ==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -7664,7 +7664,7 @@ snapshots:
       get-package-name: 2.2.0
       sass: 1.62.1
 
-  '@dword-design/depcheck@0.0.7':
+  '@dword-design/depcheck@0.0.9':
     dependencies:
       '@babel/parser': 7.28.0
       '@babel/traverse': 7.28.0
@@ -8141,7 +8141,7 @@ snapshots:
 
   '@npmcli/fs@3.1.1':
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
     optional: true
 
   '@npmcli/fs@4.0.0':
@@ -9645,7 +9645,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
 
   bunyan@1.8.15:
     optionalDependencies:
@@ -12268,7 +12268,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.7.1
+      semver: 7.7.2
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@6.0.2:
