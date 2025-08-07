@@ -1,3 +1,10 @@
+## [15.3.3](https://github.com/dword-design/base/compare/v15.3.2...v15.3.3) (2025-08-07)
+
+
+### Bug Fixes
+
+* merge lint staged ([#811](https://github.com/dword-design/base/issues/811)) ([70785b3](https://github.com/dword-design/base/commit/70785b3ec123f33ef3e345297731bc04a5aa9b43))
+
 ## [15.3.2](https://github.com/dword-design/base/compare/v15.3.1...v15.3.2) (2025-08-02)
 
 
