@@ -1,4 +1,6 @@
-export default function () {
+import type { Base } from '@/src';
+
+export default function (this: Base) {
   return {
     'editor.tabSize': 2,
     'files.autoSave': 'off',

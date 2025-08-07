@@ -8,7 +8,6 @@ import depcheckDetectorExeca from 'depcheck-detector-execa';
 import depcheckDetectorPackageName from 'depcheck-detector-package-name';
 import packageName from 'depcheck-package-name';
 import endent from 'endent';
-import { type ResultPromise } from 'execa';
 import fs from 'fs-extra';
 import type GitHost from 'hosted-git-info';
 import { createJiti } from 'jiti';
@@ -20,7 +19,7 @@ import type { RenovateConfig } from 'renovate/dist/config/types';
 import type { PackageJson, TsConfigJson } from 'type-fest';
 
 import checkUnknownFiles from './commands/check-unknown-files';
-import type { PartialCommandOptions } from './commands/command-options-input';
+import type { PartialCommandOptions } from './commands/partial-command-options';
 import commit from './commands/commit';
 import depcheckMethod from './commands/depcheck';
 import lint from './commands/lint';
@@ -38,7 +37,6 @@ import getEslintConfig from './get-generated-files/get-eslint';
 import getGithubSyncMetadataConfig from './get-generated-files/get-github-sync-metadata';
 import getGithubWorkflowConfig from './get-generated-files/get-github-workflow';
 import getGitignoreConfig from './get-generated-files/get-gitignore';
-import getGitpodConfig from './get-generated-files/get-gitpod';
 import getGitpodDockerfile from './get-generated-files/get-gitpod-dockerfile';
 import getLicenseString from './get-generated-files/get-license-string';
 import getLintStaged from './get-generated-files/get-lint-staged';
@@ -50,6 +48,7 @@ import getTypescriptConfig from './get-generated-files/get-typescript';
 import getVscodeConfig from './get-generated-files/get-vscode';
 import githubCodespacesConfig from './get-generated-files/github-codespaces';
 import getGitInfo from './get-git-info';
+import { PartialTestOptions } from './commands/partial-test-options';
 
 type HandlerWithBase<TConfig extends Config = Config> = (
   this: Base<TConfig>,
@@ -64,6 +63,24 @@ type PartialCommandObjectInObjectWithBase<TConfig extends Config = Config> =
 type PartialCommandInObjectWithBase<TConfig extends Config = Config> =
   | PartialCommandObjectInObjectWithBase<TConfig>
   | HandlerWithBase<TConfig>;
+
+// Extract parameter types from command handlers
+type ExtractHandlerParams<T> = T extends {
+  handler: (this: any, ...args: infer P) => any;
+}
+  ? P
+  : T extends (this: any, ...args: infer P) => any
+  ? P
+  : unknown[];
+
+// Get command names from the commands object
+type CommandNames<TConfig extends Config> = keyof TConfig['commands'];
+
+// Get parameters for a specific command
+type CommandParams<
+  TConfig extends Config,
+  TCommandName extends CommandNames<TConfig>
+> = ExtractHandlerParams<TConfig['commands'][TCommandName]>;
 
 type Config = {
   name?: string;
@@ -100,6 +117,8 @@ type Config = {
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
   doppler: boolean;
+  npmPublish: boolean;
+  codecovGraphToken: string | null;
 };
 
 type PartialConfigObject<TConfig extends Config = Config> = Omit<
@@ -118,7 +137,7 @@ type PartialConfig<TConfig extends Config = Config> =
 
 export const defineBaseConfig = <T>(configInput: T): T => configInput;
 
-const mergeConfigs = createDefu((obj, key, value) => {
+const mergeConfigs = createDefu(<T, K extends keyof T>(obj: T, key: K, value: T[K]) => {
   if (key === 'supportedNodeVersions') {
     obj[key] = value;
     return true;
@@ -134,108 +153,104 @@ class Base<TConfig extends Config = Config> {
   generatedFiles;
   githubCodespacesConfig = githubCodespacesConfig;
 
-  commit(...args): ResultPromise {
-    return commit.call(this, ...args);
+  commit(this: Base, options?: PartialCommandOptions & { allowEmpty?: boolean }) {
+    return commit.call(this, options);
   }
 
-  lint(...args): ResultPromise {
-    return lint.call(this, ...args);
+  lint(options?: PartialCommandOptions) {
+    return lint.call(this, options);
   }
 
-  lintPackagejson(...args): void {
-    return lintPackagejson.call(this, ...args);
+  lintPackagejson() {
+    return lintPackagejson.call(this);
   }
 
-  typecheck(...args): ResultPromise {
-    return typecheck.call(this, ...args);
+  typecheck(options?: PartialCommandOptions) {
+    return typecheck.call(this, options);
   }
 
-  verify(...args): ResultPromise {
-    return verify.call(this, ...args);
+  verify(options?: PartialCommandOptions & { patterns?: string[] }) {
+    return verify.call(this, options);
   }
 
-  prepare(...args): void {
-    return prepare.call(this, ...args);
+  prepare(options?: PartialCommandOptions) {
+    return prepare.call(this, options);
   }
 
-  test(...args): ResultPromise {
-    return test.call(this, ...args);
+  test(options?: PartialTestOptions) {
+    return test.call(this, options);
   }
 
-  testRaw(...args): ResultPromise {
-    return testRaw.call(this, ...args);
+  testRaw(options?: PartialTestOptions) {
+    return testRaw.call(this, options);
   }
 
-  testDocker(...args): ResultPromise {
-    return testDocker.call(this, ...args);
+  testDocker(options?: PartialTestOptions) {
+    return testDocker.call(this, options);
   }
 
-  getPackageConfig(...args) {
-    return getPackageConfig.call(this, ...args);
+  getPackageConfig() {
+    return getPackageConfig.call(this);
   }
 
-  getGeneratedFiles(...args) {
-    return getGeneratedFiles.call(this, ...args);
+  getGeneratedFiles() {
+    return getGeneratedFiles.call(this);
   }
 
-  checkUnknownFiles(...args): void {
-    return checkUnknownFiles.call(this, ...args);
+  checkUnknownFiles() {
+    return checkUnknownFiles.call(this);
   }
 
-  depcheck(...args): void {
-    return depcheckMethod.call(this, ...args);
+  depcheck() {
+    return depcheckMethod.call(this);
   }
 
-  getEditorIgnoreConfig(...args) {
-    return getEditorIgnoreConfig.call(this, ...args);
+  getEditorIgnoreConfig() {
+    return getEditorIgnoreConfig.call(this);
   }
 
-  getEslintConfig(...args) {
-    return getEslintConfig.call(this, ...args);
+  getEslintConfig() {
+    return getEslintConfig.call(this);
   }
 
-  getGithubSyncMetadataConfig(...args) {
-    return getGithubSyncMetadataConfig.call(this, ...args);
+  getGithubSyncMetadataConfig() {
+    return getGithubSyncMetadataConfig.call(this);
   }
 
-  getGithubWorkflowConfig(...args) {
-    return getGithubWorkflowConfig.call(this, ...args);
+  getGithubWorkflowConfig() {
+    return getGithubWorkflowConfig.call(this);
   }
 
-  getGitignoreConfig(...args) {
-    return getGitignoreConfig.call(this, ...args);
+  getGitignoreConfig() {
+    return getGitignoreConfig.call(this);
   }
 
-  getGitpodConfig(...args) {
-    return getGitpodConfig.call(this, ...args);
+  getGitpodDockerfile() {
+    return getGitpodDockerfile.call(this);
   }
 
-  getGitpodDockerfile(...args) {
-    return getGitpodDockerfile.call(this, ...args);
+  getLicenseString() {
+    return getLicenseString.call(this);
   }
 
-  getLicenseString(...args) {
-    return getLicenseString.call(this, ...args);
+  getReadmeString() {
+    return getReadmeString.call(this);
   }
 
-  getReadmeString(...args) {
-    return getReadmeString.call(this, ...args);
+  getReleaseConfig() {
+    return getReleaseConfig.call(this);
   }
 
-  getReleaseConfig(...args) {
-    return getReleaseConfig.call(this, ...args);
+  getRenovateConfig() {
+    return getRenovateConfig.call(this);
   }
 
-  getRenovateConfig(...args) {
-    return getRenovateConfig.call(this, ...args);
+  getVscodeConfig() {
+    return getVscodeConfig.call(this);
   }
 
-  getVscodeConfig(...args) {
-    return getVscodeConfig.call(this, ...args);
-  }
-
-  getTypescriptConfig(...args) {
-    return getTypescriptConfig.call(this, ...args);
+  getTypescriptConfig() {
+    return getTypescriptConfig.call(this);
   }
 
   getLintStaged() {
@@ -299,6 +314,7 @@ class Base<TConfig extends Config = Config> {
       lintStagedConfig: {},
       macos: true,
       minNodeVersion: null,
+      codecovGraphToken: null,
       nodeVersion: 20,
       packageConfig: {},
       preDeploySteps: [],
@@ -360,7 +376,10 @@ class Base<TConfig extends Config = Config> {
     this.generatedFiles = this.getGeneratedFiles();
   }
 
-  run(name, ...args) {
+  run<TCommandName extends keyof TConfig['commands'] & string>(
+    name: TCommandName,
+    ...args: CommandParams<TConfig, TCommandName>
+  ) {
     return this.config.commands[name].handler.call(this, ...args);
   }
 }
@@ -373,4 +392,4 @@ export { Base };
 
 export type { Config, PartialConfig };
 
-export { type PartialCommandOptions } from './commands/command-options-input';
+export { type PartialCommandOptions } from './commands/partial-command-options';

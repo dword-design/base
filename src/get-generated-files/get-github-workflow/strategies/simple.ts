@@ -4,8 +4,9 @@ import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflo
 import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/coverage';
 import getReleaseSteps from '@/src/get-generated-files/get-github-workflow/steps/get-release';
 import getTestSteps from '@/src/get-generated-files/get-github-workflow/steps/get-test';
+import type { Base } from '@/src';
 
-export default function () {
+export default function (this: Base) {
   return {
     build: {
       if: "!contains(github.event.head_commit.message, '[skip ci]')",

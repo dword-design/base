@@ -1,8 +1,9 @@
 import depcheck from 'depcheck';
 import endent from 'endent';
 import { isEmpty, mapValues, omit } from 'lodash-es';
+import type { Base } from '@/src';
 
-export default async function () {
+export default async function (this: Base) {
   const dependenciesResult = await depcheck(this.cwd, {
     package: omit(this.packageConfig, ['devDependencies']),
     skipMissing: true,

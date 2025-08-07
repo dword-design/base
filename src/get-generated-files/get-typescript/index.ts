@@ -1,6 +1,7 @@
 import defu from '@dword-design/defu';
+import type { Base } from '@/src';
 
-export default function () {
+export default function (this: Base) {
   const result = defu(this.config.typescriptConfig, {
     compilerOptions: {
       declaration: true,

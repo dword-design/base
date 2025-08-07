@@ -1,8 +1,9 @@
 import endent from 'endent';
 import spdxParse from 'spdx-expression-parse';
 import spdxList from 'spdx-license-list/full.js';
+import type { Base } from '@/src';
 
-export default function () {
+export default function (this: Base): string {
   const parsed = spdxParse(this.packageConfig.license);
   const license = spdxList[parsed.license];
   return endent`

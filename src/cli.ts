@@ -26,7 +26,7 @@ type TestOptions = {
   grep: string;
   updateSnapshots: boolean;
   uiHost: string;
-  ui: string;
+  ui: boolean;
 };
 
 try {
@@ -47,20 +47,20 @@ try {
       ...(base.config.testInContainer && {
         'test:raw': {
           arguments: '[patterns...]',
-          handler: (patterns, options: TestOptions) =>
+          handler: (patterns: string[], options: TestOptions) =>
             base.testRaw({ patterns, ...options }),
           options: testOptions,
         },
       }),
       test: {
         arguments: '[patterns...]',
-        handler: (patterns, options: TestOptions) =>
+        handler: (patterns: string[], options: TestOptions) =>
           base.test({ patterns, ...options }),
         options: testOptions,
       },
       ...mapValues(base.config.commands, (command, name) => ({
         ...command,
-        handler: (...args) => base.run(name, ...args),
+        handler: (...args: unknown[]) => base.run(name, ...args),
       })),
     },
   });

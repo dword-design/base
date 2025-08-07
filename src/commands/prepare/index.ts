@@ -5,6 +5,8 @@ import packageName from 'depcheck-package-name';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
 import outputFiles from 'output-files';
+import { Base } from '@/src';
+import type { PartialCommandOptions } from '@/src/commands/partial-command-options';
 
 const resolver = createRequire(import.meta.url);
 
@@ -12,7 +14,7 @@ const commitlintPackageConfig = resolver(
   packageName`@commitlint/cli/package.json`,
 );
 
-export default async function (options) {
+export default async function (this: Base, options: PartialCommandOptions = {}) {
   options = {
     log: process.env.NODE_ENV !== 'test',
     stderr: 'inherit',

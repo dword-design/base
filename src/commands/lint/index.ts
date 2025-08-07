@@ -1,9 +1,10 @@
 import { execaCommand } from 'execa';
 import parsePackagejsonName from 'parse-packagejson-name';
 
-import type { PartialCommandOptions } from '@/src/commands/command-options-input';
+import type { PartialCommandOptions } from '@/src/commands/partial-command-options';
+import type { Base } from '@/src';
 
-export default async function (options: PartialCommandOptions = {}) {
+export default async function (this: Base, options: PartialCommandOptions = {}) {
   options = {
     log: process.env.NODE_ENV !== 'test',
     stderr: 'inherit',
@@ -11,7 +12,7 @@ export default async function (options: PartialCommandOptions = {}) {
   };
 
   this.lintPackagejson();
-  const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
+  const packageName = this.packageConfig.name ? parsePackagejsonName(this.packageConfig.name).fullName : '';
 
   if (
     this.config.git !== undefined &&
@@ -24,7 +25,7 @@ export default async function (options: PartialCommandOptions = {}) {
 
   await this.config.lint.call(this, options);
 
-  const result = await execaCommand(
+  return execaCommand(
     'eslint --fix --no-error-on-unmatched-pattern .',
     {
       ...(options.log && { stdout: 'inherit' }),
@@ -32,6 +33,4 @@ export default async function (options: PartialCommandOptions = {}) {
       stderr: options.stderr,
     },
   );
-
-  return result;
 }

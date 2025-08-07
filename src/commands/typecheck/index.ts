@@ -4,9 +4,10 @@ import { execaCommand } from 'execa';
 import { globby } from 'globby';
 import ts from 'typescript';
 
-import type { PartialCommandOptions } from '@/src/commands/command-options-input';
+import type { PartialCommandOptions } from '@/src/commands/partial-command-options';
+import { Base } from '@/src';
 
-export default async function (options: PartialCommandOptions = {}) {
+export default async function (this: Base, options: PartialCommandOptions = {}) {
   options = {
     log: process.env.NODE_ENV !== 'test',
     stderr: 'inherit',

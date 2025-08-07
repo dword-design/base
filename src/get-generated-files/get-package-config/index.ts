@@ -1,8 +1,9 @@
 import packageName from 'depcheck-package-name';
 import { mapValues, pick, stubTrue } from 'lodash-es';
 import sortKeys from 'sort-keys';
+import type { Base } from '@/src';
 
-export default function () {
+export default function (this: Base) {
   const commandNames = {
     checkUnknownFiles: true,
     commit: true,

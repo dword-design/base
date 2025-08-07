@@ -2,8 +2,10 @@ import packageName from 'depcheck-package-name';
 import { execa } from 'execa';
 
 import isCI from './is-ci';
+import type { Base } from '@/src';
+import type { PartialTestOptions } from '@/src/commands/partial-test-options';
 
-export default function (options) {
+export default function (this: Base, options: PartialTestOptions = {}) {
   options = {
     log: process.env.NODE_ENV !== 'test',
     patterns: [],

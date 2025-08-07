@@ -1,9 +1,10 @@
 import packageName from 'depcheck-package-name';
 import parsePackagejsonName from 'parse-packagejson-name';
+import type { Base } from '@/src';
 
 const ci = `dw-${parsePackagejsonName(packageName`@dword-design/ci`).fullName}`;
 
-export default function () {
+export default function (this: Base) {
   return [
     {
       env: {
