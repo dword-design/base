@@ -1,6 +1,7 @@
 import { identity, sortBy } from 'lodash-es';
+import type { Base } from '@/src';
 
-export default function () {
+export default function (this: Base) {
   return sortBy(
     [
       '/codecov',

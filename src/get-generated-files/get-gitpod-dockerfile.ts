@@ -1,6 +1,7 @@
 import endent from 'endent';
+import type { Base } from '@/src';
 
-export default function () {
+export default function (this: Base): string {
   return endent`
     # Need to add :latest, otherwise old versions (e.g. of node) are installed
     FROM gitpod/workspace-full-vnc:latest

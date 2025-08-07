@@ -1,13 +1,9 @@
 import { expect, test } from '@playwright/test';
 
-import { Base } from '@/src';
+import { Base, type PartialConfig } from '@/src';
 
 interface TestConfig {
-  config?: {
-    deployAssets?: Array<{ label: string; path: string }>;
-    deployPlugins?: string[];
-    npmPublish?: boolean;
-  };
+  config?: PartialConfig;
   result: { plugins: Array<string | [string, unknown]> };
 }
 
@@ -94,9 +90,7 @@ const tests: Record<string, TestConfig> = {
 };
 
 for (const [name, testConfig] of Object.entries(tests)) {
-  const config = { deployAssets: [], deployPlugins: [], ...testConfig.config };
-
   test(name, () =>
-    expect(new Base(config).getReleaseConfig()).toEqual(testConfig.result),
+    expect(new Base(testConfig.config).getReleaseConfig()).toEqual(testConfig.result),
   );
 }

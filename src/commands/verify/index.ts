@@ -1,4 +1,7 @@
-export default async function (options) {
+import { Base } from '@/src';
+import type { PartialCommandOptions } from '@/src/commands/partial-command-options';
+
+export default async function (this: Base, options: PartialCommandOptions & { patterns?: string[] } = {}) {
   options = {
     log: process.env.NODE_ENV !== 'test',
     patterns: [],

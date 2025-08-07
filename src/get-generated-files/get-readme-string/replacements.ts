@@ -2,9 +2,10 @@ import endent from 'endent';
 import { last } from 'lodash-es';
 import spdxParse from 'spdx-expression-parse';
 import spdxList from 'spdx-license-list/full.js';
+import type { Base } from '@/src';
 
 export default {
-  badges() {
+  badges(this: Base) {
     return endent`
       <p>
         ${[
@@ -90,13 +91,13 @@ export default {
       </p>
     `;
   },
-  description() {
+  description(this: Base) {
     return this.packageConfig.description || '';
   },
-  install() {
+  install(this: Base) {
     return this.config.readmeInstallString;
   },
-  license() {
+  license(this: Base) {
     return [
       endent`
         ## Contribute
@@ -164,7 +165,7 @@ export default {
         : [],
     ].join('\n\n');
   },
-  title() {
+  title(this: Base) {
     return `# ${this.packageConfig.name}`;
   },
 };

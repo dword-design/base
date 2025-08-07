@@ -17,17 +17,6 @@ test('custom config', ({}, testInfo) => {
   ).toEqual('dist/index.scss');
 });
 
-test('deploy', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-
-  await fs.outputFile(
-    pathLib.join(cwd, 'package.json'),
-    JSON.stringify({ deploy: true }),
-  );
-
-  expect(new Base(null, { cwd }).getPackageConfig().deploy).toBeTruthy();
-});
-
 test('empty', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 

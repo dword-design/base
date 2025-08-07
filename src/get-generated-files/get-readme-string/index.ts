@@ -2,24 +2,26 @@ import pathLib from 'node:path';
 
 import endent from 'endent';
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex';
-import { readFileSync as safeReadFileSync } from 'safe-readfile';
+import fs from 'fs-extra';
+import type { Base } from '@/src';
 
 import replacements from './replacements';
 
-export default function () {
-  const readme =
-    safeReadFileSync(pathLib.join(this.cwd, 'README.md'), 'utf8') ||
-    endent`
-      <!-- TITLE -->
+export default function (this: Base): string {
+  let readme = endent`
+    <!-- TITLE -->
 
-      <!-- BADGES -->
+    <!-- BADGES -->
 
-      <!-- DESCRIPTION -->
+    <!-- DESCRIPTION -->
 
-      <!-- INSTALL -->
+    <!-- INSTALL -->
 
-      <!-- LICENSE -->\n
-    `;
+    <!-- LICENSE -->\n
+  `;
+  try {
+    readme = fs.readFileSync(pathLib.join(this.cwd, 'README.md'), 'utf8');
+  } catch {}
 
   let result = readme;
 

@@ -4,14 +4,20 @@ import { constantCase } from 'change-case';
 import { execa } from 'execa';
 import { findUpSync } from 'find-up';
 import fs from 'fs-extra';
+import { PartialTestOptions } from '@/src/commands/partial-test-options';
+import type { Base } from '@/src';
+import defu from '@dword-design/defu';
 
-export default async function (options) {
-  options = {
+export default async function (this: Base, options: PartialTestOptions = {}) {
+  options = defu(options, {
     log: process.env.NODE_ENV !== 'test',
     patterns: [],
     stderr: 'inherit',
-    ...options,
-  };
+  });
+
+  if (!this.packageConfig.name) {
+    throw new Error('Package name is not set in package.json and is needed to generate a unique volume name for Docker.');
+  }
 
   const volumeName = this.packageConfig.name.replace('@', '').replace('/', '-');
   const envSchemaPath = findUpSync('.env.schema.json', { cwd: this.cwd });

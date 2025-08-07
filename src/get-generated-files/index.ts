@@ -15,8 +15,10 @@ import githubFunding from './github-funding';
 import githubLabelsConfig from './github-labels';
 import githubSyncLabelsConfig from './github-sync-labels';
 import npmrc from './npmrc';
+import type { Base } from '@/src';
+import gitpodConfig from './gitpod';
 
-export default function () {
+export default function (this: Base) {
   const packageConfig = this.getPackageConfig();
   return {
     '.commitlintrc.json': `${JSON.stringify(commitlintConfig, undefined, 2)}\n`,
@@ -53,7 +55,7 @@ export default function () {
       .map(entry => `${entry}\n`)
       .join(''),
     '.gitpod.Dockerfile': this.getGitpodDockerfile(),
-    '.gitpod.yml': yamlStringify(this.getGitpodConfig()),
+    '.gitpod.yml': yamlStringify(gitpodConfig),
     '.lintstagedrc.json': `${JSON.stringify(this.getLintStaged(), undefined, 2)}\n`,
     '.npmrc': stringifyIni(npmrc),
     '.releaserc.json': `${JSON.stringify(
