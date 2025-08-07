@@ -8,7 +8,6 @@ import depcheckDetectorExeca from 'depcheck-detector-execa';
 import depcheckDetectorPackageName from 'depcheck-detector-package-name';
 import packageName from 'depcheck-package-name';
 import endent from 'endent';
-import { type ResultPromise } from 'execa';
 import fs from 'fs-extra';
 import type GitHost from 'hosted-git-info';
 import { createJiti } from 'jiti';
@@ -64,6 +63,24 @@ type PartialCommandObjectInObjectWithBase<TConfig extends Config = Config> =
 type PartialCommandInObjectWithBase<TConfig extends Config = Config> =
   | PartialCommandObjectInObjectWithBase<TConfig>
   | HandlerWithBase<TConfig>;
+
+// Extract parameter types from command handlers
+type ExtractHandlerParams<T> = T extends {
+  handler: (this: any, ...args: infer P) => any;
+}
+  ? P
+  : T extends (this: any, ...args: infer P) => any
+  ? P
+  : unknown[];
+
+// Get command names from the commands object
+type CommandNames<TConfig extends Config> = keyof TConfig['commands'];
+
+// Get parameters for a specific command
+type CommandParams<
+  TConfig extends Config,
+  TCommandName extends CommandNames<TConfig>
+> = ExtractHandlerParams<TConfig['commands'][TCommandName]>;
 
 type Config = {
   name?: string;
@@ -359,7 +376,10 @@ class Base<TConfig extends Config = Config> {
     this.generatedFiles = this.getGeneratedFiles();
   }
 
-  run(name, ...args) {
+  run<TCommandName extends keyof TConfig['commands'] & string>(
+    name: TCommandName,
+    ...args: CommandParams<TConfig, TCommandName>
+  ) {
     return this.config.commands[name].handler.call(this, ...args);
   }
 }

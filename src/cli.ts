@@ -60,7 +60,7 @@ try {
       },
       ...mapValues(base.config.commands, (command, name) => ({
         ...command,
-        handler: (...args) => base.run(name, ...args),
+        handler: (...args: unknown[]) => base.run(name, ...args),
       })),
     },
   });
