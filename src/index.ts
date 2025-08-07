@@ -349,6 +349,10 @@ class Base<TConfig extends Config = Config> {
 
     this.config = mergeConfigs(config, inheritedConfig, defaultConfig);
 
+    if (Array.isArray(this.config.commands)) {
+      this.config.commands = groupBy(this.config.commands, 'name');
+    }
+
     this.config = {
       ...this.config,
       commands: mapValues(this.config.commands, command =>
