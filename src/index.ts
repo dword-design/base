@@ -50,44 +50,12 @@ import getTypescriptConfig from './get-generated-files/get-typescript';
 import getVscodeConfig from './get-generated-files/get-vscode';
 import getGitInfo from './get-git-info';
 
-// Generic command handler type with proper typing
-type CommandHandler<TParams extends readonly unknown[] = readonly unknown[]> = (
-  this: Base,
-  ...args: TParams
-) => unknown;
-
-// Type for extracting parameter types from a command handler
-type ExtractHandlerParams<T> = T extends CommandHandler<infer P> ? P : never;
-
-// Type for a command object with typed handler
-type CommandObject<TParams extends readonly unknown[] = readonly unknown[]> = 
-  Omit<PartialCommandObjectInObject, 'handler'> & {
-    handler: CommandHandler<TParams>;
-  };
-
-// Type for commands that can be either a handler function or a command object
-type CommandDefinition<TParams extends readonly unknown[] = readonly unknown[]> =
-  | CommandObject<TParams>
-  | CommandHandler<TParams>;
-
-// Type for the commands record with proper typing
-type CommandsRecord = Record<string, CommandDefinition<any>>;
-
-// Extract command names from a commands record
-type CommandNames<T extends CommandsRecord> = keyof T;
-
-// Extract handler parameters for a specific command
-type CommandParams<
-  T extends CommandsRecord,
-  K extends CommandNames<T>
-> = T[K] extends CommandDefinition<infer P> ? P : never;
-
-// Generic config type with typed commands
-type Config<TCommands extends CommandsRecord = CommandsRecord> = {
+// Base config interface that can be extended
+interface BaseConfig {
   name?: string;
   global: boolean;
   allowedMatches: string[];
-  commands: TCommands;
+  commands: Record<string, CommandDefinition<readonly unknown[], BaseConfig>>; // Proper typing
   depcheckConfig: Omit<DepcheckOptions, 'package'>;
   deployAssets: Array<{ label: string; path: string }>;
   deployEnv: Record<string, string>;
@@ -118,25 +86,67 @@ type Config<TCommands extends CommandsRecord = CommandsRecord> = {
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
   doppler: boolean;
+}
+
+// Generic command handler type with proper typing and config access
+type CommandHandler<
+  TParams extends readonly unknown[] = readonly unknown[],
+  TConfig extends BaseConfig = BaseConfig
+> = (this: Base<TConfig>, ...args: TParams) => unknown;
+
+// Type for a command object with typed handler
+type CommandObject<
+  TParams extends readonly unknown[] = readonly unknown[],
+  TConfig extends BaseConfig = BaseConfig
+> = Omit<PartialCommandObjectInObject, 'handler'> & {
+  handler: CommandHandler<TParams, TConfig>;
 };
 
-type PartialConfigObject<TCommands extends CommandsRecord = CommandsRecord> = Omit<
-  Partial<Config<TCommands>>,
+// Type for commands that can be either a handler function or a command object
+type CommandDefinition<
+  TParams extends readonly unknown[] = readonly unknown[],
+  TConfig extends BaseConfig = BaseConfig
+> =
+  | CommandObject<TParams, TConfig>
+  | CommandHandler<TParams, TConfig>;
+
+// Type for the commands record with proper typing
+type CommandsRecord<TConfig extends BaseConfig = BaseConfig> = Record<
+  string, 
+  CommandDefinition<readonly unknown[], TConfig>
+>;
+
+// Extract command names from a commands record
+type CommandNames<T extends CommandsRecord<BaseConfig>> = keyof T;
+
+// Extract handler parameters for a specific command
+type CommandParams<
+  T extends CommandsRecord<BaseConfig>,
+  K extends CommandNames<T>
+> = T[K] extends CommandDefinition<infer P, BaseConfig> ? P : never;
+
+// Config type is now just an alias for extensible configs
+type Config<TConfig extends BaseConfig = BaseConfig> = TConfig;
+
+type PartialConfigObject<TConfig extends BaseConfig = BaseConfig> = Omit<
+  Partial<TConfig>, 
   'commands'
-> & { commands?: TCommands };
+> & { 
+  commands?: CommandsRecord<TConfig>
+};
 
-type PartialConfigOrFunction<TCommands extends CommandsRecord = CommandsRecord> =
-  | PartialConfigObject<TCommands>
-  | ((this: Base<TCommands>, config: Config<TCommands>) => PartialConfigObject<TCommands>);
+type PartialConfigOrFunction<TConfig extends BaseConfig = BaseConfig> =
+  | PartialConfigObject<TConfig>
+  | ((this: Base<TConfig>, config: TConfig) => PartialConfigObject<TConfig>);
 
-type PartialConfig<TCommands extends CommandsRecord = CommandsRecord> =
-  | PartialConfigOrFunction<TCommands>
+type PartialConfig<TConfig extends BaseConfig = BaseConfig> =
+  | PartialConfigOrFunction<TConfig>
   | string
   | null;
 
-export const defineBaseConfig = <TCommands extends CommandsRecord>(
-  configInput: PartialConfig<TCommands>
-): PartialConfig<TCommands> => configInput;
+export const defineBaseConfig = <TConfig extends BaseConfig>(
+  configInput: PartialConfig<TConfig>
+): PartialConfig<TConfig> => configInput;
 
 const mergeConfigs = createDefu((obj, key, value) => {
   if (key === 'supportedNodeVersions') {
@@ -147,8 +157,8 @@ const mergeConfigs = createDefu((obj, key, value) => {
   return false;
 });
 
-class Base<TCommands extends CommandsRecord = {}> {
-  config: Config<TCommands>;
+class Base<TConfig extends BaseConfig = BaseConfig> {
+  config: TConfig;
   packageConfig: PackageJson;
   cwd: string;
   generatedFiles;
@@ -261,7 +271,7 @@ class Base<TCommands extends CommandsRecord = {}> {
     return getLintStaged.call(this);
   }
 
-  constructor(configInput: PartialConfig<TCommands> = null, { cwd = '.' } = {}) {
+  constructor(configInput: PartialConfig<TConfig> = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
 
@@ -350,8 +360,8 @@ class Base<TCommands extends CommandsRecord = {}> {
         : config.name;
 
     let inheritedConfig:
-      | PartialConfigOrFunction<TCommands>
-      | { default: PartialConfigOrFunction<TCommands> } = inheritedConfigPath
+      | PartialConfigOrFunction<TConfig>
+      | { default: PartialConfigOrFunction<TConfig> } = inheritedConfigPath
       ? jitiInstance(inheritedConfigPath)
       : undefined;
 
@@ -379,14 +389,36 @@ class Base<TCommands extends CommandsRecord = {}> {
     this.generatedFiles = this.getGeneratedFiles();
   }
 
+  // Type guard functions for better type safety
+  private isCommandFunction(command: unknown): command is (...args: unknown[]) => unknown {
+    return typeof command === 'function';
+  }
+
+  private isCommandObject(command: unknown): command is { handler: (...args: unknown[]) => unknown } {
+    return (
+      command !== null &&
+      typeof command === 'object' &&
+      'handler' in command &&
+      typeof (command as { handler?: unknown }).handler === 'function'
+    );
+  }
+
   // Type-safe run method
-  run<K extends CommandNames<TCommands>>(
+  run<K extends CommandNames<CommandsRecord<TConfig>>>(
     name: K,
-    ...args: CommandParams<TCommands, K>
+    ...args: CommandParams<CommandsRecord<TConfig>, K>
   ): unknown {
     const command = this.config.commands[name];
-    const handler: CommandHandler<any> = typeof command === 'function' ? command : command.handler;
-    return handler.call(this, ...args);
+    
+    if (this.isCommandFunction(command)) {
+      return command.call(this, ...args);
+    }
+    
+    if (this.isCommandObject(command)) {
+      return command.handler.call(this, ...args);
+    }
+    
+    throw new Error(`Invalid command: ${String(name)}`);
   }
 }
 
@@ -399,6 +431,7 @@ export { Base };
 export type { 
   Config, 
   PartialConfig, 
+  BaseConfig,
   CommandsRecord, 
   CommandDefinition, 
   CommandHandler, 

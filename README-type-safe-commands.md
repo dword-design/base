@@ -1,6 +1,6 @@
-# Type-safe Commands in Base
+# Type-safe Commands with Extensible Config
 
-Diese Implementierung bietet jetzt type-safe Commands mit vollständiger TypeScript-Unterstützung.
+Diese Implementierung bietet jetzt type-safe Commands mit vollständiger TypeScript-Unterstützung und erweiterbarer Config.
 
 ## Neue Features
 
@@ -9,7 +9,7 @@ Diese Implementierung bietet jetzt type-safe Commands mit vollständiger TypeScr
 Command-Handler können jetzt mit spezifischen Parameter-Typen definiert werden:
 
 ```typescript
-import { Base, defineBaseConfig, type CommandsRecord } from './src/index';
+import { Base, defineBaseConfig, type BaseConfig } from './src/index';
 
 // Definiere Commands mit spezifischen Typen
 const myCommands = {
@@ -26,79 +26,129 @@ const myCommands = {
   // Command ohne Parameter
   clean: () => {
     console.log('Cleaning...');
-  },
-  
-  // Command als Object mit Handler und Metadaten
-  test: {
-    description: 'Run tests',
-    handler: (pattern?: string) => {
-      console.log(`Running tests with pattern: ${pattern || 'all'}`);
-    }
   }
-} satisfies CommandsRecord;
+};
 ```
 
-### 2. Type-safe Config Definition
+### 2. Extensible Config System
+
+Das neue System verwendet `TConfig extends BaseConfig` anstatt zusätzlicher Config-Parameter:
 
 ```typescript
-const config = defineBaseConfig({
-  commands: myCommands,
-  global: false,
-  // ... andere config options
-});
+// Erweitere BaseConfig mit eigenen Feldern
+interface MyExtendedConfig extends BaseConfig {
+  apiUrl: string;
+  apiKey: string;
+  environment: 'development' | 'staging' | 'production';
+  features: {
+    enableCache: boolean;
+    enableMetrics: boolean;
+  };
+  database: {
+    host: string;
+    port: number;
+    name: string;
+  };
+}
 
-const base = new Base(config);
+// Commands mit Zugriff auf erweiterte Config
+const commands = {
+  deploy: function(this: Base<MyExtendedConfig>, target?: string) {
+    // ✅ Vollständiger Zugriff auf alle Config-Felder
+    console.log(`Deploying to ${target || this.config.environment}`);
+    console.log(`API URL: ${this.config.apiUrl}`);
+    console.log(`Database: ${this.config.database.host}:${this.config.database.port}`);
+  },
+  
+  apiCall: function(this: Base<MyExtendedConfig>, endpoint: string) {
+    const fullUrl = `${this.config.apiUrl}${endpoint}`;
+    console.log(`Making request to: ${fullUrl}`);
+  }
+};
 ```
 
-### 3. Type-safe run() Method
+### 3. Type-safe Config Creation
+
+```typescript
+// Erstelle vollständige Config mit allen erforderlichen Feldern
+const config: MyExtendedConfig = {
+  // Base config fields
+  global: false,
+  commands: commands,
+  // ... alle anderen BaseConfig-Felder
+  
+  // Extended config fields
+  apiUrl: 'https://api.example.com',
+  apiKey: 'secret-key',
+  environment: 'development',
+  features: {
+    enableCache: true,
+    enableMetrics: false
+  },
+  database: {
+    host: 'localhost',
+    port: 5432,
+    name: 'myapp_dev'
+  }
+};
+
+const base = new Base<MyExtendedConfig>(config);
+```
+
+### 4. Type-safe run() Method
 
 Der `run` method ist jetzt vollständig type-safe:
 
 ```typescript
 // ✅ Korrekte Aufrufe - TypeScript validiert Parameter
-base.run('build', { watch: true, target: 'production' });
-base.run('deploy', 'staging', true);
-base.run('clean');
-base.run('test', 'unit');
+base.run('deploy', 'staging');
+base.run('apiCall', '/users');
 
 // ❌ Diese würden TypeScript-Fehler verursachen:
-// base.run('build', 'wrong-type');        // Falscher Parametertyp
-// base.run('deploy');                     // Fehlender erforderlicher Parameter
-// base.run('nonexistent');                // Command existiert nicht
-// base.run('clean', 'extra-param');       // Zu viele Parameter
+// base.run('deploy', 123);        // Falscher Parametertyp
+// base.run('nonexistent');        // Command existiert nicht
 ```
 
 ## Type-System Erklärung
 
-### Neue Types
+### Erweiterte Types
 
-- `CommandHandler<TParams>`: Typisierte Handler-Funktion
-- `CommandObject<TParams>`: Command-Object mit typisiertem Handler
-- `CommandDefinition<TParams>`: Union von Handler oder Object
-- `CommandsRecord`: Record von Command-Definitionen
+- `BaseConfig`: Basis-Interface das erweitert werden kann
+- `CommandHandler<TParams, TConfig>`: Typisierte Handler-Funktion mit Config-Zugriff
+- `CommandObject<TParams, TConfig>`: Command-Object mit typisiertem Handler
+- `CommandDefinition<TParams, TConfig>`: Union von Handler oder Object
+- `CommandsRecord<TConfig>`: Record von Command-Definitionen für spezifische Config
 - `CommandNames<T>`: Extrahiert Command-Namen aus Commands-Record
 - `CommandParams<T, K>`: Extrahiert Parameter-Typen für spezifischen Command
 
 ### Generische Base-Klasse
 
 ```typescript
-class Base<TCommands extends CommandsRecord = {}> {
-  config: Config<TCommands>;
+class Base<TConfig extends BaseConfig = BaseConfig> {
+  config: TConfig;
   
-  run<K extends CommandNames<TCommands>>(
+  run<K extends CommandNames<CommandsRecord<TConfig>>>(
     name: K,
-    ...args: CommandParams<TCommands, K>
+    ...args: CommandParams<CommandsRecord<TConfig>, K>
   ): unknown;
 }
 ```
 
-### Config-Type
+### Erweiterbares Config-System
 
 ```typescript
-type Config<TCommands extends CommandsRecord = CommandsRecord> = {
-  commands: TCommands;
-  // ... andere properties
-};
+interface BaseConfig {
+  // Standard Base-Properties
+  global: boolean;
+  commands: Record<string, any>;
+  // ... alle anderen Standard-Felder
+}
+
+// Erweitere mit eigenen Feldern
+interface MyConfig extends BaseConfig {
+  customField: string;
+  mySettings: { [key: string]: any };
+}
 ```
 
 ## Backward Compatibility
@@ -106,8 +156,9 @@ type Config<TCommands extends CommandsRecord = CommandsRecord> = {
 Die Änderungen sind vollständig rückwärtskompatibel:
 
 - Bestehender Code funktioniert weiterhin
-- Default-Fall (leere Commands) wird korrekt behandelt
+- Default-Fall (BaseConfig) wird korrekt behandelt
 - Alle bestehenden Method-Signaturen bleiben unverändert
+- Schrittweise Migration möglich
 
 ## Vorteile
 
@@ -116,11 +167,46 @@ Die Änderungen sind vollständig rückwärtskompatibel:
 3. **Refactoring Safety**: Änderungen an Command-Signaturen werden automatisch erfasst
 4. **Documentation**: Types dienen als Dokumentation für Command-APIs
 5. **Error Prevention**: Verhindert Laufzeit-Fehler durch falsche Parameter
+6. **Extended Config Access**: Commands haben typesicheren Zugriff auf erweiterte Config-Felder
+7. **Full Type Safety**: Sowohl Commands als auch Config-Erweiterungen sind vollständig typisiert
+8. **Flexible Extension**: Configs können beliebig erweitert werden durch Interface-Extension
 
 ## Migration
 
 Für bestehende Projekte:
 
 1. Commands können schrittweise mit spezifischen Typen versehen werden
-2. `satisfies CommandsRecord` kann verwendet werden, um Type-Safety zu gewährleisten
-3. Der `defineBaseConfig` Helper bietet zusätzliche Type-Safety für die Konfiguration
+2. Config kann durch Interface-Extension erweitert werden
+3. Commands können schrittweise auf erweiterte Config-Felder zugreifen
+4. Der `defineBaseConfig` Helper bietet zusätzliche Type-Safety
+5. Vollständige Typisierung kann schrittweise implementiert werden
+
+## Beispiel: Vollständige Implementierung
+
+```typescript
+// 1. Erweitere BaseConfig
+interface AppConfig extends BaseConfig {
+  apiUrl: string;
+  environment: 'dev' | 'prod';
+}
+
+// 2. Definiere Commands mit Config-Zugriff
+const commands = {
+  deploy: function(this: Base<AppConfig>) {
+    console.log(`Deploying to ${this.config.environment}`);
+    console.log(`API: ${this.config.apiUrl}`);
+  }
+};
+
+// 3. Erstelle typisierte Config
+const config: AppConfig = {
+  // ... alle BaseConfig-Felder
+  commands,
+  apiUrl: 'https://api.app.com',
+  environment: 'dev'
+};
+
+// 4. Verwende mit vollständiger Type-Safety
+const base = new Base<AppConfig>(config);
+base.run('deploy'); // ✅ Vollständig typisiert
+```
