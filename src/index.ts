@@ -51,25 +51,25 @@ import getVscodeConfig from './get-generated-files/get-vscode';
 import githubCodespacesConfig from './get-generated-files/github-codespaces';
 import getGitInfo from './get-git-info';
 
-type HandlerWithBase<TConfig extends Config = Config> = (
+type HandlerWithBase<TConfig extends Config = Config, TArgs extends readonly unknown[] = readonly unknown[]> = (
   this: Base<TConfig>,
-  ...args: unknown[]
+  ...args: TArgs
 ) => unknown;
 
-type PartialCommandObjectInObjectWithBase<TConfig extends Config = Config> =
+type PartialCommandObjectInObjectWithBase<TConfig extends Config = Config, TArgs extends readonly unknown[] = readonly unknown[]> =
   Omit<PartialCommandObjectInObject, 'handler'> & {
-    handler: (this: Base<TConfig>, ...args: unknown[]) => unknown;
+    handler: (this: Base<TConfig>, ...args: TArgs) => unknown;
   };
 
-type PartialCommandInObjectWithBase<TConfig extends Config = Config> =
-  | PartialCommandObjectInObjectWithBase<TConfig>
-  | HandlerWithBase<TConfig>;
+type PartialCommandInObjectWithBase<TConfig extends Config = Config, TArgs extends readonly unknown[] = readonly unknown[]> =
+  | PartialCommandObjectInObjectWithBase<TConfig, TArgs>
+  | HandlerWithBase<TConfig, TArgs>;
 
-type Config = {
+type Config<TCommands extends Record<string, (this: Base<Config>, ...args: unknown[]) => unknown> = Record<string, (this: Base<Config>) => unknown>> = {
   name?: string;
   global: boolean;
   allowedMatches: string[];
-  commands: Record<string, PartialCommandObjectInObjectWithBase>;
+  commands: TCommands;
   depcheckConfig: Omit<DepcheckOptions, 'package'>;
   deployAssets: Array<{ label: string; path: string }>;
   deployEnv: Record<string, string>;
@@ -102,10 +102,7 @@ type Config = {
   doppler: boolean;
 };
 
-type PartialConfigObject<TConfig extends Config = Config> = Omit<
-  Partial<TConfig>,
-  'commands'
-> & { commands?: Record<string, PartialCommandInObjectWithBase<TConfig>> };
+type PartialConfigObject<TConfig extends Config = Config> = Partial<TConfig>;
 
 type PartialConfigOrFunction<TConfig extends Config = Config> =
   | PartialConfigObject<TConfig>
@@ -127,8 +124,13 @@ const mergeConfigs = createDefu((obj, key, value) => {
   return false;
 });
 
+type TransformedCommands<T> = {
+  [K in keyof T]: { handler: T[K] };
+};
+
 class Base<TConfig extends Config = Config> {
   config: TConfig;
+  private transformedCommands: TransformedCommands<TConfig['commands']>;
   packageConfig: PackageJson;
   cwd: string;
   generatedFiles;
@@ -349,19 +351,20 @@ class Base<TConfig extends Config = Config> {
 
     this.config = mergeConfigs(config, inheritedConfig, defaultConfig);
 
-    this.config = {
-      ...this.config,
-      commands: mapValues(this.config.commands, command =>
-        typeof command === 'function' ? { handler: command } : command,
-      ),
-    };
+    this.transformedCommands = mapValues(this.config.commands, command =>
+      typeof command === 'function' ? { handler: command } : command,
+    );
 
     this.packageConfig = this.getPackageConfig();
     this.generatedFiles = this.getGeneratedFiles();
   }
 
-  run(name, ...args) {
-    return this.config.commands[name].handler.call(this, ...args);
+  run<K extends keyof TConfig['commands']>(
+    name: K, 
+    ...args: Parameters<TConfig['commands'][K]>
+  ): ReturnType<TConfig['commands'][K]> {
+    const command = this.transformedCommands[name];
+    return command.handler.call(this, ...args);
   }
 }
 
