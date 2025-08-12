@@ -1,3 +1,10 @@
+## [15.3.5](https://github.com/dword-design/base/compare/v15.3.4...v15.3.5) (2025-08-12)
+
+
+### Bug Fixes
+
+* fix command typing ([2ce61e1](https://github.com/dword-design/base/commit/2ce61e1cb54e9d15ed9225292d1658ce4017583c))
+
 ## [15.3.4](https://github.com/dword-design/base/compare/v15.3.3...v15.3.4) (2025-08-12)
 
 
