@@ -50,15 +50,19 @@ import getTypescriptConfig from './get-generated-files/get-typescript';
 import getVscodeConfig from './get-generated-files/get-vscode';
 import getGitInfo from './get-git-info';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type HandlerWithBase<TConfig extends Config = Config> = (
   this: Base<TConfig>,
-  ...args: unknown[]
-) => unknown;
+  ...args: any[]
+) => any;
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type PartialCommandObjectInObjectWithBase<TConfig extends Config = Config> =
   Omit<PartialCommandObjectInObject, 'handler'> & {
-    handler: (this: Base<TConfig>, ...args: unknown[]) => unknown;
+    handler: (this: Base<TConfig>, ...args: any[]) => any;
   };
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 type PartialCommandInObjectWithBase<TConfig extends Config = Config> =
   | PartialCommandObjectInObjectWithBase<TConfig>
@@ -358,7 +362,10 @@ class Base<TConfig extends Config = Config> {
     this.generatedFiles = this.getGeneratedFiles();
   }
 
-  run(name, ...args) {
+  run<K extends keyof TConfig['commands'] & string>(
+    name: K,
+    ...args: Parameters<TConfig['commands'][K]['handler']>
+  ): ReturnType<TConfig['commands'][K]['handler']> {
     return this.config.commands[name].handler.call(this, ...args);
   }
 }
