@@ -4,5 +4,11 @@
       "husky"
     ]
   },
-  "name": "@dword-design/node"
+  "doppler": true,
+  "name": "@dword-design/node",
+  "typescriptConfig": {
+    "compilerOptions": {
+      "strict": false
+    }
+  }
 }

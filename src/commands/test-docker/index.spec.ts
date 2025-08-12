@@ -90,7 +90,7 @@ test('env @usesdocker', async ({ packageName }, testInfo) => {
     `,
   });
 
-  await execaCommand('pnpm install', { cwd });
+  await execaCommand('pnpm install --ignore-workspace', { cwd });
   await execaCommand('tsx cli.ts', { cwd, env: { FOO: 'foo' } });
 });
 
@@ -155,7 +155,7 @@ test('is in docker @usesdocker', async ({ packageName }, testInfo) => {
     `,
   });
 
-  await execaCommand('pnpm install', { cwd });
+  await execaCommand('pnpm install --ignore-workspace', { cwd });
   const base = new Base(null, { cwd });
   await base.testDocker();
 });
@@ -205,7 +205,7 @@ test('puppeteer @usesdocker', async ({ packageName }, testInfo) => {
     `,
   });
 
-  await execaCommand('pnpm install', { cwd });
+  await execaCommand('pnpm install --ignore-workspace', { cwd });
   await new Base(null, { cwd }).testDocker();
 });
 
@@ -225,4 +225,28 @@ test('update snapshots @usesdocker', async ({ packageName }, testInfo) => {
   });
 
   await new Base(null, { cwd }).testDocker({ updateSnapshots: true });
+});
+
+test('test.only @usesdocker', async ({ packageName }, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await outputFiles(cwd, {
+    'cli.ts': endent`
+      import { Base } from '../../src';
+
+      new Base().testDocker();
+    `,
+    'package.json': JSON.stringify({
+      name: packageName,
+      scripts: { 'test:raw': 'node test.js' },
+      type: 'module',
+    }),
+    'test.js': endent`
+      if (process.env.CI !== 'true') {
+        throw new Error('process.env.CI is not set correctly.')
+      }\n
+    `,
+  });
+
+  await execaCommand('tsx cli.ts', { cwd, env: { CI: String(true) } });
 });

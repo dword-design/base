@@ -1,3 +1,4 @@
+import { stringify as stringifyIni } from 'ini';
 import sortKeys from 'sort-keys';
 import sortPackageJson from 'sort-package-json';
 import { stringify as yamlStringify } from 'yaml';
@@ -5,7 +6,9 @@ import { stringify as yamlStringify } from 'yaml';
 import commitizenConfig from './commitizen';
 import commitlintConfig from './commitlint';
 import editorconfigConfig from './editorconfig';
+import eslintLintStaged from './eslint-lint-staged';
 import gitattributesConfig from './gitattributes';
+import githubCodespacesConfig from './github-codespaces';
 import githubCodespacesPostcreate from './github-codespaces-postcreate';
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies';
 import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template';
@@ -21,7 +24,7 @@ export default function () {
     '.cz.json': `${JSON.stringify(commitizenConfig, undefined, 2)}\n`,
     '.devcontainer': {
       'devcontainer.json': `${JSON.stringify(
-        this.githubCodespacesConfig,
+        githubCodespacesConfig,
         undefined,
         2,
       )}\n`,
@@ -52,7 +55,8 @@ export default function () {
       .join(''),
     '.gitpod.Dockerfile': this.getGitpodDockerfile(),
     '.gitpod.yml': yamlStringify(this.getGitpodConfig()),
-    '.npmrc': `${npmrc}\n`,
+    '.lintstagedrc.json': `${JSON.stringify(this.getLintStaged(), undefined, 2)}\n`,
+    '.npmrc': stringifyIni(npmrc),
     '.releaserc.json': `${JSON.stringify(
       this.getReleaseConfig(),
       undefined,
@@ -71,6 +75,7 @@ export default function () {
     'LICENSE.md': this.getLicenseString(),
     'README.md': this.getReadmeString(),
     'eslint.config.ts': this.getEslintConfig(),
+    'eslint.lint-staged.config.ts': eslintLintStaged,
     'package.json': `${JSON.stringify(
       sortPackageJson(packageConfig),
       undefined,

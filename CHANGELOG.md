@@ -1,3 +1,142 @@
+## [15.3.4](https://github.com/dword-design/base/compare/v15.3.3...v15.3.4) (2025-08-12)
+
+
+### Bug Fixes
+
+* move github codespaces config ([80faddd](https://github.com/dword-design/base/commit/80faddd2ecd01023e4e638a83ecf32eb4853ca1a))
+
+## [15.3.3](https://github.com/dword-design/base/compare/v15.3.2...v15.3.3) (2025-08-07)
+
+
+### Bug Fixes
+
+* merge lint staged ([#811](https://github.com/dword-design/base/issues/811)) ([70785b3](https://github.com/dword-design/base/commit/70785b3ec123f33ef3e345297731bc04a5aa9b43))
+
+## [15.3.2](https://github.com/dword-design/base/compare/v15.3.1...v15.3.2) (2025-08-02)
+
+
+### Bug Fixes
+
+* upgrade depcheck ([cd77211](https://github.com/dword-design/base/commit/cd77211152a226841ceeab154018e3e48bffd42e))
+
+## [15.3.1](https://github.com/dword-design/base/compare/v15.3.0...v15.3.1) (2025-08-02)
+
+
+### Bug Fixes
+
+* foo ([5ff5bd9](https://github.com/dword-design/base/commit/5ff5bd9588b8c914f7f475329c77a59d37b3e3c2))
+
+# [15.3.0](https://github.com/dword-design/base/compare/v15.2.4...v15.3.0) (2025-08-02)
+
+
+### Bug Fixes
+
+* foo ([31ea670](https://github.com/dword-design/base/commit/31ea670bc73d17acaea25835449f4be675a48ad5))
+* set auto-install-peers to false ([74ff3eb](https://github.com/dword-design/base/commit/74ff3eb21c8a87bf984f2d62c570b9b64ce06d90))
+
+
+### Features
+
+* lint-staged ([#808](https://github.com/dword-design/base/issues/808)) ([e52b1d2](https://github.com/dword-design/base/commit/e52b1d2e69482e36d173835ce9bf40802883c5db))
+
+## [15.2.4](https://github.com/dword-design/base/compare/v15.2.3...v15.2.4) (2025-08-01)
+
+
+### Bug Fixes
+
+* remove outDir from ts config ([07e693f](https://github.com/dword-design/base/commit/07e693f18bda127d286394b6691ac9c1f00fad4c))
+
+## [15.2.3](https://github.com/dword-design/base/compare/v15.2.2...v15.2.3) (2025-07-29)
+
+
+### Bug Fixes
+
+* fix renovate test ([4a17ae1](https://github.com/dword-design/base/commit/4a17ae12a996ad90400ca5bfc2b4f3888c84153e))
+* ts strict mode by default ([673b2a7](https://github.com/dword-design/base/commit/673b2a76ced40a16dfb3e92627d91bde34e35713))
+
+## [15.2.2](https://github.com/dword-design/base/compare/v15.2.1...v15.2.2) (2025-07-27)
+
+
+### Bug Fixes
+
+* use doppler github action fork ([431a864](https://github.com/dword-design/base/commit/431a864baddc6245ac4bcc542c5f463da20045b7))
+
+## [15.2.1](https://github.com/dword-design/base/compare/v15.2.0...v15.2.1) (2025-07-26)
+
+
+### Bug Fixes
+
+* catch test.only inside docker ([5c2f173](https://github.com/dword-design/base/commit/5c2f173948ad83d93c272e90acbd5c446ce1dc9b))
+
+# [15.2.0](https://github.com/dword-design/base/compare/v15.1.6...v15.2.0) (2025-07-25)
+
+
+### Features
+
+* doppler ([#805](https://github.com/dword-design/base/issues/805)) ([c730f97](https://github.com/dword-design/base/commit/c730f97c4dc907fdf67f31f954114e3a3901c7b2))
+
+## [15.1.6](https://github.com/dword-design/base/compare/v15.1.5...v15.1.6) (2025-07-23)
+
+
+### Bug Fixes
+
+* foo ([a452ff2](https://github.com/dword-design/base/commit/a452ff22a72d21a2304ff616a8bc0bf678132348))
+* foo ([b2312fd](https://github.com/dword-design/base/commit/b2312fdce6b83e01e53e15c1ff7e78058cba3830))
+
+## [15.1.5](https://github.com/dword-design/base/compare/v15.1.4...v15.1.5) (2025-07-23)
+
+
+### Bug Fixes
+
+* foo ([9cd2e3b](https://github.com/dword-design/base/commit/9cd2e3bfda081c6a41f30fc103e2cba71c2d79a2))
+
+## [15.1.4](https://github.com/dword-design/base/compare/v15.1.3...v15.1.4) (2025-07-23)
+
+
+### Bug Fixes
+
+* generics for config ([dd3b25e](https://github.com/dword-design/base/commit/dd3b25e2db09342cb7d4649ad2577a563628b9d8))
+
+## [15.1.3](https://github.com/dword-design/base/compare/v15.1.2...v15.1.3) (2025-07-21)
+
+
+### Bug Fixes
+
+* upgrades ([ba55017](https://github.com/dword-design/base/commit/ba55017aaf33aa629fc80e1ebc235bb71ce6d256))
+
+## [15.1.2](https://github.com/dword-design/base/compare/v15.1.1...v15.1.2) (2025-07-21)
+
+
+### Bug Fixes
+
+* foo ([7be0d35](https://github.com/dword-design/base/commit/7be0d35131061a5553c02cc8aa316ddd21cfffc5))
+* foo ([52c5c9e](https://github.com/dword-design/base/commit/52c5c9eb6e53ddb93156e46e5200dd885b1eb0b0))
+
+## [15.1.1](https://github.com/dword-design/base/compare/v15.1.0...v15.1.1) (2025-07-21)
+
+
+### Bug Fixes
+
+* update dependency c8 to v10 ([#764](https://github.com/dword-design/base/issues/764)) ([fdcf222](https://github.com/dword-design/base/commit/fdcf2222cfb5a8d7ab4b79398ce5a6170ec2bba0))
+* update dependency ignore to v7 ([#777](https://github.com/dword-design/base/issues/777)) ([b703b86](https://github.com/dword-design/base/commit/b703b86a1bf9fdd0e1466b0f058119bf35f530f2))
+
+# [15.1.0](https://github.com/dword-design/base/compare/v15.0.3...v15.1.0) (2025-07-21)
+
+
+### Features
+
+* custom typecheck ([14cb6c4](https://github.com/dword-design/base/commit/14cb6c46dc31bda51630d88c3d66a6250c6e11c2))
+
+## [15.0.3](https://github.com/dword-design/base/compare/v15.0.2...v15.0.3) (2025-07-21)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/base-config-node to v4 ([#796](https://github.com/dword-design/base/issues/796)) ([caab700](https://github.com/dword-design/base/commit/caab700a7bb7608b08a0d4baf3a66552c3197fa6))
+* update dependency codecov/codecov-action to v5 ([#772](https://github.com/dword-design/base/issues/772)) ([4b6baae](https://github.com/dword-design/base/commit/4b6baae5f67d30439ef2027b1422c97fa312dcdf))
+* update dependency depcheck-package-name to v4 ([#797](https://github.com/dword-design/base/issues/797)) ([ca517bf](https://github.com/dword-design/base/commit/ca517bf260fa2327afe97542da4b1cece142af10))
+* update dependency is-ci to v4 ([#793](https://github.com/dword-design/base/issues/793)) ([70112d7](https://github.com/dword-design/base/commit/70112d7e18c2ce2cc24f328a09d453dc435b2ace))
+
 ## [15.0.2](https://github.com/dword-design/base/compare/v15.0.1...v15.0.2) (2025-07-21)
 
 

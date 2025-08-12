@@ -12,6 +12,7 @@ import { type ResultPromise } from 'execa';
 import fs from 'fs-extra';
 import type GitHost from 'hosted-git-info';
 import { createJiti } from 'jiti';
+import type { Configuration as LintStagedConfig } from 'lint-staged';
 import { identity, mapValues } from 'lodash-es';
 import type { PartialCommandObjectInObject } from 'make-cli';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
@@ -40,25 +41,32 @@ import getGitignoreConfig from './get-generated-files/get-gitignore';
 import getGitpodConfig from './get-generated-files/get-gitpod';
 import getGitpodDockerfile from './get-generated-files/get-gitpod-dockerfile';
 import getLicenseString from './get-generated-files/get-license-string';
+import getLintStaged from './get-generated-files/get-lint-staged';
 import getPackageConfig from './get-generated-files/get-package-config';
 import getReadmeString from './get-generated-files/get-readme-string';
 import getReleaseConfig from './get-generated-files/get-release';
 import getRenovateConfig from './get-generated-files/get-renovate';
 import getTypescriptConfig from './get-generated-files/get-typescript';
 import getVscodeConfig from './get-generated-files/get-vscode';
-import githubCodespacesConfig from './get-generated-files/github-codespaces';
 import getGitInfo from './get-git-info';
 
-type HandlerWithBase = (this: Base, ...args: unknown[]) => unknown;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+type HandlerWithBase<TConfig extends Config = Config> = (
+  this: Base<TConfig>,
+  ...args: any[]
+) => any;
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
-type PartialCommandObjectInObjectWithBase = Omit<
-  PartialCommandObjectInObject,
-  'handler'
-> & { handler: (this: Base, ...args: unknown[]) => unknown };
+/* eslint-disable @typescript-eslint/no-explicit-any */
+type PartialCommandObjectInObjectWithBase<TConfig extends Config = Config> =
+  Omit<PartialCommandObjectInObject, 'handler'> & {
+    handler: (this: Base<TConfig>, ...args: any[]) => any;
+  };
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
-type PartialCommandInObjectWithBase =
-  | PartialCommandObjectInObjectWithBase
-  | HandlerWithBase;
+type PartialCommandInObjectWithBase<TConfig extends Config = Config> =
+  | PartialCommandObjectInObjectWithBase<TConfig>
+  | HandlerWithBase<TConfig>;
 
 type Config = {
   name?: string;
@@ -74,7 +82,9 @@ type Config = {
   git?: GitHost;
   gitignore: string[];
   hasTypescriptConfigRootAlias: boolean;
+  lintStagedConfig: LintStagedConfig;
   lint: (options?: PartialCommandOptions) => unknown;
+  typecheck: (options?: PartialCommandOptions) => unknown;
   macos: boolean;
   minNodeVersion: number;
   nodeVersion: number;
@@ -92,17 +102,22 @@ type Config = {
   packageConfig: PackageJson;
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
+  doppler: boolean;
 };
 
-type PartialConfigObject = Omit<Partial<Config>, 'commands'> & {
-  commands?: Record<string, PartialCommandInObjectWithBase>;
-};
+type PartialConfigObject<TConfig extends Config = Config> = Omit<
+  Partial<TConfig>,
+  'commands'
+> & { commands?: Record<string, PartialCommandInObjectWithBase<TConfig>> };
 
-type PartialConfigOrFunction =
-  | PartialConfigObject
-  | ((this: Base, config: Config) => PartialConfigObject);
+type PartialConfigOrFunction<TConfig extends Config = Config> =
+  | PartialConfigObject<TConfig>
+  | ((this: Base<TConfig>, config: TConfig) => PartialConfigObject<TConfig>);
 
-type PartialConfig = PartialConfigOrFunction | string | null;
+type PartialConfig<TConfig extends Config = Config> =
+  | PartialConfigOrFunction<TConfig>
+  | string
+  | null;
 
 export const defineBaseConfig = <T>(configInput: T): T => configInput;
 
@@ -115,12 +130,11 @@ const mergeConfigs = createDefu((obj, key, value) => {
   return false;
 });
 
-class Base {
-  config: Config;
+class Base<TConfig extends Config = Config> {
+  config: TConfig;
   packageConfig: PackageJson;
   cwd: string;
   generatedFiles;
-  githubCodespacesConfig = githubCodespacesConfig;
 
   commit(...args): ResultPromise {
     return commit.call(this, ...args);
@@ -226,7 +240,11 @@ class Base {
     return getTypescriptConfig.call(this, ...args);
   }
 
-  constructor(configInput: PartialConfig = null, { cwd = '.' } = {}) {
+  getLintStaged() {
+    return getLintStaged.call(this);
+  }
+
+  constructor(configInput: PartialConfig<TConfig> = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
 
@@ -270,6 +288,7 @@ class Base {
       deployAssets: [],
       deployEnv: {},
       deployPlugins: [],
+      doppler: false,
       editorIgnore: [],
       eslintConfig: '',
       fetchGitHistory: false,
@@ -279,6 +298,7 @@ class Base {
       hasTypescriptConfigRootAlias: true,
       isLockFileFixCommitType: false,
       lint: () => {},
+      lintStagedConfig: {},
       macos: true,
       minNodeVersion: null,
       nodeVersion: 20,
@@ -301,6 +321,7 @@ class Base {
       supportedNodeVersions: [20, 22],
       syncKeywords: true,
       testInContainer: false,
+      typecheck: () => {},
       typescriptConfig: {},
       useJobMatrix: true,
       windows: true,
@@ -312,8 +333,8 @@ class Base {
         : config.name;
 
     let inheritedConfig:
-      | PartialConfigOrFunction
-      | { default: PartialConfigOrFunction } = inheritedConfigPath
+      | PartialConfigOrFunction<TConfig>
+      | { default: PartialConfigOrFunction<TConfig> } = inheritedConfigPath
       ? jitiInstance(inheritedConfigPath)
       : undefined;
 
@@ -341,7 +362,10 @@ class Base {
     this.generatedFiles = this.getGeneratedFiles();
   }
 
-  run(name, ...args) {
+  run<K extends keyof TConfig['commands'] & string>(
+    name: K,
+    ...args: Parameters<TConfig['commands'][K]['handler']>
+  ): ReturnType<TConfig['commands'][K]['handler']> {
     return this.config.commands[name].handler.call(this, ...args);
   }
 }

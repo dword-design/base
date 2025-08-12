@@ -43,10 +43,12 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
+      - name: Install Doppler CLI
+        uses: dword-design/doppler-cli-action-fork@fork
       - env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.RENOVATE_GITHUB_PERSONAL_ACCESS_TOKEN }}
-        run: pnpm verify
+        run: doppler run -p base -c test -- pnpm verify
       - if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -54,7 +56,7 @@ jobs:
           name: Data from tests
           path: test-results/*/**
       - if: matrix.os == 'ubuntu-latest' && matrix.node == 20
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
     strategy:

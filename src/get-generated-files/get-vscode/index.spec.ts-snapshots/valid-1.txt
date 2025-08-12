@@ -20,8 +20,12 @@
     "CHANGELOG.md": true,
     "LICENSE.md": true,
     "bar": true,
+    "codecov": true,
+    "codecov.SHA256SUM": true,
+    "codecov.SHA256SUM.sig": true,
     "coverage": true,
     "eslint.config.ts": true,
+    "eslint.lint-staged.config.ts": true,
     "foo": true,
     "node_modules": true,
     "pnpm-lock.yaml": true

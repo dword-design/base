@@ -12,6 +12,7 @@
   "deployPlugins": [
     "semantic-release-foo"
   ],
+  "doppler": false,
   "editorIgnore": [
     "foo"
   ],
@@ -23,6 +24,7 @@
   "global": false,
   "hasTypescriptConfigRootAlias": true,
   "isLockFileFixCommitType": false,
+  "lintStagedConfig": {},
   "macos": true,
   "minNodeVersion": null,
   "nodeVersion": 10,

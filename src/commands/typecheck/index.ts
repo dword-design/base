@@ -13,6 +13,8 @@ export default async function (options: PartialCommandOptions = {}) {
     ...options,
   };
 
+  await this.config.typecheck.call(this, options);
+
   const { config } = ts.readConfigFile(
     pathLib.join(this.cwd, 'tsconfig.json'),
     ts.sys.readFile,
