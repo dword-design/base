@@ -48,7 +48,6 @@ import getReleaseConfig from './get-generated-files/get-release';
 import getRenovateConfig from './get-generated-files/get-renovate';
 import getTypescriptConfig from './get-generated-files/get-typescript';
 import getVscodeConfig from './get-generated-files/get-vscode';
-import githubCodespacesConfig from './get-generated-files/github-codespaces';
 import getGitInfo from './get-git-info';
 
 type HandlerWithBase<TConfig extends Config = Config> = (
@@ -132,7 +131,6 @@ class Base<TConfig extends Config = Config> {
   packageConfig: PackageJson;
   cwd: string;
   generatedFiles;
-  githubCodespacesConfig = githubCodespacesConfig;
 
   commit(...args): ResultPromise {
     return commit.call(this, ...args);

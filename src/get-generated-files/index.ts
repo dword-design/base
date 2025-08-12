@@ -8,6 +8,7 @@ import commitlintConfig from './commitlint';
 import editorconfigConfig from './editorconfig';
 import eslintLintStaged from './eslint-lint-staged';
 import gitattributesConfig from './gitattributes';
+import githubCodespacesConfig from './github-codespaces';
 import githubCodespacesPostcreate from './github-codespaces-postcreate';
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies';
 import deprecatedDependenciesIssueTemplate from './github-deprecated-dependencies-issue-template';
@@ -23,7 +24,7 @@ export default function () {
     '.cz.json': `${JSON.stringify(commitizenConfig, undefined, 2)}\n`,
     '.devcontainer': {
       'devcontainer.json': `${JSON.stringify(
-        this.githubCodespacesConfig,
+        githubCodespacesConfig,
         undefined,
         2,
       )}\n`,
