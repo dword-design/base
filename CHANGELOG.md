@@ -1,3 +1,10 @@
+## [15.3.4](https://github.com/dword-design/base/compare/v15.3.3...v15.3.4) (2025-08-12)
+
+
+### Bug Fixes
+
+* move github codespaces config ([80faddd](https://github.com/dword-design/base/commit/80faddd2ecd01023e4e638a83ecf32eb4853ca1a))
+
 ## [15.3.3](https://github.com/dword-design/base/compare/v15.3.2...v15.3.3) (2025-08-07)
 
 
