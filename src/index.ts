@@ -50,25 +50,44 @@ import getTypescriptConfig from './get-generated-files/get-typescript';
 import getVscodeConfig from './get-generated-files/get-vscode';
 import getGitInfo from './get-git-info';
 
-type HandlerWithBase<TConfig extends Config = Config> = (
-  this: Base<TConfig>,
-  ...args: unknown[]
+// Generic command handler type with proper typing
+type CommandHandler<TParams extends readonly unknown[] = readonly unknown[]> = (
+  this: Base,
+  ...args: TParams
 ) => unknown;
 
-type PartialCommandObjectInObjectWithBase<TConfig extends Config = Config> =
+// Type for extracting parameter types from a command handler
+type ExtractHandlerParams<T> = T extends CommandHandler<infer P> ? P : never;
+
+// Type for a command object with typed handler
+type CommandObject<TParams extends readonly unknown[] = readonly unknown[]> = 
   Omit<PartialCommandObjectInObject, 'handler'> & {
-    handler: (this: Base<TConfig>, ...args: unknown[]) => unknown;
+    handler: CommandHandler<TParams>;
   };
 
-type PartialCommandInObjectWithBase<TConfig extends Config = Config> =
-  | PartialCommandObjectInObjectWithBase<TConfig>
-  | HandlerWithBase<TConfig>;
+// Type for commands that can be either a handler function or a command object
+type CommandDefinition<TParams extends readonly unknown[] = readonly unknown[]> =
+  | CommandObject<TParams>
+  | CommandHandler<TParams>;
 
-type Config = {
+// Type for the commands record with proper typing
+type CommandsRecord = Record<string, CommandDefinition<any>>;
+
+// Extract command names from a commands record
+type CommandNames<T extends CommandsRecord> = keyof T;
+
+// Extract handler parameters for a specific command
+type CommandParams<
+  T extends CommandsRecord,
+  K extends CommandNames<T>
+> = T[K] extends CommandDefinition<infer P> ? P : never;
+
+// Generic config type with typed commands
+type Config<TCommands extends CommandsRecord = CommandsRecord> = {
   name?: string;
   global: boolean;
   allowedMatches: string[];
-  commands: Record<string, PartialCommandObjectInObjectWithBase>;
+  commands: TCommands;
   depcheckConfig: Omit<DepcheckOptions, 'package'>;
   deployAssets: Array<{ label: string; path: string }>;
   deployEnv: Record<string, string>;
@@ -101,21 +120,23 @@ type Config = {
   doppler: boolean;
 };
 
-type PartialConfigObject<TConfig extends Config = Config> = Omit<
-  Partial<TConfig>,
+type PartialConfigObject<TCommands extends CommandsRecord = CommandsRecord> = Omit<
+  Partial<Config<TCommands>>,
   'commands'
-> & { commands?: Record<string, PartialCommandInObjectWithBase<TConfig>> };
+> & { commands?: TCommands };
 
-type PartialConfigOrFunction<TConfig extends Config = Config> =
-  | PartialConfigObject<TConfig>
-  | ((this: Base<TConfig>, config: TConfig) => PartialConfigObject<TConfig>);
+type PartialConfigOrFunction<TCommands extends CommandsRecord = CommandsRecord> =
+  | PartialConfigObject<TCommands>
+  | ((this: Base<TCommands>, config: Config<TCommands>) => PartialConfigObject<TCommands>);
 
-type PartialConfig<TConfig extends Config = Config> =
-  | PartialConfigOrFunction<TConfig>
+type PartialConfig<TCommands extends CommandsRecord = CommandsRecord> =
+  | PartialConfigOrFunction<TCommands>
   | string
   | null;
 
-export const defineBaseConfig = <T>(configInput: T): T => configInput;
+export const defineBaseConfig = <TCommands extends CommandsRecord>(
+  configInput: PartialConfig<TCommands>
+): PartialConfig<TCommands> => configInput;
 
 const mergeConfigs = createDefu((obj, key, value) => {
   if (key === 'supportedNodeVersions') {
@@ -126,8 +147,8 @@ const mergeConfigs = createDefu((obj, key, value) => {
   return false;
 });
 
-class Base<TConfig extends Config = Config> {
-  config: TConfig;
+class Base<TCommands extends CommandsRecord = {}> {
+  config: Config<TCommands>;
   packageConfig: PackageJson;
   cwd: string;
   generatedFiles;
@@ -240,7 +261,7 @@ class Base<TConfig extends Config = Config> {
     return getLintStaged.call(this);
   }
 
-  constructor(configInput: PartialConfig<TConfig> = null, { cwd = '.' } = {}) {
+  constructor(configInput: PartialConfig<TCommands> = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
 
@@ -329,8 +350,8 @@ class Base<TConfig extends Config = Config> {
         : config.name;
 
     let inheritedConfig:
-      | PartialConfigOrFunction<TConfig>
-      | { default: PartialConfigOrFunction<TConfig> } = inheritedConfigPath
+      | PartialConfigOrFunction<TCommands>
+      | { default: PartialConfigOrFunction<TCommands> } = inheritedConfigPath
       ? jitiInstance(inheritedConfigPath)
       : undefined;
 
@@ -358,8 +379,14 @@ class Base<TConfig extends Config = Config> {
     this.generatedFiles = this.getGeneratedFiles();
   }
 
-  run(name, ...args) {
-    return this.config.commands[name].handler.call(this, ...args);
+  // Type-safe run method
+  run<K extends CommandNames<TCommands>>(
+    name: K,
+    ...args: CommandParams<TCommands, K>
+  ): unknown {
+    const command = this.config.commands[name];
+    const handler: CommandHandler<any> = typeof command === 'function' ? command : command.handler;
+    return handler.call(this, ...args);
   }
 }
 
@@ -369,6 +396,15 @@ export { default as loadConfigSync } from './load-config-sync';
 
 export { Base };
 
-export type { Config, PartialConfig };
+export type { 
+  Config, 
+  PartialConfig, 
+  CommandsRecord, 
+  CommandDefinition, 
+  CommandHandler, 
+  CommandObject,
+  CommandNames,
+  CommandParams
+};
 
 export { type PartialCommandOptions } from './commands/command-options-input';
