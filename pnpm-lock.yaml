@@ -57,8 +57,8 @@ importers:
         specifier: ^3.3.0
         version: 3.3.0(@types/node@24.0.13)(typescript@5.8.3)
       depcheck:
-        specifier: npm:@dword-design/depcheck@^0.0.9
-        version: '@dword-design/depcheck@0.0.9'
+        specifier: npm:@dword-design/depcheck@^0.0.11
+        version: '@dword-design/depcheck@0.0.11'
       depcheck-detector-bin-name:
         specifier: ^1.0.2
         version: 1.0.2
@@ -478,6 +478,10 @@ packages:
     resolution: {integrity: sha512-x0LvFTekgSX+83TI28Y9wYPUfzrnl2aT5+5QLnO6v7mSJYtEEevuDRN0F0uSHRk1G1IWZC43o00Y0xDDrpBGPQ==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/types@7.28.2':
+    resolution: {integrity: sha512-ruv7Ae4J5dUYULmeXw1gmb7rYRz57OWCPM57pHojnLq/3Z1CK2lNSLTCVjxVk1F/TZHwOZZrOWi0ur95BbLxNQ==}
+    engines: {node: '>=6.9.0'}
+
   '@baszalmstra/rattler@0.2.1':
     resolution: {integrity: sha512-HZ2xu6Nk+XzAeateyzDKYM47ySkjkuKtTNpKRAy+Y+YcRH1qHM2le4iLlG32wDddaHCLUsBsyBxirClOj1TLjw==}
 
@@ -605,8 +609,8 @@ packages:
     resolution: {integrity: sha512-liMT6tgQ/YfhNgW6rigOaY0XqfNMMFb+DCwEeLtfBdTJhMUEHwBb8UsChw8uwrxMSQW/YsabfnDsT897pBmBlg==}
     engines: {node: '>=16'}
 
-  '@dword-design/depcheck@0.0.9':
-    resolution: {integrity: sha512-gUsIXzLg+UTyOT3IaS0g4om4AnAhjoBvrgnb8tWAW6M5aDMPuQ2/M/RAGIWoM/yM+ijAklbb1G/DGNkrNoLrBQ==}
+  '@dword-design/depcheck@0.0.11':
+    resolution: {integrity: sha512-H+9KOHEszcJTY/dFHIw8Jsfmq4pdUwgQbRH8B8NuewdBUPSo48vW40OhhaSAat/4NbjoqeY44brJ3M0mEgyw6w==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -4925,6 +4929,7 @@ packages:
   openpgp@6.1.0:
     resolution: {integrity: sha512-fRTeitP+hoGJD3kbdUlAI++wE6MvfvXw1rBqHwmBMxIpLjowatJ2zb5ThkORpIkSz5F12wO+xCYRSTbT7M4qKA==}
     engines: {node: '>= 18.0.0'}
+    deprecated: This version is deprecated as it's vulnerable to CVE-2025-47934 (https://github.com/openpgpjs/openpgpjs/security/advisories/GHSA-8qff-qr5q-5pr8). Please update to v6.1.1 or later.
 
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
@@ -7422,7 +7427,7 @@ snapshots:
 
   '@babel/parser@7.28.0':
     dependencies:
-      '@babel/types': 7.28.1
+      '@babel/types': 7.28.2
 
   '@babel/runtime-corejs3@7.28.0':
     dependencies:
@@ -7441,12 +7446,17 @@ snapshots:
       '@babel/helper-globals': 7.28.0
       '@babel/parser': 7.28.0
       '@babel/template': 7.27.2
-      '@babel/types': 7.28.1
+      '@babel/types': 7.28.2
       debug: 4.4.1
     transitivePeerDependencies:
       - supports-color
 
   '@babel/types@7.28.1':
+    dependencies:
+      '@babel/helper-string-parser': 7.27.1
+      '@babel/helper-validator-identifier': 7.27.1
+
+  '@babel/types@7.28.2':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
@@ -7663,10 +7673,11 @@ snapshots:
       get-package-name: 2.2.0
       sass: 1.62.1
 
-  '@dword-design/depcheck@0.0.9':
+  '@dword-design/depcheck@0.0.11':
     dependencies:
       '@babel/parser': 7.28.0
       '@babel/traverse': 7.28.0
+      '@babel/types': 7.28.2
       '@vue/compiler-sfc': 3.5.17
       callsites: 3.1.0
       camelcase: 6.3.0
@@ -8145,7 +8156,7 @@ snapshots:
 
   '@npmcli/fs@4.0.0':
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
 
   '@octokit/auth-token@4.0.0': {}
 
@@ -12212,7 +12223,7 @@ snapshots:
 
   node-abi@3.75.0:
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
     optional: true
 
   node-emoji@2.2.0:
@@ -12237,7 +12248,7 @@ snapshots:
       make-fetch-happen: 13.0.1
       nopt: 7.2.1
       proc-log: 4.2.0
-      semver: 7.7.1
+      semver: 7.7.2
       tar: 6.2.1
       which: 4.0.0
     transitivePeerDependencies:
