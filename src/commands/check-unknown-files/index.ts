@@ -22,6 +22,7 @@ export default async function () {
       demo: true,
       doc: true,
       fixtures: true,
+      patches: true,
       'pnpm-lock.yaml': true,
       'pnpm-workspace.yaml': true,
     }),
