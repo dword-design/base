@@ -86,7 +86,8 @@ type Config = {
   lint: (options?: PartialCommandOptions) => unknown;
   typecheck: (options?: PartialCommandOptions) => unknown;
   macos: boolean;
-  minNodeVersion: number;
+  minNodeVersion: number | null;
+  maxNodeVersion: number | null;
   nodeVersion: number;
   preDeploySteps: string[];
   prepare: (options?: PartialCommandOptions) => unknown;
@@ -300,6 +301,7 @@ class Base<TConfig extends Config = Config> {
       lint: () => {},
       lintStagedConfig: {},
       macos: true,
+      maxNodeVersion: null,
       minNodeVersion: null,
       nodeVersion: 20,
       packageConfig: {},

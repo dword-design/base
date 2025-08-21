@@ -46,7 +46,7 @@ export default function () {
     }),
     author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
     engines: {
-      node: `>=${this.config.minNodeVersion || this.config.supportedNodeVersions[0]}`,
+      node: `>=${this.config.minNodeVersion ?? this.config.supportedNodeVersions[0]}${this.config.maxNodeVersion === null ? '' : `<${this.config.maxNodeVersion}`}`,
     },
     files: ['dist'],
     license: 'MIT',
