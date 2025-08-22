@@ -14,6 +14,7 @@
   "isLockFileFixCommitType": false,
   "lintStagedConfig": {},
   "macos": true,
+  "maxNodeVersion": null,
   "minNodeVersion": null,
   "nodeVersion": 20,
   "packageConfig": {},
