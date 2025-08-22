@@ -1,3 +1,15 @@
+# [15.4.0](https://github.com/dword-design/base/compare/v15.3.6...v15.4.0) (2025-08-22)
+
+
+### Bug Fixes
+
+* fix snapshots ([1e5d5c2](https://github.com/dword-design/base/commit/1e5d5c2b2dd2cbfb9a45cbf4ca97edde1c31ccf9))
+
+
+### Features
+
+* set max node version ([bc0170a](https://github.com/dword-design/base/commit/bc0170a7cd6365ca1d5214a4e8bbe4d778893938))
+
 ## [15.3.6](https://github.com/dword-design/base/compare/v15.3.5...v15.3.6) (2025-08-15)
 
 
