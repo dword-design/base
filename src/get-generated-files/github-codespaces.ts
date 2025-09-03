@@ -1,1 +1,5 @@
-export default { postCreateCommand: 'bash .devcontainer/postcreate.sh' };
+export default {
+  features: { 'ghcr.io/devcontainers/features/docker-in-docker:2': {} },
+  image: 'mcr.microsoft.com/devcontainers/javascript-node',
+  postCreateCommand: 'bash .devcontainer/postcreate.sh',
+};
