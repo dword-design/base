@@ -93,8 +93,8 @@ importers:
         specifier: ^14.1.0
         version: 14.1.0
       hosted-git-info:
-        specifier: ^8.1.0
-        version: 8.1.0
+        specifier: ^9.0.0
+        version: 9.0.0
       husky:
         specifier: ^8.0.3
         version: 8.0.3
@@ -3666,9 +3666,9 @@ packages:
     resolution: {integrity: sha512-puUZAUKT5m8Zzvs72XWy3HtvVbTWljRE66cP60bxJzAqf2DgICo7lYTY2IHUmLnNpjYvw5bvmoHvPc0QO2a62w==}
     engines: {node: ^16.14.0 || >=18.0.0}
 
-  hosted-git-info@8.1.0:
-    resolution: {integrity: sha512-Rw/B2DNQaPBICNXEm8balFz9a6WpZrkCGpcWFpy7nCj+NyhSdqXipmfvtmWt9xGfp0wZnBxB+iVpLmQMYt47Tw==}
-    engines: {node: ^18.17.0 || >=20.5.0}
+  hosted-git-info@9.0.0:
+    resolution: {integrity: sha512-gEf705MZLrDPkbbhi8PnoO4ZwYgKoNL+ISZ3AjZMht2r3N5tuTwncyDi6Fv2/qDnMmZxgs0yI8WDOyR8q3G+SQ==}
+    engines: {node: ^20.17.0 || >=22.9.0}
 
   html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
@@ -4769,6 +4769,7 @@ packages:
   openpgp@6.1.0:
     resolution: {integrity: sha512-fRTeitP+hoGJD3kbdUlAI++wE6MvfvXw1rBqHwmBMxIpLjowatJ2zb5ThkORpIkSz5F12wO+xCYRSTbT7M4qKA==}
     engines: {node: '>= 18.0.0'}
+    deprecated: This version is deprecated as it's vulnerable to CVE-2025-47934 (https://github.com/openpgpjs/openpgpjs/security/advisories/GHSA-8qff-qr5q-5pr8). Please update to v6.1.1 or later.
 
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
@@ -10974,9 +10975,9 @@ snapshots:
     dependencies:
       lru-cache: 10.4.3
 
-  hosted-git-info@8.1.0:
+  hosted-git-info@9.0.0:
     dependencies:
-      lru-cache: 10.4.3
+      lru-cache: 11.2.1
 
   html-escaper@2.0.2: {}
 
