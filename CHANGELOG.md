@@ -1,3 +1,10 @@
+## [15.4.1](https://github.com/dword-design/base/compare/v15.4.0...v15.4.1) (2025-09-15)
+
+
+### Bug Fixes
+
+* upgrades ([9067358](https://github.com/dword-design/base/commit/9067358dbce8de63938c4b93d9737001c72d48da))
+
 # [15.4.0](https://github.com/dword-design/base/compare/v15.3.6...v15.4.0) (2025-08-22)
 
 
