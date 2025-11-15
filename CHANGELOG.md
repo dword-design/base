@@ -1,3 +1,10 @@
+## [15.4.2](https://github.com/dword-design/base/compare/v15.4.1...v15.4.2) (2025-11-15)
+
+
+### Bug Fixes
+
+* fix lint-staged eslint config ([d37b425](https://github.com/dword-design/base/commit/d37b425648b825156d34cf709dd09144ecf2f39c))
+
 ## [15.4.1](https://github.com/dword-design/base/compare/v15.4.0...v15.4.1) (2025-09-15)
 
 
