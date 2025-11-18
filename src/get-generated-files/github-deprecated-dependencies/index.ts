@@ -5,7 +5,7 @@ export default {
     run: {
       'runs-on': 'ubuntu-latest',
       steps: [
-        { uses: gitHubAction`actions/checkout@v4`, with: { lfs: true } },
+        { uses: gitHubAction`actions/checkout@v5`, with: { lfs: true } },
         {
           'continue-on-error': true,
           id: 'check-deprecated-js-deps',
