@@ -1,3 +1,15 @@
+# [15.5.0](https://github.com/dword-design/base/compare/v15.4.2...v15.5.0) (2025-11-20)
+
+
+### Bug Fixes
+
+* use playwright-expect-snapshot ([ad1fe55](https://github.com/dword-design/base/commit/ad1fe557fb689fef141809c107b73159f6542639))
+
+
+### Features
+
+* make type module optional ([a471988](https://github.com/dword-design/base/commit/a47198889337df504139b6265ec0dbb893fbf10a))
+
 ## [15.4.2](https://github.com/dword-design/base/compare/v15.4.1...v15.4.2) (2025-11-15)
 
 
