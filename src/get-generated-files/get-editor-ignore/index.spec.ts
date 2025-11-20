@@ -1,11 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
+import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
 
 test('valid', () => {
   const base = new Base({ editorIgnore: ['foo'] });
-
-  expect(
-    JSON.stringify(base.getEditorIgnoreConfig(), undefined, 2),
-  ).toMatchSnapshot();
+  expect(base.getEditorIgnoreConfig()).toMatchSnapshot();
 });

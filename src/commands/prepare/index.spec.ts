@@ -1,12 +1,13 @@
 import pathLib from 'node:path';
 
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import endent from 'endent';
 import { execa, execaCommand } from 'execa';
 import fs from 'fs-extra';
 import { globby } from 'globby';
 import { identity, sortBy } from 'lodash-es';
 import outputFiles from 'output-files';
+import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
 
@@ -92,11 +93,7 @@ test('valid', async ({}, testInfo) => {
   const paths = await globby('*', { cwd, dot: true, onlyFiles: false });
 
   expect(
-    JSON.stringify(
-      Object.fromEntries(sortBy(paths, identity).map(path => [path, true])),
-      undefined,
-      2,
-    ),
+    Object.fromEntries(sortBy(paths, identity).map(path => [path, true])),
   ).toMatchSnapshot();
 
   expect(

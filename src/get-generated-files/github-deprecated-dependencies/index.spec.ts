@@ -1,6 +1,6 @@
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
+import { expect } from 'playwright-expect-snapshot';
 
 import self from '.';
 
-test('valid', () =>
-  expect(JSON.stringify(self, undefined, 2)).toMatchSnapshot());
+test('valid', () => expect(self).toMatchSnapshot());

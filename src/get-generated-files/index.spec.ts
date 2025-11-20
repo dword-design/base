@@ -1,4 +1,5 @@
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
+import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from './..';
 
@@ -6,10 +7,6 @@ test('works', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   expect(
-    JSON.stringify(
-      Object.keys(new Base(null, { cwd }).getGeneratedFiles()),
-      undefined,
-      2,
-    ),
+    Object.keys(new Base(null, { cwd }).getGeneratedFiles()),
   ).toMatchSnapshot();
 });

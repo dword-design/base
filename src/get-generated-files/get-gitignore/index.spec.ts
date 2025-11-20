@@ -1,12 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
+import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
 
 test('valid', () =>
   expect(
-    JSON.stringify(
-      new Base({ gitignore: ['foo'] }).getGitignoreConfig(),
-      undefined,
-      2,
-    ),
+    new Base({ gitignore: ['foo'] }).getGitignoreConfig(),
   ).toMatchSnapshot());

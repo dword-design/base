@@ -1,21 +1,16 @@
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
+import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
 
 test('do not sync keywords', () => {
   const base = new Base({ syncKeywords: false });
-
-  expect(
-    JSON.stringify(base.getGithubSyncMetadataConfig(), undefined, 2),
-  ).toMatchSnapshot();
+  expect(base.getGithubSyncMetadataConfig()).toMatchSnapshot();
 });
 
 test('valid', () => {
   const base = new Base();
-
-  expect(
-    JSON.stringify(base.getGithubSyncMetadataConfig(), undefined, 2),
-  ).toMatchSnapshot();
+  expect(base.getGithubSyncMetadataConfig()).toMatchSnapshot();
 });
 
 /**

@@ -1,8 +1,9 @@
 import pathLib from 'node:path';
 
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
+import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
 
@@ -30,10 +31,7 @@ test('deploy', async ({}, testInfo) => {
 
 test('empty', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
-
-  expect(
-    JSON.stringify(new Base(null, { cwd }).getPackageConfig(), undefined, 2),
-  ).toMatchSnapshot();
+  expect(new Base(null, { cwd }).getPackageConfig()).toMatchSnapshot();
 });
 
 test('existing package', async ({}, testInfo) => {
@@ -66,9 +64,7 @@ test('existing package', async ({}, testInfo) => {
     }),
   );
 
-  expect(
-    JSON.stringify(new Base(null, { cwd }).getPackageConfig(), undefined, 2),
-  ).toMatchSnapshot();
+  expect(new Base(null, { cwd }).getPackageConfig()).toMatchSnapshot();
 });
 
 test('git repo', async ({}, testInfo) => {
@@ -79,9 +75,7 @@ test('git repo', async ({}, testInfo) => {
     cwd,
   });
 
-  expect(
-    JSON.stringify(new Base(null, { cwd }).getPackageConfig(), undefined, 2),
-  ).toMatchSnapshot();
+  expect(new Base(null, { cwd }).getPackageConfig()).toMatchSnapshot();
 });
 
 test('non-github repo', async ({}, testInfo) => {

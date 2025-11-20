@@ -1,4 +1,5 @@
 {
+  "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "bin": {
     "foo": "./dist/cli.js"
   },
@@ -9,10 +10,18 @@
   "devDependencies": {
     "base-config-bar": "^1.0.0"
   },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist"
+  ],
+  "funding": "https://github.com/sponsors/dword-design",
   "keywords": [
     "foo",
     "bar"
   ],
+  "license": "MIT",
   "name": "foo",
   "optionalDependencies": {
     "typescript": "^1.0.0"
@@ -28,17 +37,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "funding": "https://github.com/sponsors/dword-design",
-  "type": "module",
-  "version": "1.1.0",
-  "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
-  "engines": {
-    "node": ">=20"
-  },
-  "files": [
-    "dist"
-  ],
-  "license": "MIT",
   "scripts": {
     "checkUnknownFiles": "base checkUnknownFiles",
     "commit": "base commit",
@@ -50,5 +48,7 @@
     "test": "base test",
     "typecheck": "base typecheck",
     "verify": "base verify"
-  }
+  },
+  "type": "module",
+  "version": "1.1.0"
 }

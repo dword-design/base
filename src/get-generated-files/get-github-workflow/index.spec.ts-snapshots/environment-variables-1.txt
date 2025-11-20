@@ -69,10 +69,10 @@
           "run": "pnpm dw-ci push-changed-files"
         },
         {
-          "if": "github.ref == 'refs/heads/master'",
           "env": {
             "GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
           },
+          "if": "github.ref == 'refs/heads/master'",
           "name": "Release",
           "run": "pnpm semantic-release"
         }

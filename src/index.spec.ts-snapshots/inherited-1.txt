@@ -29,7 +29,11 @@
   "macos": true,
   "maxNodeVersion": null,
   "minNodeVersion": null,
+  "name": "base-config-foo",
   "nodeVersion": 10,
+  "packageBaseConfig": {
+    "main": "dist/index.scss"
+  },
   "packageConfig": {},
   "preDeploySteps": [
     {
@@ -47,9 +51,5 @@
   "testInContainer": false,
   "typescriptConfig": {},
   "useJobMatrix": true,
-  "windows": true,
-  "packageBaseConfig": {
-    "main": "dist/index.scss"
-  },
-  "name": "base-config-foo"
+  "windows": true
 }

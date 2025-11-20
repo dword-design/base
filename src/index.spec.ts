@@ -1,10 +1,11 @@
 import pathLib from 'node:path';
 
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import endent from 'endent';
 import fs from 'fs-extra';
 import { identity, omit, sortBy } from 'lodash-es';
 import outputFiles from 'output-files';
+import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '.';
 
@@ -89,11 +90,7 @@ test('empty parent', async ({}, testInfo) => {
   const base = new Base({ name: 'foo' }, { cwd });
 
   expect(
-    JSON.stringify(
-      omit(base.config, ['depcheckConfig', 'prepare', 'lint']),
-      undefined,
-      2,
-    ),
+    omit(base.config, ['depcheckConfig', 'prepare', 'lint']),
   ).toMatchSnapshot();
 
   expect(typeof base.config.depcheckConfig).toEqual('object');
@@ -191,11 +188,7 @@ test('inherited', async ({}, testInfo) => {
   const base = new Base({ name: 'foo' }, { cwd });
 
   expect(
-    JSON.stringify(
-      omit(base.config, ['commands', 'depcheckConfig', 'prepare', 'lint']),
-      undefined,
-      2,
-    ),
+    omit(base.config, ['commands', 'depcheckConfig', 'prepare', 'lint']),
   ).toMatchSnapshot();
 
   expect(sortBy(Object.keys(base.config.commands), identity)).toEqual([

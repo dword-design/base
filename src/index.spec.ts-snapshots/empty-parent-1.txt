@@ -17,6 +17,7 @@
   "macos": true,
   "maxNodeVersion": null,
   "minNodeVersion": null,
+  "name": "base-config-foo",
   "nodeVersion": 20,
   "packageConfig": {},
   "preDeploySteps": [],
@@ -31,6 +32,5 @@
   "testInContainer": false,
   "typescriptConfig": {},
   "useJobMatrix": true,
-  "windows": true,
-  "name": "base-config-foo"
+  "windows": true
 }

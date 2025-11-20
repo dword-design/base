@@ -1,7 +1,8 @@
 import pathLib from 'node:path';
 
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import fs from 'fs-extra';
+import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
 
@@ -13,7 +14,5 @@ test('works', async ({}, testInfo) => {
     JSON.stringify({ name: '@dword-design/foo' }),
   );
 
-  expect(
-    JSON.stringify(new Base(null, { cwd }).getGitpodConfig(), undefined, 2),
-  ).toMatchSnapshot();
+  expect(new Base(null, { cwd }).getGitpodConfig()).toMatchSnapshot();
 });
