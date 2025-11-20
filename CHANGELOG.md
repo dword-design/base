@@ -1,3 +1,10 @@
+## [15.5.1](https://github.com/dword-design/base/compare/v15.5.0...v15.5.1) (2025-11-20)
+
+
+### Bug Fixes
+
+* undo last change ([2946e68](https://github.com/dword-design/base/commit/2946e689c735db73b39a410c4d6231b856c4fe7b))
+
 # [15.5.0](https://github.com/dword-design/base/compare/v15.4.2...v15.5.0) (2025-11-20)
 
 
