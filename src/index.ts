@@ -104,7 +104,6 @@ type Config = {
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
   doppler: boolean;
-  hasTypeModule: boolean; // TODO: Remove when https://github.com/nuxt/nuxt/issues/33733 is fixed
 };
 
 type PartialConfigObject<TConfig extends Config = Config> = Omit<
@@ -297,7 +296,6 @@ class Base<TConfig extends Config = Config> {
       git: getGitInfo({ cwd: this.cwd }),
       gitignore: [],
       global: false,
-      hasTypeModule: true,
       hasTypescriptConfigRootAlias: true,
       isLockFileFixCommitType: false,
       lint: () => {},

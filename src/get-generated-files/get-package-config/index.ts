@@ -39,7 +39,7 @@ export default function () {
     ),
     funding: 'https://github.com/sponsors/dword-design',
     publishConfig: { access: 'public' },
-    ...(this.config.hasTypeModule ? { type: 'module' } : {}),
+    type: 'module',
     version: this.packageConfig.version || '1.0.0',
     ...(this.config.git && {
       repository: `dword-design/${this.config.git.project}`,

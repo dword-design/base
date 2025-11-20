@@ -22,7 +22,6 @@
     "foo"
   ],
   "global": false,
-  "hasTypeModule": true,
   "hasTypescriptConfigRootAlias": true,
   "isLockFileFixCommitType": false,
   "lintStagedConfig": {},
