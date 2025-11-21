@@ -18,6 +18,9 @@ export default function () {
       {
         env: {
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+          ...(this.config.npmPublish
+            ? { NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' }
+            : {}),
           ...this.config.deployEnv,
         },
         name: 'Release',
