@@ -1,3 +1,12 @@
+## [15.5.3](https://github.com/dword-design/base/compare/v15.5.2...v15.5.3) (2025-11-21)
+
+
+### Bug Fixes
+
+* foo ([8a29dec](https://github.com/dword-design/base/commit/8a29dec9a99360ebfb512d121a35b509fc55f16c))
+* revert trusted publishing so that we can deploy it as a breakig change ([f322a6a](https://github.com/dword-design/base/commit/f322a6a6d9b86a8e2ed4f8e5ee2b69f09ec32cf6))
+* revert yet another commit ([a92cbf5](https://github.com/dword-design/base/commit/a92cbf5687ca093e8de3956965aaa700574e9044))
+
 ## [15.5.1](https://github.com/dword-design/base/compare/v15.5.0...v15.5.1) (2025-11-20)
 
 
