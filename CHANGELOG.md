@@ -1,5 +1,6 @@
 ## [15.5.3](https://github.com/dword-design/base/compare/v15.5.2...v15.5.3) (2025-11-21)
 
+
 ### Bug Fixes
 
 * foo ([8a29dec](https://github.com/dword-design/base/commit/8a29dec9a99360ebfb512d121a35b509fc55f16c))
