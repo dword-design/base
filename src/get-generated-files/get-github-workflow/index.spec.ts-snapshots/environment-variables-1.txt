@@ -87,5 +87,9 @@
         "master"
       ]
     }
+  },
+  "permissions": {
+    "contents": "write",
+    "id-token": "write"
   }
 }

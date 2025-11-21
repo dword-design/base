@@ -14,9 +14,8 @@ export default function () {
     name: 'build',
     on: { pull_request: {}, push: { branches: ['master'] } },
     permissions: {
-      // For npm trusted publishing
-      contents: 'read',
-      'id-token': 'write',
+      contents: 'write', // Create GitHub releases
+      'id-token': 'write', // For npm trusted publishing
     },
   };
 }

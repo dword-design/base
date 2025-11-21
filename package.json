@@ -1,6 +1,6 @@
 {
   "name": "@dword-design/base",
-  "version": "15.5.1",
+  "version": "15.5.2",
   "description": "Base package for projects.",
   "repository": "dword-design/base",
   "funding": "https://github.com/sponsors/dword-design",
@@ -74,7 +74,7 @@
     "parse-packagejson-name": "^1.0.1",
     "plugin-name-to-package-name": "npm:@dword-design/plugin-name-to-package-name@^0.1.2",
     "safe-readfile": "^1.0.2",
-    "semantic-release": "^22.0.12",
+    "semantic-release": "^25.0.2",
     "sort-keys": "^5.1.0",
     "sort-package-json": "^2.15.1",
     "spdx-expression-parse": "^4.0.0",
@@ -93,14 +93,14 @@
     "@types/parse-git-config": "^3.0.4",
     "p-event": "^6.0.1",
     "playwright-expect-snapshot": "^1.0.1",
-    "renovate": "^39.264.1",
+    "renovate": "^42.19.0",
     "sharp": "^0.34.3",
     "strip-ansi": "^7.1.2",
     "uuid": "^11.1.0"
   },
   "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "publishConfig": {
     "access": "public"

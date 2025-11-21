@@ -1,3 +1,19 @@
+## [15.5.2](https://github.com/dword-design/base/compare/v15.5.1...v15.5.2) (2025-11-21)
+
+
+### Bug Fixes
+
+* fix test ([d1b4fa1](https://github.com/dword-design/base/commit/d1b4fa1d3ef44e30d06bc9c05fb12296fc95d6e0))
+* foo ([43fbc97](https://github.com/dword-design/base/commit/43fbc976d335c45daf9d3a57bbc2e87d291602b8))
+* foo ([fe884b1](https://github.com/dword-design/base/commit/fe884b14b9ff19406bb495beeae4db5b0b412ace))
+* foo ([ca63979](https://github.com/dword-design/base/commit/ca63979320dec2b8fc5ecaf1901fc79a0a83f720))
+* foo ([f34ed54](https://github.com/dword-design/base/commit/f34ed54a2e1c2091d21d9bd1f8bc07040589b56e))
+* foo ([1882b55](https://github.com/dword-design/base/commit/1882b55f4c5040b695ae6094e6a2e542a3e87667))
+* foo ([b8fb704](https://github.com/dword-design/base/commit/b8fb704e44de187cd140aa5896bad3a2f499f5a8))
+* foo ([6a5bdb4](https://github.com/dword-design/base/commit/6a5bdb4192715974af07862d39a8ed7782e2b2b7))
+* trigger release ([7d63f23](https://github.com/dword-design/base/commit/7d63f2374b075c3d4b7b123a80300227a72f4e68))
+* upgrade node version ([7007ea5](https://github.com/dword-design/base/commit/7007ea56fb3d770516321129ebf5ef8a57b451c0))
+
 ## [15.5.1](https://github.com/dword-design/base/compare/v15.5.0...v15.5.1) (2025-11-20)
 
 
