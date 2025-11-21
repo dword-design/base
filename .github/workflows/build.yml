@@ -76,4 +76,5 @@ on:
     branches:
       - master
 permissions:
+  contents: write
   id-token: write
