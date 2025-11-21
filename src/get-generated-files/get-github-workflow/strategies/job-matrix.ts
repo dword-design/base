@@ -20,10 +20,7 @@ export default function () {
         },
         {
           uses: gitHubAction`actions/setup-node@v4`,
-          with: {
-            'node-version': this.config.nodeVersion,
-            'registry-url': 'https://registry.npmjs.org',
-          },
+          with: { 'node-version': this.config.nodeVersion },
         },
         { run: 'corepack enable' },
         { run: 'git config --global user.email "actions@github.com"' },
