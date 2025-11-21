@@ -1,3 +1,15 @@
+# [16.0.0](https://github.com/dword-design/base/compare/v15.5.3...v16.0.0) (2025-11-21)
+
+
+### Features
+
+* trusted publishing ([#824](https://github.com/dword-design/base/issues/824)) ([08adfaa](https://github.com/dword-design/base/commit/08adfaa6f96b9fc471430ebe0ffa845d75ffdb94))
+
+
+### BREAKING CHANGES
+
+* node.js >= 22
+
 ## [15.5.3](https://github.com/dword-design/base/compare/v15.5.2...v15.5.3) (2025-11-21)
 
 
