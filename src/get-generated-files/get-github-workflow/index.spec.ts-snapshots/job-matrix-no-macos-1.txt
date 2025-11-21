@@ -18,7 +18,7 @@
         {
           "uses": "actions/setup-node@v4",
           "with": {
-            "node-version": 20,
+            "node-version": 22,
             "registry-url": "https://registry.npmjs.org"
           }
         },
@@ -96,7 +96,7 @@
           }
         },
         {
-          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 20",
+          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 22",
           "uses": "codecov/codecov-action@v5",
           "with": {
             "token": "${{ secrets.CODECOV_TOKEN }}"
@@ -107,15 +107,15 @@
         "matrix": {
           "include": [
             {
-              "node": 20,
-              "os": "ubuntu-latest"
-            },
-            {
               "node": 22,
               "os": "ubuntu-latest"
             },
             {
-              "node": 20,
+              "node": 24,
+              "os": "ubuntu-latest"
+            },
+            {
+              "node": 22,
               "os": "windows-latest"
             }
           ]

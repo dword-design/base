@@ -17,15 +17,15 @@
   "maxNodeVersion": null,
   "minNodeVersion": null,
   "name": "base-config-foo",
-  "nodeVersion": 20,
+  "nodeVersion": 22,
   "packageConfig": {},
   "preDeploySteps": [],
   "readmeInstallString": "## Install\n\n```bash\n# npm\n$ npm install foo\n\n# Yarn\n$ yarn add foo\n```",
   "renovateConfig": {},
   "seeAlso": [],
   "supportedNodeVersions": [
-    20,
-    22
+    22,
+    24
   ],
   "syncKeywords": true,
   "testInContainer": false,
