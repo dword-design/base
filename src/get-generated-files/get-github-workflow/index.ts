@@ -13,5 +13,9 @@ export default function () {
     ).call(this),
     name: 'build',
     on: { pull_request: {}, push: { branches: ['master'] } },
+    permissions: {
+      contents: 'write', // Create GitHub releases
+      'id-token': 'write', // For npm trusted publishing
+    },
   };
 }
