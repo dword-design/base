@@ -1,3 +1,10 @@
+## [16.0.1](https://github.com/dword-design/base/compare/v16.0.0...v16.0.1) (2025-11-21)
+
+
+### Bug Fixes
+
+* test disabled npm tokens ([63da334](https://github.com/dword-design/base/commit/63da3347d285bd076640a762ca5d4e9277709f5e))
+
 # [16.0.0](https://github.com/dword-design/base/compare/v15.5.3...v16.0.0) (2025-11-21)
 
 
