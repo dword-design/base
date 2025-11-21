@@ -13,5 +13,10 @@ export default function () {
     ).call(this),
     name: 'build',
     on: { pull_request: {}, push: { branches: ['master'] } },
+    permissions: {
+      // For npm trusted publishing
+      contents: 'read',
+      'id-token': 'write',
+    },
   };
 }
