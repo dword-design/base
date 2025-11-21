@@ -93,7 +93,7 @@
     "@types/parse-git-config": "^3.0.4",
     "p-event": "^6.0.1",
     "playwright-expect-snapshot": "^1.0.1",
-    "renovate": "^39.264.1",
+    "renovate": "^42.19.0",
     "sharp": "^0.34.3",
     "strip-ansi": "^7.1.2",
     "uuid": "^11.1.0"
