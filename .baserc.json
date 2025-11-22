@@ -1,8 +1,7 @@
 {
   "depcheckConfig": {
     "ignoreMatches": [
-      "husky",
-      "mkdist"
+      "husky"
     ]
   },
   "doppler": true,

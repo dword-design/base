@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: false
   excludeLinksFromLockfile: false
 
-overrides:
-  '@dword-design/base-config-node': 5.0.0
-
 importers:
 
   .:
@@ -18,8 +15,8 @@ importers:
         specifier: ^18.6.3
         version: 18.6.3
       '@dword-design/base-config-node':
-        specifier: 5.0.0
-        version: 5.0.0(@types/node@24.10.1)(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)
+        specifier: ^5.0.1
+        version: 5.0.1(@types/node@24.10.1)(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)
       '@dword-design/ci':
         specifier: ^5.0.0
         version: 5.0.0
@@ -122,9 +119,6 @@ importers:
       make-cli:
         specifier: ^4.0.8
         version: 4.0.8
-      mkdist:
-        specifier: ^2.4.1
-        version: 2.4.1(typescript@5.9.3)(vue-sfc-transformer@0.1.17(@vue/compiler-core@3.5.24)(esbuild@0.25.12)(vue@3.5.24(typescript@5.9.3)))(vue-tsc@2.2.12(typescript@5.9.3))(vue@3.5.24(typescript@5.9.3))
       output-files:
         specifier: ^3.0.0
         version: 3.0.0
@@ -606,12 +600,12 @@ packages:
     resolution: {integrity: sha512-bVUNBqG6aznYcYjTjnc3+Cat/iBgbgpflxbIBTnsHTX0YVpnmINPEkSRWymT2Q8aSH3Y7aKnEbunilkYe8TybA==}
     engines: {node: '>=v18'}
 
-  '@dword-design/base-config-node@5.0.0':
-    resolution: {integrity: sha512-I/zTRbZOEXpyDs4lUzldlnDt6qQpUKHLAGx+egnerM+uDaXB1nrzmukMt/6t3HjqKruD5sarSFvmrlKgbdBq9Q==}
+  '@dword-design/base-config-node@5.0.1':
+    resolution: {integrity: sha512-brFstouIxU9TT6RHQ5BHjtUtzG92ruM8SNF15DoMEhc24AG24qMqmx2AxB90Bsvz91KBcHJLCg452jbm/MeTvg==}
     engines: {node: '>=22'}
 
-  '@dword-design/base@16.0.1':
-    resolution: {integrity: sha512-pwKMBhJu7t8Kjy8r2KT4REs0mWiE4R6BxAXDkSdgO1YhBIfjN3dZm1WBiWIpdsFg+REeSgzF0hNJETuCch87nA==}
+  '@dword-design/base@16.0.4':
+    resolution: {integrity: sha512-I2HjOkFLLHvIx5LtfsJm19q1SjfUW/KajR1GrD94+x3sAFCdqkw416QZcQf1/82idT5chI1a0RhYWqJ5auJP9A==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -7668,10 +7662,10 @@ snapshots:
       chalk: 5.6.2
     optional: true
 
-  '@dword-design/base-config-node@5.0.0(@types/node@24.10.1)(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)':
+  '@dword-design/base-config-node@5.0.1(@types/node@24.10.1)(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)':
     dependencies:
       '@babel/core': 7.28.5
-      '@dword-design/base': 16.0.1(@types/node@24.10.1)(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)
+      '@dword-design/base': 16.0.4(@types/node@24.10.1)(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)(vue-sfc-transformer@0.1.17(@vue/compiler-core@3.5.24)(esbuild@0.25.12)(vue@3.5.24(typescript@5.9.3)))(vue@3.5.24(typescript@5.9.3))
       '@dword-design/depcheck-parser-sass': 5.0.0
       babel-plugin-add-import-extension: 1.6.0(@babel/core@7.28.5)
       babel-plugin-module-resolver: 5.0.2
@@ -7700,11 +7694,11 @@ snapshots:
       - sass
       - supports-color
 
-  '@dword-design/base@16.0.1(@types/node@24.10.1)(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)':
+  '@dword-design/base@16.0.4(@types/node@24.10.1)(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)(vue-sfc-transformer@0.1.17(@vue/compiler-core@3.5.24)(esbuild@0.25.12)(vue@3.5.24(typescript@5.9.3)))(vue@3.5.24(typescript@5.9.3))':
     dependencies:
       '@commitlint/cli': 18.6.1(@types/node@24.10.1)(typescript@5.9.3)
       '@commitlint/config-conventional': 18.6.3
-      '@dword-design/base-config-node': 5.0.0(@types/node@24.10.1)(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)
+      '@dword-design/base-config-node': 5.0.1(@types/node@24.10.1)(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)
       '@dword-design/ci': 5.0.0
       '@dword-design/defu': 1.0.3
       '@dword-design/eslint-config': 8.1.0(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(jiti@2.6.1)(typescript@5.9.3)
@@ -7739,6 +7733,7 @@ snapshots:
       lint-staged: 16.2.7
       lodash-es: 4.17.21
       make-cli: 4.0.8
+      mkdist: 2.4.1(typescript@5.9.3)(vue-sfc-transformer@0.1.17(@vue/compiler-core@3.5.24)(esbuild@0.25.12)(vue@3.5.24(typescript@5.9.3)))(vue-tsc@2.2.12(typescript@5.9.3))(vue@3.5.24(typescript@5.9.3))
       output-files: 3.0.0
       package-name-regex: 4.0.3
       parse-git-config: '@dword-design/parse-git-config@0.0.1'
@@ -7769,6 +7764,8 @@ snapshots:
       - monocart-coverage-reports
       - sass
       - supports-color
+      - vue
+      - vue-sfc-transformer
 
   '@dword-design/ci@5.0.0':
     dependencies:
@@ -9778,7 +9775,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.7.3
+      semver: 7.7.2
 
   bunyan@1.8.15:
     optionalDependencies:
@@ -12518,7 +12515,7 @@ snapshots:
 
   node-abi@3.85.0:
     dependencies:
-      semver: 7.7.3
+      semver: 7.7.2
     optional: true
 
   node-domexception@1.0.0: {}
@@ -12581,7 +12578,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.7.3
+      semver: 7.7.2
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@6.0.2:
