@@ -1,3 +1,10 @@
+## [16.0.3](https://github.com/dword-design/base/compare/v16.0.2...v16.0.3) (2025-11-22)
+
+
+### Bug Fixes
+
+* temp fix for publishing ([d4b6c88](https://github.com/dword-design/base/commit/d4b6c88fba0088a39c2a67d8a1e6c431a9910123))
+
 ## [16.0.2](https://github.com/dword-design/base/compare/v16.0.1...v16.0.2) (2025-11-22)
 
 
