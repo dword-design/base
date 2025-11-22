@@ -9,3 +9,6 @@ ignoredBuiltDependencies:
 
 onlyBuiltDependencies:
   - re2
+
+overrides:
+  '@dword-design/base-config-node': 5.0.0
