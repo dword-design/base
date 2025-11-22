@@ -68,6 +68,7 @@
     "lint-staged": "^16.1.6",
     "lodash-es": "^4.17.21",
     "make-cli": "^4.0.8",
+    "mkdist": "^2.4.1",
     "output-files": "^3.0.0",
     "package-name-regex": "^4.0.3",
     "parse-git-config": "npm:@dword-design/parse-git-config@^0.0.1",
