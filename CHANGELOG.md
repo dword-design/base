@@ -1,3 +1,10 @@
+## [16.0.5](https://github.com/dword-design/base/compare/v16.0.4...v16.0.5) (2025-11-22)
+
+
+### Bug Fixes
+
+* foo ([9991a50](https://github.com/dword-design/base/commit/9991a502162522deabeb0a1654a23e57f4747e08))
+
 ## [16.0.4](https://github.com/dword-design/base/compare/v16.0.3...v16.0.4) (2025-11-22)
 
 
