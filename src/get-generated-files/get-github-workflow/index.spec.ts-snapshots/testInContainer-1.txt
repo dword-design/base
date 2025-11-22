@@ -88,6 +88,7 @@
   },
   "permissions": {
     "contents": "write",
-    "id-token": "write"
+    "id-token": "write",
+    "issues": "write"
   }
 }

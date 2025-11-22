@@ -16,6 +16,7 @@ export default function () {
     permissions: {
       contents: 'write', // Create GitHub releases
       'id-token': 'write', // For npm trusted publishing
+      issues: 'write',
     },
   };
 }
