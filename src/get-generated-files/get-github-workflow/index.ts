@@ -17,6 +17,7 @@ export default function () {
       contents: 'write', // Create GitHub releases
       'id-token': 'write', // For npm trusted publishing
       issues: 'write',
+      'pull-requests': 'write',
     },
   };
 }
