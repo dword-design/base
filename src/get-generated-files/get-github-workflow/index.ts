@@ -14,7 +14,14 @@ export default function () {
     name: 'build',
     on: { pull_request: {}, push: { branches: ['master'] } },
     permissions: {
-      contents: 'write', // Create GitHub releases
+      /**
+       * See https://github.com/semantic-release/github?tab=readme-ov-file#github-authentication
+       * When using the GITHUB_TOKEN, the minimum required permissions are:
+       * * contents: write to be able to publish a GitHub release
+       * * issues: write to be able to comment on released issues
+       * * pull-requests: write to be able to comment on released pull requests
+       */
+      contents: 'write',
       'id-token': 'write', // For npm trusted publishing
       issues: 'write',
       'pull-requests': 'write',
