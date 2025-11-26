@@ -144,8 +144,8 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0
       sort-package-json:
-        specifier: ^2.15.1
-        version: 2.15.1
+        specifier: ^3.0.0
+        version: 3.4.0
       spdx-expression-parse:
         specifier: ^4.0.0
         version: 4.0.0
@@ -8272,7 +8272,7 @@ snapshots:
 
   '@npmcli/fs@4.0.0':
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@octokit/auth-token@6.0.0': {}
 
@@ -9775,7 +9775,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   bunyan@1.8.15:
     optionalDependencies:
@@ -12515,7 +12515,7 @@ snapshots:
 
   node-abi@3.85.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
     optional: true
 
   node-domexception@1.0.0: {}
@@ -12547,7 +12547,7 @@ snapshots:
       make-fetch-happen: 14.0.3
       nopt: 8.1.0
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.7.3
       tar: 7.5.2
       tinyglobby: 0.2.15
       which: 5.0.0
@@ -12578,7 +12578,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.7.2
+      semver: 7.7.3
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@6.0.2:
