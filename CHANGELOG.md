@@ -1,3 +1,10 @@
+## [16.0.9](https://github.com/dword-design/base/compare/v16.0.8...v16.0.9) (2025-12-01)
+
+
+### Bug Fixes
+
+* ignore pnpm-store ([7b0f7c7](https://github.com/dword-design/base/commit/7b0f7c7d8e43b2d56746d804fa66c70a70500fab))
+
 ## [16.0.8](https://github.com/dword-design/base/compare/v16.0.7...v16.0.8) (2025-11-25)
 
 
