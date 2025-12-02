@@ -1,3 +1,10 @@
+## [16.0.10](https://github.com/dword-design/base/compare/v16.0.9...v16.0.10) (2025-12-02)
+
+
+### Bug Fixes
+
+* remove .nyc_output and add .pnpm-store to editorignore ([93db775](https://github.com/dword-design/base/commit/93db775f3618cdc35d11a037fbe6aac92b45abde))
+
 ## [16.0.9](https://github.com/dword-design/base/compare/v16.0.8...v16.0.9) (2025-12-01)
 
 
