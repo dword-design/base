@@ -5,9 +5,5 @@ import { Base } from '@/src';
 
 test('valid', () =>
   expect(
-    JSON.stringify(
-      new Base({ editorIgnore: ['bar', 'foo'] }).getVscodeConfig(),
-      undefined,
-      2,
-    ),
+    new Base({ editorIgnore: ['bar', 'foo'] }).getVscodeConfig(),
   ).toMatchSnapshot());
