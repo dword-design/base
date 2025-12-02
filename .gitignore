@@ -1,6 +1,5 @@
 .DS_Store
 /.env.json
-/.nyc_output
 /.pnpm-store
 /.test.env.json
 /codecov
