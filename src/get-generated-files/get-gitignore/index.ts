@@ -7,7 +7,6 @@ export default function () {
       '/.pnpm-store', // https://github.com/orgs/pnpm/discussions/6936#discussioncomment-6746063
       '/.env.json',
       '/.test.env.json',
-      '/.nyc_output',
       '/codecov',
       '/codecov.SHA256SUM',
       '/codecov.SHA256SUM.sig',

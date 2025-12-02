@@ -12,7 +12,7 @@ export default [
   '.gitpod.yml',
   '.husky',
   '.npmrc',
-  '.nyc_output',
+  '.pnpm-store',
   '.releaserc.json',
   '.renovaterc.json',
   '.vscode',
