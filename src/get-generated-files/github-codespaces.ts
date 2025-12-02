@@ -1,4 +1,4 @@
 export default {
-  image: 'mcr.microsoft.com/devcontainers/universal:2-focal',
+  image: 'dworddesign/devcontainer',
   postCreateCommand: 'bash .devcontainer/postcreate.sh',
 };
