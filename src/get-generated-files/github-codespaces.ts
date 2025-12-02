@@ -1,4 +1,4 @@
 export default {
-  image: 'microsoft/devcontainers-universal',
+  image: 'mcr.microsoft.com/devcontainers/universal:2',
   postCreateCommand: 'bash .devcontainer/postcreate.sh',
 };
