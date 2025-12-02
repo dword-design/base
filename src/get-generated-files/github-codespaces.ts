@@ -1,4 +1,4 @@
 export default {
   image: 'dworddesign/devcontainer',
-  postCreateCommand: 'bash .devcontainer/postcreate.sh',
+  postCreateCommand: 'pnpm install --frozen-lockfile',
 };
