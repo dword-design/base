@@ -1,3 +1,10 @@
+# [16.1.0](https://github.com/dword-design/base/compare/v16.0.10...v16.1.0) (2025-12-02)
+
+
+### Features
+
+* devpod compatibility ([#825](https://github.com/dword-design/base/issues/825)) ([6616b08](https://github.com/dword-design/base/commit/6616b08f1e7e2840b658e5addb50a6976794f185))
+
 ## [16.0.10](https://github.com/dword-design/base/compare/v16.0.9...v16.0.10) (2025-12-02)
 
 
