@@ -93,8 +93,8 @@ importers:
         specifier: ^14.1.0
         version: 14.1.0
       hosted-git-info:
-        specifier: ^8.1.0
-        version: 8.1.0
+        specifier: ^9.0.0
+        version: 9.0.2
       husky:
         specifier: ^8.0.3
         version: 8.0.3
@@ -9775,7 +9775,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   bunyan@1.8.15:
     optionalDependencies:
@@ -12515,7 +12515,7 @@ snapshots:
 
   node-abi@3.85.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
     optional: true
 
   node-domexception@1.0.0: {}
@@ -12578,7 +12578,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.7.2
+      semver: 7.7.3
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@6.0.2:
