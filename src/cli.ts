@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import dotenv from '@dword-design/dotenv-json-extended';
 import { mapValues } from 'lodash-es';
 import makeCli from 'make-cli';
 
@@ -39,7 +40,12 @@ try {
           { description: 'Allow empty commits', name: '--allow-empty' },
         ],
       },
-      depcheck: { handler: () => base.depcheck() },
+      depcheck: {
+        handler: () => {
+          dotenv.config();
+          return base.depcheck();
+        },
+      },
       lint: { handler: () => base.lint() },
       prepare: { handler: () => base.prepare() },
       typecheck: { handler: () => base.typecheck() },

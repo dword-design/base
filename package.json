@@ -36,6 +36,7 @@
     "@dword-design/base-config-node": "^5.0.1",
     "@dword-design/ci": "^5.0.0",
     "@dword-design/defu": "^1.0.3",
+    "@dword-design/dotenv-json-extended": "^4.0.1",
     "@dword-design/eslint-config": "^8.1.0",
     "@dword-design/personal-data": "^3.0.0",
     "@semantic-release/changelog": "^6.0.3",
@@ -87,7 +88,6 @@
     "yaml": "^2.8.1"
   },
   "devDependencies": {
-    "@dword-design/dotenv-json-extended": "^4.0.1",
     "@playwright/test": "^1.56.1",
     "@types/hosted-git-info": "^3.0.5",
     "@types/parse-git-config": "^3.0.4",
