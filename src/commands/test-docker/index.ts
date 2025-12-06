@@ -55,22 +55,24 @@ export default async function (options) {
       },
     );
   } finally {
-    await execa(
-      'docker',
-      [
-        'run',
-        '--rm',
-        '--tty',
-        '-v',
-        `${this.cwd}:/app`,
-        '-v',
-        `${volumeName}:/app/node_modules`,
-        'dworddesign/testing:latest',
-        'bash',
-        '-c',
-        `chown -R ${userInfo.uid}:${userInfo.gid} /app`,
-      ],
-      { cwd: this.cwd },
-    );
+    if (process.platform === 'linux') {
+      await execa(
+        'docker',
+        [
+          'run',
+          '--rm',
+          '--tty',
+          '-v',
+          `${this.cwd}:/app`,
+          '-v',
+          `${volumeName}:/app/node_modules`,
+          'dworddesign/testing:latest',
+          'bash',
+          '-c',
+          `chown -R ${userInfo.uid}:${userInfo.gid} /app`,
+        ],
+        { cwd: this.cwd },
+      );
+    }
   }
 }
