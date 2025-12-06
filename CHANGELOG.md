@@ -1,3 +1,10 @@
+## [16.1.1](https://github.com/dword-design/base/compare/v16.1.0...v16.1.1) (2025-12-06)
+
+
+### Bug Fixes
+
+* run dotenv before depcheck ([213873a](https://github.com/dword-design/base/commit/213873a8721b05234ef82e88c2b990a7cc729a1e))
+
 # [16.1.0](https://github.com/dword-design/base/compare/v16.0.10...v16.1.0) (2025-12-02)
 
 
