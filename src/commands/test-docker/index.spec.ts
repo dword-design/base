@@ -6,6 +6,7 @@ import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import outputFiles from 'output-files';
 import parsePackagejsonName from 'parse-packagejson-name';
+import { stringify as yamlStringify } from 'yaml';
 
 import packageJson from '@/package.json' with { type: 'json' };
 import { Base } from '@/src';
@@ -180,6 +181,32 @@ test('pattern @usesdocker', async ({ packageName }, testInfo) => {
   expect(await fs.readFile(pathLib.join(cwd, 'grep.txt'), 'utf8')).toEqual(
     'foo bar baz',
   );
+});
+
+test('puppeteer @usesdocker', async ({ packageName }, testInfo) => {
+  test.setTimeout(60_000);
+  const cwd = testInfo.outputPath();
+
+  await outputFiles(cwd, {
+    'package.json': JSON.stringify({
+      dependencies: { '@dword-design/puppeteer': '*' },
+      name: packageName,
+      scripts: { 'test:raw': 'node test.js' },
+      type: 'module',
+    }),
+    'pnpm-workspace.yaml': yamlStringify({
+      onlyBuiltDependencies: ['puppeteer'],
+    }),
+    'test.js': endent`
+      import puppeteer from '@dword-design/puppeteer';
+
+      const browser = await puppeteer.launch();
+      await browser.close();
+    `,
+  });
+
+  await execaCommand('pnpm install --ignore-workspace', { cwd });
+  await new Base(null, { cwd }).testDocker();
 });
 
 test('update snapshots @usesdocker', async ({ packageName }, testInfo) => {
