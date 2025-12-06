@@ -49,7 +49,12 @@ try {
       lint: { handler: () => base.lint() },
       prepare: { handler: () => base.prepare() },
       typecheck: { handler: () => base.typecheck() },
-      verify: { handler: () => base.verify() },
+      verify: {
+        handler: () => {
+          dotenv.config();
+          return base.verify();
+        },
+      },
       ...(base.config.testInContainer && {
         'test:raw': {
           arguments: '[patterns...]',
