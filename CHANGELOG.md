@@ -1,3 +1,10 @@
+## [16.1.3](https://github.com/dword-design/base/compare/v16.1.2...v16.1.3) (2025-12-06)
+
+
+### Bug Fixes
+
+* only re-chown after test-docker if we are on linux ([0e04834](https://github.com/dword-design/base/commit/0e048345028d9d57a709e64f38c9c67e8d960593))
+
 ## [16.1.2](https://github.com/dword-design/base/compare/v16.1.1...v16.1.2) (2025-12-06)
 
 
