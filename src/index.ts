@@ -19,6 +19,7 @@ import { transform as pluginNameToPackageName } from 'plugin-name-to-package-nam
 import type { RenovateConfig } from 'renovate/dist/config/types';
 import type { PackageJson, TsConfigJson } from 'type-fest';
 
+import checkUnknownFiles from './commands/check-unknown-files';
 import type { PartialCommandOptions } from './commands/command-options-input';
 import commit from './commands/commit';
 import depcheckMethod from './commands/depcheck';
