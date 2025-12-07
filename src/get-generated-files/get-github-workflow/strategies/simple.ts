@@ -1,6 +1,5 @@
 import gitHubAction from 'tagged-template-noop';
 
-import checkUnknownFilesSteps from '@/src/get-generated-files/get-github-workflow/steps/check-unknown-files';
 import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/coverage';
 import getReleaseSteps from '@/src/get-generated-files/get-github-workflow/steps/get-release';
 import getTestSteps from '@/src/get-generated-files/get-github-workflow/steps/get-test';
@@ -32,7 +31,6 @@ export default function () {
         { run: 'pnpm install --frozen-lockfile' },
         ...getTestSteps.call(this),
         ...coverageSteps,
-        ...checkUnknownFilesSteps,
         ...getReleaseSteps.call(this),
       ],
     },
