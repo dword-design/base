@@ -1,3 +1,11 @@
+## [16.1.4](https://github.com/dword-design/base/compare/v16.1.3...v16.1.4) (2025-12-07)
+
+
+### Bug Fixes
+
+* fix ([7c37722](https://github.com/dword-design/base/commit/7c377221227a1b1aae2955b2e5b0cf65caccfcc2))
+* move checkUnknownFiles into verify ([cb01896](https://github.com/dword-design/base/commit/cb01896f2d8716abb99e81a44b2ef8a82c5e6ead))
+
 ## [16.1.3](https://github.com/dword-design/base/compare/v16.1.2...v16.1.3) (2025-12-06)
 
 
