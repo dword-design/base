@@ -47,7 +47,7 @@ export default function () {
     },
     {
       if: 'always()',
-      uses: gitHubAction`actions/upload-artifact@v4`,
+      uses: gitHubAction`actions/upload-artifact@v5`,
       with: {
         'if-no-files-found': 'ignore',
         name: 'Data from tests',
