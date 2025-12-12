@@ -65,6 +65,8 @@ $ yarn add @dword-design/base
 ```
 <!-- /INSTALL -->
 
+foo bar baz
+
 <!-- LICENSE/ -->
 ## Contribute
 
