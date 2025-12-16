@@ -6,12 +6,16 @@ import endent from 'endent';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import { globby } from 'globby';
+import nodeVersionLib from 'node-version';
 import outputFiles from 'output-files';
 import stripAnsi from 'strip-ansi';
 
 import { Base } from '@/src';
 
 const javascript = endent;
+
+const isSameOrAfter24_12_0 =
+  Number(nodeVersionLib.major) >= 24 && Number(nodeVersionLib.minor) >= 12;
 
 test('assertion', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -189,7 +193,11 @@ test('grep', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
   const { stdout } = await base.test({ grep: 'test1' });
-  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:3:1 › test1`);
+
+  expect(stdout).toMatch(
+    `${pathLib.join('src', 'index.spec.ts')}:${isSameOrAfter24_12_0 ? 2 : 3}:1 › test1`,
+  );
+
   expect(stdout).toMatch('1 passed');
 });
 
@@ -218,7 +226,11 @@ test('pattern', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
   const { stdout } = await base.test({ patterns: ['src/index.spec.ts'] });
-  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:3:1 › valid`);
+
+  expect(stdout).toMatch(
+    `${pathLib.join('src', 'index.spec.ts')}:${isSameOrAfter24_12_0 ? 2 : 3}:1 › valid`,
+  );
+
   expect(stdout).toMatch('1 passed');
 });
 
@@ -256,10 +268,12 @@ test('multiple patterns', async ({}, testInfo) => {
     patterns: ['src/index.spec.ts', 'src/index2.spec.ts'],
   });
 
-  expect(stdout).toMatch(`${pathLib.join('src', 'index.spec.ts')}:3:1 › valid`);
+  expect(stdout).toMatch(
+    `${pathLib.join('src', 'index.spec.ts')}:${isSameOrAfter24_12_0 ? 2 : 3}:1 › valid`,
+  );
 
   expect(stdout).toMatch(
-    `${pathLib.join('src', 'index2.spec.ts')}:3:1 › valid`,
+    `${pathLib.join('src', 'index2.spec.ts')}:${isSameOrAfter24_12_0 ? 2 : 3}:1 › valid`,
   );
 
   expect(stdout).toMatch('2 passed');
@@ -379,7 +393,7 @@ test('valid', async ({}, testInfo) => {
   stdout = stripAnsi(stdout);
 
   expect(stdout).toMatch(
-    `1 ${pathLib.join('src', 'index.spec.ts')}:5:1 › valid`,
+    `1 ${pathLib.join('src', 'index.spec.ts')}:${isSameOrAfter24_12_0 ? 3 : 5}:1 › valid`,
   );
 
   expect(
