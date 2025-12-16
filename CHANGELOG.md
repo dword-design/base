@@ -1,3 +1,11 @@
+## [16.1.5](https://github.com/dword-design/base/compare/v16.1.4...v16.1.5) (2025-12-16)
+
+
+### Bug Fixes
+
+* do not pass env var values to docker ([#826](https://github.com/dword-design/base/issues/826)) ([5399880](https://github.com/dword-design/base/commit/53998801fbf45b47d8527543372f41241846dcc6))
+* fix node 24.12.0 test issue ([#827](https://github.com/dword-design/base/issues/827)) ([ce9c97b](https://github.com/dword-design/base/commit/ce9c97ba971da76fae24d65f05307ce7c20c6ad1))
+
 ## [16.1.4](https://github.com/dword-design/base/compare/v16.1.3...v16.1.4) (2025-12-07)
 
 
