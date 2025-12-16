@@ -14,6 +14,7 @@ import { Base } from '@/src';
 
 const javascript = endent;
 
+// TODO: https://github.com/microsoft/playwright/issues/38578
 const isSameOrAfter24_12_0 =
   Number(nodeVersionLib.major) >= 24 && Number(nodeVersionLib.minor) >= 12;
 
