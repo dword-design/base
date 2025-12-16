@@ -31,7 +31,7 @@ export default async function (options) {
         '--rm',
         ...envVariableNames
           .filter(name => process.env[name] !== undefined)
-          .flatMap(name => ['--env', `${name}=${process.env[name]}`]),
+          .flatMap(name => ['--env', name]),
         '-v',
         `${this.cwd}:/app`,
         '-v',
