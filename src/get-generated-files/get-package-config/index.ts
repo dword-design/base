@@ -34,7 +34,6 @@ export default function () {
         pnpm: true,
         private: true,
         publishConfig: true,
-        resolutions: true,
       }),
     ),
     funding: 'https://github.com/sponsors/dword-design',
