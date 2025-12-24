@@ -1,3 +1,10 @@
+## [16.1.6](https://github.com/dword-design/base/compare/v16.1.5...v16.1.6) (2025-12-24)
+
+
+### Bug Fixes
+
+* drop resolutions field from package config ([fe804aa](https://github.com/dword-design/base/commit/fe804aa0be176579af79a34b33d24ea60f6d1a63))
+
 ## [16.1.5](https://github.com/dword-design/base/compare/v16.1.4...v16.1.5) (2025-12-16)
 
 
