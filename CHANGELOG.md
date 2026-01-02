@@ -1,3 +1,10 @@
+## [16.1.7](https://github.com/dword-design/base/compare/v16.1.6...v16.1.7) (2026-01-02)
+
+
+### Bug Fixes
+
+* add peerDependenciesMeta to package.json fields ([c2623bd](https://github.com/dword-design/base/commit/c2623bda4bc06131a937ea260c5977ed73c52c73))
+
 ## [16.1.6](https://github.com/dword-design/base/compare/v16.1.5...v16.1.6) (2025-12-24)
 
 
