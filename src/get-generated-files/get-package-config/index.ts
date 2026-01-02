@@ -31,6 +31,7 @@ export default function () {
         optionalDependencies: true,
         packageManager: true,
         peerDependencies: true,
+        peerDependenciesMeta: true,
         pnpm: true,
         private: true,
         publishConfig: true,
