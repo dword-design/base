@@ -6,7 +6,7 @@ import sortKeys from 'sort-keys';
 const createBracePattern = (expandedGlobs: string[]): string | null => {
   if (expandedGlobs.length <= 1) return null;
   // Sort to ensure consistent output
-  const sortedGlobs = [...expandedGlobs].sort();
+  const sortedGlobs = expandedGlobs.toSorted();
 
   // Check if all globs follow the same pattern (prefix.extension)
   const globParts = sortedGlobs.map(glob => {
