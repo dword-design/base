@@ -1,3 +1,10 @@
+## [16.1.8](https://github.com/dword-design/base/compare/v16.1.7...v16.1.8) (2026-01-03)
+
+
+### Bug Fixes
+
+* update eslint config ([ebcbdbb](https://github.com/dword-design/base/commit/ebcbdbbe8c66fac353322ab28789c1e565aa9f58))
+
 ## [16.1.7](https://github.com/dword-design/base/compare/v16.1.6...v16.1.7) (2026-01-02)
 
 
