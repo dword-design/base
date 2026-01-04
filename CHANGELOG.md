@@ -1,3 +1,12 @@
+## [16.1.9](https://github.com/dword-design/base/compare/v16.1.8...v16.1.9) (2026-01-04)
+
+
+### Bug Fixes
+
+* add build flag to typecheck ([b823cfb](https://github.com/dword-design/base/commit/b823cfb19999e61f74d00d3db335c0c629ffa512))
+* foo ([ca992f7](https://github.com/dword-design/base/commit/ca992f7bd1d393e8b1b96bb8d3d2a38fe40a2fc7))
+* support typescript propject references ([70a407d](https://github.com/dword-design/base/commit/70a407d4dd8bc1fc68acb430c4a613187434779d))
+
 ## [16.1.8](https://github.com/dword-design/base/compare/v16.1.7...v16.1.8) (2026-01-03)
 
 
