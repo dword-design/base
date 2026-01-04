@@ -31,10 +31,14 @@ export default async function (options: PartialCommandOptions = {}) {
   const allFileNames = [...fileNames, ...vueFiles];
 
   if (allFileNames.length > 0) {
-    return execaCommand('vue-tsc -b --noEmit', {
-      ...(options.log && { stdout: 'inherit' }),
-      cwd: this.cwd,
-      stderr: options.stderr,
-    });
+    const hasProjectReferences = !!this.getTypescriptConfig().references;
+    return execaCommand(
+      `vue-tsc ${hasProjectReferences ? '-b' : ''} --noEmit`,
+      {
+        ...(options.log && { stdout: 'inherit' }),
+        cwd: this.cwd,
+        stderr: options.stderr,
+      },
+    );
   }
 }

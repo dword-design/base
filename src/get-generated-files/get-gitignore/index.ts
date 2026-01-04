@@ -13,6 +13,9 @@ export default function () {
       '/coverage',
       '/node_modules',
       '/test-results',
+      ...(this.getTypescriptConfig().references
+        ? ['/tsconfig.tsbuildinfo']
+        : []),
       ...this.config.gitignore,
     ],
     identity,
