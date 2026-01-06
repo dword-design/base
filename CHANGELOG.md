@@ -1,3 +1,10 @@
+## [16.1.10](https://github.com/dword-design/base/compare/v16.1.9...v16.1.10) (2026-01-06)
+
+
+### Bug Fixes
+
+* memory limit option for typechecking in github actions ([6f7f57c](https://github.com/dword-design/base/commit/6f7f57c1c11d745864e96116814eadcc1f715096))
+
 ## [16.1.9](https://github.com/dword-design/base/compare/v16.1.8...v16.1.9) (2026-01-04)
 
 
