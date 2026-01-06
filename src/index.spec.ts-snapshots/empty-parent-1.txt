@@ -8,6 +8,7 @@
   "editorIgnore": [],
   "eslintConfig": "",
   "fetchGitHistory": false,
+  "githubActionsTypecheckMemoryLimitMb": null,
   "gitignore": [],
   "global": false,
   "hasTypescriptConfigRootAlias": true,
