@@ -18,6 +18,7 @@
   ],
   "eslintConfig": "",
   "fetchGitHistory": false,
+  "githubActionsTypecheckMemoryLimitMb": null,
   "gitignore": [
     "foo"
   ],
