@@ -42,6 +42,9 @@ export default function () {
               envVariableNames.map(name => [name, `\${{ secrets.${name} }}`]),
             )),
         GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+        ...(this.config.githubActionsTypecheckMemoryLimitMb && {
+          NODE_OPTIONS: `--max-old-space-size=${this.config.githubActionsTypecheckMemoryLimitMb}`,
+        }),
       },
       run: `${this.config.doppler ? `doppler run -p ${packageName} -c test -- ` : ''}pnpm verify`,
     },

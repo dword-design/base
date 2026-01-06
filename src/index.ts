@@ -79,6 +79,7 @@ type Config = {
   deployPlugins: string[];
   editorIgnore: string[];
   fetchGitHistory: boolean;
+  githubActionsTypecheckMemoryLimitMb: number | null;
   git?: GitHost;
   gitignore: string[];
   hasTypescriptConfigRootAlias: boolean;
@@ -294,6 +295,7 @@ class Base<TConfig extends Config = Config> {
       eslintConfig: '',
       fetchGitHistory: false,
       git: getGitInfo({ cwd: this.cwd }),
+      githubActionsTypecheckMemoryLimitMb: null,
       gitignore: [],
       global: false,
       hasTypescriptConfigRootAlias: true,
