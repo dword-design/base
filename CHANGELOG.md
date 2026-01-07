@@ -1,3 +1,10 @@
+# [16.2.0](https://github.com/dword-design/base/compare/v16.1.10...v16.2.0) (2026-01-07)
+
+
+### Features
+
+* allow base.config.ts ([e55e973](https://github.com/dword-design/base/commit/e55e9732f19944031fa6c1b206b243f7089d7064))
+
 ## [16.1.10](https://github.com/dword-design/base/compare/v16.1.9...v16.1.10) (2026-01-06)
 
 
