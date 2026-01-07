@@ -21,6 +21,7 @@ export default function () {
         {
           uses: gitHubAction`actions/setup-node@v4`,
           with: {
+            cache: 'pnpm',
             'check-latest': true,
             'node-version': this.config.nodeVersion,
           },
