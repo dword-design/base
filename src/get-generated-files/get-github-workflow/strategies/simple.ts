@@ -19,7 +19,7 @@ export default function () {
           },
         },
         {
-          uses: gitHubAction`actions/setup-node@v4`,
+          uses: gitHubAction`actions/setup-node@v6`,
           with: {
             'check-latest': true,
             'node-version': this.config.nodeVersion,
