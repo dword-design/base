@@ -19,7 +19,7 @@ export default function () {
         },
         {
           uses: gitHubAction`actions/setup-node@v4`,
-          with: { cache: 'pnpm', 'node-version': this.config.nodeVersion },
+          with: { 'node-version': this.config.nodeVersion },
         },
         { run: 'corepack enable' },
         { run: 'git config --global user.email "actions@github.com"' },
@@ -41,11 +41,7 @@ export default function () {
         },
         {
           uses: gitHubAction`actions/setup-node@v4`,
-          with: {
-            cache: 'pnpm',
-            'check-latest': true,
-            'node-version': '${{ matrix.node }}',
-          },
+          with: { 'check-latest': true, 'node-version': '${{ matrix.node }}' },
         },
         { run: 'corepack enable' },
         { run: 'pnpm install --frozen-lockfile' },
