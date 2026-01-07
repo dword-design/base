@@ -20,9 +20,20 @@ export default function () {
     { cwd: this.cwd },
   );
 
-  const envVariableNames = Object.keys(
+  const localEnvVariableNames = Object.keys(
     envSchemaPath ? fs.readJsonSync(envSchemaPath) : {},
   ).map(name => constantCase(name));
+
+  const envVariables = {
+    ...(this.config.doppler
+      ? { DOPPLER_TOKEN: '${{ secrets.DOPPLER_TOKEN }}' }
+      : Object.fromEntries(
+          localEnvVariableNames.map(name => [name, `\${{ secrets.${name} }}`]),
+        )),
+    ...(this.config.githubActionsTypecheckMemoryLimitMb && {
+      NODE_OPTIONS: `--max-old-space-size=${this.config.githubActionsTypecheckMemoryLimitMb}`,
+    }),
+  };
 
   const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
   return [
@@ -35,17 +46,7 @@ export default function () {
         ]
       : []),
     {
-      env: {
-        ...(this.config.doppler
-          ? { DOPPLER_TOKEN: '${{ secrets.DOPPLER_TOKEN }}' }
-          : Object.fromEntries(
-              envVariableNames.map(name => [name, `\${{ secrets.${name} }}`]),
-            )),
-        GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-        ...(this.config.githubActionsTypecheckMemoryLimitMb && {
-          NODE_OPTIONS: `--max-old-space-size=${this.config.githubActionsTypecheckMemoryLimitMb}`,
-        }),
-      },
+      ...(Object.keys(envVariables).length > 0 ? { env: envVariables } : {}),
       run: `${this.config.doppler ? `doppler run -p ${packageName} -c test -- ` : ''}pnpm verify`,
     },
     {
