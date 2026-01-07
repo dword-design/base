@@ -17,11 +17,11 @@ export default function () {
             ref: "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
           },
         },
+        { run: 'corepack enable' },
         {
           uses: gitHubAction`actions/setup-node@v4`,
           with: { cache: 'pnpm', 'node-version': this.config.nodeVersion },
         },
-        { run: 'corepack enable' },
         { run: 'git config --global user.email "actions@github.com"' },
         { run: 'git config --global user.name "GitHub Actions"' },
         { run: 'pnpm install --frozen-lockfile' },
@@ -39,6 +39,7 @@ export default function () {
             lfs: true,
           },
         },
+        { run: 'corepack enable' },
         {
           uses: gitHubAction`actions/setup-node@v4`,
           with: {
@@ -47,7 +48,6 @@ export default function () {
             'node-version': '${{ matrix.node }}',
           },
         },
-        { run: 'corepack enable' },
         { run: 'pnpm install --frozen-lockfile' },
         ...getTestSteps.call(this),
         ...coverageSteps.map(step => ({

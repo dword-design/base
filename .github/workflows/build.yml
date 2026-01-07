@@ -11,11 +11,11 @@ jobs:
           lfs: true
           ref: ${{ github.event.pull_request.head.repo.full_name == github.repository &&
             github.event.pull_request.head.ref || '' }}
+      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
           node-version: 22
-      - run: corepack enable
       - run: git config --global user.email "actions@github.com"
       - run: git config --global user.name "GitHub Actions"
       - run: pnpm install --frozen-lockfile
@@ -36,12 +36,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: true
+      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
           check-latest: true
           node-version: ${{ matrix.node }}
-      - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - name: Install Doppler CLI
         uses: dword-design/doppler-cli-action-fork@fork
