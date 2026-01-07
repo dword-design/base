@@ -34,6 +34,9 @@
           "run": "pnpm install --frozen-lockfile"
         },
         {
+          "env": {
+            "FOO": "${{ secrets.FOO }}"
+          },
           "run": "pnpm lint"
         },
         {
@@ -78,8 +81,7 @@
         },
         {
           "env": {
-            "FOO": "${{ secrets.FOO }}",
-            "GH_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+            "FOO": "${{ secrets.FOO }}"
           },
           "run": "pnpm verify"
         },

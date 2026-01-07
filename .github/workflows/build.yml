@@ -18,7 +18,9 @@ jobs:
       - run: git config --global user.email "actions@github.com"
       - run: git config --global user.name "GitHub Actions"
       - run: pnpm install --frozen-lockfile
-      - run: pnpm lint
+      - env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+        run: doppler run -p base -c test -- pnpm lint
       - env:
           GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,7 +47,6 @@ jobs:
         uses: dword-design/doppler-cli-action-fork@fork
       - env:
           DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: doppler run -p base -c test -- pnpm verify
       - if: always()
         uses: actions/upload-artifact@v4
