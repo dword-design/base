@@ -19,6 +19,7 @@ export default async function () {
       '.husky/pre-push': true,
       'CHANGELOG.md': true,
       PRCHECKLIST: true,
+      'base.config.ts': true,
       demo: true,
       doc: true,
       fixtures: true,
