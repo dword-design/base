@@ -1,3 +1,11 @@
+## [16.2.1](https://github.com/dword-design/base/compare/v16.2.0...v16.2.1) (2026-01-07)
+
+
+### Bug Fixes
+
+* env variables for lint before release and drop GH_TOKEN ([#833](https://github.com/dword-design/base/issues/833)) ([efb59bf](https://github.com/dword-design/base/commit/efb59bfae33306320b66a879d7f0e0a02762dcf5))
+* install doppler in ci before lint before release ([00ee9ba](https://github.com/dword-design/base/commit/00ee9ba4d599c10b4cfc02792d46e48ce5960872))
+
 # [16.2.0](https://github.com/dword-design/base/compare/v16.1.10...v16.2.0) (2026-01-07)
 
 
