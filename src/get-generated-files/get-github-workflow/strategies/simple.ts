@@ -18,6 +18,13 @@ export default function () {
             ref: "${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref || '' }}",
           },
         },
+        {
+          uses: gitHubAction`actions/setup-node@v4`,
+          with: {
+            'check-latest': true,
+            'node-version': this.config.nodeVersion,
+          },
+        },
         { run: 'corepack enable' },
         {
           uses: gitHubAction`actions/setup-node@v4`,
