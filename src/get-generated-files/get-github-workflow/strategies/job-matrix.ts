@@ -19,9 +19,20 @@ export default function () {
         },
         {
           uses: gitHubAction`actions/setup-node@v4`,
-          with: { 'node-version': this.config.nodeVersion },
+          with: {
+            'check-latest': true,
+            'node-version': this.config.nodeVersion,
+          },
         },
         { run: 'corepack enable' },
+        {
+          uses: gitHubAction`actions/setup-node@v4`,
+          with: {
+            cache: 'pnpm',
+            'check-latest': true,
+            'node-version': this.config.nodeVersion,
+          },
+        },
         { run: 'git config --global user.email "actions@github.com"' },
         { run: 'git config --global user.name "GitHub Actions"' },
         { run: 'pnpm install --frozen-lockfile' },
@@ -41,9 +52,20 @@ export default function () {
         },
         {
           uses: gitHubAction`actions/setup-node@v4`,
-          with: { 'check-latest': true, 'node-version': '${{ matrix.node }}' },
+          with: {
+            'check-latest': true,
+            'node-version': this.config.nodeVersion,
+          },
         },
         { run: 'corepack enable' },
+        {
+          uses: gitHubAction`actions/setup-node@v4`,
+          with: {
+            cache: 'pnpm',
+            'check-latest': true,
+            'node-version': this.config.nodeVersion,
+          },
+        },
         { run: 'pnpm install --frozen-lockfile' },
         ...getTestSteps.call(this),
         ...coverageSteps.map(step => ({
