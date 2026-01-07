@@ -57,6 +57,14 @@ export default function () {
         { run: 'git config --global user.email "actions@github.com"' },
         { run: 'git config --global user.name "GitHub Actions"' },
         { run: 'pnpm install --frozen-lockfile' },
+        ...(this.config.doppler
+          ? [
+              {
+                name: 'Install Doppler CLI',
+                uses: gitHubAction`dword-design/doppler-cli-action-fork@fork`,
+              },
+            ]
+          : []),
         {
           ...(Object.keys(envVariables).length > 0
             ? { env: envVariables }
