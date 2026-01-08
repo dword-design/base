@@ -12,8 +12,8 @@ importers:
         specifier: ^18.6.1
         version: 18.6.1(@types/node@24.10.1)(typescript@5.9.3)
       '@commitlint/config-conventional':
-        specifier: ^18.6.3
-        version: 18.6.3
+        specifier: ^20.0.0
+        version: 20.3.1
       '@dword-design/base-config-node':
         specifier: ^5.0.1
         version: 5.0.1(@types/node@24.10.1)(@typescript-eslint/parser@8.51.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.51.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)
@@ -523,6 +523,10 @@ packages:
     resolution: {integrity: sha512-8ZrRHqF6je+TRaFoJVwszwnOXb/VeYrPmTwPhf0WxpzpGTcYy1p0SPyZ2eRn/sRi/obnWAcobtDAq6+gJQQNhQ==}
     engines: {node: '>=v18'}
 
+  '@commitlint/config-conventional@20.3.1':
+    resolution: {integrity: sha512-NCzwvxepstBZbmVXsvg49s+shCxlJDJPWxXqONVcAtJH9wWrOlkMQw/zyl+dJmt8lyVopt5mwQ3mR5M2N2rUWg==}
+    engines: {node: '>=v18'}
+
   '@commitlint/config-validator@18.6.1':
     resolution: {integrity: sha512-05uiToBVfPhepcQWE1ZQBR/Io3+tb3gEotZjnI4tTzzPk16NffN6YABgwFQCLmzZefbDcmwWqJWc2XT47q7Znw==}
     engines: {node: '>=v18'}
@@ -601,6 +605,10 @@ packages:
 
   '@commitlint/types@20.0.0':
     resolution: {integrity: sha512-bVUNBqG6aznYcYjTjnc3+Cat/iBgbgpflxbIBTnsHTX0YVpnmINPEkSRWymT2Q8aSH3Y7aKnEbunilkYe8TybA==}
+    engines: {node: '>=v18'}
+
+  '@commitlint/types@20.3.1':
+    resolution: {integrity: sha512-VmIFV/JkBRhDRRv7N5B7zEUkNZIx9Mp+8Pe65erz0rKycXLsi8Epcw0XJ+btSeRXgTzE7DyOyA9bkJ9mn/yqVQ==}
     engines: {node: '>=v18'}
 
   '@dword-design/base-config-node@5.0.1':
@@ -7640,6 +7648,11 @@ snapshots:
       '@commitlint/types': 18.6.1
       conventional-changelog-conventionalcommits: 7.0.2
 
+  '@commitlint/config-conventional@20.3.1':
+    dependencies:
+      '@commitlint/types': 20.3.1
+      conventional-changelog-conventionalcommits: 7.0.2
+
   '@commitlint/config-validator@18.6.1':
     dependencies:
       '@commitlint/types': 18.6.1
@@ -7773,6 +7786,11 @@ snapshots:
       '@types/conventional-commits-parser': 5.0.2
       chalk: 5.6.2
     optional: true
+
+  '@commitlint/types@20.3.1':
+    dependencies:
+      '@types/conventional-commits-parser': 5.0.2
+      chalk: 5.6.2
 
   '@dword-design/base-config-node@5.0.1(@types/node@24.10.1)(@typescript-eslint/parser@8.51.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.51.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.24)(esbuild@0.25.12)':
     dependencies:
@@ -9376,7 +9394,6 @@ snapshots:
   '@types/conventional-commits-parser@5.0.2':
     dependencies:
       '@types/node': 24.10.1
-    optional: true
 
   '@types/debug@4.1.12':
     dependencies:
