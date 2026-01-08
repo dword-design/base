@@ -96,8 +96,8 @@ importers:
         specifier: ^14.1.0
         version: 14.1.0
       hosted-git-info:
-        specifier: ^8.1.0
-        version: 8.1.0
+        specifier: ^9.0.0
+        version: 9.0.2
       husky:
         specifier: ^8.0.3
         version: 8.0.3
