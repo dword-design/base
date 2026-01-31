@@ -26,7 +26,7 @@
   "hasTypescriptConfigRootAlias": true,
   "isLockFileFixCommitType": false,
   "lintStagedConfig": {},
-  "macos": true,
+  "macos": false,
   "maxNodeVersion": null,
   "minNodeVersion": null,
   "name": "base-config-foo",

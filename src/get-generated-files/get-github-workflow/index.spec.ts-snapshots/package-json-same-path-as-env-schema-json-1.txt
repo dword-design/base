@@ -115,10 +115,6 @@
             },
             {
               "node": 22,
-              "os": "macos-latest"
-            },
-            {
-              "node": 22,
               "os": "windows-latest"
             }
           ]

@@ -302,7 +302,7 @@ class Base<TConfig extends Config = Config> {
       isLockFileFixCommitType: false,
       lint: () => {},
       lintStagedConfig: {},
-      macos: true,
+      macos: false, // TODO: Too expensive in GitHub Actions, and what are the use cases?
       maxNodeVersion: null,
       minNodeVersion: null,
       nodeVersion: 22,
