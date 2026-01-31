@@ -1,3 +1,10 @@
+## [16.2.2](https://github.com/dword-design/base/compare/v16.2.1...v16.2.2) (2026-01-31)
+
+
+### Bug Fixes
+
+* disable macos for github actions by default ([96513f4](https://github.com/dword-design/base/commit/96513f458cc28c349762b68f9cecef6b3eb29cd1))
+
 ## [16.2.1](https://github.com/dword-design/base/compare/v16.2.0...v16.2.1) (2026-01-07)
 
 
