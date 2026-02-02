@@ -11,7 +11,7 @@ export default function () {
       'runs-on': 'ubuntu-latest',
       steps: [
         {
-          uses: gitHubAction`actions/checkout@v4`,
+          uses: gitHubAction`actions/checkout@v6`,
           with: {
             ...(this.config.fetchGitHistory && { 'fetch-depth': 0 }),
             lfs: true,
