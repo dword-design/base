@@ -50,7 +50,7 @@ export default function () {
           },
         },
         {
-          uses: gitHubAction`actions/setup-node@v4`,
+          uses: gitHubAction`actions/setup-node@v6`,
           with: { 'node-version': this.config.nodeVersion },
         },
         { run: 'corepack enable' },
@@ -85,7 +85,7 @@ export default function () {
           },
         },
         {
-          uses: gitHubAction`actions/setup-node@v4`,
+          uses: gitHubAction`actions/setup-node@v6`,
           with: { 'check-latest': true, 'node-version': '${{ matrix.node }}' },
         },
         { run: 'corepack enable' },
