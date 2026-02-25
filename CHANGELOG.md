@@ -1,3 +1,10 @@
+## [16.2.3](https://github.com/dword-design/base/compare/v16.2.2...v16.2.3) (2026-02-25)
+
+
+### Bug Fixes
+
+* update dotenv-json-extended ([ebb0b0c](https://github.com/dword-design/base/commit/ebb0b0cb85e7bdd722f5cbcb181e0973fe9d1247))
+
 ## [16.2.2](https://github.com/dword-design/base/compare/v16.2.1...v16.2.2) (2026-01-31)
 
 
