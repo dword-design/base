@@ -118,7 +118,7 @@ importers:
         version: 16.2.7
       lodash-es:
         specifier: ^4.17.21
-        version: 4.17.21
+        version: 4.17.23
       make-cli:
         specifier: ^4.0.8
         version: 4.0.8
@@ -4354,8 +4354,8 @@ packages:
     resolution: {integrity: sha512-XT9ewWAC43tiAV7xDAPflMkG0qOPn2QjHqlgX8FOqmWa/rxnyYDulF9T0F7tRy1u+TVTmK/M//6VIOye+2zDXg==}
     engines: {node: '>=20'}
 
-  lodash-es@4.17.21:
-    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+  lodash-es@4.17.23:
+    resolution: {integrity: sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==}
 
   lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
@@ -7889,7 +7889,7 @@ snapshots:
       is-ci: 4.1.0
       jiti: 2.6.1
       lint-staged: 16.2.7
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       make-cli: 4.0.8
       mkdist: 2.4.1(typescript@5.9.3)(vue-sfc-transformer@0.1.17(@vue/compiler-core@3.5.24)(esbuild@0.25.12)(vue@3.5.24(typescript@5.9.3)))(vue-tsc@2.2.12(typescript@5.9.3))(vue@3.5.24(typescript@5.9.3))
       output-files: 3.0.0
@@ -7928,7 +7928,7 @@ snapshots:
   '@dword-design/ci@5.0.0':
     dependencies:
       execa: 9.6.0
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       make-cli: 4.0.8
 
   '@dword-design/dedent@0.7.0':
@@ -7938,7 +7938,7 @@ snapshots:
   '@dword-design/defaults@1.1.1':
     dependencies:
       is-plain-obj: 4.1.0
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
 
   '@dword-design/defu@1.0.3':
     dependencies:
@@ -7948,7 +7948,7 @@ snapshots:
     dependencies:
       enhanced-resolve: 5.18.3
       get-package-name: 2.2.0
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       sass: 1.62.1
 
   '@dword-design/depcheck@0.0.12':
@@ -8018,7 +8018,7 @@ snapshots:
       eslint-plugin-vue: 10.6.2(@stylistic/eslint-plugin@5.6.1(eslint@9.39.1(jiti@2.6.1)))(@typescript-eslint/parser@8.51.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(vue-eslint-parser@10.2.0(eslint@9.39.1(jiti@2.6.1)))
       globals: 16.5.0
       load-pkg: 4.0.0
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       prettier: 3.7.4
       sort-package-json: 3.6.0
       typescript-eslint: 8.51.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
@@ -8055,7 +8055,7 @@ snapshots:
       eslint-plugin-unicorn: 62.0.0(eslint@9.39.1(jiti@2.6.1))
       eslint-plugin-vue: 10.6.2(@stylistic/eslint-plugin@5.6.1(eslint@9.39.1(jiti@2.6.1)))(@typescript-eslint/parser@8.51.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(vue-eslint-parser@10.2.0(eslint@9.39.1(jiti@2.6.1)))
       globals: 17.0.0
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       prettier: 3.7.4
       read-pkg: 10.0.0
       sort-package-json: 3.6.0
@@ -8905,7 +8905,7 @@ snapshots:
       conventional-commits-parser: 6.2.1
       debug: 4.4.3
       import-from-esm: 2.0.0
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       micromatch: 4.0.8
       semantic-release: 25.0.2(typescript@5.9.3)
     transitivePeerDependencies:
@@ -8942,7 +8942,7 @@ snapshots:
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       issue-parser: 7.0.1
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       mime: 4.1.0
       p-filter: 4.1.0
       semantic-release: 25.0.2(typescript@5.9.3)
@@ -8960,7 +8960,7 @@ snapshots:
       env-ci: 11.2.0
       execa: 9.6.0
       fs-extra: 11.3.2
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       nerf-dart: 1.0.0
       normalize-url: 8.1.0
       npm: 11.6.3
@@ -8981,7 +8981,7 @@ snapshots:
       get-stream: 7.0.1
       import-from-esm: 2.0.0
       into-stream: 7.0.0
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       read-package-up: 11.0.0
       semantic-release: 25.0.2(typescript@5.9.3)
     transitivePeerDependencies:
@@ -12161,7 +12161,7 @@ snapshots:
     dependencies:
       p-locate: 6.0.0
 
-  lodash-es@4.17.21: {}
+  lodash-es@4.17.23: {}
 
   lodash.camelcase@4.3.0: {}
 
@@ -12246,14 +12246,14 @@ snapshots:
     dependencies:
       '@dword-design/defu': 1.0.3
       commander: 12.1.0
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       p-is-promise: 4.0.0
 
   make-cli@6.0.0:
     dependencies:
       '@dword-design/defu': 1.0.3
       commander: 14.0.3
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       p-is-promise: 4.0.0
 
   make-dir@4.0.0:
@@ -13930,7 +13930,7 @@ snapshots:
       hook-std: 4.0.0
       hosted-git-info: 9.0.2
       import-from-esm: 2.0.0
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       marked: 15.0.12
       marked-terminal: 7.3.0(marked@15.0.12)
       micromatch: 4.0.8
