@@ -1,3 +1,11 @@
+## [16.2.4](https://github.com/dword-design/base/compare/v16.2.3...v16.2.4) (2026-03-10)
+
+
+### Bug Fixes
+
+* agents.md ([78e20ae](https://github.com/dword-design/base/commit/78e20aea2e25cf842b1821b1dc90fd6188783fba))
+* test ([dc24bae](https://github.com/dword-design/base/commit/dc24bae3ab4e7a26c1ed339833102b390f102103))
+
 ## [16.2.3](https://github.com/dword-design/base/compare/v16.2.2...v16.2.3) (2026-02-25)
 
 
