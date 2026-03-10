@@ -1,3 +1,6 @@
+import { createRequire } from 'node:module';
+
+import fs from 'fs-extra';
 import { stringify as stringifyIni } from 'ini';
 import sortKeys from 'sort-keys';
 import sortPackageJson from 'sort-package-json';
@@ -15,6 +18,8 @@ import githubFunding from './github-funding';
 import githubLabelsConfig from './github-labels';
 import githubSyncLabelsConfig from './github-sync-labels';
 import npmrc from './npmrc';
+
+const resolver = createRequire(import.meta.url);
 
 export default function () {
   const packageConfig = this.getPackageConfig();
@@ -68,6 +73,7 @@ export default function () {
       undefined,
       2,
     )}\n`,
+    'AGENTS.md': fs.readFileSync(resolver.resolve('./agents.md'), 'utf8'),
     'LICENSE.md': this.getLicenseString(),
     'README.md': this.getReadmeString(),
     'eslint.config.ts': this.getEslintConfig(),
