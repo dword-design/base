@@ -19,6 +19,7 @@
   ".releaserc.json",
   ".renovaterc.json",
   ".vscode/settings.json",
+  "AGENTS.md",
   "LICENSE.md",
   "README.md",
   "eslint.config.ts",
