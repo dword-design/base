@@ -18,6 +18,7 @@
   ".renovaterc.json": true,
   ".test.env.json": true,
   ".vscode": true,
+  "AGENTS.md": true,
   "CHANGELOG.md": true,
   "LICENSE.md": true,
   "README.md": true,
