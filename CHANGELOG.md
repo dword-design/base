@@ -1,3 +1,10 @@
+## [16.2.5](https://github.com/dword-design/base/compare/v16.2.4...v16.2.5) (2026-04-11)
+
+
+### Bug Fixes
+
+* fix url ([67a33f6](https://github.com/dword-design/base/commit/67a33f6ca7e442286905f7f79d733a2c728310e1))
+
 ## [16.2.4](https://github.com/dword-design/base/compare/v16.2.3...v16.2.4) (2026-03-10)
 
 
