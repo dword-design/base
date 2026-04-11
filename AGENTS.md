@@ -20,7 +20,7 @@
 - Use [fs-extra](https://www.npmjs.com/package/fs-extra) package instead of `node:fs/promises`
   - Use `fs` default export
   - Use `fs.outputFile` to write a file if it's not clear if the parent folder exists
-- Use [execa](https://www.npmjs.com/package/execa) to run processes
+- Use [execa](https://www.npmjs.com/search?q=execa) to run processes
 - Use [delay](https://www.npmjs.com/package/delay) for delays
 - Use [lodash-es](https://www.npmjs.com/package/lodash-es) for utilities
 - As a headless browser, use [playwright](https://www.npmjs.com/package/playwright)
