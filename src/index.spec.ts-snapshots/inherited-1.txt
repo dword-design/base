@@ -50,6 +50,5 @@
   "syncKeywords": true,
   "testInContainer": false,
   "typescriptConfig": {},
-  "useJobMatrix": true,
   "windows": true
 }

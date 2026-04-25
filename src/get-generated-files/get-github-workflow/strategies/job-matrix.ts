@@ -10,7 +10,7 @@ import coverageSteps from '@/src/get-generated-files/get-github-workflow/steps/c
 import getReleaseSteps from '@/src/get-generated-files/get-github-workflow/steps/get-release';
 import getTestSteps from '@/src/get-generated-files/get-github-workflow/steps/get-test';
 
-export default function () {
+export default function (environments: Array<{ node: string; os: string }>) {
   const envSchemaPath = findUpSync(
     path => {
       if (fs.existsSync(pathLib.join(path, '.env.schema.json'))) {
@@ -96,22 +96,7 @@ export default function () {
           ...step,
         })),
       ],
-      strategy: {
-        matrix: {
-          include: [
-            ...this.config.supportedNodeVersions.map(version => ({
-              node: version,
-              os: 'ubuntu-latest',
-            })),
-            ...(this.config.macos
-              ? [{ node: this.config.nodeVersion, os: 'macos-latest' }]
-              : []),
-            ...(this.config.windows
-              ? [{ node: this.config.nodeVersion, os: 'windows-latest' }]
-              : []),
-          ],
-        },
-      },
+      strategy: { matrix: { include: environments } },
     },
   };
 }

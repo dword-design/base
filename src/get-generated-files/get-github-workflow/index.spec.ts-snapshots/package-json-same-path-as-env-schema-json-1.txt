@@ -110,10 +110,6 @@
               "os": "ubuntu-latest"
             },
             {
-              "node": 24,
-              "os": "ubuntu-latest"
-            },
-            {
               "node": 22,
               "os": "windows-latest"
             }

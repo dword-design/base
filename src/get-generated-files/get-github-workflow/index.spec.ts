@@ -18,28 +18,28 @@ test('GitHub CLI exists', async () => {
 test('job matrix', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
-  const base = new Base({ useJobMatrix: true }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
-});
-
-test('job matrix no macos', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-  await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
-  const base = new Base({ macos: false, useJobMatrix: true }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
-});
-
-test('job matrix no windows', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-  await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
-  const base = new Base({ useJobMatrix: true, windows: false }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
-});
-
-test('no job matrix', async ({}, testInfo) => {
-  const cwd = testInfo.outputPath();
-  await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
   const base = new Base(null, { cwd });
+  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+});
+
+test('macos', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+  await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
+  const base = new Base({ macos: true }, { cwd });
+  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+});
+
+test('no windows', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+  await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
+  const base = new Base({ windows: false }, { cwd });
+  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+});
+
+test('simple', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+  await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
+  const base = new Base({ windows: false }, { cwd });
   expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
 });
 
@@ -77,18 +77,13 @@ test('environment variables', async ({}, testInfo) => {
     'package.json': JSON.stringify({}),
   });
 
-  const base = new Base({ nodeVersion: 14, useJobMatrix: false }, { cwd });
+  const base = new Base({ windows: false }, { cwd });
   expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
 });
 
 test('testInContainer', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
-
-  const base = new Base(
-    { nodeVersion: 14, testInContainer: true, useJobMatrix: true },
-    { cwd },
-  );
-
+  const base = new Base({ testInContainer: true }, { cwd });
   expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
 });

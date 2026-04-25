@@ -25,12 +25,10 @@
   "renovateConfig": {},
   "seeAlso": [],
   "supportedNodeVersions": [
-    22,
-    24
+    22
   ],
   "syncKeywords": true,
   "testInContainer": false,
   "typescriptConfig": {},
-  "useJobMatrix": true,
   "windows": true
 }

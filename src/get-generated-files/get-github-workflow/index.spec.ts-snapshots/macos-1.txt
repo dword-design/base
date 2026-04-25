@@ -34,10 +34,6 @@
           "run": "pnpm install --frozen-lockfile"
         },
         {
-          "env": {
-            "BAR": "${{ secrets.BAR }}",
-            "FOO": "${{ secrets.FOO }}"
-          },
           "run": "pnpm lint"
         },
         {
@@ -81,10 +77,6 @@
           "run": "pnpm install --frozen-lockfile"
         },
         {
-          "env": {
-            "BAR": "${{ secrets.BAR }}",
-            "FOO": "${{ secrets.FOO }}"
-          },
           "run": "pnpm verify"
         },
         {
@@ -110,6 +102,10 @@
             {
               "node": 22,
               "os": "ubuntu-latest"
+            },
+            {
+              "node": 22,
+              "os": "macos-latest"
             },
             {
               "node": 22,

@@ -100,7 +100,6 @@ type Config = {
   windows: boolean;
   testInContainer: boolean;
   eslintConfig: string;
-  useJobMatrix: boolean;
   packageConfig: PackageJson;
   renovateConfig: RenovateConfig;
   isLockFileFixCommitType: boolean;
@@ -322,12 +321,11 @@ class Base<TConfig extends Config = Config> {
       `,
       renovateConfig: {},
       seeAlso: [],
-      supportedNodeVersions: [22, 24],
+      supportedNodeVersions: [22],
       syncKeywords: true,
       testInContainer: false,
       typecheck: () => {},
       typescriptConfig: {},
-      useJobMatrix: true,
       windows: true,
     };
 
