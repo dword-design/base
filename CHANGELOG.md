@@ -1,3 +1,12 @@
+## [16.2.6](https://github.com/dword-design/base/compare/v16.2.5...v16.2.6) (2026-04-25)
+
+
+### Bug Fixes
+
+* auto-calculate job matrix ([5762c2a](https://github.com/dword-design/base/commit/5762c2a2d3e8246881289cc1aee61af3ab7b503c))
+* foo ([f282c91](https://github.com/dword-design/base/commit/f282c9148f0ed832bdc80594fe3996f78927c712))
+* foo ([5db9a4c](https://github.com/dword-design/base/commit/5db9a4c8b2227c3cdf0649593f908f6baf97f85c))
+
 ## [16.2.5](https://github.com/dword-design/base/compare/v16.2.4...v16.2.5) (2026-04-11)
 
 
