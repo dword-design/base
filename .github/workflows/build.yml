@@ -61,7 +61,12 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
     strategy:
-      matrix: {}
+      matrix:
+        include:
+          - node: 22
+            os: ubuntu-latest
+          - node: 22
+            os: windows-latest
 name: build
 on:
   pull_request: {}
