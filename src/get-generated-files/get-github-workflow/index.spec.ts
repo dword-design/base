@@ -36,6 +36,18 @@ test('no windows', async ({}, testInfo) => {
   expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
 });
 
+test('multiple supported node versions', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+  await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
+
+  const base = new Base(
+    { supportedNodeVersions: [20, 22], windows: false },
+    { cwd },
+  );
+
+  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+});
+
 test('simple', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
