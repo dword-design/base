@@ -89,7 +89,7 @@
           }
         },
         {
-          "if": "matrix.os == 'ubuntu-latest' && matrix.node == 22",
+          "if": "matrix.os == 'ubuntu-latest'",
           "uses": "codecov/codecov-action@v5",
           "with": {
             "token": "${{ secrets.CODECOV_TOKEN }}"

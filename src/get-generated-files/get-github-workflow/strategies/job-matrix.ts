@@ -92,7 +92,7 @@ export default function (environments: Array<{ node: string; os: string }>) {
         { run: 'pnpm install --frozen-lockfile' },
         ...getTestSteps.call(this),
         ...coverageSteps.map(step => ({
-          if: `matrix.os == 'ubuntu-latest' && matrix.node == ${this.config.nodeVersion}`,
+          if: `matrix.os == 'ubuntu-latest'${this.config.supportedNodeVersions.length > 1 ? ` && matrix.node == ${this.config.nodeVersion}` : ''}`,
           ...step,
         })),
       ],
