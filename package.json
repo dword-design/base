@@ -31,7 +31,7 @@
     "verify": "tsx src/cli.ts verify"
   },
   "dependencies": {
-    "@commitlint/cli": "^18.6.1",
+    "@commitlint/cli": "^20.0.0",
     "@commitlint/config-conventional": "^18.6.3",
     "@dword-design/base-config-node": "^5.0.1",
     "@dword-design/ci": "^5.0.0",
