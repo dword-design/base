@@ -3,6 +3,10 @@ import endent from 'endent';
 import { isEmpty, mapValues, omit } from 'lodash-es';
 
 export default async function () {
+  const dependenciesTypes = Object.keys(
+    this.packageConfig.dependencies ?? {},
+  ).filter(dependency => dependency.startsWith('@types/'));
+
   const dependenciesResult = await depcheck(this.cwd, {
     package: omit(this.packageConfig, ['devDependencies']),
     skipMissing: true,
@@ -38,6 +42,14 @@ export default async function () {
   };
 
   const errorMessage = [
+    ...(dependenciesTypes.length > 0
+      ? [
+          endent`
+            Types dependencies should be in devDependencies
+            ${dependenciesTypes.map(dep => `* ${dep}`).join('\n')}
+          `,
+        ]
+      : []),
     ...(result.dependencies.length > 0
       ? [
           endent`

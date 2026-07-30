@@ -133,3 +133,26 @@ test('unused dependencies', async ({}, testInfo) => {
     * foo
   `);
 });
+
+test('types in dependencies', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await outputFiles(cwd, {
+    'package.json': JSON.stringify({
+      dependencies: { '@types/lodash-es': '^1.0.0' },
+    }),
+    'src/index.ts': endent`
+      import { map } from 'lodash-es';
+
+      export default map([1], x => x + 1);
+    `,
+  });
+
+  const base = new Base(null, { cwd });
+  await base.prepare();
+
+  await expect(base.depcheck()).rejects.toThrow(endent`
+    Types dependencies should be in devDependencies
+    * @types/lodash-es
+  `);
+});
