@@ -1,3 +1,10 @@
+## [16.2.7](https://github.com/dword-design/base/compare/v16.2.6...v16.2.7) (2026-07-30)
+
+
+### Bug Fixes
+
+* error if [@types](https://github.com/types) package is under prod dependencies ([96a2e17](https://github.com/dword-design/base/commit/96a2e17f9703672facf711bcbd2504485b43deba))
+
 ## [16.2.6](https://github.com/dword-design/base/compare/v16.2.5...v16.2.6) (2026-04-25)
 
 
