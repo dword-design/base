@@ -16,8 +16,10 @@ test('custom config', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   expect(
-    new Base({ renovateConfig: { foo: 'bar' } }, { cwd }).getRenovateConfig()
-      .foo,
+    new Base(
+      { renovateConfig: { description: 'bar' } },
+      { cwd },
+    ).getRenovateConfig().description,
   ).toEqual('bar');
 });
 

@@ -390,8 +390,7 @@ test('valid', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
   let { stdout } = await base.test();
-  stdout = typeof stdout === 'string' ? stdout : stdout.toString();
-  stdout = stripAnsi(stdout);
+  stdout = stripAnsi(stdout!); // TODO: Cannot be undefined due to process.env.NODE_ENV === 'test'
 
   expect(stdout).toMatch(
     `1 ${pathLib.join('src', 'index.spec.ts')}:${isSameOrAfter24_12_0 ? 3 : 5}:1 › valid`,

@@ -6,6 +6,8 @@ import sortKeys from 'sort-keys';
 import sortPackageJson from 'sort-package-json';
 import { stringify as yamlStringify } from 'yaml';
 
+import type { Base } from '@/src';
+
 import commitizenConfig from './commitizen';
 import commitlintConfig from './commitlint';
 import editorconfigConfig from './editorconfig';
@@ -21,8 +23,8 @@ import npmrc from './npmrc';
 
 const resolver = createRequire(import.meta.url);
 
-export default function () {
-  const packageConfig = this.getPackageConfig();
+export default (base: Base) => {
+  const packageConfig = base.getPackageConfig();
   return {
     '.commitlintrc.json': `${JSON.stringify(commitlintConfig, undefined, 2)}\n`,
     '.cz.json': `${JSON.stringify(commitizenConfig, undefined, 2)}\n`,
@@ -40,7 +42,7 @@ export default function () {
       sortKeys(githubLabelsConfig, { deep: true }),
     ),
     '.github/workflows/build.yml': yamlStringify(
-      sortKeys(this.getGithubWorkflowConfig(), { deep: true }),
+      sortKeys(base.getGithubWorkflowConfig(), { deep: true }),
     ),
     '.github/workflows/deprecated-dependencies.yml': yamlStringify(
       sortKeys(githubDeprecatedDependenciesConfig, { deep: true }),
@@ -49,40 +51,41 @@ export default function () {
       sortKeys(githubSyncLabelsConfig, { deep: true }),
     ),
     '.github/workflows/sync-metadata.yml': yamlStringify(
-      sortKeys(this.getGithubSyncMetadataConfig(), { deep: true }),
+      sortKeys(base.getGithubSyncMetadataConfig(), { deep: true }),
     ),
-    '.gitignore': this.getGitignoreConfig()
+    '.gitignore': base
+      .getGitignoreConfig()
       .map(entry => `${entry}\n`)
       .join(''),
-    '.gitpod.Dockerfile': this.getGitpodDockerfile(),
-    '.gitpod.yml': yamlStringify(this.getGitpodConfig()),
-    '.lintstagedrc.json': `${JSON.stringify(this.getLintStaged(), undefined, 2)}\n`,
+    '.gitpod.Dockerfile': base.getGitpodDockerfile(),
+    '.gitpod.yml': yamlStringify(base.getGitpodConfig()),
+    '.lintstagedrc.json': `${JSON.stringify(base.getLintStaged(), undefined, 2)}\n`,
     '.npmrc': stringifyIni(npmrc),
     '.releaserc.json': `${JSON.stringify(
-      this.getReleaseConfig(),
+      base.getReleaseConfig(),
       undefined,
       2,
     )}\n`,
     '.renovaterc.json': `${JSON.stringify(
-      sortKeys(this.getRenovateConfig(), { deep: true }),
+      sortKeys(base.getRenovateConfig(), { deep: true }),
       undefined,
       2,
     )}\n`,
     '.vscode/settings.json': `${JSON.stringify(
-      this.getVscodeConfig(),
+      base.getVscodeConfig(),
       undefined,
       2,
     )}\n`,
     'AGENTS.md': fs.readFileSync(resolver.resolve('./agents.md'), 'utf8'),
-    'LICENSE.md': this.getLicenseString(),
-    'README.md': this.getReadmeString(),
-    'eslint.config.ts': this.getEslintConfig(),
+    'eslint.config.ts': base.getEslintConfig(),
     'eslint.lint-staged.config.ts': eslintLintStaged,
+    'LICENSE.md': base.getLicenseString(),
     'package.json': `${JSON.stringify(
       sortPackageJson(packageConfig),
       undefined,
       2,
     )}\n`,
-    'tsconfig.json': `${JSON.stringify(sortKeys(this.getTypescriptConfig(), { deep: true }), undefined, 2)}\n`,
+    'README.md': base.getReadmeString(),
+    'tsconfig.json': `${JSON.stringify(sortKeys(base.getTypescriptConfig(), { deep: true }), undefined, 2)}\n`,
   };
-}
+};

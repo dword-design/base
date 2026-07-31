@@ -4,11 +4,13 @@ import endent from 'endent';
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex';
 import { readFileSync as safeReadFileSync } from 'safe-readfile';
 
+import type { Base } from '@/src';
+
 import replacements from './replacements';
 
-export default function () {
+export default (base: Base) => {
   const readme =
-    safeReadFileSync(pathLib.join(this.cwd, 'README.md'), 'utf8') ||
+    safeReadFileSync(pathLib.join(base.cwd, 'README.md'), 'utf8') ||
     endent`
       <!-- TITLE -->
 
@@ -28,13 +30,13 @@ export default function () {
 
     result = result.replace(
       getProjectzReadmeSectionRegex(sectionName),
-      endent`
+      () => endent`
         <!-- ${sectionName}/ -->
-        ${replacement.call(this)}
+        ${replacement(base)}
         <!-- /${sectionName} -->
       `,
     );
   }
 
   return result;
-}
+};

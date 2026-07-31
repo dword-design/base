@@ -1,7 +1,9 @@
 import { identity, sortBy } from 'lodash-es';
 
-export default function () {
-  return sortBy(
+import type { Base } from '@/src';
+
+export default (base: Base) =>
+  sortBy(
     [
       '.DS_Store',
       '/.pnpm-store', // https://github.com/orgs/pnpm/discussions/6936#discussioncomment-6746063
@@ -13,11 +15,10 @@ export default function () {
       '/coverage',
       '/node_modules',
       '/test-results',
-      ...(this.getTypescriptConfig().references
+      ...(base.getTypescriptConfig().references
         ? ['/tsconfig.tsbuildinfo']
         : []),
-      ...this.config.gitignore,
+      ...base.config.gitignore,
     ],
     identity,
   );
-}

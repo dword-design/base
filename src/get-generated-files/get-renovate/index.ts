@@ -1,19 +1,21 @@
 import defu from '@dword-design/defu';
 
+import type { Base } from '@/src';
+
 import getRegexManagerString from './get-regex-manager-string';
 
-export default function () {
-  return defu(this.config.renovateConfig, {
+export default (base: Base) =>
+  defu(base.config.renovateConfig, {
     extends: [':semanticCommits', ':semanticPrefixFix'],
-    gitIgnoredAuthors: ['actions@github.com'],
     'github-actions': { enabled: false },
+    gitIgnoredAuthors: ['actions@github.com'],
     labels: ['maintenance'],
     lockFileMaintenance: {
       automerge: true,
       enabled: true,
-      ...(this.config.isLockFileFixCommitType
-        ? {}
-        : { semanticCommitType: 'chore' }),
+      ...(!base.config.isLockFileFixCommitType && {
+        semanticCommitType: 'chore',
+      }),
     },
     rangeStrategy: 'replace',
     regexManagers: [
@@ -40,4 +42,3 @@ export default function () {
     ],
     semanticCommitScope: null,
   });
-}

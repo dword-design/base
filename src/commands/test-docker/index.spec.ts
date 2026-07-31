@@ -10,11 +10,11 @@ import parsePackagejsonName from 'parse-packagejson-name';
 import packageJson from '@/package.json' with { type: 'json' };
 import { Base } from '@/src';
 
-const { scope: projectScope, fullName: projectName } = parsePackagejsonName(
+const { fullName: projectName, scope: projectScope } = parsePackagejsonName(
   packageJson.name,
 );
 
-const projectPrefix = `${projectScope.slice(1)}-${projectName}-`;
+const projectPrefix = `${projectScope ? `${projectScope.slice(1)}-` : ''}${projectName}-`;
 
 const test = base.extend<{ packageName: string }>({
   packageName: async ({}, use, testInfo) => {

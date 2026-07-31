@@ -1,11 +1,13 @@
 import { globby } from 'globby';
 import ignore from 'ignore';
 
+import type { Base } from '@/src';
+
 import UnknownFilesError from './unknown-files-error';
 
-export default async function () {
+export default async (base: Base) => {
   const allowedMatches = [
-    ...Object.keys(this.generatedFiles),
+    ...Object.keys(base.generatedFiles),
     ...Object.keys({
       '.baserc.json': true,
       '.env.schema.json': true,
@@ -17,32 +19,32 @@ export default async function () {
       '.husky/post-merge': true,
       '.husky/pre-commit': true,
       '.husky/pre-push': true,
-      'CHANGELOG.md': true,
-      PRCHECKLIST: true,
       'base.config.ts': true,
+      'CHANGELOG.md': true,
       demo: true,
       doc: true,
       fixtures: true,
       patches: true,
       'pnpm-lock.yaml': true,
       'pnpm-workspace.yaml': true,
+      PRCHECKLIST: true,
     }),
     ...Object.keys({
       '**/*-snapshots/**': true, // For some reason without the trailing ** didn't work
       'playwright.config.ts': true,
     }),
-    ...this.config.allowedMatches,
+    ...base.config.allowedMatches,
   ];
 
   let unknownFiles = await globby('**', {
-    cwd: this.cwd,
+    cwd: base.cwd,
     dot: true,
     gitignore: true,
     ignore: allowedMatches,
   });
 
   unknownFiles = unknownFiles.filter(
-    ignore().add(this.getGitignoreConfig()).createFilter(),
+    ignore().add(base.getGitignoreConfig()).createFilter(),
   );
 
   if (unknownFiles.length > 0) {
@@ -50,4 +52,4 @@ export default async function () {
       Object.fromEntries(unknownFiles.map(file => [file, true])),
     );
   }
-}
+};

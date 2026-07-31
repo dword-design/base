@@ -19,38 +19,39 @@ for (const [name, testConfig] of Object.entries(tests)) {
     await execaCommand('git add .', { cwd });
     const base = new Base(null, { cwd });
     const childProcess = base.commit(testConfig);
+    const stdout = childProcess.stdout!; // TODO: Always set because of NODE_ENV === 'test'
 
-    await pEvent(childProcess.stdout, 'data', data =>
+    await pEvent(stdout, 'data', data =>
       data.toString().includes('Select the type of change'),
     );
 
     childProcess.stdin.write('\n');
 
-    await pEvent(childProcess.stdout, 'data', data =>
+    await pEvent(stdout, 'data', data =>
       data.toString().includes('What is the scope of this change'),
     );
 
     childProcess.stdin.write('config\n');
 
-    await pEvent(childProcess.stdout, 'data', data =>
+    await pEvent(stdout, 'data', data =>
       data.toString().includes('Write a short, imperative tense description'),
     );
 
     childProcess.stdin.write('foo bar\n');
 
-    await pEvent(childProcess.stdout, 'data', data =>
+    await pEvent(stdout, 'data', data =>
       data.toString().includes('Provide a longer description'),
     );
 
     childProcess.stdin.write('\n');
 
-    await pEvent(childProcess.stdout, 'data', data =>
+    await pEvent(stdout, 'data', data =>
       data.toString().includes('Are there any breaking changes'),
     );
 
     childProcess.stdin.write('\n');
 
-    await pEvent(childProcess.stdout, 'data', data =>
+    await pEvent(stdout, 'data', data =>
       data.toString().includes('Does this change affect any open issues'),
     );
 

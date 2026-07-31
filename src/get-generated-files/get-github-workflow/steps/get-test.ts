@@ -6,8 +6,10 @@ import fs from 'fs-extra';
 import parsePackagejsonName from 'parse-packagejson-name';
 import gitHubAction from 'tagged-template-noop';
 
-export default function () {
-  const envSchemaPath = findUpSync(
+import type { Base } from '@/src';
+
+export default (base: Base) => {
+  const environmentSchemaPath = findUpSync(
     path => {
       if (fs.existsSync(pathLib.join(path, '.env.schema.json'))) {
         return '.env.schema.json';
@@ -17,27 +19,30 @@ export default function () {
         return findUpStop;
       }
     },
-    { cwd: this.cwd },
+    { cwd: base.cwd },
   );
 
-  const localEnvVariableNames = Object.keys(
-    envSchemaPath ? fs.readJsonSync(envSchemaPath) : {},
+  const localEnvironmentVariableNames = Object.keys(
+    environmentSchemaPath ? fs.readJsonSync(environmentSchemaPath) : {},
   ).map(name => constantCase(name));
 
-  const envVariables = {
-    ...(this.config.doppler
+  const environmentVariables = {
+    ...(base.config.doppler
       ? { DOPPLER_TOKEN: '${{ secrets.DOPPLER_TOKEN }}' }
       : Object.fromEntries(
-          localEnvVariableNames.map(name => [name, `\${{ secrets.${name} }}`]),
+          localEnvironmentVariableNames.map(name => [
+            name,
+            `\${{ secrets.${name} }}`,
+          ]),
         )),
-    ...(this.config.githubActionsTypecheckMemoryLimitMb && {
-      NODE_OPTIONS: `--max-old-space-size=${this.config.githubActionsTypecheckMemoryLimitMb}`,
+    ...(base.config.githubActionsTypecheckMemoryLimitMb && {
+      NODE_OPTIONS: `--max-old-space-size=${base.config.githubActionsTypecheckMemoryLimitMb}`,
     }),
   };
 
-  const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
+  const packageName = parsePackagejsonName(base.packageConfig.name).fullName;
   return [
-    ...(this.config.doppler
+    ...(base.config.doppler
       ? [
           {
             name: 'Install Doppler CLI',
@@ -46,8 +51,10 @@ export default function () {
         ]
       : []),
     {
-      ...(Object.keys(envVariables).length > 0 ? { env: envVariables } : {}),
-      run: `${this.config.doppler ? `doppler run -p ${packageName} -c test -- ` : ''}pnpm verify`,
+      ...(Object.keys(environmentVariables).length > 0 && {
+        env: environmentVariables,
+      }),
+      run: `${base.config.doppler ? `doppler run -p ${packageName} -c test -- ` : ''}pnpm verify`,
     },
     {
       if: 'always()',
@@ -59,4 +66,4 @@ export default function () {
       },
     },
   ];
-}
+};

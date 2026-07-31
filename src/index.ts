@@ -8,7 +8,6 @@ import depcheckDetectorExeca from 'depcheck-detector-execa';
 import depcheckDetectorPackageName from 'depcheck-detector-package-name';
 import packageName from 'depcheck-package-name';
 import endent from 'endent';
-import { type ResultPromise } from 'execa';
 import fs from 'fs-extra';
 import type GitHost from 'hosted-git-info';
 import { createJiti } from 'jiti';
@@ -17,7 +16,7 @@ import { identity, mapValues } from 'lodash-es';
 import type { PartialCommandObjectInObject } from 'make-cli';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
 import type { RenovateConfig } from 'renovate/dist/config/types';
-import type { PackageJson, TsConfigJson } from 'type-fest';
+import type { ArrayTail, PackageJson, TsConfigJson } from 'type-fest';
 
 import checkUnknownFiles from './commands/check-unknown-files';
 import type { PartialCommandOptions } from './commands/command-options-input';
@@ -52,58 +51,68 @@ import getGitInfo from './get-git-info';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type HandlerWithBase<TConfig extends Config = Config> = (
-  this: Base<TConfig>,
-  ...args: any[]
+  base: Base<TConfig>,
+  ...arguments_: any[]
 ) => any;
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type PartialCommandObjectInObjectWithBase<TConfig extends Config = Config> =
   Omit<PartialCommandObjectInObject, 'handler'> & {
-    handler: (this: Base<TConfig>, ...args: any[]) => any;
+    handler: (base: Base<TConfig>, ...arguments_: any[]) => any;
   };
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 type PartialCommandInObjectWithBase<TConfig extends Config = Config> =
-  | PartialCommandObjectInObjectWithBase<TConfig>
-  | HandlerWithBase<TConfig>;
+  PartialCommandObjectInObjectWithBase<TConfig> | HandlerWithBase<TConfig>;
 
 type Config = {
-  name?: string;
-  global: boolean;
   allowedMatches: string[];
+  codecovGraphToken: string | null;
   commands: Record<string, PartialCommandObjectInObjectWithBase>;
   depcheckConfig: Omit<DepcheckOptions, 'package'>;
   deployAssets: Array<{ label: string; path: string }>;
   deployEnv: Record<string, string>;
   deployPlugins: string[];
+  doppler: boolean;
   editorIgnore: string[];
+  eslintConfig: string;
   fetchGitHistory: boolean;
-  githubActionsTypecheckMemoryLimitMb: number | null;
   git?: GitHost;
+  githubActionsTypecheckMemoryLimitMb: number | null;
   gitignore: string[];
+  global: boolean;
   hasTypescriptConfigRootAlias: boolean;
+  isLockFileFixCommitType: boolean;
+  lint: <TConfig extends Config>(
+    base: Base<TConfig>,
+    options?: PartialCommandOptions,
+  ) => unknown;
   lintStagedConfig: LintStagedConfig;
-  lint: (options?: PartialCommandOptions) => unknown;
-  typecheck: (options?: PartialCommandOptions) => unknown;
   macos: boolean;
-  minNodeVersion: number | null;
   maxNodeVersion: number | null;
+  minNodeVersion: number | null;
+  name?: string;
   nodeVersion: number;
+  npmPublish: boolean;
+  packageConfig: PackageJson;
   preDeploySteps: string[];
-  prepare: (options?: PartialCommandOptions) => unknown;
+  prepare: <TConfig extends Config>(
+    base: Base<TConfig>,
+    options?: PartialCommandOptions,
+  ) => unknown;
   readmeInstallString: string;
+  renovateConfig: RenovateConfig;
   seeAlso: Array<{ description: string; repository: string }>;
   supportedNodeVersions: number[];
   syncKeywords: boolean;
+  testInContainer: boolean;
+  typecheck: <TConfig extends Config>(
+    base: Base<TConfig>,
+    options?: PartialCommandOptions,
+  ) => unknown;
   typescriptConfig: TsConfigJson;
   windows: boolean;
-  testInContainer: boolean;
-  eslintConfig: string;
-  packageConfig: PackageJson;
-  renovateConfig: RenovateConfig;
-  isLockFileFixCommitType: boolean;
-  doppler: boolean;
 };
 
 type PartialConfigObject<TConfig extends Config = Config> = Omit<
@@ -113,18 +122,19 @@ type PartialConfigObject<TConfig extends Config = Config> = Omit<
 
 type PartialConfigOrFunction<TConfig extends Config = Config> =
   | PartialConfigObject<TConfig>
-  | ((this: Base<TConfig>, config: TConfig) => PartialConfigObject<TConfig>);
+  | ((
+      base: Base<TConfig>,
+      config?: PartialConfigObject<TConfig>,
+    ) => PartialConfigObject<TConfig>);
 
 type PartialConfig<TConfig extends Config = Config> =
-  | PartialConfigOrFunction<TConfig>
-  | string
-  | null;
+  PartialConfigOrFunction<TConfig> | string | null;
 
 export const defineBaseConfig = <T>(configInput: T): T => configInput;
 
-const mergeConfigs = createDefu((obj, key, value) => {
+const mergeConfigs = createDefu((object, key, value) => {
   if (key === 'supportedNodeVersions') {
-    obj[key] = value;
+    object[key] = value;
     return true;
   }
 
@@ -137,125 +147,23 @@ class Base<TConfig extends Config = Config> {
   cwd: string;
   generatedFiles;
 
-  commit(...args): ResultPromise {
-    return commit.call(this, ...args);
-  }
-
-  lint(...args): ResultPromise {
-    return lint.call(this, ...args);
-  }
-
-  lintPackagejson(...args): void {
-    return lintPackagejson.call(this, ...args);
-  }
-
-  typecheck(...args): ResultPromise {
-    return typecheck.call(this, ...args);
-  }
-
-  verify(...args): ResultPromise {
-    return verify.call(this, ...args);
-  }
-
-  prepare(...args): void {
-    return prepare.call(this, ...args);
-  }
-
-  test(...args): ResultPromise {
-    return test.call(this, ...args);
-  }
-
-  testRaw(...args): ResultPromise {
-    return testRaw.call(this, ...args);
-  }
-
-  testDocker(...args): ResultPromise {
-    return testDocker.call(this, ...args);
-  }
-
-  getPackageConfig(...args) {
-    return getPackageConfig.call(this, ...args);
-  }
-
-  getGeneratedFiles(...args) {
-    return getGeneratedFiles.call(this, ...args);
-  }
-
-  checkUnknownFiles(...args): void {
-    return checkUnknownFiles.call(this, ...args);
-  }
-
-  depcheck(...args): void {
-    return depcheckMethod.call(this, ...args);
-  }
-
-  getEditorIgnoreConfig(...args) {
-    return getEditorIgnoreConfig.call(this, ...args);
-  }
-
-  getEslintConfig(...args) {
-    return getEslintConfig.call(this, ...args);
-  }
-
-  getGithubSyncMetadataConfig(...args) {
-    return getGithubSyncMetadataConfig.call(this, ...args);
-  }
-
-  getGithubWorkflowConfig(...args) {
-    return getGithubWorkflowConfig.call(this, ...args);
-  }
-
-  getGitignoreConfig(...args) {
-    return getGitignoreConfig.call(this, ...args);
-  }
-
-  getGitpodConfig(...args) {
-    return getGitpodConfig.call(this, ...args);
-  }
-
-  getGitpodDockerfile(...args) {
-    return getGitpodDockerfile.call(this, ...args);
-  }
-
-  getLicenseString(...args) {
-    return getLicenseString.call(this, ...args);
-  }
-
-  getReadmeString(...args) {
-    return getReadmeString.call(this, ...args);
-  }
-
-  getReleaseConfig(...args) {
-    return getReleaseConfig.call(this, ...args);
-  }
-
-  getRenovateConfig(...args) {
-    return getRenovateConfig.call(this, ...args);
-  }
-
-  getVscodeConfig(...args) {
-    return getVscodeConfig.call(this, ...args);
-  }
-
-  getTypescriptConfig(...args) {
-    return getTypescriptConfig.call(this, ...args);
-  }
-
-  getLintStaged() {
-    return getLintStaged.call(this);
-  }
-
   constructor(configInput: PartialConfig<TConfig> = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
     const jitiInstance = createJiti(pathLib.resolve(this.cwd));
 
     const config = (() => {
       if (configInput === null) {
-        return { name: packageName`@dword-design/base-config-node` };
-      } else if (typeof configInput === 'string') {
-        return { name: configInput };
-      } else if (typeof configInput === 'function') {
-        return configInput.call(this);
+        return {
+          name: packageName`@dword-design/base-config-node`,
+        } as PartialConfigObject<TConfig>;
+      }
+
+      if (typeof configInput === 'string') {
+        return { name: configInput } as PartialConfigObject<TConfig>;
+      }
+
+      if (typeof configInput === 'function') {
+        return configInput(this);
       }
 
       return configInput;
@@ -269,8 +177,11 @@ class Base<TConfig extends Config = Config> {
       ? fs.readJsonSync(pathLib.join(this.cwd, 'package.json'))
       : {};
 
+    const isGlobal = config.global ?? false;
+
     const defaultConfig = {
       allowedMatches: [],
+      codecovGraphToken: null,
       commands: {},
       depcheckConfig: {
         detectors: [
@@ -305,6 +216,7 @@ class Base<TConfig extends Config = Config> {
       maxNodeVersion: null,
       minNodeVersion: null,
       nodeVersion: 22,
+      npmPublish: false,
       packageConfig: {},
       preDeploySteps: [],
       prepare: identity,
@@ -313,10 +225,10 @@ class Base<TConfig extends Config = Config> {
 
         \`\`\`bash
         # npm
-        $ npm install ${config.global ? '-g ' : ''}${this.packageConfig.name}
+        $ npm install ${isGlobal ? '-g ' : ''}${this.packageConfig.name}
 
         # Yarn
-        $ yarn ${config.global ? 'global ' : ''}add ${this.packageConfig.name}
+        $ yarn ${isGlobal ? 'global ' : ''}add ${this.packageConfig.name}
         \`\`\`
       `,
       renovateConfig: {},
@@ -347,11 +259,16 @@ class Base<TConfig extends Config = Config> {
     if (typeof inheritedConfig === 'function') {
       inheritedConfig = inheritedConfig.call(
         this,
-        mergeConfigs(defaultConfig, config),
-      );
+        this,
+        mergeConfigs(defaultConfig, config) as unknown as TConfig, // TODO: mergeConfigs returns a conditional type here although it's clear that this is a full config
+      ); // TODO: Remove "call" and "this" after removing "this" is deployed
     }
 
-    this.config = mergeConfigs(config, inheritedConfig, defaultConfig);
+    this.config = mergeConfigs(
+      config,
+      inheritedConfig,
+      defaultConfig,
+    ) as unknown as TConfig; // TODO: mergeConfigs returns a conditional type here although it's clear that this is a full config
 
     this.config = {
       ...this.config,
@@ -364,11 +281,153 @@ class Base<TConfig extends Config = Config> {
     this.generatedFiles = this.getGeneratedFiles();
   }
 
+  commit(...arguments_: ArrayTail<Parameters<typeof commit>>) {
+    return commit(this, ...arguments_);
+  }
+
+  lint(...arguments_: ArrayTail<Parameters<typeof lint>>) {
+    return lint(this, ...arguments_);
+  }
+
+  lintPackagejson(
+    ...arguments_: ArrayTail<Parameters<typeof lintPackagejson>>
+  ) {
+    return lintPackagejson(this, ...arguments_);
+  }
+
+  typecheck(...arguments_: ArrayTail<Parameters<typeof typecheck>>) {
+    return typecheck(this, ...arguments_);
+  }
+
+  verify(...arguments_: ArrayTail<Parameters<typeof verify>>) {
+    return verify(this, ...arguments_);
+  }
+
+  prepare(...arguments_: ArrayTail<Parameters<typeof prepare>>) {
+    return prepare(this, ...arguments_);
+  }
+
+  test(...arguments_: ArrayTail<Parameters<typeof test>>) {
+    return test(this, ...arguments_);
+  }
+
+  testRaw(...arguments_: ArrayTail<Parameters<typeof testRaw>>) {
+    return testRaw(this, ...arguments_);
+  }
+
+  testDocker(...arguments_: ArrayTail<Parameters<typeof testDocker>>) {
+    return testDocker(this, ...arguments_);
+  }
+
+  getPackageConfig(
+    ...arguments_: ArrayTail<Parameters<typeof getPackageConfig>>
+  ) {
+    return getPackageConfig(this, ...arguments_);
+  }
+
+  getGeneratedFiles(
+    ...arguments_: ArrayTail<Parameters<typeof getGeneratedFiles>>
+  ) {
+    return getGeneratedFiles(this, ...arguments_);
+  }
+
+  checkUnknownFiles(
+    ...arguments_: ArrayTail<Parameters<typeof checkUnknownFiles>>
+  ) {
+    return checkUnknownFiles(this, ...arguments_);
+  }
+
+  depcheck(...arguments_: ArrayTail<Parameters<typeof depcheckMethod>>) {
+    return depcheckMethod(this, ...arguments_);
+  }
+
+  getEditorIgnoreConfig(
+    ...arguments_: ArrayTail<Parameters<typeof getEditorIgnoreConfig>>
+  ) {
+    return getEditorIgnoreConfig(this, ...arguments_);
+  }
+
+  getEslintConfig(
+    ...arguments_: ArrayTail<Parameters<typeof getEslintConfig>>
+  ) {
+    return getEslintConfig(this, ...arguments_);
+  }
+
+  getGithubSyncMetadataConfig(
+    ...arguments_: ArrayTail<Parameters<typeof getGithubSyncMetadataConfig>>
+  ) {
+    return getGithubSyncMetadataConfig(this, ...arguments_);
+  }
+
+  getGithubWorkflowConfig(
+    ...arguments_: ArrayTail<Parameters<typeof getGithubWorkflowConfig>>
+  ) {
+    return getGithubWorkflowConfig(this, ...arguments_);
+  }
+
+  getGitignoreConfig(
+    ...arguments_: ArrayTail<Parameters<typeof getGitignoreConfig>>
+  ) {
+    return getGitignoreConfig(this, ...arguments_);
+  }
+
+  getGitpodConfig(
+    ...arguments_: ArrayTail<Parameters<typeof getGitpodConfig>>
+  ) {
+    return getGitpodConfig(this, ...arguments_);
+  }
+
+  getGitpodDockerfile(
+    ...arguments_: ArrayTail<Parameters<typeof getGitpodDockerfile>>
+  ) {
+    return getGitpodDockerfile(this, ...arguments_);
+  }
+
+  getLicenseString(
+    ...arguments_: ArrayTail<Parameters<typeof getLicenseString>>
+  ) {
+    return getLicenseString(this, ...arguments_);
+  }
+
+  getReadmeString(
+    ...arguments_: ArrayTail<Parameters<typeof getReadmeString>>
+  ) {
+    return getReadmeString(this, ...arguments_);
+  }
+
+  getReleaseConfig(
+    ...arguments_: ArrayTail<Parameters<typeof getReleaseConfig>>
+  ) {
+    return getReleaseConfig(this, ...arguments_);
+  }
+
+  getRenovateConfig(
+    ...arguments_: ArrayTail<Parameters<typeof getRenovateConfig>>
+  ) {
+    return getRenovateConfig(this, ...arguments_);
+  }
+
+  getVscodeConfig(
+    ...arguments_: ArrayTail<Parameters<typeof getVscodeConfig>>
+  ) {
+    return getVscodeConfig(this, ...arguments_);
+  }
+
+  getTypescriptConfig(
+    ...arguments_: ArrayTail<Parameters<typeof getTypescriptConfig>>
+  ) {
+    return getTypescriptConfig(this, ...arguments_);
+  }
+
+  getLintStaged(...arguments_: ArrayTail<Parameters<typeof getLintStaged>>) {
+    return getLintStaged(this, ...arguments_);
+  }
+
   run<K extends keyof TConfig['commands'] & string>(
     name: K,
-    ...args: Parameters<TConfig['commands'][K]['handler']>
+    ...arguments_: ArrayTail<Parameters<TConfig['commands'][K]['handler']>>
   ): ReturnType<TConfig['commands'][K]['handler']> {
-    return this.config.commands[name].handler.call(this, ...args);
+    return this.config.commands[name].handler.call(this, this, ...arguments_); // TODO: Remove "call" and "this" after removing "this" is deployed
   }
 }
 
@@ -381,3 +440,57 @@ export { Base };
 export type { Config, PartialConfig };
 
 export { type PartialCommandOptions } from './commands/command-options-input';
+
+export { default as checkUnknownFiles } from './commands/check-unknown-files';
+
+export { default as depcheck } from './commands/depcheck';
+
+export { default as commit } from './commands/commit';
+
+export { default as getEslintConfig } from './get-generated-files/get-eslint';
+
+export { default as getEditorIgnoreConfig } from './get-generated-files/get-editor-ignore';
+
+export { default as getGithubSyncMetadataConfig } from './get-generated-files/get-github-sync-metadata';
+
+export { default as getGeneratedFiles } from './get-generated-files';
+
+export { default as getGitignoreConfig } from './get-generated-files/get-gitignore';
+
+export { default as getGithubWorkflowConfig } from './get-generated-files/get-github-workflow';
+
+export { default as getGitpodDockerfile } from './get-generated-files/get-gitpod-dockerfile';
+
+export { default as getGitpodConfig } from './get-generated-files/get-gitpod';
+
+export { default as getLintStaged } from './get-generated-files/get-lint-staged';
+
+export { default as getLicenseString } from './get-generated-files/get-license-string';
+
+export { default as getReadmeString } from './get-generated-files/get-readme-string';
+
+export { default as getPackageConfig } from './get-generated-files/get-package-config';
+
+export { default as getRenovateConfig } from './get-generated-files/get-renovate';
+
+export { default as getReleaseConfig } from './get-generated-files/get-release';
+
+export { default as getVscodeConfig } from './get-generated-files/get-vscode';
+
+export { default as getTypescriptConfig } from './get-generated-files/get-typescript';
+
+export { default as lintPackagejson } from './commands/lint/lint-packagejson';
+
+export { default as lint } from './commands/lint';
+
+export { default as test } from './commands/test';
+
+export { default as prepare } from './commands/prepare';
+
+export { default as testRaw } from './commands/test-raw';
+
+export { default as testDocker } from './commands/test-docker';
+
+export { default as verify } from './commands/verify';
+
+export { default as typecheck } from './commands/typecheck';

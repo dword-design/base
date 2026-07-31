@@ -5,20 +5,41 @@ import { execa } from 'execa';
 import { findUpSync } from 'find-up';
 import fs from 'fs-extra';
 
-export default async function (options) {
-  options = {
+import type { Base } from '@/src';
+import type { PartialCommandOptions } from '@/src/commands/command-options-input';
+
+export default async (
+  base: Base,
+  optionsInput: PartialCommandOptions & {
+    grep?: string;
+    patterns?: string[];
+    updateSnapshots?: boolean;
+  } = {},
+) => {
+  if (!base.packageConfig.name) {
+    throw new Error(
+      'package.json must have a name field to run tests in Docker.',
+    );
+  }
+
+  const options = {
+    grep: '',
     log: process.env.NODE_ENV !== 'test',
     patterns: [],
-    stderr: 'inherit',
-    ...options,
+    stderr: 'inherit' as const,
+    updateSnapshots: false,
+    ...optionsInput,
   };
 
-  const volumeName = this.packageConfig.name.replace('@', '').replace('/', '-');
-  const envSchemaPath = findUpSync('.env.schema.json', { cwd: this.cwd });
+  const volumeName = base.packageConfig.name.replace('@', '').replace('/', '-');
 
-  const envVariableNames = Object.keys({
+  const environmentSchemaPath = findUpSync('.env.schema.json', {
+    cwd: base.cwd,
+  });
+
+  const environmentVariableNames = Object.keys({
     CI: true,
-    ...(envSchemaPath ? await fs.readJson(envSchemaPath) : {}),
+    ...(environmentSchemaPath && (await fs.readJson(environmentSchemaPath))),
   }).map(name => constantCase(name));
 
   const userInfo = getUserInfo();
@@ -29,11 +50,11 @@ export default async function (options) {
       [
         'run',
         '--rm',
-        ...envVariableNames
+        ...environmentVariableNames
           .filter(name => process.env[name] !== undefined)
           .flatMap(name => ['--env', name]),
         '-v',
-        `${this.cwd}:/app`,
+        `${base.cwd}:/app`,
         '-v',
         `${volumeName}:/app/node_modules`,
         'dworddesign/testing:latest',
@@ -49,9 +70,10 @@ export default async function (options) {
         ].join(' '),
       ],
       {
-        cwd: this.cwd,
-        ...(options.log && { stdout: 'inherit' }),
+        cwd: base.cwd,
         stderr: options.stderr,
+        // ...(options.log && { stdout: 'inherit' }),
+        stdout: options.log ? 'inherit' : 'pipe',
       },
     );
   } finally {
@@ -63,7 +85,7 @@ export default async function (options) {
           '--rm',
           '--tty',
           '-v',
-          `${this.cwd}:/app`,
+          `${base.cwd}:/app`,
           '-v',
           `${volumeName}:/app/node_modules`,
           'dworddesign/testing:latest',
@@ -71,8 +93,8 @@ export default async function (options) {
           '-c',
           `chown -R ${userInfo.uid}:${userInfo.gid} /app`,
         ],
-        { cwd: this.cwd },
+        { cwd: base.cwd },
       );
     }
   }
-}
+};

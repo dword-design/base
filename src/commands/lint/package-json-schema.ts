@@ -1,6 +1,6 @@
 import packageNameRegex from 'package-name-regex';
 
-const distPattern = /^\.\/dist\//;
+const distributionPattern = /^\.\/dist\//;
 
 export default {
   properties: {
@@ -12,8 +12,11 @@ export default {
       type: ['string', 'object'],
     },
     bin: {
-      additionalProperties: { pattern: distPattern.source, type: 'string' },
-      pattern: distPattern.source,
+      additionalProperties: {
+        pattern: distributionPattern.source,
+        type: 'string',
+      },
+      pattern: distributionPattern.source,
       type: ['object', 'string'],
     },
     dependencies: { additionalProperties: { type: 'string' }, type: 'object' },

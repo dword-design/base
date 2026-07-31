@@ -1,13 +1,15 @@
 import defu from '@dword-design/defu';
 
-export default function () {
-  return defu(this.config.typescriptConfig, {
+import type { Base } from '@/src';
+
+export default (base: Base) =>
+  defu(base.config.typescriptConfig, {
     compilerOptions: {
       declaration: true,
       esModuleInterop: true,
       module: 'ESNext',
       moduleResolution: 'bundler',
-      ...(this.config.hasTypescriptConfigRootAlias && {
+      ...(base.config.hasTypescriptConfigRootAlias && {
         paths: { '@/*': ['./*'] },
       }),
       skipLibCheck: true,
@@ -16,4 +18,3 @@ export default function () {
     },
     exclude: ['test-results'],
   });
-}

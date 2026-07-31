@@ -1,7 +1,7 @@
 import endent from 'endent';
 
 export default endent`
-  # Editor configuration, see http://editorconfig.org
+  # Editor configuration, see https://editorconfig.org
   root = true
 
   [*]

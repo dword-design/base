@@ -47,9 +47,8 @@ test('custom prepare', async ({}, testInfo) => {
 
   const base = new Base(
     {
-      async prepare() {
-        await fs.outputFile(pathLib.join(this.cwd, 'foo.txt'), 'bar');
-      },
+      prepare: baseInPrepare =>
+        fs.outputFile(pathLib.join(baseInPrepare.cwd, 'foo.txt'), 'bar'),
     },
     { cwd },
   );

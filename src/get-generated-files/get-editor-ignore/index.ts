@@ -1,7 +1,7 @@
 import { identity, sortBy } from 'lodash-es';
 
+import type { Base } from '@/src';
 import commonEditorIgnore from '@/src/get-generated-files/common-editor-ignore';
 
-export default function () {
-  return sortBy([...commonEditorIgnore, ...this.config.editorIgnore], identity);
-}
+export default (base: Base) =>
+  sortBy([...commonEditorIgnore, ...base.config.editorIgnore], identity);

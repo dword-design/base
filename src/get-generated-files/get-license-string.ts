@@ -2,15 +2,17 @@ import endent from 'endent';
 import spdxParse from 'spdx-expression-parse';
 import spdxList from 'spdx-license-list/full.js';
 
-export default function () {
-  const parsed = spdxParse(this.packageConfig.license);
+import type { Base } from '@/src';
+
+export default (base: Base) => {
+  const parsed = spdxParse(base.packageConfig.license);
   const license = spdxList[parsed.license];
   return endent`
     # License
 
     Unless stated otherwise all works are:
 
-    Copyright &copy; ${this.packageConfig.author}
+    Copyright &copy; ${base.packageConfig.author}
 
     and licensed under:
 
@@ -20,4 +22,4 @@ export default function () {
 
     ${license.licenseText}
   `;
-}
+};
