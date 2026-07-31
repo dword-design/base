@@ -16,7 +16,7 @@ export default (
 
   return execaCommand(`git-cz${options.allowEmpty ? ' --allow-empty' : ''}`, {
     cwd: base.cwd,
-    ...(options.log && { stdout: 'inherit' }),
     stderr: options.stderr,
+    stdout: options.log ? 'inherit' : 'pipe',
   });
 };

@@ -13,6 +13,7 @@
   },
   "repository": "dword-design/foo",
   "scripts": {
+    "build": "base build";
     "checkUnknownFiles": "base checkUnknownFiles",
     "commit": "base commit",
     "depcheck": "base depcheck",

@@ -16,7 +16,6 @@ export default async (
     updateSnapshots?: boolean;
   } = {},
 ) => {
-  // TODO: Explicit return type, otherwise TypeScript error because of unexported StdoutStderrOptionCommon
   const options = {
     grep: '',
     log: process.env.NODE_ENV !== 'test',
