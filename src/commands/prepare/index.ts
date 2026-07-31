@@ -56,5 +56,5 @@ export default async (base: Base, options: PartialCommandOptions = {}) => {
     );
   }
 
-  await base.config.prepare.call(base, options);
+  await base.config.prepare(base, options);
 };

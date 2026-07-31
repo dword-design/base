@@ -23,7 +23,7 @@ export default async (base: Base, options: PartialCommandOptions = {}) => {
     );
   }
 
-  await base.config.lint.call(base, options);
+  await base.config.lint(base, options);
   return execaCommand('eslint --fix --no-error-on-unmatched-pattern .', {
     ...(options.log && { stdout: 'inherit' }),
     cwd: base.cwd,
