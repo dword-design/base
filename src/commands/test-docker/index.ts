@@ -16,6 +16,12 @@ export default async (
     updateSnapshots?: boolean;
   } = {},
 ) => {
+  if (!base.packageConfig.name) {
+    throw new Error(
+      'package.json must have a name field to run tests in Docker.',
+    );
+  }
+
   const options = {
     grep: '',
     log: process.env.NODE_ENV !== 'test',

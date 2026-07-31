@@ -14,7 +14,7 @@ export default async (base: Base, options: PartialCommandOptions = {}) => {
     ...options,
   };
 
-  await base.config.typecheck.call(base, options);
+  await base.config.typecheck(base, options);
 
   const { config } = ts.readConfigFile(
     pathLib.join(base.cwd, 'tsconfig.json'),
