@@ -9,3 +9,6 @@ ignoredBuiltDependencies:
 
 onlyBuiltDependencies:
   - re2
+
+patchedDependencies:
+  parse-packagejson-name@1.1.0: patches/parse-packagejson-name@1.1.0.patch

@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: false
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  parse-packagejson-name@1.1.0:
+    hash: 4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9
+    path: patches/parse-packagejson-name@1.1.0.patch
+
 importers:
 
   .:
@@ -63,17 +68,17 @@ importers:
         specifier: npm:@dword-design/depcheck@^0.0.12
         version: '@dword-design/depcheck@0.0.12'
       depcheck-detector-bin-name:
-        specifier: ^1.0.2
-        version: 1.0.2
+        specifier: ^3.0.0
+        version: 3.0.0
       depcheck-detector-execa:
-        specifier: ^4.0.3
-        version: 4.0.3
+        specifier: ^6.0.0
+        version: 6.0.0
       depcheck-detector-package-name:
-        specifier: ^3.0.4
-        version: 3.0.4
+        specifier: ^4.0.0
+        version: 4.0.0
       depcheck-package-name:
-        specifier: ^4.0.1
-        version: 4.0.1
+        specifier: ^5.0.0
+        version: 5.0.0
       endent:
         specifier: npm:@dword-design/endent@^1.4.7
         version: '@dword-design/endent@1.4.7'
@@ -126,14 +131,14 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       package-name-regex:
-        specifier: ^4.0.3
-        version: 4.0.3
+        specifier: ^5.0.0
+        version: 5.0.0
       parse-git-config:
         specifier: npm:@dword-design/parse-git-config@^0.0.1
         version: '@dword-design/parse-git-config@0.0.1'
       parse-packagejson-name:
-        specifier: ^1.1.0
-        version: 1.1.0
+        specifier: 1.1.0
+        version: 1.1.0(patch_hash=4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9)
       plugin-name-to-package-name:
         specifier: npm:@dword-design/plugin-name-to-package-name@^0.1.2
         version: '@dword-design/plugin-name-to-package-name@0.1.2'
@@ -177,6 +182,9 @@ importers:
       '@playwright/test':
         specifier: ^1.62.1
         version: 1.62.1
+      '@types/fs-extra':
+        specifier: ^11.0.4
+        version: 11.0.4
       '@types/hosted-git-info':
         specifier: ^3.0.5
         version: 3.0.5
@@ -190,8 +198,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
       playwright-expect-snapshot:
-        specifier: ^1.0.4
-        version: 1.0.4(@playwright/test@1.62.1)
+        specifier: ^2.0.1
+        version: 2.0.1(@playwright/test@1.62.1)
       renovate:
         specifier: ^42.99.0
         version: 42.99.0
@@ -2075,6 +2083,9 @@ packages:
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
 
+  '@types/fs-extra@11.0.4':
+    resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
+
   '@types/hosted-git-info@3.0.5':
     resolution: {integrity: sha512-Dmngh7U003cOHPhKGyA7LWqrnvcTyILNgNPmNCxlx7j8MIi54iBliiT8XqVLIQ3GchoOjVAyBzNJVyuaJjqokg==}
 
@@ -2086,6 +2097,9 @@ packages:
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
+
+  '@types/jsonfile@6.1.4':
+    resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
 
   '@types/keyv@3.1.4':
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
@@ -3146,13 +3160,25 @@ packages:
     resolution: {integrity: sha512-NCJ8B0De9ILI+ClVwqJn3J6Dj1TKM9xmAWXTGu/ThQePMpt83KXt1abed+ndBEV5AbnwGmU7PVx1jpDH69oklg==}
     engines: {node: '>=18'}
 
+  depcheck-detector-bin-name@3.0.0:
+    resolution: {integrity: sha512-8zB4mBcbTOaR1CN0VfORs6WMbLXyQJYkKPkwB08fhgxazEzTq0YDRjQ5BVegnP+0SdZ/+p/wT7a/2yIOZ6ClrA==}
+    engines: {node: '>=22'}
+
   depcheck-detector-execa@4.0.3:
     resolution: {integrity: sha512-CBL7zB93VrQwBUYCSiiiceX0XSnpFYGj6jPx/9ZKGLLM/FzIb2lNbd9ZuXzT6eKVGkZPSBPJnpuefy5MF/FgpQ==}
     engines: {node: '>=18'}
 
+  depcheck-detector-execa@6.0.0:
+    resolution: {integrity: sha512-2CcIOyop4aMN3tyGM+gtde7UHNwC1c14Qll2+FMywltgyd/3Pc9Ja5OD4Dxlo9RgaVTntSYAHrbXOV/df7vRFw==}
+    engines: {node: '>=22'}
+
   depcheck-detector-package-name@3.0.4:
     resolution: {integrity: sha512-NJpk3gOZ+UhAs3O2nebM7tWQCiXG95/d+ZovyoD5dObbGxqvGr1NSFyz4NXgmV7BP/42z5Mr6L3GRbcJ1hU+3w==}
     engines: {node: '>=14'}
+
+  depcheck-detector-package-name@4.0.0:
+    resolution: {integrity: sha512-fuRHPXVmoXPkKGvIEn4s8SkQ1MHTDYq56su5OPWMT+3/8u4YtXxucbpMzxoyI0241U1yB2Onp92iqPelKytxAw==}
+    engines: {node: '>=22'}
 
   depcheck-package-name@4.0.1:
     resolution: {integrity: sha512-Jt6XKYnjtC9AMP8+lD+I7J+Fr39e9Ll6O7xg6pzqhxFiCtUuDFPLrY89bMLtXBqFvzTE8h071K33CshYJmRuIg==}
@@ -5360,6 +5386,10 @@ packages:
     resolution: {integrity: sha512-5YeQpY/R7ALs6pApzu2cg3xAzHWLiJ1mKr0eQOa4/toQDoIfjR3vxbwKIsrK0NhAlEQUJVzv/eYDXzoG4DG6Ig==}
     engines: {node: '>=18'}
 
+  package-name-regex@5.0.0:
+    resolution: {integrity: sha512-VTLjl9bj0CNN3V5VnR8szmF7Jbj0ZqMes4A+7sW1S/3jhsYVW6M4yE19FQFFJ4hi3ydPIX3OelfXV3eDoGmyMA==}
+    engines: {node: '>=22'}
+
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
@@ -5492,9 +5522,9 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  playwright-expect-snapshot@1.0.4:
-    resolution: {integrity: sha512-imFsJYsqq9XE8Rft/20nrQEAK5OVHiP/Gkd6gaB/eAleE2fCK57N+q59WRZo3bpPTdvSPUYXoFrqHi3UruP9EA==}
-    engines: {node: '>=20'}
+  playwright-expect-snapshot@2.0.1:
+    resolution: {integrity: sha512-j5amzWrVaD2nD/XvFBHt25RNwkgVTldkFD8Q5AOe7SHWOEO8SELUXJZ5TdMJKWAijFQRpLaKUPshvMNYr2j4MA==}
+    engines: {node: '>=22'}
     peerDependencies:
       '@playwright/test': ^1
 
@@ -8033,7 +8063,7 @@ snapshots:
       output-files: 3.0.0
       package-name-regex: 4.0.3
       parse-git-config: '@dword-design/parse-git-config@0.0.1'
-      parse-packagejson-name: 1.1.0
+      parse-packagejson-name: 1.1.0(patch_hash=4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9)
       plugin-name-to-package-name: '@dword-design/plugin-name-to-package-name@0.1.2'
       safe-readfile: 1.0.2
       semantic-release: 25.0.8(typescript@5.9.3)
@@ -9542,6 +9572,11 @@ snapshots:
 
   '@types/estree@1.0.9': {}
 
+  '@types/fs-extra@11.0.4':
+    dependencies:
+      '@types/jsonfile': 6.1.4
+      '@types/node': 26.1.2
+
   '@types/hosted-git-info@3.0.5': {}
 
   '@types/http-cache-semantics@4.2.0': {}
@@ -9549,6 +9584,10 @@ snapshots:
   '@types/istanbul-lib-coverage@2.0.6': {}
 
   '@types/json-schema@7.0.15': {}
+
+  '@types/jsonfile@6.1.4':
+    dependencies:
+      '@types/node': 26.1.2
 
   '@types/keyv@3.1.4':
     dependencies:
@@ -10690,14 +10729,29 @@ snapshots:
       fs-extra: 11.4.0
       module-root: '@dword-design/module-root@0.2.5'
 
+  depcheck-detector-bin-name@3.0.0:
+    dependencies:
+      fs-extra: 11.4.0
+      module-root: '@dword-design/module-root@0.2.5'
+
   depcheck-detector-execa@4.0.3:
     dependencies:
       '@dword-design/functions': 6.0.2
       fs-extra: 11.4.0
       module-root: '@dword-design/module-root@0.2.5'
-      parse-packagejson-name: 1.1.0
+      parse-packagejson-name: 1.1.0(patch_hash=4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9)
+
+  depcheck-detector-execa@6.0.0:
+    dependencies:
+      '@babel/types': 7.29.8
+      fs-extra: 11.4.0
+      lodash-es: 4.18.1
+      module-root: '@dword-design/module-root@0.2.5'
+      parse-packagejson-name: 1.1.0(patch_hash=4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9)
 
   depcheck-detector-package-name@3.0.4: {}
+
+  depcheck-detector-package-name@4.0.0: {}
 
   depcheck-package-name@4.0.1:
     dependencies:
@@ -13142,6 +13196,8 @@ snapshots:
 
   package-name-regex@4.0.3: {}
 
+  package-name-regex@5.0.0: {}
+
   parent-module@1.0.1:
     dependencies:
       callsites: 3.1.0
@@ -13170,7 +13226,7 @@ snapshots:
 
   parse-ms@4.0.0: {}
 
-  parse-packagejson-name@1.1.0: {}
+  parse-packagejson-name@1.1.0(patch_hash=4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9): {}
 
   parse-passwd@1.0.0: {}
 
@@ -13256,7 +13312,7 @@ snapshots:
 
   playwright-core@1.62.1: {}
 
-  playwright-expect-snapshot@1.0.4(@playwright/test@1.62.1):
+  playwright-expect-snapshot@2.0.1(@playwright/test@1.62.1):
     dependencies:
       '@playwright/test': 1.62.1
       sort-keys: 6.0.1
