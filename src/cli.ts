@@ -68,6 +68,7 @@ try {
         },
       }),
       verify: {
+        arguments: '[patterns...]',
         handler: (patterns: string[], options: TestOptions) => {
           dotenv.config();
           return base.verify({ patterns, ...options });
