@@ -51,8 +51,9 @@ export default function () {
     },
     {
       if: 'always()',
-      uses: gitHubAction`actions/upload-artifact@v4`,
+      uses: gitHubAction`actions/upload-artifact@v7`,
       with: {
+        archive: false,
         'if-no-files-found': 'ignore',
         name: 'Data from tests',
         path: 'test-results/*/**',
