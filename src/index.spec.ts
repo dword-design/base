@@ -198,9 +198,9 @@ test('inherited', async ({}, testInfo) => {
 
   expect(base.run('prepublishOnly', 1)).toEqual(2);
   expect(base.run('start', 1)).toEqual(4);
-  await base.config.prepare();
+  await base.config.prepare(base);
   expect(await fs.exists(pathLib.join(cwd, 'prepare.txt'))).toBe(true);
-  await base.config.lint();
+  await base.config.lint(base);
   expect(await fs.exists(pathLib.join(cwd, 'lint.txt'))).toBe(true);
   expect(typeof base.config.depcheckConfig).toEqual('object');
 });
@@ -247,13 +247,7 @@ test('run', async ({}, testInfo) => {
 
   expect(
     new Base(
-      {
-        commands: {
-          foo() {
-            return this.packageConfig.name;
-          },
-        },
-      },
+      { commands: { foo: baseInCommand => baseInCommand.packageConfig.name } },
       { cwd },
     ).run('foo'),
   ).toEqual('bar');

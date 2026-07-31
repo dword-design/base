@@ -21,7 +21,7 @@ const createBracePattern = (expandedGlobs: string[]): string | null => {
   // Ensure all parts are valid and have the same prefix
   if (globParts.includes(null)) return null;
   const prefix = globParts[0]!.prefix;
-  if (!globParts.every(part => part!.prefix === prefix)) return null;
+  if (globParts.some(part => part!.prefix !== prefix)) return null;
   // Extract extensions and create brace pattern
   const extensions = globParts.map(part => part!.extension);
   return `${prefix}.{${extensions.join(',')}}`;
@@ -58,8 +58,8 @@ const mergeConfigs = (
           expandedMap.set(expandedGlob, new Set());
         }
 
-        for (const cmd of commands) {
-          expandedMap.get(expandedGlob)!.add(cmd);
+        for (const command of commands) {
+          expandedMap.get(expandedGlob)!.add(command);
         }
       }
     }
@@ -68,7 +68,7 @@ const mergeConfigs = (
   const result: Configuration = {};
   const processedExpanded = new Set<string>();
   // Try to reconstruct brace patterns for non-overlapping cases
-  const originalGlobs = [...originalToExpanded.keys()];
+  const originalGlobs = originalToExpanded.keys().toArray();
 
   for (const originalGlob of originalGlobs) {
     const expandedGlobs = originalToExpanded.get(originalGlob)!;
@@ -87,7 +87,7 @@ const mergeConfigs = (
         const commands = expandedMap.get(eg)!;
         return (
           commands.size === firstCommands.size &&
-          [...firstCommands].every(cmd => commands.has(cmd))
+          [...firstCommands].every(command => commands.has(command))
         );
       });
 
@@ -109,12 +109,14 @@ const mergeConfigs = (
 
   // Add remaining expanded globs that couldn't be grouped
   for (const [expandedGlob, commands] of expandedMap) {
-    if (!processedExpanded.has(expandedGlob)) {
-      const commandsArray = [...commands];
-
-      result[expandedGlob] =
-        commandsArray.length === 1 ? commandsArray[0] : commandsArray;
+    if (processedExpanded.has(expandedGlob)) {
+      continue;
     }
+
+    const commandsArray = [...commands];
+
+    result[expandedGlob] =
+      commandsArray.length === 1 ? commandsArray[0] : commandsArray;
   }
 
   return sortKeys(result);

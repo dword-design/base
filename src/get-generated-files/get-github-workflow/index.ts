@@ -1,17 +1,19 @@
+import type { Base } from '@/src';
+
 import jobMatrixStrategy from './strategies/job-matrix';
 import simpleStrategy from './strategies/simple';
 
-export default function () {
+export default (base: Base) => {
   const environments = [
-    ...this.config.supportedNodeVersions.map(version => ({
+    ...base.config.supportedNodeVersions.map(version => ({
       node: version,
       os: 'ubuntu-latest',
     })),
-    ...(this.config.macos
-      ? [{ node: this.config.nodeVersion, os: 'macos-latest' }]
+    ...(base.config.macos
+      ? [{ node: base.config.nodeVersion, os: 'macos-latest' }]
       : []),
-    ...(this.config.windows
-      ? [{ node: this.config.nodeVersion, os: 'windows-latest' }]
+    ...(base.config.windows
+      ? [{ node: base.config.nodeVersion, os: 'windows-latest' }]
       : []),
   ];
 
@@ -21,9 +23,9 @@ export default function () {
       group: '${{ github.workflow }}-${{ github.ref }}',
     },
     jobs:
-      environments.length > 1 && !this.config.testInContainer
-        ? jobMatrixStrategy.call(this, environments)
-        : simpleStrategy.call(this),
+      environments.length > 1 && !base.config.testInContainer
+        ? jobMatrixStrategy(base, environments)
+        : simpleStrategy(base),
     name: 'build',
     on: { pull_request: {}, push: { branches: ['master'] } },
     permissions: {
@@ -40,4 +42,4 @@ export default function () {
       'pull-requests': 'write',
     },
   };
-}
+};

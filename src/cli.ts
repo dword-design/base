@@ -9,12 +9,7 @@ import loadConfig from './load-config';
 
 const base = new Base(await loadConfig());
 
-const testOptions = [
-  {
-    description: 'Only run tests matching this string or regexp',
-    name: '-g, --grep <grep>',
-  },
-  { description: 'Update snapshots', name: '-u, --update-snapshots' },
+const testHostOptions = [
   { description: 'Run tests in interactive UI mode', name: '--ui-host <host>' },
   {
     description:
@@ -23,11 +18,20 @@ const testOptions = [
   },
 ];
 
+const testOptions = [
+  {
+    description: 'Only run tests matching this string or regexp',
+    name: '-g, --grep <grep>',
+  },
+  { description: 'Update snapshots', name: '-u, --update-snapshots' },
+  ...(base.config.testInContainer ? [] : testHostOptions),
+];
+
 type TestOptions = {
   grep: string;
-  updateSnapshots: boolean;
+  ui: boolean;
   uiHost: string;
-  ui: string;
+  updateSnapshots: boolean;
 };
 
 try {
@@ -48,30 +52,31 @@ try {
       },
       lint: { handler: () => base.lint() },
       prepare: { handler: () => base.prepare() },
-      typecheck: { handler: () => base.typecheck() },
-      verify: {
-        handler: () => {
-          dotenv.config();
-          return base.verify();
-        },
+      test: {
+        arguments: '[patterns...]',
+        handler: (patterns: string[], options: TestOptions) =>
+          base.test({ patterns, ...options }),
+        options: testOptions,
       },
+      typecheck: { handler: () => base.typecheck() },
       ...(base.config.testInContainer && {
         'test:raw': {
           arguments: '[patterns...]',
-          handler: (patterns, options: TestOptions) =>
+          handler: (patterns: string[], options: TestOptions) =>
             base.testRaw({ patterns, ...options }),
           options: testOptions,
         },
       }),
-      test: {
-        arguments: '[patterns...]',
-        handler: (patterns, options: TestOptions) =>
-          base.test({ patterns, ...options }),
+      verify: {
+        handler: (patterns: string[], options: TestOptions) => {
+          dotenv.config();
+          return base.verify({ patterns, ...options });
+        },
         options: testOptions,
       },
       ...mapValues(base.config.commands, (command, name) => ({
         ...command,
-        handler: (...args) => base.run(name, ...args),
+        handler: (...arguments_) => base.run(name, ...arguments_),
       })),
     },
   });

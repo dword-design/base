@@ -15,11 +15,11 @@ test('badges', async ({}, testInfo) => {
   );
 
   await outputFiles(cwd, {
-    'README.md': '<!-- BADGES -->\n',
     'package.json': JSON.stringify({
       name: '@dword-design/foo',
       repository: 'dword-design/base',
     }),
+    'README.md': '<!-- BADGES -->\n',
   });
 
   expect(new Base(null, { cwd }).getReadmeString()).toMatchSnapshot();
@@ -35,14 +35,14 @@ test('badges private', async ({}, testInfo) => {
   );
 
   await outputFiles(cwd, {
-    'README.md': endent`
-      <!-- BADGES -->
-
-    `,
     'package.json': JSON.stringify({
       name: '@dword-design/foo',
       private: true,
     }),
+    'README.md': endent`
+      <!-- BADGES -->
+
+    `,
   });
 
   expect(new Base(null, { cwd }).getReadmeString()).toMatchSnapshot();
@@ -52,8 +52,8 @@ test('description', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'README.md': '<!-- DESCRIPTION -->\n',
     'package.json': JSON.stringify({ description: 'foo bar baz' }),
+    'README.md': '<!-- DESCRIPTION -->\n',
   });
 
   expect(new Base(null, { cwd }).getReadmeString()).toEqual(endent`
@@ -67,6 +67,11 @@ test('existing content', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
+    'package.json': JSON.stringify({
+      author: 'dword-design',
+      description: 'foo bar baz',
+      license: 'MIT',
+    }),
     'README.md': endent`
       <!-- DESCRIPTION -->
 
@@ -75,11 +80,6 @@ test('existing content', async ({}, testInfo) => {
       <!-- LICENSE -->
 
     `,
-    'package.json': JSON.stringify({
-      author: 'dword-design',
-      description: 'foo bar baz',
-      license: 'MIT',
-    }),
   });
 
   expect(new Base(null, { cwd }).getReadmeString()).toMatchSnapshot();
@@ -89,8 +89,8 @@ test('install', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'README.md': '<!-- INSTALL -->\n',
     'package.json': JSON.stringify({ name: 'foo' }),
+    'README.md': '<!-- INSTALL -->\n',
   });
 
   expect(new Base(null, { cwd }).getReadmeString()).toEqual(endent`
@@ -112,8 +112,8 @@ test('license', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'README.md': '<!-- LICENSE -->\n',
     'package.json': JSON.stringify({ license: 'MIT' }),
+    'README.md': '<!-- LICENSE -->\n',
   });
 
   expect(new Base(null, { cwd }).getReadmeString()).toMatchSnapshot();
@@ -123,8 +123,8 @@ test('seeAlso', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'README.md': '<!-- LICENSE -->\n',
     'package.json': JSON.stringify({ license: 'MIT' }),
+    'README.md': '<!-- LICENSE -->\n',
   });
 
   expect(
@@ -144,8 +144,8 @@ test('title', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   await outputFiles(cwd, {
-    'README.md': '<!-- TITLE -->\n',
     'package.json': JSON.stringify({ name: 'foo' }),
+    'README.md': '<!-- TITLE -->\n',
   });
 
   expect(new Base(null, { cwd }).getReadmeString()).toEqual(endent`

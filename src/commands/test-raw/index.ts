@@ -1,18 +1,35 @@
 import packageName from 'depcheck-package-name';
 import { execa } from 'execa';
 
+import type { Base } from '@/src';
+import type { PartialCommandOptions } from '@/src/commands/command-options-input';
+
 import isCI from './is-ci';
 
-export default function (options) {
-  options = {
+export default (
+  base: Base,
+  optionsInput: PartialCommandOptions & {
+    grep?: string;
+    patterns?: string[];
+    ui?: boolean;
+    uiHost?: string;
+    updateSnapshots?: boolean;
+  } = {},
+) => {
+  // TODO: Explicit return type, otherwise TypeScript error because of unexported StdoutStderrOptionCommon
+  const options = {
+    grep: '',
     log: process.env.NODE_ENV !== 'test',
     patterns: [],
-    stderr: 'inherit',
-    ...options,
+    stderr: 'inherit' as const,
+    ui: false,
+    uiHost: null,
+    updateSnapshots: false,
+    ...optionsInput,
   };
 
-  const runDockerTests =
-    !isCI({ cwd: this.cwd }) || !['win32', 'darwin'].includes(process.platform);
+  const isRunDockerTests =
+    !isCI({ cwd: base.cwd }) || !['win32', 'darwin'].includes(process.platform);
 
   return execa(
     packageName`c8`,
@@ -26,14 +43,14 @@ export default function (options) {
       'playwright',
       'test',
       '--pass-with-no-tests',
-      ...(runDockerTests ? [] : ['--grep-invert', '@usesdocker']),
+      ...(isRunDockerTests ? [] : ['--grep-invert', '@usesdocker']),
       ...(options.updateSnapshots ? ['--update-snapshots'] : []),
       ...(options.ui ? ['--ui'] : []),
       ...(options.uiHost ? ['--ui-host', options.uiHost] : []),
       ...(options.grep ? ['--grep', options.grep] : []),
       '--trace',
       'retain-on-failure',
-      ...(isCI({ cwd: this.cwd }) ? ['--forbid-only'] : []),
+      ...(isCI({ cwd: base.cwd }) ? ['--forbid-only'] : []),
       /**
        * Reporter set to dot in CI environments by default.
        * See https://github.com/microsoft/playwright/blob/42ade54975f6990c41cddc7b6e11c46a36648d0d/packages/playwright/src/common/config.ts#L301.
@@ -43,10 +60,10 @@ export default function (options) {
       ...options.patterns,
     ],
     {
-      cwd: this.cwd,
+      cwd: base.cwd,
       env: { NODE_ENV: 'test' },
-      ...(options.log && { stdout: 'inherit' }),
       stderr: options.stderr,
+      stdout: options.log ? 'inherit' : 'pipe',
     },
   );
-}
+};

@@ -1,7 +1,8 @@
 import endent from 'endent';
 
-export default function () {
-  return endent`
+import type { Base } from '@/src';
+
+export default (base: Base) => endent`
     # Need to add :latest, otherwise old versions (e.g. of node) are installed
     FROM gitpod/workspace-full-vnc:latest
 
@@ -11,7 +12,7 @@ export default function () {
 
     # https://www.gitpod.io/docs/languages/javascript
     # https://github.com/gitpod-io/gitpod/issues/945
-    RUN bash -c 'source $HOME/.nvm/nvm.sh && nvm install ${this.config.nodeVersion}'
+    RUN bash -c 'source $HOME/.nvm/nvm.sh && nvm install ${base.config.nodeVersion}'
     RUN echo "nvm use default &>/dev/null" >> ~/.bashrc.d/51-nvm-fix
 
     RUN yarn global add gitpod-env-per-project @babel/node @babel/core
@@ -22,5 +23,4 @@ export default function () {
 
     # Puppeteer dependencies
     RUN sudo apt-get update && sudo apt-get install -y libgtk-3-0 libx11-xcb1 libnss3 libxss1 libasound2 libgbm1 libxshmfence1\n
-  `;
-}
+`;

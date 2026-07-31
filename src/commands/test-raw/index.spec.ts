@@ -390,7 +390,6 @@ test('valid', async ({}, testInfo) => {
   const base = new Base(null, { cwd });
   await base.prepare();
   let { stdout } = await base.test();
-  stdout = typeof stdout === 'string' ? stdout : stdout.toString();
   stdout = stripAnsi(stdout);
 
   expect(stdout).toMatch(

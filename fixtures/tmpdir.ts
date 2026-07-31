@@ -1,4 +1,4 @@
-import { tmpdir as createTmpDir } from 'node:os';
+import { tmpdir as createTemporaryDirectory } from 'node:os';
 import pathLib from 'node:path';
 
 import { test as base } from '@playwright/test';
@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 
 export const test = base.extend<{ tmpdir: string }>({
   tmpdir: async ({}, use) => {
-    const cwd = pathLib.join(createTmpDir(), uuid());
+    const cwd = pathLib.join(createTemporaryDirectory(), uuid());
 
     try {
       await use(cwd);

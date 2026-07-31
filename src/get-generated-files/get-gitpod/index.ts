@@ -2,8 +2,10 @@ import * as personalData from '@dword-design/personal-data';
 import endent from 'endent';
 import parsePackagejsonName from 'parse-packagejson-name';
 
-export default function () {
-  const packageName = parsePackagejsonName(this.packageConfig.name).fullName;
+import type { Base } from '@/src';
+
+export default (base: Base) => {
+  const packageName = parsePackagejsonName(base.packageConfig.name).fullName;
   return {
     image: { file: '.gitpod.Dockerfile' },
     tasks: [
@@ -43,4 +45,4 @@ export default function () {
       ],
     },
   };
-}
+};

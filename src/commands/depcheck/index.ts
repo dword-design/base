@@ -2,15 +2,14 @@ import depcheck from 'depcheck';
 import endent from 'endent';
 import { isEmpty, mapValues, omit } from 'lodash-es';
 
-export default async function () {
+import type { Base } from '@/src';
+
+export default async (base: Base) => {
   const dependenciesTypes = Object.keys(
-    this.packageConfig.dependencies ?? {},
+    base.packageConfig.dependencies ?? {},
   ).filter(dependency => dependency.startsWith('@types/'));
 
-  const dependenciesResult = await depcheck(this.cwd, {
-    package: omit(this.packageConfig, ['devDependencies']),
-    skipMissing: true,
-    ...this.config.depcheckConfig,
+  const dependenciesResult = await depcheck(base.cwd, {
     ignorePatterns: [
       '*.spec.ts',
       '/fixtures',
@@ -18,26 +17,29 @@ export default async function () {
       'package.json',
       'eslint.config.ts',
     ],
+    package: omit(base.packageConfig, ['devDependencies']),
+    ...base.config.depcheckConfig,
+    skipMissing: true,
   });
 
-  const devDependenciesResult = await depcheck(this.cwd, {
-    package: omit(this.packageConfig, ['dependencies']),
-    skipMissing: true,
-    ...this.config.depcheckConfig,
+  const developmentDependenciesResult = await depcheck(base.cwd, {
     ignorePatterns: [
       '!*.spec.ts',
       '!/fixtures',
       '!/playwright.config.ts',
       'eslint.config.ts',
     ],
+    package: omit(base.packageConfig, ['dependencies']),
+    ...base.config.depcheckConfig,
+    skipMissing: true,
   });
 
   const result = {
     dependencies: dependenciesResult.dependencies,
-    devDependencies: devDependenciesResult.devDependencies,
+    devDependencies: developmentDependenciesResult.devDependencies,
     invalidFiles: {
       ...dependenciesResult.invalidFiles,
-      ...devDependenciesResult.invalidFiles,
+      ...developmentDependenciesResult.invalidFiles,
     },
   };
 
@@ -46,7 +48,7 @@ export default async function () {
       ? [
           endent`
             Types dependencies should be in devDependencies
-            ${dependenciesTypes.map(dep => `* ${dep}`).join('\n')}
+            ${dependenciesTypes.map(dependency => `* ${dependency}`).join('\n')}
           `,
         ]
       : []),
@@ -54,7 +56,7 @@ export default async function () {
       ? [
           endent`
             Unused dependencies
-            ${result.dependencies.map(dep => `* ${dep}`).join('\n')}
+            ${result.dependencies.map(dependency => `* ${dependency}`).join('\n')}
           `,
         ]
       : []),
@@ -62,7 +64,7 @@ export default async function () {
       ? [
           endent`
             Unused devDependencies
-            ${result.devDependencies.map(dep => `* ${dep}`).join('\n')}
+            ${result.devDependencies.map(dependency => `* ${dependency}`).join('\n')}
           `,
         ]
       : []),
@@ -84,4 +86,4 @@ export default async function () {
   if (errorMessage) {
     throw new Error(errorMessage);
   }
-}
+};
