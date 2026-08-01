@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: false
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  parse-packagejson-name@1.1.0:
-    hash: 4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9
-    path: patches/parse-packagejson-name@1.1.0.patch
-
 importers:
 
   .:
@@ -125,11 +120,11 @@ importers:
         specifier: ^4.18.1
         version: 4.18.1
       make-cli:
-        specifier: ^4.0.8
-        version: 4.0.8
+        specifier: ^6.0.2
+        version: 6.0.2
       output-files:
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^4.0.0
+        version: 4.0.0
       package-name-regex:
         specifier: ^5.0.0
         version: 5.0.0
@@ -138,7 +133,7 @@ importers:
         version: '@dword-design/parse-git-config@0.0.1'
       parse-packagejson-name:
         specifier: 1.1.0
-        version: 1.1.0(patch_hash=4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9)
+        version: 1.1.0
       plugin-name-to-package-name:
         specifier: npm:@dword-design/plugin-name-to-package-name@^0.1.2
         version: '@dword-design/plugin-name-to-package-name@0.1.2'
@@ -167,8 +162,8 @@ importers:
         specifier: ^4.23.1
         version: 4.23.1
       type-fest:
-        specifier: ^4.41.0
-        version: 4.41.0
+        specifier: npm:@dword-design/type-fest-fork@^0.0.1
+        version: '@dword-design/type-fest-fork@0.0.1'
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -182,15 +177,24 @@ importers:
       '@playwright/test':
         specifier: ^1.62.1
         version: 1.62.1
+      '@types/braces':
+        specifier: ^3.0.5
+        version: 3.0.5
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
       '@types/hosted-git-info':
         specifier: ^3.0.5
         version: 3.0.5
+      '@types/ini':
+        specifier: ^4.1.1
+        version: 4.1.1
       '@types/parse-git-config':
         specifier: ^3.0.4
         version: 3.0.4
+      '@types/spdx-expression-parse':
+        specifier: ^4.0.0
+        version: 4.0.0
       node-version:
         specifier: ^3.0.0
         version: 3.0.0
@@ -699,6 +703,10 @@ packages:
 
   '@dword-design/plugin-name-to-package-name@0.1.2':
     resolution: {integrity: sha512-kATg/RzRkq/Yv0qNJziPqwAzKstBTzuXnowH4MvAMyqW6C7o5HlgZtik3GzO0kBKCBZBoRswBSvo9AHclOTxfg==}
+
+  '@dword-design/type-fest-fork@0.0.1':
+    resolution: {integrity: sha512-7Zj7gn+5SpljxlH/P43DVK9RD/LfxGfZV2lTiHT6c7HcQceKy3zMYUUmIMDxPu0OrSWX8Tal+7T3jaJ5FCV6LQ==}
+    engines: {node: '>=20'}
 
   '@emnapi/core@1.10.0':
     resolution: {integrity: sha512-yq6OkJ4p82CAfPl0u9mQebQHKPJkY7WrIuk205cTYnYe+k2Z8YBh11FrbRG/H6ihirqcacOgl2BIO8oyMQLeXw==}
@@ -2065,6 +2073,9 @@ packages:
   '@types/babel__traverse@7.28.0':
     resolution: {integrity: sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q==}
 
+  '@types/braces@3.0.5':
+    resolution: {integrity: sha512-SQFof9H+LXeWNz8wDe7oN5zu7ket0qwMu5vZubW4GCJ8Kkeh6nBWUz87+KTz/G3Kqsrp0j/W253XJb3KMEeg3w==}
+
   '@types/bunyan@1.8.11':
     resolution: {integrity: sha512-758fRH7umIMk5qt5ELmRMff4mLDlN+xyYzC+dkPTdKwbSkJFvz6xwyScrytPU0QIBbRRwbiE8/BIg8bpajerNQ==}
 
@@ -2092,6 +2103,9 @@ packages:
   '@types/http-cache-semantics@4.2.0':
     resolution: {integrity: sha512-L3LgimLHXtGkWikKnsPg0/VFx9OGZaC+eN1u4r+OB1XRqH3meBIAVC2zr1WdMH+RHmnRkqliQAOHNJ/E0j/e0Q==}
 
+  '@types/ini@4.1.1':
+    resolution: {integrity: sha512-MIyNUZipBTbyUNnhvuXJTY7B6qNI78meck9Jbv3wk0OgNwRyOOVEKDutAkOs1snB/tx0FafyR6/SN4Ps0hZPeg==}
+
   '@types/istanbul-lib-coverage@2.0.6':
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
 
@@ -2107,8 +2121,8 @@ packages:
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
 
-  '@types/lodash@4.17.24':
-    resolution: {integrity: sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==}
+  '@types/lodash@4.17.25':
+    resolution: {integrity: sha512-+K1NIO8I+F9/wNulfVvu23QYd0Pe9/OCqRrim4NoYIf1VoEDL90Ve4ClzpyqBLc7NpGGWRvYNCKZ1BE/Jpf8dQ==}
 
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
@@ -2146,6 +2160,9 @@ packages:
 
   '@types/semver@7.7.1':
     resolution: {integrity: sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA==}
+
+  '@types/spdx-expression-parse@4.0.0':
+    resolution: {integrity: sha512-odQzy87phelGS4inXOzjmusx4hoCVD0IbxUANxHzVkmTzMRTNnUPoq1urIl7S1qf09KcDWKLFIftPmLtgbsAHA==}
 
   '@types/treeify@1.0.3':
     resolution: {integrity: sha512-hx0o7zWEUU4R2Amn+pjCBQQt23Khy/Dk56gQU5xi5jtPL1h83ACJCeFaB2M/+WO1AntvWrSoVnnCAfI1AQH4Cg==}
@@ -5267,6 +5284,10 @@ packages:
     resolution: {integrity: sha512-mFwRkTDiw6evbQW1G6To+Yp7tN2WOVh8ne7AyzTRWtqPU+Sza3ZhtXEO3vpLnaYPYEIUSrlILeZVp0rOmcA5Kw==}
     engines: {node: '>=18'}
 
+  output-files@4.0.0:
+    resolution: {integrity: sha512-WfOFV7mEwTisw3atSd2PcMx0+6ZrQk3iYRu6mwQS54XN6d3I5PWqDoT4T6nBdIxiDQFNyEoLOJvciyeCMLcaCQ==}
+    engines: {node: '>=22'}
+
   p-all@5.0.1:
     resolution: {integrity: sha512-LMT7WX9ZSaq3J1zjloApkIVmtz0ZdMFSIqbuiEa3txGYPLjUPOvgOPOx3nFjo+f37ZYL+1aY666I2SG7GVwLOA==}
     engines: {node: '>=16'}
@@ -8063,7 +8084,7 @@ snapshots:
       output-files: 3.0.0
       package-name-regex: 4.0.3
       parse-git-config: '@dword-design/parse-git-config@0.0.1'
-      parse-packagejson-name: 1.1.0(patch_hash=4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9)
+      parse-packagejson-name: 1.1.0
       plugin-name-to-package-name: '@dword-design/plugin-name-to-package-name@0.1.2'
       safe-readfile: 1.0.2
       semantic-release: 25.0.8(typescript@5.9.3)
@@ -8240,6 +8261,10 @@ snapshots:
   '@dword-design/plugin-name-to-package-name@0.1.2':
     dependencies:
       is-absolute: 1.0.0
+
+  '@dword-design/type-fest-fork@0.0.1':
+    dependencies:
+      tagged-tag: 1.0.0
 
   '@emnapi/core@1.10.0':
     dependencies:
@@ -9551,6 +9576,8 @@ snapshots:
     dependencies:
       '@babel/types': 7.29.8
 
+  '@types/braces@3.0.5': {}
+
   '@types/bunyan@1.8.11':
     dependencies:
       '@types/node': 26.1.2
@@ -9581,6 +9608,8 @@ snapshots:
 
   '@types/http-cache-semantics@4.2.0': {}
 
+  '@types/ini@4.1.1': {}
+
   '@types/istanbul-lib-coverage@2.0.6': {}
 
   '@types/json-schema@7.0.15': {}
@@ -9595,9 +9624,9 @@ snapshots:
 
   '@types/lodash-es@4.17.12':
     dependencies:
-      '@types/lodash': 4.17.24
+      '@types/lodash': 4.17.25
 
-  '@types/lodash@4.17.24': {}
+  '@types/lodash@4.17.25': {}
 
   '@types/mdast@4.0.4':
     dependencies:
@@ -9630,6 +9659,8 @@ snapshots:
       '@types/node': 26.1.2
 
   '@types/semver@7.7.1': {}
+
+  '@types/spdx-expression-parse@4.0.0': {}
 
   '@types/treeify@1.0.3': {}
 
@@ -10739,7 +10770,7 @@ snapshots:
       '@dword-design/functions': 6.0.2
       fs-extra: 11.4.0
       module-root: '@dword-design/module-root@0.2.5'
-      parse-packagejson-name: 1.1.0(patch_hash=4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9)
+      parse-packagejson-name: 1.1.0
 
   depcheck-detector-execa@6.0.0:
     dependencies:
@@ -10747,7 +10778,7 @@ snapshots:
       fs-extra: 11.4.0
       lodash-es: 4.18.1
       module-root: '@dword-design/module-root@0.2.5'
-      parse-packagejson-name: 1.1.0(patch_hash=4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9)
+      parse-packagejson-name: 1.1.0
 
   depcheck-detector-package-name@3.0.4: {}
 
@@ -13107,6 +13138,10 @@ snapshots:
     dependencies:
       fs-extra: 11.4.0
 
+  output-files@4.0.0:
+    dependencies:
+      fs-extra: 11.4.0
+
   p-all@5.0.1:
     dependencies:
       p-map: 6.0.0
@@ -13226,7 +13261,7 @@ snapshots:
 
   parse-ms@4.0.0: {}
 
-  parse-packagejson-name@1.1.0(patch_hash=4720a12d80e60cfc5d1873358430284765d43152ac94221079474e1bc1a962a9): {}
+  parse-packagejson-name@1.1.0: {}
 
   parse-passwd@1.0.0: {}
 
