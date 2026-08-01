@@ -1,3 +1,10 @@
+## [17.0.1](https://github.com/dword-design/base/compare/v17.0.0...v17.0.1) (2026-08-01)
+
+
+### Bug Fixes
+
+* export run ([ac47ffd](https://github.com/dword-design/base/commit/ac47ffd309269707bce47399dca87f9c2f912022))
+
 # [17.0.0](https://github.com/dword-design/base/compare/v16.2.7...v17.0.0) (2026-08-01)
 
 
