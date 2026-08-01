@@ -141,6 +141,16 @@ const mergeConfigs = createDefu((object, key, value) => {
   return false;
 });
 
+const run = <
+  TConfig extends Config,
+  K extends keyof TConfig['commands'] & string,
+>(
+  base: Base<TConfig>,
+  name: K,
+  ...arguments_: ArrayTail<Parameters<TConfig['commands'][K]['handler']>>
+): ReturnType<TConfig['commands'][K]['handler']> =>
+  base.config.commands[name].handler.call(base, base, ...arguments_); // TODO: Remove "call" and "this" after removing "this" is deployed
+
 class Base<TConfig extends Config = Config> {
   config: TConfig;
   packageConfig: PackageJson;
@@ -427,7 +437,7 @@ class Base<TConfig extends Config = Config> {
     name: K,
     ...arguments_: ArrayTail<Parameters<TConfig['commands'][K]['handler']>>
   ): ReturnType<TConfig['commands'][K]['handler']> {
-    return this.config.commands[name].handler.call(this, this, ...arguments_); // TODO: Remove "call" and "this" after removing "this" is deployed
+    return run(this, name, ...arguments_);
   }
 }
 
@@ -494,3 +504,5 @@ export { default as testDocker } from './commands/test-docker';
 export { default as verify } from './commands/verify';
 
 export { default as typecheck } from './commands/typecheck';
+
+export { run };
