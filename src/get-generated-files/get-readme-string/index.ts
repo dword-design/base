@@ -1,8 +1,8 @@
 import pathLib from 'node:path';
 
 import endent from 'endent';
+import fs from 'fs-extra';
 import getProjectzReadmeSectionRegex from 'get-projectz-readme-section-regex';
-import { readFileSync as safeReadFileSync } from 'safe-readfile';
 
 import type { Base } from '@/src';
 
@@ -10,7 +10,9 @@ import replacements from './replacements';
 
 export default (base: Base) => {
   const readme =
-    safeReadFileSync(pathLib.join(base.cwd, 'README.md'), 'utf8') ||
+    (fs.existsSync(pathLib.join(base.cwd, 'README.md'))
+      ? fs.readFileSync(pathLib.join(base.cwd, 'README.md'), 'utf8')
+      : '') ||
     endent`
       <!-- TITLE -->
 

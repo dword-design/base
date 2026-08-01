@@ -5,7 +5,7 @@ import spdxList from 'spdx-license-list/full.js';
 import type { Base } from '@/src';
 
 export default (base: Base) => {
-  const parsed = spdxParse(base.packageConfig.license);
+  const parsed = spdxParse(base.packageConfig.license) as spdxParse.LicenseInfo; // TODO: Is MIT
   const license = spdxList[parsed.license];
   return endent`
     # License
