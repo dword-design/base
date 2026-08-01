@@ -1,3 +1,18 @@
+# [17.0.0](https://github.com/dword-design/base/compare/v16.2.7...v17.0.0) (2026-08-01)
+
+
+### Bug Fixes
+
+* foo ([4e7cc31](https://github.com/dword-design/base/commit/4e7cc3166503cb857f81466c5b8909bc2a118e7c))
+* foo ([8596483](https://github.com/dword-design/base/commit/8596483a397f4a0f36ee43b6e6dca38867670cb7))
+* remove this ([#842](https://github.com/dword-design/base/issues/842)) ([93fcb5d](https://github.com/dword-design/base/commit/93fcb5df0783aa7d599800410dc67f3f80db2783))
+* update eslint-config ([0411da1](https://github.com/dword-design/base/commit/0411da1c375bead66b7963ebff6368cc1a5f3b88))
+
+
+### BREAKING CHANGES
+
+* remove this
+
 ## [16.2.7](https://github.com/dword-design/base/compare/v16.2.6...v16.2.7) (2026-07-30)
 
 
