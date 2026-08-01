@@ -20,6 +20,9 @@ importers:
       '@dword-design/ci':
         specifier: ^5.0.0
         version: 5.0.0
+      '@dword-design/defaults':
+        specifier: ^1.1.8
+        version: 1.1.8
       '@dword-design/defu':
         specifier: ^1.0.3
         version: 1.0.3

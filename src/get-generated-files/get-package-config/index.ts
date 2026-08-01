@@ -1,3 +1,4 @@
+import defaults from '@dword-design/defaults';
 import packageName from 'depcheck-package-name';
 import { mapValues, pick, stubTrue } from 'lodash-es';
 import sortKeys from 'sort-keys';
@@ -19,7 +20,7 @@ export default <TConfig extends Config>(base: Base<TConfig>) => {
     ...mapValues(base.config.commands, stubTrue),
   };
 
-  return {
+  return defaults(base.config.packageConfig, {
     ...pick(
       base.packageConfigFromFile,
       typedKeys({
@@ -58,7 +59,6 @@ export default <TConfig extends Config>(base: Base<TConfig>) => {
       ),
     ),
     type: 'module' as const,
-    ...(base.config.packageConfig as TConfig['packageConfig']), // TODO: TypeScript for some reason resolves packageConfig type instead of letting it open, depending on TConfig
     version: base.packageConfigFromFile.version || '1.0.0',
-  };
+  });
 };
