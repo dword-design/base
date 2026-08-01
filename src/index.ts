@@ -95,7 +95,7 @@ type Config = {
   name?: string;
   nodeVersion: number;
   npmPublish: boolean;
-  packageConfig: PackageJson;
+  packageConfig: Omit<PackageJson, 'license'>;
   preDeploySteps: string[];
   prepare: <TConfig extends Config>(
     base: Base<TConfig>,
@@ -153,7 +153,8 @@ const run = <
 
 class Base<TConfig extends Config = Config> {
   config: TConfig;
-  packageConfig: PackageJson;
+  packageConfigFromFile: Omit<PackageJson, 'license'>;
+  packageConfig: ReturnType<typeof getPackageConfig<TConfig>>;
   cwd: string;
   generatedFiles;
 
@@ -183,7 +184,9 @@ class Base<TConfig extends Config = Config> {
       config.name = pluginNameToPackageName(config.name, 'base-config');
     }
 
-    this.packageConfig = fs.existsSync(pathLib.join(this.cwd, 'package.json'))
+    this.packageConfigFromFile = fs.existsSync(
+      pathLib.join(this.cwd, 'package.json'),
+    )
       ? fs.readJsonSync(pathLib.join(this.cwd, 'package.json'))
       : {};
 
@@ -235,10 +238,10 @@ class Base<TConfig extends Config = Config> {
 
         \`\`\`bash
         # npm
-        $ npm install ${isGlobal ? '-g ' : ''}${this.packageConfig.name}
+        $ npm install ${isGlobal ? '-g ' : ''}${this.packageConfigFromFile.name}
 
         # Yarn
-        $ yarn ${isGlobal ? 'global ' : ''}add ${this.packageConfig.name}
+        $ yarn ${isGlobal ? 'global ' : ''}add ${this.packageConfigFromFile.name}
         \`\`\`
       `,
       renovateConfig: {},
@@ -252,7 +255,7 @@ class Base<TConfig extends Config = Config> {
     };
 
     const inheritedConfigPath =
-      config.name && config.name === this.packageConfig.name
+      config.name && config.name === this.packageConfigFromFile.name
         ? pathLib.resolve(this.cwd, 'src', 'index.ts')
         : config.name;
 

@@ -2,9 +2,10 @@ import packageName from 'depcheck-package-name';
 import { mapValues, pick, stubTrue } from 'lodash-es';
 import sortKeys from 'sort-keys';
 
-import type { Base } from '@/src';
+import type { Base, Config } from '@/src';
+import typedKeys from '@/src/lib/typed-keys';
 
-export default (base: Base) => {
+export default <TConfig extends Config>(base: Base<TConfig>) => {
   const commandNames = {
     checkUnknownFiles: true,
     commit: true,
@@ -20,8 +21,8 @@ export default (base: Base) => {
 
   return {
     ...pick(
-      base.packageConfig,
-      Object.keys({
+      base.packageConfigFromFile,
+      typedKeys({
         baseConfig: true,
         bin: true,
         dependencies: true,
@@ -47,17 +48,17 @@ export default (base: Base) => {
     ...(base.config.git && {
       repository: `dword-design/${base.config.git.project}`,
     }),
-    license: 'MIT',
+    license: 'MIT' as const,
     publishConfig: { access: 'public' as const },
     scripts: sortKeys(
       mapValues(commandNames, (handler, name) =>
-        base.packageConfig.name === '@dword-design/base'
+        base.packageConfigFromFile.name === '@dword-design/base'
           ? `${packageName`tsx`} src/cli.ts ${name}`
           : `base ${name}`,
       ),
     ),
     type: 'module' as const,
-    ...base.config.packageConfig,
-    version: base.packageConfig.version || '1.0.0',
+    ...(base.config.packageConfig as TConfig['packageConfig']), // TODO: TypeScript for some reason resolves packageConfig type instead of letting it open, depending on TConfig
+    version: base.packageConfigFromFile.version || '1.0.0',
   };
 };
