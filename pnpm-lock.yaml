@@ -24,8 +24,8 @@ importers:
         specifier: ^1.1.8
         version: 1.1.8
       '@dword-design/defu':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^2.0.0
+        version: 2.0.0
       '@dword-design/dotenv-json-extended':
         specifier: ^5.3.0
         version: 5.3.0
@@ -654,6 +654,10 @@ packages:
     resolution: {integrity: sha512-QEM8a6CPIrMvudnuNDwr3IxWJ0dcMKG9tgxt3zuPk/NmXV0ejk4qxQJ1PfquJwRzu59UsqNpUAACMG485VMIUA==}
     engines: {node: '>=18'}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+
+  '@dword-design/defu@2.0.0':
+    resolution: {integrity: sha512-68QCZ/GzHY+z4TOhblGxAA8Vh+OY5zubAxJuT2dwiNh632WJ1JbiQnyJi5D5V1eMZXd2iHifNLiBkkclPK5Y3A==}
+    engines: {node: '>=22'}
 
   '@dword-design/depcheck-parser-sass@6.0.3':
     resolution: {integrity: sha512-7WVKv82oWukC4oKJkDtlrjbPvBskc2DJT4WpZO/c2V/BcrtEFjEBxhKZDDR+D8Ef0fw+28iJgwAnpnXoPwaVNg==}
@@ -8133,6 +8137,10 @@ snapshots:
       type-fest: 5.8.0
 
   '@dword-design/defu@1.0.3':
+    dependencies:
+      defu: 6.1.7
+
+  '@dword-design/defu@2.0.0':
     dependencies:
       defu: 6.1.7
 

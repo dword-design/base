@@ -37,7 +37,7 @@
     "@dword-design/base-config-node": "^5.0.6",
     "@dword-design/ci": "^5.0.0",
     "@dword-design/defaults": "^1.1.8",
-    "@dword-design/defu": "^1.0.3",
+    "@dword-design/defu": "^2.0.0",
     "@dword-design/dotenv-json-extended": "^5.3.0",
     "@dword-design/eslint-config": "^9.0.19",
     "@dword-design/personal-data": "^3.0.0",
