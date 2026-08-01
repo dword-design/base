@@ -1,1 +1,2 @@
-export default (name, content) => `(^|[^\\w])${name}\`${content}\``;
+export default (name: string, content: string) =>
+  `(^|[^\\w])${name}\`${content}\``;
