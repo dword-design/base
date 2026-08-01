@@ -162,8 +162,8 @@ test('inherited', async ({}, testInfo) => {
 
       export default {
         commands: {
-          prepublishOnly: x => x + 1,
-          start: x => x + 3,
+          prepublishOnly: (base, x) => x + 1,
+          start: (base, x) => x + 3,
         },
         deployAssets: [{ label: 'Foo', path: 'foo.js' }],
         deployEnv: {
