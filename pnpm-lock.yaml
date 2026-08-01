@@ -32,8 +32,8 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       '@dword-design/eslint-config':
-        specifier: ^9.0.17
-        version: 9.0.18(@typescript-eslint/parser@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/utils@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(jiti@2.7.0)(typescript@5.9.3)
+        specifier: ^9.0.19
+        version: 9.0.19(@typescript-eslint/parser@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/utils@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(jiti@2.7.0)(typescript@5.9.3)
       '@dword-design/personal-data':
         specifier: ^3.0.0
         version: 3.0.0
@@ -665,8 +665,8 @@ packages:
   '@dword-design/endent@1.4.7':
     resolution: {integrity: sha512-yK1ivALMq9Eys6O9SgO+jBpRbQBLruFL2FvWMWPcoqiY1hPDHleY02Vir6jN6j7tDiMog3tjVtqKb4eWXdKo1w==}
 
-  '@dword-design/eslint-config@9.0.18':
-    resolution: {integrity: sha512-OEXCm+ZSMqhC8YF1ZbFs9hmZ3joyAS6le40OB0L2TMt7vVZ6SGG3GL8X6TlOfvYId87VIBDYCrBMdmBfBGPxEg==}
+  '@dword-design/eslint-config@9.0.19':
+    resolution: {integrity: sha512-nXKvRhk8BkjHwLlZe+ExVs1HyL3jEUv4DLWuwyKIYm/4vemRoG6OH0VUCW2/rMRrqvtH+x0y4NbWwJ2S1hTOBg==}
     engines: {node: '>=22'}
     peerDependencies:
       typescript: '*'
@@ -8028,7 +8028,7 @@ snapshots:
       '@dword-design/ci': 5.0.0
       '@dword-design/defu': 1.0.3
       '@dword-design/dotenv-json-extended': 5.3.0
-      '@dword-design/eslint-config': 9.0.18(@typescript-eslint/parser@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/utils@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(jiti@2.7.0)(typescript@5.9.3)
+      '@dword-design/eslint-config': 9.0.19(@typescript-eslint/parser@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/utils@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(jiti@2.7.0)(typescript@5.9.3)
       '@dword-design/personal-data': 3.0.0
       '@semantic-release/changelog': 6.0.3(semantic-release@25.0.8(typescript@5.9.3))
       '@semantic-release/git': 10.0.1(semantic-release@25.0.8(typescript@5.9.3))
@@ -8163,7 +8163,7 @@ snapshots:
       fast-json-parse: 1.0.3
       objectorarray: 1.0.5
 
-  '@dword-design/eslint-config@9.0.18(@typescript-eslint/parser@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/utils@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(jiti@2.7.0)(typescript@5.9.3)':
+  '@dword-design/eslint-config@9.0.19(@typescript-eslint/parser@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/utils@8.65.0(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3))(jiti@2.7.0)(typescript@5.9.3)':
     dependencies:
       '@dword-design/eslint-plugin-import-alias': 8.1.8(eslint@10.8.0(jiti@2.7.0))(typescript@5.9.3)
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.8.0(jiti@2.7.0))
