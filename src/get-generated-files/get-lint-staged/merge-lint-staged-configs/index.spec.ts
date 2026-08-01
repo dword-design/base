@@ -43,7 +43,9 @@ test('deduplicates commands', () => {
     { '*.js': ['eslint --fix', 'prettier --write'] },
   );
 
-  expect(result['*.js'].filter(v => v === 'eslint --fix')).toHaveLength(1);
+  expect(
+    ([] as string[]).concat(result['*.js']).filter(v => v === 'eslint --fix'),
+  ).toHaveLength(1);
 });
 
 test('handles single string commands and arrays uniformly', () => {

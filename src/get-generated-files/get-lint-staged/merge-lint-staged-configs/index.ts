@@ -32,10 +32,7 @@ const createBracePattern = (expandedGlobs: string[]): string | null => {
  * and merging commands for each normalized glob pattern.
  * Avoids race conditions by combining commands per unique glob.
  */
-const mergeConfigs = (
-  configA: Configuration,
-  configB: Configuration,
-): Configuration => {
+const mergeConfigs = (configA: Configuration, configB: Configuration) => {
   const expandedMap = new Map<string, Set<string>>();
   const originalToExpanded = new Map<string, string[]>();
   const expandedToOriginals = new Map<string, Set<string>>();
@@ -65,7 +62,7 @@ const mergeConfigs = (
     }
   }
 
-  const result: Configuration = {};
+  const result: Record<string, string | string[]> = {};
   const processedExpanded = new Set<string>();
   // Try to reconstruct brace patterns for non-overlapping cases
   const originalGlobs = originalToExpanded.keys().toArray();

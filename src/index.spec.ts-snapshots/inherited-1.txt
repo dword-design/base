@@ -1,5 +1,6 @@
 {
   "allowedMatches": [],
+  "codecovGraphToken": null,
   "deployAssets": [
     {
       "label": "Foo",
@@ -31,6 +32,7 @@
   "minNodeVersion": null,
   "name": "base-config-foo",
   "nodeVersion": 10,
+  "npmPublish": false,
   "packageBaseConfig": {
     "main": "dist/index.scss"
   },

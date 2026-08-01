@@ -121,7 +121,7 @@ test('function inherited', async ({}, testInfo) => {
 
   await fs.outputFile(
     pathLib.join(cwd, 'node_modules', 'base-config-foo', 'index.js'),
-    'export default config => ({ readmeInstallString: config.name })',
+    'export default (base, config) => ({ readmeInstallString: config.name })',
   );
 
   const base = new Base({ name: 'foo' }, { cwd });

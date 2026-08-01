@@ -20,10 +20,10 @@
   ".renovaterc.json",
   ".vscode/settings.json",
   "AGENTS.md",
-  "LICENSE.md",
-  "README.md",
   "eslint.config.ts",
   "eslint.lint-staged.config.ts",
+  "LICENSE.md",
   "package.json",
+  "README.md",
   "tsconfig.json"
 ]

@@ -1,5 +1,6 @@
 {
   "allowedMatches": [],
+  "codecovGraphToken": null,
   "commands": {},
   "deployAssets": [],
   "deployEnv": {},
@@ -19,6 +20,7 @@
   "minNodeVersion": null,
   "name": "base-config-foo",
   "nodeVersion": 22,
+  "npmPublish": false,
   "packageConfig": {},
   "preDeploySteps": [],
   "readmeInstallString": "## Install\n\n```bash\n# npm\n$ npm install foo\n\n# Yarn\n$ yarn add foo\n```",
