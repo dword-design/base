@@ -16,13 +16,17 @@ import { identity, mapValues } from 'lodash-es';
 import type { PartialCommandObjectInObject } from 'make-cli';
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name';
 import type { RenovateConfig } from 'renovate/dist/config/types';
-import type { ArrayTail, PackageJson, TsConfigJson } from 'type-fest';
+import type { ArrayTail, PackageJson, TsConfigJson, Simplify } from 'type-fest';
 
 import type { PartialCommandOptions } from './commands/command-options-input';
 import getDepcheckSpecialBase from './get-depcheck-special-base';
 import getGeneratedFiles from './get-generated-files';
 import getPackageConfig from './get-generated-files/get-package-config';
 import getGitInfo from './get-git-info';
+
+type InterfaceToType<T> = Simplify<T>;
+
+type PackageJsonStandard = InterfaceToType<PackageJson.PackageJsonStandard>;
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type HandlerWithBase<TConfig extends Config = Config> = (
@@ -70,7 +74,7 @@ type Config = {
   name?: string;
   nodeVersion: number;
   npmPublish: boolean;
-  packageConfig: Omit<PackageJson, 'license'>;
+  packageConfig: PackageJsonStandard;
   preDeploySteps: string[];
   prepare: <TConfig extends Config>(
     base: Base<TConfig>,
@@ -128,7 +132,7 @@ const run = <
 
 class Base<TConfig extends Config = Config> {
   config: TConfig;
-  packageConfigFromFile: Omit<PackageJson, 'license'>;
+  packageConfigFromFile: PackageJson;
   packageConfig: ReturnType<typeof getPackageConfig<TConfig>>;
   cwd: string;
   generatedFiles: ReturnType<typeof getGeneratedFiles>;
