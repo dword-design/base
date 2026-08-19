@@ -74,7 +74,7 @@
     "output-files": "^4.0.0",
     "package-name-regex": "^5.0.0",
     "parse-git-config": "npm:@dword-design/parse-git-config@^0.0.1",
-    "parse-packagejson-name": "1.1.0",
+    "parse-packagejson-name": "^1.1.1",
     "plugin-name-to-package-name": "npm:@dword-design/plugin-name-to-package-name@^0.1.2",
     "safe-readfile": "^1.0.2",
     "semantic-release": "^25.0.8",

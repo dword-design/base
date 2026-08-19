@@ -135,8 +135,8 @@ importers:
         specifier: npm:@dword-design/parse-git-config@^0.0.1
         version: '@dword-design/parse-git-config@0.0.1'
       parse-packagejson-name:
-        specifier: 1.1.0
-        version: 1.1.0
+        specifier: ^1.1.1
+        version: 1.1.1
       plugin-name-to-package-name:
         specifier: npm:@dword-design/plugin-name-to-package-name@^0.1.2
         version: '@dword-design/plugin-name-to-package-name@0.1.2'
@@ -5442,8 +5442,8 @@ packages:
     resolution: {integrity: sha512-TXfryirbmq34y8QBwgqCVLi+8oA3oWx2eAnSn62ITyEhEYaWRlVZ2DvMM9eZbMs/RfxPu/PK/aBLyGj4IrqMHw==}
     engines: {node: '>=18'}
 
-  parse-packagejson-name@1.1.0:
-    resolution: {integrity: sha512-FAl0VlP/AH3kCUKd/tPvtBazuV34Dt6VE4B7QLLyI9/iimfOlCOsCWSB9r/Du/Kt2w3s+2W1QZDkA3dG4zmZqw==}
+  parse-packagejson-name@1.1.1:
+    resolution: {integrity: sha512-MBkHgxwvoN1nQ0r7ITjLoCGPdiIiJEsadjtvVNBa6qxEyNThymy+IJulsy0nFBcVsBHDPiDbIzBgk7OSO0BbJQ==}
 
   parse-passwd@1.0.0:
     resolution: {integrity: sha512-1Y1A//QUXEZK7YKz+rD9WydcE1+EuPr6ZBgKecAB8tmoW6UFv0NREVJe1p+jRxtThkcbbKkfwIbWJe/IeE6m2Q==}
@@ -8092,7 +8092,7 @@ snapshots:
       output-files: 3.0.0
       package-name-regex: 4.0.3
       parse-git-config: '@dword-design/parse-git-config@0.0.1'
-      parse-packagejson-name: 1.1.0
+      parse-packagejson-name: 1.1.1
       plugin-name-to-package-name: '@dword-design/plugin-name-to-package-name@0.1.2'
       safe-readfile: 1.0.2
       semantic-release: 25.0.8(typescript@5.9.3)
@@ -10782,7 +10782,7 @@ snapshots:
       '@dword-design/functions': 6.0.2
       fs-extra: 11.4.0
       module-root: '@dword-design/module-root@0.2.5'
-      parse-packagejson-name: 1.1.0
+      parse-packagejson-name: 1.1.1
 
   depcheck-detector-execa@6.0.0:
     dependencies:
@@ -10790,7 +10790,7 @@ snapshots:
       fs-extra: 11.4.0
       lodash-es: 4.18.1
       module-root: '@dword-design/module-root@0.2.5'
-      parse-packagejson-name: 1.1.0
+      parse-packagejson-name: 1.1.1
 
   depcheck-detector-package-name@3.0.4: {}
 
@@ -13273,7 +13273,7 @@ snapshots:
 
   parse-ms@4.0.0: {}
 
-  parse-packagejson-name@1.1.0: {}
+  parse-packagejson-name@1.1.1: {}
 
   parse-passwd@1.0.0: {}
 

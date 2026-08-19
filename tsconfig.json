@@ -10,7 +10,7 @@
       ]
     },
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "target": "ESNext"
   },
   "exclude": [
