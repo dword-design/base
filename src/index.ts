@@ -18,35 +18,10 @@ import { transform as pluginNameToPackageName } from 'plugin-name-to-package-nam
 import type { RenovateConfig } from 'renovate/dist/config/types';
 import type { ArrayTail, PackageJson, TsConfigJson } from 'type-fest';
 
-import checkUnknownFiles from './commands/check-unknown-files';
 import type { PartialCommandOptions } from './commands/command-options-input';
-import commit from './commands/commit';
-import depcheckMethod from './commands/depcheck';
-import lint from './commands/lint';
-import lintPackagejson from './commands/lint/lint-packagejson';
-import prepare from './commands/prepare';
-import test from './commands/test';
-import testDocker from './commands/test-docker';
-import testRaw from './commands/test-raw';
-import typecheck from './commands/typecheck';
-import verify from './commands/verify';
 import getDepcheckSpecialBase from './get-depcheck-special-base';
 import getGeneratedFiles from './get-generated-files';
-import getEditorIgnoreConfig from './get-generated-files/get-editor-ignore';
-import getEslintConfig from './get-generated-files/get-eslint';
-import getGithubSyncMetadataConfig from './get-generated-files/get-github-sync-metadata';
-import getGithubWorkflowConfig from './get-generated-files/get-github-workflow';
-import getGitignoreConfig from './get-generated-files/get-gitignore';
-import getGitpodConfig from './get-generated-files/get-gitpod';
-import getGitpodDockerfile from './get-generated-files/get-gitpod-dockerfile';
-import getLicenseString from './get-generated-files/get-license-string';
-import getLintStaged from './get-generated-files/get-lint-staged';
 import getPackageConfig from './get-generated-files/get-package-config';
-import getReadmeString from './get-generated-files/get-readme-string';
-import getReleaseConfig from './get-generated-files/get-release';
-import getRenovateConfig from './get-generated-files/get-renovate';
-import getTypescriptConfig from './get-generated-files/get-typescript';
-import getVscodeConfig from './get-generated-files/get-vscode';
 import getGitInfo from './get-git-info';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -156,7 +131,7 @@ class Base<TConfig extends Config = Config> {
   packageConfigFromFile: Omit<PackageJson, 'license'>;
   packageConfig: ReturnType<typeof getPackageConfig<TConfig>>;
   cwd: string;
-  generatedFiles;
+  generatedFiles: ReturnType<typeof getGeneratedFiles>;
 
   constructor(configInput: PartialConfig<TConfig> = null, { cwd = '.' } = {}) {
     this.cwd = cwd;
@@ -290,157 +265,8 @@ class Base<TConfig extends Config = Config> {
       ),
     };
 
-    this.packageConfig = this.getPackageConfig();
-    this.generatedFiles = this.getGeneratedFiles();
-  }
-
-  commit(...arguments_: ArrayTail<Parameters<typeof commit>>) {
-    return commit(this, ...arguments_);
-  }
-
-  lint(...arguments_: ArrayTail<Parameters<typeof lint>>) {
-    return lint(this, ...arguments_);
-  }
-
-  lintPackagejson(
-    ...arguments_: ArrayTail<Parameters<typeof lintPackagejson>>
-  ) {
-    return lintPackagejson(this, ...arguments_);
-  }
-
-  typecheck(...arguments_: ArrayTail<Parameters<typeof typecheck>>) {
-    return typecheck(this, ...arguments_);
-  }
-
-  verify(...arguments_: ArrayTail<Parameters<typeof verify>>) {
-    return verify(this, ...arguments_);
-  }
-
-  prepare(...arguments_: ArrayTail<Parameters<typeof prepare>>) {
-    return prepare(this, ...arguments_);
-  }
-
-  test(...arguments_: ArrayTail<Parameters<typeof test>>) {
-    return test(this, ...arguments_);
-  }
-
-  testRaw(...arguments_: ArrayTail<Parameters<typeof testRaw>>) {
-    return testRaw(this, ...arguments_);
-  }
-
-  testDocker(...arguments_: ArrayTail<Parameters<typeof testDocker>>) {
-    return testDocker(this, ...arguments_);
-  }
-
-  getPackageConfig(
-    ...arguments_: ArrayTail<Parameters<typeof getPackageConfig>>
-  ) {
-    return getPackageConfig(this, ...arguments_);
-  }
-
-  getGeneratedFiles(
-    ...arguments_: ArrayTail<Parameters<typeof getGeneratedFiles>>
-  ) {
-    return getGeneratedFiles(this, ...arguments_);
-  }
-
-  checkUnknownFiles(
-    ...arguments_: ArrayTail<Parameters<typeof checkUnknownFiles>>
-  ) {
-    return checkUnknownFiles(this, ...arguments_);
-  }
-
-  depcheck(...arguments_: ArrayTail<Parameters<typeof depcheckMethod>>) {
-    return depcheckMethod(this, ...arguments_);
-  }
-
-  getEditorIgnoreConfig(
-    ...arguments_: ArrayTail<Parameters<typeof getEditorIgnoreConfig>>
-  ) {
-    return getEditorIgnoreConfig(this, ...arguments_);
-  }
-
-  getEslintConfig(
-    ...arguments_: ArrayTail<Parameters<typeof getEslintConfig>>
-  ) {
-    return getEslintConfig(this, ...arguments_);
-  }
-
-  getGithubSyncMetadataConfig(
-    ...arguments_: ArrayTail<Parameters<typeof getGithubSyncMetadataConfig>>
-  ) {
-    return getGithubSyncMetadataConfig(this, ...arguments_);
-  }
-
-  getGithubWorkflowConfig(
-    ...arguments_: ArrayTail<Parameters<typeof getGithubWorkflowConfig>>
-  ) {
-    return getGithubWorkflowConfig(this, ...arguments_);
-  }
-
-  getGitignoreConfig(
-    ...arguments_: ArrayTail<Parameters<typeof getGitignoreConfig>>
-  ) {
-    return getGitignoreConfig(this, ...arguments_);
-  }
-
-  getGitpodConfig(
-    ...arguments_: ArrayTail<Parameters<typeof getGitpodConfig>>
-  ) {
-    return getGitpodConfig(this, ...arguments_);
-  }
-
-  getGitpodDockerfile(
-    ...arguments_: ArrayTail<Parameters<typeof getGitpodDockerfile>>
-  ) {
-    return getGitpodDockerfile(this, ...arguments_);
-  }
-
-  getLicenseString(
-    ...arguments_: ArrayTail<Parameters<typeof getLicenseString>>
-  ) {
-    return getLicenseString(this, ...arguments_);
-  }
-
-  getReadmeString(
-    ...arguments_: ArrayTail<Parameters<typeof getReadmeString>>
-  ) {
-    return getReadmeString(this, ...arguments_);
-  }
-
-  getReleaseConfig(
-    ...arguments_: ArrayTail<Parameters<typeof getReleaseConfig>>
-  ) {
-    return getReleaseConfig(this, ...arguments_);
-  }
-
-  getRenovateConfig(
-    ...arguments_: ArrayTail<Parameters<typeof getRenovateConfig>>
-  ) {
-    return getRenovateConfig(this, ...arguments_);
-  }
-
-  getVscodeConfig(
-    ...arguments_: ArrayTail<Parameters<typeof getVscodeConfig>>
-  ) {
-    return getVscodeConfig(this, ...arguments_);
-  }
-
-  getTypescriptConfig(
-    ...arguments_: ArrayTail<Parameters<typeof getTypescriptConfig>>
-  ) {
-    return getTypescriptConfig(this, ...arguments_);
-  }
-
-  getLintStaged(...arguments_: ArrayTail<Parameters<typeof getLintStaged>>) {
-    return getLintStaged(this, ...arguments_);
-  }
-
-  run<K extends keyof TConfig['commands'] & string>(
-    name: K,
-    ...arguments_: ArrayTail<Parameters<TConfig['commands'][K]['handler']>>
-  ): ReturnType<TConfig['commands'][K]['handler']> {
-    return run(this, name, ...arguments_);
+    this.packageConfig = getPackageConfig(this);
+    this.generatedFiles = getGeneratedFiles(this);
   }
 }
 

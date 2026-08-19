@@ -11,6 +11,8 @@ import outputFiles from 'output-files';
 import stripAnsi from 'strip-ansi';
 
 import { Base } from '@/src';
+import self from '.';
+import prepare from '@/src/commands/prepare';
 
 const javascript = endent;
 
@@ -36,9 +38,9 @@ test('assertion', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.test()).rejects.toThrow(
+  await expect(self(base)).rejects.toThrow(
     'Error: expect(received).toEqual(expected)',
   );
 });
@@ -46,8 +48,8 @@ test('assertion', async ({}, testInfo) => {
 test('empty', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.test();
+  await prepare(base);
+  await self(base);
 });
 
 test('image snapshot', async ({}, testInfo) => {
@@ -87,8 +89,8 @@ test('image snapshot', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.test({ updateSnapshots: true });
+  await prepare(base);
+  await self(base, { updateSnapshots: true });
 
   expect(
     await globby('*', { cwd: pathLib.join(cwd, 'index.spec.ts-snapshots') }),
@@ -99,8 +101,8 @@ test('minimal', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'src', 'index.ts'), 'export default 1');
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.test();
+  await prepare(base);
+  await self(base);
 });
 
 test('multiple snapshots', async ({}, testInfo) => {
@@ -129,8 +131,8 @@ test('multiple snapshots', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.test({ updateSnapshots: true });
+  await prepare(base);
+  await self(base, { updateSnapshots: true });
 
   expect(
     await fs.readFile(
@@ -163,8 +165,8 @@ test('error', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await expect(base.test()).rejects.toThrow();
+  await prepare(base);
+  await expect(self(base)).rejects.toThrow();
 
   expect(
     await fs.exists(
@@ -192,8 +194,8 @@ test('grep', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  const { stdout } = await base.test({ grep: 'test1' });
+  await prepare(base);
+  const { stdout } = await self(base, { grep: 'test1' });
 
   expect(stdout).toMatch(
     `${pathLib.join('src', 'index.spec.ts')}:${isSameOrAfter24_12_0 ? 2 : 3}:1 › test1`,
@@ -225,8 +227,8 @@ test('pattern', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  const { stdout } = await base.test({ patterns: ['src/index.spec.ts'] });
+  await prepare(base);
+  const { stdout } = await self(base, { patterns: ['src/index.spec.ts'] });
 
   expect(stdout).toMatch(
     `${pathLib.join('src', 'index.spec.ts')}:${isSameOrAfter24_12_0 ? 2 : 3}:1 › valid`,
@@ -263,9 +265,9 @@ test('multiple patterns', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  const { stdout } = await base.test({
+  const { stdout } = await self(base, {
     patterns: ['src/index.spec.ts', 'src/index2.spec.ts'],
   });
 
@@ -307,8 +309,8 @@ test('existing snapshot', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.test();
+  await prepare(base);
+  await self(base);
 });
 
 test('update existing snapshot', async ({}, testInfo) => {
@@ -338,8 +340,8 @@ test('update existing snapshot', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.test({ updateSnapshots: true });
+  await prepare(base);
+  await self(base, { updateSnapshots: true });
 
   expect(
     await fs.readFile(
@@ -357,7 +359,7 @@ test('update existing snapshot', async ({}, testInfo) => {
     `,
   );
 
-  await base.test({ updateSnapshots: true });
+  await self(base, { updateSnapshots: true });
 
   expect(
     await fs.readFile(
@@ -388,8 +390,8 @@ test('valid', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  let { stdout } = await base.test();
+  await prepare(base);
+  let { stdout } = await self(base);
   stdout = stripAnsi(stdout!); // TODO: Cannot be undefined due to process.env.NODE_ENV === 'test'
 
   expect(stdout).toMatch(
@@ -426,8 +428,8 @@ test('snapshot', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.test({ updateSnapshots: true });
+  await prepare(base);
+  await self(base, { updateSnapshots: true });
 
   expect(
     await fs.readFile(
@@ -460,8 +462,8 @@ test('in project root', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  const { stdout } = await base.test();
+  await prepare(base);
+  const { stdout } = await self(base);
   expect(stdout).toMatch('run test');
 });
 
@@ -486,7 +488,7 @@ test('usesdocker macOS', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
   await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
   await execaCommand('tsx cli.ts', { cwd, env: { CI: String(true) } });
 });
@@ -514,7 +516,7 @@ test('usesdocker outside ci', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
   await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
 
   await expect(execaCommand('tsx cli.ts', { cwd })).rejects.toThrow(
@@ -543,7 +545,7 @@ test('usesdocker windows', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
   await fs.remove(pathLib.join(cwd, 'tsconfig.json'));
   await execaCommand('tsx cli.ts', { cwd, env: { CI: String(true) } });
 });

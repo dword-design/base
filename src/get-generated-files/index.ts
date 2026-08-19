@@ -1,4 +1,14 @@
 import { createRequire } from 'node:module';
+import getTypescriptConfig from './get-typescript';
+import getGitpodDockerfile from './get-gitpod-dockerfile';
+import getGitpodConfig from './get-gitpod';
+import getLintStaged from './get-lint-staged';
+import getReleaseConfig from './get-release';
+import getRenovateConfig from './get-renovate';
+import getVscodeConfig from './get-vscode';
+import getEslintConfig from './get-eslint';
+import getReadmeString from './get-readme-string';
+import getLicenseString from './get-license-string';
 
 import fs from 'fs-extra';
 import { stringify as stringifyIni } from 'ini';
@@ -20,6 +30,9 @@ import githubFunding from './github-funding';
 import githubLabelsConfig from './github-labels';
 import githubSyncLabelsConfig from './github-sync-labels';
 import npmrc from './npmrc';
+import getGitignoreConfig from './get-gitignore';
+import getGithubWorkflowConfig from './get-github-workflow';
+import getGithubSyncMetadataConfig from './get-github-sync-metadata';
 
 const resolver = createRequire(import.meta.url);
 
@@ -40,7 +53,7 @@ export default (base: Base) => ({
     sortKeys(githubLabelsConfig, { deep: true }),
   ),
   '.github/workflows/build.yml': yamlStringify(
-    sortKeys(base.getGithubWorkflowConfig(), { deep: true }),
+    sortKeys(getGithubWorkflowConfig(base), { deep: true }),
   ),
   '.github/workflows/deprecated-dependencies.yml': yamlStringify(
     sortKeys(githubDeprecatedDependenciesConfig, { deep: true }),
@@ -49,40 +62,39 @@ export default (base: Base) => ({
     sortKeys(githubSyncLabelsConfig, { deep: true }),
   ),
   '.github/workflows/sync-metadata.yml': yamlStringify(
-    sortKeys(base.getGithubSyncMetadataConfig(), { deep: true }),
+    sortKeys(getGithubSyncMetadataConfig(base), { deep: true }),
   ),
-  '.gitignore': base
-    .getGitignoreConfig()
+  '.gitignore': getGitignoreConfig(base)
     .map(entry => `${entry}\n`)
     .join(''),
-  '.gitpod.Dockerfile': base.getGitpodDockerfile(),
-  '.gitpod.yml': yamlStringify(base.getGitpodConfig()),
-  '.lintstagedrc.json': `${JSON.stringify(base.getLintStaged(), undefined, 2)}\n`,
+  '.gitpod.Dockerfile': getGitpodDockerfile(base),
+  '.gitpod.yml': yamlStringify(getGitpodConfig(base)),
+  '.lintstagedrc.json': `${JSON.stringify(getLintStaged(base), undefined, 2)}\n`,
   '.npmrc': stringifyIni(npmrc),
   '.releaserc.json': `${JSON.stringify(
-    base.getReleaseConfig(),
+    getReleaseConfig(base),
     undefined,
     2,
   )}\n`,
   '.renovaterc.json': `${JSON.stringify(
-    sortKeys(base.getRenovateConfig(), { deep: true }),
+    sortKeys(getRenovateConfig(base), { deep: true }),
     undefined,
     2,
   )}\n`,
   '.vscode/settings.json': `${JSON.stringify(
-    base.getVscodeConfig(),
+    getVscodeConfig(base),
     undefined,
     2,
   )}\n`,
   'AGENTS.md': fs.readFileSync(resolver.resolve('./agents.md'), 'utf8'),
-  'eslint.config.ts': base.getEslintConfig(),
+  'eslint.config.ts': getEslintConfig(base),
   'eslint.lint-staged.config.ts': eslintLintStaged,
-  'LICENSE.md': base.getLicenseString(),
+  'LICENSE.md': getLicenseString(base),
   'package.json': `${JSON.stringify(
     sortPackageJson(base.packageConfig),
     undefined,
     2,
   )}\n`,
-  'README.md': base.getReadmeString(),
-  'tsconfig.json': `${JSON.stringify(sortKeys(base.getTypescriptConfig(), { deep: true }), undefined, 2)}\n`,
+  'README.md': getReadmeString(base),
+  'tsconfig.json': `${JSON.stringify(sortKeys(getTypescriptConfig(base), { deep: true }), undefined, 2)}\n`,
 });

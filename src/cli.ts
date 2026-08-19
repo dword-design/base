@@ -4,7 +4,7 @@ import dotenv from '@dword-design/dotenv-json-extended';
 import { mapValues } from 'lodash-es';
 import makeCli from 'make-cli';
 
-import { Base } from '.';
+import { Base, run, commit, depcheck, verify, testRaw, lint, prepare, typecheck, checkUnknownFiles, test } from '.';
 import loadConfig from './load-config';
 
 const base = new Base(await loadConfig());
@@ -37,9 +37,9 @@ type TestOptions = {
 try {
   await makeCli({
     commands: {
-      checkUnknownFiles: { handler: () => base.checkUnknownFiles() },
+      checkUnknownFiles: { handler: () => checkUnknownFiles(base) },
       commit: {
-        handler: () => base.commit(),
+        handler: (...args) => commit(base, ...args),
         options: [
           { description: 'Allow empty commits', name: '--allow-empty' },
         ],
@@ -47,23 +47,23 @@ try {
       depcheck: {
         handler: () => {
           dotenv.config();
-          return base.depcheck();
+          return depcheck(base);
         },
       },
-      lint: { handler: () => base.lint() },
-      prepare: { handler: () => base.prepare() },
+      lint: { handler: () => lint(base) },
+      prepare: { handler: () => prepare(base) },
       test: {
         arguments: '[patterns...]',
         handler: (patterns: string[], options: TestOptions) =>
-          base.test({ patterns, ...options }),
+          test(base, { patterns, ...options }),
         options: testOptions,
       },
-      typecheck: { handler: () => base.typecheck() },
+      typecheck: { handler: () => typecheck(base) },
       ...(base.config.testInContainer && {
         'test:raw': {
           arguments: '[patterns...]',
           handler: (patterns: string[], options: TestOptions) =>
-            base.testRaw({ patterns, ...options }),
+            testRaw(base, { patterns, ...options }),
           options: testOptions,
         },
       }),
@@ -71,13 +71,13 @@ try {
         arguments: '[patterns...]',
         handler: (patterns: string[], options: TestOptions) => {
           dotenv.config();
-          return base.verify({ patterns, ...options });
+          return verify(base, { patterns, ...options });
         },
         options: testOptions,
       },
       ...mapValues(base.config.commands, (command, name) => ({
         ...command,
-        handler: (...arguments_: unknown[]) => base.run(name, ...arguments_),
+        handler: (...arguments_: unknown[]) => run(base, name, ...arguments_),
       })),
     },
   });

@@ -8,6 +8,7 @@ import outputFiles from 'output-files';
 import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
+import self from '.';
 
 test('GitHub CLI exists', async () => {
   if (isCI) {
@@ -19,21 +20,21 @@ test('job matrix', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
   const base = new Base(null, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+  expect(self(base)).toMatchSnapshot();
 });
 
 test('macos', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
   const base = new Base({ macos: true }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+  expect(self(base)).toMatchSnapshot();
 });
 
 test('no windows', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
   const base = new Base({ windows: false }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+  expect(self(base)).toMatchSnapshot();
 });
 
 test('multiple supported node versions', async ({}, testInfo) => {
@@ -45,14 +46,14 @@ test('multiple supported node versions', async ({}, testInfo) => {
     { cwd },
   );
 
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+  expect(self(base)).toMatchSnapshot();
 });
 
 test('simple', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
   const base = new Base({ windows: false }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+  expect(self(base)).toMatchSnapshot();
 });
 
 test('package.json', async ({}, testInfo) => {
@@ -64,7 +65,7 @@ test('package.json', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd: pathLib.join(cwd, 'repos', 'foo') });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+  expect(self(base)).toMatchSnapshot();
 });
 
 test('package.json same path as .env.schema.json', async ({}, testInfo) => {
@@ -78,7 +79,7 @@ test('package.json same path as .env.schema.json', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd: pathLib.join(cwd, 'repos', 'foo') });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+  expect(self(base)).toMatchSnapshot();
 });
 
 test('environment variables', async ({}, testInfo) => {
@@ -90,12 +91,12 @@ test('environment variables', async ({}, testInfo) => {
   });
 
   const base = new Base({ windows: false }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+  expect(self(base)).toMatchSnapshot();
 });
 
 test('testInContainer', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'package.json'), JSON.stringify({}));
   const base = new Base({ testInContainer: true }, { cwd });
-  expect(base.getGithubWorkflowConfig()).toMatchSnapshot();
+  expect(self(base)).toMatchSnapshot();
 });

@@ -5,6 +5,8 @@ import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 
 import { Base } from '@/src';
+import prepare from '@/src/commands/prepare';
+import self from './lint-packagejson'
 
 test('bin: object', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -15,8 +17,8 @@ test('bin: object', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  base.lintPackagejson();
+  await prepare(base);
+  await self(base);
 });
 
 test('bin: object: outside dist', async ({}, testInfo) => {
@@ -28,9 +30,9 @@ test('bin: object: outside dist', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  expect(() => base.lintPackagejson()).toThrow(
+  expect(() => self(base)).toThrow(
     'package.json invalid\ndata/bin/foo must match pattern "^\\.\\/dist\\/"',
   );
 });
@@ -43,9 +45,9 @@ test('bin: string', async ({}, testInfo) => {
     JSON.stringify({ bin: './dist/cli.js' }),
   );
 
-  const base = await new Base(null, { cwd });
-  await base.prepare();
-  base.lintPackagejson();
+  const base = new Base(null, { cwd });
+  await prepare(base);
+  self(base);
 });
 
 test('bin: string: outside dist', async ({}, testInfo) => {
@@ -57,9 +59,9 @@ test('bin: string: outside dist', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  expect(() => base.lintPackagejson()).toThrow(
+  expect(() => self(base)).toThrow(
     'package.json invalid\ndata/bin must match pattern "^\\.\\/dist\\/"',
   );
 });
@@ -73,9 +75,9 @@ test('invalid name', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  expect(() => base.lintPackagejson()).toThrow(
+  expect(() => self(base)).toThrow(
     'package.json invalid\ndata/name must match pattern "^(@[a-z0-9-~][a-z0-9-._~]*\\/)?[a-z0-9-~][a-z0-9-._~]*$"',
   );
 });
@@ -89,8 +91,8 @@ test('package overrides', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  base.lintPackagejson();
+  await prepare(base);
+  self(base);
 });
 
 test('wrong dependencies type', async ({}, testInfo) => {
@@ -102,9 +104,8 @@ test('wrong dependencies type', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-
-  expect(() => base.lintPackagejson()).toThrow(
+  await prepare(base);
+  expect(() => self(base)).toThrow(
     'package.json invalid\ndata/dependencies must be object',
   );
 });
@@ -118,9 +119,8 @@ test('wrong description type', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-
-  expect(() => base.lintPackagejson()).toThrow(
+  await prepare(base);
+  expect(() => self(base)).toThrow(
     'package.json invalid\ndata/description must be string',
   );
 });
@@ -134,9 +134,8 @@ test('wrong dev dependencies type', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-
-  expect(() => base.lintPackagejson()).toThrow(
+  await prepare(base);
+  expect(() => self(base)).toThrow(
     'package.json invalid\ndata/devDependencies must be object',
   );
 });
@@ -150,9 +149,8 @@ test('wrong keywords type', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-
-  expect(() => base.lintPackagejson()).toThrow(
+  await prepare(base);
+  expect(() => self(base)).toThrow(
     'package.json invalid\ndata/keywords must be array',
   );
 });
@@ -173,6 +171,6 @@ test('package name with dot', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.lintPackagejson();
+  await prepare(base);
+  self(base);
 });

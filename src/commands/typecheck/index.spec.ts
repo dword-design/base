@@ -3,6 +3,8 @@ import endent from 'endent';
 import outputFiles from 'output-files';
 
 import { Base } from '@/src';
+import prepare from '@/src/commands/prepare';
+import self from '.'
 
 test('type error: ts', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -16,9 +18,9 @@ test('type error: ts', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.typecheck({ stderr: 'pipe' })).rejects.toThrow(
+  await expect(self(base, { stderr: 'pipe' })).rejects.toThrow(
     "src/index.ts(2,5): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
   );
 });
@@ -41,9 +43,9 @@ test('type error: vue', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.typecheck({ stderr: 'pipe' })).rejects.toThrow(
+  await expect(self(base, { stderr: 'pipe' })).rejects.toThrow(
     "src/index.vue(7,5): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
   );
 });
@@ -60,6 +62,6 @@ test('custom typecheck', async ({}, testInfo) => {
     { cwd },
   );
 
-  await base.prepare();
-  await expect(base.typecheck()).rejects.toThrow('foobar');
+  await prepare(base);
+  await expect(self(base)).rejects.toThrow('foobar');
 });

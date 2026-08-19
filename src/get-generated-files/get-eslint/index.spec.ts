@@ -2,16 +2,17 @@ import { expect, test } from '@playwright/test';
 import endent from 'endent';
 
 import { Base } from '@/src';
+import self from '.'
 
 test('custom config', () => {
   const base = new Base({ eslintConfig: 'foo' });
-  expect(base.getEslintConfig()).toEqual('foo');
+  expect(self(base)).toEqual('foo');
 });
 
 test('valid', () => {
   const base = new Base();
 
-  expect(base.getEslintConfig()).toEqual(endent`
+  expect(self(base)).toEqual(endent`
     import config from '@dword-design/eslint-config';
     import { defineConfig, globalIgnores } from 'eslint/config';
 

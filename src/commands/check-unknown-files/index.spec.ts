@@ -6,6 +6,7 @@ import outputFiles from 'output-files';
 import { Base } from '@/src';
 
 import UnknownFilesError from './unknown-files-error';
+import self from '.'
 
 type TestConfig = {
   allowedMatches?: string[];
@@ -62,8 +63,8 @@ for (const [name, _testConfig] of Object.entries(tests)) {
     );
 
     await (isEmpty(testConfig.result)
-      ? base.checkUnknownFiles()
-      : expect(base.checkUnknownFiles()).rejects.toThrow(
+      ? self(base)
+      : expect(self(base)).rejects.toThrow(
           new UnknownFilesError(testConfig.result),
         ));
   });

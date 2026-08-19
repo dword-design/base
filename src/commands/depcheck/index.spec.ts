@@ -6,6 +6,8 @@ import fs from 'fs-extra';
 import outputFiles from 'output-files';
 
 import { Base } from '@/src';
+import prepare from '@/src/commands/prepare';
+import self from '.';
 
 test('base config in dev dependencies', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -18,8 +20,8 @@ test('base config in dev dependencies', async ({}, testInfo) => {
   });
 
   const base = new Base({ name: 'foo' }, { cwd });
-  await base.prepare();
-  await base.depcheck();
+  await prepare(base);
+  await self(base);
 });
 
 test('base config in prod dependencies', async ({}, testInfo) => {
@@ -33,9 +35,9 @@ test('base config in prod dependencies', async ({}, testInfo) => {
   });
 
   const base = new Base({ name: 'foo' }, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.depcheck()).rejects.toThrow(endent`
+  await expect(self(base)).rejects.toThrow(endent`
     Unused dependencies
     * base-config-foo
   `);
@@ -54,8 +56,8 @@ test('depcheck ignoreMatches', async ({}, testInfo) => {
     { cwd },
   );
 
-  await base.prepare();
-  await base.depcheck();
+  await prepare(base);
+  await self(base);
 });
 
 test('invalid file', async ({}, testInfo) => {
@@ -85,9 +87,9 @@ test('invalid file', async ({}, testInfo) => {
     { cwd },
   );
 
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.depcheck()).rejects.toThrow(endent`
+  await expect(self(base)).rejects.toThrow(endent`
     Unused dependencies
     * change-case
 
@@ -106,9 +108,9 @@ test('prod dependency only in test', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.depcheck()).rejects.toThrow(endent`
+  await expect(self(base)).rejects.toThrow(endent`
     Unused dependencies
     * bar
   `);
@@ -125,9 +127,9 @@ test('unused dependencies', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.depcheck()).rejects.toThrow(endent`
+  await expect(self(base)).rejects.toThrow(endent`
     Unused dependencies
     * change-case
     * foo
@@ -149,9 +151,9 @@ test('types in dependencies', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.depcheck()).rejects.toThrow(endent`
+  await expect(self(base)).rejects.toThrow(endent`
     Types dependencies should be in devDependencies
     * @types/lodash-es
   `);

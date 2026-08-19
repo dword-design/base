@@ -6,6 +6,8 @@ import fs from 'fs-extra';
 import outputFiles from 'output-files';
 
 import { Base } from '@/src';
+import prepare from '@/src/commands/prepare';
+import self from '.';
 
 test('unused dependencies', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -18,9 +20,9 @@ test('unused dependencies', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.verify()).rejects.toThrow(endent`
+  await expect(self(base)).rejects.toThrow(endent`
     Unused dependencies
     * change-case
     * foo
@@ -36,6 +38,6 @@ test('package.json error', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await expect(base.verify()).rejects.toThrow('package.json invalid');
+  await prepare(base);
+  await expect(self(base)).rejects.toThrow('package.json invalid');
 });

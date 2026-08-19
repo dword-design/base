@@ -4,6 +4,7 @@ import { execaCommand } from 'execa';
 import outputFiles from 'output-files';
 
 import { Base } from '@/src';
+import self from '.'
 
 test('badges', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -22,7 +23,7 @@ test('badges', async ({}, testInfo) => {
     'README.md': '<!-- BADGES -->\n',
   });
 
-  expect(new Base(null, { cwd }).getReadmeString()).toMatchSnapshot();
+  expect(self(new Base(null, { cwd }))).toMatchSnapshot();
 });
 
 test('badges private', async ({}, testInfo) => {
@@ -45,7 +46,7 @@ test('badges private', async ({}, testInfo) => {
     `,
   });
 
-  expect(new Base(null, { cwd }).getReadmeString()).toMatchSnapshot();
+  expect(self(new Base(null, { cwd }))).toMatchSnapshot();
 });
 
 test('description', async ({}, testInfo) => {
@@ -56,7 +57,7 @@ test('description', async ({}, testInfo) => {
     'README.md': '<!-- DESCRIPTION -->\n',
   });
 
-  expect(new Base(null, { cwd }).getReadmeString()).toEqual(endent`
+  expect(self(new Base(null, { cwd }))).toEqual(endent`
     <!-- DESCRIPTION/ -->
     foo bar baz
     <!-- /DESCRIPTION -->\n
@@ -82,7 +83,7 @@ test('existing content', async ({}, testInfo) => {
     `,
   });
 
-  expect(new Base(null, { cwd }).getReadmeString()).toMatchSnapshot();
+  expect(self(new Base(null, { cwd }))).toMatchSnapshot();
 });
 
 test('install', async ({}, testInfo) => {
@@ -93,7 +94,7 @@ test('install', async ({}, testInfo) => {
     'README.md': '<!-- INSTALL -->\n',
   });
 
-  expect(new Base(null, { cwd }).getReadmeString()).toEqual(endent`
+  expect(self(new Base(null, { cwd }))).toEqual(endent`
     <!-- INSTALL/ -->
     ## Install
 
@@ -116,7 +117,7 @@ test('license', async ({}, testInfo) => {
     'README.md': '<!-- LICENSE -->\n',
   });
 
-  expect(new Base(null, { cwd }).getReadmeString()).toMatchSnapshot();
+  expect(self(new Base(null, { cwd }))).toMatchSnapshot();
 });
 
 test('seeAlso', async ({}, testInfo) => {
@@ -128,7 +129,7 @@ test('seeAlso', async ({}, testInfo) => {
   });
 
   expect(
-    new Base(
+    self(new Base(
       {
         seeAlso: [
           { description: 'Foo bar', repository: 'output-files' },
@@ -136,7 +137,7 @@ test('seeAlso', async ({}, testInfo) => {
         ],
       },
       { cwd },
-    ).getReadmeString(),
+    )),
   ).toMatchSnapshot();
 });
 
@@ -148,7 +149,7 @@ test('title', async ({}, testInfo) => {
     'README.md': '<!-- TITLE -->\n',
   });
 
-  expect(new Base(null, { cwd }).getReadmeString()).toEqual(endent`
+  expect(self(new Base(null, { cwd }))).toEqual(endent`
     <!-- TITLE/ -->
     # foo
     <!-- /TITLE -->\n

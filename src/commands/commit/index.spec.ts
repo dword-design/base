@@ -6,6 +6,7 @@ import fs from 'fs-extra';
 import { pEvent } from 'p-event';
 
 import { Base } from '@/src';
+import self from '.';
 
 const tests = { 'allow-empty': { allowEmpty: true }, valid: {} };
 
@@ -18,7 +19,7 @@ for (const [name, testConfig] of Object.entries(tests)) {
     await execaCommand('git config user.name "foo"', { cwd });
     await execaCommand('git add .', { cwd });
     const base = new Base(null, { cwd });
-    const childProcess = base.commit(testConfig);
+    const childProcess = self(base, testConfig);
     const stdout = childProcess.stdout!; // TODO: Always set because of NODE_ENV === 'test'
 
     await pEvent(stdout, 'data', data =>

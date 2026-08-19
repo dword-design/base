@@ -23,7 +23,7 @@ test('custom config', ({}, testInfo) => {
 
 test('empty', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
-  expect(new Base(null, { cwd }).getPackageConfig()).toMatchSnapshot();
+  expect(self(new Base(null, { cwd }))).toMatchSnapshot();
 });
 
 test('existing package', async ({}, testInfo) => {
@@ -56,7 +56,7 @@ test('existing package', async ({}, testInfo) => {
     }),
   );
 
-  expect(new Base(null, { cwd }).getPackageConfig()).toMatchSnapshot();
+  expect(self(new Base(null, { cwd }))).toMatchSnapshot();
 });
 
 test('git repo', async ({}, testInfo) => {
@@ -67,7 +67,7 @@ test('git repo', async ({}, testInfo) => {
     cwd,
   });
 
-  expect(new Base(null, { cwd }).getPackageConfig()).toMatchSnapshot();
+  expect(self(new Base(null, { cwd }))).toMatchSnapshot();
 });
 
 test('non-github repo', async ({}, testInfo) => {
@@ -78,7 +78,7 @@ test('non-github repo', async ({}, testInfo) => {
     cwd,
   });
 
-  expect(() => new Base(null, { cwd }).getPackageConfig()).toThrow(
+  expect(() => self(new Base(null, { cwd }))).toThrow(
     'Only GitHub repositories are supported.',
   );
 });
@@ -91,5 +91,5 @@ test('private', async ({}, testInfo) => {
     JSON.stringify({ private: true }),
   );
 
-  expect(new Base(null, { cwd }).getPackageConfig().private).toBeTruthy();
+  expect(self(new Base(null, { cwd })).private).toBeTruthy();
 });

@@ -1,4 +1,5 @@
 import pathLib from 'node:path';
+import getTypescriptConfig from '@/src/get-generated-files/get-typescript';
 
 import { execaCommand } from 'execa';
 import { globby } from 'globby';
@@ -32,7 +33,7 @@ export default async (base: Base, options: PartialCommandOptions = {}) => {
   const allFileNames = [...fileNames, ...vueFiles];
 
   if (allFileNames.length > 0) {
-    const hasProjectReferences = !!base.getTypescriptConfig().references;
+    const hasProjectReferences = !!getTypescriptConfig(base).references;
     return execaCommand(
       `vue-tsc ${hasProjectReferences ? '-b' : ''} --noEmit`,
       {

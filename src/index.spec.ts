@@ -7,7 +7,7 @@ import { identity, omit, sortBy } from 'lodash-es';
 import outputFiles from 'output-files';
 import { expect } from 'playwright-expect-snapshot';
 
-import { Base } from '.';
+import { Base, run } from '.';
 
 test('array merge', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -196,8 +196,8 @@ test('inherited', async ({}, testInfo) => {
     'start',
   ]);
 
-  expect(base.run('prepublishOnly', 1)).toEqual(2);
-  expect(base.run('start', 1)).toEqual(4);
+  expect(run(base, 'prepublishOnly', 1)).toEqual(2);
+  expect(run(base, 'start', 1)).toEqual(4);
   await base.config.prepare(base);
   expect(await fs.exists(pathLib.join(cwd, 'prepare.txt'))).toBe(true);
   await base.config.lint(base);
@@ -246,9 +246,12 @@ test('run', async ({}, testInfo) => {
   );
 
   expect(
-    new Base(
-      { commands: { foo: baseInCommand => baseInCommand.packageConfig.name } },
-      { cwd },
-    ).run('foo'),
+    run(
+      new Base(
+        { commands: { foo: baseInCommand => baseInCommand.packageConfig.name } },
+        { cwd },
+      ),
+      'foo',
+    )
   ).toEqual('bar');
 });

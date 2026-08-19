@@ -9,6 +9,8 @@ import fs from 'fs-extra';
 import outputFiles from 'output-files';
 
 import { Base } from '@/src';
+import prepare from '@/src/commands/prepare';
+import self from '.'
 
 dotenv.config();
 
@@ -16,10 +18,10 @@ test('custom config', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   expect(
-    new Base(
+    self(new Base(
       { renovateConfig: { description: 'bar' } },
       { cwd },
-    ).getRenovateConfig().description,
+    )).description,
   ).toEqual('bar');
 });
 
@@ -27,10 +29,10 @@ test('custom config array', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   expect(
-    new Base(
+    self(new Base(
       { renovateConfig: { labels: ['foo'] } },
       { cwd },
-    ).getRenovateConfig().labels,
+    )).labels,
   ).toEqual(['maintenance', 'foo']);
 });
 
@@ -52,7 +54,7 @@ test('github action', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
   await execaCommand('git add .', { cwd });
   await execa('git', ['commit', '-m', 'feat: init'], { cwd });
 
@@ -77,7 +79,7 @@ test('lock file', async ({}, testInfo) => {
 
   await execaCommand('pnpm install --ignore-workspace', { cwd });
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
   await execaCommand('git add .', { cwd });
   await execa('git', ['commit', '-m', 'feat: init'], { cwd });
 
@@ -102,7 +104,7 @@ test('lock file fix commit type', async ({}, testInfo) => {
 
   await execaCommand('pnpm install --ignore-workspace', { cwd });
   const base = new Base({ isLockFileFixCommitType: true }, { cwd });
-  await base.prepare();
+  await prepare(base);
   await execaCommand('git add .', { cwd });
   await execa('git', ['commit', '-m', 'feat: init'], { cwd });
 
@@ -132,7 +134,7 @@ test('nodejs version', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
   await execaCommand('git add .', { cwd });
   await execa('git', ['commit', '-m', 'feat: init'], { cwd });
 
@@ -156,7 +158,7 @@ test('outdated version in package.json', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
   await execaCommand('git add .', { cwd });
   await execa('git', ['commit', '-m', 'feat: init'], { cwd });
 

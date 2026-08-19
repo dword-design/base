@@ -2,15 +2,16 @@ import { test } from '@playwright/test';
 import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
+import self from '.'
 
 test('do not sync keywords', () => {
   const base = new Base({ syncKeywords: false });
-  expect(base.getGithubSyncMetadataConfig()).toMatchSnapshot();
+  expect(self(base)).toMatchSnapshot();
 });
 
 test('valid', () => {
   const base = new Base();
-  expect(base.getGithubSyncMetadataConfig()).toMatchSnapshot();
+  expect(self(base)).toMatchSnapshot();
 });
 
 /**

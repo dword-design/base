@@ -1,5 +1,7 @@
 import type { Base } from '@/src';
 import type { PartialCommandOptions } from '@/src/commands/command-options-input';
+import testDocker from '@/src/commands/test-docker';
+import testRaw from '@/src/commands/test-raw';
 
 export default (
   base: Base,
@@ -12,5 +14,5 @@ export default (
   } = {},
 ) =>
   base.config.testInContainer
-    ? base.testDocker(options)
-    : base.testRaw(options);
+    ? testDocker(base, options)
+    : testRaw(base, options);

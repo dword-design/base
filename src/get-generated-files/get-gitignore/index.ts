@@ -1,4 +1,5 @@
 import { identity, sortBy } from 'lodash-es';
+import getTypescriptConfig from '@/src/get-generated-files/get-typescript';
 
 import type { Base } from '@/src';
 
@@ -15,7 +16,7 @@ export default (base: Base) =>
       '/coverage',
       '/node_modules',
       '/test-results',
-      ...(base.getTypescriptConfig().references
+      ...(getTypescriptConfig(base).references
         ? ['/tsconfig.tsbuildinfo']
         : []),
       ...base.config.gitignore,

@@ -4,6 +4,7 @@ import ignore from 'ignore';
 import type { Base } from '@/src';
 
 import UnknownFilesError from './unknown-files-error';
+import getGitignoreConfig from '@/src/get-generated-files/get-gitignore';
 
 export default async (base: Base) => {
   const allowedMatches = [
@@ -44,7 +45,7 @@ export default async (base: Base) => {
   });
 
   unknownFiles = unknownFiles.filter(
-    ignore().add(base.getGitignoreConfig()).createFilter(),
+    ignore().add(getGitignoreConfig(base)).createFilter(),
   );
 
   if (unknownFiles.length > 0) {

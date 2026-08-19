@@ -1,5 +1,10 @@
 import type { Base } from '@/src';
 import type { PartialCommandOptions } from '@/src/commands/command-options-input';
+import depcheck from '@/src/commands/depcheck';
+import lint from '@/src/commands/lint';
+import checkUnknownFiles from '@/src/commands/check-unknown-files';
+import test from '@/src/commands/test';
+import typecheck from '@/src/commands/typecheck';
 
 export default async (
   base: Base,
@@ -15,9 +20,9 @@ export default async (
     ...options,
   };
 
-  await base.lint(options);
-  await base.typecheck(options);
-  await base.depcheck();
-  await base.checkUnknownFiles();
-  await base.test(options);
+  await lint(base, options);
+  await typecheck(base, options);
+  await depcheck(base);
+  await checkUnknownFiles(base);
+  await test(base, options);
 };

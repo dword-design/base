@@ -10,12 +10,13 @@ import outputFiles from 'output-files';
 import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
+import self from '.'
 
 test('additional allowed match', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'foo.txt'), '');
   const base = new Base({ allowedMatches: ['foo.txt'] }, { cwd });
-  await base.prepare();
+  await self(base);
   expect(await globby('*', { cwd, dot: true })).toContain('foo.txt');
 });
 
@@ -25,7 +26,7 @@ test('commit valid', async ({}, testInfo) => {
   await execaCommand('git config user.email "foo@bar.de"', { cwd });
   await execaCommand('git config user.name "foo"', { cwd });
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await self(base);
   await execa('git', ['commit', '--allow-empty', '-m', 'fix: foo'], { cwd });
 });
 
@@ -35,7 +36,7 @@ test('commit with linting errors', async ({}, testInfo) => {
   await execaCommand('git config user.email "foo@bar.de"', { cwd });
   await execaCommand('git config user.name "foo"', { cwd });
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await self(base);
 
   await expect(
     execaCommand('git commit --allow-empty -m foo', { cwd }),
@@ -53,7 +54,7 @@ test('custom prepare', async ({}, testInfo) => {
     { cwd },
   );
 
-  await base.prepare();
+  await self(base);
 
   expect(await fs.readFile(pathLib.join(cwd, 'foo.txt'), 'utf8')).toEqual(
     'bar',
@@ -88,7 +89,7 @@ test('valid', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await self(base);
   const paths = await globby('*', { cwd, dot: true, onlyFiles: false });
 
   expect(

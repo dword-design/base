@@ -7,6 +7,8 @@ import fs from 'fs-extra';
 import outputFiles from 'output-files';
 
 import { Base } from '@/src';
+import prepare from '@/src/commands/prepare';
+import self from '.'
 
 test('custom linter', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -20,8 +22,8 @@ test('custom linter', async ({}, testInfo) => {
     { cwd },
   );
 
-  await base.prepare();
-  await expect(base.lint()).rejects.toThrow('foobar');
+  await prepare(base);
+  await expect(self(base)).rejects.toThrow('foobar');
 });
 
 test('fixable', async ({}, testInfo) => {
@@ -33,8 +35,8 @@ test('fixable', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.lint({ log: true });
+  await prepare(base);
+  await self(base, { log: true });
 
   expect(
     await fs.readFile(pathLib.join(cwd, 'src', 'index.ts'), 'utf8'),
@@ -54,8 +56,8 @@ test('lint eslint config', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.lint();
+  await prepare(base);
+  await self(base);
 });
 
 test('linting errors', async ({}, testInfo) => {
@@ -67,9 +69,9 @@ test('linting errors', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.lint()).rejects.toThrow(
+  await expect(self(base)).rejects.toThrow(
     "'foo' is assigned a value but never used",
   );
 });
@@ -89,9 +91,9 @@ test('package name != repository name', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.lint()).rejects.toThrow(
+  await expect(self(base)).rejects.toThrow(
     "Package name 'bar' has to be equal to repository name 'foo'",
   );
 });
@@ -100,9 +102,9 @@ test('json error', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
   await fs.outputFile(pathLib.join(cwd, 'src', 'test.json'), 'foo bar');
   const base = new Base(null, { cwd });
-  await base.prepare();
+  await prepare(base);
 
-  await expect(base.lint()).rejects.toThrow(
+  await expect(self(base)).rejects.toThrow(
     "Parsing error: Unexpected identifier 'foo'",
   );
 });
@@ -116,6 +118,6 @@ test('node_modules postfix casing error', async ({}, testInfo) => {
   });
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await expect(base.lint()).rejects.toThrow('Filename is not in kebab case.');
+  await prepare(base);
+  await expect(self(base)).rejects.toThrow('Filename is not in kebab case.');
 });

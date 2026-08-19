@@ -4,6 +4,8 @@ import { test } from '@playwright/test';
 import fs from 'fs-extra';
 
 import { Base } from '@/src';
+import prepare from '@/src/commands/prepare';
+import typecheck from '@/src/commands/typecheck';
 
 test('node_modules', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -14,8 +16,8 @@ test('node_modules', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.typecheck();
+  await prepare(base);
+  await typecheck(base);
 });
 
 test('test-results', async ({}, testInfo) => {
@@ -27,6 +29,6 @@ test('test-results', async ({}, testInfo) => {
   );
 
   const base = new Base(null, { cwd });
-  await base.prepare();
-  await base.typecheck();
+  await prepare(base);
+  await typecheck(base);
 });

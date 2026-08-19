@@ -9,6 +9,7 @@ import parsePackagejsonName from 'parse-packagejson-name';
 
 import packageJson from '@/package.json' with { type: 'json' };
 import { Base } from '@/src';
+import self from '.'
 
 const { fullName: projectName, scope: projectScope } = parsePackagejsonName(
   packageJson.name,
@@ -39,7 +40,7 @@ test('create folder @usesdocker', async ({ packageName }, testInfo) => {
     }),
   );
 
-  await new Base(null, { cwd }).testDocker();
+  await self(new Base(null, { cwd }));
   await fs.remove(pathLib.join(cwd, 'dist'));
 });
 
@@ -58,7 +59,7 @@ test('create folder and error @usesdocker', async ({
     }),
   );
 
-  await expect(new Base(null, { cwd }).testDocker()).rejects.toThrow();
+  await expect(self(new Base(null, { cwd }))).rejects.toThrow();
   await fs.remove(pathLib.join(cwd, 'dist'));
 });
 
@@ -109,7 +110,7 @@ test('git @usesdocker', async ({ packageName }, testInfo) => {
     `,
   });
 
-  await new Base(null, { cwd }).testDocker();
+  await self(new Base(null, { cwd }));
 });
 
 test('grep @usesdocker', async ({ packageName }, testInfo) => {
@@ -128,7 +129,7 @@ test('grep @usesdocker', async ({ packageName }, testInfo) => {
     `,
   });
 
-  await new Base(null, { cwd }).testDocker({ grep: 'foo bar baz' });
+  await self(new Base(null, { cwd }), { grep: 'foo bar baz' });
 
   expect(await fs.readFile(pathLib.join(cwd, 'grep.txt'), 'utf8')).toEqual(
     '-g,foo bar baz',
@@ -156,7 +157,7 @@ test('is in docker @usesdocker', async ({ packageName }, testInfo) => {
 
   await execaCommand('pnpm install --ignore-workspace', { cwd });
   const base = new Base(null, { cwd });
-  await base.testDocker();
+  await self(base);
 });
 
 test('pattern @usesdocker', async ({ packageName }, testInfo) => {
@@ -175,7 +176,7 @@ test('pattern @usesdocker', async ({ packageName }, testInfo) => {
     `,
   });
 
-  await new Base(null, { cwd }).testDocker({ patterns: ['foo bar baz'] });
+  await self(new Base(null, { cwd }), { patterns: ['foo bar baz'] });
 
   expect(await fs.readFile(pathLib.join(cwd, 'grep.txt'), 'utf8')).toEqual(
     'foo bar baz',
@@ -197,7 +198,7 @@ test('update snapshots @usesdocker', async ({ packageName }, testInfo) => {
     `,
   });
 
-  await new Base(null, { cwd }).testDocker({ updateSnapshots: true });
+  await self(new Base(null, { cwd }), { updateSnapshots: true });
 });
 
 test('test.only @usesdocker', async ({ packageName }, testInfo) => {

@@ -5,6 +5,7 @@ import fs from 'fs-extra';
 import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
+import self from '.'
 
 test('works', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -14,5 +15,5 @@ test('works', async ({}, testInfo) => {
     JSON.stringify({ name: '@dword-design/foo' }),
   );
 
-  expect(new Base(null, { cwd }).getGitpodConfig()).toMatchSnapshot();
+  expect(self(new Base(null, { cwd }))).toMatchSnapshot();
 });
