@@ -6,6 +6,7 @@ import fs from 'fs-extra';
 import { pEvent } from 'p-event';
 
 import { Base } from '@/src';
+
 import self from '.';
 
 const tests = { 'allow-empty': { allowEmpty: true }, valid: {} };

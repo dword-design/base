@@ -9,7 +9,8 @@ import parsePackagejsonName from 'parse-packagejson-name';
 
 import packageJson from '@/package.json' with { type: 'json' };
 import { Base } from '@/src';
-import self from '.'
+
+import self from '.';
 
 const { fullName: projectName, scope: projectScope } = parsePackagejsonName(
   packageJson.name,

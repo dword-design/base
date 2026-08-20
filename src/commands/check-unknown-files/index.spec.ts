@@ -5,8 +5,8 @@ import outputFiles from 'output-files';
 
 import { Base } from '@/src';
 
+import self from '.';
 import UnknownFilesError from './unknown-files-error';
-import self from '.'
 
 type TestConfig = {
   allowedMatches?: string[];

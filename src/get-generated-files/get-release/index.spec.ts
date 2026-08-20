@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { Base } from '@/src';
+
 import self from '.';
 
 interface TestConfig {
@@ -96,8 +97,5 @@ const tests: Record<string, TestConfig> = {
 
 for (const [name, testConfig] of Object.entries(tests)) {
   const config = { deployAssets: [], deployPlugins: [], ...testConfig.config };
-
-  test(name, () =>
-    expect(self(new Base(config))).toEqual(testConfig.result),
-  );
+  test(name, () => expect(self(new Base(config))).toEqual(testConfig.result));
 }

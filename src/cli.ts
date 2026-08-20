@@ -4,7 +4,19 @@ import dotenv from '@dword-design/dotenv-json-extended';
 import { mapValues } from 'lodash-es';
 import makeCli from 'make-cli';
 
-import { Base, run, commit, depcheck, verify, testRaw, lint, prepare, typecheck, checkUnknownFiles, test } from '.';
+import {
+  Base,
+  checkUnknownFiles,
+  commit,
+  depcheck,
+  lint,
+  prepare,
+  run,
+  test,
+  testRaw,
+  typecheck,
+  verify,
+} from '.';
 import loadConfig from './load-config';
 
 const base = new Base(await loadConfig());
@@ -39,7 +51,7 @@ try {
     commands: {
       checkUnknownFiles: { handler: () => checkUnknownFiles(base) },
       commit: {
-        handler: (...args) => commit(base, ...args),
+        handler: (...arguments_) => commit(base, ...arguments_),
         options: [
           { description: 'Allow empty commits', name: '--allow-empty' },
         ],

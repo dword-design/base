@@ -10,7 +10,8 @@ import outputFiles from 'output-files';
 
 import { Base } from '@/src';
 import prepare from '@/src/commands/prepare';
-import self from '.'
+
+import self from '.';
 
 dotenv.config();
 
@@ -18,10 +19,8 @@ test('custom config', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   expect(
-    self(new Base(
-      { renovateConfig: { description: 'bar' } },
-      { cwd },
-    )).description,
+    self(new Base({ renovateConfig: { description: 'bar' } }, { cwd }))
+      .description,
   ).toEqual('bar');
 });
 
@@ -29,10 +28,7 @@ test('custom config array', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
   expect(
-    self(new Base(
-      { renovateConfig: { labels: ['foo'] } },
-      { cwd },
-    )).labels,
+    self(new Base({ renovateConfig: { labels: ['foo'] } }, { cwd })).labels,
   ).toEqual(['maintenance', 'foo']);
 });
 

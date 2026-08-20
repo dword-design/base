@@ -248,10 +248,12 @@ test('run', async ({}, testInfo) => {
   expect(
     run(
       new Base(
-        { commands: { foo: baseInCommand => baseInCommand.packageConfig.name } },
+        {
+          commands: { foo: baseInCommand => baseInCommand.packageConfig.name },
+        },
         { cwd },
       ),
       'foo',
-    )
+    ),
   ).toEqual('bar');
 });

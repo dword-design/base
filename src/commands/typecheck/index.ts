@@ -1,5 +1,4 @@
 import pathLib from 'node:path';
-import getTypescriptConfig from '@/src/get-generated-files/get-typescript';
 
 import { execaCommand } from 'execa';
 import { globby } from 'globby';
@@ -7,6 +6,7 @@ import ts from 'typescript';
 
 import type { Base } from '@/src';
 import type { PartialCommandOptions } from '@/src/commands/command-options-input';
+import getTypescriptConfig from '@/src/get-generated-files/get-typescript';
 
 export default async (base: Base, options: PartialCommandOptions = {}) => {
   options = {

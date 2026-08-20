@@ -1,14 +1,4 @@
 import { createRequire } from 'node:module';
-import getTypescriptConfig from './get-typescript';
-import getGitpodDockerfile from './get-gitpod-dockerfile';
-import getGitpodConfig from './get-gitpod';
-import getLintStaged from './get-lint-staged';
-import getReleaseConfig from './get-release';
-import getRenovateConfig from './get-renovate';
-import getVscodeConfig from './get-vscode';
-import getEslintConfig from './get-eslint';
-import getReadmeString from './get-readme-string';
-import getLicenseString from './get-license-string';
 
 import fs from 'fs-extra';
 import { stringify as stringifyIni } from 'ini';
@@ -22,6 +12,19 @@ import commitizenConfig from './commitizen';
 import commitlintConfig from './commitlint';
 import editorconfigConfig from './editorconfig';
 import eslintLintStaged from './eslint-lint-staged';
+import getEslintConfig from './get-eslint';
+import getGithubSyncMetadataConfig from './get-github-sync-metadata';
+import getGithubWorkflowConfig from './get-github-workflow';
+import getGitignoreConfig from './get-gitignore';
+import getGitpodConfig from './get-gitpod';
+import getGitpodDockerfile from './get-gitpod-dockerfile';
+import getLicenseString from './get-license-string';
+import getLintStaged from './get-lint-staged';
+import getReadmeString from './get-readme-string';
+import getReleaseConfig from './get-release';
+import getRenovateConfig from './get-renovate';
+import getTypescriptConfig from './get-typescript';
+import getVscodeConfig from './get-vscode';
 import gitattributesConfig from './gitattributes';
 import githubCodespacesConfig from './github-codespaces';
 import githubDeprecatedDependenciesConfig from './github-deprecated-dependencies';
@@ -30,9 +33,6 @@ import githubFunding from './github-funding';
 import githubLabelsConfig from './github-labels';
 import githubSyncLabelsConfig from './github-sync-labels';
 import npmrc from './npmrc';
-import getGitignoreConfig from './get-gitignore';
-import getGithubWorkflowConfig from './get-github-workflow';
-import getGithubSyncMetadataConfig from './get-github-sync-metadata';
 
 const resolver = createRequire(import.meta.url);
 

@@ -4,16 +4,15 @@ import { test } from '@playwright/test';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 import { expect } from 'playwright-expect-snapshot';
-import type { MergeDeep } from 'type-fest';
 
-import { Base, Config } from '@/src';
+import { Base } from '@/src';
 
 import self from '.';
 
 test('custom config', ({}, testInfo) => {
   const cwd = testInfo.outputPath();
 
-  const base = new Base<MergeDeep<Config, { packageConfig: { main: string } }>>(
+  const base = new Base(
     { packageConfig: { main: 'dist/index.scss' } },
     { cwd },
   );

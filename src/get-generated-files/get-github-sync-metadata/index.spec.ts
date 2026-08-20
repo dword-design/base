@@ -2,7 +2,8 @@ import { test } from '@playwright/test';
 import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
-import self from '.'
+
+import self from '.';
 
 test('do not sync keywords', () => {
   const base = new Base({ syncKeywords: false });
