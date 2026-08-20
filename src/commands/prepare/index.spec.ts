@@ -10,7 +10,8 @@ import outputFiles from 'output-files';
 import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
-import self from '.'
+
+import self from '.';
 
 test('additional allowed match', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();

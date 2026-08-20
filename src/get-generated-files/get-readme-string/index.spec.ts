@@ -4,7 +4,8 @@ import { execaCommand } from 'execa';
 import outputFiles from 'output-files';
 
 import { Base } from '@/src';
-import self from '.'
+
+import self from '.';
 
 test('badges', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -129,15 +130,17 @@ test('seeAlso', async ({}, testInfo) => {
   });
 
   expect(
-    self(new Base(
-      {
-        seeAlso: [
-          { description: 'Foo bar', repository: 'output-files' },
-          { description: 'Bar baz', repository: 'foo/with-local-tmp-dir' },
-        ],
-      },
-      { cwd },
-    )),
+    self(
+      new Base(
+        {
+          seeAlso: [
+            { description: 'Foo bar', repository: 'output-files' },
+            { description: 'Bar baz', repository: 'foo/with-local-tmp-dir' },
+          ],
+        },
+        { cwd },
+      ),
+    ),
   ).toMatchSnapshot();
 });
 

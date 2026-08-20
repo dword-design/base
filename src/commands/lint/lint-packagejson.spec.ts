@@ -6,7 +6,8 @@ import fs from 'fs-extra';
 
 import { Base } from '@/src';
 import prepare from '@/src/commands/prepare';
-import self from './lint-packagejson'
+
+import self from './lint-packagejson';
 
 test('bin: object', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();
@@ -105,6 +106,7 @@ test('wrong dependencies type', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await prepare(base);
+
   expect(() => self(base)).toThrow(
     'package.json invalid\ndata/dependencies must be object',
   );
@@ -120,6 +122,7 @@ test('wrong description type', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await prepare(base);
+
   expect(() => self(base)).toThrow(
     'package.json invalid\ndata/description must be string',
   );
@@ -135,6 +138,7 @@ test('wrong dev dependencies type', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await prepare(base);
+
   expect(() => self(base)).toThrow(
     'package.json invalid\ndata/devDependencies must be object',
   );
@@ -150,6 +154,7 @@ test('wrong keywords type', async ({}, testInfo) => {
 
   const base = new Base(null, { cwd });
   await prepare(base);
+
   expect(() => self(base)).toThrow(
     'package.json invalid\ndata/keywords must be array',
   );

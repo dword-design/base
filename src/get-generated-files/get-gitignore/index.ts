@@ -1,7 +1,7 @@
 import { identity, sortBy } from 'lodash-es';
-import getTypescriptConfig from '@/src/get-generated-files/get-typescript';
 
 import type { Base } from '@/src';
+import getTypescriptConfig from '@/src/get-generated-files/get-typescript';
 
 export default (base: Base) =>
   sortBy(

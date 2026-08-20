@@ -1,8 +1,8 @@
 import type { Base } from '@/src';
+import checkUnknownFiles from '@/src/commands/check-unknown-files';
 import type { PartialCommandOptions } from '@/src/commands/command-options-input';
 import depcheck from '@/src/commands/depcheck';
 import lint from '@/src/commands/lint';
-import checkUnknownFiles from '@/src/commands/check-unknown-files';
 import test from '@/src/commands/test';
 import typecheck from '@/src/commands/typecheck';
 

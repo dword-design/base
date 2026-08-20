@@ -2,7 +2,8 @@ import { expect, test } from '@playwright/test';
 import endent from 'endent';
 
 import { Base } from '@/src';
-import self from '.'
+
+import self from '.';
 
 test('custom config', () => {
   const base = new Base({ eslintConfig: 'foo' });

@@ -2,9 +2,9 @@ import { globby } from 'globby';
 import ignore from 'ignore';
 
 import type { Base } from '@/src';
+import getGitignoreConfig from '@/src/get-generated-files/get-gitignore';
 
 import UnknownFilesError from './unknown-files-error';
-import getGitignoreConfig from '@/src/get-generated-files/get-gitignore';
 
 export default async (base: Base) => {
   const allowedMatches = [

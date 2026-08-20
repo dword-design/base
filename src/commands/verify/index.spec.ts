@@ -7,6 +7,7 @@ import outputFiles from 'output-files';
 
 import { Base } from '@/src';
 import prepare from '@/src/commands/prepare';
+
 import self from '.';
 
 test('unused dependencies', async ({}, testInfo) => {

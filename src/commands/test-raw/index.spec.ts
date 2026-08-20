@@ -11,8 +11,9 @@ import outputFiles from 'output-files';
 import stripAnsi from 'strip-ansi';
 
 import { Base } from '@/src';
-import self from '.';
 import prepare from '@/src/commands/prepare';
+
+import self from '.';
 
 const javascript = endent;
 

@@ -3,6 +3,7 @@ import parsePackagejsonName from 'parse-packagejson-name';
 
 import type { Base } from '@/src';
 import type { PartialCommandOptions } from '@/src/commands/command-options-input';
+
 import lintPackageJson from './lint-packagejson';
 
 export default async (base: Base, options: PartialCommandOptions = {}) => {

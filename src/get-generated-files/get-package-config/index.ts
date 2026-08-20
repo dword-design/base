@@ -3,10 +3,15 @@ import packageName from 'depcheck-package-name';
 import { mapValues, pick, stubTrue } from 'lodash-es';
 import sortKeys from 'sort-keys';
 
-import type { Base, Config } from '@/src';
+import type { Config } from '@/src';
 import typedKeys from '@/src/lib/typed-keys';
+import type { PackageJson, Simplify } from 'type-fest';
 
-export default <TConfig extends Config>(base: Base<TConfig>) => {
+type InterfaceToType<T> = Simplify<T>;
+
+type PackageJsonStandard = InterfaceToType<PackageJson.PackageJsonStandard>;
+
+export default <TConfig extends Config>(base: { config: TConfig, packageConfigFromFile: PackageJsonStandard }) => {
   const commandNames = {
     checkUnknownFiles: true,
     commit: true,
@@ -19,26 +24,11 @@ export default <TConfig extends Config>(base: Base<TConfig>) => {
     verify: true,
     ...mapValues(base.config.commands, stubTrue),
   };
-
-  return defaults(base.config.packageConfig, {
+  
+  const result = defaults(base.config.packageConfig, {
     ...pick(
       base.packageConfigFromFile,
-      typedKeys({
-        baseConfig: true,
-        bin: true,
-        dependencies: true,
-        description: true,
-        devDependencies: true,
-        keywords: true,
-        name: true,
-        optionalDependencies: true,
-        packageManager: true,
-        peerDependencies: true,
-        peerDependenciesMeta: true,
-        pnpm: true,
-        private: true,
-        publishConfig: true,
-      }),
+      ['name', 'description', 'baseConfig', 'bin', 'dependencies', 'devDependencies', 'keywords', 'optionalDependencies', 'packageManager', 'peerDependencies', 'peerDependenciesMeta', 'pnpm', 'private', 'publishConfig'],
     ),
     author: 'Sebastian Landwehr <info@sebastianlandwehr.com>',
     engines: {
@@ -61,4 +51,5 @@ export default <TConfig extends Config>(base: Base<TConfig>) => {
     type: 'module' as const,
     version: base.packageConfigFromFile.version || '1.0.0',
   });
+  return result;
 };

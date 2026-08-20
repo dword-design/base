@@ -8,7 +8,8 @@ import outputFiles from 'output-files';
 
 import { Base } from '@/src';
 import prepare from '@/src/commands/prepare';
-import self from '.'
+
+import self from '.';
 
 test('custom linter', async ({}, testInfo) => {
   const cwd = testInfo.outputPath();

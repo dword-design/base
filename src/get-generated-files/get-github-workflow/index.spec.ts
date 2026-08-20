@@ -8,6 +8,7 @@ import outputFiles from 'output-files';
 import { expect } from 'playwright-expect-snapshot';
 
 import { Base } from '@/src';
+
 import self from '.';
 
 test('GitHub CLI exists', async () => {
