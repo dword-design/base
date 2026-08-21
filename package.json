@@ -86,7 +86,7 @@
     "tsx": "^4.23.1",
     "type-fest": "npm:@dword-design/type-fest-fork@^0.0.1",
     "typescript": "^5.9.3",
-    "vue-tsc": "^2.2.12",
+    "vue-tsc": "^3.0.0",
     "yaml": "^2.9.0"
   },
   "devDependencies": {
