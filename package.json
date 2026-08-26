@@ -41,7 +41,7 @@
     "@dword-design/dotenv-json-extended": "^5.3.0",
     "@dword-design/eslint-config": "^9.0.19",
     "@dword-design/personal-data": "^3.0.0",
-    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/git": "^10.0.1",
     "ajv": "^8.20.0",
     "braces": "^3.0.3",
